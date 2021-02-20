@@ -1,0 +1,730 @@
+<!DOCTYPE HTML>
+<html lang="en,pt,de,default">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Page 3 | rramos.github.io</title>
+  <meta name="author" content="Rui Ramos">
+  
+  <meta name="description" content="A simple Blog related with Infrastructure Architecture and Data">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="rramos.github.io"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link rel="shortcut icon" href="/favicon.png">
+  
+    <link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-106053129-1', 'auto');
+	ga('send', 'pageview');
+
+</script>
+
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">rramos.github.io</a></h1>
+  <h2><a href="/">Tech Notes for Infrastructure and Data</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/null">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+  <article id="post-mkv" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2017-09-07T01:00:16.000Z"><a href="/2017/09/07/mkv/">2017-09-07</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/09/07/mkv/">Terminal Markdown Viewer and MarkDown SpellChecker</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p>It’s been a while that i’ve updated this posts. So let me start for something i’ve found out the other day.</p>
+<h2 id="Terminal-Markdown-Viewer"><a href="#Terminal-Markdown-Viewer" class="headerlink" title="Terminal Markdown Viewer"></a>Terminal Markdown Viewer</h2><p>I though it would be cool to have some tool that could parse me Markdown files and present them nicely formatted, like <code>cat</code> command.</p>
+<p>And it seems i’m not the only one :)</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/axiros/terminal_markdown_viewer">https://github.com/axiros/terminal_markdown_viewer</a></p>
+<p>In order to install just follow the instruction on the site. Pip worked well for me:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install mdv</span><br></pre></td></tr></table></figure>
+<p>I’ve updated my PATH environment var on <code>.bashrc</code> with:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export PYTHONPATH&#x3D;&quot;$&#123;PYTHONPATH&#125;:&#x2F;$&#123;HOME&#125;&#x2F;.local&#x2F;lib&#x2F;python2.7&#x2F;site-packages&quot;</span><br><span class="line">export PATH&#x3D;&quot;$PATH:~&#x2F;.local&#x2F;bin&quot;</span><br></pre></td></tr></table></figure>
+<p>I can now execute <code>mdv</code> command try it out it some .md files :D</p>
+<h2 id="A-Markdown-spell-checking-tool"><a href="#A-Markdown-spell-checking-tool" class="headerlink" title="A Markdown spell checking tool."></a>A Markdown spell checking tool.</h2><p>The other thing is regarding spell-check, as you can probably notice i really do a lot of errors, but i don’t wont to use a high resource editor just because of this how about a MD spell checking tool ?</p>
+<p>Well i’m trying this one ad i’m using [hexo][<a href="http://hexo.io]">http://hexo.io]</a> for the page generation and it uses already npm modules just added a new one </p>
+<h3 id="install"><a href="#install" class="headerlink" title="install"></a>install</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i markdown-spellcheck -g</span><br></pre></td></tr></table></figure>
+<p>One can run interactive like</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mdspell &quot;**&#x2F;*.md&quot;</span><br></pre></td></tr></table></figure>
+<p>It’s a bit slow but the database would grow in terms, i’m giving a try to it.</p>
+<p>I also add to add <code>.spelling</code> no to keep the dictionary database on git. I probably would add it later.</p>
+<p>Cheers,<br>RR</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article id="post-SparkSummit2016" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2016-11-03T22:09:40.000Z"><a href="/2016/11/03/SparkSummit2016/">2016-11-03</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/11/03/SparkSummit2016/">Spark Summit 2016</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p>So i’ve attended 25-27 OCT in Brussels to SparkSummit 2016 in Europe. So it kind makes sense to write down some impressions regarding the event.</p>
+<p>The Event it self was pretty well organized, and the distribution of spaces was well planned.</p>
+<p>Regarding Spark it-self, is one of the ecosystem players (<a target="_blank" rel="noopener" href="https://hadoopecosystemtable.github.io/">https://hadoopecosystemtable.github.io/</a>) that’s been getting more traction from the industry, partially because of the Enterprise support from Databricks and other major BigData contributors.</p>
+<p>This Summit, had huge increase of participants, compared to last year, what guaranties that this is really here to stay.</p>
+<p>I always try to make of this conferences with two key points:</p>
+<ul>
+<li>What’s new ?</li>
+<li>What are the other Companies doing, that’s working for them ?</li>
+</ul>
+<h2 id="What-new"><a href="#What-new" class="headerlink" title="What new"></a>What new</h2><p>AMPLab, the creators of Spark from UC Berkeley presented some interesting projects for the future that would increase SparkEngine to a new level. They presented some comparation charts with execution times of this new engine compared with project Flink which uses real streaming and not micro-batching, which may come as a very good news, because there are more and more Streaming applications being implemented. Also some new layer of secure, the projects are called Drizzle and Opaque, let’s hope they get this ready soon :)</p>
+<p>Also one of the big announcements, was the new TensorFrames object. this output come’s from a join work of TensorFlow and Databricks in order to bring DeepLearning to Spark. What this means is that in the Future one could simple use the Spark Framework in order to take advantage of GPU’s, also that comes into alignment as you could expect with the new feature in Databricks Notebooks to support this.</p>
+<p>It is still in Beta, but if you are using both TensorFlow and Spark, this is obviously good news.</p>
+<p>IBM is also entering the race with a SaaS solution (<a target="_blank" rel="noopener" href="https://console.ng.bluemix.net/catalog/services/apache-spark">https://console.ng.bluemix.net/catalog/services/apache-spark</a>) similar to Databricks, in terms of Notebook offering but it runs on their own infrastructure, which could be good and have good stability and all, but when dealing with bigdata and moving all that data from provider to provider, you better to the maths.</p>
+<p>For that matter still prefer the Databricks model, and they have good news that until the end of the year they are planning to support a new CloudProvider.</p>
+<h2 id="Use-Cases"><a href="#Use-Cases" class="headerlink" title="Use Cases"></a>Use Cases</h2><p>There where lot’s of use cases, in the several industries, even in the <a target="_blank" rel="noopener" href="https://spark-summit.org/eu-2016/events/mmmooogle-from-big-data-to-decisions-for-dairy-cows/">Milk Industry</a> that’s right :)</p>
+<p>But looking on the overall presented cases, is clear that more and more companies are adopting Streaming solutions for they business, as <a target="_blank" rel="noopener" href="https://youtu.be/mVP9sZ6K__Y">Jacek Laskowski</a> referred in his presentation. (Really recommend that one, a really appealing one)</p>
+<p>Kafka is becoming a key-role figure in the several presented architectures.</p>
+<p>And it seems HDFS is becoming mostly used as a DataLake only solution, and starting using more high-speed memory layer as DataGrid, Alluxio solutions.</p>
+<p>They also presented some comparations regarding direct access to Cloud Blob Storage compared with traditional FS <a target="_blank" rel="noopener" href="https://spark-summit.org/eu-2016/events/spark-and-object-stores-what-you-need-to-know/">Steve Loughran</a>. Interesting values presented regarding Microsoft Cloud Solution vs AWS.</p>
+<p>On other aspect that call my attention, was the lack of monitoring solutions for Spark workloads, and there where in fact several presentations regarding this subject, mostly use cases of in-house developments that fill this gap. <a target="_blank" rel="noopener" href="https://spark-summit.org/eu-2016/events/sparklint-a-tool-for-monitoring-identifying-and-tuning-inefficient-spark-jobs-across-your-cluster/">Simon Whitear</a><br>was one of the best in my opinion.</p>
+<p>Lambda,Gamma and Omega. With all these Streaming high-speed architectures showing on, one has to play it safe right. That’s also one of the tendencies for the Industry to have these types of architectures with a speed layer and slow-layer. <a target="_blank" rel="noopener" href="https://spark-summit.org/eu-2016/speakers/william-benton/">William Benton</a> made a very enjoyable presentation regarding this topic.</p>
+<h1 id="Slides-and-Videos"><a href="#Slides-and-Videos" class="headerlink" title="Slides and Videos"></a>Slides and Videos</h1><p>It seems they updated the site and the videos and slides seem available, which is good news. </p>
+<p>Check them if you like on the site Schedule page:</p>
+<p><a target="_blank" rel="noopener" href="https://spark-summit.org/eu-2016/schedule/">https://spark-summit.org/eu-2016/schedule/</a></p>
+<p>Cheers and keep Sparking</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article id="post-hiveGC-md" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2016-10-18T23:05:00.000Z"><a href="/2016/10/19/hiveGC-md/">2016-10-19</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/10/19/hiveGC-md/">Hive Queries Crash When Inserting GC Exception</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p>When running some queries with hive sometimes we get a very nice java exception of overhead limit</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Exception in thread &quot;main&quot; java.lang.OutOfMemoryError: GC overhead limit exceeded</span><br></pre></td></tr></table></figure>
+<p>I didn’t know but it turns out you can supply directly on the jdbc connection of beeline the parameters to increase this values.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jdbc:hive2:&#x2F;&#x2F;localhost:10000&#x2F;default?mapreduce.map.memory.mb&#x3D;3809;mapreduce.map.java.opts&#x3D;-Xmx3428m;mapreduce.reduce.memory.mb&#x3D;2560;mapreduce.reduce.java.opts&#x3D;-Xmx2304m;</span><br></pre></td></tr></table></figure>
+<p>It is important to understand the size of the containers in your cluster and this is usefull for some adhoc procedures.</p>
+<p>The best way is to configure the containers memory size in hadoop, but this kind of quick solutions are usefull, expecially for testing parameters of new workflows.</p>
+<p>There is some good info regarding this configuration in altiscale documentation:</p>
+<p><a target="_blank" rel="noopener" href="https://documentation.altiscale.com/heapsize-for-mappers-and-reducers">https://documentation.altiscale.com/heapsize-for-mappers-and-reducers</a></p>
+<p>Cheers,<br>RR</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article id="post-portotechhub-com" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2016-09-23T21:40:10.000Z"><a href="/2016/09/23/portotechhub-com/">2016-09-23</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/09/23/portotechhub-com/">Porto Tech HUB 2016</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p>I’ve attend today to the second edition of Porto Tech HUB 2016. It was good to see old friends and the raising tech potencial in the City.</p>
+<p>There where some good presentations, good organization and the location was appealing also.</p>
+<p>I especially liked Christoffer Noring presentation about <a target="_blank" rel="noopener" href="https://www.nativescript.org/">NativeScript</a> and <a target="_blank" rel="noopener" href="https://angularjs.org/">Angular</a> and Miguel Veiga about <a target="_blank" rel="noopener" href="http://storm.apache.org/">Storm</a> and <a target="_blank" rel="noopener" href="http://kafka.apache.org/">Kafka</a>.</p>
+<p>This last one have more to do with my actual work.</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://www.portotechhub.com/">http://www.portotechhub.com</a></li>
+<li><a target="_blank" rel="noopener" href="https://twitter.com/PortoTechHub">https://twitter.com/PortoTechHub</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article id="post-git-cheat-sheet" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2016-09-18T12:31:09.000Z"><a href="/2016/09/18/git-cheat-sheet/">2016-09-18</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/09/18/git-cheat-sheet/">GIT Cheat Sheet</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p>As i’m allways forgetting how to reset my local changes from origin HEAD. This cheat sheet might help.</p>
+<h2 id="Create"><a href="#Create" class="headerlink" title="Create"></a>Create</h2><p>Clone an existing repository</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone ssh:&#x2F;&#x2F;user@domain.com&#x2F;repo.git</span><br></pre></td></tr></table></figure>
+<p>Create a new local repository</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+<h2 id="Local-Changes"><a href="#Local-Changes" class="headerlink" title="Local Changes"></a>Local Changes</h2><p>Changed files in your working directory</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
+<p>Changes to tracked files</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git diff</span><br></pre></td></tr></table></figure>
+<p>Add all current changes to the next commit</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure>
+<p>Add some changes in <file> to the next commit</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add -p &lt;file&gt;</span><br></pre></td></tr></table></figure>
+<p>Commit all local changes in tracked files</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -a</span><br></pre></td></tr></table></figure>
+<p>Commit previously staged changes</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commmit</span><br></pre></td></tr></table></figure>
+<p>Change the last commit (Don’t amend publish commits)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit --amend</span><br></pre></td></tr></table></figure>
+<h2 id="Branches-amp-Tags"><a href="#Branches-amp-Tags" class="headerlink" title="Branches &amp; Tags"></a>Branches &amp; Tags</h2><p>List all existing branches</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -av</span><br></pre></td></tr></table></figure>
+<p>Switch HEAD branch</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout &lt;branch&gt;</span><br></pre></td></tr></table></figure>
+<p>Create new banch based on your current HEAD</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch &lt;new-branch&gt;</span><br></pre></td></tr></table></figure>
+<p>Create new tracking branch based on a remote branch</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout --track &lt;remote&#x2F;branch&gt;</span><br></pre></td></tr></table></figure>
+<p>Delete a local branch</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -d &lt;branch&gt;</span><br></pre></td></tr></table></figure>
+<p>Mark the current commit with a tag</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git tag &lt;tag-name&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="Update-amp-Publish"><a href="#Update-amp-Publish" class="headerlink" title="Update &amp; Publish"></a>Update &amp; Publish</h2><p>List all currently configured remotes</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
+<p>Show information about a remote</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote show &lt;remote&gt;</span><br></pre></td></tr></table></figure>
+<p>Add new remote repository, named <remote></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add &lt;shortname&gt; &lt;url&gt;</span><br></pre></td></tr></table></figure>
+<p>Download all changes from <remote>, but don’t integrate into HEAD</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git fetch &lt;remote&gt;</span><br></pre></td></tr></table></figure>
+<p>Download changes and directly merge/integrate into HEAD</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull &lt;remote&gt; &lt;branch&gt;</span><br></pre></td></tr></table></figure>
+<p>Publish local changes on a remote</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push &lt;remote&gt; &lt;branch&gt;</span><br></pre></td></tr></table></figure>
+<p>Delete a branch on the remote</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -dr &lt;remote&#x2F;branch&gt;</span><br></pre></td></tr></table></figure>
+<p>Publish your tags</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push --tags</span><br></pre></td></tr></table></figure>
+<h2 id="Merge-amp-Rebase"><a href="#Merge-amp-Rebase" class="headerlink" title="Merge &amp; Rebase"></a>Merge &amp; Rebase</h2><p>Merge <branch> into your current HEAD, without fast-forward</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge --no-ff &lt;branch&gt;</span><br></pre></td></tr></table></figure>
+<p>Rebase your current HEAD onto <branch></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase &lt;branch&gt;</span><br></pre></td></tr></table></figure>
+<p>Abort a rebase</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase --abort</span><br></pre></td></tr></table></figure>
+<p>Continue a rebase after resolving conflits</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase --continue</span><br></pre></td></tr></table></figure>
+<p>Use your configured merge tool to sove conflits</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git mergetool</span><br></pre></td></tr></table></figure>
+<p>Use your editor to manually solve conflits and (after resolving) mark file as resolved</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add &lt;resolved-file&gt;</span><br><span class="line">git rm &lt;resolved-file&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="Undo"><a href="#Undo" class="headerlink" title="Undo"></a>Undo</h2><p>Discard all local changes in your working directory</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD</span><br></pre></td></tr></table></figure>
+<p>Discard local changes in a specific file</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout HEAD &lt;file&gt;</span><br></pre></td></tr></table></figure>
+<p>Revert a commit (by producing a new commit with contrary changes)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git revert &lt;commit&gt;</span><br></pre></td></tr></table></figure>
+<p>Reset your HEAD pointer to a previous commit, and discard all changes since then</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard &lt;commit&gt;</span><br></pre></td></tr></table></figure>
+<p>…and preserve all changes as unstaged changes</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset &lt;commit&gt;</span><br></pre></td></tr></table></figure>
+<p>…and preserve uncommitted local changes</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --keep &lt;commit&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="Commit-History"><a href="#Commit-History" class="headerlink" title="Commit History"></a>Commit History</h2><p>Show all commits, starting with newest</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log</span><br></pre></td></tr></table></figure>
+<p>Show changes over time for a specific file</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log -p &lt;file&gt;</span><br></pre></td></tr></table></figure>
+<p>Who changed what and when in <file></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git blame &lt;file&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="Git-plugins"><a href="#Git-plugins" class="headerlink" title="Git plugins"></a>Git plugins</h2><p>Store credential in manager</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config credential.helper &#39;store&#39;</span><br></pre></td></tr></table></figure>
+<p>Activate gpg signature</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config commit.gpgsign true</span><br></pre></td></tr></table></figure>
+
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.git-tower.com/blog/git-cheat-sheet/">https://www.git-tower.com/blog/git-cheat-sheet/</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article id="post-keybase-io" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2016-09-18T00:17:20.000Z"><a href="/2016/09/18/keybase-io/">2016-09-18</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/09/18/keybase-io/">keybase.io</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <h1 id="Keybase"><a href="#Keybase" class="headerlink" title="Keybase"></a>Keybase</h1><p>Some time back i used to have my PGP key registered on MIT pgp server <a target="_blank" rel="noopener" href="http://pgp.mit.edu/">http://pgp.mit.edu/</a>. It’s one of the largest public directory for PGP keys, but it’s kind of old fashnioned and attracts mostly the academic world.</p>
+<p>I’m not entirely sure how i come to find <a target="_blank" rel="noopener" href="http://keybase.io/">http://keybase.io</a> but it seems a new interesting way to get PGP to the general audience.</p>
+<p>It allows, as the slogan say:</p>
+<blockquote>
+<p>Keybase maps your identity to your public keys, and vice versa.</p>
+</blockquote>
+<p>In order to be a trully trusted PKI the registration is done by invitation only which seems interesting in order to maintain some sort of quality assurance, but will make the evolution a lot slower.</p>
+<p>So basically this allows you to associate your domain, twitter account, github account,etc with you keys.</p>
+<p>It also has it’s own distributed filesystem KBFS.</p>
+<p><a target="_blank" rel="noopener" href="https://keybase.io/docs/kbfs/understanding_kbfs">https://keybase.io/docs/kbfs/understanding_kbfs</a></p>
+<p>Now this, seems to me, like the most important factor on this solution. Because you can quickly access other people keys, trust them, and follow you know friends.</p>
+<p>I still have some invites left, in case you are interested drop me an email :)</p>
+<p>Cheers,<br>RR@keybase<br><a target="_blank" rel="noopener" href="https://keybase.io/ruimsramos">https://keybase.io/ruimsramos</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article id="post-Created-rramos-github-io" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2016-09-17T22:57:27.000Z"><a href="/2016/09/17/Created-rramos-github-io/">2016-09-17</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/09/17/Created-rramos-github-io/">Created rramos.github.io</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <h1 id="Started-the-github-pages"><a href="#Started-the-github-pages" class="headerlink" title="Started the github pages"></a>Started the github pages</h1><h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>I had several blogs in the past that i normaly tend to ignore and stop writting, so this one will be a simple tech/personal blog with entries that i might find usefull in the future to search quicker.</p>
+<p>And as any normal blog i would start by writting the procedure of deploying the blog itself.</p>
+<p>The only way i would keep this thing updated is if i have very quick way to edit via terminal a Markdown file and do a command like <code>post-it</code> and that’s it.</p>
+<p>So <a target="_blank" rel="noopener" href="https://hexo.io/">hexo</a> seems like a good solution for me.</p>
+<p>Gona try this one out.</p>
+<p>So first things first, hosting. I’m cheap bastard so i don’t have cool domain yet, and i just need some git repo for the blog.</p>
+<p>Lets stick with <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a> there git service is pretty owesome so lets try this one out.</p>
+<p><strong>Mental-Note-To-Self:</strong> Get some nice english corrector ;) </p>
+<p>So i’ve just greated a new repo in github and from the settings i’ve selected to build a standard GitHub Page.</p>
+<p>cloned the dam thing to my computer</p>
+<p><code>git clone git@github.com:rramos/rramos.github.io.git</code></p>
+<h2 id="Installing-Hexo"><a href="#Installing-Hexo" class="headerlink" title="Installing Hexo"></a>Installing Hexo</h2><p>So first things first, let’s install the requirements.</p>
+<p>It requires:</p>
+<ul>
+<li>Node</li>
+<li>Git</li>
+</ul>
+<p>Well, git i allready have since a clonned the repo.<br>Node must be installed, but since i’m using Ubuntu Xenial i need to install the legacy one.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install nodejs-legacy</span><br></pre></td></tr></table></figure>
+<p>Now starting to install hexo via npm.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install -g hexo-cli</span><br><span class="line">sudo npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<p>Ok that’s it.</p>
+<h2 id="Start-writting"><a href="#Start-writting" class="headerlink" title="Start writting"></a>Start writting</h2><p>So i’ve run the following command on the repo, this initiates the hexo page structure.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+<p>I’ve added the deploy configuration in _config.yml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:rramos&#x2F;rramos.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+<p>I also downloaded a very simple theme, cas’m a simple guy. </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd themes</span><br><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;lotabout&#x2F;very-simple</span><br></pre></td></tr></table></figure>
+<p>Thanks @lotabout for the theme by the way.</p>
+<p>And installed the theme requirements</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;lotabout&#x2F;very-simple themes&#x2F;very-simple</span><br><span class="line">sudo npm install hexo-renderer-sass --save</span><br><span class="line">sudo npm install hexo-renderer-jade --save</span><br></pre></td></tr></table></figure>
+<h2 id="Writing"><a href="#Writing" class="headerlink" title="Writing"></a>Writing</h2><p>So … now i suppose i can start creating blog entries, let’s start.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new post &quot;Created rramos.github.io&quot;</span><br></pre></td></tr></table></figure>
+<p>I get the output where the md file is and start writting there.</p>
+<p>After i have made sure my ssh keys where registered on github i simply deployed with</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+<p>And voilá: <a href="https://rramos.github.io/">https://rramos.github.io</a>  is up and running.</p>
+<h2 id="Final-touches"><a href="#Final-touches" class="headerlink" title="Final touches"></a>Final touches</h2><p>So hexo only dumps the public part of the blog which makes sense to the git repo. <del>But i want to include all the source and not have separeted repositories for that.</del></p>
+<p>I’ve created a src dir and copy all the source data there, now i can edit directly that repo, let’s take that advantage and remove the default hello world page from the structure guess there migh exist a command for that.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ hexo list post</span><br><span class="line">INFO  Start processing</span><br><span class="line">Date        Title                     Path                                Category  Tags</span><br><span class="line">2016-09-17  Created rramos.github.io  _posts&#x2F;Created-rramos-github-io.md</span><br><span class="line">2016-09-18  Hello World               _posts&#x2F;hello-world.md</span><br></pre></td></tr></table></figure>
+<p>There you are you bastard hello-world, lets get ride of you.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">rm source&#x2F;_posts&#x2F;hello-world.md</span><br><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
+<p>Well guess that’s it. There is a lot to explore in hexo from what i can tell, need to check the documentation and understand the community envolvment. Also a quick way to add imagens and other objects and define the quick way to deploy.</p>
+<h2 id="Seperate-public-from-source"><a href="#Seperate-public-from-source" class="headerlink" title="Seperate public from source"></a>Seperate public from source</h2><p>It turns out that have the source and public data in the same repo causes some issues on the updates. The best aproach seems to have a separate repo for the source data and the offcial Github Pages or other hosting service with git for the public part.</p>
+<p>I’ve also added in this source repo a <code>.gitignore</code> with</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public</span><br><span class="line">db.json</span><br><span class="line">.deploy_git</span><br></pre></td></tr></table></figure>
+<p>So now i just have to edit MarkDown hexo generate and hexo deploy, seems quick enough let’s see if this time i can keep this updated.</p>
+<p>Cheers,<br>RR</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+<nav id="pagination">
+  
+    <a href="/page/2/" class="alignleft prev">Prev</a>
+  
+  
+  <div class="clearfix"></div>
+</nav></div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="as_sitesearch" value="rramos.github.io">
+  </form>
+</div>
+
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Analytics/">Analytics</a><small>1</small></li>
+  
+    <li><a href="/tags/Ansible/">Ansible</a><small>2</small></li>
+  
+    <li><a href="/tags/Avro/">Avro</a><small>1</small></li>
+  
+    <li><a href="/tags/BigData/">BigData</a><small>2</small></li>
+  
+    <li><a href="/tags/BigQuery/">BigQuery</a><small>1</small></li>
+  
+    <li><a href="/tags/CDH-Parcel/">CDH Parcel</a><small>1</small></li>
+  
+    <li><a href="/tags/CheatSheet/">CheatSheet</a><small>1</small></li>
+  
+    <li><a href="/tags/Cloudera/">Cloudera</a><small>3</small></li>
+  
+    <li><a href="/tags/Conferences/">Conferences</a><small>2</small></li>
+  
+    <li><a href="/tags/Customization/">Customization</a><small>1</small></li>
+  
+    <li><a href="/tags/Data-Ingestion/">Data Ingestion</a><small>1</small></li>
+  
+    <li><a href="/tags/Dimensions/">Dimensions</a><small>1</small></li>
+  
+    <li><a href="/tags/Docker/">Docker</a><small>5</small></li>
+  
+    <li><a href="/tags/GC/">GC</a><small>1</small></li>
+  
+    <li><a href="/tags/GCS/">GCS</a><small>1</small></li>
+  
+    <li><a href="/tags/Google-Analytics/">Google Analytics</a><small>1</small></li>
+  
+    <li><a href="/tags/GoogleChrome/">GoogleChrome</a><small>1</small></li>
+  
+    <li><a href="/tags/HDFS/">HDFS</a><small>3</small></li>
+  
+    <li><a href="/tags/Hadoop/">Hadoop</a><small>4</small></li>
+  
+    <li><a href="/tags/Hive/">Hive</a><small>3</small></li>
+  
+    <li><a href="/tags/IDE/">IDE</a><small>1</small></li>
+  
+    <li><a href="/tags/Install/">Install</a><small>1</small></li>
+  
+    <li><a href="/tags/Internet/">Internet</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/KSQL/">KSQL</a><small>1</small></li>
+  
+    <li><a href="/tags/KVM/">KVM</a><small>2</small></li>
+  
+    <li><a href="/tags/Kafka/">Kafka</a><small>2</small></li>
+  
+    <li><a href="/tags/Linux/">Linux</a><small>6</small></li>
+  
+    <li><a href="/tags/Markdown/">Markdown</a><small>1</small></li>
+  
+    <li><a href="/tags/Mesos/">Mesos</a><small>1</small></li>
+  
+    <li><a href="/tags/Metrics/">Metrics</a><small>1</small></li>
+  
+    <li><a href="/tags/Monitoring/">Monitoring</a><small>1</small></li>
+  
+    <li><a href="/tags/Nifi/">Nifi</a><small>1</small></li>
+  
+    <li><a href="/tags/Optimization/">Optimization</a><small>1</small></li>
+  
+    <li><a href="/tags/Parquet/">Parquet</a><small>1</small></li>
+  
+    <li><a href="/tags/Performance/">Performance</a><small>1</small></li>
+  
+    <li><a href="/tags/Polybase/">Polybase</a><small>1</small></li>
+  
+    <li><a href="/tags/Portainer/">Portainer</a><small>1</small></li>
+  
+    <li><a href="/tags/Porto/">Porto</a><small>1</small></li>
+  
+    <li><a href="/tags/PortoTechHub/">PortoTechHub</a><small>1</small></li>
+  
+    <li><a href="/tags/PowerShell/">PowerShell</a><small>1</small></li>
+  
+    <li><a href="/tags/Proxy/">Proxy</a><small>1</small></li>
+  
+    <li><a href="/tags/QEMU/">QEMU</a><small>1</small></li>
+  
+    <li><a href="/tags/Qemu/">Qemu</a><small>1</small></li>
+  
+    <li><a href="/tags/RDD/">RDD</a><small>1</small></li>
+  
+    <li><a href="/tags/SQL/">SQL</a><small>1</small></li>
+  
+    <li><a href="/tags/SQLServer/">SQLServer</a><small>1</small></li>
+  
+    <li><a href="/tags/Scala/">Scala</a><small>1</small></li>
+  
+    <li><a href="/tags/Spark/">Spark</a><small>4</small></li>
+  
+    <li><a href="/tags/SparkSummit/">SparkSummit</a><small>1</small></li>
+  
+    <li><a href="/tags/Sqoop/">Sqoop</a><small>1</small></li>
+  
+    <li><a href="/tags/Streaming/">Streaming</a><small>1</small></li>
+  
+    <li><a href="/tags/Streamming/">Streamming</a><small>1</small></li>
+  
+    <li><a href="/tags/Tech/">Tech</a><small>1</small></li>
+  
+    <li><a href="/tags/Tools/">Tools</a><small>1</small></li>
+  
+    <li><a href="/tags/Tunning/">Tunning</a><small>1</small></li>
+  
+    <li><a href="/tags/Utils/">Utils</a><small>2</small></li>
+  
+    <li><a href="/tags/Vagrant/">Vagrant</a><small>1</small></li>
+  
+    <li><a href="/tags/VirtualBox/">VirtualBox</a><small>1</small></li>
+  
+    <li><a href="/tags/Windows/">Windows</a><small>1</small></li>
+  
+    <li><a href="/tags/Zeepelin/">Zeepelin</a><small>1</small></li>
+  
+    <li><a href="/tags/beeline/">beeline</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/btrfs/">btrfs</a><small>1</small></li>
+  
+    <li><a href="/tags/cheat/">cheat</a><small>1</small></li>
+  
+    <li><a href="/tags/docker-compose/">docker-compose</a><small>1</small></li>
+  
+    <li><a href="/tags/dr-elephant/">dr-elephant</a><small>1</small></li>
+  
+    <li><a href="/tags/encryption/">encryption</a><small>1</small></li>
+  
+    <li><a href="/tags/exception/">exception</a><small>1</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>2</small></li>
+  
+    <li><a href="/tags/github/">github</a><small>1</small></li>
+  
+    <li><a href="/tags/hadoop/">hadoop</a><small>1</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hive/">hive</a><small>1</small></li>
+  
+    <li><a href="/tags/kbfs/">kbfs</a><small>1</small></li>
+  
+    <li><a href="/tags/keybase/">keybase</a><small>1</small></li>
+  
+    <li><a href="/tags/keys/">keys</a><small>1</small></li>
+  
+    <li><a href="/tags/libvirt/">libvirt</a><small>1</small></li>
+  
+    <li><a href="/tags/markdown/">markdown</a><small>1</small></li>
+  
+    <li><a href="/tags/pgp/">pgp</a><small>1</small></li>
+  
+    <li><a href="/tags/pki/">pki</a><small>1</small></li>
+  
+    <li><a href="/tags/qcow2/">qcow2</a><small>1</small></li>
+  
+    <li><a href="/tags/sheet/">sheet</a><small>1</small></li>
+  
+    <li><a href="/tags/ssh/">ssh</a><small>1</small></li>
+  
+    <li><a href="/tags/udfs/">udfs</a><small>1</small></li>
+  
+    <li><a href="/tags/utils/">utils</a><small>1</small></li>
+  
+    <li><a href="/tags/vdi/">vdi</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2021 Rui Ramos
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+
+
+<script src="/js/gallery.js"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script>
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

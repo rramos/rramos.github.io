@@ -1,0 +1,454 @@
+<!DOCTYPE HTML>
+<html lang="en,pt,de,default">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Nifi Parcel for CDH | rramos.github.io</title>
+  <meta name="author" content="Rui Ramos">
+  
+  <meta name="description" content="A simple Blog related with Infrastructure Architecture and Data">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Nifi Parcel for CDH"/>
+  <meta property="og:site_name" content="rramos.github.io"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link rel="shortcut icon" href="/favicon.png">
+  
+    <link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-106053129-1', 'auto');
+	ga('send', 'pageview');
+
+</script>
+
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">rramos.github.io</a></h1>
+  <h2><a href="/">Tech Notes for Infrastructure and Data</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/null">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-nifiparcel" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2017-09-29T01:01:48.000Z"><a href="/2017/09/29/nifiparcel/">2017-09-29</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">Nifi Parcel for CDH</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p>I’ve been using <a target="_blank" rel="noopener" href="https://nifi.apache.org/">Apache Nifi</a> for some time now. But has a Cloudera user it would be nice to have it managed centralized in Cloudera Manager.</p>
+<p>I found this <a href="">repo</a> which had only one commit for doing exactly this, so i decided to give it a try, to see if it worked.</p>
+<h1 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h1><ul>
+<li>Virtual machine with Cloudera quickstart pre-installed</li>
+<li>I had to patch the available Nifi version with <a target="_blank" rel="noopener" href="https://github.com/apache/nifi/pull/1604">NIFI-3466</a></li>
+<li>And parcel repo also with <a target="_blank" rel="noopener" href="https://github.com/prateek/nifi-parcel/issues/1">Issue1</a></li>
+</ul>
+<p>So i’ll be using my own forks that have this changes allready, but will be following the author (prateek) instructions.</p>
+<h1 id="Instructions"><a href="#Instructions" class="headerlink" title="Instructions"></a>Instructions</h1><h2 id="Install-Requirements"><a href="#Install-Requirements" class="headerlink" title="Install Requirements"></a>Install Requirements</h2><ul>
+<li>cloudera/cm_ext</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /tmp</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/cloudera/cm_ext</span><br><span class="line"><span class="built_in">cd</span> cm_ext/validator</span><br><span class="line">mvn install</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Create parcel &amp; CSD:</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /tmp</span><br><span class="line">$ git <span class="built_in">clone</span> git@github.com:rramos/nifi.git</span><br><span class="line">$ <span class="built_in">cd</span> nifi</span><br><span class="line">$ mvn clean install</span><br><span class="line">$ <span class="built_in">cd</span> /tmp</span><br><span class="line">$ git <span class="built_in">clone</span> git@github.com:rramos/nifi-parcel.git</span><br><span class="line">$ <span class="built_in">cd</span> nifi-parcel</span><br><span class="line">$ POINT_VERSION=5 VALIDATOR_DIR=/tmp/cm_ext ./build-parcel.sh /tmp/nifi/nifi-assembly/target/nifi-*-SNAPSHOT-bin.tar.gz</span><br><span class="line">$ VALIDATOR_DIR=/tmp/cm_ext ./build-csd.sh</span><br></pre></td></tr></table></figure>
+<h1 id="Test-the-Parcel"><a href="#Test-the-Parcel" class="headerlink" title="Test the Parcel"></a>Test the Parcel</h1><p>Cloudera quickstart images comes with java version 1.7. But i need version 1.8 for Nifi otherwise i’ll get minor major version missmatch issue. So i had to make some changes.</p>
+<ul>
+<li>First start your cloudera quickstart VM and copy the folders:<ul>
+<li><p><code>build-csd</code> </p>
+</li>
+<li><p><code>build-parcel</code> </p>
+<p>there in my case i had IP <code>192.168.122.132</code> (change for your case).</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scp -r build-parcel cloudera@192.168.122.132:/tmp</span><br><span class="line">scp -r build-csd cloudera@192.168.122.132:/tmp</span><br></pre></td></tr></table></figure>
+<ul>
+<li>SSH in the machine and install java8</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install java-1.8.0-openjdk</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Run the following command in <code>build-parcel</code> folder</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> build-parcel</span><br><span class="line">python -m  SimpleHTTPServer 14641</span><br></pre></td></tr></table></figure>
+<p>Now open your browser at <code>http://192.168.122.132:7180</code> and access Cloudera Manager (cloudera:cloudera).</p>
+<p>Navigate to -&gt; Parcels -&gt; Edit Settings. </p>
+<p>Add <code>http://192.168.122.132:14641</code> </p>
+<img src="/2017/09/29/nifiparcel/parcel01.png" class="" title="[NIFI Parcel]">
+
+<p>Download and install the Nifi Parcel.</p>
+<ul>
+<li>Copy NIFI home</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp -r /tmp/build-parcel/NIFI-0.0.5.nifi.p0.5 /opt/cloudera/parcels/NIFI/</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Correct java path in file <code>/opt/cloudera/parcels/NIFI/bin/nifi-env.sh</code></li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># The java implementation to use.</span></span><br><span class="line"><span class="built_in">export</span> JAVA_HOME=/usr/lib/jvm/jre-1.8.0</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Copy the csd jars </li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cp /tmp/build-csd/NIFI-1.2.0.jar /opt/cloudera/csd/</span><br><span class="line">mkdir /opt/cloudera/csd/NIFI-1.2.0</span><br><span class="line">cp /tmp/build-csd/NIFI-1.2.0.jar /opt/cloudera/csd/NIFI-1.2.0/</span><br><span class="line"><span class="built_in">cd</span> /opt/cloudera/csd/NIFI-1.2.0/</span><br><span class="line">jar xvf NIFI-1.2.0.jar</span><br><span class="line">rm -f NIFI-1.2.0.jar</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Correct ownership</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R cloudera-scm:cloudera-scm &#x2F;opt&#x2F;cloudera</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>Apply Configuration changes to Cloudera Manager and restart the service</p>
+</li>
+<li><p>Move CSD to Cloudera Manager’s CSD Repo</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service cloudera-scm-server restart</span><br></pre></td></tr></table></figure></li>
+<li><p>After login again in CM wait for zookeeper to be running normal, and add a new service (Nifi)</p>
+</li>
+</ul>
+<img src="/2017/09/29/nifiparcel/parcel02.png" class="" title="[Add NIFI Service]">
+
+<p>After terminating the wizard you should have access to Nifi Interface</p>
+<img src="/2017/09/29/nifiparcel/parcel03.png" class="" title="[Nifi Web UI]">
+
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>I must say that prateek repo with only that commit worked pretty well and the instructions where also clear. There where some minor adjustments because of the java version, but we can start/stop the service via Cloudera Manager.</p>
+<p>There are some pending items refered in his github page:</p>
+<ul>
+<li>Currently <code>NiFi</code> runs under the <code>root</code> user</li>
+<li>Expose config options under Cloudera Manager</li>
+<li>Conf folder from parcels is used, this needs to be migrated to ConfigWriter</li>
+<li>Expose metrics from NiFi</li>
+</ul>
+<p>I haven’t tested the configuration in cluster mode as i has using the quickstart VM.</p>
+<p>The configuration options in CM would be very good improvement. Auto configuring zookeeper and the other nifi options. I’ll try to contribute to prateek excelent work if i manage to get some time.</p>
+<p>Cheers,<br>RR</p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://nifi.apache.org/">https://nifi.apache.org</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/prateek/nifi-parcel">https://github.com/prateek/nifi-parcel</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/cloudera/cm_ext">https://github.com/cloudera/cm_ext</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cloudera.com/downloads/quickstart_vms/5-12.html">https://www.cloudera.com/downloads/quickstart_vms/5-12.html</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/Cloudera/">Cloudera</a>, <a href="/tags/Hadoop/">Hadoop</a>, <a href="/tags/Nifi/">Nifi</a>, <a href="/tags/CDH-Parcel/">CDH Parcel</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://rramos.github.io/2017/09/29/nifiparcel/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="as_sitesearch" value="rramos.github.io">
+  </form>
+</div>
+
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Analytics/">Analytics</a><small>1</small></li>
+  
+    <li><a href="/tags/Ansible/">Ansible</a><small>2</small></li>
+  
+    <li><a href="/tags/Avro/">Avro</a><small>1</small></li>
+  
+    <li><a href="/tags/BigData/">BigData</a><small>2</small></li>
+  
+    <li><a href="/tags/BigQuery/">BigQuery</a><small>1</small></li>
+  
+    <li><a href="/tags/CDH-Parcel/">CDH Parcel</a><small>1</small></li>
+  
+    <li><a href="/tags/CheatSheet/">CheatSheet</a><small>1</small></li>
+  
+    <li><a href="/tags/Cloudera/">Cloudera</a><small>3</small></li>
+  
+    <li><a href="/tags/Conferences/">Conferences</a><small>2</small></li>
+  
+    <li><a href="/tags/Customization/">Customization</a><small>1</small></li>
+  
+    <li><a href="/tags/Data-Ingestion/">Data Ingestion</a><small>1</small></li>
+  
+    <li><a href="/tags/Dimensions/">Dimensions</a><small>1</small></li>
+  
+    <li><a href="/tags/Docker/">Docker</a><small>5</small></li>
+  
+    <li><a href="/tags/GC/">GC</a><small>1</small></li>
+  
+    <li><a href="/tags/GCS/">GCS</a><small>1</small></li>
+  
+    <li><a href="/tags/Google-Analytics/">Google Analytics</a><small>1</small></li>
+  
+    <li><a href="/tags/GoogleChrome/">GoogleChrome</a><small>1</small></li>
+  
+    <li><a href="/tags/HDFS/">HDFS</a><small>3</small></li>
+  
+    <li><a href="/tags/Hadoop/">Hadoop</a><small>4</small></li>
+  
+    <li><a href="/tags/Hive/">Hive</a><small>3</small></li>
+  
+    <li><a href="/tags/IDE/">IDE</a><small>1</small></li>
+  
+    <li><a href="/tags/Install/">Install</a><small>1</small></li>
+  
+    <li><a href="/tags/Internet/">Internet</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/KSQL/">KSQL</a><small>1</small></li>
+  
+    <li><a href="/tags/KVM/">KVM</a><small>2</small></li>
+  
+    <li><a href="/tags/Kafka/">Kafka</a><small>2</small></li>
+  
+    <li><a href="/tags/Linux/">Linux</a><small>6</small></li>
+  
+    <li><a href="/tags/Markdown/">Markdown</a><small>1</small></li>
+  
+    <li><a href="/tags/Mesos/">Mesos</a><small>1</small></li>
+  
+    <li><a href="/tags/Metrics/">Metrics</a><small>1</small></li>
+  
+    <li><a href="/tags/Monitoring/">Monitoring</a><small>1</small></li>
+  
+    <li><a href="/tags/Nifi/">Nifi</a><small>1</small></li>
+  
+    <li><a href="/tags/Optimization/">Optimization</a><small>1</small></li>
+  
+    <li><a href="/tags/Parquet/">Parquet</a><small>1</small></li>
+  
+    <li><a href="/tags/Performance/">Performance</a><small>1</small></li>
+  
+    <li><a href="/tags/Polybase/">Polybase</a><small>1</small></li>
+  
+    <li><a href="/tags/Portainer/">Portainer</a><small>1</small></li>
+  
+    <li><a href="/tags/Porto/">Porto</a><small>1</small></li>
+  
+    <li><a href="/tags/PortoTechHub/">PortoTechHub</a><small>1</small></li>
+  
+    <li><a href="/tags/PowerShell/">PowerShell</a><small>1</small></li>
+  
+    <li><a href="/tags/Proxy/">Proxy</a><small>1</small></li>
+  
+    <li><a href="/tags/QEMU/">QEMU</a><small>1</small></li>
+  
+    <li><a href="/tags/Qemu/">Qemu</a><small>1</small></li>
+  
+    <li><a href="/tags/RDD/">RDD</a><small>1</small></li>
+  
+    <li><a href="/tags/SQL/">SQL</a><small>1</small></li>
+  
+    <li><a href="/tags/SQLServer/">SQLServer</a><small>1</small></li>
+  
+    <li><a href="/tags/Scala/">Scala</a><small>1</small></li>
+  
+    <li><a href="/tags/Spark/">Spark</a><small>4</small></li>
+  
+    <li><a href="/tags/SparkSummit/">SparkSummit</a><small>1</small></li>
+  
+    <li><a href="/tags/Sqoop/">Sqoop</a><small>1</small></li>
+  
+    <li><a href="/tags/Streaming/">Streaming</a><small>1</small></li>
+  
+    <li><a href="/tags/Streamming/">Streamming</a><small>1</small></li>
+  
+    <li><a href="/tags/Tech/">Tech</a><small>1</small></li>
+  
+    <li><a href="/tags/Tools/">Tools</a><small>1</small></li>
+  
+    <li><a href="/tags/Tunning/">Tunning</a><small>1</small></li>
+  
+    <li><a href="/tags/Utils/">Utils</a><small>2</small></li>
+  
+    <li><a href="/tags/Vagrant/">Vagrant</a><small>1</small></li>
+  
+    <li><a href="/tags/VirtualBox/">VirtualBox</a><small>1</small></li>
+  
+    <li><a href="/tags/Windows/">Windows</a><small>1</small></li>
+  
+    <li><a href="/tags/Zeepelin/">Zeepelin</a><small>1</small></li>
+  
+    <li><a href="/tags/beeline/">beeline</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/btrfs/">btrfs</a><small>1</small></li>
+  
+    <li><a href="/tags/cheat/">cheat</a><small>1</small></li>
+  
+    <li><a href="/tags/docker-compose/">docker-compose</a><small>1</small></li>
+  
+    <li><a href="/tags/dr-elephant/">dr-elephant</a><small>1</small></li>
+  
+    <li><a href="/tags/encryption/">encryption</a><small>1</small></li>
+  
+    <li><a href="/tags/exception/">exception</a><small>1</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>2</small></li>
+  
+    <li><a href="/tags/github/">github</a><small>1</small></li>
+  
+    <li><a href="/tags/hadoop/">hadoop</a><small>1</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hive/">hive</a><small>1</small></li>
+  
+    <li><a href="/tags/kbfs/">kbfs</a><small>1</small></li>
+  
+    <li><a href="/tags/keybase/">keybase</a><small>1</small></li>
+  
+    <li><a href="/tags/keys/">keys</a><small>1</small></li>
+  
+    <li><a href="/tags/libvirt/">libvirt</a><small>1</small></li>
+  
+    <li><a href="/tags/markdown/">markdown</a><small>1</small></li>
+  
+    <li><a href="/tags/pgp/">pgp</a><small>1</small></li>
+  
+    <li><a href="/tags/pki/">pki</a><small>1</small></li>
+  
+    <li><a href="/tags/qcow2/">qcow2</a><small>1</small></li>
+  
+    <li><a href="/tags/sheet/">sheet</a><small>1</small></li>
+  
+    <li><a href="/tags/ssh/">ssh</a><small>1</small></li>
+  
+    <li><a href="/tags/udfs/">udfs</a><small>1</small></li>
+  
+    <li><a href="/tags/utils/">utils</a><small>1</small></li>
+  
+    <li><a href="/tags/vdi/">vdi</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2021 Rui Ramos
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+
+
+<script src="/js/gallery.js"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script>
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

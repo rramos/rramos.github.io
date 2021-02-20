@@ -1,0 +1,495 @@
+<!DOCTYPE HTML>
+<html lang="en,pt,de,default">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Create Avro Tables for Google BigQuery | rramos.github.io</title>
+  <meta name="author" content="Rui Ramos">
+  
+  <meta name="description" content="A simple Blog related with Infrastructure Architecture and Data">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Create Avro Tables for Google BigQuery"/>
+  <meta property="og:site_name" content="rramos.github.io"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link rel="shortcut icon" href="/favicon.png">
+  
+    <link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-106053129-1', 'auto');
+	ga('send', 'pageview');
+
+</script>
+
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">rramos.github.io</a></h1>
+  <h2><a href="/">Tech Notes for Infrastructure and Data</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/null">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-CreateAvroTablesForBigQuery" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2017-09-19T21:59:58.000Z"><a href="/2017/09/19/CreateAvroTablesForBigQuery/">2017-09-19</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">Create Avro Tables for Google BigQuery</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p>This article describes one way to create tables in BigQuery From HDFS parquet Data.</p>
+<h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><p>For this article assumes the following requisites are meet:</p>
+<ul>
+<li>You have a Google Cloud Platform account</li>
+<li>You have created a Google Cloud Storage bucket</li>
+<li>You have HDFS configured</li>
+<li>You have Parquet data that you could materialize in Hive</li>
+<li>Must have <a target="_blank" rel="noopener" href="https://cloud.google.com/sdk/docs/">bq</a> util install </li>
+</ul>
+<h2 id="Definitions"><a href="#Definitions" class="headerlink" title="Definitions"></a>Definitions</h2><ul>
+<li><strong>Hive Parquet Table:</strong> parquet_table</li>
+<li><strong>HDFS Parquet Location:</strong> <code>/user/hive/warehouse/test.db/parquet_table</code></li>
+<li><strong>Hive Avro Table Name:</strong> avro_table</li>
+<li><strong>HDFS Avro Location:</strong> <code>/user/hive/warehouse/test.db/avro_table</code></li>
+</ul>
+<h2 id="Process"><a href="#Process" class="headerlink" title="Process"></a>Process</h2><ol>
+<li>Create a avro table from parquet data</li>
+<li>Copy avro files to GCS</li>
+<li>Create Bigquery Table from avro in gs bucket</li>
+</ol>
+<h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><h3 id="Create-the-Avro-Table"><a href="#Create-the-Avro-Table" class="headerlink" title="Create the Avro Table"></a>Create the Avro Table</h3><p>Let’s start by creating the new table based on the existing parquet data</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SET hive.exec.compress.output&#x3D;true;</span><br><span class="line">SET avro.output.codec&#x3D;snappy;</span><br><span class="line"></span><br><span class="line">CREATE TABLE avro_table STORED AS AVRO</span><br><span class="line">  AS (SELECT * FROM parquet_table);</span><br></pre></td></tr></table></figure>
+<p>One could specify in the <code>SELECT</code> statement the columns we would like that could be obtain using <code>parquet-tools</code> command  ex:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">parquet-tools meta &lt;parquet_file&gt;</span><br></pre></td></tr></table></figure>
+<p>You would still need to get the parquet file to obtain that.</p>
+<h3 id="Why-Avro-File-and-that-format"><a href="#Why-Avro-File-and-that-format" class="headerlink" title="Why Avro File and that format ?"></a>Why Avro File and that format ?</h3><p>You could update data to BigQuery by streaming or from Google Cloud Storage as a batch process. A bulk import from HDFS seems logical to use a batch process so why avro ?<br>Acording to the latest info on the google BigQuery Site it’s possible to:</p>
+<ul>
+<li>Load from Google Cloud Storage, including CSV, JSON (newline-delimited), and Avro files, as well as Google Cloud Datastore backups.</li>
+<li>Load directly from a readable data source.</li>
+<li>Insert individual records using streaming inserts.</li>
+</ul>
+<blockquote>
+<p>Compressed Avro files are not supported, but compressed data blocks are. BigQuery supports the DEFLATE and Snappy codecs.</p>
+</blockquote>
+<p>Also there is the following Avro mapping that could be usefull</p>
+<table>
+<thead>
+<tr>
+<th>Avro data type</th>
+<th>BigQuery data type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>null</td>
+<td>- ignored -</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>BOOLEAN</td>
+</tr>
+<tr>
+<td>int</td>
+<td>INTEGER</td>
+</tr>
+<tr>
+<td>long</td>
+<td>INTEGER</td>
+</tr>
+<tr>
+<td>float</td>
+<td>FLOAT</td>
+</tr>
+<tr>
+<td>double</td>
+<td>FLOAT</td>
+</tr>
+<tr>
+<td>bytes</td>
+<td>BYTES</td>
+</tr>
+<tr>
+<td>string</td>
+<td>STRING</td>
+</tr>
+<tr>
+<td>record</td>
+<td>RECORD</td>
+</tr>
+<tr>
+<td>enum</td>
+<td>STRING</td>
+</tr>
+<tr>
+<td>array</td>
+<td>- repeated fields -</td>
+</tr>
+<tr>
+<td>map<T></td>
+<td>RECORD</td>
+</tr>
+<tr>
+<td>union</td>
+<td>RECORD</td>
+</tr>
+<tr>
+<td>fixed</td>
+<td>BYTES</td>
+</tr>
+</tbody></table>
+<p>Check the full spec on GCP <a target="_blank" rel="noopener" href="https://cloud.google.com/bigquery/data-formats#avro_format">Page</a></p>
+<p>The other advantage of using avro is that BigQuery infers the schema so you don’t have to describe the columns of you table.</p>
+<h3 id="Copy-Avro-file-from-HDFS-to-GCS"><a href="#Copy-Avro-file-from-HDFS-to-GCS" class="headerlink" title="Copy Avro file from HDFS to GCS"></a>Copy Avro file from HDFS to GCS</h3><p>The best approach for this is to add the GCS connector to your HDFS config</p>
+<p>Follow the instructions in the following <a target="_blank" rel="noopener" href="https://github.com/GoogleCloudPlatform/bigdata-interop/tree/master/gcs">link</a> or download the jar for Hadoop 2.x <a target="_blank" rel="noopener" href="https://storage.googleapis.com/hadoop-lib/gcs/gcs-connector-latest-hadoop2.jar">here</a></p>
+<ol>
+<li>Add that jar on a valid location for you cluster <code>HADOOP_CLASSPATH</code></li>
+<li>Generate a <code>service account</code> in the GCP console and get JSON key (<a target="_blank" rel="noopener" href="https://cloud.google.com/storage/docs/authentication#service_accounts">follow this instructions</a>)</li>
+<li>Copy that JSON file to a location in your cluster</li>
+<li>Add the following properties to your cluster <code>core-site.xml</code></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;property&gt;</span><br><span class="line">  &lt;name&gt;fs.gs.project.id&lt;&#x2F;name&gt;</span><br><span class="line">  &lt;value&gt;your-project-name&lt;&#x2F;value&gt;</span><br><span class="line">  &lt;description&gt;</span><br><span class="line">    Required. Google Cloud Project ID with access to configured GCS buckets.</span><br><span class="line">  &lt;&#x2F;description&gt;</span><br><span class="line">&lt;&#x2F;property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;google.cloud.auth.service.account.json.keyfile&lt;&#x2F;name&gt;</span><br><span class="line">&lt;value&gt;&#x2F;path&#x2F;to&#x2F;your&#x2F;JSON-keyfile&lt;&#x2F;value&gt;</span><br><span class="line">&lt;description&gt;</span><br><span class="line">  The JSON key file of the service account used for GCS</span><br><span class="line">  access when google.cloud.auth.service.account.enable is true.</span><br><span class="line">&lt;&#x2F;description&gt;</span><br><span class="line">&lt;&#x2F;property&gt;</span><br><span class="line">  &lt;property&gt;</span><br><span class="line">  &lt;name&gt;fs.gs.working.dir&lt;&#x2F;name&gt;</span><br><span class="line">  &lt;value&gt;&#x2F;&lt;&#x2F;value&gt;</span><br><span class="line">  &lt;description&gt;</span><br><span class="line">    The directory relative gs: uris resolve in inside of the default bucket.</span><br><span class="line">  &lt;&#x2F;description&gt;</span><br><span class="line">&lt;&#x2F;property&gt;</span><br></pre></td></tr></table></figure>
+<p>Extended options are available in <a target="_blank" rel="noopener" href="https://github.com/GoogleCloudPlatform/bigdata-interop/blob/master/gcs/conf/gcs-core-default.xml">gcs-core-default</a> example</p>
+<ol start="5">
+<li>Create a new bucket on GCP and make sure you can access to with via <code>hdfs</code> command.</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs -ls gs:&#x2F;&#x2F;my-bucket-name&#x2F;</span><br></pre></td></tr></table></figure>
+<p>If that works, you can now execute a distcp to sync the avro files directly to GCS.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hdfs mkdir gs:&#x2F;&#x2F;my-bucket-name&#x2F;my_table</span><br><span class="line">hdfs distcp &#x2F;user&#x2F;hive&#x2F;warehouse&#x2F;test.db&#x2F;avro_table&#x2F;* gs:&#x2F;&#x2F;my-bucket-name&#x2F;my_table&#x2F;</span><br></pre></td></tr></table></figure>
+<h3 id="Load-GCS-avro-data-to-a-BigQuery-table"><a href="#Load-GCS-avro-data-to-a-BigQuery-table" class="headerlink" title="Load GCS avro data to a BigQuery table"></a>Load GCS avro data to a BigQuery table</h3><p>Execute</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bq load ds.table gs:&#x2F;&#x2F;my-bucket-name&#x2F;my_table&#x2F;* --autodetect</span><br></pre></td></tr></table></figure>
+<p>And that’s it you now have a table with data in BigQuery.</p>
+<p>It is recommended to have this process managed by some type of orchestrator. There are several solutions for this. The next article i’ll be writting  about one of those <a target="_blank" rel="noopener" href="https://airflow.incubator.apache.org/">Airflow</a></p>
+<p>Cheers,<br>RR</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.cloudera.com/documentation/enterprise/5-4-x/topics/cdh_ig_hive.html">https://www.cloudera.com/documentation/enterprise/5-4-x/topics/cdh_ig_hive.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/apache/parquet-mr/tree/master/parquet-tools">https://github.com/apache/parquet-mr/tree/master/parquet-tools</a></li>
+<li><a target="_blank" rel="noopener" href="https://cloud.google.com/bigquery/loading-data">https://cloud.google.com/bigquery/loading-data</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/GoogleCloudPlatform/bigdata-interop/blob/master/gcs/INSTALL.md">https://github.com/GoogleCloudPlatform/bigdata-interop/blob/master/gcs/INSTALL.md</a></li>
+<li><a target="_blank" rel="noopener" href="https://cloud.google.com/bigquery/docs/loading-data-cloud-storage">https://cloud.google.com/bigquery/docs/loading-data-cloud-storage</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/HDFS/">HDFS</a>, <a href="/tags/Hive/">Hive</a>, <a href="/tags/BigQuery/">BigQuery</a>, <a href="/tags/Avro/">Avro</a>, <a href="/tags/Parquet/">Parquet</a>, <a href="/tags/GCS/">GCS</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://rramos.github.io/2017/09/19/CreateAvroTablesForBigQuery/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="as_sitesearch" value="rramos.github.io">
+  </form>
+</div>
+
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Analytics/">Analytics</a><small>1</small></li>
+  
+    <li><a href="/tags/Ansible/">Ansible</a><small>2</small></li>
+  
+    <li><a href="/tags/Avro/">Avro</a><small>1</small></li>
+  
+    <li><a href="/tags/BigData/">BigData</a><small>2</small></li>
+  
+    <li><a href="/tags/BigQuery/">BigQuery</a><small>1</small></li>
+  
+    <li><a href="/tags/CDH-Parcel/">CDH Parcel</a><small>1</small></li>
+  
+    <li><a href="/tags/CheatSheet/">CheatSheet</a><small>1</small></li>
+  
+    <li><a href="/tags/Cloudera/">Cloudera</a><small>3</small></li>
+  
+    <li><a href="/tags/Conferences/">Conferences</a><small>2</small></li>
+  
+    <li><a href="/tags/Customization/">Customization</a><small>1</small></li>
+  
+    <li><a href="/tags/Data-Ingestion/">Data Ingestion</a><small>1</small></li>
+  
+    <li><a href="/tags/Dimensions/">Dimensions</a><small>1</small></li>
+  
+    <li><a href="/tags/Docker/">Docker</a><small>5</small></li>
+  
+    <li><a href="/tags/GC/">GC</a><small>1</small></li>
+  
+    <li><a href="/tags/GCS/">GCS</a><small>1</small></li>
+  
+    <li><a href="/tags/Google-Analytics/">Google Analytics</a><small>1</small></li>
+  
+    <li><a href="/tags/GoogleChrome/">GoogleChrome</a><small>1</small></li>
+  
+    <li><a href="/tags/HDFS/">HDFS</a><small>3</small></li>
+  
+    <li><a href="/tags/Hadoop/">Hadoop</a><small>4</small></li>
+  
+    <li><a href="/tags/Hive/">Hive</a><small>3</small></li>
+  
+    <li><a href="/tags/IDE/">IDE</a><small>1</small></li>
+  
+    <li><a href="/tags/Install/">Install</a><small>1</small></li>
+  
+    <li><a href="/tags/Internet/">Internet</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/KSQL/">KSQL</a><small>1</small></li>
+  
+    <li><a href="/tags/KVM/">KVM</a><small>2</small></li>
+  
+    <li><a href="/tags/Kafka/">Kafka</a><small>2</small></li>
+  
+    <li><a href="/tags/Linux/">Linux</a><small>6</small></li>
+  
+    <li><a href="/tags/Markdown/">Markdown</a><small>1</small></li>
+  
+    <li><a href="/tags/Mesos/">Mesos</a><small>1</small></li>
+  
+    <li><a href="/tags/Metrics/">Metrics</a><small>1</small></li>
+  
+    <li><a href="/tags/Monitoring/">Monitoring</a><small>1</small></li>
+  
+    <li><a href="/tags/Nifi/">Nifi</a><small>1</small></li>
+  
+    <li><a href="/tags/Optimization/">Optimization</a><small>1</small></li>
+  
+    <li><a href="/tags/Parquet/">Parquet</a><small>1</small></li>
+  
+    <li><a href="/tags/Performance/">Performance</a><small>1</small></li>
+  
+    <li><a href="/tags/Polybase/">Polybase</a><small>1</small></li>
+  
+    <li><a href="/tags/Portainer/">Portainer</a><small>1</small></li>
+  
+    <li><a href="/tags/Porto/">Porto</a><small>1</small></li>
+  
+    <li><a href="/tags/PortoTechHub/">PortoTechHub</a><small>1</small></li>
+  
+    <li><a href="/tags/PowerShell/">PowerShell</a><small>1</small></li>
+  
+    <li><a href="/tags/Proxy/">Proxy</a><small>1</small></li>
+  
+    <li><a href="/tags/QEMU/">QEMU</a><small>1</small></li>
+  
+    <li><a href="/tags/Qemu/">Qemu</a><small>1</small></li>
+  
+    <li><a href="/tags/RDD/">RDD</a><small>1</small></li>
+  
+    <li><a href="/tags/SQL/">SQL</a><small>1</small></li>
+  
+    <li><a href="/tags/SQLServer/">SQLServer</a><small>1</small></li>
+  
+    <li><a href="/tags/Scala/">Scala</a><small>1</small></li>
+  
+    <li><a href="/tags/Spark/">Spark</a><small>4</small></li>
+  
+    <li><a href="/tags/SparkSummit/">SparkSummit</a><small>1</small></li>
+  
+    <li><a href="/tags/Sqoop/">Sqoop</a><small>1</small></li>
+  
+    <li><a href="/tags/Streaming/">Streaming</a><small>1</small></li>
+  
+    <li><a href="/tags/Streamming/">Streamming</a><small>1</small></li>
+  
+    <li><a href="/tags/Tech/">Tech</a><small>1</small></li>
+  
+    <li><a href="/tags/Tools/">Tools</a><small>1</small></li>
+  
+    <li><a href="/tags/Tunning/">Tunning</a><small>1</small></li>
+  
+    <li><a href="/tags/Utils/">Utils</a><small>2</small></li>
+  
+    <li><a href="/tags/Vagrant/">Vagrant</a><small>1</small></li>
+  
+    <li><a href="/tags/VirtualBox/">VirtualBox</a><small>1</small></li>
+  
+    <li><a href="/tags/Windows/">Windows</a><small>1</small></li>
+  
+    <li><a href="/tags/Zeepelin/">Zeepelin</a><small>1</small></li>
+  
+    <li><a href="/tags/beeline/">beeline</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/btrfs/">btrfs</a><small>1</small></li>
+  
+    <li><a href="/tags/cheat/">cheat</a><small>1</small></li>
+  
+    <li><a href="/tags/docker-compose/">docker-compose</a><small>1</small></li>
+  
+    <li><a href="/tags/dr-elephant/">dr-elephant</a><small>1</small></li>
+  
+    <li><a href="/tags/encryption/">encryption</a><small>1</small></li>
+  
+    <li><a href="/tags/exception/">exception</a><small>1</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>2</small></li>
+  
+    <li><a href="/tags/github/">github</a><small>1</small></li>
+  
+    <li><a href="/tags/hadoop/">hadoop</a><small>1</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hive/">hive</a><small>1</small></li>
+  
+    <li><a href="/tags/kbfs/">kbfs</a><small>1</small></li>
+  
+    <li><a href="/tags/keybase/">keybase</a><small>1</small></li>
+  
+    <li><a href="/tags/keys/">keys</a><small>1</small></li>
+  
+    <li><a href="/tags/libvirt/">libvirt</a><small>1</small></li>
+  
+    <li><a href="/tags/markdown/">markdown</a><small>1</small></li>
+  
+    <li><a href="/tags/pgp/">pgp</a><small>1</small></li>
+  
+    <li><a href="/tags/pki/">pki</a><small>1</small></li>
+  
+    <li><a href="/tags/qcow2/">qcow2</a><small>1</small></li>
+  
+    <li><a href="/tags/sheet/">sheet</a><small>1</small></li>
+  
+    <li><a href="/tags/ssh/">ssh</a><small>1</small></li>
+  
+    <li><a href="/tags/udfs/">udfs</a><small>1</small></li>
+  
+    <li><a href="/tags/utils/">utils</a><small>1</small></li>
+  
+    <li><a href="/tags/vdi/">vdi</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2021 Rui Ramos
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+
+
+<script src="/js/gallery.js"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script>
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
