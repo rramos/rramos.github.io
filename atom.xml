@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://rramos.github.io/"/>
-  <updated>2020-09-06T14:38:37.855Z</updated>
+  <updated>2021-02-21T11:14:23.425Z</updated>
   <id>http://rramos.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Git Untrack Previous Commited Files</title>
+    <link href="http://rramos.github.io/2021/02/21/Git-Untrack-previous-commited-files/"/>
+    <id>http://rramos.github.io/2021/02/21/Git-Untrack-previous-commited-files/</id>
+    <published>2021-02-21T11:07:15.000Z</published>
+    <updated>2021-02-21T11:14:23.425Z</updated>
+    
+    <content type="html"><![CDATA[<p>This is something that sometimes bugs me, you keep hitting the .gitinore configuration file but still the file you try to ignore always get’s referenced on your changes.</p><p>If that happens most probably you’ve reference it in the past to be track and you need to remove it, so this are the steps.</p><h1 id="Update-your-gitignore-and-untrack-the-file"><a href="#Update-your-gitignore-and-untrack-the-file" class="headerlink" title="Update your .gitignore and untrack the file"></a>Update your .gitignore and untrack the file</h1><p>This example to untrack <code>db.json</code></p><ol><li><p>Change the entry in .gitignore ex: <code>*.json</code></p></li><li><p>Execute the following command to untrack</p></li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git update-index --assume-unchanged db.json</span><br></pre></td></tr></table></figure><ol start="3"><li>Commit the changes</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;This is something that sometimes bugs me, you keep hitting the .gitinore configuration file but still the file you try to ignore always g
+      
+    
+    </summary>
+    
+    
+      <category term="git" scheme="http://rramos.github.io/tags/git/"/>
+    
+  </entry>
   
   <entry>
     <title>Dockers</title>
@@ -578,41 +601,6 @@
       <category term="Analytics" scheme="http://rramos.github.io/tags/Analytics/"/>
     
       <category term="Dimensions" scheme="http://rramos.github.io/tags/Dimensions/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hive - Unpivot to Avoid Multiple Joins</title>
-    <link href="http://rramos.github.io/2017/09/07/unpivot/"/>
-    <id>http://rramos.github.io/2017/09/07/unpivot/</id>
-    <published>2017-09-07T16:57:08.000Z</published>
-    <updated>2020-09-06T14:38:37.859Z</updated>
-    
-    <content type="html"><![CDATA[<p>In Hive, when a table has multiple similar columns, such as:</p><table><thead><tr><th>product_id</th><th>image_name1</th><th>image_name2</th><th>…</th><th>image_name15</th></tr></thead><tbody><tr><td>1</td><td>a.jpg</td><td>b.jpg</td><td>…</td><td>c.jpg</td></tr><tr><td>2</td><td>d.jpg</td><td>e.jpg</td><td>…</td><td>f.jpg</td></tr></tbody></table><p>and we want to join based on all image_names, the naive approach would be to perform 15 joins (in the running example).</p><p>Hive does not have an unpivot functionality, but it is possible to use the Hive builtin UDF explode to accomplish this:<br>Query example</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select x.product_id, x.image_name from (</span><br><span class="line">  select product_id, map(&quot;image_name1&quot;, image_name1, ..., &quot;image_name15&quot;, image_name15) as image_map</span><br><span class="line">  from table ) x</span><br><span class="line">lateral view explode(image_map) expl as image_nr, image_name</span><br></pre></td></tr></table></figure><p>This returns an unpivoted table like below, which allows us to perform a single join:</p><table><thead><tr><th>product_id</th><th>image_name</th></tr></thead><tbody><tr><td>1</td><td>a.jpg</td></tr><tr><td>1</td><td>b.jpg</td></tr><tr><td>1</td><td>c.jpg</td></tr><tr><td>2</td><td>d.jpg</td></tr><tr><td>2</td><td>e.jpg</td></tr><tr><td>2</td><td>f.jpg</td></tr></tbody></table><p>Big thanks to Diogo Franco, for this hint ;) check also is Blog Page <a href="https://diogoalexandrefranco.github.io/">diogoalexandrefranco.github.io</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;In Hive, when a table has multiple similar columns, such as:&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;product_id&lt;/th&gt;
-&lt;th&gt;image_name1&lt;/th&gt;
-&lt;th&gt;image_
-      
-    
-    </summary>
-    
-    
-      <category term="HDFS" scheme="http://rramos.github.io/tags/HDFS/"/>
-    
-      <category term="BigData" scheme="http://rramos.github.io/tags/BigData/"/>
-    
-      <category term="Hive" scheme="http://rramos.github.io/tags/Hive/"/>
-    
-      <category term="Optimization" scheme="http://rramos.github.io/tags/Optimization/"/>
     
   </entry>
   
