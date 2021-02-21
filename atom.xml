@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://rramos.github.io/"/>
-  <updated>2021-02-21T11:14:23.425Z</updated>
+  <updated>2021-02-21T11:36:36.551Z</updated>
   <id>http://rramos.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>VisualCode Hexo Addon</title>
+    <link href="http://rramos.github.io/2021/02/21/VisualCode%20Hexo%20addon/"/>
+    <id>http://rramos.github.io/2021/02/21/VisualCode Hexo addon/</id>
+    <published>2021-02-21T11:25:53.000Z</published>
+    <updated>2021-02-21T11:36:36.551Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="VisualCode-Hexo-extension"><a href="#VisualCode-Hexo-extension" class="headerlink" title="VisualCode Hexo extension"></a>VisualCode Hexo extension</h1><p>This article explain how to activte the visualcode hexo extension which would boost your productivity if you use Hexo for your articles such has i’m doing on this blob page.</p><h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><p>Install VisualCode:</p><ul><li> <a href="https://code.visualstudio.com/docs/setup/setup-overview">https://code.visualstudio.com/docs/setup/setup-overview</a></li></ul><p>Activate the following extension by executing the following command</p><p><code>ext install fantasy.vscode-hexo-utils</code></p><p>Make sure you open the folder where your Hexo base code is.</p><p>That’s it.</p><p>The extension allows you to directly manage your posts/tags/categories. It is also very suefull if you side lane the articles and preview the Markdowns with <strong>[Ctrl] + [Shift] + [V]</strong></p><p>The extension repo is available on the following github repo: </p><ul><li> <a href="https://github.com/cwxyz007/vscode-hexo-utils">https://github.com/cwxyz007/vscode-hexo-utils</a></li></ul><p>Kudos for the <a href="https://github.com/cwxyz007/vscode-hexo-utils/graphs/contributors">contributors</a></p><p>Cheers,<br>RR</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;VisualCode-Hexo-extension&quot;&gt;&lt;a href=&quot;#VisualCode-Hexo-extension&quot; class=&quot;headerlink&quot; title=&quot;VisualCode Hexo extension&quot;&gt;&lt;/a&gt;VisualCode 
+      
+    
+    </summary>
+    
+    
+      <category term="visual code" scheme="http://rramos.github.io/tags/visual-code/"/>
+    
+  </entry>
   
   <entry>
     <title>Git Untrack Previous Commited Files</title>
@@ -570,37 +593,6 @@
       <category term="SQLServer" scheme="http://rramos.github.io/tags/SQLServer/"/>
     
       <category term="Data Ingestion" scheme="http://rramos.github.io/tags/Data-Ingestion/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>How to Create a Google Analytics Custom Dimension</title>
-    <link href="http://rramos.github.io/2017/09/07/GA-CustomDimension/"/>
-    <id>http://rramos.github.io/2017/09/07/GA-CustomDimension/</id>
-    <published>2017-09-07T19:37:23.000Z</published>
-    <updated>2020-09-06T14:38:37.851Z</updated>
-    
-    <content type="html"><![CDATA[<p>In order to add a custom dimension in Google Analytics follow this steps:</p><ol><li>Click <strong>admin</strong> and navigate to the property you which to add a custom dimension</li></ol><img src="/2017/09/07/GA-CustomDimension/Custom_Dimension.png" class="" title="Custom Dimension (step 1)"><ol start="2"><li><p>Click new <strong>Custom Dimension</strong></p></li><li><p>Give it a <strong>Name</strong> and a <strong>Scope</strong> and you’l get the javascript to add on your website</p></li></ol><img src="/2017/09/07/GA-CustomDimension/GA_CustomDimension_js.png" class="" title="Custom Dimension (step 2)"><ol start="4"><li>After you should modify your tracking code adding for example</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ga(&#39;send&#39;, &#39;pageview&#39;, &#123;</span><br><span class="line">  &#39;dimension1&#39;:  &#39;My Custom Dimension&#39;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><h2 id="When-we-should-use-this"><a href="#When-we-should-use-this" class="headerlink" title="When we should use this ?"></a>When we should use this ?</h2><p>Let’s say your website does some sort of user classification, you can create a CustomDimension ex: <code>UserCategory</code> and send enrich the data you track.</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;In order to add a custom dimension in Google Analytics follow this steps:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Click &lt;strong&gt;admin&lt;/strong&gt; and navigate to the p
-      
-    
-    </summary>
-    
-    
-      <category term="Metrics" scheme="http://rramos.github.io/tags/Metrics/"/>
-    
-      <category term="Google Analytics" scheme="http://rramos.github.io/tags/Google-Analytics/"/>
-    
-      <category term="Analytics" scheme="http://rramos.github.io/tags/Analytics/"/>
-    
-      <category term="Dimensions" scheme="http://rramos.github.io/tags/Dimensions/"/>
     
   </entry>
   
