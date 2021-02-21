@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en,pt,de,default">
+<html>
 <head>
   <meta charset="utf-8">
   
@@ -7,6 +7,7 @@
   <meta name="author" content="Rui Ramos">
   
   <meta name="description" content="A simple Blog related with Infrastructure Architecture and Data">
+  
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -17,26 +18,31 @@
     <meta property="og:image" content="undefined"/>
   
 
-  <link rel="shortcut icon" href="/favicon.png">
-  
-    <link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
-  
-  
-<link rel="stylesheet" href="/css/style.css">
-
-  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script>
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
 	ga('create', 'UA-106053129-1', 'auto');
 	ga('send', 'pageview');
 
 </script>
 
+
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6865009930566683",
+    enable_page_level_ads: true
+  });
+</script>
 
 <meta name="generator" content="Hexo 5.3.0"></head>
 
@@ -49,7 +55,7 @@
 <nav id="main-nav" class="alignright">
   <ul>
     
-      <li><a href="/null">Home</a></li>
+      <li><a href="/">Home</a></li>
     
       <li><a href="/archives">Archives</a></li>
     
@@ -62,13 +68,13 @@
 </header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
-  <article id="post-portainer" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article class="post">
   
   <div class="post-content">
     <header>
       
         <div class="icon"></div>
-        <time class="dt-published" datetime="2017-09-23T16:22:37.000Z"><a href="/2017/09/23/portainer/">2017-09-23</a></time>
+        <time datetime="2017-09-23T16:22:37.000Z"><a href="/2017/09/23/portainer/">2017-09-23</a></time>
       
       
   
@@ -76,7 +82,7 @@
   
 
     </header>
-    <div class="e-content entry" itemprop="articleBody">
+    <div class="entry">
       
         <p><a target="_blank" rel="noopener" href="https://portainer.io/">Portainer</a> is:</p>
 <blockquote><p>PORTAINER IS AN OPEN-SOURCE LIGHTWEIGHT MANAGEMENT UI WHICH ALLOWS YOU TO EASILY MANAGE YOUR DOCKER HOSTS OR SWARM CLUSTERS</p>
@@ -108,13 +114,13 @@
 
 
 
-  <article id="post-sublimeinstall" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article class="post">
   
   <div class="post-content">
     <header>
       
         <div class="icon"></div>
-        <time class="dt-published" datetime="2017-09-23T08:18:18.000Z"><a href="/2017/09/23/sublimeinstall/">2017-09-23</a></time>
+        <time datetime="2017-09-23T08:18:18.000Z"><a href="/2017/09/23/sublimeinstall/">2017-09-23</a></time>
       
       
   
@@ -122,7 +128,7 @@
   
 
     </header>
-    <div class="e-content entry" itemprop="articleBody">
+    <div class="entry">
       
         <p>For me <a target="_blank" rel="noopener" href="https://www.sublimetext.com/">Sublime</a>, this is one of the best smart editors in Linux. Here are the quick instructions to install for Ubuntu.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget -qO - https:&#x2F;&#x2F;download.sublimetext.com&#x2F;sublimehq-pub.gpg | sudo apt-key add -</span><br><span class="line">echo &quot;deb https:&#x2F;&#x2F;download.sublimetext.com&#x2F; apt&#x2F;stable&#x2F;&quot; | sudo tee &#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;sublime-text.list</span><br><span class="line">sudo apt-get install apt-transport-https</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install sublime-text</span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -144,13 +150,13 @@
 
 
 
-  <article id="post-CreateAvroTablesForBigQuery" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article class="post">
   
   <div class="post-content">
     <header>
       
         <div class="icon"></div>
-        <time class="dt-published" datetime="2017-09-19T21:59:58.000Z"><a href="/2017/09/19/CreateAvroTablesForBigQuery/">2017-09-19</a></time>
+        <time datetime="2017-09-19T21:59:58.000Z"><a href="/2017/09/19/CreateAvroTablesForBigQuery/">2017-09-19</a></time>
       
       
   
@@ -158,7 +164,7 @@
   
 
     </header>
-    <div class="e-content entry" itemprop="articleBody">
+    <div class="entry">
       
         <p>This article describes one way to create tables in BigQuery From HDFS parquet Data.</p>
 <h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><p>For this article assumes the following requisites are meet:</p>
@@ -305,13 +311,13 @@
 
 
 
-  <article id="post-quickzeppelin" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article class="post">
   
   <div class="post-content">
     <header>
       
         <div class="icon"></div>
-        <time class="dt-published" datetime="2017-09-19T21:06:18.000Z"><a href="/2017/09/19/quickzeppelin/">2017-09-19</a></time>
+        <time datetime="2017-09-19T21:06:18.000Z"><a href="/2017/09/19/quickzeppelin/">2017-09-19</a></time>
       
       
   
@@ -319,7 +325,7 @@
   
 
     </header>
-    <div class="e-content entry" itemprop="articleBody">
+    <div class="entry">
       
         <p>In this article i describe a quick way to have zeepelin running so that you could quickly testing some Spark application.</p>
 <p><strong>NOTE:</strong> This procedure shouldn’t be used in production environments has you should setup the Notebook with auth and connected to your local infrastructure.</p>
@@ -384,13 +390,13 @@
 
 
 
-  <article id="post-dockerclean" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article class="post">
   
   <div class="post-content">
     <header>
       
         <div class="icon"></div>
-        <time class="dt-published" datetime="2017-09-19T07:37:29.000Z"><a href="/2017/09/19/dockerclean/">2017-09-19</a></time>
+        <time datetime="2017-09-19T07:37:29.000Z"><a href="/2017/09/19/dockerclean/">2017-09-19</a></time>
       
       
   
@@ -398,7 +404,7 @@
   
 
     </header>
-    <div class="e-content entry" itemprop="articleBody">
+    <div class="entry">
       
         <p>So dockers tend to start growing like weeds. And cost me space i don’t have. But one could change the storage driver. You could choose LVM and take advantage of the snapshots or btrfs which i allready have.</p>
 <h2 id="Btrfs"><a href="#Btrfs" class="headerlink" title="Btrfs"></a>Btrfs</h2><p>Btrfs is a next generation copy-on-write filesystem that supports many advanced storage technologies that make it a good fit for Docker. Btrfs is included in the mainline Linux kernel.</p>
@@ -466,13 +472,13 @@
 
 
 
-  <article id="post-ssh-config" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article class="post">
   
   <div class="post-content">
     <header>
       
         <div class="icon"></div>
-        <time class="dt-published" datetime="2017-09-13T22:13:24.000Z"><a href="/2017/09/13/ssh-config/">2017-09-13</a></time>
+        <time datetime="2017-09-13T22:13:24.000Z"><a href="/2017/09/13/ssh-config/">2017-09-13</a></time>
       
       
   
@@ -480,7 +486,7 @@
   
 
     </header>
-    <div class="e-content entry" itemprop="articleBody">
+    <div class="entry">
       
         <p>If most of your work is done remotely though ssh, and you have to access several environments, there will come a time where you need to organize our connection settings. Which user you need to access server X or which port is configured or the case you work in consulting and have several ssh_keys.</p>
 <p>There are some tools that migth help on this, but i’m old school and still stick with plain ssh command.</p>
@@ -529,13 +535,13 @@
 
 
 
-  <article id="post-ChromeProxy" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article class="post">
   
   <div class="post-content">
     <header>
       
         <div class="icon"></div>
-        <time class="dt-published" datetime="2017-09-13T21:18:10.000Z"><a href="/2017/09/13/ChromeProxy/">2017-09-13</a></time>
+        <time datetime="2017-09-13T21:18:10.000Z"><a href="/2017/09/13/ChromeProxy/">2017-09-13</a></time>
       
       
   
@@ -543,7 +549,7 @@
   
 
     </header>
-    <div class="e-content entry" itemprop="articleBody">
+    <div class="entry">
       
         <p>Something that keeps bugging me is the need to access different environments in the browser through proxy tunnels, due to security restrictions or lack of routing between your local network and the environment you are working. Very common on Cloud environments or if you are working has a consultant for several clients at the same time.</p>
 <p>So this guide is intended to help on the setup of Google Chrome to use your configured tunnels.</p>
@@ -591,13 +597,13 @@
 
 
 
-  <article id="post-PolybaseCDH" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article class="post">
   
   <div class="post-content">
     <header>
       
         <div class="icon"></div>
-        <time class="dt-published" datetime="2017-09-09T00:06:30.000Z"><a href="/2017/09/09/PolybaseCDH/">2017-09-09</a></time>
+        <time datetime="2017-09-09T00:06:30.000Z"><a href="/2017/09/09/PolybaseCDH/">2017-09-09</a></time>
       
       
   
@@ -605,7 +611,7 @@
   
 
     </header>
-    <div class="e-content entry" itemprop="articleBody">
+    <div class="entry">
       
         <p>In this article i’ll try to describe the required configuration steps to setup Polybase in SQLServer 2016 for <a target="_blank" rel="noopener" href="https://www.cloudera.com/">Cloudera</a> CDH5. </p>
 <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>Before starting the the configuration steps, let’s just try to understand why this is being done.</p>
@@ -686,13 +692,13 @@
 
 
 
-  <article id="post-GA-CustomDimension" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article class="post">
   
   <div class="post-content">
     <header>
       
         <div class="icon"></div>
-        <time class="dt-published" datetime="2017-09-07T19:37:23.000Z"><a href="/2017/09/07/GA-CustomDimension/">2017-09-07</a></time>
+        <time datetime="2017-09-07T19:37:23.000Z"><a href="/2017/09/07/GA-CustomDimension/">2017-09-07</a></time>
       
       
   
@@ -700,7 +706,7 @@
   
 
     </header>
-    <div class="e-content entry" itemprop="articleBody">
+    <div class="entry">
       
         <p>In order to add a custom dimension in Google Analytics follow this steps:</p>
 <ol>
@@ -737,13 +743,13 @@
 
 
 
-  <article id="post-unpivot" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article class="post">
   
   <div class="post-content">
     <header>
       
         <div class="icon"></div>
-        <time class="dt-published" datetime="2017-09-07T16:57:08.000Z"><a href="/2017/09/07/unpivot/">2017-09-07</a></time>
+        <time datetime="2017-09-07T16:57:08.000Z"><a href="/2017/09/07/unpivot/">2017-09-07</a></time>
       
       
   
@@ -751,7 +757,7 @@
   
 
     </header>
-    <div class="e-content entry" itemprop="articleBody">
+    <div class="entry">
       
         <p>In Hive, when a table has multiple similar columns, such as:</p>
 <table>
@@ -836,21 +842,21 @@
 
 <nav id="pagination">
   
-    <a href="/" class="alignleft prev">Prev</a>
+    <a href="/" class="alignleft prev">Previous</a>
   
   
     <a href="/page/3/" class="alignright next">Next</a>
   
   <div class="clearfix"></div>
-</nav></div></div>
+</nav>
+</div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
   <form action="//google.com/search" method="get" accept-charset="utf-8">
     <input type="search" name="q" results="0" placeholder="Search">
-    <input type="hidden" name="as_sitesearch" value="rramos.github.io">
+    <input type="hidden" name="q" value="site:rramos.github.io">
   </form>
 </div>
-
 
   
 
@@ -1045,30 +1051,13 @@
   
 </div>
 <div class="clearfix"></div></footer>
-  
-<script src="/js/jquery-3.4.1.min.js"></script>
-
-
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 <script src="/js/jquery.imagesloaded.min.js"></script>
-
-
 <script src="/js/gallery.js"></script>
 
 
 
 
-
-
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-<script>
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
-</script>
-
+<!-- Go to www.addthis.com/dashboard to customize your tools --> <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-59c7d222fcd19d69"></script>
 </body>
 </html>

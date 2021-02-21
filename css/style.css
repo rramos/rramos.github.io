@@ -105,9 +105,6 @@ a:hover {
   text-shadow: 0 0 1px #fff;
   margin: 50px auto;
 }
-#header a {
-  color: #999;
-}
 #header a:hover {
   color: #258fb8;
   text-decoration: none;
@@ -135,8 +132,6 @@ a:hover {
   margin-left: 30px;
 }
 article {
-  -webkit-box-shadow: 1px 2px 3px #ddd;
-  box-shadow: 1px 2px 3px #ddd;
   background: #fff;
 }
 article.page {
@@ -309,11 +304,6 @@ article .entry table th {
   border: 1px solid #e2e2e2;
   padding: 8px 16px;
   text-align: left;
-}
-article .entry figure.highlight table {
-  border: none;
-  width: auto;
-  border-collapse: separate;
 }
 article .entry blockquote {
   border-top: 1px solid #ddd;
@@ -499,6 +489,14 @@ article footer .addthis {
 article footer .addthis iframe {
   margin-top: 0;
 }
+article .post-content {
+  padding: 15px 0px 10px 70px;
+  margin-right: 40px;
+}
+article header h1.title {
+  color: #444;
+  font-size: xx-large;
+}
 #comment {
   padding: 20px;
   background: #fff;
@@ -564,6 +562,32 @@ article footer .addthis iframe {
 }
 .archive article .post-content {
   margin-bottom: 0;
+}
+article header .title {
+  font-size: small;
+}
+article header time {
+  font-size: smaller;
+}
+article:hover {
+  -webkit-box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+article .post-content-archive {
+  padding: 15px 0px 10px 70px;
+}
+article .post-content-archive:hover {
+  background: rgba(37,143,184,0.2);
+}
+article .post-content-archive {
+  position: relative;
+}
+h1.title-archive {
+  font-size: small;
+}
+h1.title-archive a {
+  color: #4a4848;
+  font-size: small;
 }
 #sidebar {
   width: 270px;
@@ -736,15 +760,12 @@ figure.highlight table {
 }
 figure.highlight .gutter {
   color: #999;
-  padding: 0;
-  padding-right: 15px;
-  border: 0;
   border-right: 1px solid #ddd;
-  text-align: right;
+  padding-left: 2px;
+  padding-right: 3px;
 }
 figure.highlight .code {
   padding-left: 15px;
-  border: 0;
   border-left: 1px solid #fff;
   color: #666;
 }
