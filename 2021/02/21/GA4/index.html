@@ -1,0 +1,488 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Google Analytics - UA vs GA4 | rramos.github.io</title>
+  <meta name="author" content="Rui Ramos">
+  
+  <meta name="description" content="A simple Blog related with Infrastructure Architecture and Data">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Google Analytics - UA vs GA4"/>
+  <meta property="og:site_name" content="rramos.github.io"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-106053129-1', 'auto');
+	ga('send', 'pageview');
+
+</script>
+
+
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6865009930566683",
+    enable_page_level_ads: true
+  });
+</script>
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">rramos.github.io</a></h1>
+  <h2><a href="/">Tech Notes for Infrastructure and Data</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2021-02-21T11:44:20.550Z"><a href="/2021/02/21/GA4/">2021-02-21</a></time>
+      
+      
+  
+    <h1 class="title">Google Analytics - UA vs GA4</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="Google-Analytics-quick-History"><a href="#Google-Analytics-quick-History" class="headerlink" title="Google Analytics quick History"></a>Google Analytics quick History</h2><p>In the October of 2020, Google rolled out Google Analytics 4 (GA4), the latest iteration of the Google Analytics platform. GA4 replaces Universal Analytics (UA) as the default for digital analytics measurement in GA.</p>
+<p>The objective of this article is to consolidate the most significative changes, and required operations to migrate to the new data model.</p>
+<h2 id="Differences-in-UA-and-GA4-data-models"><a href="#Differences-in-UA-and-GA4-data-models" class="headerlink" title="Differences in UA and GA4 data models"></a>Differences in UA and GA4 data models</h2><h3 id="Events-and-Hit-types"><a href="#Events-and-Hit-types" class="headerlink" title="Events and Hit types"></a>Events and Hit types</h3><p>The most significative change from UA to GA4 in my opinion is the fact that all interactions are now reported as events.</p>
+<p>In UA an event has a Category, Action and Label for that specific hit type. In GA4 all hits are events there is no distinction on the hit types</p>
+<table>
+<thead>
+<tr>
+<th>Hit type in (UA)</th>
+<th>Measurement in GA4</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Page View</td>
+<td>Event</td>
+</tr>
+<tr>
+<td>Event</td>
+<td>Event</td>
+</tr>
+<tr>
+<td>Social</td>
+<td>Event</td>
+</tr>
+<tr>
+<td>Transaction/e-commerce</td>
+<td>Event</td>
+</tr>
+<tr>
+<td>User timing</td>
+<td>Event</td>
+</tr>
+<tr>
+<td>Exception</td>
+<td>Event</td>
+</tr>
+<tr>
+<td>App/screen view</td>
+<td>Event</td>
+</tr>
+</tbody></table>
+<hr>
+<p>GA4 events fall into four categories:</p>
+<ul>
+<li>Automatically collected events</li>
+<li>Enhanced measurements events</li>
+<li>Recommended events</li>
+<li>Custom events</li>
+</ul>
+<h4 id="Automatically-collected-events"><a href="#Automatically-collected-events" class="headerlink" title="Automatically collected events"></a><strong>Automatically collected events</strong></h4><p>This events are logged as long you have the base code for GA4 snippet on your site either via gtag.js or Google Tag Manager. No code required</p>
+<h4 id="Enhanced-Measurements"><a href="#Enhanced-Measurements" class="headerlink" title="Enhanced Measurements"></a><strong>Enhanced Measurements</strong></h4><p>Enhanced measurements events are events that are automatically logged no code required and can be enable/disabled on the properties. also they don’t count for the named events limit that we will check next. They allow you to measure interactions with your content.</p>
+<h4 id="Recommended-Events"><a href="#Recommended-Events" class="headerlink" title="Recommended Events"></a><strong>Recommended Events</strong></h4><p>This events have predefined names and parameters and are recommend for specific business use cases. This events allow you to have more detail on your reports and enables the benefit from latest features but require you to add code as they are not logged automatically.</p>
+<p>They are recommended for:</p>
+<ul>
+<li>Retail and e-commerce</li>
+<li>Jobs/Education, Local Deals, Real Estate</li>
+<li>Travel</li>
+<li>Games</li>
+</ul>
+<h4 id="Custom-Events"><a href="#Custom-Events" class="headerlink" title="Custom Events"></a><strong>Custom Events</strong></h4><p>Custom events are implemented by yourself. You should use as a last resource and identify if the previous ones provide the data you require.</p>
+<h3 id="Pageviews"><a href="#Pageviews" class="headerlink" title="Pageviews"></a>Pageviews</h3><p>Page view in UA translate to the <code>page_view</code> event . This event is trigger automatically using the gtag.js snippet or by Google Tag manager. For Mobile apps the analog to a pageview a <em>screenview</em> is mapped to a <code>screen_view</code> event</p>
+<h3 id="Sessions"><a href="#Sessions" class="headerlink" title="Sessions"></a>Sessions</h3><p>Sessions is a group of interactions with your website that takes place within a given time frame. In UA sessions are typically defined as having ended once there has been a 30m period of inactivity or another reset event. In GA4 session metrics are derived from session_start event and the last event in the session.</p>
+<ul>
+<li><strong>Active user calculation</strong>: User activity is now detected automatically in GA4 in contrast with UA. Due to the fact that the ID can span to multiple devices it’s normal that we find mismatch when comparing both UA and GA4 data.</li>
+<li><strong>Session counting</strong>: One important change is that a new Campaign does not reset the session in GA4 has occurs in UA. Also GA4 processes the sessions with arrives up to 72 hours late while in UA the processing takes place getting data if they arrive 4 hours of close of the preceding day. Another important feature is that the iOS SDK uploads metrics automatically when apps are background, this can also result in different values if compared with UA data.</li>
+</ul>
+<h3 id="Custom-Metrics-and-Dimensions"><a href="#Custom-Metrics-and-Dimensions" class="headerlink" title="Custom Metrics and Dimensions"></a>Custom Metrics and Dimensions</h3><p>Custom Metrics and Dimensions have their own scope. When changing to GA4 the following mapping should be applied.</p>
+<table>
+<thead>
+<tr>
+<th>Scope in UA</th>
+<th>GA4 property</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Hit-scoped</td>
+<td>Events or parameters</td>
+</tr>
+<tr>
+<td>User-scoped</td>
+<td>User properties</td>
+</tr>
+<tr>
+<td>Session-scoped</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>Product-scoped</td>
+<td>E-commerce parameters</td>
+</tr>
+</tbody></table>
+<p>Remember that events, event parameters and user properties are subject to limits.</p>
+<h3 id="Content-Grouping"><a href="#Content-Grouping" class="headerlink" title="Content Grouping"></a>Content Grouping</h3><p>This is also big change as in UA you could group content into a logical structure, and then compare metrics by group. (ex: Man/Shirts). In GA4 there is a predefined event <code>content_group</code> that populates data into a “Content Group” Dimension</p>
+<h3 id="Parameters"><a href="#Parameters" class="headerlink" title="Parameters"></a>Parameters</h3><p>In GA4 you can send parameters with each event. Parameters are additional pieces of information that can further specify the action the user took, or add more context.Each event can log up to 25 parameters.</p>
+<h3 id="User-property"><a href="#User-property" class="headerlink" title="User property"></a>User property</h3><p>User properties are attributes about the users who interact with your app or website. They are used to describe segments of your user base.</p>
+<h2 id="Data-collection-settings-that-can-be-migrated"><a href="#Data-collection-settings-that-can-be-migrated" class="headerlink" title="Data collection settings that can be migrated"></a>Data collection settings that can be migrated</h2><p>The following data collection settings migrate in one-to-one from UA to GA4 as long as you use the gtag.js snippet or Google tag Manager.</p>
+<ul>
+<li>cookie customization</li>
+<li>ads personalization</li>
+</ul>
+<h2 id="Data-collection-settings-with-no-equivalent-in-GA4"><a href="#Data-collection-settings-with-no-equivalent-in-GA4" class="headerlink" title="Data collection settings with no equivalent in GA4"></a>Data collection settings with no equivalent in GA4</h2><ul>
+<li>control over IP anonymization - Enabled by default in GA4 properties</li>
+<li>get clientID - Not currently available</li>
+<li>custom task - Not available in GA4</li>
+<li>timing - Not available in GA4</li>
+</ul>
+<h2 id="Limits"><a href="#Limits" class="headerlink" title="Limits"></a>Limits</h2><p>Collections and configurations limits at the date:</p>
+<ul>
+<li>Distinctly named events <strong>500</strong> per app instance. (Can not be deleted if reaching limit)</li>
+<li>Length of event names is <strong>40</strong> characters</li>
+<li>Limit of <strong>25</strong> parameters per event</li>
+<li>Parameters value have the length limit of <strong>100</strong> characters</li>
+<li><strong>25</strong> user properties that can be added</li>
+<li>length of user property names is <strong>24</strong> charaters</li>
+<li>length of user property values is <strong>36</strong> characters</li>
+<li><strong>100</strong> audiences can be created by property</li>
+<li><strong>30</strong> convertions can be created by property</li>
+<li>Data retention up to <strong>14</strong> months</li>
+</ul>
+<p>For a complete list check the following <a target="_blank" rel="noopener" href="https://support.google.com/analytics/answer/9267744">article</a></p>
+<h2 id="Comparing-report-data-in-UA-and-GA4"><a href="#Comparing-report-data-in-UA-and-GA4" class="headerlink" title="Comparing report data in UA and GA4"></a>Comparing report data in UA and GA4</h2><p>As refereed there are several changes that may impact your report when shifting from UA to GA4. Google recommends that one creates a new tracking ID and keep both tracking options working simultaneously, preferably manged in Google Tag manager.</p>
+<p>Make sure of the following:</p>
+<ul>
+<li>Your tracking ID from UA and GA4 are both collecting the same web pages</li>
+<li>Both properties have equivalent tag implementations </li>
+<li>All tags are firing successfully</li>
+<li>Both properties use the same time zone</li>
+<li>Make sure to compare an unfiltered view in UA with a single web data stream in GA4</li>
+<li>Both properties have been collecting data for at least 30m in order to compare on the realtime report</li>
+</ul>
+<p>Cheers,<br>RR</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/Google-Analytics/">Google Analytics</a>, <a href="/tags/GA/">GA</a>, <a href="/tags/GA4/">GA4</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_linkedin_counter" li:counter="none"></a>
+    
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+
+
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Coments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=524446951221420";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://rramos.github.io/2021/02/21/GA4/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:rramos.github.io">
+  </form>
+</div>
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Analytics/">Analytics</a><small>1</small></li>
+  
+    <li><a href="/tags/Ansible/">Ansible</a><small>2</small></li>
+  
+    <li><a href="/tags/Avro/">Avro</a><small>1</small></li>
+  
+    <li><a href="/tags/BigData/">BigData</a><small>2</small></li>
+  
+    <li><a href="/tags/BigQuery/">BigQuery</a><small>1</small></li>
+  
+    <li><a href="/tags/CDH-Parcel/">CDH Parcel</a><small>1</small></li>
+  
+    <li><a href="/tags/CheatSheet/">CheatSheet</a><small>1</small></li>
+  
+    <li><a href="/tags/Cloudera/">Cloudera</a><small>3</small></li>
+  
+    <li><a href="/tags/Conferences/">Conferences</a><small>2</small></li>
+  
+    <li><a href="/tags/Customization/">Customization</a><small>1</small></li>
+  
+    <li><a href="/tags/Data-Ingestion/">Data Ingestion</a><small>1</small></li>
+  
+    <li><a href="/tags/Dimensions/">Dimensions</a><small>1</small></li>
+  
+    <li><a href="/tags/Docker/">Docker</a><small>5</small></li>
+  
+    <li><a href="/tags/GA/">GA</a><small>1</small></li>
+  
+    <li><a href="/tags/GA4/">GA4</a><small>1</small></li>
+  
+    <li><a href="/tags/GC/">GC</a><small>1</small></li>
+  
+    <li><a href="/tags/GCS/">GCS</a><small>1</small></li>
+  
+    <li><a href="/tags/Google-Analytics/">Google Analytics</a><small>2</small></li>
+  
+    <li><a href="/tags/GoogleChrome/">GoogleChrome</a><small>1</small></li>
+  
+    <li><a href="/tags/HDFS/">HDFS</a><small>3</small></li>
+  
+    <li><a href="/tags/Hadoop/">Hadoop</a><small>4</small></li>
+  
+    <li><a href="/tags/Hive/">Hive</a><small>3</small></li>
+  
+    <li><a href="/tags/IDE/">IDE</a><small>1</small></li>
+  
+    <li><a href="/tags/Install/">Install</a><small>1</small></li>
+  
+    <li><a href="/tags/Internet/">Internet</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/KSQL/">KSQL</a><small>1</small></li>
+  
+    <li><a href="/tags/KVM/">KVM</a><small>2</small></li>
+  
+    <li><a href="/tags/Kafka/">Kafka</a><small>2</small></li>
+  
+    <li><a href="/tags/Linux/">Linux</a><small>6</small></li>
+  
+    <li><a href="/tags/Markdown/">Markdown</a><small>1</small></li>
+  
+    <li><a href="/tags/Mesos/">Mesos</a><small>1</small></li>
+  
+    <li><a href="/tags/Metrics/">Metrics</a><small>1</small></li>
+  
+    <li><a href="/tags/Monitoring/">Monitoring</a><small>1</small></li>
+  
+    <li><a href="/tags/Nifi/">Nifi</a><small>1</small></li>
+  
+    <li><a href="/tags/Optimization/">Optimization</a><small>1</small></li>
+  
+    <li><a href="/tags/Parquet/">Parquet</a><small>1</small></li>
+  
+    <li><a href="/tags/Performance/">Performance</a><small>1</small></li>
+  
+    <li><a href="/tags/Polybase/">Polybase</a><small>1</small></li>
+  
+    <li><a href="/tags/Portainer/">Portainer</a><small>1</small></li>
+  
+    <li><a href="/tags/Porto/">Porto</a><small>1</small></li>
+  
+    <li><a href="/tags/PortoTechHub/">PortoTechHub</a><small>1</small></li>
+  
+    <li><a href="/tags/PowerShell/">PowerShell</a><small>1</small></li>
+  
+    <li><a href="/tags/Proxy/">Proxy</a><small>1</small></li>
+  
+    <li><a href="/tags/QEMU/">QEMU</a><small>1</small></li>
+  
+    <li><a href="/tags/Qemu/">Qemu</a><small>1</small></li>
+  
+    <li><a href="/tags/RDD/">RDD</a><small>1</small></li>
+  
+    <li><a href="/tags/SQL/">SQL</a><small>1</small></li>
+  
+    <li><a href="/tags/SQLServer/">SQLServer</a><small>1</small></li>
+  
+    <li><a href="/tags/Scala/">Scala</a><small>1</small></li>
+  
+    <li><a href="/tags/Spark/">Spark</a><small>4</small></li>
+  
+    <li><a href="/tags/SparkSummit/">SparkSummit</a><small>1</small></li>
+  
+    <li><a href="/tags/Sqoop/">Sqoop</a><small>1</small></li>
+  
+    <li><a href="/tags/Streaming/">Streaming</a><small>1</small></li>
+  
+    <li><a href="/tags/Streamming/">Streamming</a><small>1</small></li>
+  
+    <li><a href="/tags/Tech/">Tech</a><small>1</small></li>
+  
+    <li><a href="/tags/Tools/">Tools</a><small>1</small></li>
+  
+    <li><a href="/tags/Tunning/">Tunning</a><small>1</small></li>
+  
+    <li><a href="/tags/Utils/">Utils</a><small>2</small></li>
+  
+    <li><a href="/tags/Vagrant/">Vagrant</a><small>1</small></li>
+  
+    <li><a href="/tags/VirtualBox/">VirtualBox</a><small>1</small></li>
+  
+    <li><a href="/tags/Windows/">Windows</a><small>1</small></li>
+  
+    <li><a href="/tags/Zeepelin/">Zeepelin</a><small>1</small></li>
+  
+    <li><a href="/tags/beeline/">beeline</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/btrfs/">btrfs</a><small>1</small></li>
+  
+    <li><a href="/tags/cheat/">cheat</a><small>1</small></li>
+  
+    <li><a href="/tags/docker-compose/">docker-compose</a><small>1</small></li>
+  
+    <li><a href="/tags/dr-elephant/">dr-elephant</a><small>1</small></li>
+  
+    <li><a href="/tags/encryption/">encryption</a><small>1</small></li>
+  
+    <li><a href="/tags/exception/">exception</a><small>1</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>4</small></li>
+  
+    <li><a href="/tags/github/">github</a><small>2</small></li>
+  
+    <li><a href="/tags/hadoop/">hadoop</a><small>1</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hive/">hive</a><small>1</small></li>
+  
+    <li><a href="/tags/kbfs/">kbfs</a><small>1</small></li>
+  
+    <li><a href="/tags/keybase/">keybase</a><small>1</small></li>
+  
+    <li><a href="/tags/keys/">keys</a><small>1</small></li>
+  
+    <li><a href="/tags/libvirt/">libvirt</a><small>1</small></li>
+  
+    <li><a href="/tags/markdown/">markdown</a><small>1</small></li>
+  
+    <li><a href="/tags/pgp/">pgp</a><small>1</small></li>
+  
+    <li><a href="/tags/pki/">pki</a><small>1</small></li>
+  
+    <li><a href="/tags/qcow2/">qcow2</a><small>1</small></li>
+  
+    <li><a href="/tags/sheet/">sheet</a><small>1</small></li>
+  
+    <li><a href="/tags/ssh/">ssh</a><small>2</small></li>
+  
+    <li><a href="/tags/udfs/">udfs</a><small>1</small></li>
+  
+    <li><a href="/tags/utils/">utils</a><small>1</small></li>
+  
+    <li><a href="/tags/vdi/">vdi</a><small>1</small></li>
+  
+    <li><a href="/tags/visual-code/">visual code</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2021 Rui Ramos
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<!-- Go to www.addthis.com/dashboard to customize your tools --> <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-59c7d222fcd19d69"></script>
+</body>
+</html>
