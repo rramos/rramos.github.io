@@ -74,6 +74,54 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2021-02-21T11:52:18.193Z"><a href="/2021/02/21/Github ssh keys/">2021-02-21</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2021/02/21/Github ssh keys/">Github Ssh Keys</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>When using github one of the most recommend ways to get in sync with your repo is by using ssh keys. If you don’t use it check the following article from github docs where they explain in detail how to do the setup</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.github.com/en/github/authenticating-to-github/about-ssh">https://docs.github.com/en/github/authenticating-to-github/about-ssh</a></li>
+</ul>
+<p>On your <strong>Profile</strong> you can manage your SSH and GPG keys.</p>
+<p>But take into account the following if you have more than one account the ssh-keys are unique on the system. </p>
+<p>So if you have for example:</p>
+<ol>
+<li>coporate account ruiramosff</li>
+<li>personal account rramos</li>
+</ol>
+<p>You need to have distinct ssh-keys per profile.</p>
+<p>I would recommend for this cases to have distinct ssh keys and to a proper setup on your repo configurations adding for example</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[user]</span><br><span class="line">        name &#x3D; Rui Ramos</span><br><span class="line">        email &#x3D; rui.ms.ramos@gmail.com</span><br></pre></td></tr></table></figure>
+<p>You can also do this globaly on your <code>~./gitconfig</code> but if you are going to work on the same machine but want to use different profiles, pay attention to have the git configuration adapted to it.</p>
+<p>Cheers,<br>RR</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2021-02-21T11:25:53.000Z"><a href="/2021/02/21/VisualCode Hexo addon/">2021-02-21</a></time>
       
       
@@ -791,87 +839,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-09-27T20:16:37.000Z"><a href="/2017/09/27/hive-udfs/">2017-09-27</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/09/27/hive-udfs/">Hive UDFS Functions</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>Today i was going to use a simple sha256 funtion in <a target="_blank" rel="noopener" href="https://hive.apache.org/">Hive</a> in order to mask a colunm and aparently in the latest <a target="_blank" rel="noopener" href="https://www.cloudera.com/">Cloudera</a> distribution the Shipped hive version doesn’t have that native function.</p>
-<p>This article will explain how you can build a sha256 or other udfs function and add it in Hive.</p>
-<h1 id="Checking-Cloudera-Packages-Version"><a href="#Checking-Cloudera-Packages-Version" class="headerlink" title="Checking Cloudera Packages Version"></a>Checking Cloudera Packages Version</h1><p>Check the following <a target="_blank" rel="noopener" href="https://www.cloudera.com/documentation/enterprise/release-notes/topics/cdh_vd_cdh_package_tarball.html">URL</a> in order to see the latest shipped package versions in Cloudera.</p>
-<blockquote>
-<p>CDH 5.12 -&gt; hive-1.1.0+cdh5.12.1+1197</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>Return Type</th>
-<th>Name(Signature)</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>string</td>
-<td>sha2(string/binary, int)</td>
-<td>Calculates the SHA-2 family of hash functions (SHA-224, SHA-256, SHA-384, and SHA-512) (as of Hive 1.3.0). The first argument is the string or binary to be hashed. The second argument indicates the desired bit length of the result, which must have a value of 224, 256, 384, 512, or 0 (which is equivalent to 256). SHA-224 is supported starting from Java 8. If either argument is NULL or the hash length is not one of the permitted values, the return value is NULL. Example: sha2(‘ABC’, 256) = ‘b5d4045c3f466fa91fe2cc6abe79232a1a57cdf104f7a26e716e0a1e2789df78’.</td>
-</tr>
-</tbody></table>
-<p><a target="_blank" rel="noopener" href="https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF">Full Version</a></p>
-<h1 id="Implement-UDFS"><a href="#Implement-UDFS" class="headerlink" title="Implement UDFS"></a>Implement UDFS</h1><p>this will server more as an exercise, one could create a more complex udf funtion. For the time being let’s create a GenericUDFSha2 based on existing hive 1.3.0 version</p>
-<p>You code clone my repo with some udfs-utils <a href="git@github.com:rramos/udfs-utils.git">here</a></p>
-<p>The original code for hive version 1.3.0 is available in the repo</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFSha2.java">https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFSha2.java</a></p>
-<p>Let’s create the building structure</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p GenericUDFSha2&#x2F;org&#x2F;apache&#x2F;hadoop&#x2F;hive&#x2F;ql&#x2F;udf&#x2F;generic</span><br><span class="line">cd GenericUDFSha2</span><br></pre></td></tr></table></figure>
-<p>Let’s create a <code>pom.xml</code> file</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line">&lt;project xmlns&#x3D;&quot;http:&#x2F;&#x2F;maven.apache.org&#x2F;POM&#x2F;4.0.0&quot; xmlns:xsi&#x3D;&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2001&#x2F;XMLSchema-instance&quot;</span><br><span class="line">  xsi:schemaLocation&#x3D;&quot;http:&#x2F;&#x2F;maven.apache.org&#x2F;POM&#x2F;4.0.0 http:&#x2F;&#x2F;maven.apache.org&#x2F;maven-v4_0_0.xsd&quot;&gt;</span><br><span class="line">  &lt;modelVersion&gt;4.0.0&lt;&#x2F;modelVersion&gt;</span><br><span class="line">  &lt;groupId&gt;com.rramos.bigdata.utils&lt;&#x2F;groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;GenericUDFSha2&lt;&#x2F;artifactId&gt;</span><br><span class="line">  &lt;packaging&gt;jar&lt;&#x2F;packaging&gt;</span><br><span class="line">  &lt;version&gt;1.0-SNAPSHOT&lt;&#x2F;version&gt;</span><br><span class="line">  &lt;name&gt;GenericUDFSha2&lt;&#x2F;name&gt;</span><br><span class="line">  &lt;url&gt;http:&#x2F;&#x2F;maven.apache.org&lt;&#x2F;url&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- properties --&gt;</span><br><span class="line">  &lt;properties&gt;</span><br><span class="line">    &lt;project.build.sourceEncoding&gt;UTF-8&lt;&#x2F;project.build.sourceEncoding&gt;</span><br><span class="line">  &lt;&#x2F;properties&gt;</span><br><span class="line">     </span><br><span class="line">  &lt;!-- prerequisitesprerequisites --&gt;</span><br><span class="line">  &lt;prerequisites&gt;</span><br><span class="line">     &lt;maven&gt;3.0&lt;&#x2F;maven&gt;</span><br><span class="line">  &lt;&#x2F;prerequisites&gt;</span><br><span class="line"></span><br><span class="line">   &lt;!-- Dependencies --&gt;</span><br><span class="line">   &lt;dependencies&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;junit&lt;&#x2F;groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;junit&lt;&#x2F;artifactId&gt;</span><br><span class="line">      &lt;version&gt;4.12&lt;&#x2F;version&gt;</span><br><span class="line">      &lt;scope&gt;test&lt;&#x2F;scope&gt;</span><br><span class="line">    &lt;&#x2F;dependency&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">       &lt;groupId&gt;org.apache.hive&lt;&#x2F;groupId&gt;</span><br><span class="line">       &lt;artifactId&gt;hive-exec&lt;&#x2F;artifactId&gt;</span><br><span class="line">       &lt;version&gt;2.0.0&lt;&#x2F;version&gt;</span><br><span class="line">    &lt;&#x2F;dependency&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;joda-time&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;joda-time&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.9.3&lt;&#x2F;version&gt;</span><br><span class="line">    &lt;&#x2F;dependency&gt;</span><br><span class="line"></span><br><span class="line">  &lt;&#x2F;dependencies&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- Build options --&gt;</span><br><span class="line">  &lt;build&gt;</span><br><span class="line">   &lt;plugins&gt;</span><br><span class="line">    &lt;plugin&gt;</span><br><span class="line">     &lt;groupId&gt;org.apache.maven.plugins&lt;&#x2F;groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;maven-jar-plugin&lt;&#x2F;artifactId&gt;</span><br><span class="line">      &lt;version&gt;2.6&lt;&#x2F;version&gt;</span><br><span class="line">       &lt;configuration&gt;</span><br><span class="line">        &lt;archive&gt;</span><br><span class="line">          &lt;manifest&gt;</span><br><span class="line">           &lt;addClasspath&gt;true&lt;&#x2F;addClasspath&gt;</span><br><span class="line">           &lt;mainClass&gt;com.rramos.bigdata.utils.GenericUDFSha2&lt;&#x2F;mainClass&gt;</span><br><span class="line">          &lt;&#x2F;manifest&gt;</span><br><span class="line">        &lt;&#x2F;archive&gt;</span><br><span class="line">       &lt;&#x2F;configuration&gt;</span><br><span class="line">      &lt;&#x2F;plugin&gt;</span><br><span class="line"></span><br><span class="line">      &lt;plugin&gt;</span><br><span class="line">          &lt;artifactId&gt;maven-assembly-plugin&lt;&#x2F;artifactId&gt;</span><br><span class="line">          &lt;configuration&gt;</span><br><span class="line">                &lt;archive&gt;</span><br><span class="line">                    &lt;manifest&gt;</span><br><span class="line">                        &lt;mainClass&gt;</span><br><span class="line">                            com.rramos.bigdata.utils.GenericUDFSha2</span><br><span class="line">                        &lt;&#x2F;mainClass&gt;</span><br><span class="line">                    &lt;&#x2F;manifest&gt;</span><br><span class="line">                &lt;&#x2F;archive&gt;</span><br><span class="line">                &lt;descriptorRefs&gt;</span><br><span class="line">                    &lt;descriptorRef&gt;jar-with-dependencies&lt;&#x2F;descriptorRef&gt;</span><br><span class="line">                &lt;&#x2F;descriptorRefs&gt;</span><br><span class="line">           &lt;&#x2F;configuration&gt;</span><br><span class="line">      &lt;&#x2F;plugin&gt;</span><br><span class="line"></span><br><span class="line">    &lt;&#x2F;plugins&gt;</span><br><span class="line">  &lt;&#x2F;build&gt;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;project&gt;</span><br></pre></td></tr></table></figure>
-<p>You should obviously change for you packaging namespace, i’m just using <code>com.rramos.bigdata.utils</code> to be simpler.</p>
-<p>Next, let’s create the following file</p>
-<p><code>org/apache/hadoop/hive/ql/udf/generic/GenericUDFSha2.java</code></p>
-<p>with the content</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br></pre></td><td class="code"><pre><span class="line">package com.rramos.bigdata.utils;</span><br><span class="line"></span><br><span class="line">import static org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorUtils.PrimitiveGrouping.BINARY_GROUP;</span><br><span class="line">import static org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorUtils.PrimitiveGrouping.NUMERIC_GROUP;</span><br><span class="line">import static org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorUtils.PrimitiveGrouping.STRING_GROUP;</span><br><span class="line"></span><br><span class="line">import java.security.MessageDigest;</span><br><span class="line">import java.security.NoSuchAlgorithmException;</span><br><span class="line"></span><br><span class="line">import org.apache.commons.codec.binary.Hex;</span><br><span class="line">import org.apache.hadoop.hive.ql.exec.Description;</span><br><span class="line">import org.apache.hadoop.hive.ql.exec.UDFArgumentException;</span><br><span class="line">import org.apache.hadoop.hive.ql.exec.UDFArgumentTypeException;</span><br><span class="line">import org.apache.hadoop.hive.ql.metadata.HiveException;</span><br><span class="line">import org.apache.hadoop.hive.serde2.objectinspector.ConstantObjectInspector;</span><br><span class="line">import org.apache.hadoop.hive.serde2.objectinspector.ObjectInspector;</span><br><span class="line">import org.apache.hadoop.hive.serde2.objectinspector.ObjectInspectorConverters.Converter;</span><br><span class="line">import org.apache.hadoop.hive.serde2.objectinspector.PrimitiveObjectInspector.PrimitiveCategory;</span><br><span class="line">import org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorFactory;</span><br><span class="line">import org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorUtils;</span><br><span class="line">import org.apache.hadoop.io.BytesWritable;</span><br><span class="line">import org.apache.hadoop.io.Text;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * GenericUDFSha2.</span><br><span class="line"> *</span><br><span class="line"> *&#x2F;</span><br><span class="line">@Description(name &#x3D; &quot;sha2&quot;, value &#x3D; &quot;_FUNC_(string&#x2F;binary, len) - Calculates the SHA-2 family of hash functions &quot;</span><br><span class="line">    + &quot;(SHA-224, SHA-256, SHA-384, and SHA-512).&quot;,</span><br><span class="line">    extended &#x3D; &quot;The first argument is the string or binary to be hashed. &quot;</span><br><span class="line">    + &quot;The second argument indicates the desired bit length of the result, &quot;</span><br><span class="line">    + &quot;which must have a value of 224, 256, 384, 512, or 0 (which is equivalent to 256). &quot;</span><br><span class="line">    + &quot;SHA-224 is supported starting from Java 8. &quot;</span><br><span class="line">    + &quot;If either argument is NULL or the hash length is not one of the permitted values, the return value is NULL.\n&quot;</span><br><span class="line">    + &quot;Example: &gt; SELECT _FUNC_(&#39;ABC&#39;, 256);\n &#39;b5d4045c3f466fa91fe2cc6abe79232a1a57cdf104f7a26e716e0a1e2789df78&#39;&quot;)</span><br><span class="line">public class GenericUDFSha2 extends GenericUDF &#123;</span><br><span class="line">  private transient Converter[] converters &#x3D; new Converter[2];</span><br><span class="line">  private transient PrimitiveCategory[] inputTypes &#x3D; new PrimitiveCategory[2];</span><br><span class="line">  private final Text output &#x3D; new Text();</span><br><span class="line">  private transient boolean isStr;</span><br><span class="line">  private transient MessageDigest digest;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  public ObjectInspector initialize(ObjectInspector[] arguments) throws UDFArgumentException &#123;</span><br><span class="line">    checkArgsSize(arguments, 2, 2);</span><br><span class="line"></span><br><span class="line">    checkArgPrimitive(arguments, 0);</span><br><span class="line">    checkArgPrimitive(arguments, 1);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; the function should support both string and binary input types</span><br><span class="line">    checkArgGroups(arguments, 0, inputTypes, STRING_GROUP, BINARY_GROUP);</span><br><span class="line">    checkArgGroups(arguments, 1, inputTypes, NUMERIC_GROUP);</span><br><span class="line"></span><br><span class="line">    if (PrimitiveObjectInspectorUtils.getPrimitiveGrouping(inputTypes[0]) &#x3D;&#x3D; STRING_GROUP) &#123;</span><br><span class="line">      obtainStringConverter(arguments, 0, inputTypes, converters);</span><br><span class="line">      isStr &#x3D; true;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      GenericUDFParamUtils.obtainBinaryConverter(arguments, 0, inputTypes, converters);</span><br><span class="line">      isStr &#x3D; false;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (arguments[1] instanceof ConstantObjectInspector) &#123;</span><br><span class="line">      Integer lenObj &#x3D; getConstantIntValue(arguments, 1);</span><br><span class="line">      if (lenObj !&#x3D; null) &#123;</span><br><span class="line">        int len &#x3D; lenObj.intValue();</span><br><span class="line">        if (len &#x3D;&#x3D; 0) &#123;</span><br><span class="line">          len &#x3D; 256;</span><br><span class="line">        &#125;</span><br><span class="line">        try &#123;</span><br><span class="line">          digest &#x3D; MessageDigest.getInstance(&quot;SHA-&quot; + len);</span><br><span class="line">        &#125; catch (NoSuchAlgorithmException e) &#123;</span><br><span class="line">          &#x2F;&#x2F; ignore</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      throw new UDFArgumentTypeException(1, getFuncName() + &quot; only takes constant as &quot;</span><br><span class="line">          + getArgOrder(1) + &quot; argument&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ObjectInspector outputOI &#x3D; PrimitiveObjectInspectorFactory.writableStringObjectInspector;</span><br><span class="line">    return outputOI;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  public Object evaluate(DeferredObject[] arguments) throws HiveException &#123;</span><br><span class="line">    if (digest &#x3D;&#x3D; null) &#123;</span><br><span class="line">      return null;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    digest.reset();</span><br><span class="line">    if (isStr) &#123;</span><br><span class="line">      Text n &#x3D; GenericUDFParamUtils.getTextValue(arguments, 0, converters);</span><br><span class="line">      if (n &#x3D;&#x3D; null) &#123;</span><br><span class="line">        return null;</span><br><span class="line">      &#125;</span><br><span class="line">      digest.update(n.getBytes(), 0, n.getLength());</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      BytesWritable bWr &#x3D; GenericUDFParamUtils.getBinaryValue(arguments, 0, converters);</span><br><span class="line">      if (bWr &#x3D;&#x3D; null) &#123;</span><br><span class="line">        return null;</span><br><span class="line">      &#125;</span><br><span class="line">      digest.update(bWr.getBytes(), 0, bWr.getLength());</span><br><span class="line">    &#125;</span><br><span class="line">    byte[] resBin &#x3D; digest.digest();</span><br><span class="line">    String resStr &#x3D; Hex.encodeHexString(resBin);</span><br><span class="line"></span><br><span class="line">    output.set(resStr);</span><br><span class="line">    return output;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  public String getDisplayString(String[] children) &#123;</span><br><span class="line">    return getStandardDisplayString(getFuncName(), children);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  protected String getFuncName() &#123;</span><br><span class="line">    return &quot;sha2&quot;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>And build the package.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn package</span><br></pre></td></tr></table></figure>
-<p>After compile you find in <code>target</code> dir the require jar (<code>GenericUDFSha2-1.0-SNAPSHOT.jar</code>) you need to add in Hive.</p>
-<p>You should use your Hadoop Distribution instructions for deploying new jars.</p>
-<p>Here are <a target="_blank" rel="noopener" href="https://www.cloudera.com/documentation/enterprise/5-6-x/topics/cm_mc_hive_udf.html">Cloudera Instructions</a>.</p>
-<p>Next on your Hive session you need to <code>ADD JAR</code> and create a <code>FUNCTION</code> or <code>TEMPORARY FUNCTION</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ADD JAR .&#x2F;target&#x2F;GenericUDFSha2-1.0-SNAPSHOT.jar</span><br><span class="line">CREATE TEMPORARY FUNCTION sha2 AS &#39;com.rramos.bigdata.utils.GenericUDFSha2&#39;;</span><br><span class="line">SELECT sha2(foo) from bar LIMIT1; </span><br></pre></td></tr></table></figure>
-<p><a target="_blank" rel="noopener" href="https://blog.matthewrathbone.com/2013/08/10/guide-to-writing-hive-udfs.html">Matthew Rathbone</a> Blog has some great tutorial on Hive Funtions. Take a look if you want to go deep with it.</p>
-<p>Cheers,<br>RR</p>
-<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://www.cloudera.com/documentation/enterprise/release-notes/topics/rg_cdh_vd.html">https://www.cloudera.com/documentation/enterprise/release-notes/topics/rg_cdh_vd.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.cloudera.com/documentation/enterprise/5-6-x/topics/cm_mc_hive_udf.html">https://www.cloudera.com/documentation/enterprise/5-6-x/topics/cm_mc_hive_udf.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.matthewrathbone.com/2013/08/10/guide-to-writing-hive-udfs.html">https://blog.matthewrathbone.com/2013/08/10/guide-to-writing-hive-udfs.html</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -1034,9 +1001,9 @@
   
     <li><a href="/tags/exception/">exception</a><small>1</small></li>
   
-    <li><a href="/tags/git/">git</a><small>3</small></li>
+    <li><a href="/tags/git/">git</a><small>4</small></li>
   
-    <li><a href="/tags/github/">github</a><small>1</small></li>
+    <li><a href="/tags/github/">github</a><small>2</small></li>
   
     <li><a href="/tags/hadoop/">hadoop</a><small>1</small></li>
   
@@ -1062,7 +1029,7 @@
   
     <li><a href="/tags/sheet/">sheet</a><small>1</small></li>
   
-    <li><a href="/tags/ssh/">ssh</a><small>1</small></li>
+    <li><a href="/tags/ssh/">ssh</a><small>2</small></li>
   
     <li><a href="/tags/udfs/">udfs</a><small>1</small></li>
   

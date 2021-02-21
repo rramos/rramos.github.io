@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Streaming | rramos.github.io</title>
+  <title>Github Ssh Keys | rramos.github.io</title>
   <meta name="author" content="Rui Ramos">
   
   <meta name="description" content="A simple Blog related with Infrastructure Architecture and Data">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
+  <meta property="og:title" content="Github Ssh Keys"/>
   <meta property="og:site_name" content="rramos.github.io"/>
 
   
@@ -67,25 +67,92 @@
 <div class="clearfix"></div>
 </header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
-<h2 class="archive-title tag">Streaming</h2>
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2021-02-21T11:52:18.193Z"><a href="/2021/02/21/Github ssh keys/">2021-02-21</a></time>
+      
+      
+  
+    <h1 class="title">Github Ssh Keys</h1>
+  
 
+    </header>
+    <div class="entry">
+      
+        <p>When using github one of the most recommend ways to get in sync with your repo is by using ssh keys. If you don’t use it check the following article from github docs where they explain in detail how to do the setup</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.github.com/en/github/authenticating-to-github/about-ssh">https://docs.github.com/en/github/authenticating-to-github/about-ssh</a></li>
+</ul>
+<p>On your <strong>Profile</strong> you can manage your SSH and GPG keys.</p>
+<p>But take into account the following if you have more than one account the ssh-keys are unique on the system. </p>
+<p>So if you have for example:</p>
+<ol>
+<li>coporate account ruiramosff</li>
+<li>personal account rramos</li>
+</ol>
+<p>You need to have distinct ssh-keys per profile.</p>
+<p>I would recommend for this cases to have distinct ssh keys and to a proper setup on your repo configurations adding for example</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[user]</span><br><span class="line">        name &#x3D; Rui Ramos</span><br><span class="line">        email &#x3D; rui.ms.ramos@gmail.com</span><br></pre></td></tr></table></figure>
+<p>You can also do this globaly on your <code>~./gitconfig</code> but if you are going to work on the same machine but want to use different profiles, pay attention to have the git configuration adapted to it.</p>
+<p>Cheers,<br>RR</p>
 
-  <div class="archive">
-    
-      <article class="post">
-        <div class="post-content-archive">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2017-09-24T14:54:00.000Z"><a href="/2017/09/24/ksql/">2017-09-24</a></time>
-            
-              <h1 class="title-archive"><a href="/2017/09/24/ksql/">Streaming SQL for Kafka (KSQL)</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/github/">github</a>, <a href="/tags/git/">git</a>, <a href="/tags/ssh/">ssh</a>
   </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_linkedin_counter" li:counter="none"></a>
+    
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+
+
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Coments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=524446951221420";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://rramos.github.io/2021/02/21/Github%20ssh%20keys/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
 
 </div></div>
     <aside id="sidebar" class="alignright">
