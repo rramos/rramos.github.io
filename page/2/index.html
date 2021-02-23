@@ -84,6 +84,86 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
+        <time datetime="2017-10-02T21:32:20.000Z"><a href="/2017/10/02/vdi2qemu/">2017-10-02</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/10/02/vdi2qemu/">Convert VirtualBox Images to KVM</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>In this article i will explain a quick way to convert <a target="_blank" rel="noopener" href="https://www.virtualbox.org/">VirtualBox</a> images (vdi) into qcow2 and load them in <a target="_blank" rel="noopener" href="https://www.linux-kvm.org/">KVM</a>.</p>
+<h1 id="Why"><a href="#Why" class="headerlink" title="Why ?"></a>Why ?</h1><p>This is something i normally do, because i get better performance running Linux VM’s on KVM and saves me some space with qcow2 volume format.</p>
+<h2 id="qcow2-Features"><a href="#qcow2-Features" class="headerlink" title="qcow2 Features"></a>qcow2 Features</h2><p>One of the main characteristics of qcow disk images is that files with this format can grow as data is added. This allows for smaller file sizes than raw disk images, which allocate the whole image space to a file, even if parts of it are empty</p>
+<h1 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h1><ul>
+<li>You should have KVM configured correctly</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install qemu-kvm</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Install qemu-utils</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install qemu-utils</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Let’s get an example image. <ul>
+<li> I’m fetching one from <a target="_blank" rel="noopener" href="http://www.osboxes.org/ubuntu">http://www.osboxes.org/ubuntu</a>. (ex: Ubuntu 17.10 10th-August build (64bit).vdi)</li>
+</ul>
+</li>
+</ul>
+<p><strong>NOTE:</strong> Procedure executed with qemu-img version 2.5.0</p>
+<h1 id="Converting"><a href="#Converting" class="headerlink" title="Converting"></a>Converting</h1><ul>
+<li>Convert the image</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">qemu-img convert -f vdi -O qcow2 Ubuntu_17.10.vdi Ubuntu_17.10.qcow2</span><br></pre></td></tr></table></figure>
+<ul>
+<li>You can check the image details by executing <code>qemu-img info Ubuntu_17.10.qcow2</code> .</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">qemu-img info Ubuntu_17.10.qcow2</span><br><span class="line">image: Ubuntu_17.10.qcow2</span><br><span class="line">file format: qcow2</span><br><span class="line">virtual size: 100G (107374182400 bytes)</span><br><span class="line">disk size: 4.1G</span><br><span class="line">cluster_size: 65536</span><br><span class="line">Format specific information:</span><br><span class="line">    compat: 1.1</span><br><span class="line">    lazy refcounts: <span class="literal">false</span></span><br><span class="line">    refcount bits: 16</span><br><span class="line">    corrupt: <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>Now lets Upload this image to our KVM pool and create a new VM from it:</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo virsh vol-create-as default ubuntu-17.10 100G --format qcow2</span><br><span class="line">sudo virsh vol-upload --pool default ubuntu-17.10 Ubuntu_17.10.qcow2 </span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>Start <a target="_blank" rel="noopener" href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Virtualization_Host_Configuration_and_Guest_Installation_Guide/chap-Virtualization_Host_Configuration_and_Guest_Installation_Guide-Guest_Installation_Virt_Manager-Creating_guests_with_virt_manager.html">virt-manager</a> and select <strong>Import existing Disk Image</strong></p>
+</li>
+<li><p>The default password for this images are <code>osboxes.org</code> . You should have something like the following in the console.</p>
+</li>
+</ul>
+<img src="/2017/10/02/vdi2qemu/virt-manager.png" class="" title="virt-manager">
+
+<ul>
+<li>If you want to create brand new images you could use <a target="_blank" rel="noopener" href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Virtualization_Host_Configuration_and_Guest_Installation_Guide/sect-Virtualization_Host_Configuration_and_Guest_Installation_Guide-Guest_Installation-Creating_guests_with_virt_install.html">virt-install</a>, but that one would go to another article.</li>
+</ul>
+<p>Cheers,<br>RR</p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.virtualbox.org/wiki/Downloads">https://www.virtualbox.org/wiki/Downloads</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.linux-kvm.org/page/Main_Page">https://www.linux-kvm.org/page/Main_Page</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.osboxes.org/ubuntu">http://www.osboxes.org/ubuntu</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.openstack.org/image-guide/convert-images.html">https://docs.openstack.org/image-guide/convert-images.html</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2017-09-29T01:01:48.000Z"><a href="/2017/09/29/nifiparcel/">2017-09-29</a></time>
       
       
@@ -948,69 +1028,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-09-13T22:13:24.000Z"><a href="/2017/09/13/ssh-config/">2017-09-13</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/09/13/ssh-config/">Optimize Your SSH Connections With SSH Config File</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>If most of your work is done remotely though ssh, and you have to access several environments, there will come a time where you need to organize our connection settings. Which user you need to access server X or which port is configured or the case you work in consulting and have several ssh_keys.</p>
-<p>There are some tools that migth help on this, but i’m old school and still stick with plain ssh command.</p>
-<p>ssh config file helps quite a lot, here are some tips unknown to some:</p>
-<h2 id="Alias"><a href="#Alias" class="headerlink" title="Alias"></a>Alias</h2><p>Let’s say you want to take advantage of tab auto-completion when using your connections for a enviroment like</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">├── ClientA</span><br><span class="line">│   ├── server1</span><br><span class="line">│   └── server2</span><br><span class="line">├── ClientB</span><br><span class="line">│   └── server1</span><br><span class="line">├── DEV</span><br><span class="line">│   ├── BackOffice</span><br><span class="line">│   │   ├── server1</span><br><span class="line">│   │   └── server2</span><br><span class="line">│   └── FrontOffice</span><br><span class="line">│       ├── server1</span><br><span class="line">│       ├── server2</span><br><span class="line">│       └── server3</span><br><span class="line">├── LIVE</span><br><span class="line">│   ├── Cluster</span><br><span class="line">│   │   ├── node01</span><br><span class="line">│   │   ├── node02</span><br><span class="line">│   │   └── node03</span><br><span class="line">│   └── Servers</span><br><span class="line">│       ├── server01</span><br><span class="line">│       └── server02</span><br><span class="line">└── QA</span><br><span class="line">    └── server1</span><br></pre></td></tr></table></figure>
-<p>this would be quicker to do something like <code>ssh DEV</code> <strong>TAB</strong> <code>Back</code> <strong>TAB</strong> <code>server1</code></p>
-<p>that’s actually possible with ssh_config alias.</p>
-<p>Add the following to <code>~/.ssh/config</code> to see this in action</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">Host ClientA.server1</span><br><span class="line">     Hostname localhost</span><br><span class="line">Host ClientA.server2</span><br><span class="line">     Hostname localhost</span><br><span class="line">Host ClientB.server1</span><br><span class="line">     Hostname localhost</span><br><span class="line">Host ClientA.server1</span><br><span class="line">     Hostname localhost</span><br><span class="line">Host DEV.BackOffice.server1</span><br><span class="line">     Hostname localhost</span><br><span class="line">Host DEV.BackOffice.server2</span><br><span class="line">     Hostname localhost</span><br><span class="line">Host DEV.FrontOffice.server1</span><br><span class="line">     Hostname localhost</span><br><span class="line">Host DEV.FrontOffice.server2</span><br><span class="line">     Hostname localhost</span><br><span class="line">Host DEV.FrontOffice.server3</span><br><span class="line">     Hostname localhost</span><br><span class="line">Host LIVE.Cluster.node01</span><br><span class="line">     Hostname localhost</span><br><span class="line">Host LIVE.Cluster.node02</span><br><span class="line">     Hostname localhost</span><br><span class="line">Host LIVE.Cluster.node03</span><br><span class="line">     Hostname localhost</span><br><span class="line">Host LIVE.Servers.server01</span><br><span class="line">     Hostname localhost</span><br><span class="line">Host LIVE.Servers.server02</span><br><span class="line">     Hostname localhost</span><br><span class="line">Host QA.server01</span><br><span class="line">     Hostname localhost</span><br></pre></td></tr></table></figure>
-<p>Now try out the power of Tab-autocompletion. this is just an example of a type of structure you could use. </p>
-<p>You could also add alias like</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Host LIVE.Servers.server02 server01.mydomain.com</span><br><span class="line">     Hostname localhost</span><br></pre></td></tr></table></figure>
-<p>So that both ssh attempts to <code>LIVE.Servers.server02</code> and <code>server01.mydomain.com</code> would use the same configuration.</p>
-<h2 id="Access-customizations"><a href="#Access-customizations" class="headerlink" title="Access customizations"></a>Access customizations</h2><p>No let’s say for accessing <code>LIVE.Servers.server01</code> you require account <code>admin</code> and ssh listens on port <code>2228</code> . one could setup the following</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Host LIVE.Servers.server01</span><br><span class="line">     Hostname localhost</span><br><span class="line">     Port 2228</span><br><span class="line">     User admin</span><br></pre></td></tr></table></figure>
-<p>With this configuration one could simple execute <code>ssh LIVE.Servers.server01</code> and it will use the configured user and port in the connection.</p>
-<p>Or if you have a specific ssh_key for it in <code>QA</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Host QA.server01</span><br><span class="line">     Hostname localhost</span><br><span class="line">     Port 2227</span><br><span class="line">     User qa_user01</span><br><span class="line">     IdentityFile ~&#x2F;.ssh&#x2F;id_rsa_qa</span><br></pre></td></tr></table></figure>
-<h2 id="Tunnels"><a href="#Tunnels" class="headerlink" title="Tunnels"></a>Tunnels</h2><p>one could also setup tunnels directly in ssh_config like</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Host tunnel</span><br><span class="line">    HostName database.example.com</span><br><span class="line">    IdentityFile ~&#x2F;.ssh&#x2F;id_rsa_dev</span><br><span class="line">    LocalForward 9906 127.0.0.1:3306</span><br><span class="line">    User dba    </span><br></pre></td></tr></table></figure>
-<p>You can simple execute <code>ssh -f -N tunnel</code></p>
-<p>Or if you have access to server3 only from server1</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Host DEV.FrontOffice.server3</span><br><span class="line">     Hostname 10.0.0.1</span><br><span class="line">     Port 22</span><br><span class="line">     User admin</span><br><span class="line">     IdentityFile ~&#x2F;.ssh&#x2F;id_rsa_dev</span><br><span class="line">     ProxyCommand ssh -q -W %h:%p DEV.FrontOffice.server1</span><br></pre></td></tr></table></figure>
-<p>One configuration i normally use in development with containers or virtual machines wich are deprovision with regularity is the following:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Host 192.168.77.* mesos-*</span><br><span class="line">   StrictHostKeyChecking no</span><br><span class="line">   User rramos</span><br><span class="line">   IdentityFile ~&#x2F;.ssh&#x2F;id_rsa</span><br><span class="line">   UserKnownHostsFile&#x3D;&#x2F;dev&#x2F;null</span><br><span class="line">   LogLevel QUIET</span><br></pre></td></tr></table></figure>
-<p>This means any ssh connection to local network <code>192.168.77.*</code> or hosts with name <code>mesos-*</code> wont get registered in KnownHosts.</p>
-<p>You could also use this to change your settings for <code>TCPKeepAlive</code> or any other specific connections settings you may need the <a target="_blank" rel="noopener" href="https://linux.die.net/man/5/ssh_config">man</a> page as the full list of options.</p>
-<p>Cheers,<br>RR</p>
-<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://linux.die.net/man/5/ssh_config">https://linux.die.net/man/5/ssh_config</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -1052,6 +1069,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/CheatSheet/">CheatSheet</a><small>1</small></li>
   
     <li><a href="/tags/Cloudera/">Cloudera</a><small>3</small></li>
+  
+    <li><a href="/tags/Code/">Code</a><small>1</small></li>
   
     <li><a href="/tags/Conferences/">Conferences</a><small>2</small></li>
   
@@ -1095,6 +1114,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Kafka/">Kafka</a><small>2</small></li>
   
+    <li><a href="/tags/Laws/">Laws</a><small>1</small></li>
+  
     <li><a href="/tags/Linux/">Linux</a><small>6</small></li>
   
     <li><a href="/tags/Markdown/">Markdown</a><small>1</small></li>
@@ -1136,6 +1157,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/SQLServer/">SQLServer</a><small>1</small></li>
   
     <li><a href="/tags/Scala/">Scala</a><small>1</small></li>
+  
+    <li><a href="/tags/Software-Engineering/">Software Engineering</a><small>1</small></li>
   
     <li><a href="/tags/Spark/">Spark</a><small>4</small></li>
   
