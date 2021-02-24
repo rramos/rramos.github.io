@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://rramos.github.io/2021/02/24/SODA/</loc>
+    
+    <lastmod>2021-02-24</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://rramos.github.io/2021/02/23/Software%20Engineering%20Laws/</loc>
     
     <lastmod>2021-02-23</lastmod>
@@ -44,6 +51,13 @@
   </url>
   
   <url>
+    <loc>http://rramos.github.io/2017/09/23/portainer/</loc>
+    
+    <lastmod>2020-09-06</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://rramos.github.io/2017/10/02/vdi2qemu/</loc>
     
     <lastmod>2020-09-06</lastmod>
@@ -65,28 +79,7 @@
   </url>
   
   <url>
-    <loc>http://rramos.github.io/2016/09/23/portotechhub-com/</loc>
-    
-    <lastmod>2020-09-06</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2017/10/06/powershellonlinux/</loc>
-    
-    <lastmod>2020-09-06</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2017/09/19/quickzeppelin/</loc>
-    
-    <lastmod>2020-09-06</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2017/10/09/rddstransformations/</loc>
+    <loc>http://rramos.github.io/2017/09/23/sublimeinstall/</loc>
     
     <lastmod>2020-09-06</lastmod>
     
@@ -100,14 +93,77 @@
   </url>
   
   <url>
-    <loc>http://rramos.github.io/2017/09/23/sublimeinstall/</loc>
+    <loc>http://rramos.github.io/2017/10/09/rddstransformations/</loc>
     
     <lastmod>2020-09-06</lastmod>
     
   </url>
   
   <url>
-    <loc>http://rramos.github.io/2017/09/23/portainer/</loc>
+    <loc>http://rramos.github.io/2017/09/19/quickzeppelin/</loc>
+    
+    <lastmod>2020-09-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2017/10/06/powershellonlinux/</loc>
+    
+    <lastmod>2020-09-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2016/09/23/portotechhub-com/</loc>
+    
+    <lastmod>2020-09-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2017/10/13/drelephat/</loc>
+    
+    <lastmod>2020-09-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2017/09/07/mkv/</loc>
+    
+    <lastmod>2020-09-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2017/09/24/ksql/</loc>
+    
+    <lastmod>2020-09-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2016/09/18/keybase-io/</loc>
+    
+    <lastmod>2020-09-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2016/10/19/hiveGC-md/</loc>
+    
+    <lastmod>2020-09-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2017/09/27/hive-udfs/</loc>
+    
+    <lastmod>2020-09-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2016/09/18/git-cheat-sheet/</loc>
     
     <lastmod>2020-09-06</lastmod>
     
@@ -122,55 +178,6 @@
   
   <url>
     <loc>http://rramos.github.io/2017/10/18/dockers/</loc>
-    
-    <lastmod>2020-09-06</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2017/10/13/drelephat/</loc>
-    
-    <lastmod>2020-09-06</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2016/09/18/git-cheat-sheet/</loc>
-    
-    <lastmod>2020-09-06</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2017/09/27/hive-udfs/</loc>
-    
-    <lastmod>2020-09-06</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2016/10/19/hiveGC-md/</loc>
-    
-    <lastmod>2020-09-06</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2016/09/18/keybase-io/</loc>
-    
-    <lastmod>2020-09-06</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2017/09/24/ksql/</loc>
-    
-    <lastmod>2020-09-06</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2017/09/07/mkv/</loc>
     
     <lastmod>2020-09-06</lastmod>
     
@@ -235,7 +242,7 @@
 
   <url>
     <loc>http://rramos.github.io/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -243,651 +250,665 @@
   
   <url>
     <loc>http://rramos.github.io/tags/HDFS/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/tags/Airflow/</loc>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/BigData/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Hive/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Sqoop/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Docker/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Spark/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Metrics/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/GoogleChrome/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Customization/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Internet/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Proxy/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Linux/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/BigQuery/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Avro/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Parquet/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/GCS/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/github/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/hexo/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/blog/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/git/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/markdown/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Google-Analytics/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Analytics/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Dimensions/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Cloudera/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Polybase/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/SQLServer/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Data-Ingestion/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Conferences/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/SparkSummit/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Hadoop/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Streamming/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Kafka/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Ansible/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/btrfs/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/docker-compose/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/utils/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/dr-elephant/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Performance/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Monitoring/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Tunning/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/cheat/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/sheet/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/udfs/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Java/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/hadoop/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/hive/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/GC/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/exception/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/beeline/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/keybase/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/pgp/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/encryption/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/pki/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/keys/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/kbfs/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/KSQL/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/SQL/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Streaming/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Markdown/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Tools/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Utils/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Nifi/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/CDH-Parcel/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Portainer/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/PortoTechHub/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Porto/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Tech/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/PowerShell/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Windows/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Zeepelin/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Scala/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/RDD/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/CheatSheet/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/ssh/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/IDE/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Install/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Optimization/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Vagrant/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Qemu/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/KVM/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/libvirt/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Mesos/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/VirtualBox/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/QEMU/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/vdi/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/qcow2/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/visual-code/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/GA/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/GA4/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Software-Engineering/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Code/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://rramos.github.io/tags/Laws/</loc>
-    <lastmod>2021-02-23</lastmod>
+    <lastmod>2021-02-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/tags/Data-Quality/</loc>
+    <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>

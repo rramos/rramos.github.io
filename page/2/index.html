@@ -84,6 +84,77 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
+        <time datetime="2017-10-06T22:11:39.000Z"><a href="/2017/10/06/powershellonlinux/">2017-10-06</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/10/06/powershellonlinux/">PowerShell on Linux</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>This article will present the required steps to install <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/PowerShell">powershell</a> on Linux.</p>
+<h1 id="Objective"><a href="#Objective" class="headerlink" title="Objective"></a>Objective</h1><p>The objective is to operate from Linux <a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/cloud-platform/windows-azure-pack">Windows Azure Pack</a>.</p>
+<h1 id="Procedure"><a href="#Procedure" class="headerlink" title="Procedure"></a>Procedure</h1><ul>
+<li>Import the public repository GPG keys</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Register the Microsoft Ubuntu repository</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | sudo tee /etc/apt/sources.list.d/microsoft.list</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Update the list of products</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Install PowerShell</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install -y powershell</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Start PowerShell</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powershell</span><br></pre></td></tr></table></figure>
+<h1 id="Add-Azure-module"><a href="#Add-Azure-module" class="headerlink" title="Add Azure module"></a>Add Azure module</h1><p>Install Azure module in powershell running with <code>sudo</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Install-Module AzureRM</span><br><span class="line">Install-Module Azure</span><br></pre></td></tr></table></figure>
+<p>Check module location</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gmo -l Azure*).path</span><br></pre></td></tr></table></figure>
+
+<h1 id="Uninstall"><a href="#Uninstall" class="headerlink" title="Uninstall"></a>Uninstall</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get remove powershell</span><br></pre></td></tr></table></figure>
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>After some hours i’ve given up making this thing work on Linux. The time it takes doesn’t payoff, and even if i could make it work, i would still need to make Vagrant work with it for some VM’s provisioning in a private cloud. It would take me less time to do it by hand :|</p>
+<p>From a standard testing perspective it’s nice to have this thing on Linux, because you could centralize the management, but at the moment of this article it doesn’t seem to payoff the time one would need to setup this. </p>
+<p>If you have lot’s of Windows machines or Azure infrastructure to manage just get a Windows PC, or wait for Microsoft to fix this, as there are lot’s of reports regarding this issue. But seriously i don’t see an effort from Microft to make this work properly, what’s the gain, rigth !?.</p>
+<p>Cheers,<br>RR</p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/PowerShell/PowerShell">https://github.com/PowerShell/PowerShell</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/bgelens/WAPTenantPublicAPI">https://github.com/bgelens/WAPTenantPublicAPI</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.tech-coffee.net/windows-azure-pack-powershell-tenant-api/">http://www.tech-coffee.net/windows-azure-pack-powershell-tenant-api/</a></li>
+<li><a target="_blank" rel="noopener" href="https://blogs.msdn.microsoft.com/powershell/2016/08/18/powershell-on-linux-and-open-source-2/">https://blogs.msdn.microsoft.com/powershell/2016/08/18/powershell-on-linux-and-open-source-2/</a></li>
+<li><a target="_blank" rel="noopener" href="https://blogs.technet.microsoft.com/privatecloud/2013/12/10/windows-azure-pack-reconfigure-portal-names-ports-and-use-trusted-certificates/">https://blogs.technet.microsoft.com/privatecloud/2013/12/10/windows-azure-pack-reconfigure-portal-names-ports-and-use-trusted-certificates/</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2017-10-02T21:32:20.000Z"><a href="/2017/10/02/vdi2qemu/">2017-10-02</a></time>
       
       
@@ -946,88 +1017,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-09-19T07:37:29.000Z"><a href="/2017/09/19/dockerclean/">2017-09-19</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/09/19/dockerclean/">Clean All Dockers and Configure With Btrfs</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>So dockers tend to start growing like weeds. And cost me space i don’t have. But one could change the storage driver. You could choose LVM and take advantage of the snapshots or btrfs which i allready have.</p>
-<h2 id="Btrfs"><a href="#Btrfs" class="headerlink" title="Btrfs"></a>Btrfs</h2><p>Btrfs is a next generation copy-on-write filesystem that supports many advanced storage technologies that make it a good fit for Docker. Btrfs is included in the mainline Linux kernel.</p>
-<p>Docker’s btrfs storage driver leverages many Btrfs features for image and container management. Among these features are block-level operations, thin provisioning, copy-on-write snapshots, and ease of administration. You can easily combine multiple physical block devices into a single Btrfs filesystem.</p>
-<h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><ul>
-<li>Install btrfs </li>
-<li>Make sure you have a volume formated as btrfs (not part of the article)</li>
-</ul>
-<h2 id="Clean-all-dockers-and-images"><a href="#Clean-all-dockers-and-images" class="headerlink" title="Clean all dockers and images"></a>Clean all dockers and images</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Delete all containers</span><br><span class="line">sudo docker rm $(sudo docker ps -a -q)</span><br><span class="line"># Delete all images</span><br><span class="line">sudo docker rmi $(sudo docker images -q)</span><br></pre></td></tr></table></figure>
-
-<h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><p>Make sure you have btrfs on your system</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo cat &#x2F;proc&#x2F;filesystems | grep btrfs</span><br></pre></td></tr></table></figure>
-<ol>
-<li>Stop docker</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service docker stop</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>Create a backup of you docker settings</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mv &#x2F;var&#x2F;lib&#x2F;docker&#x2F; &#x2F;var&#x2F;lib&#x2F;docker.bak</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>create a subvolume from an existing btrfs FS</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">btrfs subvolume create &#x2F;archive&#x2F;dockers</span><br></pre></td></tr></table></figure>
-<p><strong>NOTE:</strong> It’s better to use a dedicate disk for it</p>
-<ol start="4">
-<li>Create the symlink</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s &#x2F;archive&#x2F;dockers &#x2F;var&#x2F;lib&#x2F;docker</span><br></pre></td></tr></table></figure>
-<ol start="5">
-<li>Copy the backup data to the new location</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp -rp &#x2F;var&#x2F;lib&#x2F;docker.bak&#x2F;* &#x2F;var&#x2F;lib&#x2F;docker&#x2F;</span><br></pre></td></tr></table></figure>
-<ol start="6">
-<li>Configure Docker to use the btrfs storage driver. This is required even though <code>/var/lib/docker/</code> is now using a Btrfs filesystem. Edit or create the file <code>/etc/docker/daemon.json</code>.</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;storage-driver&quot;: &quot;btrfs&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol start="7">
-<li>Start docker service</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service docker start</span><br></pre></td></tr></table></figure>
-<ol start="8">
-<li>Check if docker is running with docker support</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker info|grep  &quot;Storage Driver&quot;</span><br></pre></td></tr></table></figure>
-<p>You could check the volumes being created with the command</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo btrfs subvolume list &#x2F;var&#x2F;liv&#x2F;docker |grep dockers</span><br></pre></td></tr></table></figure>
-
-<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://docs.docker.com/engine/userguide/storagedriver/btrfs-driver/">https://docs.docker.com/engine/userguide/storagedriver/btrfs-driver/</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -1054,6 +1043,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <h3 class="title">Tags</h3>
   <ul class="entry">
   
+    <li><a href="/tags/Airflow/">Airflow</a><small>1</small></li>
+  
     <li><a href="/tags/Analytics/">Analytics</a><small>1</small></li>
   
     <li><a href="/tags/Ansible/">Ansible</a><small>2</small></li>
@@ -1078,9 +1069,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Data-Ingestion/">Data Ingestion</a><small>1</small></li>
   
+    <li><a href="/tags/Data-Quality/">Data Quality</a><small>1</small></li>
+  
     <li><a href="/tags/Dimensions/">Dimensions</a><small>1</small></li>
   
-    <li><a href="/tags/Docker/">Docker</a><small>5</small></li>
+    <li><a href="/tags/Docker/">Docker</a><small>6</small></li>
   
     <li><a href="/tags/GA/">GA</a><small>1</small></li>
   
