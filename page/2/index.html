@@ -84,6 +84,170 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
+        <time datetime="2017-10-09T19:54:12.000Z"><a href="/2017/10/09/rddstransformations/">2017-10-09</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/10/09/rddstransformations/">RDD Basic Transformations Operations</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Just a simple Basic CheatSheet on Spark RDD’s</p>
+<ul>
+<li>Basic Transformations on a RDD containing: <strong>{1,2,3,3}</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Function Name</th>
+<th>Example</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>map()</td>
+<td>rdd.map(x =&gt; x +1)</td>
+<td>{2,3,4,4}</td>
+</tr>
+<tr>
+<td>flatmap()</td>
+<td>rdd.flatMap(x =&gt; x.to(3))</td>
+<td>{1,2,3,2,3,3,3}</td>
+</tr>
+<tr>
+<td>filter()</td>
+<td>rdd.filter(x =&gt; x != 1 )</td>
+<td>{2,3,3}</td>
+</tr>
+<tr>
+<td>distinct()</td>
+<td>rdd.distinct()</td>
+<td>{1,2,3}</td>
+</tr>
+<tr>
+<td>sample()</td>
+<td>rdd.sample(false,0.5)</td>
+<td>Nondeterministic</td>
+</tr>
+</tbody></table>
+<ul>
+<li>Basic two-RDD transformations on RDDs: <strong>{1,2,3}</strong> and <strong>{3,4,5}</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Function Name</th>
+<th>Example</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>union()</td>
+<td>rdd.union(other)</td>
+<td>{1,2,3,3,4,5}</td>
+</tr>
+<tr>
+<td>intersection()</td>
+<td>rdd.intersection(other)</td>
+<td>{3}</td>
+</tr>
+<tr>
+<td>subtract()</td>
+<td>rdd.subtract(other)</td>
+<td>{1,2}</td>
+</tr>
+<tr>
+<td>cartesian()</td>
+<td>rdd.cartesian(other)</td>
+<td>{(1,3),(1,4)…(3,5)}</td>
+</tr>
+</tbody></table>
+<ul>
+<li>Basic Actions on RDD containing: <strong>{1,2,3,3}</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Function Name</th>
+<th>Example</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>collect()</td>
+<td>rdd.collect()</td>
+<td>{1,2,3,3}</td>
+</tr>
+<tr>
+<td>count()</td>
+<td>rdd.count()</td>
+<td>4</td>
+</tr>
+<tr>
+<td>countByValue()</td>
+<td>rdd.countByValue()</td>
+<td>{(1,1),(2,1),(3,2)}</td>
+</tr>
+<tr>
+<td>take()</td>
+<td>rdd.take(2)</td>
+<td>{1,2}</td>
+</tr>
+<tr>
+<td>top()</td>
+<td>rdd.top(2)</td>
+<td>{3,3}</td>
+</tr>
+<tr>
+<td>takeOrdered()</td>
+<td>rdd.takeOrdered(2)(myOrdering)</td>
+<td>{3,3}</td>
+</tr>
+<tr>
+<td>takeSample()</td>
+<td>rdd.takeSample(false,1)</td>
+<td>Nondeterministic</td>
+</tr>
+<tr>
+<td>reduce()</td>
+<td>rdd.reduce((x,y) =&gt; x + y )</td>
+<td>9</td>
+</tr>
+<tr>
+<td>fold()</td>
+<td>rdd.fold(0)((x,y) =&gt; x + y)</td>
+<td>9</td>
+</tr>
+<tr>
+<td>foreach()</td>
+<td>rdd.foreach(func)</td>
+<td>Nothing</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2017-10-06T22:11:39.000Z"><a href="/2017/10/06/powershellonlinux/">2017-10-06</a></time>
       
       
@@ -938,85 +1102,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-09-19T21:06:18.000Z"><a href="/2017/09/19/quickzeppelin/">2017-09-19</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/09/19/quickzeppelin/">Quick Setup Zeppelin Notebook</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>In this article i describe a quick way to have zeepelin running so that you could quickly testing some Spark application.</p>
-<p><strong>NOTE:</strong> This procedure shouldn’t be used in production environments has you should setup the Notebook with auth and connected to your local infrastructure.</p>
-<h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><ul>
-<li>One should have a docker environment setup. Check my previous <a href="/2017/09/19/dockerclean/" title="article">article</a> if you need some help with that</li>
-<li><a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-14-04">Docker-compose</a></li>
-</ul>
-<h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><ol>
-<li>Create a folder named zeepelin<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir docker-zeepelin</span><br></pre></td></tr></table></figure></li>
-<li>Create a <code>data</code> where you could put some data to analyse.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p docker-zeepelin&#x2F;data</span><br></pre></td></tr></table></figure></li>
-<li>Create the following <code>docker-compose.yml</code> file in dir <code>docker-zeepelin</code> :</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">version: &#39;2&#39;</span><br><span class="line">services:</span><br><span class="line">  zeppelin:</span><br><span class="line">    ports:</span><br><span class="line">     - &quot;8080:8080&quot;</span><br><span class="line">    volumes:</span><br><span class="line">     - .&#x2F;data:&#x2F;opt&#x2F;data</span><br><span class="line">    image: &quot;dylanmei&#x2F;zeppelin&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li>Launch docker-compose<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker-compose up -d</span><br></pre></td></tr></table></figure></li>
-<li>That’s it you should now be able to access <a target="_blank" rel="noopener" href="http://localhost:8080/">http://localhost:8080</a> </li>
-</ol>
-<h2 id="Test-it"><a href="#Test-it" class="headerlink" title="Test it"></a>Test it</h2><ol>
-<li><p>Lets download a demo file to our <code>data</code> dir. </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -s https:&#x2F;&#x2F;api.opendota.com&#x2F;api&#x2F;publicMatches -o .&#x2F;data&#x2F;OpenDotaPublic.json</span><br></pre></td></tr></table></figure>
-<p>Yeah! I kinda like Dota so this makes sense :D</p>
-</li>
-<li><p>Create a new NoteBook in the web Interface and use the following code</p>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">%spark</span><br><span class="line"></span><br><span class="line">val df &#x3D; sqlContext.read.json(&quot;file:&#x2F;&#x2F;&#x2F;opt&#x2F;data&#x2F;OpenDotaPublic.json&quot;)</span><br><span class="line">df.show</span><br></pre></td></tr></table></figure>
-<p>Hit: <strong>Shift-Enter</strong></p>
-<ol start="3">
-<li>Let’s register this dataframe as temp table and create some visuals</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">%spark</span><br><span class="line">df.registerTempTable(&quot;publicmatches&quot;)</span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li>Create the following to generate visualizations<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">%sql</span><br><span class="line">select radiant_win,match_id</span><br><span class="line"> from publicmatches</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<img src="/2017/09/19/quickzeppelin/radiant_win.png" class="" title="[PieChart]">
-
-<p>Guess i need to start playing on Radiant side :D</p>
-<p>Well and that’s it.</p>
-<p>Cheers,<br>RR</p>
-<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://zeppelin.apache.org/docs/0.5.5-incubating/tutorial/tutorial.html">https://zeppelin.apache.org/docs/0.5.5-incubating/tutorial/tutorial.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://hortonworks.com/tutorial/getting-started-with-apache-zeppelin/">https://hortonworks.com/tutorial/getting-started-with-apache-zeppelin/</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-16-04">https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-16-04</a></li>
-<li><a target="_blank" rel="noopener" href="https://docs.docker.com/compose">https://docs.docker.com/compose</a></li>
-<li><a target="_blank" rel="noopener" href="https://zeppelin.apache.org/">https://zeppelin.apache.org/</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -1061,7 +1146,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Cloudera/">Cloudera</a><small>3</small></li>
   
-    <li><a href="/tags/Code/">Code</a><small>1</small></li>
+    <li><a href="/tags/Code/">Code</a><small>2</small></li>
   
     <li><a href="/tags/Conferences/">Conferences</a><small>2</small></li>
   
@@ -1086,6 +1171,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/Google-Analytics/">Google Analytics</a><small>2</small></li>
   
     <li><a href="/tags/GoogleChrome/">GoogleChrome</a><small>1</small></li>
+  
+    <li><a href="/tags/Guideline/">Guideline</a><small>1</small></li>
   
     <li><a href="/tags/HDFS/">HDFS</a><small>3</small></li>
   
