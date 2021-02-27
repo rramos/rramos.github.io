@@ -21,6 +21,7 @@
   <link href="/favicon.png" rel="icon">
   <link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 
@@ -36,14 +37,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 
-
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-  (adsbygoogle = window.adsbygoogle || []).push({
-    google_ad_client: "ca-pub-6865009930566683",
-    enable_page_level_ads: true
-  });
-</script>
 
 <meta name="generator" content="Hexo 5.3.0"></head>
 
@@ -78,6 +71,167 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-09-19T21:59:58.000Z"><a href="/2017/09/19/CreateAvroTablesForBigQuery/">2017-09-19</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/09/19/CreateAvroTablesForBigQuery/">Create Avro Tables for Google BigQuery</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>This article describes one way to create tables in BigQuery From HDFS parquet Data.</p>
+<h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><p>For this article assumes the following requisites are meet:</p>
+<ul>
+<li>You have a Google Cloud Platform account</li>
+<li>You have created a Google Cloud Storage bucket</li>
+<li>You have HDFS configured</li>
+<li>You have Parquet data that you could materialize in Hive</li>
+<li>Must have <a target="_blank" rel="noopener" href="https://cloud.google.com/sdk/docs/">bq</a> util install </li>
+</ul>
+<h2 id="Definitions"><a href="#Definitions" class="headerlink" title="Definitions"></a>Definitions</h2><ul>
+<li><strong>Hive Parquet Table:</strong> parquet_table</li>
+<li><strong>HDFS Parquet Location:</strong> <code>/user/hive/warehouse/test.db/parquet_table</code></li>
+<li><strong>Hive Avro Table Name:</strong> avro_table</li>
+<li><strong>HDFS Avro Location:</strong> <code>/user/hive/warehouse/test.db/avro_table</code></li>
+</ul>
+<h2 id="Process"><a href="#Process" class="headerlink" title="Process"></a>Process</h2><ol>
+<li>Create a avro table from parquet data</li>
+<li>Copy avro files to GCS</li>
+<li>Create Bigquery Table from avro in gs bucket</li>
+</ol>
+<h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><h3 id="Create-the-Avro-Table"><a href="#Create-the-Avro-Table" class="headerlink" title="Create the Avro Table"></a>Create the Avro Table</h3><p>Let’s start by creating the new table based on the existing parquet data</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SET hive.exec.compress.output&#x3D;true;</span><br><span class="line">SET avro.output.codec&#x3D;snappy;</span><br><span class="line"></span><br><span class="line">CREATE TABLE avro_table STORED AS AVRO</span><br><span class="line">  AS (SELECT * FROM parquet_table);</span><br></pre></td></tr></table></figure>
+<p>One could specify in the <code>SELECT</code> statement the columns we would like that could be obtain using <code>parquet-tools</code> command  ex:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">parquet-tools meta &lt;parquet_file&gt;</span><br></pre></td></tr></table></figure>
+<p>You would still need to get the parquet file to obtain that.</p>
+<h3 id="Why-Avro-File-and-that-format"><a href="#Why-Avro-File-and-that-format" class="headerlink" title="Why Avro File and that format ?"></a>Why Avro File and that format ?</h3><p>You could update data to BigQuery by streaming or from Google Cloud Storage as a batch process. A bulk import from HDFS seems logical to use a batch process so why avro ?<br>Acording to the latest info on the google BigQuery Site it’s possible to:</p>
+<ul>
+<li>Load from Google Cloud Storage, including CSV, JSON (newline-delimited), and Avro files, as well as Google Cloud Datastore backups.</li>
+<li>Load directly from a readable data source.</li>
+<li>Insert individual records using streaming inserts.</li>
+</ul>
+<blockquote>
+<p>Compressed Avro files are not supported, but compressed data blocks are. BigQuery supports the DEFLATE and Snappy codecs.</p>
+</blockquote>
+<p>Also there is the following Avro mapping that could be usefull</p>
+<table>
+<thead>
+<tr>
+<th>Avro data type</th>
+<th>BigQuery data type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>null</td>
+<td>- ignored -</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>BOOLEAN</td>
+</tr>
+<tr>
+<td>int</td>
+<td>INTEGER</td>
+</tr>
+<tr>
+<td>long</td>
+<td>INTEGER</td>
+</tr>
+<tr>
+<td>float</td>
+<td>FLOAT</td>
+</tr>
+<tr>
+<td>double</td>
+<td>FLOAT</td>
+</tr>
+<tr>
+<td>bytes</td>
+<td>BYTES</td>
+</tr>
+<tr>
+<td>string</td>
+<td>STRING</td>
+</tr>
+<tr>
+<td>record</td>
+<td>RECORD</td>
+</tr>
+<tr>
+<td>enum</td>
+<td>STRING</td>
+</tr>
+<tr>
+<td>array</td>
+<td>- repeated fields -</td>
+</tr>
+<tr>
+<td>map<T></td>
+<td>RECORD</td>
+</tr>
+<tr>
+<td>union</td>
+<td>RECORD</td>
+</tr>
+<tr>
+<td>fixed</td>
+<td>BYTES</td>
+</tr>
+</tbody></table>
+<p>Check the full spec on GCP <a target="_blank" rel="noopener" href="https://cloud.google.com/bigquery/data-formats#avro_format">Page</a></p>
+<p>The other advantage of using avro is that BigQuery infers the schema so you don’t have to describe the columns of you table.</p>
+<h3 id="Copy-Avro-file-from-HDFS-to-GCS"><a href="#Copy-Avro-file-from-HDFS-to-GCS" class="headerlink" title="Copy Avro file from HDFS to GCS"></a>Copy Avro file from HDFS to GCS</h3><p>The best approach for this is to add the GCS connector to your HDFS config</p>
+<p>Follow the instructions in the following <a target="_blank" rel="noopener" href="https://github.com/GoogleCloudPlatform/bigdata-interop/tree/master/gcs">link</a> or download the jar for Hadoop 2.x <a target="_blank" rel="noopener" href="https://storage.googleapis.com/hadoop-lib/gcs/gcs-connector-latest-hadoop2.jar">here</a></p>
+<ol>
+<li>Add that jar on a valid location for you cluster <code>HADOOP_CLASSPATH</code></li>
+<li>Generate a <code>service account</code> in the GCP console and get JSON key (<a target="_blank" rel="noopener" href="https://cloud.google.com/storage/docs/authentication#service_accounts">follow this instructions</a>)</li>
+<li>Copy that JSON file to a location in your cluster</li>
+<li>Add the following properties to your cluster <code>core-site.xml</code></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;property&gt;</span><br><span class="line">  &lt;name&gt;fs.gs.project.id&lt;&#x2F;name&gt;</span><br><span class="line">  &lt;value&gt;your-project-name&lt;&#x2F;value&gt;</span><br><span class="line">  &lt;description&gt;</span><br><span class="line">    Required. Google Cloud Project ID with access to configured GCS buckets.</span><br><span class="line">  &lt;&#x2F;description&gt;</span><br><span class="line">&lt;&#x2F;property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;google.cloud.auth.service.account.json.keyfile&lt;&#x2F;name&gt;</span><br><span class="line">&lt;value&gt;&#x2F;path&#x2F;to&#x2F;your&#x2F;JSON-keyfile&lt;&#x2F;value&gt;</span><br><span class="line">&lt;description&gt;</span><br><span class="line">  The JSON key file of the service account used for GCS</span><br><span class="line">  access when google.cloud.auth.service.account.enable is true.</span><br><span class="line">&lt;&#x2F;description&gt;</span><br><span class="line">&lt;&#x2F;property&gt;</span><br><span class="line">  &lt;property&gt;</span><br><span class="line">  &lt;name&gt;fs.gs.working.dir&lt;&#x2F;name&gt;</span><br><span class="line">  &lt;value&gt;&#x2F;&lt;&#x2F;value&gt;</span><br><span class="line">  &lt;description&gt;</span><br><span class="line">    The directory relative gs: uris resolve in inside of the default bucket.</span><br><span class="line">  &lt;&#x2F;description&gt;</span><br><span class="line">&lt;&#x2F;property&gt;</span><br></pre></td></tr></table></figure>
+<p>Extended options are available in <a target="_blank" rel="noopener" href="https://github.com/GoogleCloudPlatform/bigdata-interop/blob/master/gcs/conf/gcs-core-default.xml">gcs-core-default</a> example</p>
+<ol start="5">
+<li>Create a new bucket on GCP and make sure you can access to with via <code>hdfs</code> command.</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs -ls gs:&#x2F;&#x2F;my-bucket-name&#x2F;</span><br></pre></td></tr></table></figure>
+<p>If that works, you can now execute a distcp to sync the avro files directly to GCS.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hdfs mkdir gs:&#x2F;&#x2F;my-bucket-name&#x2F;my_table</span><br><span class="line">hdfs distcp &#x2F;user&#x2F;hive&#x2F;warehouse&#x2F;test.db&#x2F;avro_table&#x2F;* gs:&#x2F;&#x2F;my-bucket-name&#x2F;my_table&#x2F;</span><br></pre></td></tr></table></figure>
+<h3 id="Load-GCS-avro-data-to-a-BigQuery-table"><a href="#Load-GCS-avro-data-to-a-BigQuery-table" class="headerlink" title="Load GCS avro data to a BigQuery table"></a>Load GCS avro data to a BigQuery table</h3><p>Execute</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bq load ds.table gs:&#x2F;&#x2F;my-bucket-name&#x2F;my_table&#x2F;* --autodetect</span><br></pre></td></tr></table></figure>
+<p>And that’s it you now have a table with data in BigQuery.</p>
+<p>It is recommended to have this process managed by some type of orchestrator. There are several solutions for this. The next article i’ll be writting  about one of those <a target="_blank" rel="noopener" href="https://airflow.incubator.apache.org/">Airflow</a></p>
+<p>Cheers,<br>RR</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.cloudera.com/documentation/enterprise/5-4-x/topics/cdh_ig_hive.html">https://www.cloudera.com/documentation/enterprise/5-4-x/topics/cdh_ig_hive.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/apache/parquet-mr/tree/master/parquet-tools">https://github.com/apache/parquet-mr/tree/master/parquet-tools</a></li>
+<li><a target="_blank" rel="noopener" href="https://cloud.google.com/bigquery/loading-data">https://cloud.google.com/bigquery/loading-data</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/GoogleCloudPlatform/bigdata-interop/blob/master/gcs/INSTALL.md">https://github.com/GoogleCloudPlatform/bigdata-interop/blob/master/gcs/INSTALL.md</a></li>
+<li><a target="_blank" rel="noopener" href="https://cloud.google.com/bigquery/docs/loading-data-cloud-storage">https://cloud.google.com/bigquery/docs/loading-data-cloud-storage</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
   <article class="post">
   
   <div class="post-content">
@@ -712,47 +866,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-10-18T23:05:00.000Z"><a href="/2016/10/19/hiveGC-md/">2016-10-19</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/10/19/hiveGC-md/">Hive Queries Crash When Inserting GC Exception</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>When running some queries with hive sometimes we get a very nice java exception of overhead limit</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Exception in thread &quot;main&quot; java.lang.OutOfMemoryError: GC overhead limit exceeded</span><br></pre></td></tr></table></figure>
-<p>I didn’t know but it turns out you can supply directly on the jdbc connection of beeline the parameters to increase this values.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jdbc:hive2:&#x2F;&#x2F;localhost:10000&#x2F;default?mapreduce.map.memory.mb&#x3D;3809;mapreduce.map.java.opts&#x3D;-Xmx3428m;mapreduce.reduce.memory.mb&#x3D;2560;mapreduce.reduce.java.opts&#x3D;-Xmx2304m;</span><br></pre></td></tr></table></figure>
-<p>It is important to understand the size of the containers in your cluster and this is usefull for some adhoc procedures.</p>
-<p>The best way is to configure the containers memory size in hadoop, but this kind of quick solutions are usefull, expecially for testing parameters of new workflows.</p>
-<p>There is some good info regarding this configuration in altiscale documentation:</p>
-<p><a target="_blank" rel="noopener" href="https://documentation.altiscale.com/heapsize-for-mappers-and-reducers">https://documentation.altiscale.com/heapsize-for-mappers-and-reducers</a></p>
-<p>Cheers,<br>RR</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -811,15 +924,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Docker/">Docker</a><small>6</small></li>
   
-    <li><a href="/tags/GA/">GA</a><small>1</small></li>
+    <li><a href="/tags/GA/">GA</a><small>2</small></li>
   
-    <li><a href="/tags/GA4/">GA4</a><small>1</small></li>
+    <li><a href="/tags/GA4/">GA4</a><small>2</small></li>
   
     <li><a href="/tags/GC/">GC</a><small>1</small></li>
   
     <li><a href="/tags/GCS/">GCS</a><small>1</small></li>
   
-    <li><a href="/tags/Google-Analytics/">Google Analytics</a><small>2</small></li>
+    <li><a href="/tags/Google-Analytics/">Google Analytics</a><small>3</small></li>
+  
+    <li><a href="/tags/Google-Tag-Manager/">Google Tag Manager</a><small>1</small></li>
   
     <li><a href="/tags/GoogleChrome/">GoogleChrome</a><small>1</small></li>
   
