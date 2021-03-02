@@ -77,6 +77,80 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
+        <time datetime="2017-10-13T01:09:12.000Z"><a href="/2017/10/13/drelephat/">2017-10-13</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/10/13/drelephat/">Dr. Elephant Overview</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>This article would be about <a target="_blank" rel="noopener" href="https://github.com/linkedin/dr-elephant">dr-elephant</a> A Performance and Monitoring tool for Hadoop and Spark.</p>
+<blockquote><p>Dr. Elephant is a performance monitoring and tuning tool for Hadoop and Spark. It automatically gathers all the metrics, runs analysis on them, and presents them in a simple way for easy consumption. Its goal is to improve developer productivity and increase cluster efficiency by making it easier to tune the jobs. It analyzes the Hadoop and Spark jobs using a set of pluggable, configurable, rule-based heuristics that provide insights on how a job performed, and then uses the results to make suggestions about how to tune the job to make it perform more efficiently.</p>
+<footer><strong>Offical Website Definition</strong></footer></blockquote>
+
+<h1 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h1><ul>
+<li>Install mysql-server and create a BD for dr-elephant<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install mysql-server </span><br></pre></td></tr></table></figure></li>
+<li>MySQl preparation</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create database drelephant;</span><br><span class="line">Query OK, 1 row affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; grant all on drelephant.* to drelephant@localhost identified by &#39;drelephant&#39;;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; flush privileges;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Install zip command<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install zip</span><br></pre></td></tr></table></figure></li>
+<li>Install sbt<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb https://dl.bintray.com/sbt/debian /&quot;</span> | sudo tee -a /etc/apt/sources.list.d/sbt.list</span><br><span class="line">sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2EE0EA64E40A89B84B2DF73499E82A75642AC823</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install sbt</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h1 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h1><ul>
+<li>Clone the repo</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git https://github.com/linkedin/dr-elephant.git</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Compile</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sbt package</span><br><span class="line">sbt dist</span><br><span class="line">cp ./target/universal/dr-elephant-2.0.3-SNAPSHOT.zip .</span><br><span class="line">./compile.sh</span><br><span class="line"><span class="built_in">cd</span> dist</span><br><span class="line">unzip dr-elephant-2.0.3-SNAPSHOT.zip</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Starting the service</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> ELEPHANT_CONF_DIR=../../app-conf</span><br><span class="line">./bin/start.sh </span><br></pre></td></tr></table></figure>
+<p>One can now access the web interface at: <a target="_blank" rel="noopener" href="http://localhost:8080/">http://localhost:8080</a></p>
+<img src="/2017/10/13/drelephat/DrElephant-2-dashboard.jpg" class="" title="[Dashboard]">
+
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>This tool seems very powerfull. At the moment i haven’t tested changing the recommendations it provided, but will try them soon. Spark 2.x applications don’t seem to be working at the momment</p>
+<h1 id="Extended-tests"><a href="#Extended-tests" class="headerlink" title="Extended tests"></a>Extended tests</h1><ul>
+<li>Test Oozie Scheduler integration</li>
+<li>Test Airflow integration</li>
+<li>Define a deployment strategy</li>
+<li>Test recommended changes</li>
+</ul>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/linkedin/dr-elephant">https://github.com/linkedin/dr-elephant</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/linkedin/dr-elephant/commit/7d9e34ecdbe36a652ca4ad2db852df08da57050a">https://github.com/linkedin/dr-elephant/commit/7d9e34ecdbe36a652ca4ad2db852df08da57050a</a></li>
+<li><a target="_blank" rel="noopener" href="https://engineering.linkedin.com/blog/2016/04/dr-elephant-open-source-self-serve-performance-tuning-hadoop-spark">https://engineering.linkedin.com/blog/2016/04/dr-elephant-open-source-self-serve-performance-tuning-hadoop-spark</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2017-10-09T21:17:35.000Z"><a href="/2017/10/09/ansible-cmdb/">2017-10-09</a></time>
       
       
@@ -960,42 +1034,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-09-23T08:18:18.000Z"><a href="/2017/09/23/sublimeinstall/">2017-09-23</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/09/23/sublimeinstall/">Sublime Install Guide</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>For me <a target="_blank" rel="noopener" href="https://www.sublimetext.com/">Sublime</a>, this is one of the best smart editors in Linux. Here are the quick instructions to install for Ubuntu.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget -qO - https:&#x2F;&#x2F;download.sublimetext.com&#x2F;sublimehq-pub.gpg | sudo apt-key add -</span><br><span class="line">echo &quot;deb https:&#x2F;&#x2F;download.sublimetext.com&#x2F; apt&#x2F;stable&#x2F;&quot; | sudo tee &#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;sublime-text.list</span><br><span class="line">sudo apt-get install apt-transport-https</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install sublime-text</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>That’s it<br>RR</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -1043,6 +1081,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/Code/">Code</a><small>2</small></li>
   
     <li><a href="/tags/Conferences/">Conferences</a><small>2</small></li>
+  
+    <li><a href="/tags/CryptoArt/">CryptoArt</a><small>1</small></li>
   
     <li><a href="/tags/Customization/">Customization</a><small>1</small></li>
   
@@ -1101,6 +1141,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/Metrics/">Metrics</a><small>1</small></li>
   
     <li><a href="/tags/Monitoring/">Monitoring</a><small>1</small></li>
+  
+    <li><a href="/tags/NFT/">NFT</a><small>1</small></li>
   
     <li><a href="/tags/Nifi/">Nifi</a><small>1</small></li>
   
