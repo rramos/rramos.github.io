@@ -1,0 +1,1370 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Page 2 | rramos.github.io</title>
+  <meta name="author" content="Rui Ramos">
+  
+  <meta name="description" content="A simple Blog related with Infrastructure Architecture and Data">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="rramos.github.io"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+  
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MXRC4DK');</script>
+<!-- End Google Tag Manager -->
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MXRC4DK"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">rramos.github.io</a></h1>
+  <h2><a href="/">Tech Notes for Infrastructure and Data</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-10-18T00:26:17.000Z"><a href="/2017/10/18/dockers/">2017-10-18</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/10/18/dockers/">Dockers</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>This article is just to share a list of usefull dockers, in case one wants to speed test some feature and required some of this software to be up and running.</p>
+<h1 id="Why"><a href="#Why" class="headerlink" title="Why ?"></a>Why ?</h1><p>The main ideia is that i can fireup quickly without having to worry on the ports that are allready mapped on my local machine, so the several dockers should have colision ports taken care of.</p>
+<p>One should just need to execute <code>docker-compose up</code> and that’s it.</p>
+<p>You could also use other repo, but i’ll try to make my local configurations in a way that i could interuse several dockers.</p>
+<h1 id="Dockers-repo"><a href="#Dockers-repo" class="headerlink" title="Dockers repo"></a>Dockers repo</h1><p>You just need to clone the repo <a target="_blank" rel="noopener" href="https://github.com/rramos/dockers">https://github.com/rramos/dockers</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/rramos/dockers.git</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h1><p>Make sure you have docker and docker compose properly configured</p>
+<h1 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h1><p>Just fire-up <code>docker-compose</code> and that’s it </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd docker-portainer</span><br><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+<p>Each docker has it’s own README file with more instructions.</p>
+<h1 id="Docker-List"><a href="#Docker-List" class="headerlink" title="Docker List"></a>Docker List</h1><ul>
+<li>docker-grafana  </li>
+<li>docker-hdp      </li>
+<li>docker-ksql    </li>
+<li>docker-nifi         </li>
+<li>docker-portainer  </li>
+<li>docker-zeppelin  </li>
+<li>docker-hbase    </li>
+<li>docker-jenkins  </li>
+<li>docker-moodle  </li>
+<li>docker-openproject  </li>
+<li>docker-rundeck </li>
+</ul>
+<p>This is the available list at the moment of this article, i will add up more as i’m using and testing new stuff.</p>
+<p><strong>NOTE:</strong> Use this containers at your own risk </p>
+<p>Cheers,<br>RR</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-10-13T01:09:12.000Z"><a href="/2017/10/13/drelephat/">2017-10-13</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/10/13/drelephat/">Dr. Elephant Overview</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>This article would be about <a target="_blank" rel="noopener" href="https://github.com/linkedin/dr-elephant">dr-elephant</a> A Performance and Monitoring tool for Hadoop and Spark.</p>
+<blockquote><p>Dr. Elephant is a performance monitoring and tuning tool for Hadoop and Spark. It automatically gathers all the metrics, runs analysis on them, and presents them in a simple way for easy consumption. Its goal is to improve developer productivity and increase cluster efficiency by making it easier to tune the jobs. It analyzes the Hadoop and Spark jobs using a set of pluggable, configurable, rule-based heuristics that provide insights on how a job performed, and then uses the results to make suggestions about how to tune the job to make it perform more efficiently.</p>
+<footer><strong>Offical Website Definition</strong></footer></blockquote>
+
+<h1 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h1><ul>
+<li><p>Install mysql-server and create a BD for dr-elephant</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get install mysql-server </span><br></pre></td></tr></table></figure></li>
+<li><p>MySQl preparation</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mysql&gt; create database drelephant;</span><br><span class="line">Query OK, 1 row affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; grant all on drelephant.* to drelephant@localhost identified by &#x27;drelephant&#x27;;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; flush privileges;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>Install zip command</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get install zip</span><br></pre></td></tr></table></figure></li>
+<li><p>Install sbt</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb https://dl.bintray.com/sbt/debian /&quot;</span> | sudo tee -a /etc/apt/sources.list.d/sbt.list</span><br><span class="line">sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2EE0EA64E40A89B84B2DF73499E82A75642AC823</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install sbt</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h1><ul>
+<li>Clone the repo</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git https://github.com/linkedin/dr-elephant.git</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Compile</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sbt package</span><br><span class="line">sbt dist</span><br><span class="line">cp ./target/universal/dr-elephant-2.0.3-SNAPSHOT.zip .</span><br><span class="line">./compile.sh</span><br><span class="line"><span class="built_in">cd</span> dist</span><br><span class="line">unzip dr-elephant-2.0.3-SNAPSHOT.zip</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Starting the service</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> ELEPHANT_CONF_DIR=../../app-conf</span><br><span class="line">./bin/start.sh </span><br></pre></td></tr></table></figure>
+
+<p>One can now access the web interface at: <a target="_blank" rel="noopener" href="http://localhost:8080/">http://localhost:8080</a></p>
+<img src="/2017/10/13/drelephat/DrElephant-2-dashboard.jpg" class="" title="[Dashboard]">
+
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>This tool seems very powerfull. At the moment i haven’t tested changing the recommendations it provided, but will try them soon. Spark 2.x applications don’t seem to be working at the momment</p>
+<h1 id="Extended-tests"><a href="#Extended-tests" class="headerlink" title="Extended tests"></a>Extended tests</h1><ul>
+<li>Test Oozie Scheduler integration</li>
+<li>Test Airflow integration</li>
+<li>Define a deployment strategy</li>
+<li>Test recommended changes</li>
+</ul>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/linkedin/dr-elephant">https://github.com/linkedin/dr-elephant</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/linkedin/dr-elephant/commit/7d9e34ecdbe36a652ca4ad2db852df08da57050a">https://github.com/linkedin/dr-elephant/commit/7d9e34ecdbe36a652ca4ad2db852df08da57050a</a></li>
+<li><a target="_blank" rel="noopener" href="https://engineering.linkedin.com/blog/2016/04/dr-elephant-open-source-self-serve-performance-tuning-hadoop-spark">https://engineering.linkedin.com/blog/2016/04/dr-elephant-open-source-self-serve-performance-tuning-hadoop-spark</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-10-09T21:17:35.000Z"><a href="/2017/10/09/ansible-cmdb/">2017-10-09</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/10/09/ansible-cmdb/">Ansible-Cmdb</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>This article is about <a target="_blank" rel="noopener" href="https://github.com/fboender/ansible-cmdb">ansible-cmdb</a> a very nice solution for gathering your ansible facts into a visual format.</p>
+<blockquote><p>Ansible-cmdb takes the output of Ansible’s fact gathering and converts it into a static HTML overview page (and other things) containing system configuration information.</p>
+<p>It supports multiple types of output (html, csv, sql, etc) and extending information gathered by Ansible with custom data. For each host it also shows the groups, host variables, custom variables and machine-local facts.</p>
+<footer><strong>Offical Website Definition</strong></footer></blockquote>
+
+<h1 id="Supported-output-formats-templates"><a href="#Supported-output-formats-templates" class="headerlink" title="Supported output formats / templates:"></a>Supported output formats / templates:</h1><ul>
+<li>Fancy HTML (–template html_fancy), as seen in the screenshots above.</li>
+<li>Fancy HTML Split (–template html_fancy_split), with each host’s details in a separate file (for large number of hosts).</li>
+<li>CSV (–template csv), the trustworthy and flexible comma-separated format.</li>
+<li>JSON (–template json), a dump of all facts in JSON format.</li>
+<li>Markdown (–template markdown), useful for copy-pasting into Wiki’s and such.</li>
+<li>Markdown Split (‘–template markdown_split’), with each host’s details in a seperate file (for large number of hosts).</li>
+<li>SQL (–template sql), for importing host facts into a (My)SQL database.<br>Plain Text table (–template txt_table), for the console gurus.<br>and of course, any custom template you’re willing to make.</li>
+</ul>
+<h1 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h1><p>And it’s so simple to setup :D</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo pip install ansible-cmdb</span><br></pre></td></tr></table></figure>
+
+<p><strong>Note:</strong> You could also use your distribution prefeered method. check the offical site.</p>
+<h1 id="Creating-Reports"><a href="#Creating-Reports" class="headerlink" title="Creating Reports"></a>Creating Reports</h1><p>Simple console generation</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ansible-cmdb -t txt_table --columns name,os,ip,mem,cpus out</span><br></pre></td></tr></table></figure>
+
+<p>The HTML Fancy one</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ansible-cmdb --template txt_table out  --template html_fancy</span><br></pre></td></tr></table></figure>
+
+<p>Official Screenshoot</p>
+<img src="/2017/10/09/ansible-cmdb/screenshot-overview.png" class="">
+
+
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>I found this software quite simple and very usefull. I found that <code>--template txt_table</code> is quite handy to use on Documentation for small enviroments. For bigger projects the CSV could be a better choice. Also the fancy HTML templates are very usefull on playbook development phases where you can confirm your facts very easily. Ansible-cmdb started as a short Python script, but many people made contributions so far.</p>
+<p>Cheers,<br>RR</p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/fboender/ansible-cmdb">https://github.com/fboender/ansible-cmdb</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-10-09T19:54:12.000Z"><a href="/2017/10/09/rddstransformations/">2017-10-09</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/10/09/rddstransformations/">RDD Basic Transformations Operations</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Just a simple Basic CheatSheet on Spark RDD’s</p>
+<ul>
+<li>Basic Transformations on a RDD containing: <strong>{1,2,3,3}</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Function Name</th>
+<th>Example</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>map()</td>
+<td>rdd.map(x =&gt; x +1)</td>
+<td>{2,3,4,4}</td>
+</tr>
+<tr>
+<td>flatmap()</td>
+<td>rdd.flatMap(x =&gt; x.to(3))</td>
+<td>{1,2,3,2,3,3,3}</td>
+</tr>
+<tr>
+<td>filter()</td>
+<td>rdd.filter(x =&gt; x != 1 )</td>
+<td>{2,3,3}</td>
+</tr>
+<tr>
+<td>distinct()</td>
+<td>rdd.distinct()</td>
+<td>{1,2,3}</td>
+</tr>
+<tr>
+<td>sample()</td>
+<td>rdd.sample(false,0.5)</td>
+<td>Nondeterministic</td>
+</tr>
+</tbody></table>
+<ul>
+<li>Basic two-RDD transformations on RDDs: <strong>{1,2,3}</strong> and <strong>{3,4,5}</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Function Name</th>
+<th>Example</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>union()</td>
+<td>rdd.union(other)</td>
+<td>{1,2,3,3,4,5}</td>
+</tr>
+<tr>
+<td>intersection()</td>
+<td>rdd.intersection(other)</td>
+<td>{3}</td>
+</tr>
+<tr>
+<td>subtract()</td>
+<td>rdd.subtract(other)</td>
+<td>{1,2}</td>
+</tr>
+<tr>
+<td>cartesian()</td>
+<td>rdd.cartesian(other)</td>
+<td>{(1,3),(1,4)…(3,5)}</td>
+</tr>
+</tbody></table>
+<ul>
+<li>Basic Actions on RDD containing: <strong>{1,2,3,3}</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Function Name</th>
+<th>Example</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>collect()</td>
+<td>rdd.collect()</td>
+<td>{1,2,3,3}</td>
+</tr>
+<tr>
+<td>count()</td>
+<td>rdd.count()</td>
+<td>4</td>
+</tr>
+<tr>
+<td>countByValue()</td>
+<td>rdd.countByValue()</td>
+<td>{(1,1),(2,1),(3,2)}</td>
+</tr>
+<tr>
+<td>take()</td>
+<td>rdd.take(2)</td>
+<td>{1,2}</td>
+</tr>
+<tr>
+<td>top()</td>
+<td>rdd.top(2)</td>
+<td>{3,3}</td>
+</tr>
+<tr>
+<td>takeOrdered()</td>
+<td>rdd.takeOrdered(2)(myOrdering)</td>
+<td>{3,3}</td>
+</tr>
+<tr>
+<td>takeSample()</td>
+<td>rdd.takeSample(false,1)</td>
+<td>Nondeterministic</td>
+</tr>
+<tr>
+<td>reduce()</td>
+<td>rdd.reduce((x,y) =&gt; x + y )</td>
+<td>9</td>
+</tr>
+<tr>
+<td>fold()</td>
+<td>rdd.fold(0)((x,y) =&gt; x + y)</td>
+<td>9</td>
+</tr>
+<tr>
+<td>foreach()</td>
+<td>rdd.foreach(func)</td>
+<td>Nothing</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-10-06T22:11:39.000Z"><a href="/2017/10/06/powershellonlinux/">2017-10-06</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/10/06/powershellonlinux/">PowerShell on Linux</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>This article will present the required steps to install <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/PowerShell">powershell</a> on Linux.</p>
+<h1 id="Objective"><a href="#Objective" class="headerlink" title="Objective"></a>Objective</h1><p>The objective is to operate from Linux <a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/cloud-platform/windows-azure-pack">Windows Azure Pack</a>.</p>
+<h1 id="Procedure"><a href="#Procedure" class="headerlink" title="Procedure"></a>Procedure</h1><ul>
+<li>Import the public repository GPG keys</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Register the Microsoft Ubuntu repository</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | sudo tee /etc/apt/sources.list.d/microsoft.list</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Update the list of products</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Install PowerShell</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get install -y powershell</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Start PowerShell</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">powershell</span><br></pre></td></tr></table></figure>
+
+<h1 id="Add-Azure-module"><a href="#Add-Azure-module" class="headerlink" title="Add Azure module"></a>Add Azure module</h1><p>Install Azure module in powershell running with <code>sudo</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Install-Module AzureRM</span><br><span class="line">Install-Module Azure</span><br></pre></td></tr></table></figure>
+
+<p>Check module location</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">(gmo -l Azure*).path</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="Uninstall"><a href="#Uninstall" class="headerlink" title="Uninstall"></a>Uninstall</h1><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get remove powershell</span><br></pre></td></tr></table></figure>
+
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>After some hours i’ve given up making this thing work on Linux. The time it takes doesn’t payoff, and even if i could make it work, i would still need to make Vagrant work with it for some VM’s provisioning in a private cloud. It would take me less time to do it by hand :|</p>
+<p>From a standard testing perspective it’s nice to have this thing on Linux, because you could centralize the management, but at the moment of this article it doesn’t seem to payoff the time one would need to setup this. </p>
+<p>If you have lot’s of Windows machines or Azure infrastructure to manage just get a Windows PC, or wait for Microsoft to fix this, as there are lot’s of reports regarding this issue. But seriously i don’t see an effort from Microft to make this work properly, what’s the gain, rigth !?.</p>
+<p>Cheers,<br>RR</p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/PowerShell/PowerShell">https://github.com/PowerShell/PowerShell</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/bgelens/WAPTenantPublicAPI">https://github.com/bgelens/WAPTenantPublicAPI</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.tech-coffee.net/windows-azure-pack-powershell-tenant-api/">http://www.tech-coffee.net/windows-azure-pack-powershell-tenant-api/</a></li>
+<li><a target="_blank" rel="noopener" href="https://blogs.msdn.microsoft.com/powershell/2016/08/18/powershell-on-linux-and-open-source-2/">https://blogs.msdn.microsoft.com/powershell/2016/08/18/powershell-on-linux-and-open-source-2/</a></li>
+<li><a target="_blank" rel="noopener" href="https://blogs.technet.microsoft.com/privatecloud/2013/12/10/windows-azure-pack-reconfigure-portal-names-ports-and-use-trusted-certificates/">https://blogs.technet.microsoft.com/privatecloud/2013/12/10/windows-azure-pack-reconfigure-portal-names-ports-and-use-trusted-certificates/</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-10-02T21:32:20.000Z"><a href="/2017/10/02/vdi2qemu/">2017-10-02</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/10/02/vdi2qemu/">Convert VirtualBox Images to KVM</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>In this article i will explain a quick way to convert <a target="_blank" rel="noopener" href="https://www.virtualbox.org/">VirtualBox</a> images (vdi) into qcow2 and load them in <a target="_blank" rel="noopener" href="https://www.linux-kvm.org/">KVM</a>.</p>
+<h1 id="Why"><a href="#Why" class="headerlink" title="Why ?"></a>Why ?</h1><p>This is something i normally do, because i get better performance running Linux VM’s on KVM and saves me some space with qcow2 volume format.</p>
+<h2 id="qcow2-Features"><a href="#qcow2-Features" class="headerlink" title="qcow2 Features"></a>qcow2 Features</h2><p>One of the main characteristics of qcow disk images is that files with this format can grow as data is added. This allows for smaller file sizes than raw disk images, which allocate the whole image space to a file, even if parts of it are empty</p>
+<h1 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h1><ul>
+<li>You should have KVM configured correctly</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get install qemu-kvm</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Install qemu-utils</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get install qemu-utils</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Let’s get an example image. <ul>
+<li> I’m fetching one from <a target="_blank" rel="noopener" href="http://www.osboxes.org/ubuntu">http://www.osboxes.org/ubuntu</a>. (ex: Ubuntu 17.10 10th-August build (64bit).vdi)</li>
+</ul>
+</li>
+</ul>
+<p><strong>NOTE:</strong> Procedure executed with qemu-img version 2.5.0</p>
+<h1 id="Converting"><a href="#Converting" class="headerlink" title="Converting"></a>Converting</h1><ul>
+<li>Convert the image</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">qemu-img convert -f vdi -O qcow2 Ubuntu_17.10.vdi Ubuntu_17.10.qcow2</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>You can check the image details by executing <code>qemu-img info Ubuntu_17.10.qcow2</code> .</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">qemu-img info Ubuntu_17.10.qcow2</span><br><span class="line">image: Ubuntu_17.10.qcow2</span><br><span class="line">file format: qcow2</span><br><span class="line">virtual size: 100G (107374182400 bytes)</span><br><span class="line">disk size: 4.1G</span><br><span class="line">cluster_size: 65536</span><br><span class="line">Format specific information:</span><br><span class="line">    compat: 1.1</span><br><span class="line">    lazy refcounts: <span class="literal">false</span></span><br><span class="line">    refcount bits: 16</span><br><span class="line">    corrupt: <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Now lets Upload this image to our KVM pool and create a new VM from it:</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo virsh vol-create-as default ubuntu-17.10 100G --format qcow2</span><br><span class="line">sudo virsh vol-upload --pool default ubuntu-17.10 Ubuntu_17.10.qcow2 </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>Start <a target="_blank" rel="noopener" href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Virtualization_Host_Configuration_and_Guest_Installation_Guide/chap-Virtualization_Host_Configuration_and_Guest_Installation_Guide-Guest_Installation_Virt_Manager-Creating_guests_with_virt_manager.html">virt-manager</a> and select <strong>Import existing Disk Image</strong></p>
+</li>
+<li><p>The default password for this images are <code>osboxes.org</code> . You should have something like the following in the console.</p>
+</li>
+</ul>
+<img src="/2017/10/02/vdi2qemu/virt-manager.png" class="" title="virt-manager">
+
+<ul>
+<li>If you want to create brand new images you could use <a target="_blank" rel="noopener" href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Virtualization_Host_Configuration_and_Guest_Installation_Guide/sect-Virtualization_Host_Configuration_and_Guest_Installation_Guide-Guest_Installation-Creating_guests_with_virt_install.html">virt-install</a>, but that one would go to another article.</li>
+</ul>
+<p>Cheers,<br>RR</p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.virtualbox.org/wiki/Downloads">https://www.virtualbox.org/wiki/Downloads</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.linux-kvm.org/page/Main_Page">https://www.linux-kvm.org/page/Main_Page</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.osboxes.org/ubuntu">http://www.osboxes.org/ubuntu</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.openstack.org/image-guide/convert-images.html">https://docs.openstack.org/image-guide/convert-images.html</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-09-29T01:01:48.000Z"><a href="/2017/09/29/nifiparcel/">2017-09-29</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/09/29/nifiparcel/">Nifi Parcel for CDH</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>I’ve been using <a target="_blank" rel="noopener" href="https://nifi.apache.org/">Apache Nifi</a> for some time now. But has a Cloudera user it would be nice to have it managed centralized in Cloudera Manager.</p>
+<p>I found this <a href="">repo</a> which had only one commit for doing exactly this, so i decided to give it a try, to see if it worked.</p>
+<h1 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h1><ul>
+<li>Virtual machine with Cloudera quickstart pre-installed</li>
+<li>I had to patch the available Nifi version with <a target="_blank" rel="noopener" href="https://github.com/apache/nifi/pull/1604">NIFI-3466</a></li>
+<li>And parcel repo also with <a target="_blank" rel="noopener" href="https://github.com/prateek/nifi-parcel/issues/1">Issue1</a></li>
+</ul>
+<p>So i’ll be using my own forks that have this changes allready, but will be following the author (prateek) instructions.</p>
+<h1 id="Instructions"><a href="#Instructions" class="headerlink" title="Instructions"></a>Instructions</h1><h2 id="Install-Requirements"><a href="#Install-Requirements" class="headerlink" title="Install Requirements"></a>Install Requirements</h2><ul>
+<li>cloudera/cm_ext</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /tmp</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/cloudera/cm_ext</span><br><span class="line"><span class="built_in">cd</span> cm_ext/validator</span><br><span class="line">mvn install</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Create parcel &amp; CSD:</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /tmp</span><br><span class="line">$ git <span class="built_in">clone</span> git@github.com:rramos/nifi.git</span><br><span class="line">$ <span class="built_in">cd</span> nifi</span><br><span class="line">$ mvn clean install</span><br><span class="line">$ <span class="built_in">cd</span> /tmp</span><br><span class="line">$ git <span class="built_in">clone</span> git@github.com:rramos/nifi-parcel.git</span><br><span class="line">$ <span class="built_in">cd</span> nifi-parcel</span><br><span class="line">$ POINT_VERSION=5 VALIDATOR_DIR=/tmp/cm_ext ./build-parcel.sh /tmp/nifi/nifi-assembly/target/nifi-*-SNAPSHOT-bin.tar.gz</span><br><span class="line">$ VALIDATOR_DIR=/tmp/cm_ext ./build-csd.sh</span><br></pre></td></tr></table></figure>
+
+<h1 id="Test-the-Parcel"><a href="#Test-the-Parcel" class="headerlink" title="Test the Parcel"></a>Test the Parcel</h1><p>Cloudera quickstart images comes with java version 1.7. But i need version 1.8 for Nifi otherwise i’ll get minor major version missmatch issue. So i had to make some changes.</p>
+<ul>
+<li>First start your cloudera quickstart VM and copy the folders:<ul>
+<li><code>build-csd</code> </li>
+<li><code>build-parcel</code> </li>
+</ul>
+</li>
+</ul>
+<p>there in my case i had IP <code>192.168.122.132</code> (change for your case).</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">scp -r build-parcel cloudera@192.168.122.132:/tmp</span><br><span class="line">scp -r build-csd cloudera@192.168.122.132:/tmp</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>SSH in the machine and install java8</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">yum install java-1.8.0-openjdk</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Run the following command in <code>build-parcel</code> folder</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> build-parcel</span><br><span class="line">python -m  SimpleHTTPServer 14641</span><br></pre></td></tr></table></figure>
+
+<p>Now open your browser at <code>http://192.168.122.132:7180</code> and access Cloudera Manager (cloudera:cloudera).</p>
+<p>Navigate to -&gt; Parcels -&gt; Edit Settings. </p>
+<p>Add <code>http://192.168.122.132:14641</code> </p>
+<img src="/2017/09/29/nifiparcel/parcel01.png" class="" title="[NIFI Parcel]">
+
+<p>Download and install the Nifi Parcel.</p>
+<ul>
+<li>Copy NIFI home</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">cp -r /tmp/build-parcel/NIFI-0.0.5.nifi.p0.5 /opt/cloudera/parcels/NIFI/</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Correct java path in file <code>/opt/cloudera/parcels/NIFI/bin/nifi-env.sh</code></li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># The java implementation to use.</span></span><br><span class="line"><span class="built_in">export</span> JAVA_HOME=/usr/lib/jvm/jre-1.8.0</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Copy the csd jars </li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">cp /tmp/build-csd/NIFI-1.2.0.jar /opt/cloudera/csd/</span><br><span class="line">mkdir /opt/cloudera/csd/NIFI-1.2.0</span><br><span class="line">cp /tmp/build-csd/NIFI-1.2.0.jar /opt/cloudera/csd/NIFI-1.2.0/</span><br><span class="line"><span class="built_in">cd</span> /opt/cloudera/csd/NIFI-1.2.0/</span><br><span class="line">jar xvf NIFI-1.2.0.jar</span><br><span class="line">rm -f NIFI-1.2.0.jar</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Correct ownership</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">chown -R cloudera-scm:cloudera-scm /opt/cloudera</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>Apply Configuration changes to Cloudera Manager and restart the service</p>
+</li>
+<li><p>Move CSD to Cloudera Manager’s CSD Repo</p>
+</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo service cloudera-scm-server restart</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>After login again in CM wait for zookeeper to be running normal, and add a new service (Nifi)</li>
+</ul>
+<img src="/2017/09/29/nifiparcel/parcel02.png" class="" title="[Add NIFI Service]">
+
+<p>After terminating the wizard you should have access to Nifi Interface</p>
+<img src="/2017/09/29/nifiparcel/parcel03.png" class="" title="[Nifi Web UI]">
+
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>I must say that prateek repo with only that commit worked pretty well and the instructions where also clear. There where some minor adjustments because of the java version, but we can start/stop the service via Cloudera Manager.</p>
+<p>There are some pending items refered in his github page:</p>
+<ul>
+<li>Currently <code>NiFi</code> runs under the <code>root</code> user</li>
+<li>Expose config options under Cloudera Manager</li>
+<li>Conf folder from parcels is used, this needs to be migrated to ConfigWriter</li>
+<li>Expose metrics from NiFi</li>
+</ul>
+<p>I haven’t tested the configuration in cluster mode as i has using the quickstart VM.</p>
+<p>The configuration options in CM would be very good improvement. Auto configuring zookeeper and the other nifi options. I’ll try to contribute to prateek excelent work if i manage to get some time.</p>
+<p>Cheers,<br>RR</p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://nifi.apache.org/">https://nifi.apache.org</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/prateek/nifi-parcel">https://github.com/prateek/nifi-parcel</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/cloudera/cm_ext">https://github.com/cloudera/cm_ext</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cloudera.com/downloads/quickstart_vms/5-12.html">https://www.cloudera.com/downloads/quickstart_vms/5-12.html</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-09-27T20:16:37.000Z"><a href="/2017/09/27/hive-udfs/">2017-09-27</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/09/27/hive-udfs/">Hive UDFS Functions</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Today i was going to use a simple sha256 funtion in <a target="_blank" rel="noopener" href="https://hive.apache.org/">Hive</a> in order to mask a colunm and aparently in the latest <a target="_blank" rel="noopener" href="https://www.cloudera.com/">Cloudera</a> distribution the Shipped hive version doesn’t have that native function.</p>
+<p>This article will explain how you can build a sha256 or other udfs function and add it in Hive.</p>
+<h1 id="Checking-Cloudera-Packages-Version"><a href="#Checking-Cloudera-Packages-Version" class="headerlink" title="Checking Cloudera Packages Version"></a>Checking Cloudera Packages Version</h1><p>Check the following <a target="_blank" rel="noopener" href="https://www.cloudera.com/documentation/enterprise/release-notes/topics/cdh_vd_cdh_package_tarball.html">URL</a> in order to see the latest shipped package versions in Cloudera.</p>
+<blockquote>
+<p>CDH 5.12 -&gt; hive-1.1.0+cdh5.12.1+1197</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Return Type</th>
+<th>Name(Signature)</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>string</td>
+<td>sha2(string/binary, int)</td>
+<td>Calculates the SHA-2 family of hash functions (SHA-224, SHA-256, SHA-384, and SHA-512) (as of Hive 1.3.0). The first argument is the string or binary to be hashed. The second argument indicates the desired bit length of the result, which must have a value of 224, 256, 384, 512, or 0 (which is equivalent to 256). SHA-224 is supported starting from Java 8. If either argument is NULL or the hash length is not one of the permitted values, the return value is NULL. Example: sha2(‘ABC’, 256) = ‘b5d4045c3f466fa91fe2cc6abe79232a1a57cdf104f7a26e716e0a1e2789df78’.</td>
+</tr>
+</tbody></table>
+<p><a target="_blank" rel="noopener" href="https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF">Full Version</a></p>
+<h1 id="Implement-UDFS"><a href="#Implement-UDFS" class="headerlink" title="Implement UDFS"></a>Implement UDFS</h1><p>this will server more as an exercise, one could create a more complex udf funtion. For the time being let’s create a GenericUDFSha2 based on existing hive 1.3.0 version</p>
+<p>You code clone my repo with some udfs-utils <a href="git@github.com:rramos/udfs-utils.git">here</a></p>
+<p>The original code for hive version 1.3.0 is available in the repo</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFSha2.java">https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFSha2.java</a></p>
+<p>Let’s create the building structure</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir -p GenericUDFSha2/org/apache/hadoop/hive/ql/udf/generic</span><br><span class="line">cd GenericUDFSha2</span><br></pre></td></tr></table></figure>
+
+<p>Let’s create a <code>pom.xml</code> file</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">  xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd&quot;&gt;</span><br><span class="line">  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;</span><br><span class="line">  &lt;groupId&gt;com.rramos.bigdata.utils&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;GenericUDFSha2&lt;/artifactId&gt;</span><br><span class="line">  &lt;packaging&gt;jar&lt;/packaging&gt;</span><br><span class="line">  &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;</span><br><span class="line">  &lt;name&gt;GenericUDFSha2&lt;/name&gt;</span><br><span class="line">  &lt;url&gt;http://maven.apache.org&lt;/url&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- properties --&gt;</span><br><span class="line">  &lt;properties&gt;</span><br><span class="line">    &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;</span><br><span class="line">  &lt;/properties&gt;</span><br><span class="line">     </span><br><span class="line">  &lt;!-- prerequisitesprerequisites --&gt;</span><br><span class="line">  &lt;prerequisites&gt;</span><br><span class="line">     &lt;maven&gt;3.0&lt;/maven&gt;</span><br><span class="line">  &lt;/prerequisites&gt;</span><br><span class="line"></span><br><span class="line">   &lt;!-- Dependencies --&gt;</span><br><span class="line">   &lt;dependencies&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;junit&lt;/groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;junit&lt;/artifactId&gt;</span><br><span class="line">      &lt;version&gt;4.12&lt;/version&gt;</span><br><span class="line">      &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">       &lt;groupId&gt;org.apache.hive&lt;/groupId&gt;</span><br><span class="line">       &lt;artifactId&gt;hive-exec&lt;/artifactId&gt;</span><br><span class="line">       &lt;version&gt;2.0.0&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;joda-time&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;joda-time&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.9.3&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">  &lt;/dependencies&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- Build options --&gt;</span><br><span class="line">  &lt;build&gt;</span><br><span class="line">   &lt;plugins&gt;</span><br><span class="line">    &lt;plugin&gt;</span><br><span class="line">     &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt;</span><br><span class="line">      &lt;version&gt;2.6&lt;/version&gt;</span><br><span class="line">       &lt;configuration&gt;</span><br><span class="line">        &lt;archive&gt;</span><br><span class="line">          &lt;manifest&gt;</span><br><span class="line">           &lt;addClasspath&gt;true&lt;/addClasspath&gt;</span><br><span class="line">           &lt;mainClass&gt;com.rramos.bigdata.utils.GenericUDFSha2&lt;/mainClass&gt;</span><br><span class="line">          &lt;/manifest&gt;</span><br><span class="line">        &lt;/archive&gt;</span><br><span class="line">       &lt;/configuration&gt;</span><br><span class="line">      &lt;/plugin&gt;</span><br><span class="line"></span><br><span class="line">      &lt;plugin&gt;</span><br><span class="line">          &lt;artifactId&gt;maven-assembly-plugin&lt;/artifactId&gt;</span><br><span class="line">          &lt;configuration&gt;</span><br><span class="line">                &lt;archive&gt;</span><br><span class="line">                    &lt;manifest&gt;</span><br><span class="line">                        &lt;mainClass&gt;</span><br><span class="line">                            com.rramos.bigdata.utils.GenericUDFSha2</span><br><span class="line">                        &lt;/mainClass&gt;</span><br><span class="line">                    &lt;/manifest&gt;</span><br><span class="line">                &lt;/archive&gt;</span><br><span class="line">                &lt;descriptorRefs&gt;</span><br><span class="line">                    &lt;descriptorRef&gt;jar-with-dependencies&lt;/descriptorRef&gt;</span><br><span class="line">                &lt;/descriptorRefs&gt;</span><br><span class="line">           &lt;/configuration&gt;</span><br><span class="line">      &lt;/plugin&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/plugins&gt;</span><br><span class="line">  &lt;/build&gt;</span><br><span class="line"></span><br><span class="line">&lt;/project&gt;</span><br></pre></td></tr></table></figure>
+
+<p>You should obviously change for you packaging namespace, i’m just using <code>com.rramos.bigdata.utils</code> to be simpler.</p>
+<p>Next, let’s create the following file</p>
+<p><code>org/apache/hadoop/hive/ql/udf/generic/GenericUDFSha2.java</code></p>
+<p>with the content</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package com.rramos.bigdata.utils;</span><br><span class="line"></span><br><span class="line">import static org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorUtils.PrimitiveGrouping.BINARY_GROUP;</span><br><span class="line">import static org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorUtils.PrimitiveGrouping.NUMERIC_GROUP;</span><br><span class="line">import static org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorUtils.PrimitiveGrouping.STRING_GROUP;</span><br><span class="line"></span><br><span class="line">import java.security.MessageDigest;</span><br><span class="line">import java.security.NoSuchAlgorithmException;</span><br><span class="line"></span><br><span class="line">import org.apache.commons.codec.binary.Hex;</span><br><span class="line">import org.apache.hadoop.hive.ql.exec.Description;</span><br><span class="line">import org.apache.hadoop.hive.ql.exec.UDFArgumentException;</span><br><span class="line">import org.apache.hadoop.hive.ql.exec.UDFArgumentTypeException;</span><br><span class="line">import org.apache.hadoop.hive.ql.metadata.HiveException;</span><br><span class="line">import org.apache.hadoop.hive.serde2.objectinspector.ConstantObjectInspector;</span><br><span class="line">import org.apache.hadoop.hive.serde2.objectinspector.ObjectInspector;</span><br><span class="line">import org.apache.hadoop.hive.serde2.objectinspector.ObjectInspectorConverters.Converter;</span><br><span class="line">import org.apache.hadoop.hive.serde2.objectinspector.PrimitiveObjectInspector.PrimitiveCategory;</span><br><span class="line">import org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorFactory;</span><br><span class="line">import org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorUtils;</span><br><span class="line">import org.apache.hadoop.io.BytesWritable;</span><br><span class="line">import org.apache.hadoop.io.Text;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * GenericUDFSha2.</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">@Description(name = &quot;sha2&quot;, value = &quot;_FUNC_(string/binary, len) - Calculates the SHA-2 family of hash functions &quot;</span><br><span class="line">    + &quot;(SHA-224, SHA-256, SHA-384, and SHA-512).&quot;,</span><br><span class="line">    extended = &quot;The first argument is the string or binary to be hashed. &quot;</span><br><span class="line">    + &quot;The second argument indicates the desired bit length of the result, &quot;</span><br><span class="line">    + &quot;which must have a value of 224, 256, 384, 512, or 0 (which is equivalent to 256). &quot;</span><br><span class="line">    + &quot;SHA-224 is supported starting from Java 8. &quot;</span><br><span class="line">    + &quot;If either argument is NULL or the hash length is not one of the permitted values, the return value is NULL.\n&quot;</span><br><span class="line">    + &quot;Example: &gt; SELECT _FUNC_(&#x27;ABC&#x27;, 256);\n &#x27;b5d4045c3f466fa91fe2cc6abe79232a1a57cdf104f7a26e716e0a1e2789df78&#x27;&quot;)</span><br><span class="line">public class GenericUDFSha2 extends GenericUDF &#123;</span><br><span class="line">  private transient Converter[] converters = new Converter[2];</span><br><span class="line">  private transient PrimitiveCategory[] inputTypes = new PrimitiveCategory[2];</span><br><span class="line">  private final Text output = new Text();</span><br><span class="line">  private transient boolean isStr;</span><br><span class="line">  private transient MessageDigest digest;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  public ObjectInspector initialize(ObjectInspector[] arguments) throws UDFArgumentException &#123;</span><br><span class="line">    checkArgsSize(arguments, 2, 2);</span><br><span class="line"></span><br><span class="line">    checkArgPrimitive(arguments, 0);</span><br><span class="line">    checkArgPrimitive(arguments, 1);</span><br><span class="line"></span><br><span class="line">    // the function should support both string and binary input types</span><br><span class="line">    checkArgGroups(arguments, 0, inputTypes, STRING_GROUP, BINARY_GROUP);</span><br><span class="line">    checkArgGroups(arguments, 1, inputTypes, NUMERIC_GROUP);</span><br><span class="line"></span><br><span class="line">    if (PrimitiveObjectInspectorUtils.getPrimitiveGrouping(inputTypes[0]) == STRING_GROUP) &#123;</span><br><span class="line">      obtainStringConverter(arguments, 0, inputTypes, converters);</span><br><span class="line">      isStr = true;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      GenericUDFParamUtils.obtainBinaryConverter(arguments, 0, inputTypes, converters);</span><br><span class="line">      isStr = false;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (arguments[1] instanceof ConstantObjectInspector) &#123;</span><br><span class="line">      Integer lenObj = getConstantIntValue(arguments, 1);</span><br><span class="line">      if (lenObj != null) &#123;</span><br><span class="line">        int len = lenObj.intValue();</span><br><span class="line">        if (len == 0) &#123;</span><br><span class="line">          len = 256;</span><br><span class="line">        &#125;</span><br><span class="line">        try &#123;</span><br><span class="line">          digest = MessageDigest.getInstance(&quot;SHA-&quot; + len);</span><br><span class="line">        &#125; catch (NoSuchAlgorithmException e) &#123;</span><br><span class="line">          // ignore</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      throw new UDFArgumentTypeException(1, getFuncName() + &quot; only takes constant as &quot;</span><br><span class="line">          + getArgOrder(1) + &quot; argument&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ObjectInspector outputOI = PrimitiveObjectInspectorFactory.writableStringObjectInspector;</span><br><span class="line">    return outputOI;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  public Object evaluate(DeferredObject[] arguments) throws HiveException &#123;</span><br><span class="line">    if (digest == null) &#123;</span><br><span class="line">      return null;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    digest.reset();</span><br><span class="line">    if (isStr) &#123;</span><br><span class="line">      Text n = GenericUDFParamUtils.getTextValue(arguments, 0, converters);</span><br><span class="line">      if (n == null) &#123;</span><br><span class="line">        return null;</span><br><span class="line">      &#125;</span><br><span class="line">      digest.update(n.getBytes(), 0, n.getLength());</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      BytesWritable bWr = GenericUDFParamUtils.getBinaryValue(arguments, 0, converters);</span><br><span class="line">      if (bWr == null) &#123;</span><br><span class="line">        return null;</span><br><span class="line">      &#125;</span><br><span class="line">      digest.update(bWr.getBytes(), 0, bWr.getLength());</span><br><span class="line">    &#125;</span><br><span class="line">    byte[] resBin = digest.digest();</span><br><span class="line">    String resStr = Hex.encodeHexString(resBin);</span><br><span class="line"></span><br><span class="line">    output.set(resStr);</span><br><span class="line">    return output;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  public String getDisplayString(String[] children) &#123;</span><br><span class="line">    return getStandardDisplayString(getFuncName(), children);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  protected String getFuncName() &#123;</span><br><span class="line">    return &quot;sha2&quot;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>And build the package.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mvn package</span><br></pre></td></tr></table></figure>
+
+<p>After compile you find in <code>target</code> dir the require jar (<code>GenericUDFSha2-1.0-SNAPSHOT.jar</code>) you need to add in Hive.</p>
+<p>You should use your Hadoop Distribution instructions for deploying new jars.</p>
+<p>Here are <a target="_blank" rel="noopener" href="https://www.cloudera.com/documentation/enterprise/5-6-x/topics/cm_mc_hive_udf.html">Cloudera Instructions</a>.</p>
+<p>Next on your Hive session you need to <code>ADD JAR</code> and create a <code>FUNCTION</code> or <code>TEMPORARY FUNCTION</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ADD JAR ./target/GenericUDFSha2-1.0-SNAPSHOT.jar</span><br><span class="line">CREATE TEMPORARY FUNCTION sha2 AS &#x27;com.rramos.bigdata.utils.GenericUDFSha2&#x27;;</span><br><span class="line">SELECT sha2(foo) from bar LIMIT1; </span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://blog.matthewrathbone.com/2013/08/10/guide-to-writing-hive-udfs.html">Matthew Rathbone</a> Blog has some great tutorial on Hive Funtions. Take a look if you want to go deep with it.</p>
+<p>Cheers,<br>RR</p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.cloudera.com/documentation/enterprise/release-notes/topics/rg_cdh_vd.html">https://www.cloudera.com/documentation/enterprise/release-notes/topics/rg_cdh_vd.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cloudera.com/documentation/enterprise/5-6-x/topics/cm_mc_hive_udf.html">https://www.cloudera.com/documentation/enterprise/5-6-x/topics/cm_mc_hive_udf.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.matthewrathbone.com/2013/08/10/guide-to-writing-hive-udfs.html">https://blog.matthewrathbone.com/2013/08/10/guide-to-writing-hive-udfs.html</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-09-26T22:43:35.000Z"><a href="/2017/09/26/vagrant-qemu/">2017-09-26</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/09/26/vagrant-qemu/">Quick Guide for Vagrant and Libvirt</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>This article is going to be about a quick way to setup a PoC environment using <a target="_blank" rel="noopener" href="https://libvirt.org/">libvirt</a> (<a target="_blank" rel="noopener" href="https://www.qemu.org/">QEMU</a>) and <a target="_blank" rel="noopener" href="https://www.vagrantup.com/">vagrant</a>, and auto configure the enviroment using <a target="_blank" rel="noopener" href="https://www.ansible.com/">ansible</a>.</p>
+<h1 id="Why"><a href="#Why" class="headerlink" title="Why ?"></a>Why ?</h1><p>One migth go a bit further in the testing enviroments, instead of dockers using virtualized enviroment. This kind of approcah whould be suitable when you like to try infrastructure services, or simple don’t want to use dockers.</p>
+<p>If you check Internet Trends we can see docker interest have grown quite a lot on the last 5 years. </p>
+
+<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1154_RC03/embed_loader.js"></script> <script type="text/javascript"> trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"docker","geo":"","time":"today 5-y"},{"keyword":"Virtual Machines","geo":"","time":"today 5-y"}],"category":13,"property":""}, {"exploreQuery":"cat=13&date=today 5-y,today 5-y&q=docker,Virtual%20Machines","guestPath":"https://trends.google.com:443/trends/embed/"}); </script> 
+
+
+<p><strong>Still i’m OldSchool and i like my plain-simple-VMs some times :D</strong></p>
+<p>A later article would be about configuring a Mesos Cluster so this one makes sense as a preparation guide for it.</p>
+<h1 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h1><ul>
+<li>Make sure you have vagrant installed</li>
+<li>Make sure your machine supports virtualization :)</li>
+<li>Make sure you have QEMU installed</li>
+<li>Make sure you have libvirt up and running</li>
+<li>Make sure you have ansible (Optional)</li>
+</ul>
+<p><strong>Note:</strong> This guide was tested on Ubuntu 16. Use at your own risk</p>
+<p>One can test libvirt version suing the command</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ virsh version</span><br><span class="line">Compiled against library: libvirt 1.3.1</span><br><span class="line">Using library: libvirt 1.3.1</span><br><span class="line">Using API: QEMU 1.3.1</span><br><span class="line">Running hypervisor: QEMU 2.5.0</span><br></pre></td></tr></table></figure>
+
+<p><strong>NOTE:</strong> Before you start using Vagrant-libvirt, please make sure your libvirt and qemu installation is working correctly and you are able to create qemu or kvm type virtual machines with virsh or virt-manager.</p>
+<h1 id="setup"><a href="#setup" class="headerlink" title="setup"></a>setup</h1><p>Install dependencies</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get install qemu libvirt-bin ebtables dnsmasq</span><br><span class="line">sudo apt-get install libxslt-dev libxml2-dev libvirt-dev zlib1g-dev ruby-dev</span><br><span class="line">sudo apt-get install vagrant ruby-libvirt</span><br></pre></td></tr></table></figure>
+
+<p>Install vagrant-libvirt plugin:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vagrant plugin install vagrant-libvirt</span><br></pre></td></tr></table></figure>
+
+<p>Now let’s test by creating a startup Box. There are several available <a target="_blank" rel="noopener" href="https://app.vagrantup.com/boxes/search?provider=libvirt">here</a></p>
+<p>Example: (Ubuntu 16)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir Vagrant</span><br><span class="line">cd Vagrant</span><br><span class="line">vagrant init marczis/ubuntu_16_04</span><br></pre></td></tr></table></figure>
+
+<p>Let’s start the VM</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vagrant up --provider=libvirt</span><br></pre></td></tr></table></figure>
+
+<p>After executing the comman you should have some output similar</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">==&gt; default: Successfully added box &#x27;marczis/ubuntu_16_04&#x27; (v0.1.2) for &#x27;libvirt&#x27;!</span><br><span class="line">==&gt; default: Uploading base box image as volume into libvirt storage...</span><br><span class="line">==&gt; default: Creating image (snapshot of base box volume).</span><br><span class="line">==&gt; default: Creating domain with the following settings...</span><br><span class="line">==&gt; default:  -- Name:              Vagrant_default</span><br><span class="line">==&gt; default:  -- Domain type:       kvm</span><br><span class="line">==&gt; default:  -- Cpus:              1</span><br><span class="line">==&gt; default:  -- Feature:           acpi</span><br><span class="line">==&gt; default:  -- Feature:           apic</span><br><span class="line">==&gt; default:  -- Feature:           pae</span><br><span class="line">==&gt; default:  -- Memory:            512M</span><br><span class="line">==&gt; default:  -- Management MAC:    </span><br><span class="line">==&gt; default:  -- Loader:            </span><br><span class="line">==&gt; default:  -- Base box:          marczis/ubuntu_16_04</span><br><span class="line">==&gt; default:  -- Storage pool:      default</span><br><span class="line">==&gt; default:  -- Image:             /var/lib/libvirt/images/Vagrant_default.img (10G)</span><br><span class="line">==&gt; default:  -- Volume Cache:      default</span><br><span class="line">==&gt; default:  -- Kernel:            </span><br><span class="line">==&gt; default:  -- Initrd:            </span><br><span class="line">==&gt; default:  -- Graphics Type:     vnc</span><br><span class="line">==&gt; default:  -- Graphics Port:     5900</span><br><span class="line">==&gt; default:  -- Graphics IP:       127.0.0.1</span><br><span class="line">==&gt; default:  -- Graphics Password: Not defined</span><br><span class="line">==&gt; default:  -- Video Type:        cirrus</span><br><span class="line">==&gt; default:  -- Video VRAM:        9216</span><br><span class="line">==&gt; default:  -- Sound Type:    </span><br><span class="line">==&gt; default:  -- Keymap:            en-us</span><br><span class="line">==&gt; default:  -- TPM Path:          </span><br><span class="line">==&gt; default:  -- INPUT:             type=mouse, bus=ps2</span><br><span class="line">==&gt; default: Creating shared folders metadata...</span><br><span class="line">==&gt; default: Starting domain.</span><br><span class="line">==&gt; default: Waiting for domain to get an IP address...</span><br><span class="line">==&gt; default: Waiting for SSH to become available...</span><br><span class="line">    default: </span><br><span class="line">    default: Vagrant insecure key detected. Vagrant will automatically replace</span><br><span class="line">    default: this with a newly generated keypair for better security.</span><br><span class="line">    default: </span><br><span class="line">    default: Inserting generated public key within guest...</span><br><span class="line">    default: Removing insecure key from the guest if it&#x27;s present...</span><br><span class="line">    default: Key inserted! Disconnecting and reconnecting using new SSH key...</span><br><span class="line">==&gt; default: Configuring and enabling network interfaces...</span><br><span class="line">==&gt; default: Rsyncing folder: /home/rramos/Development/Vagrant/ =&gt; /vagrant</span><br><span class="line">==&gt; default: Check for insecure vagrant key: OK (not present)</span><br></pre></td></tr></table></figure>
+
+<p>If you execute <code>virt-manager</code> you can see the virtual machine specification and adapt the Vagrant file to you needs.</p>
+<img src="/2017/09/26/vagrant-qemu/virt-manager.png" class="" title="virt-manager">
+
+<p>You can then ssh to the VM using the command <code>vagrant ssh</code>. You should have a prompt like:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Welcome to Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-77-generic x86_64)</span><br><span class="line"></span><br><span class="line"> * Documentation:  https://help.ubuntu.com</span><br><span class="line"> * Management:     https://landscape.canonical.com</span><br><span class="line"> * Support:        https://ubuntu.com/advantage</span><br><span class="line">vagrant@ubuntu:~$ </span><br></pre></td></tr></table></figure>
+
+<p>You can add the ssh key to your ssh configuration executing the following command. ( Check my previous  <a href="/2017/09/13/ssh-config/" title="[article]">[article]</a> regarding this topic)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vagrant ssh-config &gt;&gt; ~/.ssh/config</span><br></pre></td></tr></table></figure>
+
+
+<p>then try the command <code>ssh default</code> . Default if the default name of the VM defined in the vagrant file. </p>
+<h1 id="Let’s-extend-a-bit"><a href="#Let’s-extend-a-bit" class="headerlink" title="Let’s extend a bit."></a>Let’s extend a bit.</h1><p>The next step is to set Ansible as our provisioning provider for the Vagrant Box. Add the following lines before the end statement in your Vagrantfile to set Ansible as the provisioning provider:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">config.vm.provision :ansible do |ansible|</span><br><span class="line">  ansible.playbook = &quot;playbook.yml&quot;</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+<p>Let’s create the playbook.yml file with the following content</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">- hosts: all</span><br><span class="line">  become: yes</span><br><span class="line">  become_user: root</span><br><span class="line">  tasks:</span><br><span class="line">    - name: install apache2</span><br><span class="line">      apt: name=apache2 update_cache=yes state=latest</span><br><span class="line">  handlers:</span><br><span class="line">    - name: restart apache2</span><br><span class="line">      service: name=apache2 state=restarted</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>This example playbook will install apache service on the all hosts given by Vagrantfile and start the service.</p>
+<p>Then we can run the command to just run the provision stuff</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vagrant provision</span><br></pre></td></tr></table></figure>
+
+<p>Let’s add the following configuration on our Vagrant file</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">config.vm.network &quot;forwarded_port&quot;, guest: 80, host: 8080</span><br></pre></td></tr></table></figure>
+
+<p>And execute <code>vagrant reload</code></p>
+<p>If one access <a target="_blank" rel="noopener" href="http://localhost:8080/">http://localhost:8080</a> we are now accessing the VM installed service.</p>
+<p>If you recreate the VM it would run the ansible part at the end. </p>
+<p>So it’s quite easy to recreate your environment.</p>
+<h1 id="Cluster-Configuration"><a href="#Cluster-Configuration" class="headerlink" title="Cluster Configuration"></a>Cluster Configuration</h1><p>One could have Vagrant more complex configuration like the following for several VMs.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Vagrant.configure(&quot;2&quot;) do |config|</span><br><span class="line">  config.vm.provision &quot;shell&quot;, inline: &quot;echo Hello&quot;</span><br><span class="line"></span><br><span class="line">  config.vm.define &quot;web&quot; do |web|</span><br><span class="line">    web.vm.box = &quot;apache&quot;</span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line">  config.vm.define &quot;db&quot; do |db|</span><br><span class="line">    db.vm.box = &quot;mysql&quot;</span><br><span class="line">  end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>In this article is described a simple way to integrate Vangrant with libvirt for quickly spinning VM’s and running ansible playbooks on them.</p>
+<p>This could be usefull for testing ansible playbooks before shipping them to LIVE enviroments or testing purposes. </p>
+<p>Also to quickly configure a more complex infrastructure, where you don’t wont to use dockers.</p>
+<p>On the next article i will write a step-by-step guide to spin up a Mesos Cluster using this approach, so this article could be used as prep-guide.</p>
+<p>Cheers,<br>RR</p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://libvirt.org/">https://libvirt.org/</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.qemu.org/">https://www.qemu.org/</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.vagrantup.com/">https://www.vagrantup.com/</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.ansible.com/">https://www.ansible.com/</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/vagrant-libvirt/vagrant-libvirt">https://github.com/vagrant-libvirt/vagrant-libvirt</a></li>
+<li><a target="_blank" rel="noopener" href="https://app.vagrantup.com/boxes/search?provider=libvirt">https://app.vagrantup.com/boxes/search?provider=libvirt</a></li>
+<li><a target="_blank" rel="noopener" href="https://fedoramagazine.org/using-ansible-provision-vagrant-boxes/">https://fedoramagazine.org/using-ansible-provision-vagrant-boxes/</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.vagrantup.com/docs/multi-machine/">https://www.vagrantup.com/docs/multi-machine/</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-09-24T14:54:00.000Z"><a href="/2017/09/24/ksql/">2017-09-24</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/09/24/ksql/">Streaming SQL for Kafka (KSQL)</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>In this article i’ll explore Apache Kafka KSQL</p>
+<h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><ul>
+<li>Docker</li>
+<li>docker-compose</li>
+</ul>
+<h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><blockquote><p>KSQL is an open source streaming SQL engine that implements continuous, interactive queries against Apache Kafka™. It allows you to query, read, write, and process data in Apache Kafka in real-time, at scale using SQL commands. KSQL interacts directly with the Kafka Streams API, removing the requirement of building a Java app.</p>
+<footer><strong>Offical Website Definition</strong></footer></blockquote>
+
+<h2 id="PoC-Setup"><a href="#PoC-Setup" class="headerlink" title="PoC Setup"></a>PoC Setup</h2><p>Create the following file <code>docker-compose.yml</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">version: &#x27;2&#x27;</span><br><span class="line">services:</span><br><span class="line">  zookeeper:</span><br><span class="line">    image: &quot;confluentinc/cp-zookeeper:latest&quot;</span><br><span class="line">    hostname: zookeeper</span><br><span class="line">    ports:</span><br><span class="line">      - &#x27;32181:32181&#x27;</span><br><span class="line">    environment:</span><br><span class="line">      ZOOKEEPER_CLIENT_PORT: 32181</span><br><span class="line">      ZOOKEEPER_TICK_TIME: 2000</span><br><span class="line">    extra_hosts:</span><br><span class="line">      - &quot;moby:127.0.0.1&quot;</span><br><span class="line"></span><br><span class="line">  kafka:</span><br><span class="line">    image: &quot;confluentinc/cp-enterprise-kafka:latest&quot;</span><br><span class="line">    hostname: kafka</span><br><span class="line">    ports:</span><br><span class="line">      - &#x27;9092:9092&#x27;</span><br><span class="line">      - &#x27;29092:29092&#x27;</span><br><span class="line">    depends_on:</span><br><span class="line">      - zookeeper</span><br><span class="line">    environment:</span><br><span class="line">      KAFKA_BROKER_ID: 1</span><br><span class="line">      KAFKA_ZOOKEEPER_CONNECT: zookeeper:32181</span><br><span class="line">      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT</span><br><span class="line">      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT</span><br><span class="line">      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092</span><br><span class="line">      KAFKA_AUTO_CREATE_TOPICS_ENABLE: &quot;true&quot;</span><br><span class="line">      KAFKA_METRIC_REPORTERS: io.confluent.metrics.reporter.ConfluentMetricsReporter</span><br><span class="line">      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1</span><br><span class="line">      CONFLUENT_METRICS_REPORTER_BOOTSTRAP_SERVERS: kafka:29092</span><br><span class="line">      CONFLUENT_METRICS_REPORTER_ZOOKEEPER_CONNECT: zookeeper:32181</span><br><span class="line">      CONFLUENT_METRICS_REPORTER_TOPIC_REPLICAS: 1</span><br><span class="line">      CONFLUENT_METRICS_ENABLE: &#x27;true&#x27;</span><br><span class="line">      CONFLUENT_SUPPORT_CUSTOMER_ID: &#x27;anonymous&#x27;</span><br><span class="line">    extra_hosts:</span><br><span class="line">      - &quot;moby:127.0.0.1&quot;</span><br><span class="line"></span><br><span class="line">  schema-registry:</span><br><span class="line">    image: &quot;confluentinc/cp-schema-registry:latest&quot;</span><br><span class="line">    hostname: schema-registry</span><br><span class="line">    depends_on:</span><br><span class="line">      - zookeeper</span><br><span class="line">      - kafka</span><br><span class="line">    ports:</span><br><span class="line">      - &#x27;8081:8081&#x27;</span><br><span class="line">    environment:</span><br><span class="line">      SCHEMA_REGISTRY_HOST_NAME: schema-registry</span><br><span class="line">      SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: zookeeper:32181</span><br><span class="line">    extra_hosts:</span><br><span class="line">      - &quot;moby:127.0.0.1&quot;</span><br><span class="line"></span><br><span class="line">  # Runs the Kafka KSQL data generator for topic called &quot;pageviews&quot;</span><br><span class="line">  ksql-datagen-pageviews:</span><br><span class="line">    image: &quot;confluentinc/ksql-examples:latest&quot;</span><br><span class="line">    hostname: ksql-datagen-pageviews</span><br><span class="line">    depends_on:</span><br><span class="line">      - kafka</span><br><span class="line">      - schema-registry</span><br><span class="line">    # Note: The container&#x27;s `run` script will perform the same readiness checks</span><br><span class="line">    # for Kafka and Confluent Schema Registry, but that&#x27;s ok because they complete fast.</span><br><span class="line">    # The reason we check for readiness here is that we can insert a sleep time</span><br><span class="line">    # for topic creation before we start the application.</span><br><span class="line">    command: &quot;bash -c &#x27;echo Waiting for Kafka to be ready... &amp;&amp; \</span><br><span class="line">                       cub kafka-ready -b kafka:29092 1 20 &amp;&amp; \</span><br><span class="line">                       echo Waiting for Confluent Schema Registry to be ready... &amp;&amp; \</span><br><span class="line">                       cub sr-ready schema-registry 8081 20 &amp;&amp; \</span><br><span class="line">                       echo Waiting a few seconds for topic creation to finish... &amp;&amp; \</span><br><span class="line">                       sleep 2 &amp;&amp; \</span><br><span class="line">                       java -jar /usr/share/java/ksql-examples/ksql-examples-0.1-SNAPSHOT-standalone.jar</span><br><span class="line">                       quickstart=pageviews format=delimited topic=pageviews bootstrap-server=kafka:29092 maxInterval=100 iterations=1000 &amp;&amp; \</span><br><span class="line">                       java -jar /usr/share/java/ksql-examples/ksql-examples-0.1-SNAPSHOT-standalone.jar</span><br><span class="line">                       quickstart=pageviews format=delimited topic=pageviews bootstrap-server=kafka:29092 maxInterval=1000&#x27;&quot;</span><br><span class="line">    environment:</span><br><span class="line">      KSQL_CONFIG_DIR: &quot;/etc/ksql&quot;</span><br><span class="line">      KSQL_LOG4J_OPTS: &quot;-Dlog4j.configuration=file:/etc/ksql/log4j-rolling.properties&quot;</span><br><span class="line">      STREAMS_BOOTSTRAP_SERVERS: kafka:29092</span><br><span class="line">      STREAMS_SCHEMA_REGISTRY_HOST: schema-registry</span><br><span class="line">      STREAMS_SCHEMA_REGISTRY_PORT: 8081</span><br><span class="line">    extra_hosts:</span><br><span class="line">      - &quot;moby:127.0.0.1&quot;</span><br><span class="line"></span><br><span class="line">  # Runs the Kafka KSQL data generator for topic called &quot;users&quot;</span><br><span class="line">  ksql-datagen-users:</span><br><span class="line">    image: &quot;confluentinc/ksql-examples:latest&quot;</span><br><span class="line">    hostname: ksql-datagen-users</span><br><span class="line">    depends_on:</span><br><span class="line">      - kafka</span><br><span class="line">      - schema-registry</span><br><span class="line">    # Note: The container&#x27;s `run` script will perform the same readiness checks</span><br><span class="line">    # for Kafka and Confluent Schema Registry, but that&#x27;s ok because they complete fast.</span><br><span class="line">    # The reason we check for readiness here is that we can insert a sleep time</span><br><span class="line">    # for topic creation before we start the application.</span><br><span class="line">    command: &quot;bash -c &#x27;echo Waiting for Kafka to be ready... &amp;&amp; \</span><br><span class="line">                       cub kafka-ready -b kafka:29092 1 20 &amp;&amp; \</span><br><span class="line">                       echo Waiting for Confluent Schema Registry to be ready... &amp;&amp; \</span><br><span class="line">                       cub sr-ready schema-registry 8081 20 &amp;&amp; \</span><br><span class="line">                       echo Waiting a few seconds for topic creation to finish... &amp;&amp; \</span><br><span class="line">                       sleep 2 &amp;&amp; \</span><br><span class="line">                       java -jar /usr/share/java/ksql-examples/ksql-examples-0.1-SNAPSHOT-standalone.jar</span><br><span class="line">                       quickstart=users format=json topic=users bootstrap-server=kafka:29092 maxInterval=100 iterations=1000 &amp;&amp; \</span><br><span class="line">                       java -jar /usr/share/java/ksql-examples/ksql-examples-0.1-SNAPSHOT-standalone.jar</span><br><span class="line">                       quickstart=users format=json topic=users bootstrap-server=kafka:29092 maxInterval=1000&#x27;&quot;</span><br><span class="line">    environment:</span><br><span class="line">      KSQL_CONFIG_DIR: &quot;/etc/ksql&quot;</span><br><span class="line">      KSQL_LOG4J_OPTS: &quot;-Dlog4j.configuration=file:/etc/ksql/log4j-rolling.properties&quot;</span><br><span class="line">      STREAMS_BOOTSTRAP_SERVERS: kafka:29092</span><br><span class="line">      STREAMS_SCHEMA_REGISTRY_HOST: schema-registry</span><br><span class="line">      STREAMS_SCHEMA_REGISTRY_PORT: 8081</span><br><span class="line">    extra_hosts:</span><br><span class="line">      - &quot;moby:127.0.0.1&quot;</span><br><span class="line"></span><br><span class="line">  # Runs the Kafka KSQL application</span><br><span class="line">  ksql-cli:</span><br><span class="line">    image: &quot;confluentinc/ksql-cli:latest&quot;</span><br><span class="line">    hostname: ksql-cli</span><br><span class="line">    depends_on:</span><br><span class="line">      - kafka</span><br><span class="line">      - schema-registry</span><br><span class="line">      - ksql-datagen-pageviews</span><br><span class="line">      - ksql-datagen-users</span><br><span class="line">    command: &quot;perl -e &#x27;while(1)&#123; sleep 99999 &#125;&#x27;&quot;</span><br><span class="line">    environment:</span><br><span class="line">      KSQL_CONFIG_DIR: &quot;/etc/ksql&quot;</span><br><span class="line">      KSQL_LOG4J_OPTS: &quot;-Dlog4j.configuration=file:/etc/ksql/log4j-rolling.properties&quot;</span><br><span class="line">      STREAMS_BOOTSTRAP_SERVERS: kafka:29092</span><br><span class="line">      STREAMS_SCHEMA_REGISTRY_HOST: schema-registry</span><br><span class="line">      STREAMS_SCHEMA_REGISTRY_PORT: 8081</span><br><span class="line">    extra_hosts:</span><br><span class="line">      - &quot;moby:127.0.0.1&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>Prepare the enviroment with the following command</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+<p>This will create the minimal services to test ksql</p>
+<ul>
+<li>zookeeper</li>
+<li>schema-registry</li>
+<li>kafka</li>
+<li>ksql-cli</li>
+</ul>
+<p>It also will create 2 dockers which will generate data in order to test:</p>
+<ul>
+<li>ksql-datagen-pageviews</li>
+<li>ksql-datagen-users</li>
+</ul>
+<p>Thoose dockers are kafka producers, which we will use to test KSQL.</p>
+<h2 id="KSQL"><a href="#KSQL" class="headerlink" title="KSQL"></a>KSQL</h2><p>Execute the CLI in order to test</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo docker-compose exec ksql-cli ksql-cli local --bootstrap-server kafka:29092</span><br></pre></td></tr></table></figure>
+
+<p>You will see something like this</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">                       ======================================</span><br><span class="line">                       =      _  __ _____  ____  _          =</span><br><span class="line">                       =     | |/ // ____|/ __ \| |         =</span><br><span class="line">                       =     | &#x27; /| (___ | |  | | |         =</span><br><span class="line">                       =     |  &lt;  \___ \| |  | | |         =</span><br><span class="line">                       =     | . \ ____) | |__| | |____     =</span><br><span class="line">                       =     |_|\_\_____/ \___\_\______|    =</span><br><span class="line">                       =                                    =</span><br><span class="line">                       =   Streaming SQL Engine for Kafka   =</span><br><span class="line">Copyright 2017 Confluent Inc.                         </span><br><span class="line"></span><br><span class="line">CLI v0.1, Server v0.1 located at http://localhost:9098</span><br><span class="line"></span><br><span class="line">Having trouble? Type &#x27;help&#x27; (case-insensitive) for a rundown of how things work!</span><br><span class="line"></span><br><span class="line">ksql&gt;</span><br></pre></td></tr></table></figure>
+
+
+<p>Now let’s create a new <strong>STREAM</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE STREAM pageviews_original (viewtime bigint, userid varchar, pageid varchar) WITH (kafka_topic=&#x27;pageviews&#x27;, value_format=&#x27;DELIMITED&#x27;);</span><br></pre></td></tr></table></figure>
+
+<p>Let’s describe the created object</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ksql&gt; DESCRIBE pageviews_original;</span><br><span class="line"></span><br><span class="line"> Field    | Type            </span><br><span class="line">----------------------------</span><br><span class="line"> ROWTIME  | BIGINT          </span><br><span class="line"> ROWKEY   | VARCHAR(STRING) </span><br><span class="line"> VIEWTIME | BIGINT          </span><br><span class="line"> USERID   | VARCHAR(STRING) </span><br><span class="line"> PAGEID   | VARCHAR(STRING) </span><br></pre></td></tr></table></figure>
+
+<p>Now lets create a users <strong>TABLE</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE TABLE users_original (registertime bigint, gender varchar, regionid varchar, userid varchar) WITH (kafka_topic=&#x27;users&#x27;, value_format=&#x27;JSON&#x27;);</span><br></pre></td></tr></table></figure>
+
+<p>And confirm the DDL</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ksql&gt; DESCRIBE users_original;</span><br><span class="line"></span><br><span class="line"> Field        | Type            </span><br><span class="line">--------------------------------</span><br><span class="line"> ROWTIME      | BIGINT          </span><br><span class="line"> ROWKEY       | VARCHAR(STRING) </span><br><span class="line"> REGISTERTIME | BIGINT          </span><br><span class="line"> GENDER       | VARCHAR(STRING) </span><br><span class="line"> REGIONID     | VARCHAR(STRING) </span><br><span class="line"> USERID       | VARCHAR(STRING) </span><br></pre></td></tr></table></figure>
+
+<p>So there are two main objects <strong>TABLES</strong> and <strong>STREAMS</strong>. To see the existing ones, execute:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ksql&gt; SHOW STREAMS;</span><br><span class="line"></span><br><span class="line"> Stream Name        | Kafka Topic | Format    </span><br><span class="line">----------------------------------------------</span><br><span class="line"> PAGEVIEWS_ORIGINAL | pageviews   | DELIMITED </span><br></pre></td></tr></table></figure>
+
+<p>and </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ksql&gt; SHOW TABLES;</span><br><span class="line"></span><br><span class="line"> Table Name     | Kafka Topic | Format | Windowed </span><br><span class="line">--------------------------------------------------</span><br><span class="line"> USERS_ORIGINAL | users       | JSON   | false    </span><br></pre></td></tr></table></figure>
+
+<h3 id="Differences-between-STREAMS-and-TABLES"><a href="#Differences-between-STREAMS-and-TABLES" class="headerlink" title="Differences between STREAMS and TABLES"></a>Differences between STREAMS and TABLES</h3><p><strong>Stream</strong></p>
+<p>A stream is an unbounded sequence of structured data (“facts”). For example, we could have a stream of financial transactions such as “Alice sent $100 to Bob, then Charlie sent $50 to Bob”. Facts in a stream are immutable, which means new facts can be inserted to a stream, but existing facts can never be updated or deleted. Streams can be created from a Kafka topic or derived from existing streams and tables.</p>
+<p><strong>Table</strong></p>
+<p>A table is a view of a stream, or another table, and represents a collection of evolving facts. For example, we could have a table that contains the latest financial information such as “Bob’s current account balance is $150”. It is the equivalent of a traditional database table but enriched by streaming semantics such as windowing. Facts in a table are mutable, which means new facts can be inserted to the table, and existing facts can be updated or deleted. Tables can be created from a Kafka topic or derived from existing streams and tables.</p>
+<h3 id="Extending-the-Model"><a href="#Extending-the-Model" class="headerlink" title="Extending the Model"></a>Extending the Model</h3><p>Lets create a new pageviews stream with key <code>pageid</code> and joi it with table <code>users</code>.</p>
+<p>First create the new stream</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE STREAM pageviews \</span><br><span class="line">   (viewtime BIGINT, \</span><br><span class="line">    userid VARCHAR, \</span><br><span class="line">    pageid VARCHAR) \</span><br><span class="line">   WITH (kafka_topic=&#x27;pageviews&#x27;, \</span><br><span class="line">         value_format=&#x27;DELIMITED&#x27;, \</span><br><span class="line">         key=&#x27;pageid&#x27;, \</span><br><span class="line">         timestamp=&#x27;viewtime&#x27;);</span><br></pre></td></tr></table></figure>
+
+<p>And users table</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE TABLE users \</span><br><span class="line">   (registertime BIGINT, \</span><br><span class="line">    gender VARCHAR, \</span><br><span class="line">    regionid VARCHAR, \</span><br><span class="line">    userid VARCHAR, \</span><br><span class="line">    interests array&lt;VARCHAR&gt;, \</span><br><span class="line">    contact_info map&lt;VARCHAR, VARCHAR&gt;) \</span><br><span class="line">   WITH (kafka_topic=&#x27;users&#x27;, \</span><br><span class="line">         value_format=&#x27;JSON&#x27;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="Aggregations"><a href="#Aggregations" class="headerlink" title="Aggregations"></a>Aggregations</h4><p>Let’s test some aggregations</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT count(*),userid FROM pageviews GROUP BY userid;</span><br></pre></td></tr></table></figure>
+
+<p>As data arrives in stream this is constantly updating , but we can verify that the count values begins from the start of the query, this could be usefull to dump to another topic with transformed data.</p>
+<p>Let’s do that.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE TABLE user_counts AS select count(*),userid from pageviews group by userid;</span><br></pre></td></tr></table></figure>
+
+<p>We can use the statement <code>SHOW TOPICS</code> which is usefull and confirmed that the USER_COUNTS TOPICS is created.</p>
+<p>The following aggregations are available</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>COUNT</td>
+<td>COUNT(col1)</td>
+<td>Count the number of rows</td>
+</tr>
+<tr>
+<td>MAX</td>
+<td>MAX(col1)</td>
+<td>Return the maximum value for a given column and window</td>
+</tr>
+<tr>
+<td>MIN</td>
+<td>MIN(col1)</td>
+<td>Return the minimum value for a given column and window</td>
+</tr>
+<tr>
+<td>SUM</td>
+<td>SUM(col1)</td>
+<td>Sums the column values</td>
+</tr>
+</tbody></table>
+<h2 id="Window"><a href="#Window" class="headerlink" title="Window"></a>Window</h2><p>The WINDOW clause lets you control how to group input records that have the same key into so-called windows for operations such as aggregations or joins. Windows are tracked per record key. KSQL supports the following WINDOW types:</p>
+<ul>
+<li>TUMBLING</li>
+<li>HOPPING</li>
+<li>SESSION</li>
+</ul>
+<h3 id="Window-Tumbling"><a href="#Window-Tumbling" class="headerlink" title="Window Tumbling"></a>Window Tumbling</h3><p>TUMBLING: Tumbling windows group input records into fixed-sized, non-overlapping windows based on the records’ timestamps. You must specify the window size for tumbling windows. Note: Tumbling windows are a special case of hopping windows where the window size is equal to the advance interval.</p>
+<p>Example:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT item_id, SUM(quantity)</span><br><span class="line">  FROM orders</span><br><span class="line">  WINDOW TUMBLING (SIZE 20 SECONDS)</span><br><span class="line">  GROUP BY item_id;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="Window-HOPPING"><a href="#Window-HOPPING" class="headerlink" title="Window HOPPING"></a>Window HOPPING</h3><p>HOPPING: Hopping windows group input records into fixed-sized, (possibly) overlapping windows based on the records’ timestamps. You must specify the window size and the advance interval for hopping windows.</p>
+<p>Example:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT item_id, SUM(quantity)</span><br><span class="line">  FROM orders</span><br><span class="line">  WINDOW HOPPING (SIZE 20 SECONDS, ADVANCE BY 5 SECONDS)</span><br><span class="line">  GROUP BY item_id;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Window-SESSION"><a href="#Window-SESSION" class="headerlink" title="Window SESSION"></a>Window SESSION</h3><p>SESSION: Session windows group input records into so-called sessions. You must specify the session inactivity gap parameter for session windows. For example, imagine you set the inactivity gap to 5 minutes. If, for a given record key such as “alice”, no new input data arrives for more than 5 minutes, then the current session for “alice” is closed, and any newly arriving data for “alice” in the future will mark the beginning of a new session.</p>
+<p>Example:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT item_id, SUM(quantity)</span><br><span class="line">  FROM orders</span><br><span class="line">  WINDOW SESSION (20 SECONDS)</span><br><span class="line">  GROUP BY item_id;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Transformations"><a href="#Transformations" class="headerlink" title="Transformations"></a>Transformations</h2><p>Let’s create a new stream with a column transformation</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE STREAM pageviews_transformed \</span><br><span class="line">  WITH (timestamp=&#x27;viewtime&#x27;, \</span><br><span class="line">        partitions=5, \</span><br><span class="line">        value_format=&#x27;JSON&#x27;) AS \</span><br><span class="line">  SELECT viewtime, \</span><br><span class="line">         userid, \</span><br><span class="line">         pageid, \</span><br><span class="line">         TIMESTAMPTOSTRING(viewtime, &#x27;yyyy-MM-dd HH:mm:ss.SSS&#x27;) AS timestring \</span><br><span class="line">  FROM pageviews \</span><br><span class="line">  PARTITION BY userid;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Joining"><a href="#Joining" class="headerlink" title="Joining"></a>Joining</h2><p>And joining the STREAM with enriched data from TABLE</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE STREAM pageviews_enriched AS \</span><br><span class="line">   SELECT pv.viewtime, \</span><br><span class="line">          pv.userid AS userid, \</span><br><span class="line">          pv.pageid, \</span><br><span class="line">          pv.timestring, \</span><br><span class="line">          u.gender, \</span><br><span class="line">          u.regionid, \</span><br><span class="line">          u.interests, \</span><br><span class="line">          u.contact_info \</span><br><span class="line">   FROM pageviews_transformed pv \</span><br><span class="line">   LEFT JOIN users u ON pv.userid = users.userid;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Use-Cases"><a href="#Use-Cases" class="headerlink" title="Use Cases"></a>Use Cases</h1><p>Common KSQL use cases are:</p>
+<ul>
+<li>Fraud detection - identify and act on out of the ordinary data to provide real-time awareness.</li>
+<li>Personalization - create real-time experiences and insight for end users driven by data.</li>
+<li>Notifications - build custom alerts and messages based on real-time data.</li>
+<li>Real-time Analytics - power real-time dashboards to understand what’s happening as it does.</li>
+<li>Sensor data and IoT - understand and deliver sensor data how and where it needs to be.</li>
+<li>Customer 360 - provide a clear, real-time understanding of your customers across every interaction.</li>
+</ul>
+<h3 id="Streaming-ETL"><a href="#Streaming-ETL" class="headerlink" title="Streaming ETL"></a>Streaming ETL</h3><p>KSQL makes it simple to transform data within the pipeline, readying messages to cleanly land in another system</p>
+<h3 id="Anomaly-Detection"><a href="#Anomaly-Detection" class="headerlink" title="Anomaly Detection"></a>Anomaly Detection</h3><p>KSQL is a good fit for identifying patterns or anomalies on real-time data. By processing the stream as data arrives you can identify and properly surface out of the ordinary events with millisecond latency.</p>
+<h3 id="Monitoring"><a href="#Monitoring" class="headerlink" title="Monitoring"></a>Monitoring</h3><p>Kafka’s ability to provide scalable ordered messages with stream processing make it a common solution for log data monitoring and alerting. KSQL lends a familiar syntax for tracking, understanding, and managing alerts.</p>
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>On a first glance KSQL seems pretty easy to start using it. It’s still pretty new, i would give it a time to mature before start using it on production.</p>
+<p>For small transformations, data-quality control and analytical queries that don’t take into account a large windows this seems a good solution. For more complex queries i still prefer to keep Kafka to it’s core business and let the computation work to Spark.  </p>
+<h2 id="More-Information"><a href="#More-Information" class="headerlink" title="More Information"></a>More Information</h2><ul>
+<li>KSQL is available as a developer preview on <a target="_blank" rel="noopener" href="http://go2.confluent.io/Q0KX0lH0Qq2kx0t3r00U8X0">Github</a></li>
+<li>Read the <a target="_blank" rel="noopener" href="http://go2.confluent.io/m000tV2080xr3kXlHKr0QX0">documentation</a> for KSQL</li>
+<li>Join the conversation in the #ksql channel in the <a target="_blank" rel="noopener" href="http://go2.confluent.io/m000tW2080xr3kXlHKs0QX0">Confluent Community Slack</a>. </li>
+</ul>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/confluentinc/ksql">https://github.com/confluentinc/ksql</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/confluentinc/ksql/tree/0.1.x/docs/quickstart#quick-start">https://github.com/confluentinc/ksql/tree/0.1.x/docs/quickstart#quick-start</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/confluentinc/ksql/tree/0.1.x/ksql-clickstream-demo#clickstream-analysis">https://github.com/confluentinc/ksql/tree/0.1.x/ksql-clickstream-demo#clickstream-analysis</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+<nav id="pagination">
+  
+    <a href="/" class="alignleft prev">Previous</a>
+  
+  
+    <a href="/page/3/" class="alignright next">Next</a>
+  
+  <div class="clearfix"></div>
+</nav>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:rramos.github.io">
+  </form>
+</div>
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Airflow/">Airflow</a><small>1</small></li>
+  
+    <li><a href="/tags/Analytics/">Analytics</a><small>1</small></li>
+  
+    <li><a href="/tags/Ansible/">Ansible</a><small>2</small></li>
+  
+    <li><a href="/tags/Avro/">Avro</a><small>1</small></li>
+  
+    <li><a href="/tags/BigData/">BigData</a><small>2</small></li>
+  
+    <li><a href="/tags/BigQuery/">BigQuery</a><small>1</small></li>
+  
+    <li><a href="/tags/CDH-Parcel/">CDH Parcel</a><small>1</small></li>
+  
+    <li><a href="/tags/CheatSheet/">CheatSheet</a><small>1</small></li>
+  
+    <li><a href="/tags/Cloudera/">Cloudera</a><small>3</small></li>
+  
+    <li><a href="/tags/Code/">Code</a><small>2</small></li>
+  
+    <li><a href="/tags/Conferences/">Conferences</a><small>2</small></li>
+  
+    <li><a href="/tags/CryptoArt/">CryptoArt</a><small>1</small></li>
+  
+    <li><a href="/tags/Customization/">Customization</a><small>1</small></li>
+  
+    <li><a href="/tags/Data-Ingestion/">Data Ingestion</a><small>1</small></li>
+  
+    <li><a href="/tags/Data-Quality/">Data Quality</a><small>1</small></li>
+  
+    <li><a href="/tags/Dimensions/">Dimensions</a><small>1</small></li>
+  
+    <li><a href="/tags/Docker/">Docker</a><small>6</small></li>
+  
+    <li><a href="/tags/GA/">GA</a><small>2</small></li>
+  
+    <li><a href="/tags/GA4/">GA4</a><small>2</small></li>
+  
+    <li><a href="/tags/GC/">GC</a><small>1</small></li>
+  
+    <li><a href="/tags/GCS/">GCS</a><small>1</small></li>
+  
+    <li><a href="/tags/Google-Analytics/">Google Analytics</a><small>3</small></li>
+  
+    <li><a href="/tags/Google-Tag-Manager/">Google Tag Manager</a><small>1</small></li>
+  
+    <li><a href="/tags/GoogleChrome/">GoogleChrome</a><small>1</small></li>
+  
+    <li><a href="/tags/Guideline/">Guideline</a><small>1</small></li>
+  
+    <li><a href="/tags/HDFS/">HDFS</a><small>3</small></li>
+  
+    <li><a href="/tags/Hadoop/">Hadoop</a><small>4</small></li>
+  
+    <li><a href="/tags/Hive/">Hive</a><small>3</small></li>
+  
+    <li><a href="/tags/IDE/">IDE</a><small>1</small></li>
+  
+    <li><a href="/tags/Install/">Install</a><small>1</small></li>
+  
+    <li><a href="/tags/Internet/">Internet</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/KSQL/">KSQL</a><small>1</small></li>
+  
+    <li><a href="/tags/KVM/">KVM</a><small>2</small></li>
+  
+    <li><a href="/tags/Kafka/">Kafka</a><small>2</small></li>
+  
+    <li><a href="/tags/Keyboard/">Keyboard</a><small>1</small></li>
+  
+    <li><a href="/tags/Laws/">Laws</a><small>1</small></li>
+  
+    <li><a href="/tags/Linux/">Linux</a><small>7</small></li>
+  
+    <li><a href="/tags/Markdown/">Markdown</a><small>1</small></li>
+  
+    <li><a href="/tags/Mesos/">Mesos</a><small>1</small></li>
+  
+    <li><a href="/tags/Metrics/">Metrics</a><small>1</small></li>
+  
+    <li><a href="/tags/Monitoring/">Monitoring</a><small>1</small></li>
+  
+    <li><a href="/tags/NFT/">NFT</a><small>1</small></li>
+  
+    <li><a href="/tags/Nifi/">Nifi</a><small>1</small></li>
+  
+    <li><a href="/tags/Optimization/">Optimization</a><small>1</small></li>
+  
+    <li><a href="/tags/Parquet/">Parquet</a><small>1</small></li>
+  
+    <li><a href="/tags/Performance/">Performance</a><small>1</small></li>
+  
+    <li><a href="/tags/Polybase/">Polybase</a><small>1</small></li>
+  
+    <li><a href="/tags/Portainer/">Portainer</a><small>1</small></li>
+  
+    <li><a href="/tags/Porto/">Porto</a><small>1</small></li>
+  
+    <li><a href="/tags/PortoTechHub/">PortoTechHub</a><small>1</small></li>
+  
+    <li><a href="/tags/PowerShell/">PowerShell</a><small>1</small></li>
+  
+    <li><a href="/tags/Proxy/">Proxy</a><small>1</small></li>
+  
+    <li><a href="/tags/QEMU/">QEMU</a><small>1</small></li>
+  
+    <li><a href="/tags/Qemu/">Qemu</a><small>1</small></li>
+  
+    <li><a href="/tags/RDD/">RDD</a><small>1</small></li>
+  
+    <li><a href="/tags/SQL/">SQL</a><small>1</small></li>
+  
+    <li><a href="/tags/SQLServer/">SQLServer</a><small>1</small></li>
+  
+    <li><a href="/tags/Scala/">Scala</a><small>1</small></li>
+  
+    <li><a href="/tags/Setup/">Setup</a><small>1</small></li>
+  
+    <li><a href="/tags/Software-Engineering/">Software Engineering</a><small>1</small></li>
+  
+    <li><a href="/tags/Spark/">Spark</a><small>4</small></li>
+  
+    <li><a href="/tags/SparkSummit/">SparkSummit</a><small>1</small></li>
+  
+    <li><a href="/tags/Sqoop/">Sqoop</a><small>1</small></li>
+  
+    <li><a href="/tags/Streaming/">Streaming</a><small>1</small></li>
+  
+    <li><a href="/tags/Streamming/">Streamming</a><small>1</small></li>
+  
+    <li><a href="/tags/Tech/">Tech</a><small>1</small></li>
+  
+    <li><a href="/tags/Tools/">Tools</a><small>1</small></li>
+  
+    <li><a href="/tags/Tunning/">Tunning</a><small>1</small></li>
+  
+    <li><a href="/tags/Utils/">Utils</a><small>2</small></li>
+  
+    <li><a href="/tags/Vagrant/">Vagrant</a><small>1</small></li>
+  
+    <li><a href="/tags/VirtualBox/">VirtualBox</a><small>1</small></li>
+  
+    <li><a href="/tags/Windows/">Windows</a><small>1</small></li>
+  
+    <li><a href="/tags/Zeepelin/">Zeepelin</a><small>1</small></li>
+  
+    <li><a href="/tags/beeline/">beeline</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/btrfs/">btrfs</a><small>1</small></li>
+  
+    <li><a href="/tags/cheat/">cheat</a><small>1</small></li>
+  
+    <li><a href="/tags/docker-compose/">docker-compose</a><small>1</small></li>
+  
+    <li><a href="/tags/dr-elephant/">dr-elephant</a><small>1</small></li>
+  
+    <li><a href="/tags/encryption/">encryption</a><small>1</small></li>
+  
+    <li><a href="/tags/exception/">exception</a><small>1</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>4</small></li>
+  
+    <li><a href="/tags/github/">github</a><small>2</small></li>
+  
+    <li><a href="/tags/hadoop/">hadoop</a><small>1</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hive/">hive</a><small>1</small></li>
+  
+    <li><a href="/tags/kbfs/">kbfs</a><small>1</small></li>
+  
+    <li><a href="/tags/keybase/">keybase</a><small>1</small></li>
+  
+    <li><a href="/tags/keys/">keys</a><small>1</small></li>
+  
+    <li><a href="/tags/libvirt/">libvirt</a><small>1</small></li>
+  
+    <li><a href="/tags/markdown/">markdown</a><small>1</small></li>
+  
+    <li><a href="/tags/pgp/">pgp</a><small>1</small></li>
+  
+    <li><a href="/tags/pki/">pki</a><small>1</small></li>
+  
+    <li><a href="/tags/qcow2/">qcow2</a><small>1</small></li>
+  
+    <li><a href="/tags/sheet/">sheet</a><small>1</small></li>
+  
+    <li><a href="/tags/ssh/">ssh</a><small>2</small></li>
+  
+    <li><a href="/tags/udfs/">udfs</a><small>1</small></li>
+  
+    <li><a href="/tags/utils/">utils</a><small>1</small></li>
+  
+    <li><a href="/tags/vdi/">vdi</a><small>1</small></li>
+  
+    <li><a href="/tags/visual-code/">visual code</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2021 Rui Ramos
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<!-- Go to www.addthis.com/dashboard to customize your tools --> <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-59c7d222fcd19d69"></script>
+</body>
+</html>

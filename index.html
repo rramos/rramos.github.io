@@ -1,0 +1,1082 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>rramos.github.io</title>
+  <meta name="author" content="Rui Ramos">
+  
+  <meta name="description" content="A simple Blog related with Infrastructure Architecture and Data">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="rramos.github.io"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+  
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MXRC4DK');</script>
+<!-- End Google Tag Manager -->
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MXRC4DK"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">rramos.github.io</a></h1>
+  <h2><a href="/">Tech Notes for Infrastructure and Data</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2021-12-15T11:34:50.677Z"><a href="/2021/12/15/KeyboardLayout/">2021-12-15</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2021/12/15/KeyboardLayout/">Keyboard Layout</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Reminder article for as I’m constantly forgetting the keyboard layout in my Linux distribution.<br>This started mostly after I have decided to use a 65% keyboard which misses a lot of keys from a traditional 100%. </p>
+<p>Still it has other advantages less space used and linear switches which allow faster input. Being a US tradicional Layout there are some portuguese characters missing and having a 65% keyboard doesn’t help either. Nevertheless after some weeks of adjustment improvements are noticed.</p>
+<p>The best layout to choose in Linux would be <code>English (intl, with AltGr dead keys)</code> for this setup.</p>
+<p>I still think that the english layout is the best option to follow. In regards to size a 85% seems a better options specially if you need to deal with spreadsheets.</p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Dead_key">https://en.wikipedia.org/wiki/Dead_key</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2021-10-24T11:22:37.695Z"><a href="/2021/10/24/GA4/">2021-10-24</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2021/10/24/GA4/">Google Analytics - UA vs GA4</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="Google-Analytics-quick-History"><a href="#Google-Analytics-quick-History" class="headerlink" title="Google Analytics quick History"></a>Google Analytics quick History</h2><p>In the October of 2020, Google rolled out Google Analytics 4 (GA4), the latest iteration of the Google Analytics platform. GA4 replaces Universal Analytics (UA) as the default for digital analytics measurement in GA.</p>
+<p>The objective of this article is to consolidate the most significative changes, and required operations to migrate to the new data model.</p>
+<h2 id="Differences-in-UA-and-GA4-data-models"><a href="#Differences-in-UA-and-GA4-data-models" class="headerlink" title="Differences in UA and GA4 data models"></a>Differences in UA and GA4 data models</h2><h3 id="Events-and-Hit-types"><a href="#Events-and-Hit-types" class="headerlink" title="Events and Hit types"></a>Events and Hit types</h3><p>The most significative change from UA to GA4 in my opinion is the fact that all interactions are now reported as events.</p>
+<p>In UA an event has a Category, Action and Label for that specific hit type. In GA4 all hits are events there is no distinction on the hit types</p>
+<table>
+<thead>
+<tr>
+<th>Hit type in (UA)</th>
+<th>Measurement in GA4</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Page View</td>
+<td>Event</td>
+</tr>
+<tr>
+<td>Event</td>
+<td>Event</td>
+</tr>
+<tr>
+<td>Social</td>
+<td>Event</td>
+</tr>
+<tr>
+<td>Transaction/e-commerce</td>
+<td>Event</td>
+</tr>
+<tr>
+<td>User timing</td>
+<td>Event</td>
+</tr>
+<tr>
+<td>Exception</td>
+<td>Event</td>
+</tr>
+<tr>
+<td>App/screen view</td>
+<td>Event</td>
+</tr>
+</tbody></table>
+<hr>
+<p>GA4 events fall into four categories:</p>
+<ul>
+<li>Automatically collected events</li>
+<li>Enhanced measurements events</li>
+<li>Recommended events</li>
+<li>Custom events</li>
+</ul>
+<h4 id="Automatically-collected-events"><a href="#Automatically-collected-events" class="headerlink" title="Automatically collected events"></a><strong>Automatically collected events</strong></h4><p>This events are logged as long you have the base code for GA4 snippet on your site either via gtag.js or Google Tag Manager. No code required</p>
+<h4 id="Enhanced-Measurements"><a href="#Enhanced-Measurements" class="headerlink" title="Enhanced Measurements"></a><strong>Enhanced Measurements</strong></h4><p>Enhanced measurements events are events that are automatically logged no code required and can be enable/disabled on the properties. also they don’t count for the named events limit that we will check next. They allow you to measure interactions with your content.</p>
+<h4 id="Recommended-Events"><a href="#Recommended-Events" class="headerlink" title="Recommended Events"></a><strong>Recommended Events</strong></h4><p>This events have predefined names and parameters and are recommend for specific business use cases. This events allow you to have more detail on your reports and enables the benefit from latest features but require you to add code as they are not logged automatically.</p>
+<p>They are recommended for:</p>
+<ul>
+<li>Retail and e-commerce</li>
+<li>Jobs/Education, Local Deals, Real Estate</li>
+<li>Travel</li>
+<li>Games</li>
+</ul>
+<h4 id="Custom-Events"><a href="#Custom-Events" class="headerlink" title="Custom Events"></a><strong>Custom Events</strong></h4><p>Custom events are implemented by yourself. You should use as a last resource and identify if the previous ones provide the data you require.</p>
+<h3 id="Pageviews"><a href="#Pageviews" class="headerlink" title="Pageviews"></a>Pageviews</h3><p>Page view in UA translate to the <code>page_view</code> event . This event is trigger automatically using the gtag.js snippet or by Google Tag manager. For Mobile apps the analog to a pageview a <em>screenview</em> is mapped to a <code>screen_view</code> event</p>
+<h3 id="Sessions"><a href="#Sessions" class="headerlink" title="Sessions"></a>Sessions</h3><p>Sessions is a group of interactions with your website that takes place within a given time frame. In UA sessions are typically defined as having ended once there has been a 30m period of inactivity or another reset event. In GA4 session metrics are derived from session_start event and the last event in the session.</p>
+<ul>
+<li><strong>Active user calculation</strong>: User activity is now detected automatically in GA4 in contrast with UA. Due to the fact that the ID can span to multiple devices it’s normal that we find mismatch when comparing both UA and GA4 data.</li>
+<li><strong>Session counting</strong>: One important change is that a new Campaign does not reset the session in GA4 has occurs in UA. Also GA4 processes the sessions with arrives up to 72 hours late while in UA the processing takes place getting data if they arrive 4 hours of close of the preceding day. Another important feature is that the iOS SDK uploads metrics automatically when apps are background, this can also result in different values if compared with UA data.</li>
+</ul>
+<h3 id="Custom-Metrics-and-Dimensions"><a href="#Custom-Metrics-and-Dimensions" class="headerlink" title="Custom Metrics and Dimensions"></a>Custom Metrics and Dimensions</h3><p>Custom Metrics and Dimensions have their own scope. When changing to GA4 the following mapping should be applied.</p>
+<table>
+<thead>
+<tr>
+<th>Scope in UA</th>
+<th>GA4 property</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Hit-scoped</td>
+<td>Events or parameters</td>
+</tr>
+<tr>
+<td>User-scoped</td>
+<td>User properties</td>
+</tr>
+<tr>
+<td>Session-scoped</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>Product-scoped</td>
+<td>E-commerce parameters</td>
+</tr>
+</tbody></table>
+<p>Remember that events, event parameters and user properties are subject to limits.</p>
+<h3 id="Content-Grouping"><a href="#Content-Grouping" class="headerlink" title="Content Grouping"></a>Content Grouping</h3><p>This is also big change as in UA you could group content into a logical structure, and then compare metrics by group. (ex: Man/Shirts). In GA4 there is a predefined event <code>content_group</code> that populates data into a “Content Group” Dimension</p>
+<h3 id="Parameters"><a href="#Parameters" class="headerlink" title="Parameters"></a>Parameters</h3><p>In GA4 you can send parameters with each event. Parameters are additional pieces of information that can further specify the action the user took, or add more context.Each event can log up to 25 parameters.</p>
+<h3 id="User-property"><a href="#User-property" class="headerlink" title="User property"></a>User property</h3><p>User properties are attributes about the users who interact with your app or website. They are used to describe segments of your user base.</p>
+<h2 id="Data-collection-settings-that-can-be-migrated"><a href="#Data-collection-settings-that-can-be-migrated" class="headerlink" title="Data collection settings that can be migrated"></a>Data collection settings that can be migrated</h2><p>The following data collection settings migrate in one-to-one from UA to GA4 as long as you use the gtag.js snippet or Google tag Manager.</p>
+<ul>
+<li>cookie customization</li>
+<li>ads personalization</li>
+</ul>
+<h2 id="Data-collection-settings-with-no-equivalent-in-GA4"><a href="#Data-collection-settings-with-no-equivalent-in-GA4" class="headerlink" title="Data collection settings with no equivalent in GA4"></a>Data collection settings with no equivalent in GA4</h2><ul>
+<li>control over IP anonymization - Enabled by default in GA4 properties</li>
+<li>get clientID - Not currently available</li>
+<li>custom task - Not available in GA4</li>
+<li>timing - Not available in GA4</li>
+</ul>
+<h2 id="Limits"><a href="#Limits" class="headerlink" title="Limits"></a>Limits</h2><p>Collections and configurations limits at the date:</p>
+<ul>
+<li>Distinctly named events <strong>500</strong> per app instance. (Can not be deleted if reaching limit)</li>
+<li>Length of event names is <strong>40</strong> characters</li>
+<li>Limit of <strong>25</strong> parameters per event</li>
+<li>Parameters value have the length limit of <strong>100</strong> characters</li>
+<li><strong>25</strong> user properties that can be added</li>
+<li>length of user property names is <strong>24</strong> charaters</li>
+<li>length of user property values is <strong>36</strong> characters</li>
+<li><strong>100</strong> audiences can be created by property</li>
+<li><strong>30</strong> convertions can be created by property</li>
+<li>Data retention up to <strong>14</strong> months</li>
+</ul>
+<p>For a complete list check the following <a target="_blank" rel="noopener" href="https://support.google.com/analytics/answer/9267744">article</a></p>
+<h2 id="Comparing-report-data-in-UA-and-GA4"><a href="#Comparing-report-data-in-UA-and-GA4" class="headerlink" title="Comparing report data in UA and GA4"></a>Comparing report data in UA and GA4</h2><p>As refereed there are several changes that may impact your report when shifting from UA to GA4. Google recommends that one creates a new tracking ID and keep both tracking options working simultaneously, preferably manged in Google Tag manager.</p>
+<p>Make sure of the following:</p>
+<ul>
+<li>Your tracking ID from UA and GA4 are both collecting the same web pages</li>
+<li>Both properties have equivalent tag implementations </li>
+<li>All tags are firing successfully</li>
+<li>Both properties use the same time zone</li>
+<li>Make sure to compare an unfiltered view in UA with a single web data stream in GA4</li>
+<li>Both properties have been collecting data for at least 30m in order to compare on the realtime report</li>
+</ul>
+<p>Cheers,<br>RR</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2021-10-24T11:22:37.695Z"><a href="/2021/10/24/GTM/">2021-10-24</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2021/10/24/GTM/">Google Tag Manager</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>In this article it will be provided a quick walkthrough on Google Tag Manager.</p>
+<h2 id="What-is-Google-Tag-Manager"><a href="#What-is-Google-Tag-Manager" class="headerlink" title="What is Google Tag Manager ?"></a>What is Google Tag Manager ?</h2><p>Google Tag Manager is a tag management system (TMS) that allows you to quickly and easily update measurement codes and related code fragments collectively known as tags on your website or mobile app. Once the small segment of Tag Manager code has been added to your project, you can safely and easily deploy analytics and measurement tag configurations from a web-based user interface.</p>
+<h3 id="What-is-a-Tag"><a href="#What-is-a-Tag" class="headerlink" title="What is a Tag ?"></a>What is a Tag ?</h3><p>Tags are segments of code provided by analytics, marketing, and support vendors to help you integrate their products into your websites or mobile apps. With Google Tag Manager, you no longer need to add these tags directly to your projects. Instead, you configure and publish tags and how they fire from within the Tag Manager user interface.</p>
+<p>When we speak of tags in an HTML context, we refer to tags such as <code>&lt;body&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;li&gt;</code>, <code>&lt;blockquote&gt;</code>, and so on. When we refer to tags used in the analytics and marketing industry, we refer to code that an organization provides to install the desired product or functionality on your website or mobile app.</p>
+<p>Tag Manager natively supports many <a target="_blank" rel="noopener" href="https://support.google.com/tagmanager/answer/6106924">Google and 3rd party tag</a> configurations. <a target="_blank" rel="noopener" href="https://support.google.com/tagmanager/answer/6107167">Custom tags</a> may be used to implement tags that are not yet supported by Tag Manager’s native templates.</p>
+<h2 id="How-it-works"><a href="#How-it-works" class="headerlink" title="How it works ?"></a>How it works ?</h2><ul>
+<li>A snippet of code (container) is required to be installed on each page of your website like it happens for instance in Google Analytics.</li>
+<li>After that one needs to setup the triggers that would fire the tags using the tagmanager UI.</li>
+<li>After publishing those tags the events are triggered based on the defined rules in a asynchronous way.</li>
+</ul>
+<blockquote>
+<p><strong>NOTE:</strong> You need one tag manager account per company or organization, but if you are tracking for several companies, you can connect to multiple tag manager accounts to a single user’s Google account.<br>Each Tag Manager account has at least one container.  A container includes the tags and “triggers” that determine when those tags should fire or collect data. Typically, you’ll have one container for each website domain, though you can use a single container for cross-domain tracking</p>
+</blockquote>
+<h3 id="How-to-Setup"><a href="#How-to-Setup" class="headerlink" title="How to Setup ?"></a>How to Setup ?</h3><p>In order to setup GTM the following steps are required:</p>
+<ol>
+<li><strong>Create an account</strong>, or use an existing account, at <a href="tagmanager.google.co">tagmanager.google.com</a>. (A new container is created by default, and you can create additional containers within each account.)</li>
+<li><strong>Install the container</strong> in your website or mobile app.<ul>
+<li>For web and AMP pages: Add the container snippet as instructed by Tag Manager, and remove any existing tags.</li>
+<li>For mobile apps: Use the Firebase SDK for Android or iOS.</li>
+</ul>
+</li>
+<li><strong>Add and publish your tags</strong>.</li>
+</ol>
+<blockquote>
+<p><strong>NOTE:</strong> A Tag Manager account represents the topmost level of organization. Typically, only one account is needed per company. A Tag Manager account contains one or more containers, and there are specific container types that may be used for websites, AMP pages, Android apps, and iOS apps.</p>
+</blockquote>
+<h4 id="Install-the-snippet"><a href="#Install-the-snippet" class="headerlink" title="Install the snippet"></a><strong>Install the snippet</strong></h4><ul>
+<li><p>Place the <code>&lt;script&gt;</code> code snippet in the <code>&lt;head&gt;</code> of your web page HTML output, preferably as close to the opening <code>&lt;head&gt;</code> tag as possible, but below any dataLayer declarations.</p>
+</li>
+<li><p>Place the <code>&lt;noscript&gt;</code> code snippet immediately after the <code>&lt;body&gt;</code> tag in your HTML output.</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>NOTE:</strong> To ensure that tags do not fire twice, remove from your code any hardcoded tags that have been migrated to your Tag Manager container.</p>
+</blockquote>
+<h2 id="Why-should-one-use-Google-Tag-Manager"><a href="#Why-should-one-use-Google-Tag-Manager" class="headerlink" title="Why should one use Google Tag Manager ?"></a>Why should one use Google Tag Manager ?</h2><ul>
+<li>Tag manager allows to simplify the management of tags and reduce the dependency from engineering teams. Acts as a bridge between Marketers and developers.</li>
+<li>Allow to have a collaborative space for marketing teams to test and source control their changes, improving the workflow to have this changes deployed.</li>
+<li>Improves page loads as the tags are fired asynchronously.</li>
+</ul>
+<h2 id="How-to-use-Google-Tag-Manager"><a href="#How-to-use-Google-Tag-Manager" class="headerlink" title="How to use Google Tag Manager ?"></a>How to use Google Tag Manager ?</h2><h3 id="Manage-Tags"><a href="#Manage-Tags" class="headerlink" title="Manage Tags"></a>Manage Tags</h3><p>Tags are fired based on triggers and these make use of:</p>
+<ul>
+<li>Variable</li>
+<li>Operators</li>
+<li>Values</li>
+</ul>
+<h4 id="Variables"><a href="#Variables" class="headerlink" title="Variables"></a>Variables</h4><ul>
+<li><strong>Built-in Variables</strong>: ex: <code>&#123;&#123;page path&#125;&#125;</code> or <code>&#123;&#123;click id&#125;&#125;</code></li>
+<li><strong>User defined variables</strong>: ex: <code>&#123;&#123;purchaseComplete&#125;&#125;</code></li>
+</ul>
+<h4 id="Operators"><a href="#Operators" class="headerlink" title="Operators"></a>Operators</h4><ul>
+<li>Operators define the relation with variable and values: ex: <em>contains, equals</em></li>
+</ul>
+<h4 id="Values"><a href="#Values" class="headerlink" title="Values"></a>Values</h4><ul>
+<li>Values like numbers or strings: ex: 1, 2, 3 or a, b , c</li>
+</ul>
+<p>When the user visit the site the container snippet will trigger tags based on firing instructions which communicates to systems such as Google Analytics.</p>
+<h2 id="DataLayer"><a href="#DataLayer" class="headerlink" title="DataLayer"></a>DataLayer</h2><p>The Data Layer in Tag Manager is a Javascript object that holds data such as custom event information or variables passed from your website. Information in the Data Layer is structured into key-value pairs, which may be passed to third-party applications like Analytics or used as a trigger to determine when tags should fire.</p>
+<p>There are two ways to populate the Data Layer with these key-value pairs.</p>
+<ol>
+<li>Pre-populating values in the data layer</li>
+<li>Javascript push into the Data Layer</li>
+</ol>
+<blockquote>
+<p><strong>NOTE</strong>: It’s important to note that Data Layer variables don’t persist across pages automatically. If you wish to pass a value to the Data Layer on additional pages, you’ll need to write custom code to do so.</p>
+</blockquote>
+<h2 id="Definitions"><a href="#Definitions" class="headerlink" title="Definitions"></a>Definitions</h2><ul>
+<li><strong>KPI</strong> - Key Performance Indicator (KPI) Definition<br>A Key Performance Indicator is a measurable value that demonstrates how effectively a company is achieving key business objectives. Organizations use KPIs at multiple levels to evaluate their success at reaching targets.</li>
+</ul>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://marketingplatform.google.com/about/tag-manager/">https://marketingplatform.google.com/about/tag-manager/</a></li>
+<li><a target="_blank" rel="noopener" href="https://developers.google.com/tag-manager">https://developers.google.com/tag-manager</a></li>
+<li><a target="_blank" rel="noopener" href="https://support.google.com/tagmanager/answer/6102821?hl=en">https://support.google.com/tagmanager/answer/6102821?hl=en</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2021-10-24T11:22:37.695Z"><a href="/2021/10/24/Github ssh keys/">2021-10-24</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2021/10/24/Github ssh keys/">Github Ssh Keys</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>When using github one of the most recommend ways to get in sync with your repo is by using ssh keys. If you don’t use it check the following article from github docs where they explain in detail how to do the setup</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.github.com/en/github/authenticating-to-github/about-ssh">https://docs.github.com/en/github/authenticating-to-github/about-ssh</a></li>
+</ul>
+<p>On your <strong>Profile</strong> you can manage your SSH and GPG keys.</p>
+<p>But take into account the following if you have more than one account the ssh-keys are unique on the system. </p>
+<p>So if you have for example:</p>
+<ol>
+<li>coporate account ruiramosff</li>
+<li>personal account rramos</li>
+</ol>
+<p>You need to have distinct ssh-keys per profile.</p>
+<p>I would recommend for this cases to have distinct ssh keys and to a proper setup on your repo configurations adding for example</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[user]</span><br><span class="line">        name = Rui Ramos</span><br><span class="line">        email = rui.ms.ramos@gmail.com</span><br></pre></td></tr></table></figure>
+
+<p>You can also do this globaly on your <code>~./gitconfig</code> but if you are going to work on the same machine but want to use different profiles, pay attention to have the git configuration adapted to it.</p>
+<p>Cheers,<br>RR</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2021-10-24T11:22:37.695Z"><a href="/2021/10/24/NamingVariables/">2021-10-24</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2021/10/24/NamingVariables/">Guideline on Naming Variables</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <blockquote>
+<p>“There are only two hard things in computer science: cache invalidation and naming things.” — Phil Karlson</p>
+</blockquote>
+<h2 id="Follow-S-I-D"><a href="#Follow-S-I-D" class="headerlink" title="Follow S-I-D"></a>Follow S-I-D</h2><p>A name must be Short, Intuitive and Descriptive.</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* Bad */</span></span><br><span class="line"><span class="keyword">const</span> a = <span class="number">5</span> <span class="comment">// &quot;a&quot; could mean anything</span></span><br><span class="line"><span class="keyword">const</span> isPaginatable = (postsCount &gt; <span class="number">10</span>) <span class="comment">// &quot;Paginatable&quot; sounds extremely unnatural</span></span><br><span class="line"><span class="keyword">const</span> shouldPaginatize = (postsCount &gt; <span class="number">10</span>) <span class="comment">// Made up verbs are so much fun!</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Suggested:</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* Good */</span></span><br><span class="line"><span class="keyword">const</span> postsCount = <span class="number">5</span></span><br><span class="line"><span class="keyword">const</span> hasPagination = (postsCount &gt; <span class="number">10</span>)</span><br><span class="line"><span class="keyword">const</span> shouldDisplayPagination = (postsCount &gt; <span class="number">10</span>) <span class="comment">// alternatively</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Avoid-Contraction"><a href="#Avoid-Contraction" class="headerlink" title="Avoid Contraction"></a>Avoid Contraction</h2><p>Do not use contractions. They contribute to nothing but decreased readability of the code. Finding a short, descriptive name may be hard, but contraction is not an excuse for not doing so. For instance</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* Bad */</span></span><br><span class="line"><span class="keyword">const</span> onItmClk = <span class="function">() =&gt;</span> &#123;&#125;</span><br><span class="line"><span class="comment">/* Good */</span></span><br><span class="line"><span class="keyword">const</span> onItemClick = <span class="function">() =&gt;</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Avoid-Context-Duplication"><a href="#Avoid-Context-Duplication" class="headerlink" title="Avoid Context Duplication"></a>Avoid Context Duplication</h2><p>Always remove the context from a name if that doesn’t decrease its readability.</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MenuItem</span> </span>&#123;</span><br><span class="line">  <span class="comment">/* Method name duplicates the context (which is &quot;MenuItem&quot;) */</span></span><br><span class="line">  handleMenuItemClick = <span class="function">(<span class="params">event</span>) =&gt;</span> &#123; ... &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">/* Reads nicely as `MenuItem.handleClick()` */</span></span><br><span class="line">  handleClick = <span class="function">(<span class="params">event</span>) =&gt;</span> &#123; ... &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Should-Reflect-expected-result"><a href="#Should-Reflect-expected-result" class="headerlink" title="Should Reflect expected result"></a>Should Reflect expected result</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* Bad */</span></span><br><span class="line"><span class="keyword">const</span> isEnabled = (itemsCount &gt; <span class="number">3</span>)</span><br><span class="line"><span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">Button</span> <span class="attr">disabled</span>=<span class="string">&#123;!isEnabled&#125;</span> /&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Good */</span></span><br><span class="line"><span class="keyword">const</span> isDisabled = (itemsCount &lt;= <span class="number">3</span>)</span><br><span class="line"><span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">Button</span> <span class="attr">disabled</span>=<span class="string">&#123;isDisabled&#125;</span> /&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Consider-Singular-Plurals"><a href="#Consider-Singular-Plurals" class="headerlink" title="Consider Singular/Plurals"></a>Consider Singular/Plurals</h2><p>Like a prefix, variable names can be made singular or plural depending on whether they hold a single value or multiple values.</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* Bad */</span></span><br><span class="line"><span class="keyword">const</span> friends = <span class="string">&#x27;Bob&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> friend = [<span class="string">&#x27;Bob&#x27;</span>, <span class="string">&#x27;Tony&#x27;</span>, <span class="string">&#x27;Tanya&#x27;</span>];</span><br><span class="line"><span class="comment">/* Good */</span></span><br><span class="line"><span class="keyword">const</span> friend = <span class="string">&#x27;Bob&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> friends = [<span class="string">&#x27;Bob&#x27;</span>, <span class="string">&#x27;Tony&#x27;</span>, <span class="string">&#x27;Tanya&#x27;</span>];</span><br></pre></td></tr></table></figure>
+
+<h2 id="Use-meaningful-and-pronounceable-variable-names"><a href="#Use-meaningful-and-pronounceable-variable-names" class="headerlink" title="Use meaningful and pronounceable variable names"></a>Use meaningful and pronounceable variable names</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> yyyymmdstr = moment().format(<span class="string">&quot;YYYY/MM/DD&quot;</span>);  <span class="comment">// simply awful</span></span><br><span class="line"><span class="comment">// Instead</span></span><br><span class="line"><span class="keyword">const</span> currentDate = moment().format(<span class="string">&quot;YYYY/MM/DD&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>The <a target="_blank" rel="noopener" href="https://betterprogramming.pub/a-useful-framework-for-naming-your-classes-functions-and-variables-e7d186e3189f">original article</a> is more complete and has other suggestion regarding naming good practices would suggest you check it.</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://betterprogramming.pub/a-useful-framework-for-naming-your-classes-functions-and-variables-e7d186e3189f">https://betterprogramming.pub/a-useful-framework-for-naming-your-classes-functions-and-variables-e7d186e3189f</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2021-10-24T11:22:37.695Z"><a href="/2021/10/24/SODA/">2021-10-24</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2021/10/24/SODA/">SODA</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Bernard Denys kindly share with me the availability of their product for the Open Source Community in <a target="_blank" rel="noopener" href="https://github.com/sodadata/soda-sql#readme">Github</a>. <a target="_blank" rel="noopener" href="https://www.soda.io/">SODA</a> provide a Data Monitoring Platform. In this article i will take some time to explore a quick setup on how to use it and final comments around it.</p>
+<h2 id="What-does-Soda-SQL-do"><a href="#What-does-Soda-SQL-do" class="headerlink" title="What does Soda SQL do?"></a>What does Soda SQL do?</h2><p>Soda SQL allows you to</p>
+<p>Stop your pipeline when bad data is detected<br>Extract metrics and column profiles through super efficient SQL<br>Full control over metrics and queries through declarative config files</p>
+<h2 id="5m-tutorial"><a href="#5m-tutorial" class="headerlink" title="5m tutorial"></a>5m tutorial</h2><p>There is a <a target="_blank" rel="noopener" href="https://docs.soda.io/soda-sql/getting-started/5_min_tutorial.html">5m tutorial</a> available on their official page let’s have a go…</p>
+<h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><p>I’m using Linux and i’m lazy so i’ve just installed the required pip</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip3 install soda-sql</span><br></pre></td></tr></table></figure>
+
+<p>Let’s check if it is working</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ soda </span><br><span class="line">Usage: soda [OPTIONS] COMMAND [ARGS]...</span><br><span class="line"></span><br><span class="line">  Soda CLI version 2.0.0b15</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">  --<span class="built_in">help</span>  Show this message and <span class="built_in">exit</span>.</span><br><span class="line"></span><br><span class="line">Commands:</span><br><span class="line">  analyze  Analyzes tables <span class="keyword">in</span> the warehouse and creates scan YAML files...</span><br><span class="line">  create   Creates a new warehouse.yml file and prepares credentials <span class="keyword">in</span></span><br><span class="line">           your...</span><br><span class="line"></span><br><span class="line">  init     Renamed to `soda analyze`</span><br><span class="line">  scan     Computes all measurements and runs all tests on one table.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>Great now let’s create some a dummy warehouse and do some tests:</p>
+<h2 id="Create-dummy-Datawarehouse"><a href="#Create-dummy-Datawarehouse" class="headerlink" title="Create dummy Datawarehouse"></a>Create dummy Datawarehouse</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run --name soda_sql_tutorial_db --rm -d \</span><br><span class="line">    -p 5432:5432 \</span><br><span class="line">    -v soda_sql_tutorial_postgres:/var/lib/postgresql/data:rw \</span><br><span class="line">    -e POSTGRES_USER=sodasql \</span><br><span class="line">    -e POSTGRES_DB=sodasql \</span><br><span class="line">    -e POSTGRES_HOST_AUTH_METHOD=trust \</span><br><span class="line">    postgres:9.6.17-alpine</span><br></pre></td></tr></table></figure>
+
+<p>And load it with data with the following command</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> soda_sql_tutorial_db \</span><br><span class="line">  sh -c <span class="string">&quot;wget -qO - https://raw.githubusercontent.com/sodadata/soda-sql/main/tests/demo/demodata.sql | psql -U sodasql -d sodasql&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>According to the tutorial one can remove the created container and volume with the following command :</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker stop soda_sql_tutorial_db</span><br><span class="line">docker volume rm soda_sql_tutorial_postgres</span><br></pre></td></tr></table></figure>
+
+<h2 id="Create-warehouse-directory"><a href="#Create-warehouse-directory" class="headerlink" title="Create warehouse directory"></a>Create warehouse directory</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir soda_sql_tutorial</span><br><span class="line"><span class="built_in">cd</span> soda_sql_tutorial/</span><br><span class="line">soda create -d sodasql -u sodasql -w soda_sql_tutorial postgres</span><br></pre></td></tr></table></figure>
+
+<p>This created the <code>warehouse.yml</code> with connection settings which are stored on your homedir <code>~/.soda/env_vars.yml</code> </p>
+<h2 id="Analyse-table-scan-YAML-files"><a href="#Analyse-table-scan-YAML-files" class="headerlink" title="Analyse table scan YAML files"></a>Analyse table scan YAML files</h2><p>The following command will analyze the exiting tables and fill the <code>./tables/</code> directory with large data warehouse it can be inputted manually.</p>
+<p>Well, i only have 5m so let’s give it a go.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">soda analyze</span><br></pre></td></tr></table></figure>
+
+<p>Hum! interesting, queries the information schema and generates a file which i will assume per table with several metrics for validation.</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">table_name:</span> <span class="string">demodata</span></span><br><span class="line"><span class="attr">metrics:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">row_count</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">missing_count</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">missing_percentage</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">values_count</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">values_percentage</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">valid_count</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">valid_percentage</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">invalid_count</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">invalid_percentage</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">min_length</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">max_length</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">avg_length</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">min</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">max</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">avg</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">sum</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">variance</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">stddev</span></span><br><span class="line"><span class="attr">tests:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">row_count</span> <span class="string">&gt;</span> <span class="number">0</span></span><br><span class="line"><span class="attr">columns:</span></span><br><span class="line">  <span class="attr">id:</span></span><br><span class="line">    <span class="attr">valid_format:</span> <span class="string">uuid</span></span><br><span class="line">    <span class="attr">tests:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">invalid_percentage</span> <span class="string">==</span> <span class="number">0</span></span><br><span class="line">  <span class="attr">feepct:</span></span><br><span class="line">    <span class="attr">valid_format:</span> <span class="string">number_percentage</span></span><br><span class="line">    <span class="attr">tests:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">invalid_percentage</span> <span class="string">==</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Run-a-scan"><a href="#Run-a-scan" class="headerlink" title="Run a scan"></a>Run a scan</h2><p>Each scan requires a warehouse YAML and a scan YAML as input. The scan command will collect the configured metrics and run the defined tests against them.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">soda scan warehouse.yml tables/demodata.yml</span><br></pre></td></tr></table></figure>
+
+<p>And that’s it for the tutorial</p>
+<p>One can then integrate this with a orchestration tool such as <a target="_blank" rel="noopener" href="https://docs.soda.io/soda-sql/documentation/orchestrate_scans.html">Airflow</a></p>
+<p>It is recommend to <code>PythonVirtualenvOperator</code> to prevent any dependency conflicts.</p>
+<p>Example dag:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> airflow <span class="keyword">import</span> DAG</span><br><span class="line"><span class="keyword">from</span> airflow.models.variable <span class="keyword">import</span> Variable</span><br><span class="line"><span class="keyword">from</span> airflow.operators.python <span class="keyword">import</span> PythonVirtualenvOperator</span><br><span class="line"><span class="keyword">from</span> airflow.operators.dummy <span class="keyword">import</span> DummyOperator</span><br><span class="line"><span class="keyword">from</span> airflow.utils.dates <span class="keyword">import</span> days_ago</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> timedelta</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Make sure that this variable is set in your Airflow</span></span><br><span class="line">warehouse_yml = Variable.get(<span class="string">&#x27;soda_sql_warehouse_yml_path&#x27;</span>)</span><br><span class="line">scan_yml = Variable.get(<span class="string">&#x27;soda_sql_scan_yml_path&#x27;</span>)</span><br><span class="line"></span><br><span class="line">default_args = &#123;</span><br><span class="line">    <span class="string">&#x27;owner&#x27;</span>: <span class="string">&#x27;soda_sql&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;retries&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="string">&#x27;retry_delay&#x27;</span>: timedelta(minutes=<span class="number">5</span>),</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run_soda_scan</span>(<span class="params">warehouse_yml_file, scan_yml_file</span>):</span></span><br><span class="line">    <span class="keyword">from</span> sodasql.scan.scan_builder <span class="keyword">import</span> ScanBuilder</span><br><span class="line">    scan_builder = ScanBuilder()</span><br><span class="line">    <span class="comment"># Optionally you can directly build the Warehouse dict from Airflow secrets/variables</span></span><br><span class="line">    <span class="comment"># and set scan_builder.warehouse_dict with values.</span></span><br><span class="line">    scan_builder.warehouse_yml_file = warehouse_yml_file</span><br><span class="line">    scan_builder.scan_yml_file = scan_yml_file</span><br><span class="line">    scan = scan_builder.build()</span><br><span class="line">    scan_result = scan.execute()</span><br><span class="line">    <span class="keyword">if</span> scan_result.has_failures():</span><br><span class="line">        failures = scan_result.failures_count()</span><br><span class="line">        <span class="keyword">raise</span> ValueError(<span class="string">f&quot;Soda Scan found <span class="subst">&#123;failures&#125;</span> errors in your data!&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">dag = DAG(</span><br><span class="line">    <span class="string">&#x27;soda_sql_python_venv_op&#x27;</span>,</span><br><span class="line">    default_args=default_args,</span><br><span class="line">    description=<span class="string">&#x27;A simple Soda SQL scan DAG&#x27;</span>,</span><br><span class="line">    schedule_interval=timedelta(days=<span class="number">1</span>),</span><br><span class="line">    start_date=days_ago(<span class="number">1</span>),</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">ingest_data_op = DummyOperator(</span><br><span class="line">    task_id=<span class="string">&#x27;ingest_data&#x27;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">soda_sql_scan_op = PythonVirtualenvOperator(</span><br><span class="line">    task_id=<span class="string">&#x27;soda_sql_scan_demodata&#x27;</span>,</span><br><span class="line">    python_callable=run_soda_scan,</span><br><span class="line">    requirements=[<span class="string">&quot;soda-sql==2.0.0b10&quot;</span>],</span><br><span class="line">    system_site_packages=<span class="literal">False</span>,</span><br><span class="line">    op_kwargs=&#123;<span class="string">&#x27;warehouse_yml_file&#x27;</span>: warehouse_yml,</span><br><span class="line">               <span class="string">&#x27;scan_yml_file&#x27;</span>: scan_yml&#125;,</span><br><span class="line">    dag=dag</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">publish_data_op = DummyOperator(</span><br><span class="line">    task_id=<span class="string">&#x27;publish_data&#x27;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">ingest_data_op &gt;&gt; soda_sql_scan_op &gt;&gt; publish_data_op</span><br></pre></td></tr></table></figure>
+
+<p>There is also some work being done to support a SodaScanOperator for Airflow.</p>
+<h2 id="Warehouse-types"><a href="#Warehouse-types" class="headerlink" title="Warehouse types"></a>Warehouse types</h2><p>At the moment SODA is supporting the following techs:</p>
+<ul>
+<li>Snowflake</li>
+<li>AWS Athena</li>
+<li>GCP BigQuery</li>
+<li>PostgreSQL</li>
+<li>Redshift</li>
+<li>Spark SQL -&gt; (Coming Soon)</li>
+</ul>
+<h2 id="Conclusions"><a href="#Conclusions" class="headerlink" title="Conclusions"></a>Conclusions</h2><p>This quick tutorial make’s it easy to test the tool. But i would like to extended the tests on a larger solution to check how it behaves. Also i would like to see the SparkSQL as a warehouse option as most of my teams work are centered on that technology.</p>
+<p>Topics to do extended testing with:</p>
+<ul>
+<li>Schema evolution impact on the quality test setup</li>
+<li>Not using a Warehouse solution but a Datalake<ul>
+<li>Providing schemas from a Datalake and using a processing engine on top of it (ex: spark.schemas and Parquet files)</li>
+</ul>
+</li>
+<li>Testing with Delta tables</li>
+<li>Define levels of data-quality analysis</li>
+<li>Understanding better how the scans works</li>
+</ul>
+<p>The tool seems to have good potential and seems very simple which would speed the adoption. Also by sharing this to the open source community seems to be as a good choice to increase user quorum and still offer enterprise services solution.</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/sodadata/soda-sql#readme">https://github.com/sodadata/soda-sql#readme</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.soda.io/soda-sql/getting-started/5_min_tutorial.html">https://docs.soda.io/soda-sql/getting-started/5_min_tutorial.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.soda.io/soda-sql/documentation/orchestrate_scans.html">https://docs.soda.io/soda-sql/documentation/orchestrate_scans.html</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2021-10-24T11:22:37.695Z"><a href="/2021/10/24/Software Engineering Laws/">2021-10-24</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2021/10/24/Software Engineering Laws/">Software Engineering Laws</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Latest week a college shared the following <a target="_blank" rel="noopener" href="https://www.netmeister.org/blog/software-engineering-laws.html">article</a> at work that i found very interesting aggregating the info here in order not to forget.</p>
+<h2 id="Conway’s-Law"><a href="#Conway’s-Law" class="headerlink" title="Conway’s Law"></a>Conway’s Law</h2><p>Also known as: “You will ship your org chart.”</p>
+<blockquote>
+<p>“Any organization that designs a system will produce a design whose structure is a copy of the organization’s communication structure.”</p>
+</blockquote>
+<p>You may think you can avoid it via cross-functional standup meetings and stakeholder updates and decision matrices, but eventually and inevitably conflicting or diverging priorities will lead to equally conflicting or divergent processes and outcomes.</p>
+<h2 id="Brooks’s-Law"><a href="#Brooks’s-Law" class="headerlink" title="Brooks’s Law"></a>Brooks’s Law</h2><p>From The <strong>Mythical Man-Month</strong> Book:</p>
+<blockquote>
+<p>“Adding manpower to a late software project makes it later.”</p>
+</blockquote>
+<p>When you realize you’re not making the progress you thought you would and your management tries to reallocate resources from another part of the org, you’ll end up not only delaying the project, but you’ll likely ship a more brittle, more complex product</p>
+<h2 id="Zawinski’s-Law"><a href="#Zawinski’s-Law" class="headerlink" title="Zawinski’s Law"></a>Zawinski’s Law</h2><blockquote>
+<p>“Every program attempts to expand until it includes a web server. Those programs which cannot so expand are replaced by ones which can.”</p>
+</blockquote>
+<p>For web services, it’s “…until it requires a user account and collects all users’ data”; for physical devices, it’s “…until it includes an insecure wifi access point with a default password you can’t change. And a web server”.</p>
+<h2 id="Parkinson’s-Law"><a href="#Parkinson’s-Law" class="headerlink" title="Parkinson’s Law"></a>Parkinson’s Law</h2><blockquote>
+<p>“Work expands so as to fill the time available for its completion.”</p>
+</blockquote>
+<p>The primary project management lessons here is that if you don’t set a deadline, then the project will never be completed. This is why iterating on a minimum viable product within fixed timelines is important.</p>
+<p>And, of course, we can and should adjust this law for data, processing power, RAM, …:</p>
+<blockquote>
+<p>“Data/CPU/memory usage expands to use up all available storage space/bandwidth/cycles/RAM.”</p>
+</blockquote>
+<h2 id="Pareto’s-Fallacy"><a href="#Pareto’s-Fallacy" class="headerlink" title="Pareto’s Fallacy"></a>Pareto’s Fallacy</h2><p>The <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Pareto_principle">Pareto Principle</a> is easy to misinterpret, especially by management. This often leads to Pareto’s Fallacy:</p>
+<blockquote>
+<p>“When you’re 80% done, you think you only have 20% left.”</p>
+</blockquote>
+<p>The critical part that’s overlooked here is that those 20% will require 80% of your time.</p>
+<h2 id="Sturgeon’s-Revelation"><a href="#Sturgeon’s-Revelation" class="headerlink" title="Sturgeon’s Revelation"></a>Sturgeon’s Revelation</h2><blockquote>
+<p>“90% of everything is crud.”</p>
+</blockquote>
+<p>Yes, that includes your products.</p>
+<h2 id="The-Peter-Principle"><a href="#The-Peter-Principle" class="headerlink" title="The Peter Principle"></a>The Peter Principle</h2><blockquote>
+<p>“In a hierarchy, every employee tends to rise to their level of incompetence. Thus, in time, every post tends to be occupied by an employee who is incompetent to carry out its duties.”</p>
+</blockquote>
+<p>Dunning and Kruger send their regards…(<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Peter_Principle">ref</a>)</p>
+<h2 id="Eagleson’s-Law"><a href="#Eagleson’s-Law" class="headerlink" title="Eagleson’s Law"></a>Eagleson’s Law</h2><blockquote>
+<p>“Any code of your own that you haven’t looked at for six or more months might as well have been written by someone else.”</p>
+</blockquote>
+<p>6 months is rather optimistic.</p>
+<h2 id="Greenspun’s-10th-Rule-of-Programming"><a href="#Greenspun’s-10th-Rule-of-Programming" class="headerlink" title="Greenspun’s 10th Rule of Programming"></a>Greenspun’s 10th Rule of Programming</h2><p>This can be generalized to the Universal NIH-Rule: “any custom developed system contains an ad hoc, informally-specified, bug-ridden, slow implementation of half of the industry standard you refused to adopt”.</p>
+<h2 id="The-Iceberg-Fallacy"><a href="#The-Iceberg-Fallacy" class="headerlink" title="The Iceberg Fallacy"></a>The Iceberg Fallacy</h2><blockquote>
+<p>“The cost of development of a new software product is the only ~25% of the total cost of ownership management sees and budgets for.”</p>
+</blockquote>
+<h2 id="The-LGTM-Dilemma"><a href="#The-LGTM-Dilemma" class="headerlink" title="The LGTM Dilemma"></a>The LGTM Dilemma</h2><blockquote>
+<p>“If you want to quickly ship a 10 line code change, hide it in a 1500 line pull request.”</p>
+</blockquote>
+<p>Also known as The Bikeshedders’ Blind Spot.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2021-10-24T11:22:37.694Z"><a href="/2021/10/24/CryptoArt/">2021-10-24</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2021/10/24/CryptoArt/">CryptoArt</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Bumped with this one the last day <strong>Crypto Art</strong> the following transcript from <a target="_blank" rel="noopener" href="https://niftygateway.com/collections/mankind">Mankind</a> explain a bit what’s under the movement.</p>
+<h2 id="Transcript"><a href="#Transcript" class="headerlink" title="Transcript"></a>Transcript</h2><blockquote>
+<p>Just like all cats are mammals, but not all mammals are cats. All Crypto Art are NFTs but not all NFTs are Crypto Art. I’ve made a video on basics of NFTs or non fungible tokens, you can go check that out. But today I’m here to explain the basics of what Crypto Art is, because Crypto Art is a digital artwork that is linked to a non fungible token.</p>
+<p>Traditionally Crypto Art was related to the rise of crypto currencies like bitcoin and ethereum and had symbolism around that, but it’s now more loosely accepted as any digital art that has been tokenized on the the blockchain in order to associate digital proof of ownership.</p>
+<p>So what does that mean? It means what we’ve taken for granted in the real world, that a physical painting can be authenticated and owned now has the equivalent in the digital world. This is huge because this has never been possible for digital artists in the past. A token acting as a digital certificate for a digital file securely held on a permanent network of computers now allows digital artists to sell their work like never before.</p>
+<p>Crypto art is not just the digital file. It is the digital file backed by the NFT. So just like you can go online and find M. C. Escher ‘drawing hands’ and download it and print it, you would never try to convince anyone it’s the original, because you don’t own the letter of authenticity. The same now goes for digital art, everyone can see or download it, but only one can prove they own it.</p>
+<p>The question of the value of owning a digital artwork now lies with the market. The market of collectors. Beeple sold this work for $1 and a couple of months later sold this one for $777k. Paris Hilton drew this picture of her cat and it sold for $17k. Justin Roiland the creator of Rick and Morty drew this sketch and it sold for $90k. Of course if you already have a fanbase, anything you sell will be worth more. But even small artists can find collectors that just like the art or want to support their work.</p>
+<p>Pop art used to be disregarded as cheap and distasteful, Street art used to just be vandalism, and until recently, digital art was just for Instagram likes.</p>
+<p>When you mint an NFT for Crypto Art you’re not giving away any copyright or rigths of reproduction. You are creating a new thing, a new product. That buyer can then enjoy it, and sell it whenever they please. </p>
+<p>So where can you sell? There’s an ever changing list of places to buy and sell on the primary or secondary market so I’ll keep a list below in the description. I’ve also made a video on popular ones in the past.</p>
+<p>Most Crypto Art sites currently use Ethereum to do their transactions so you need to be set up with an Ethereum wallet to connect and transfer to. You also need a little Ethereum to start with in your wallet to pay for minting or transaction fees. You can always transfer your Ethereum back out to your exchange of choice to cash out to FIAT or Dollars whenever you want.</p>
+<p>In the future Crypto Art will just be called art. But at the moment, digital art is going through a movement led by changes in technology. The struggle of the artist will still remain, to create something with meaning and value, to find an audience or collectors. But the success of crypto currency in general has brought a wave of investors with big wallets to make a splash and bring eyeballs to the space with large transactions. The art world is a way to legitimize the space with creative thinkers, emotional ideas, entertainment and connection to culture that is worth investing in. </p>
+<p>Early creators and collectors alike will be rewarded for their involvement in this movement.</p>
+</blockquote>
+<h2 id="What-is-NFT"><a href="#What-is-NFT" class="headerlink" title="What is NFT ?"></a>What is NFT ?</h2><blockquote>
+<p>NFT stands for Non Fungible Token.</p>
+<p>Fungible means something is able to be exchanged or substituted and will hold the same value. It’s interchangeable like the dollar, gold, casino chips, bitcoin, ethereum or frequent flyer loyalty points.</p>
+<p>If I lend you 10 dollars cash and you return to me two 5 dollar bank notes, I’m fine with that because even though they are different, they hold the same total value. </p>
+<p>So non-fungile obviously means it’s an asset that can’t be substituted. It has unique attributes that makes it different from something else in the same asset class. Like a painting, a theatre ticket, a house, a video game skin, a trademark or a CryptoKitty which was the first real use case to take off on the Ethereum blockchain in 2017.</p>
+<p>Some of these assets are physical and tangible and others are digital and intangible.</p>
+<p>So NFTs are non-fungible tokens. ‘Token’ refers to a digital certificate stored on a secure distributed database called a blockchain.</p>
+<p>NFTs are digital assets. Publicly verifiable intellectual property authenticated on a blockchain.</p>
+<p>A popular place to currently browse a variety of NFTs is on <a target="_blank" rel="noopener" href="http://opensea.io/">http://OpenSea.io​</a></p>
+<p>It’s an exciting space, I believe the NFT space will continue to grow in the coming years with some popular use cases being: Digital Art, Virtual Land, Gaming, Collectibles, Finance and much more.</p>
+</blockquote>
+<h2 id="List-of-Crypto-Art-Platforms"><a href="#List-of-Crypto-Art-Platforms" class="headerlink" title="List of Crypto Art Platforms"></a>List of Crypto Art Platforms</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://superrare.co/mankind%E2%80%8B">https://superrare.co/mankind​</a></li>
+<li><a target="_blank" rel="noopener" href="https://makersplace.com/mankind%E2%80%8B">https://makersplace.com/mankind​</a></li>
+<li><a target="_blank" rel="noopener" href="https://niftygateway.com/collections">https://niftygateway.com/collections</a></li>
+<li><a target="_blank" rel="noopener" href="https://opensea.io/">https://opensea.io​</a></li>
+<li><a target="_blank" rel="noopener" href="https://rarible.com/">https://rarible.com​</a></li>
+<li><a target="_blank" rel="noopener" href="https://knownorigin.io/">https://knownorigin.io​</a></li>
+<li><a target="_blank" rel="noopener" href="https://foundation.app/">https://foundation.app​</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bitski.com/">https://www.bitski.com​</a></li>
+<li><a target="_blank" rel="noopener" href="https://zora.co/">https://zora.co​</a></li>
+<li><a target="_blank" rel="noopener" href="https://mintbase.io/">https://mintbase.io​</a></li>
+<li><a target="_blank" rel="noopener" href="https://mintable.app/">https://mintable.app​</a></li>
+<li><a target="_blank" rel="noopener" href="https://niftykit.com/">https://niftykit.com​</a></li>
+<li><a target="_blank" rel="noopener" href="https://viv3.com/">https://viv3.com</a></li>
+</ul>
+<h2 id="Youtube-Reference-Video"><a href="#Youtube-Reference-Video" class="headerlink" title="Youtube Reference Video"></a>Youtube Reference Video</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://youtu.be/DYyW_tTPAhU">https://youtu.be/DYyW_tTPAhU</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2021-02-21T11:25:53.000Z"><a href="/2021/02/21/VisualCode Hexo addon/">2021-02-21</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2021/02/21/VisualCode Hexo addon/">VisualCode Hexo Addon</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="VisualCode-Hexo-extension"><a href="#VisualCode-Hexo-extension" class="headerlink" title="VisualCode Hexo extension"></a>VisualCode Hexo extension</h1><p>This article explain how to activte the visualcode hexo extension which would boost your productivity if you use Hexo for your articles such has i’m doing on this blob page.</p>
+<h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><p>Install VisualCode:</p>
+<ul>
+<li> <a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/setup/setup-overview">https://code.visualstudio.com/docs/setup/setup-overview</a></li>
+</ul>
+<p>Activate the following extension by executing the following command</p>
+<p><code>ext install fantasy.vscode-hexo-utils</code></p>
+<p>Make sure you open the folder where your Hexo base code is.</p>
+<p>That’s it.</p>
+<p>The extension allows you to directly manage your posts/tags/categories. It is also very suefull if you side lane the articles and preview the Markdowns with <strong>[Ctrl] + [Shift] + [V]</strong></p>
+<p>The extension repo is available on the following github repo: </p>
+<ul>
+<li> <a target="_blank" rel="noopener" href="https://github.com/cwxyz007/vscode-hexo-utils">https://github.com/cwxyz007/vscode-hexo-utils</a></li>
+</ul>
+<p>Kudos for the <a target="_blank" rel="noopener" href="https://github.com/cwxyz007/vscode-hexo-utils/graphs/contributors">contributors</a></p>
+<p>Cheers,<br>RR</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2021-02-21T11:07:15.000Z"><a href="/2021/02/21/Git-Untrack-previous-commited-files/">2021-02-21</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2021/02/21/Git-Untrack-previous-commited-files/">Git Untrack Previous Commited Files</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>This is something that sometimes bugs me, you keep hitting the .gitinore configuration file but still the file you try to ignore always get’s referenced on your changes.</p>
+<p>If that happens most probably you’ve reference it in the past to be track and you need to remove it, so this are the steps.</p>
+<h1 id="Update-your-gitignore-and-untrack-the-file"><a href="#Update-your-gitignore-and-untrack-the-file" class="headerlink" title="Update your .gitignore and untrack the file"></a>Update your .gitignore and untrack the file</h1><p>This example to untrack <code>db.json</code></p>
+<ol>
+<li><p>Change the entry in .gitignore ex: <code>*.json</code></p>
+</li>
+<li><p>Execute the following command to untrack</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git update-index --assume-unchanged db.json</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>Commit the changes</li>
+</ol>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+<nav id="pagination">
+  
+  
+    <a href="/page/2/" class="alignright next">Next</a>
+  
+  <div class="clearfix"></div>
+</nav>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:rramos.github.io">
+  </form>
+</div>
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Airflow/">Airflow</a><small>1</small></li>
+  
+    <li><a href="/tags/Analytics/">Analytics</a><small>1</small></li>
+  
+    <li><a href="/tags/Ansible/">Ansible</a><small>2</small></li>
+  
+    <li><a href="/tags/Avro/">Avro</a><small>1</small></li>
+  
+    <li><a href="/tags/BigData/">BigData</a><small>2</small></li>
+  
+    <li><a href="/tags/BigQuery/">BigQuery</a><small>1</small></li>
+  
+    <li><a href="/tags/CDH-Parcel/">CDH Parcel</a><small>1</small></li>
+  
+    <li><a href="/tags/CheatSheet/">CheatSheet</a><small>1</small></li>
+  
+    <li><a href="/tags/Cloudera/">Cloudera</a><small>3</small></li>
+  
+    <li><a href="/tags/Code/">Code</a><small>2</small></li>
+  
+    <li><a href="/tags/Conferences/">Conferences</a><small>2</small></li>
+  
+    <li><a href="/tags/CryptoArt/">CryptoArt</a><small>1</small></li>
+  
+    <li><a href="/tags/Customization/">Customization</a><small>1</small></li>
+  
+    <li><a href="/tags/Data-Ingestion/">Data Ingestion</a><small>1</small></li>
+  
+    <li><a href="/tags/Data-Quality/">Data Quality</a><small>1</small></li>
+  
+    <li><a href="/tags/Dimensions/">Dimensions</a><small>1</small></li>
+  
+    <li><a href="/tags/Docker/">Docker</a><small>6</small></li>
+  
+    <li><a href="/tags/GA/">GA</a><small>2</small></li>
+  
+    <li><a href="/tags/GA4/">GA4</a><small>2</small></li>
+  
+    <li><a href="/tags/GC/">GC</a><small>1</small></li>
+  
+    <li><a href="/tags/GCS/">GCS</a><small>1</small></li>
+  
+    <li><a href="/tags/Google-Analytics/">Google Analytics</a><small>3</small></li>
+  
+    <li><a href="/tags/Google-Tag-Manager/">Google Tag Manager</a><small>1</small></li>
+  
+    <li><a href="/tags/GoogleChrome/">GoogleChrome</a><small>1</small></li>
+  
+    <li><a href="/tags/Guideline/">Guideline</a><small>1</small></li>
+  
+    <li><a href="/tags/HDFS/">HDFS</a><small>3</small></li>
+  
+    <li><a href="/tags/Hadoop/">Hadoop</a><small>4</small></li>
+  
+    <li><a href="/tags/Hive/">Hive</a><small>3</small></li>
+  
+    <li><a href="/tags/IDE/">IDE</a><small>1</small></li>
+  
+    <li><a href="/tags/Install/">Install</a><small>1</small></li>
+  
+    <li><a href="/tags/Internet/">Internet</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/KSQL/">KSQL</a><small>1</small></li>
+  
+    <li><a href="/tags/KVM/">KVM</a><small>2</small></li>
+  
+    <li><a href="/tags/Kafka/">Kafka</a><small>2</small></li>
+  
+    <li><a href="/tags/Keyboard/">Keyboard</a><small>1</small></li>
+  
+    <li><a href="/tags/Laws/">Laws</a><small>1</small></li>
+  
+    <li><a href="/tags/Linux/">Linux</a><small>7</small></li>
+  
+    <li><a href="/tags/Markdown/">Markdown</a><small>1</small></li>
+  
+    <li><a href="/tags/Mesos/">Mesos</a><small>1</small></li>
+  
+    <li><a href="/tags/Metrics/">Metrics</a><small>1</small></li>
+  
+    <li><a href="/tags/Monitoring/">Monitoring</a><small>1</small></li>
+  
+    <li><a href="/tags/NFT/">NFT</a><small>1</small></li>
+  
+    <li><a href="/tags/Nifi/">Nifi</a><small>1</small></li>
+  
+    <li><a href="/tags/Optimization/">Optimization</a><small>1</small></li>
+  
+    <li><a href="/tags/Parquet/">Parquet</a><small>1</small></li>
+  
+    <li><a href="/tags/Performance/">Performance</a><small>1</small></li>
+  
+    <li><a href="/tags/Polybase/">Polybase</a><small>1</small></li>
+  
+    <li><a href="/tags/Portainer/">Portainer</a><small>1</small></li>
+  
+    <li><a href="/tags/Porto/">Porto</a><small>1</small></li>
+  
+    <li><a href="/tags/PortoTechHub/">PortoTechHub</a><small>1</small></li>
+  
+    <li><a href="/tags/PowerShell/">PowerShell</a><small>1</small></li>
+  
+    <li><a href="/tags/Proxy/">Proxy</a><small>1</small></li>
+  
+    <li><a href="/tags/QEMU/">QEMU</a><small>1</small></li>
+  
+    <li><a href="/tags/Qemu/">Qemu</a><small>1</small></li>
+  
+    <li><a href="/tags/RDD/">RDD</a><small>1</small></li>
+  
+    <li><a href="/tags/SQL/">SQL</a><small>1</small></li>
+  
+    <li><a href="/tags/SQLServer/">SQLServer</a><small>1</small></li>
+  
+    <li><a href="/tags/Scala/">Scala</a><small>1</small></li>
+  
+    <li><a href="/tags/Setup/">Setup</a><small>1</small></li>
+  
+    <li><a href="/tags/Software-Engineering/">Software Engineering</a><small>1</small></li>
+  
+    <li><a href="/tags/Spark/">Spark</a><small>4</small></li>
+  
+    <li><a href="/tags/SparkSummit/">SparkSummit</a><small>1</small></li>
+  
+    <li><a href="/tags/Sqoop/">Sqoop</a><small>1</small></li>
+  
+    <li><a href="/tags/Streaming/">Streaming</a><small>1</small></li>
+  
+    <li><a href="/tags/Streamming/">Streamming</a><small>1</small></li>
+  
+    <li><a href="/tags/Tech/">Tech</a><small>1</small></li>
+  
+    <li><a href="/tags/Tools/">Tools</a><small>1</small></li>
+  
+    <li><a href="/tags/Tunning/">Tunning</a><small>1</small></li>
+  
+    <li><a href="/tags/Utils/">Utils</a><small>2</small></li>
+  
+    <li><a href="/tags/Vagrant/">Vagrant</a><small>1</small></li>
+  
+    <li><a href="/tags/VirtualBox/">VirtualBox</a><small>1</small></li>
+  
+    <li><a href="/tags/Windows/">Windows</a><small>1</small></li>
+  
+    <li><a href="/tags/Zeepelin/">Zeepelin</a><small>1</small></li>
+  
+    <li><a href="/tags/beeline/">beeline</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/btrfs/">btrfs</a><small>1</small></li>
+  
+    <li><a href="/tags/cheat/">cheat</a><small>1</small></li>
+  
+    <li><a href="/tags/docker-compose/">docker-compose</a><small>1</small></li>
+  
+    <li><a href="/tags/dr-elephant/">dr-elephant</a><small>1</small></li>
+  
+    <li><a href="/tags/encryption/">encryption</a><small>1</small></li>
+  
+    <li><a href="/tags/exception/">exception</a><small>1</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>4</small></li>
+  
+    <li><a href="/tags/github/">github</a><small>2</small></li>
+  
+    <li><a href="/tags/hadoop/">hadoop</a><small>1</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hive/">hive</a><small>1</small></li>
+  
+    <li><a href="/tags/kbfs/">kbfs</a><small>1</small></li>
+  
+    <li><a href="/tags/keybase/">keybase</a><small>1</small></li>
+  
+    <li><a href="/tags/keys/">keys</a><small>1</small></li>
+  
+    <li><a href="/tags/libvirt/">libvirt</a><small>1</small></li>
+  
+    <li><a href="/tags/markdown/">markdown</a><small>1</small></li>
+  
+    <li><a href="/tags/pgp/">pgp</a><small>1</small></li>
+  
+    <li><a href="/tags/pki/">pki</a><small>1</small></li>
+  
+    <li><a href="/tags/qcow2/">qcow2</a><small>1</small></li>
+  
+    <li><a href="/tags/sheet/">sheet</a><small>1</small></li>
+  
+    <li><a href="/tags/ssh/">ssh</a><small>2</small></li>
+  
+    <li><a href="/tags/udfs/">udfs</a><small>1</small></li>
+  
+    <li><a href="/tags/utils/">utils</a><small>1</small></li>
+  
+    <li><a href="/tags/vdi/">vdi</a><small>1</small></li>
+  
+    <li><a href="/tags/visual-code/">visual code</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2021 Rui Ramos
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<!-- Go to www.addthis.com/dashboard to customize your tools --> <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-59c7d222fcd19d69"></script>
+</body>
+</html>
