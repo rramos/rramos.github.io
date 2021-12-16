@@ -77,6 +77,103 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
+        <time datetime="2017-09-07T16:57:08.000Z"><a href="/2017/09/07/unpivot/">2017-09-07</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/09/07/unpivot/">Hive - Unpivot to Avoid Multiple Joins</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>In Hive, when a table has multiple similar columns, such as:</p>
+<table>
+<thead>
+<tr>
+<th>product_id</th>
+<th>image_name1</th>
+<th>image_name2</th>
+<th>…</th>
+<th>image_name15</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>a.jpg</td>
+<td>b.jpg</td>
+<td>…</td>
+<td>c.jpg</td>
+</tr>
+<tr>
+<td>2</td>
+<td>d.jpg</td>
+<td>e.jpg</td>
+<td>…</td>
+<td>f.jpg</td>
+</tr>
+</tbody></table>
+<p>and we want to join based on all image_names, the naive approach would be to perform 15 joins (in the running example).</p>
+<p>Hive does not have an unpivot functionality, but it is possible to use the Hive builtin UDF explode to accomplish this:<br>Query example</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">select x.product_id, x.image_name from (</span><br><span class="line">  select product_id, map(&quot;image_name1&quot;, image_name1, ..., &quot;image_name15&quot;, image_name15) as image_map</span><br><span class="line">  from table ) x</span><br><span class="line">lateral view explode(image_map) expl as image_nr, image_name</span><br></pre></td></tr></table></figure>
+
+
+<p>This returns an unpivoted table like below, which allows us to perform a single join:</p>
+<table>
+<thead>
+<tr>
+<th>product_id</th>
+<th>image_name</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>a.jpg</td>
+</tr>
+<tr>
+<td>1</td>
+<td>b.jpg</td>
+</tr>
+<tr>
+<td>1</td>
+<td>c.jpg</td>
+</tr>
+<tr>
+<td>2</td>
+<td>d.jpg</td>
+</tr>
+<tr>
+<td>2</td>
+<td>e.jpg</td>
+</tr>
+<tr>
+<td>2</td>
+<td>f.jpg</td>
+</tr>
+</tbody></table>
+<p>Big thanks to Diogo Franco, for this hint ;) check also is Blog Page <a target="_blank" rel="noopener" href="https://diogoalexandrefranco.github.io/">diogoalexandrefranco.github.io</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2017-09-07T01:00:16.000Z"><a href="/2017/09/07/mkv/">2017-09-07</a></time>
       
       
@@ -579,6 +676,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <h3 class="title">Tags</h3>
   <ul class="entry">
   
+    <li><a href="/tags/API/">API</a><small>1</small></li>
+  
     <li><a href="/tags/Airflow/">Airflow</a><small>1</small></li>
   
     <li><a href="/tags/Analytics/">Analytics</a><small>1</small></li>
@@ -600,6 +699,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/Code/">Code</a><small>2</small></li>
   
     <li><a href="/tags/Conferences/">Conferences</a><small>2</small></li>
+  
+    <li><a href="/tags/Contracts/">Contracts</a><small>1</small></li>
   
     <li><a href="/tags/CryptoArt/">CryptoArt</a><small>1</small></li>
   
@@ -698,6 +799,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/Scala/">Scala</a><small>1</small></li>
   
     <li><a href="/tags/Setup/">Setup</a><small>1</small></li>
+  
+    <li><a href="/tags/Software/">Software</a><small>1</small></li>
   
     <li><a href="/tags/Software-Engineering/">Software Engineering</a><small>1</small></li>
   
