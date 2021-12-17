@@ -77,6 +77,92 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
+        <time datetime="2021-12-17T12:43:18.825Z"><a href="/2021/12/17/pacman/">2021-12-17</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2021/12/17/pacman/">Pacman Command in Arch Linux</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>I’ve recently started using a Arch Linux distribution <a target="_blank" rel="noopener" href="https://garudalinux.org/">Garuda Linux</a> and the package management tool is <strong>pacman</strong> this article summarizes the most common actions with based on the following article from <a target="_blank" rel="noopener" href="https://www.geeksforgeeks.org/pacman-command-in-arch-linux/">GeeksforGeeks</a>.</p>
+<h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><blockquote>
+<p>Pacman is a package manager for the arch Linux and arch-based Linux distributions. If you have used Debian-based OS like ubuntu, then the  Pacman is similar to the apt command of Debian-based operating systems. Pacman contains the compressed files as a package format and maintains a text-based package database. Pacman keeps the system up to date by synchronizing package lists with the master server. Pacman can install the packages from the official repositories or your own build packages.</p>
+</blockquote>
+<h1 id="Installing-Packages-using-the-Pacman"><a href="#Installing-Packages-using-the-Pacman" class="headerlink" title="Installing Packages using the Pacman"></a>Installing Packages using the Pacman</h1><p>When we install any new operating system on our machine, the first task we do is to install the software packages on the system. Now, to install the packages on Arch Linux, use the command Pacman with -S option and mention the package name. The -S option tells the Pacman to synchronize and to continue. Here is one example </p>
+<p><code>sudo pacman -S cmatrix</code></p>
+<p>We can mention the many package names after the -S option, separated by space.</p>
+<p><code>sudo pacman -S package1 package2 package3</code></p>
+<p>Then Pacman will show the download and install size of the package and ask for to proceed, then simply press the Y key. Pacman categorizes the installed packages into two categories.</p>
+<ul>
+<li><strong>Implicitly Installed</strong>: The package that was installed using the -S or -U option.</li>
+<li><strong>Dependencies</strong>: The package is installed because it is required by another package.</li>
+</ul>
+<h1 id="Removing-packages-using-the-Pacman"><a href="#Removing-packages-using-the-Pacman" class="headerlink" title="Removing packages using the Pacman"></a>Removing packages using the Pacman</h1><p>When we don’t need the package anymore, then we should remove the package from the system. To remove the package with all its dependencies which are not required by other packages, use the following command:</p>
+<p><code>sudo pacman -Rs &lt;package_name&gt;</code></p>
+<p>To remove the package without removing its dependency use the following command:</p>
+<p><code>sudo pacman -R &lt;package_name&gt;</code></p>
+<p>To remove the dependencies which are not required anymore, use the following command:</p>
+<p><code>pacman -Qdtq |  pacman -Rs -</code></p>
+<h1 id="Upgrading-packages"><a href="#Upgrading-packages" class="headerlink" title="Upgrading packages"></a>Upgrading packages</h1><p>In arch Linux, we can upgrade the full system by only one command using the Pacman. Use the following command to update the system:</p>
+<p><code>sudo pacman -Suy</code></p>
+<p>Let’s understand the meaning, S tell the pacman to synchronize the local database with the main database. u tells the pacman to upgrade the packages and y update the local catch on the system. Basically, this command synchronizes the local pacman database with the main repository database and then updates the system.</p>
+<h1 id="Searching-for-a-Package"><a href="#Searching-for-a-Package" class="headerlink" title="Searching for a Package"></a>Searching for a Package</h1><p>Now let’s see how we can search the package into the database of pacman. To search query in the name and description  of the package in the database use the following command:</p>
+<p><code>sudo pacman -Ss   &lt;query1&gt;  &lt;query2&gt;</code></p>
+<p>To search into already installed packages on the system, use the following command:</p>
+<p><code>sudo pacman -Qs query1&gt;  &lt;query2&gt;</code></p>
+<p>To search the query into the local database use the following command:</p>
+<p><code>sudo pacman -F query1&gt;  &lt;query2&gt;</code></p>
+<h1 id="Cleaning-the-Package-Cache"><a href="#Cleaning-the-Package-Cache" class="headerlink" title="Cleaning the Package Cache"></a>Cleaning the Package Cache</h1><p>When pacman downloads the packages it stores the packages into the <code>/var/cache/pacman/pkg/</code> and while uninstalling the package pacman does not delete these files. Pacman uses these files to downgrade the package or install the package. But it can take a lot of space to store these packages. So to delete the stored packages, use the following command:</p>
+<p><code>sudo pacman -Sc</code></p>
+<p>To remove all stored packages and cache, use the following command:</p>
+<p><code>sudp pacman -Scc</code></p>
+<h1 id="Installing-local-packages"><a href="#Installing-local-packages" class="headerlink" title="Installing local packages"></a>Installing local packages</h1><p>By using pacman we can install packages other than the main repository of Arch Linux. Use the following command to install the packages</p>
+<p>For local:</p>
+<p><code>sudo pacman -U path_to_file.pkg.tar.xz</code></p>
+<p>For remote package:</p>
+<p><code>sudo pacman -U http://www.example.com/repo/example.pkg.tar.xz</code></p>
+<h1 id="Troubleshooting"><a href="#Troubleshooting" class="headerlink" title="Troubleshooting"></a>Troubleshooting</h1><p>Sometimes installing the packages with pacman we face some errors. Following are the mainly occurred errors with pacman:</p>
+<ul>
+<li><p><strong>Conflicting file error</strong>: This error occurs due to some conflict packages present in the repository. To solve this error we can manually rename the file or force the overwrite function. We can use the following command to overwrite the function: </p>
+<ul>
+<li> <code>pacman -S --overwrite glob package</code></li>
+</ul>
+</li>
+<li><p><strong>Invalid package</strong>: This error can occur due to the partial installation of the packages. We can solve this error by deleting .part files in <code>/var/cache/pacman/pkg/</code>.</p>
+</li>
+<li><p><strong>Locking database</strong>: This error can occur when pacman is interrupted while updating the database. To solve this error, delete the file <code>/var/lib/pacman/db.lck</code> and update the database. Use the following command to delete the file:</p>
+</li>
+</ul>
+<h1 id="Garuda"><a href="#Garuda" class="headerlink" title="Garuda"></a>Garuda</h1><p> Garuda also brings a useful command <code>update</code> that abstracts all this interactions to keep your rolling system updated, still very important to understand the command line utilities to manage the packages and check the official man page for further details as this is always evolving.</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.geeksforgeeks.org/pacman-command-in-arch-linux/">https://www.geeksforgeeks.org/pacman-command-in-arch-linux/</a></li>
+<li><a target="_blank" rel="noopener" href="https://archlinux.org/pacman/pacman.8.html">https://archlinux.org/pacman/pacman.8.html</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2021-12-16T11:18:31.140Z"><a href="/2021/12/16/API Lifecycles/">2021-12-16</a></time>
       
       
@@ -800,54 +886,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2021-02-21T11:25:53.000Z"><a href="/2021/02/21/VisualCode Hexo addon/">2021-02-21</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2021/02/21/VisualCode Hexo addon/">VisualCode Hexo Addon</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="VisualCode-Hexo-extension"><a href="#VisualCode-Hexo-extension" class="headerlink" title="VisualCode Hexo extension"></a>VisualCode Hexo extension</h1><p>This article explain how to activte the visualcode hexo extension which would boost your productivity if you use Hexo for your articles such has i’m doing on this blob page.</p>
-<h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><p>Install VisualCode:</p>
-<ul>
-<li> <a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/setup/setup-overview">https://code.visualstudio.com/docs/setup/setup-overview</a></li>
-</ul>
-<p>Activate the following extension by executing the following command</p>
-<p><code>ext install fantasy.vscode-hexo-utils</code></p>
-<p>Make sure you open the folder where your Hexo base code is.</p>
-<p>That’s it.</p>
-<p>The extension allows you to directly manage your posts/tags/categories. It is also very suefull if you side lane the articles and preview the Markdowns with <strong>[Ctrl] + [Shift] + [V]</strong></p>
-<p>The extension repo is available on the following github repo: </p>
-<ul>
-<li> <a target="_blank" rel="noopener" href="https://github.com/cwxyz007/vscode-hexo-utils">https://github.com/cwxyz007/vscode-hexo-utils</a></li>
-</ul>
-<p>Kudos for the <a target="_blank" rel="noopener" href="https://github.com/cwxyz007/vscode-hexo-utils/graphs/contributors">contributors</a></p>
-<p>Cheers,<br>RR</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -879,6 +917,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/Analytics/">Analytics</a><small>1</small></li>
   
     <li><a href="/tags/Ansible/">Ansible</a><small>2</small></li>
+  
+    <li><a href="/tags/Arch/">Arch</a><small>1</small></li>
   
     <li><a href="/tags/Avro/">Avro</a><small>1</small></li>
   
@@ -950,7 +990,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Laws/">Laws</a><small>1</small></li>
   
-    <li><a href="/tags/Linux/">Linux</a><small>7</small></li>
+    <li><a href="/tags/Linux/">Linux</a><small>8</small></li>
   
     <li><a href="/tags/Markdown/">Markdown</a><small>1</small></li>
   
@@ -995,6 +1035,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/Scala/">Scala</a><small>1</small></li>
   
     <li><a href="/tags/Setup/">Setup</a><small>1</small></li>
+  
+    <li><a href="/tags/Sheetlist/">Sheetlist</a><small>1</small></li>
   
     <li><a href="/tags/Software/">Software</a><small>1</small></li>
   
