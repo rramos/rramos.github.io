@@ -77,6 +77,92 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
+        <time datetime="2017-09-27T20:16:37.000Z"><a href="/2017/09/27/hive-udfs/">2017-09-27</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/09/27/hive-udfs/">Hive UDFS Functions</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Today i was going to use a simple sha256 funtion in <a target="_blank" rel="noopener" href="https://hive.apache.org/">Hive</a> in order to mask a colunm and aparently in the latest <a target="_blank" rel="noopener" href="https://www.cloudera.com/">Cloudera</a> distribution the Shipped hive version doesn’t have that native function.</p>
+<p>This article will explain how you can build a sha256 or other udfs function and add it in Hive.</p>
+<h1 id="Checking-Cloudera-Packages-Version"><a href="#Checking-Cloudera-Packages-Version" class="headerlink" title="Checking Cloudera Packages Version"></a>Checking Cloudera Packages Version</h1><p>Check the following <a target="_blank" rel="noopener" href="https://www.cloudera.com/documentation/enterprise/release-notes/topics/cdh_vd_cdh_package_tarball.html">URL</a> in order to see the latest shipped package versions in Cloudera.</p>
+<blockquote>
+<p>CDH 5.12 -&gt; hive-1.1.0+cdh5.12.1+1197</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Return Type</th>
+<th>Name(Signature)</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>string</td>
+<td>sha2(string/binary, int)</td>
+<td>Calculates the SHA-2 family of hash functions (SHA-224, SHA-256, SHA-384, and SHA-512) (as of Hive 1.3.0). The first argument is the string or binary to be hashed. The second argument indicates the desired bit length of the result, which must have a value of 224, 256, 384, 512, or 0 (which is equivalent to 256). SHA-224 is supported starting from Java 8. If either argument is NULL or the hash length is not one of the permitted values, the return value is NULL. Example: sha2(‘ABC’, 256) = ‘b5d4045c3f466fa91fe2cc6abe79232a1a57cdf104f7a26e716e0a1e2789df78’.</td>
+</tr>
+</tbody></table>
+<p><a target="_blank" rel="noopener" href="https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF">Full Version</a></p>
+<h1 id="Implement-UDFS"><a href="#Implement-UDFS" class="headerlink" title="Implement UDFS"></a>Implement UDFS</h1><p>this will server more as an exercise, one could create a more complex udf funtion. For the time being let’s create a GenericUDFSha2 based on existing hive 1.3.0 version</p>
+<p>You code clone my repo with some udfs-utils <a href="git@github.com:rramos/udfs-utils.git">here</a></p>
+<p>The original code for hive version 1.3.0 is available in the repo</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFSha2.java">https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFSha2.java</a></p>
+<p>Let’s create the building structure</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir -p GenericUDFSha2/org/apache/hadoop/hive/ql/udf/generic</span><br><span class="line">cd GenericUDFSha2</span><br></pre></td></tr></table></figure>
+
+<p>Let’s create a <code>pom.xml</code> file</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">  xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd&quot;&gt;</span><br><span class="line">  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;</span><br><span class="line">  &lt;groupId&gt;com.rramos.bigdata.utils&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;GenericUDFSha2&lt;/artifactId&gt;</span><br><span class="line">  &lt;packaging&gt;jar&lt;/packaging&gt;</span><br><span class="line">  &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;</span><br><span class="line">  &lt;name&gt;GenericUDFSha2&lt;/name&gt;</span><br><span class="line">  &lt;url&gt;http://maven.apache.org&lt;/url&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- properties --&gt;</span><br><span class="line">  &lt;properties&gt;</span><br><span class="line">    &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;</span><br><span class="line">  &lt;/properties&gt;</span><br><span class="line">     </span><br><span class="line">  &lt;!-- prerequisitesprerequisites --&gt;</span><br><span class="line">  &lt;prerequisites&gt;</span><br><span class="line">     &lt;maven&gt;3.0&lt;/maven&gt;</span><br><span class="line">  &lt;/prerequisites&gt;</span><br><span class="line"></span><br><span class="line">   &lt;!-- Dependencies --&gt;</span><br><span class="line">   &lt;dependencies&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;junit&lt;/groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;junit&lt;/artifactId&gt;</span><br><span class="line">      &lt;version&gt;4.12&lt;/version&gt;</span><br><span class="line">      &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">       &lt;groupId&gt;org.apache.hive&lt;/groupId&gt;</span><br><span class="line">       &lt;artifactId&gt;hive-exec&lt;/artifactId&gt;</span><br><span class="line">       &lt;version&gt;2.0.0&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;joda-time&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;joda-time&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.9.3&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">  &lt;/dependencies&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- Build options --&gt;</span><br><span class="line">  &lt;build&gt;</span><br><span class="line">   &lt;plugins&gt;</span><br><span class="line">    &lt;plugin&gt;</span><br><span class="line">     &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt;</span><br><span class="line">      &lt;version&gt;2.6&lt;/version&gt;</span><br><span class="line">       &lt;configuration&gt;</span><br><span class="line">        &lt;archive&gt;</span><br><span class="line">          &lt;manifest&gt;</span><br><span class="line">           &lt;addClasspath&gt;true&lt;/addClasspath&gt;</span><br><span class="line">           &lt;mainClass&gt;com.rramos.bigdata.utils.GenericUDFSha2&lt;/mainClass&gt;</span><br><span class="line">          &lt;/manifest&gt;</span><br><span class="line">        &lt;/archive&gt;</span><br><span class="line">       &lt;/configuration&gt;</span><br><span class="line">      &lt;/plugin&gt;</span><br><span class="line"></span><br><span class="line">      &lt;plugin&gt;</span><br><span class="line">          &lt;artifactId&gt;maven-assembly-plugin&lt;/artifactId&gt;</span><br><span class="line">          &lt;configuration&gt;</span><br><span class="line">                &lt;archive&gt;</span><br><span class="line">                    &lt;manifest&gt;</span><br><span class="line">                        &lt;mainClass&gt;</span><br><span class="line">                            com.rramos.bigdata.utils.GenericUDFSha2</span><br><span class="line">                        &lt;/mainClass&gt;</span><br><span class="line">                    &lt;/manifest&gt;</span><br><span class="line">                &lt;/archive&gt;</span><br><span class="line">                &lt;descriptorRefs&gt;</span><br><span class="line">                    &lt;descriptorRef&gt;jar-with-dependencies&lt;/descriptorRef&gt;</span><br><span class="line">                &lt;/descriptorRefs&gt;</span><br><span class="line">           &lt;/configuration&gt;</span><br><span class="line">      &lt;/plugin&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/plugins&gt;</span><br><span class="line">  &lt;/build&gt;</span><br><span class="line"></span><br><span class="line">&lt;/project&gt;</span><br></pre></td></tr></table></figure>
+
+<p>You should obviously change for you packaging namespace, i’m just using <code>com.rramos.bigdata.utils</code> to be simpler.</p>
+<p>Next, let’s create the following file</p>
+<p><code>org/apache/hadoop/hive/ql/udf/generic/GenericUDFSha2.java</code></p>
+<p>with the content</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package com.rramos.bigdata.utils;</span><br><span class="line"></span><br><span class="line">import static org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorUtils.PrimitiveGrouping.BINARY_GROUP;</span><br><span class="line">import static org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorUtils.PrimitiveGrouping.NUMERIC_GROUP;</span><br><span class="line">import static org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorUtils.PrimitiveGrouping.STRING_GROUP;</span><br><span class="line"></span><br><span class="line">import java.security.MessageDigest;</span><br><span class="line">import java.security.NoSuchAlgorithmException;</span><br><span class="line"></span><br><span class="line">import org.apache.commons.codec.binary.Hex;</span><br><span class="line">import org.apache.hadoop.hive.ql.exec.Description;</span><br><span class="line">import org.apache.hadoop.hive.ql.exec.UDFArgumentException;</span><br><span class="line">import org.apache.hadoop.hive.ql.exec.UDFArgumentTypeException;</span><br><span class="line">import org.apache.hadoop.hive.ql.metadata.HiveException;</span><br><span class="line">import org.apache.hadoop.hive.serde2.objectinspector.ConstantObjectInspector;</span><br><span class="line">import org.apache.hadoop.hive.serde2.objectinspector.ObjectInspector;</span><br><span class="line">import org.apache.hadoop.hive.serde2.objectinspector.ObjectInspectorConverters.Converter;</span><br><span class="line">import org.apache.hadoop.hive.serde2.objectinspector.PrimitiveObjectInspector.PrimitiveCategory;</span><br><span class="line">import org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorFactory;</span><br><span class="line">import org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorUtils;</span><br><span class="line">import org.apache.hadoop.io.BytesWritable;</span><br><span class="line">import org.apache.hadoop.io.Text;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * GenericUDFSha2.</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">@Description(name = &quot;sha2&quot;, value = &quot;_FUNC_(string/binary, len) - Calculates the SHA-2 family of hash functions &quot;</span><br><span class="line">    + &quot;(SHA-224, SHA-256, SHA-384, and SHA-512).&quot;,</span><br><span class="line">    extended = &quot;The first argument is the string or binary to be hashed. &quot;</span><br><span class="line">    + &quot;The second argument indicates the desired bit length of the result, &quot;</span><br><span class="line">    + &quot;which must have a value of 224, 256, 384, 512, or 0 (which is equivalent to 256). &quot;</span><br><span class="line">    + &quot;SHA-224 is supported starting from Java 8. &quot;</span><br><span class="line">    + &quot;If either argument is NULL or the hash length is not one of the permitted values, the return value is NULL.\n&quot;</span><br><span class="line">    + &quot;Example: &gt; SELECT _FUNC_(&#x27;ABC&#x27;, 256);\n &#x27;b5d4045c3f466fa91fe2cc6abe79232a1a57cdf104f7a26e716e0a1e2789df78&#x27;&quot;)</span><br><span class="line">public class GenericUDFSha2 extends GenericUDF &#123;</span><br><span class="line">  private transient Converter[] converters = new Converter[2];</span><br><span class="line">  private transient PrimitiveCategory[] inputTypes = new PrimitiveCategory[2];</span><br><span class="line">  private final Text output = new Text();</span><br><span class="line">  private transient boolean isStr;</span><br><span class="line">  private transient MessageDigest digest;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  public ObjectInspector initialize(ObjectInspector[] arguments) throws UDFArgumentException &#123;</span><br><span class="line">    checkArgsSize(arguments, 2, 2);</span><br><span class="line"></span><br><span class="line">    checkArgPrimitive(arguments, 0);</span><br><span class="line">    checkArgPrimitive(arguments, 1);</span><br><span class="line"></span><br><span class="line">    // the function should support both string and binary input types</span><br><span class="line">    checkArgGroups(arguments, 0, inputTypes, STRING_GROUP, BINARY_GROUP);</span><br><span class="line">    checkArgGroups(arguments, 1, inputTypes, NUMERIC_GROUP);</span><br><span class="line"></span><br><span class="line">    if (PrimitiveObjectInspectorUtils.getPrimitiveGrouping(inputTypes[0]) == STRING_GROUP) &#123;</span><br><span class="line">      obtainStringConverter(arguments, 0, inputTypes, converters);</span><br><span class="line">      isStr = true;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      GenericUDFParamUtils.obtainBinaryConverter(arguments, 0, inputTypes, converters);</span><br><span class="line">      isStr = false;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (arguments[1] instanceof ConstantObjectInspector) &#123;</span><br><span class="line">      Integer lenObj = getConstantIntValue(arguments, 1);</span><br><span class="line">      if (lenObj != null) &#123;</span><br><span class="line">        int len = lenObj.intValue();</span><br><span class="line">        if (len == 0) &#123;</span><br><span class="line">          len = 256;</span><br><span class="line">        &#125;</span><br><span class="line">        try &#123;</span><br><span class="line">          digest = MessageDigest.getInstance(&quot;SHA-&quot; + len);</span><br><span class="line">        &#125; catch (NoSuchAlgorithmException e) &#123;</span><br><span class="line">          // ignore</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      throw new UDFArgumentTypeException(1, getFuncName() + &quot; only takes constant as &quot;</span><br><span class="line">          + getArgOrder(1) + &quot; argument&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ObjectInspector outputOI = PrimitiveObjectInspectorFactory.writableStringObjectInspector;</span><br><span class="line">    return outputOI;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  public Object evaluate(DeferredObject[] arguments) throws HiveException &#123;</span><br><span class="line">    if (digest == null) &#123;</span><br><span class="line">      return null;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    digest.reset();</span><br><span class="line">    if (isStr) &#123;</span><br><span class="line">      Text n = GenericUDFParamUtils.getTextValue(arguments, 0, converters);</span><br><span class="line">      if (n == null) &#123;</span><br><span class="line">        return null;</span><br><span class="line">      &#125;</span><br><span class="line">      digest.update(n.getBytes(), 0, n.getLength());</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      BytesWritable bWr = GenericUDFParamUtils.getBinaryValue(arguments, 0, converters);</span><br><span class="line">      if (bWr == null) &#123;</span><br><span class="line">        return null;</span><br><span class="line">      &#125;</span><br><span class="line">      digest.update(bWr.getBytes(), 0, bWr.getLength());</span><br><span class="line">    &#125;</span><br><span class="line">    byte[] resBin = digest.digest();</span><br><span class="line">    String resStr = Hex.encodeHexString(resBin);</span><br><span class="line"></span><br><span class="line">    output.set(resStr);</span><br><span class="line">    return output;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  public String getDisplayString(String[] children) &#123;</span><br><span class="line">    return getStandardDisplayString(getFuncName(), children);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  protected String getFuncName() &#123;</span><br><span class="line">    return &quot;sha2&quot;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>And build the package.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mvn package</span><br></pre></td></tr></table></figure>
+
+<p>After compile you find in <code>target</code> dir the require jar (<code>GenericUDFSha2-1.0-SNAPSHOT.jar</code>) you need to add in Hive.</p>
+<p>You should use your Hadoop Distribution instructions for deploying new jars.</p>
+<p>Here are <a target="_blank" rel="noopener" href="https://www.cloudera.com/documentation/enterprise/5-6-x/topics/cm_mc_hive_udf.html">Cloudera Instructions</a>.</p>
+<p>Next on your Hive session you need to <code>ADD JAR</code> and create a <code>FUNCTION</code> or <code>TEMPORARY FUNCTION</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ADD JAR ./target/GenericUDFSha2-1.0-SNAPSHOT.jar</span><br><span class="line">CREATE TEMPORARY FUNCTION sha2 AS &#x27;com.rramos.bigdata.utils.GenericUDFSha2&#x27;;</span><br><span class="line">SELECT sha2(foo) from bar LIMIT1; </span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://blog.matthewrathbone.com/2013/08/10/guide-to-writing-hive-udfs.html">Matthew Rathbone</a> Blog has some great tutorial on Hive Funtions. Take a look if you want to go deep with it.</p>
+<p>Cheers,<br>RR</p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.cloudera.com/documentation/enterprise/release-notes/topics/rg_cdh_vd.html">https://www.cloudera.com/documentation/enterprise/release-notes/topics/rg_cdh_vd.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cloudera.com/documentation/enterprise/5-6-x/topics/cm_mc_hive_udf.html">https://www.cloudera.com/documentation/enterprise/5-6-x/topics/cm_mc_hive_udf.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.matthewrathbone.com/2013/08/10/guide-to-writing-hive-udfs.html">https://blog.matthewrathbone.com/2013/08/10/guide-to-writing-hive-udfs.html</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2017-09-26T22:43:35.000Z"><a href="/2017/09/26/vagrant-qemu/">2017-09-26</a></time>
       
       
@@ -932,102 +1018,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-09-09T00:06:30.000Z"><a href="/2017/09/09/PolybaseCDH/">2017-09-09</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/09/09/PolybaseCDH/">Polybase Configuration With Cloudera 5</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>In this article i’ll try to describe the required configuration steps to setup Polybase in SQLServer 2016 for <a target="_blank" rel="noopener" href="https://www.cloudera.com/">Cloudera</a> CDH5. </p>
-<h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>Before starting the the configuration steps, let’s just try to understand why this is being done.</p>
-<h2 id="Sqoop"><a href="#Sqoop" class="headerlink" title="Sqoop"></a>Sqoop</h2><p>Sqoop is one of the most used tools to transfer data from the Relational World to BigData infrastructures. It relies on JDBC connectors to transfer data between SQLServer and HDFS.</p>
-<h2 id="Performance"><a href="#Performance" class="headerlink" title="Performance"></a>Performance</h2><p>The transfer process to SQLServer via sqoop is taking quite a lot, so the objective of this PoC is to verify if PolyBase alternative for dumping data in/out the cluster and understand if there is a improvement on existing processes.</p>
-<h1 id="Setup-Process"><a href="#Setup-Process" class="headerlink" title="Setup Process"></a>Setup Process</h1><h2 id="Obtain-the-cluster-configuration-files"><a href="#Obtain-the-cluster-configuration-files" class="headerlink" title="Obtain the cluster configuration files"></a>Obtain the cluster configuration files</h2><p>In order to configure Polybase for you Cloudera cluster one should first gather from CM the client configurations for HDFS and YARN.</p>
-<p>After downloading the configs you need to update the following files:</p>
-<ul>
-<li>yarn-site.xml</li>
-<li>mapred-site.xml</li>
-<li>hdfs-site.xml</li>
-</ul>
-<p>Copy this files to your SQLServer instance where Polybase will be installed.</p>
-<p>The usual path is</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">C:\Program Files\Microsoft SQL Server\MSSQL13.MSSQLSERVER\MSSQL\Binn\Polybase\Hadoop\conf  </span><br></pre></td></tr></table></figure>
-
-<p><strong>Note:</strong> Please note, that when PolyBase authenticates to a Kerberos secured cluster, we require the <code>hadoop.rpc.protection</code> setting to be set to authentication. This will leave the data communication between Hadoop nodes unencrypted.</p>
-<h2 id="Activate-the-required-Feature"><a href="#Activate-the-required-Feature" class="headerlink" title="Activate the required Feature"></a>Activate the required Feature</h2><p>On the SQLServer you are going to activate Polybase make sure you have the required pre-requisites</p>
-<ul>
-<li>64-bit SQL Server Evaluation edition</li>
-<li>Microsoft .NET Framework 4.5.</li>
-<li>Oracle Java SE RunTime Environment (JRE) version 7.51 or higher (64-bit) </li>
-<li>Minimum memory: 4GB</li>
-<li>Minimum hard disk space: 2GB</li>
-<li>TCP/IP must be enabled for Polybase to function correctly. </li>
-</ul>
-<p>Follow Microsoft guide to activate the feature <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/sql/relational-databases/polybase/polybase-installation">PolyBase Install Guide</a></p>
-<p>One could test if Polybase is correctly installed by running the following command</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> SERVERPROPERTY (<span class="string">&#x27;IsPolybaseInstalled&#x27;</span>) <span class="keyword">AS</span> IsPolybaseInstalled;  </span><br></pre></td></tr></table></figure>
-
-<h2 id="Configure-External-data-source"><a href="#Configure-External-data-source" class="headerlink" title="Configure External data source"></a>Configure External data source</h2><p>Execute the following T-SQL to create Hadoop connectivity to CDH5</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- Values map to various external data sources.  </span></span><br><span class="line"><span class="comment">--  Option 6: Cloudera 5.1, 5.2, 5.3, 5.4, 5.5, 5.9, 5.10, 5.11, and 5.12 on Linux</span></span><br><span class="line">sp_configure <span class="variable">@configname</span> <span class="operator">=</span> <span class="string">&#x27;hadoop connectivity&#x27;</span>, <span class="variable">@configvalue</span> <span class="operator">=</span> <span class="number">6</span>;   </span><br><span class="line">GO   </span><br><span class="line"></span><br><span class="line">RECONFIGURE   </span><br><span class="line">GO  </span><br></pre></td></tr></table></figure>
-
-<p>You could change the option in case you use a different Hadoop Cluster check the <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/polybase-connectivity-configuration-transact-sql">Option Mapping</a></p>
-<p><strong>Note:</strong> After running RECONFIGURE, you must stop and restart the SQL Server service.</p>
-<h2 id="Create-the-T-SQL-objects"><a href="#Create-the-T-SQL-objects" class="headerlink" title="Create the T-SQL objects"></a>Create the T-SQL objects</h2><p>Follow the example configuration described in <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/sql/relational-databases/polybase/get-started-with-polybase">Getting Started with Polybase</a></p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 1: Create a database scoped credential.  </span></span><br><span class="line"><span class="comment">-- Create a master key on the database. This is required to encrypt the credential secret.  </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> MASTER KEY ENCRYPTION <span class="keyword">BY</span> PASSWORD <span class="operator">=</span> <span class="string">&#x27;S0me!nfo&#x27;</span>;  </span><br><span class="line"></span><br><span class="line"><span class="comment">-- 2: Create a database scoped credential  for Kerberos-secured Hadoop clusters.  </span></span><br><span class="line"><span class="comment">-- IDENTITY: the Kerberos user name.  </span></span><br><span class="line"><span class="comment">-- SECRET: the Kerberos password  </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> DATABASE SCOPED CREDENTIAL HadoopUser1   </span><br><span class="line"><span class="keyword">WITH</span> <span class="keyword">IDENTITY</span> <span class="operator">=</span> <span class="string">&#x27;&lt;hadoop_user_name&gt;&#x27;</span>, Secret <span class="operator">=</span> <span class="string">&#x27;&lt;hadoop_password&gt;&#x27;</span>;  </span><br><span class="line"></span><br><span class="line"><span class="comment">-- 3:  Create an external data source.  </span></span><br><span class="line"><span class="comment">-- LOCATION (Required) : Hadoop Name Node IP address and port.  </span></span><br><span class="line"><span class="comment">-- RESOURCE MANAGER LOCATION (Optional): Hadoop Resource Manager location to enable pushdown computation.  </span></span><br><span class="line"><span class="comment">-- CREDENTIAL (Optional):  the database scoped credential, created above.  </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">EXTERNAL</span> DATA SOURCE MyHadoopCluster <span class="keyword">WITH</span> (  </span><br><span class="line">        TYPE <span class="operator">=</span> HADOOP,   </span><br><span class="line">        LOCATION <span class="operator">=</span><span class="string">&#x27;hdfs://10.xxx.xx.xxx:xxxx&#x27;</span>,   </span><br><span class="line">        RESOURCE_MANAGER_LOCATION <span class="operator">=</span> <span class="string">&#x27;10.xxx.xx.xxx:xxxx&#x27;</span>,   </span><br><span class="line">        CREDENTIAL <span class="operator">=</span> HadoopUser1        </span><br><span class="line">);  </span><br><span class="line"></span><br><span class="line"><span class="comment">-- 4: Create an external file format.  </span></span><br><span class="line"><span class="comment">-- FORMAT TYPE: Type of format in Hadoop (DELIMITEDTEXT,  RCFILE, ORC, PARQUET).    </span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">EXTERNAL</span> FILE FORMAT TextFileFormat <span class="keyword">WITH</span> (  </span><br><span class="line">        FORMAT_TYPE <span class="operator">=</span> DELIMITEDTEXT,   </span><br><span class="line">        FORMAT_OPTIONS (FIELD_TERMINATOR <span class="operator">=</span><span class="string">&#x27;|&#x27;</span>,   </span><br><span class="line">                USE_TYPE_DEFAULT <span class="operator">=</span> <span class="literal">TRUE</span>)  </span><br><span class="line"></span><br><span class="line"><span class="comment">-- 5:  Create an external table pointing to data stored in Hadoop.  </span></span><br><span class="line"><span class="comment">-- LOCATION: path to file or directory that contains the data (relative to HDFS root).  </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">EXTERNAL</span> <span class="keyword">TABLE</span> [dbo].[CarSensor_Data] (  </span><br><span class="line">        [SensorKey] <span class="type">int</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,   </span><br><span class="line">        [CustomerKey] <span class="type">int</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,   </span><br><span class="line">        [GeographyKey] <span class="type">int</span> <span class="keyword">NULL</span>,   </span><br><span class="line">        [Speed] <span class="type">float</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,   </span><br><span class="line">        [YearMeasured] <span class="type">int</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>  </span><br><span class="line">)  </span><br><span class="line"><span class="keyword">WITH</span> (LOCATION<span class="operator">=</span><span class="string">&#x27;/Demo/&#x27;</span>,   </span><br><span class="line">        DATA_SOURCE <span class="operator">=</span> MyHadoopCluster,  </span><br><span class="line">        FILE_FORMAT <span class="operator">=</span> TextFileFormat  </span><br><span class="line">);  </span><br><span class="line"></span><br><span class="line"><span class="comment">-- 6:  Create statistics on an external table.   </span></span><br><span class="line"><span class="keyword">CREATE</span> STATISTICS StatsForSensors <span class="keyword">on</span> CarSensor_Data(CustomerKey, Speed)  </span><br></pre></td></tr></table></figure>
-
-<h2 id="Example-Queries"><a href="#Example-Queries" class="headerlink" title="Example Queries"></a>Example Queries</h2><ul>
-<li>Import external Data</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- PolyBase Scenario 2: Import external data into SQL Server.  </span></span><br><span class="line"><span class="comment">-- Import data for fast drivers into SQL Server to do more in-depth analysis and  </span></span><br><span class="line"><span class="comment">-- leverage Columnstore technology.  </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span>   </span><br><span class="line">        Insured_Customers.FirstName, Insured_Customers.LastName,   </span><br><span class="line">        Insured_Customers.YearlyIncome, Insured_Customers.MaritalStatus  </span><br><span class="line"><span class="keyword">INTO</span> Fast_Customers <span class="keyword">from</span> Insured_Customers <span class="keyword">INNER</span> <span class="keyword">JOIN</span>   </span><br><span class="line">(  </span><br><span class="line">        <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> CarSensor_Data <span class="keyword">where</span> Speed <span class="operator">&gt;</span> <span class="number">35</span>   </span><br><span class="line">) <span class="keyword">AS</span> SensorD  </span><br><span class="line"><span class="keyword">ON</span> Insured_Customers.CustomerKey <span class="operator">=</span> SensorD.CustomerKey  </span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> YearlyIncome  </span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> CLUSTERED COLUMNSTORE INDEX CCI_FastCustomers <span class="keyword">ON</span> Fast_Customers;  </span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Export External Data</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- PolyBase Scenario 3: Export data from SQL Server to Hadoop.  </span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- Enable INSERT into external table  </span></span><br><span class="line">sp_configure ‘allow polybase export’, <span class="number">1</span>;  </span><br><span class="line">reconfigure  </span><br><span class="line"></span><br><span class="line"><span class="comment">-- Create an external table.   </span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">EXTERNAL</span> <span class="keyword">TABLE</span> [dbo].[FastCustomers2009] (  </span><br><span class="line">        [FirstName] <span class="type">char</span>(<span class="number">25</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,   </span><br><span class="line">        [LastName] <span class="type">char</span>(<span class="number">25</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,   </span><br><span class="line">        [YearlyIncome] <span class="type">float</span> <span class="keyword">NULL</span>,   </span><br><span class="line">        [MaritalStatus] <span class="type">char</span>(<span class="number">1</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>  </span><br><span class="line">)  </span><br><span class="line"><span class="keyword">WITH</span> (  </span><br><span class="line">        LOCATION<span class="operator">=</span><span class="string">&#x27;/old_data/2009/customerdata&#x27;</span>,  </span><br><span class="line">        DATA_SOURCE <span class="operator">=</span> HadoopHDP2,  </span><br><span class="line">        FILE_FORMAT <span class="operator">=</span> TextFileFormat,  </span><br><span class="line">        REJECT_TYPE <span class="operator">=</span> <span class="keyword">VALUE</span>,  </span><br><span class="line">        REJECT_VALUE <span class="operator">=</span> <span class="number">0</span>  </span><br><span class="line">);  </span><br><span class="line"></span><br><span class="line"><span class="comment">-- Export data: Move old data to Hadoop while keeping it query-able via an external table.  </span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> dbo.FastCustomer2009  </span><br><span class="line"><span class="keyword">SELECT</span> T.<span class="operator">*</span> <span class="keyword">FROM</span> Insured_Customers T1 <span class="keyword">JOIN</span> CarSensor_Data T2  </span><br><span class="line"><span class="keyword">ON</span> (T1.CustomerKey <span class="operator">=</span> T2.CustomerKey)  </span><br><span class="line"><span class="keyword">WHERE</span> T2.YearMeasured <span class="operator">=</span> <span class="number">2009</span> <span class="keyword">and</span> T2.Speed <span class="operator">&gt;</span> <span class="number">40</span>;  </span><br></pre></td></tr></table></figure>
-
-<h1 id="Tests"><a href="#Tests" class="headerlink" title="Tests"></a>Tests</h1><p>Initial tests are quite good actually, even with the identified issues. Polybase seems quite limited but for the objective in hands migth present like a very viable solution.</p>
-<p>Some more tests would be required.</p>
-<h1 id="Issues"><a href="#Issues" class="headerlink" title="Issues"></a>Issues</h1><ul>
-<li>It seems one cannot truncate external tables so an extra process would be required if you plan to use this as part of an ETL process that should support re-runs</li>
-<li>It seems that <code>hadoop_user_name</code> is being ignored and polybase still uses <code>pwc_user</code> account in cluster.</li>
-<li>Take care on the compression levels you choose as they consume quite a lot CPU on your SQLServer</li>
-<li>The metadata of the tables is allways stored on SQLServer. And when you choose parquet files has source format it stores in parquet meta the colunms as <code>col-0,col-1,col-3,...</code> if you map thoose files to a Hive table would require a view with the respective column name mapping.</li>
-<li>Not sure if this can be change but the dumped files to HDFS are splitted in 8, for the initial tests, only bad for small tables.</li>
-</ul>
-<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><ul>
-<li>Work in progress</li>
-</ul>
-<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/sql/relational-databases/polybase/polybase-guide">https://docs.microsoft.com/en-us/sql/relational-databases/polybase/polybase-guide</a></li>
-<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/sql/relational-databases/polybase/get-started-with-polybase">https://docs.microsoft.com/en-us/sql/relational-databases/polybase/get-started-with-polybase</a></li>
-<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/sql/relational-databases/polybase/polybase-installation">https://docs.microsoft.com/en-us/sql/relational-databases/polybase/polybase-installation</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -1058,6 +1048,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Airflow/">Airflow</a><small>1</small></li>
   
+    <li><a href="/tags/Alacritty/">Alacritty</a><small>1</small></li>
+  
     <li><a href="/tags/Analytics/">Analytics</a><small>1</small></li>
   
     <li><a href="/tags/Ansible/">Ansible</a><small>2</small></li>
@@ -1086,6 +1078,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Customization/">Customization</a><small>1</small></li>
   
+    <li><a href="/tags/Customize/">Customize</a><small>1</small></li>
+  
     <li><a href="/tags/Data-Ingestion/">Data Ingestion</a><small>1</small></li>
   
     <li><a href="/tags/Data-Quality/">Data Quality</a><small>1</small></li>
@@ -1101,6 +1095,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/GC/">GC</a><small>1</small></li>
   
     <li><a href="/tags/GCS/">GCS</a><small>1</small></li>
+  
+    <li><a href="/tags/Garuda/">Garuda</a><small>1</small></li>
   
     <li><a href="/tags/Google-Analytics/">Google Analytics</a><small>3</small></li>
   
@@ -1147,6 +1143,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/NFT/">NFT</a><small>1</small></li>
   
     <li><a href="/tags/Nifi/">Nifi</a><small>1</small></li>
+  
+    <li><a href="/tags/Nord/">Nord</a><small>1</small></li>
   
     <li><a href="/tags/Optimization/">Optimization</a><small>1</small></li>
   
@@ -1227,6 +1225,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/encryption/">encryption</a><small>1</small></li>
   
     <li><a href="/tags/exception/">exception</a><small>1</small></li>
+  
+    <li><a href="/tags/fish/">fish</a><small>1</small></li>
   
     <li><a href="/tags/git/">git</a><small>4</small></li>
   
