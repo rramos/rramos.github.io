@@ -1,0 +1,435 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Page 5 | rramos.github.io</title>
+  <meta name="author" content="Rui Ramos">
+  
+  <meta name="description" content="A simple Blog related with Infrastructure Architecture and Data">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="rramos.github.io"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+  
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MXRC4DK');</script>
+<!-- End Google Tag Manager -->
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MXRC4DK"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">rramos.github.io</a></h1>
+  <h2><a href="/">Tech Notes for Infrastructure and Data</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-09-17T22:57:27.000Z"><a href="/2016/09/17/Created-rramos-github-io/">2016-09-17</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/09/17/Created-rramos-github-io/">Created rramos.github.io</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Started-the-github-pages"><a href="#Started-the-github-pages" class="headerlink" title="Started the github pages"></a>Started the github pages</h1><h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>I had several blogs in the past that i normaly tend to ignore and stop writting, so this one will be a simple tech/personal blog with entries that i might find usefull in the future to search quicker.</p>
+<p>And as any normal blog i would start by writting the procedure of deploying the blog itself.</p>
+<p>The only way i would keep this thing updated is if i have very quick way to edit via terminal a Markdown file and do a command like <code>post-it</code> and that’s it.</p>
+<p>So <a target="_blank" rel="noopener" href="https://hexo.io/">hexo</a> seems like a good solution for me.</p>
+<p>Gona try this one out.</p>
+<p>So first things first, hosting. I’m cheap bastard so i don’t have cool domain yet, and i just need some git repo for the blog.</p>
+<p>Lets stick with <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a> there git service is pretty owesome so lets try this one out.</p>
+<p><strong>Mental-Note-To-Self:</strong> Get some nice english corrector ;) </p>
+<p>So i’ve just greated a new repo in github and from the settings i’ve selected to build a standard GitHub Page.</p>
+<p>cloned the dam thing to my computer</p>
+<p><code>git clone git@github.com:rramos/rramos.github.io.git</code></p>
+<h2 id="Installing-Hexo"><a href="#Installing-Hexo" class="headerlink" title="Installing Hexo"></a>Installing Hexo</h2><p>So first things first, let’s install the requirements.</p>
+<p>It requires:</p>
+<ul>
+<li>Node</li>
+<li>Git</li>
+</ul>
+<p>Well, git i allready have since a clonned the repo.<br>Node must be installed, but since i’m using Ubuntu Xenial i need to install the legacy one.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt install nodejs-legacy</span><br></pre></td></tr></table></figure>
+
+<p>Now starting to install hexo via npm.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo npm install -g hexo-cli</span><br><span class="line">sudo npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<p>Ok that’s it.</p>
+<h2 id="Start-writting"><a href="#Start-writting" class="headerlink" title="Start writting"></a>Start writting</h2><p>So i’ve run the following command on the repo, this initiates the hexo page structure.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+
+<p>I’ve added the deploy configuration in _config.yml</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:rramos/rramos.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+
+<p>I also downloaded a very simple theme, cas’m a simple guy. </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd themes</span><br><span class="line">git clone https://github.com/lotabout/very-simple</span><br></pre></td></tr></table></figure>
+<p>Thanks @lotabout for the theme by the way.</p>
+<p>And installed the theme requirements</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/lotabout/very-simple themes/very-simple</span><br><span class="line">sudo npm install hexo-renderer-sass --save</span><br><span class="line">sudo npm install hexo-renderer-jade --save</span><br></pre></td></tr></table></figure>
+
+<h2 id="Writing"><a href="#Writing" class="headerlink" title="Writing"></a>Writing</h2><p>So … now i suppose i can start creating blog entries, let’s start.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new post &quot;Created rramos.github.io&quot;</span><br></pre></td></tr></table></figure>
+
+<p>I get the output where the md file is and start writting there.</p>
+<p>After i have made sure my ssh keys where registered on github i simply deployed with</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>And voilá: <a href="https://rramos.github.io/">https://rramos.github.io</a>  is up and running.</p>
+<h2 id="Final-touches"><a href="#Final-touches" class="headerlink" title="Final touches"></a>Final touches</h2><p>So hexo only dumps the public part of the blog which makes sense to the git repo. <del>But i want to include all the source and not have separeted repositories for that.</del></p>
+<p>I’ve created a src dir and copy all the source data there, now i can edit directly that repo, let’s take that advantage and remove the default hello world page from the structure guess there migh exist a command for that.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ hexo list post</span><br><span class="line">INFO  Start processing</span><br><span class="line">Date        Title                     Path                                Category  Tags</span><br><span class="line">2016-09-17  Created rramos.github.io  _posts/Created-rramos-github-io.md</span><br><span class="line">2016-09-18  Hello World               _posts/hello-world.md</span><br></pre></td></tr></table></figure>
+
+<p>There you are you bastard hello-world, lets get ride of you.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">rm source/_posts/hello-world.md</span><br><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>Well guess that’s it. There is a lot to explore in hexo from what i can tell, need to check the documentation and understand the community envolvment. Also a quick way to add imagens and other objects and define the quick way to deploy.</p>
+<h2 id="Seperate-public-from-source"><a href="#Seperate-public-from-source" class="headerlink" title="Seperate public from source"></a>Seperate public from source</h2><p>It turns out that have the source and public data in the same repo causes some issues on the updates. The best aproach seems to have a separate repo for the source data and the offcial Github Pages or other hosting service with git for the public part.</p>
+<p>I’ve also added in this source repo a <code>.gitignore</code> with</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public</span><br><span class="line">db.json</span><br><span class="line">.deploy_git</span><br></pre></td></tr></table></figure>
+
+<p>So now i just have to edit MarkDown hexo generate and hexo deploy, seems quick enough let’s see if this time i can keep this updated.</p>
+<p>Cheers,<br>RR</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+<nav id="pagination">
+  
+    <a href="/page/4/" class="alignleft prev">Previous</a>
+  
+  
+  <div class="clearfix"></div>
+</nav>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:rramos.github.io">
+  </form>
+</div>
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Net/">.Net</a><small>1</small></li>
+  
+    <li><a href="/tags/API/">API</a><small>1</small></li>
+  
+    <li><a href="/tags/Airflow/">Airflow</a><small>1</small></li>
+  
+    <li><a href="/tags/Alacritty/">Alacritty</a><small>1</small></li>
+  
+    <li><a href="/tags/Analytics/">Analytics</a><small>1</small></li>
+  
+    <li><a href="/tags/Ansible/">Ansible</a><small>2</small></li>
+  
+    <li><a href="/tags/Arch/">Arch</a><small>2</small></li>
+  
+    <li><a href="/tags/Avro/">Avro</a><small>1</small></li>
+  
+    <li><a href="/tags/BigData/">BigData</a><small>2</small></li>
+  
+    <li><a href="/tags/BigQuery/">BigQuery</a><small>1</small></li>
+  
+    <li><a href="/tags/CDH-Parcel/">CDH Parcel</a><small>1</small></li>
+  
+    <li><a href="/tags/CheatSheet/">CheatSheet</a><small>1</small></li>
+  
+    <li><a href="/tags/Cloudera/">Cloudera</a><small>3</small></li>
+  
+    <li><a href="/tags/Code/">Code</a><small>2</small></li>
+  
+    <li><a href="/tags/Conferences/">Conferences</a><small>2</small></li>
+  
+    <li><a href="/tags/Contracts/">Contracts</a><small>1</small></li>
+  
+    <li><a href="/tags/CryptoArt/">CryptoArt</a><small>1</small></li>
+  
+    <li><a href="/tags/Customization/">Customization</a><small>1</small></li>
+  
+    <li><a href="/tags/Customize/">Customize</a><small>1</small></li>
+  
+    <li><a href="/tags/Data-Ingestion/">Data Ingestion</a><small>1</small></li>
+  
+    <li><a href="/tags/Data-Quality/">Data Quality</a><small>1</small></li>
+  
+    <li><a href="/tags/Dimensions/">Dimensions</a><small>1</small></li>
+  
+    <li><a href="/tags/Docker/">Docker</a><small>6</small></li>
+  
+    <li><a href="/tags/GA/">GA</a><small>2</small></li>
+  
+    <li><a href="/tags/GA4/">GA4</a><small>2</small></li>
+  
+    <li><a href="/tags/GC/">GC</a><small>1</small></li>
+  
+    <li><a href="/tags/GCS/">GCS</a><small>1</small></li>
+  
+    <li><a href="/tags/Garuda/">Garuda</a><small>1</small></li>
+  
+    <li><a href="/tags/Google-Analytics/">Google Analytics</a><small>3</small></li>
+  
+    <li><a href="/tags/Google-Tag-Manager/">Google Tag Manager</a><small>1</small></li>
+  
+    <li><a href="/tags/GoogleChrome/">GoogleChrome</a><small>1</small></li>
+  
+    <li><a href="/tags/Guideline/">Guideline</a><small>1</small></li>
+  
+    <li><a href="/tags/HDFS/">HDFS</a><small>3</small></li>
+  
+    <li><a href="/tags/Hadoop/">Hadoop</a><small>4</small></li>
+  
+    <li><a href="/tags/Hive/">Hive</a><small>3</small></li>
+  
+    <li><a href="/tags/IDE/">IDE</a><small>1</small></li>
+  
+    <li><a href="/tags/Install/">Install</a><small>1</small></li>
+  
+    <li><a href="/tags/Internet/">Internet</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/KSQL/">KSQL</a><small>1</small></li>
+  
+    <li><a href="/tags/KVM/">KVM</a><small>2</small></li>
+  
+    <li><a href="/tags/Kafka/">Kafka</a><small>2</small></li>
+  
+    <li><a href="/tags/Keyboard/">Keyboard</a><small>1</small></li>
+  
+    <li><a href="/tags/Laws/">Laws</a><small>1</small></li>
+  
+    <li><a href="/tags/Linux/">Linux</a><small>8</small></li>
+  
+    <li><a href="/tags/Markdown/">Markdown</a><small>1</small></li>
+  
+    <li><a href="/tags/Mesos/">Mesos</a><small>1</small></li>
+  
+    <li><a href="/tags/Metrics/">Metrics</a><small>1</small></li>
+  
+    <li><a href="/tags/Monitoring/">Monitoring</a><small>1</small></li>
+  
+    <li><a href="/tags/NFT/">NFT</a><small>1</small></li>
+  
+    <li><a href="/tags/Nifi/">Nifi</a><small>1</small></li>
+  
+    <li><a href="/tags/Nord/">Nord</a><small>1</small></li>
+  
+    <li><a href="/tags/OpenAPI/">OpenAPI</a><small>1</small></li>
+  
+    <li><a href="/tags/Optimization/">Optimization</a><small>1</small></li>
+  
+    <li><a href="/tags/Parquet/">Parquet</a><small>1</small></li>
+  
+    <li><a href="/tags/Performance/">Performance</a><small>1</small></li>
+  
+    <li><a href="/tags/Polybase/">Polybase</a><small>1</small></li>
+  
+    <li><a href="/tags/Portainer/">Portainer</a><small>1</small></li>
+  
+    <li><a href="/tags/Porto/">Porto</a><small>1</small></li>
+  
+    <li><a href="/tags/PortoTechHub/">PortoTechHub</a><small>1</small></li>
+  
+    <li><a href="/tags/PowerShell/">PowerShell</a><small>1</small></li>
+  
+    <li><a href="/tags/Proxy/">Proxy</a><small>1</small></li>
+  
+    <li><a href="/tags/QEMU/">QEMU</a><small>1</small></li>
+  
+    <li><a href="/tags/Qemu/">Qemu</a><small>1</small></li>
+  
+    <li><a href="/tags/RDD/">RDD</a><small>1</small></li>
+  
+    <li><a href="/tags/SQL/">SQL</a><small>1</small></li>
+  
+    <li><a href="/tags/SQLServer/">SQLServer</a><small>1</small></li>
+  
+    <li><a href="/tags/Scala/">Scala</a><small>1</small></li>
+  
+    <li><a href="/tags/Setup/">Setup</a><small>1</small></li>
+  
+    <li><a href="/tags/Sheetlist/">Sheetlist</a><small>1</small></li>
+  
+    <li><a href="/tags/Software/">Software</a><small>1</small></li>
+  
+    <li><a href="/tags/Software-Engineering/">Software Engineering</a><small>1</small></li>
+  
+    <li><a href="/tags/Spark/">Spark</a><small>4</small></li>
+  
+    <li><a href="/tags/SparkSummit/">SparkSummit</a><small>1</small></li>
+  
+    <li><a href="/tags/Sqoop/">Sqoop</a><small>1</small></li>
+  
+    <li><a href="/tags/Streaming/">Streaming</a><small>1</small></li>
+  
+    <li><a href="/tags/Streamming/">Streamming</a><small>1</small></li>
+  
+    <li><a href="/tags/Tech/">Tech</a><small>1</small></li>
+  
+    <li><a href="/tags/Tools/">Tools</a><small>1</small></li>
+  
+    <li><a href="/tags/Tunning/">Tunning</a><small>1</small></li>
+  
+    <li><a href="/tags/Utils/">Utils</a><small>2</small></li>
+  
+    <li><a href="/tags/Vagrant/">Vagrant</a><small>1</small></li>
+  
+    <li><a href="/tags/VirtualBox/">VirtualBox</a><small>1</small></li>
+  
+    <li><a href="/tags/Windows/">Windows</a><small>1</small></li>
+  
+    <li><a href="/tags/Zeepelin/">Zeepelin</a><small>1</small></li>
+  
+    <li><a href="/tags/beeline/">beeline</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/btrfs/">btrfs</a><small>1</small></li>
+  
+    <li><a href="/tags/cheat/">cheat</a><small>1</small></li>
+  
+    <li><a href="/tags/docker-compose/">docker-compose</a><small>1</small></li>
+  
+    <li><a href="/tags/dr-elephant/">dr-elephant</a><small>1</small></li>
+  
+    <li><a href="/tags/encryption/">encryption</a><small>1</small></li>
+  
+    <li><a href="/tags/exception/">exception</a><small>1</small></li>
+  
+    <li><a href="/tags/fish/">fish</a><small>1</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>4</small></li>
+  
+    <li><a href="/tags/github/">github</a><small>2</small></li>
+  
+    <li><a href="/tags/hadoop/">hadoop</a><small>1</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hive/">hive</a><small>1</small></li>
+  
+    <li><a href="/tags/kbfs/">kbfs</a><small>1</small></li>
+  
+    <li><a href="/tags/keybase/">keybase</a><small>1</small></li>
+  
+    <li><a href="/tags/keys/">keys</a><small>1</small></li>
+  
+    <li><a href="/tags/libvirt/">libvirt</a><small>1</small></li>
+  
+    <li><a href="/tags/markdown/">markdown</a><small>1</small></li>
+  
+    <li><a href="/tags/pgp/">pgp</a><small>1</small></li>
+  
+    <li><a href="/tags/pki/">pki</a><small>1</small></li>
+  
+    <li><a href="/tags/qcow2/">qcow2</a><small>1</small></li>
+  
+    <li><a href="/tags/sheet/">sheet</a><small>1</small></li>
+  
+    <li><a href="/tags/ssh/">ssh</a><small>2</small></li>
+  
+    <li><a href="/tags/udfs/">udfs</a><small>1</small></li>
+  
+    <li><a href="/tags/utils/">utils</a><small>1</small></li>
+  
+    <li><a href="/tags/vdi/">vdi</a><small>1</small></li>
+  
+    <li><a href="/tags/visual-code/">visual code</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2021 Rui Ramos
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<!-- Go to www.addthis.com/dashboard to customize your tools --> <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-59c7d222fcd19d69"></script>
+</body>
+</html>
