@@ -77,6 +77,101 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
+        <time datetime="2021-12-21T11:30:58.058Z"><a href="/2021/12/21/artifactory/">2021-12-21</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2021/12/21/artifactory/">Artifactory Setup</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>In this article i will describe how to setup a docker enviroment to have a JFrog Artifactory local solution. </p>
+<h1 id="Objective"><a href="#Objective" class="headerlink" title="Objective"></a>Objective</h1><p>The main objective of this walkthrough is to have a local repository to manage packages such as Nugets, jars, rpms, etc.</p>
+<p>Could be usefull to test CI/CD pipelines also.</p>
+<h1 id="Versions"><a href="#Versions" class="headerlink" title="Versions"></a>Versions</h1><p>Artifactory has several versions. It is recommend to use a Professional edition for productivity workloads. For this article we consider the OSS version </p>
+<h1 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h1><p>For this setup one should have:</p>
+<ul>
+<li>docker</li>
+<li>docker-compose</li>
+</ul>
+<h1 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h1><p>Obtain the docker-compose image</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://releases.jfrog.io/artifactory/bintray-artifactory/org/artifactory/oss/docker/jfrog-artifactory-oss/7.12.10/jfrog-artifactory-oss-7.12.10-compose.tar.gz</span><br></pre></td></tr></table></figure>
+<p><strong>NOTE:</strong> Check the latest version on the official <a target="_blank" rel="noopener" href="https://jfrog.com/download-jfrog-platform/">website</a>.</p>
+<p>Extract the tarball</p>
+<p>Run the <code>config.sh</code> with privileges to setup your folder with the proper permissions.</p>
+<p>In my case i also installed the PostgreSQL service.</p>
+<p>One should have an output similar to this one</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Beginning JFrog Artifactory setup</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Validating System requirements</span><br><span class="line"></span><br><span class="line">Installation Directory (Default: /root/.jfrog/artifactory): /home/rramos/Development/github/dockers/docker-artifactory/data</span><br><span class="line"></span><br><span class="line">Running system diagnostics checks, logs can be found at [/home/rramos/Development/github/dockers/docker-artifactory/artifactory-oss-7.12.10/systemDiagnostics.log]</span><br><span class="line"></span><br><span class="line">Triggering migration script. This will migrate if needed and may take some time.</span><br><span class="line"></span><br><span class="line">Migration logs will be available at [/home/rramos/Development/github/dockers/docker-artifactory/artifactory-oss-7.12.10/bin/migration.log]. The file will be archived at [/home/rramos/Development/github/dockers/docker-artifactory/data/var/log] after installation</span><br><span class="line"></span><br><span class="line">For IPv6 address, enclose value within square brackets as follows : [&lt;ipv6_address&gt;]</span><br><span class="line">Please specify the IP address of this machine (Default: 127.0.1.1):</span><br><span class="line"></span><br><span class="line">Are you adding an additional node to an existing product cluster? [y/N]: N</span><br><span class="line"></span><br><span class="line">The installer can install a PostgreSQL database, or you can connect to an existing compatible PostgreSQL database</span><br><span class="line">(https://service.jfrog.org/installer/System+Requirements#SystemRequirements-RequirementsMatrix)</span><br><span class="line">If you are upgrading from an existing installation, select N if you have externalized PostgreSQL, select Y if not.</span><br><span class="line">Do you want to install PostgreSQL? [Y/n]: Y</span><br><span class="line"></span><br><span class="line">To setup PostgreSQL, please enter a password</span><br><span class="line">database password:</span><br><span class="line"></span><br><span class="line">confirm database password:</span><br><span class="line"></span><br><span class="line">Creating third party directories (if necessary)</span><br><span class="line"></span><br><span class="line">Attempting to seed PostgreSQL. This may take some time.</span><br><span class="line"></span><br><span class="line">Successfully seeded PostgreSQL</span><br><span class="line"></span><br><span class="line">Docker setup complete</span><br><span class="line"></span><br><span class="line">Installation directory: [/home/rramos/Development/github/dockers/docker-artifactory/data] contains data and configurations.</span><br><span class="line"></span><br><span class="line">Use docker-compose commands to start the application. Once the application has started, it can be accessed at [http://127.0.1.1:8082]</span><br><span class="line"></span><br><span class="line">Examples:</span><br><span class="line">cd /home/rramos/Development/github/dockers/docker-artifactory/artifactory-oss-7.12.10</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">start postgresql:    docker-compose -p rt-postgres -f docker-compose-postgres.yaml up -d</span><br><span class="line">start:               docker-compose -p rt up -d</span><br><span class="line">stop:                docker-compose -p rt down</span><br><span class="line"></span><br><span class="line">NOTE: The compose file uses several environment variables from the .env file. Remember to run from within the [/home/rramos/Development/github/dockers/docker-artifactory/artifactory-oss-7.12.10] folder</span><br><span class="line"></span><br><span class="line">Done</span><br></pre></td></tr></table></figure>
+
+<p>At the end of the process the postgres container is still up. I would suggest killing it as we are going to setup the docker-compose setup for it.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># docker ps</span><br><span class="line">CONTAINER ID   IMAGE                                    COMMAND                  CREATED              STATUS              PORTS                                       NAMES</span><br><span class="line">77bbf3150642   docker.bintray.io/postgres:12.5-alpine   &quot;docker-entrypoint.s…&quot;   About a minute ago   Up About a minute   0.0.0.0:5432-&gt;5432/tcp, :::5432-&gt;5432/tcp   postgresql</span><br></pre></td></tr></table></figure>
+
+<p>Killing the containers</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker kill 77bbf3150642</span><br><span class="line">docker container prune</span><br></pre></td></tr></table></figure>
+<p><strong>NOTE:</strong> Attention don’t run the prune command if you want to keep other containers running.</p>
+<h1 id="Post-Install"><a href="#Post-Install" class="headerlink" title="Post Install"></a>Post Install</h1><p>During the setup I’ve selected the following path </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/home/rramos/Development/github/dockers/docker-artifactory/data</span><br></pre></td></tr></table></figure>
+<p>However there are some adjustments required for the services to reach the containers which will be on the same network and need to be adjusted.</p>
+<p>Following this setup you should now have on your current dir <code>data</code> and <code>artifactory-oss-7.12.10</code> folder. </p>
+<p>Create the following file template docker file that starts all the components</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cp artifactory-oss-7.12.10/templates/docker-compose-all.yaml  docker-compose.yaml</span><br></pre></td></tr></table></figure>
+<p>And replace the line</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">POSTGRES_PASSWORD=$&#123;PG_PASS&#125;</span><br></pre></td></tr></table></figure>
+<p>Let’s include that var on the env file.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cp artifactory-oss-7.12.10/.env .</span><br></pre></td></tr></table></figure>
+
+<p>Add the password you defined for postgres on <code>.env</code> file.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">PG_PASS=V3ry$$scurePasssW0rd</span><br></pre></td></tr></table></figure>
+
+<p>Let’s spin up the application</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+<p>If you start getting some issues regarding DB connection issues there is a final step.</p>
+<p>Stop all the containers </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose down</span><br></pre></td></tr></table></figure>
+
+<p>Edit the file <code>./data/var/data/nginx/conf.d/artifactory.conf</code> and replace <code>localhost</code> references with <code>artifactory</code></p>
+<p><strong>NOTE:</strong> You may need sudo permission to change those files</p>
+<p>Also edit the file <code>./data/var/etc/system.yaml</code> </p>
+<p>Making sure the DB <code>url</code> is like:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">url: jdbc:postgresql://postgres:5432/artifactory</span><br></pre></td></tr></table></figure>
+
+<p>Now let’s restart the containers</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+<p>And access on the following url: <code>http://localhost:8081/artifactory/</code></p>
+<p>The default user/password is <code>admin</code>/<code>password</code></p>
+<p>Now it’s time to explore …</p>
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>There are several ways to setup Artictory depending on your enviroment. If you want to use for local developments it may not payoff due to the limitation of the oss version. One cannot manage Nuget packages for instance and require an pro version. As that was may principal objective i didn’t explore more the tool.</p>
+<p>Also include the docker-compose setting on my dockers <a target="_blank" rel="noopener" href="https://github.com/rramos/dockers">repo</a></p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.jfrog.com/confluence/display/JFROG/Installing+Artifactory">https://www.jfrog.com/confluence/display/JFROG/Installing+Artifactory</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jfrog.com/confluence/display/JFROG/NuGet+Repositories">https://www.jfrog.com/confluence/display/JFROG/NuGet+Repositories</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2021-12-19T16:14:19.377Z"><a href="/2021/12/19/fish/">2021-12-19</a></time>
       
       
@@ -823,104 +918,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2021-10-24T11:22:37.695Z"><a href="/2021/10/24/SODA/">2021-10-24</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2021/10/24/SODA/">SODA</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>Bernard Denys kindly share with me the availability of their product for the Open Source Community in <a target="_blank" rel="noopener" href="https://github.com/sodadata/soda-sql#readme">Github</a>. <a target="_blank" rel="noopener" href="https://www.soda.io/">SODA</a> provide a Data Monitoring Platform. In this article i will take some time to explore a quick setup on how to use it and final comments around it.</p>
-<h2 id="What-does-Soda-SQL-do"><a href="#What-does-Soda-SQL-do" class="headerlink" title="What does Soda SQL do?"></a>What does Soda SQL do?</h2><p>Soda SQL allows you to</p>
-<p>Stop your pipeline when bad data is detected<br>Extract metrics and column profiles through super efficient SQL<br>Full control over metrics and queries through declarative config files</p>
-<h2 id="5m-tutorial"><a href="#5m-tutorial" class="headerlink" title="5m tutorial"></a>5m tutorial</h2><p>There is a <a target="_blank" rel="noopener" href="https://docs.soda.io/soda-sql/getting-started/5_min_tutorial.html">5m tutorial</a> available on their official page let’s have a go…</p>
-<h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><p>I’m using Linux and i’m lazy so i’ve just installed the required pip</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip3 install soda-sql</span><br></pre></td></tr></table></figure>
-
-<p>Let’s check if it is working</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ soda </span><br><span class="line">Usage: soda [OPTIONS] COMMAND [ARGS]...</span><br><span class="line"></span><br><span class="line">  Soda CLI version 2.0.0b15</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">  --<span class="built_in">help</span>  Show this message and <span class="built_in">exit</span>.</span><br><span class="line"></span><br><span class="line">Commands:</span><br><span class="line">  analyze  Analyzes tables <span class="keyword">in</span> the warehouse and creates scan YAML files...</span><br><span class="line">  create   Creates a new warehouse.yml file and prepares credentials <span class="keyword">in</span></span><br><span class="line">           your...</span><br><span class="line"></span><br><span class="line">  init     Renamed to `soda analyze`</span><br><span class="line">  scan     Computes all measurements and runs all tests on one table.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>Great now let’s create some a dummy warehouse and do some tests:</p>
-<h2 id="Create-dummy-Datawarehouse"><a href="#Create-dummy-Datawarehouse" class="headerlink" title="Create dummy Datawarehouse"></a>Create dummy Datawarehouse</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run --name soda_sql_tutorial_db --rm -d \</span><br><span class="line">    -p 5432:5432 \</span><br><span class="line">    -v soda_sql_tutorial_postgres:/var/lib/postgresql/data:rw \</span><br><span class="line">    -e POSTGRES_USER=sodasql \</span><br><span class="line">    -e POSTGRES_DB=sodasql \</span><br><span class="line">    -e POSTGRES_HOST_AUTH_METHOD=trust \</span><br><span class="line">    postgres:9.6.17-alpine</span><br></pre></td></tr></table></figure>
-
-<p>And load it with data with the following command</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> soda_sql_tutorial_db \</span><br><span class="line">  sh -c <span class="string">&quot;wget -qO - https://raw.githubusercontent.com/sodadata/soda-sql/main/tests/demo/demodata.sql | psql -U sodasql -d sodasql&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>According to the tutorial one can remove the created container and volume with the following command :</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker stop soda_sql_tutorial_db</span><br><span class="line">docker volume rm soda_sql_tutorial_postgres</span><br></pre></td></tr></table></figure>
-
-<h2 id="Create-warehouse-directory"><a href="#Create-warehouse-directory" class="headerlink" title="Create warehouse directory"></a>Create warehouse directory</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir soda_sql_tutorial</span><br><span class="line"><span class="built_in">cd</span> soda_sql_tutorial/</span><br><span class="line">soda create -d sodasql -u sodasql -w soda_sql_tutorial postgres</span><br></pre></td></tr></table></figure>
-
-<p>This created the <code>warehouse.yml</code> with connection settings which are stored on your homedir <code>~/.soda/env_vars.yml</code> </p>
-<h2 id="Analyse-table-scan-YAML-files"><a href="#Analyse-table-scan-YAML-files" class="headerlink" title="Analyse table scan YAML files"></a>Analyse table scan YAML files</h2><p>The following command will analyze the exiting tables and fill the <code>./tables/</code> directory with large data warehouse it can be inputted manually.</p>
-<p>Well, i only have 5m so let’s give it a go.</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">soda analyze</span><br></pre></td></tr></table></figure>
-
-<p>Hum! interesting, queries the information schema and generates a file which i will assume per table with several metrics for validation.</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">table_name:</span> <span class="string">demodata</span></span><br><span class="line"><span class="attr">metrics:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">row_count</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">missing_count</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">missing_percentage</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">values_count</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">values_percentage</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">valid_count</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">valid_percentage</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">invalid_count</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">invalid_percentage</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">min_length</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">max_length</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">avg_length</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">min</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">max</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">avg</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">sum</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">variance</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">stddev</span></span><br><span class="line"><span class="attr">tests:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">row_count</span> <span class="string">&gt;</span> <span class="number">0</span></span><br><span class="line"><span class="attr">columns:</span></span><br><span class="line">  <span class="attr">id:</span></span><br><span class="line">    <span class="attr">valid_format:</span> <span class="string">uuid</span></span><br><span class="line">    <span class="attr">tests:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">invalid_percentage</span> <span class="string">==</span> <span class="number">0</span></span><br><span class="line">  <span class="attr">feepct:</span></span><br><span class="line">    <span class="attr">valid_format:</span> <span class="string">number_percentage</span></span><br><span class="line">    <span class="attr">tests:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">invalid_percentage</span> <span class="string">==</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Run-a-scan"><a href="#Run-a-scan" class="headerlink" title="Run a scan"></a>Run a scan</h2><p>Each scan requires a warehouse YAML and a scan YAML as input. The scan command will collect the configured metrics and run the defined tests against them.</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">soda scan warehouse.yml tables/demodata.yml</span><br></pre></td></tr></table></figure>
-
-<p>And that’s it for the tutorial</p>
-<p>One can then integrate this with a orchestration tool such as <a target="_blank" rel="noopener" href="https://docs.soda.io/soda-sql/documentation/orchestrate_scans.html">Airflow</a></p>
-<p>It is recommend to <code>PythonVirtualenvOperator</code> to prevent any dependency conflicts.</p>
-<p>Example dag:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> airflow <span class="keyword">import</span> DAG</span><br><span class="line"><span class="keyword">from</span> airflow.models.variable <span class="keyword">import</span> Variable</span><br><span class="line"><span class="keyword">from</span> airflow.operators.python <span class="keyword">import</span> PythonVirtualenvOperator</span><br><span class="line"><span class="keyword">from</span> airflow.operators.dummy <span class="keyword">import</span> DummyOperator</span><br><span class="line"><span class="keyword">from</span> airflow.utils.dates <span class="keyword">import</span> days_ago</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> timedelta</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Make sure that this variable is set in your Airflow</span></span><br><span class="line">warehouse_yml = Variable.get(<span class="string">&#x27;soda_sql_warehouse_yml_path&#x27;</span>)</span><br><span class="line">scan_yml = Variable.get(<span class="string">&#x27;soda_sql_scan_yml_path&#x27;</span>)</span><br><span class="line"></span><br><span class="line">default_args = &#123;</span><br><span class="line">    <span class="string">&#x27;owner&#x27;</span>: <span class="string">&#x27;soda_sql&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;retries&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="string">&#x27;retry_delay&#x27;</span>: timedelta(minutes=<span class="number">5</span>),</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run_soda_scan</span>(<span class="params">warehouse_yml_file, scan_yml_file</span>):</span></span><br><span class="line">    <span class="keyword">from</span> sodasql.scan.scan_builder <span class="keyword">import</span> ScanBuilder</span><br><span class="line">    scan_builder = ScanBuilder()</span><br><span class="line">    <span class="comment"># Optionally you can directly build the Warehouse dict from Airflow secrets/variables</span></span><br><span class="line">    <span class="comment"># and set scan_builder.warehouse_dict with values.</span></span><br><span class="line">    scan_builder.warehouse_yml_file = warehouse_yml_file</span><br><span class="line">    scan_builder.scan_yml_file = scan_yml_file</span><br><span class="line">    scan = scan_builder.build()</span><br><span class="line">    scan_result = scan.execute()</span><br><span class="line">    <span class="keyword">if</span> scan_result.has_failures():</span><br><span class="line">        failures = scan_result.failures_count()</span><br><span class="line">        <span class="keyword">raise</span> ValueError(<span class="string">f&quot;Soda Scan found <span class="subst">&#123;failures&#125;</span> errors in your data!&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">dag = DAG(</span><br><span class="line">    <span class="string">&#x27;soda_sql_python_venv_op&#x27;</span>,</span><br><span class="line">    default_args=default_args,</span><br><span class="line">    description=<span class="string">&#x27;A simple Soda SQL scan DAG&#x27;</span>,</span><br><span class="line">    schedule_interval=timedelta(days=<span class="number">1</span>),</span><br><span class="line">    start_date=days_ago(<span class="number">1</span>),</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">ingest_data_op = DummyOperator(</span><br><span class="line">    task_id=<span class="string">&#x27;ingest_data&#x27;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">soda_sql_scan_op = PythonVirtualenvOperator(</span><br><span class="line">    task_id=<span class="string">&#x27;soda_sql_scan_demodata&#x27;</span>,</span><br><span class="line">    python_callable=run_soda_scan,</span><br><span class="line">    requirements=[<span class="string">&quot;soda-sql==2.0.0b10&quot;</span>],</span><br><span class="line">    system_site_packages=<span class="literal">False</span>,</span><br><span class="line">    op_kwargs=&#123;<span class="string">&#x27;warehouse_yml_file&#x27;</span>: warehouse_yml,</span><br><span class="line">               <span class="string">&#x27;scan_yml_file&#x27;</span>: scan_yml&#125;,</span><br><span class="line">    dag=dag</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">publish_data_op = DummyOperator(</span><br><span class="line">    task_id=<span class="string">&#x27;publish_data&#x27;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">ingest_data_op &gt;&gt; soda_sql_scan_op &gt;&gt; publish_data_op</span><br></pre></td></tr></table></figure>
-
-<p>There is also some work being done to support a SodaScanOperator for Airflow.</p>
-<h2 id="Warehouse-types"><a href="#Warehouse-types" class="headerlink" title="Warehouse types"></a>Warehouse types</h2><p>At the moment SODA is supporting the following techs:</p>
-<ul>
-<li>Snowflake</li>
-<li>AWS Athena</li>
-<li>GCP BigQuery</li>
-<li>PostgreSQL</li>
-<li>Redshift</li>
-<li>Spark SQL -&gt; (Coming Soon)</li>
-</ul>
-<h2 id="Conclusions"><a href="#Conclusions" class="headerlink" title="Conclusions"></a>Conclusions</h2><p>This quick tutorial make’s it easy to test the tool. But i would like to extended the tests on a larger solution to check how it behaves. Also i would like to see the SparkSQL as a warehouse option as most of my teams work are centered on that technology.</p>
-<p>Topics to do extended testing with:</p>
-<ul>
-<li>Schema evolution impact on the quality test setup</li>
-<li>Not using a Warehouse solution but a Datalake<ul>
-<li>Providing schemas from a Datalake and using a processing engine on top of it (ex: spark.schemas and Parquet files)</li>
-</ul>
-</li>
-<li>Testing with Delta tables</li>
-<li>Define levels of data-quality analysis</li>
-<li>Understanding better how the scans works</li>
-</ul>
-<p>The tool seems to have good potential and seems very simple which would speed the adoption. Also by sharing this to the open source community seems to be as a good choice to increase user quorum and still offer enterprise services solution.</p>
-<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/sodadata/soda-sql#readme">https://github.com/sodadata/soda-sql#readme</a></li>
-<li><a target="_blank" rel="noopener" href="https://docs.soda.io/soda-sql/getting-started/5_min_tutorial.html">https://docs.soda.io/soda-sql/getting-started/5_min_tutorial.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://docs.soda.io/soda-sql/documentation/orchestrate_scans.html">https://docs.soda.io/soda-sql/documentation/orchestrate_scans.html</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -959,6 +956,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Arch/">Arch</a><small>2</small></li>
   
+    <li><a href="/tags/Artifactory/">Artifactory</a><small>1</small></li>
+  
     <li><a href="/tags/Avro/">Avro</a><small>1</small></li>
   
     <li><a href="/tags/BigData/">BigData</a><small>2</small></li>
@@ -989,7 +988,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Dimensions/">Dimensions</a><small>1</small></li>
   
-    <li><a href="/tags/Docker/">Docker</a><small>6</small></li>
+    <li><a href="/tags/Docker/">Docker</a><small>7</small></li>
   
     <li><a href="/tags/GA/">GA</a><small>2</small></li>
   
@@ -1048,6 +1047,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/Nifi/">Nifi</a><small>1</small></li>
   
     <li><a href="/tags/Nord/">Nord</a><small>1</small></li>
+  
+    <li><a href="/tags/Nuget/">Nuget</a><small>1</small></li>
   
     <li><a href="/tags/OpenAPI/">OpenAPI</a><small>1</small></li>
   
