@@ -290,7 +290,6 @@ article .entry table {
   border-collapse: collapse;
   border-spacing: 0;
   empty-cells: show;
-  border: 1px solid #e2e2e2;
   width: 100%;
 }
 article .entry table th {
@@ -301,7 +300,6 @@ article .entry table th {
 }
 article .entry table td,
 article .entry table th {
-  border: 1px solid #e2e2e2;
   padding: 8px 16px;
   text-align: left;
 }
@@ -767,7 +765,6 @@ figure.highlight .gutter {
 }
 figure.highlight .code {
   padding-left: 15px;
-  border-left: 1px solid #fff;
   color: #666;
 }
 figure.highlight .line {
