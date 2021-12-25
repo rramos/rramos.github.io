@@ -77,6 +77,90 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
+        <time datetime="2017-09-19T21:06:18.000Z"><a href="/2017/09/19/quickzeppelin/">2017-09-19</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/09/19/quickzeppelin/">Quick Setup Zeppelin Notebook</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>In this article i describe a quick way to have zeepelin running so that you could quickly testing some Spark application.</p>
+<p><strong>NOTE:</strong> This procedure shouldn’t be used in production environments has you should setup the Notebook with auth and connected to your local infrastructure.</p>
+<h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><ul>
+<li>One should have a docker environment setup. Check my previous <a href="/2017/09/19/dockerclean/" title="article">article</a> if you need some help with that</li>
+<li><a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-14-04">Docker-compose</a></li>
+</ul>
+<h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><ol>
+<li><p>Create a folder named zeepelin</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir docker-zeepelin</span><br></pre></td></tr></table></figure></li>
+<li><p>Create a <code>data</code> where you could put some data to analyse.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir -p docker-zeepelin/data</span><br></pre></td></tr></table></figure></li>
+<li><p>Create the following <code>docker-compose.yml</code> file in dir <code>docker-zeepelin</code> :</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">version: &#x27;2&#x27;</span><br><span class="line">services:</span><br><span class="line">  zeppelin:</span><br><span class="line">    ports:</span><br><span class="line">     - &quot;8080:8080&quot;</span><br><span class="line">    volumes:</span><br><span class="line">     - ./data:/opt/data</span><br><span class="line">    image: &quot;dylanmei/zeppelin&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><p>Launch docker-compose</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo docker-compose up -d</span><br></pre></td></tr></table></figure></li>
+<li><p>That’s it you should now be able to access <a target="_blank" rel="noopener" href="http://localhost:8080/">http://localhost:8080</a> </p>
+</li>
+</ol>
+<h2 id="Test-it"><a href="#Test-it" class="headerlink" title="Test it"></a>Test it</h2><ol>
+<li>Lets download a demo file to our <code>data</code> dir. <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">curl -s https://api.opendota.com/api/publicMatches -o ./data/OpenDotaPublic.json</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>Yeah! I kinda like Dota so this makes sense :D</p>
+<ol start="2">
+<li>Create a new NoteBook in the web Interface and use the following code</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">%spark</span><br><span class="line"></span><br><span class="line">val df = sqlContext.read.json(&quot;file:///opt/data/OpenDotaPublic.json&quot;)</span><br><span class="line">df.show</span><br></pre></td></tr></table></figure>
+
+<p>Hit: <strong>Shift-Enter</strong></p>
+<ol start="3">
+<li>Let’s register this dataframe as temp table and create some visuals</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">%spark</span><br><span class="line">df.registerTempTable(&quot;publicmatches&quot;)</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>Create the following to generate visualizations<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">%sql</span><br><span class="line">select radiant_win,match_id</span><br><span class="line"> from publicmatches</span><br></pre></td></tr></table></figure></li>
+</ol>
+<img src="/2017/09/19/quickzeppelin/radiant_win.png" class="" title="[PieChart]">
+
+<p>Guess i need to start playing on Radiant side :D</p>
+<p>Well and that’s it.</p>
+<p>Cheers,<br>RR</p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://zeppelin.apache.org/docs/0.5.5-incubating/tutorial/tutorial.html">https://zeppelin.apache.org/docs/0.5.5-incubating/tutorial/tutorial.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://hortonworks.com/tutorial/getting-started-with-apache-zeppelin/">https://hortonworks.com/tutorial/getting-started-with-apache-zeppelin/</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-16-04">https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-16-04</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.docker.com/compose">https://docs.docker.com/compose</a></li>
+<li><a target="_blank" rel="noopener" href="https://zeppelin.apache.org/">https://zeppelin.apache.org/</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2017-09-19T07:37:29.000Z"><a href="/2017/09/19/dockerclean/">2017-09-19</a></time>
       
       
@@ -697,46 +781,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-09-23T21:40:10.000Z"><a href="/2016/09/23/portotechhub-com/">2016-09-23</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/09/23/portotechhub-com/">Porto Tech HUB 2016</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>I’ve attend today to the second edition of Porto Tech HUB 2016. It was good to see old friends and the raising tech potencial in the City.</p>
-<p>There where some good presentations, good organization and the location was appealing also.</p>
-<p>I especially liked Christoffer Noring presentation about <a target="_blank" rel="noopener" href="https://www.nativescript.org/">NativeScript</a> and <a target="_blank" rel="noopener" href="https://angularjs.org/">Angular</a> and Miguel Veiga about <a target="_blank" rel="noopener" href="http://storm.apache.org/">Storm</a> and <a target="_blank" rel="noopener" href="http://kafka.apache.org/">Kafka</a>.</p>
-<p>This last one have more to do with my actual work.</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="http://www.portotechhub.com/">http://www.portotechhub.com</a></li>
-<li><a target="_blank" rel="noopener" href="https://twitter.com/PortoTechHub">https://twitter.com/PortoTechHub</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -809,6 +853,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Data-Quality/">Data Quality</a><small>1</small></li>
   
+    <li><a href="/tags/Development/">Development</a><small>1</small></li>
+  
     <li><a href="/tags/Dimensions/">Dimensions</a><small>1</small></li>
   
     <li><a href="/tags/Docker/">Docker</a><small>7</small></li>
@@ -854,6 +900,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/Keyboard/">Keyboard</a><small>1</small></li>
   
     <li><a href="/tags/Laws/">Laws</a><small>1</small></li>
+  
+    <li><a href="/tags/Leadership/">Leadership</a><small>1</small></li>
   
     <li><a href="/tags/Linux/">Linux</a><small>8</small></li>
   
@@ -906,6 +954,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/SQLServer/">SQLServer</a><small>1</small></li>
   
     <li><a href="/tags/Scala/">Scala</a><small>1</small></li>
+  
+    <li><a href="/tags/Scrum/">Scrum</a><small>1</small></li>
   
     <li><a href="/tags/Setup/">Setup</a><small>1</small></li>
   

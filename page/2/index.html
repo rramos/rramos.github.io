@@ -77,6 +77,55 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
+        <time datetime="2021-10-24T11:22:37.695Z"><a href="/2021/10/24/Github ssh keys/">2021-10-24</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2021/10/24/Github ssh keys/">Github Ssh Keys</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>When using github one of the most recommend ways to get in sync with your repo is by using ssh keys. If you don’t use it check the following article from github docs where they explain in detail how to do the setup</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.github.com/en/github/authenticating-to-github/about-ssh">https://docs.github.com/en/github/authenticating-to-github/about-ssh</a></li>
+</ul>
+<p>On your <strong>Profile</strong> you can manage your SSH and GPG keys.</p>
+<p>But take into account the following if you have more than one account the ssh-keys are unique on the system. </p>
+<p>So if you have for example:</p>
+<ol>
+<li>coporate account ruiramosff</li>
+<li>personal account rramos</li>
+</ol>
+<p>You need to have distinct ssh-keys per profile.</p>
+<p>I would recommend for this cases to have distinct ssh keys and to a proper setup on your repo configurations adding for example</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[user]</span><br><span class="line">        name = Rui Ramos</span><br><span class="line">        email = rui.ms.ramos@gmail.com</span><br></pre></td></tr></table></figure>
+
+<p>You can also do this globaly on your <code>~./gitconfig</code> but if you are going to work on the same machine but want to use different profiles, pay attention to have the git configuration adapted to it.</p>
+<p>Cheers,<br>RR</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2021-10-24T11:22:37.695Z"><a href="/2021/10/24/NamingVariables/">2021-10-24</a></time>
       
       
@@ -682,170 +731,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-10-09T19:54:12.000Z"><a href="/2017/10/09/rddstransformations/">2017-10-09</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/10/09/rddstransformations/">RDD Basic Transformations Operations</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>Just a simple Basic CheatSheet on Spark RDD’s</p>
-<ul>
-<li>Basic Transformations on a RDD containing: <strong>{1,2,3,3}</strong></li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>Function Name</th>
-<th>Example</th>
-<th>Result</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>map()</td>
-<td>rdd.map(x =&gt; x +1)</td>
-<td>{2,3,4,4}</td>
-</tr>
-<tr>
-<td>flatmap()</td>
-<td>rdd.flatMap(x =&gt; x.to(3))</td>
-<td>{1,2,3,2,3,3,3}</td>
-</tr>
-<tr>
-<td>filter()</td>
-<td>rdd.filter(x =&gt; x != 1 )</td>
-<td>{2,3,3}</td>
-</tr>
-<tr>
-<td>distinct()</td>
-<td>rdd.distinct()</td>
-<td>{1,2,3}</td>
-</tr>
-<tr>
-<td>sample()</td>
-<td>rdd.sample(false,0.5)</td>
-<td>Nondeterministic</td>
-</tr>
-</tbody></table>
-<ul>
-<li>Basic two-RDD transformations on RDDs: <strong>{1,2,3}</strong> and <strong>{3,4,5}</strong></li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>Function Name</th>
-<th>Example</th>
-<th>Result</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>union()</td>
-<td>rdd.union(other)</td>
-<td>{1,2,3,3,4,5}</td>
-</tr>
-<tr>
-<td>intersection()</td>
-<td>rdd.intersection(other)</td>
-<td>{3}</td>
-</tr>
-<tr>
-<td>subtract()</td>
-<td>rdd.subtract(other)</td>
-<td>{1,2}</td>
-</tr>
-<tr>
-<td>cartesian()</td>
-<td>rdd.cartesian(other)</td>
-<td>{(1,3),(1,4)…(3,5)}</td>
-</tr>
-</tbody></table>
-<ul>
-<li>Basic Actions on RDD containing: <strong>{1,2,3,3}</strong></li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>Function Name</th>
-<th>Example</th>
-<th>Result</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>collect()</td>
-<td>rdd.collect()</td>
-<td>{1,2,3,3}</td>
-</tr>
-<tr>
-<td>count()</td>
-<td>rdd.count()</td>
-<td>4</td>
-</tr>
-<tr>
-<td>countByValue()</td>
-<td>rdd.countByValue()</td>
-<td>{(1,1),(2,1),(3,2)}</td>
-</tr>
-<tr>
-<td>take()</td>
-<td>rdd.take(2)</td>
-<td>{1,2}</td>
-</tr>
-<tr>
-<td>top()</td>
-<td>rdd.top(2)</td>
-<td>{3,3}</td>
-</tr>
-<tr>
-<td>takeOrdered()</td>
-<td>rdd.takeOrdered(2)(myOrdering)</td>
-<td>{3,3}</td>
-</tr>
-<tr>
-<td>takeSample()</td>
-<td>rdd.takeSample(false,1)</td>
-<td>Nondeterministic</td>
-</tr>
-<tr>
-<td>reduce()</td>
-<td>rdd.reduce((x,y) =&gt; x + y )</td>
-<td>9</td>
-</tr>
-<tr>
-<td>fold()</td>
-<td>rdd.fold(0)((x,y) =&gt; x + y)</td>
-<td>9</td>
-</tr>
-<tr>
-<td>foreach()</td>
-<td>rdd.foreach(func)</td>
-<td>Nothing</td>
-</tr>
-</tbody></table>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -918,6 +803,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Data-Quality/">Data Quality</a><small>1</small></li>
   
+    <li><a href="/tags/Development/">Development</a><small>1</small></li>
+  
     <li><a href="/tags/Dimensions/">Dimensions</a><small>1</small></li>
   
     <li><a href="/tags/Docker/">Docker</a><small>7</small></li>
@@ -963,6 +850,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/Keyboard/">Keyboard</a><small>1</small></li>
   
     <li><a href="/tags/Laws/">Laws</a><small>1</small></li>
+  
+    <li><a href="/tags/Leadership/">Leadership</a><small>1</small></li>
   
     <li><a href="/tags/Linux/">Linux</a><small>8</small></li>
   
@@ -1015,6 +904,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/SQLServer/">SQLServer</a><small>1</small></li>
   
     <li><a href="/tags/Scala/">Scala</a><small>1</small></li>
+  
+    <li><a href="/tags/Scrum/">Scrum</a><small>1</small></li>
   
     <li><a href="/tags/Setup/">Setup</a><small>1</small></li>
   
