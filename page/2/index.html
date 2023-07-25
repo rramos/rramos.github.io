@@ -77,33 +77,79 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2021-10-24T11:22:37.695Z"><a href="/2021/10/24/Github ssh keys/">2021-10-24</a></time>
+        <time datetime="2022-12-23T14:03:56.359Z"><a href="/2022/12/23/artifactory/">2022-12-23</a></time>
       
       
   
-    <h1 class="title"><a href="/2021/10/24/Github ssh keys/">Github Ssh Keys</a></h1>
+    <h1 class="title"><a href="/2022/12/23/artifactory/">Artifactory Setup</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <p>When using github one of the most recommend ways to get in sync with your repo is by using ssh keys. If you don’t use it check the following article from github docs where they explain in detail how to do the setup</p>
+        <p>In this article i will describe how to setup a docker enviroment to have a JFrog Artifactory local solution. </p>
+<h1 id="Objective"><a href="#Objective" class="headerlink" title="Objective"></a>Objective</h1><p>The main objective of this walkthrough is to have a local repository to manage packages such as Nugets, jars, rpms, etc.</p>
+<p>Could be usefull to test CI/CD pipelines also.</p>
+<h1 id="Versions"><a href="#Versions" class="headerlink" title="Versions"></a>Versions</h1><p>Artifactory has several versions. It is recommend to use a Professional edition for productivity workloads. For this article we consider the OSS version </p>
+<h1 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h1><p>For this setup one should have:</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://docs.github.com/en/github/authenticating-to-github/about-ssh">https://docs.github.com/en/github/authenticating-to-github/about-ssh</a></li>
+<li>docker</li>
+<li>docker-compose</li>
 </ul>
-<p>On your <strong>Profile</strong> you can manage your SSH and GPG keys.</p>
-<p>But take into account the following if you have more than one account the ssh-keys are unique on the system. </p>
-<p>So if you have for example:</p>
-<ol>
-<li>coporate account ruiramosff</li>
-<li>personal account rramos</li>
-</ol>
-<p>You need to have distinct ssh-keys per profile.</p>
-<p>I would recommend for this cases to have distinct ssh keys and to a proper setup on your repo configurations adding for example</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[user]</span><br><span class="line">        name = Rui Ramos</span><br><span class="line">        email = rui.ms.ramos@gmail.com</span><br></pre></td></tr></table></figure>
+<h1 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h1><p>Obtain the docker-compose image</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://releases.jfrog.io/artifactory/bintray-artifactory/org/artifactory/oss/docker/jfrog-artifactory-oss/7.12.10/jfrog-artifactory-oss-7.12.10-compose.tar.gz</span><br></pre></td></tr></table></figure>
+<p><strong>NOTE:</strong> Check the latest version on the official <a target="_blank" rel="noopener" href="https://jfrog.com/download-jfrog-platform/">website</a>.</p>
+<p>Extract the tarball</p>
+<p>Run the <code>config.sh</code> with privileges to setup your folder with the proper permissions.</p>
+<p>In my case i also installed the PostgreSQL service.</p>
+<p>One should have an output similar to this one</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Beginning JFrog Artifactory setup</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Validating System requirements</span><br><span class="line"></span><br><span class="line">Installation Directory (Default: /root/.jfrog/artifactory): /home/rramos/Development/github/dockers/docker-artifactory/data</span><br><span class="line"></span><br><span class="line">Running system diagnostics checks, logs can be found at [/home/rramos/Development/github/dockers/docker-artifactory/artifactory-oss-7.12.10/systemDiagnostics.log]</span><br><span class="line"></span><br><span class="line">Triggering migration script. This will migrate if needed and may take some time.</span><br><span class="line"></span><br><span class="line">Migration logs will be available at [/home/rramos/Development/github/dockers/docker-artifactory/artifactory-oss-7.12.10/bin/migration.log]. The file will be archived at [/home/rramos/Development/github/dockers/docker-artifactory/data/var/log] after installation</span><br><span class="line"></span><br><span class="line">For IPv6 address, enclose value within square brackets as follows : [&lt;ipv6_address&gt;]</span><br><span class="line">Please specify the IP address of this machine (Default: 127.0.1.1):</span><br><span class="line"></span><br><span class="line">Are you adding an additional node to an existing product cluster? [y/N]: N</span><br><span class="line"></span><br><span class="line">The installer can install a PostgreSQL database, or you can connect to an existing compatible PostgreSQL database</span><br><span class="line">(https://service.jfrog.org/installer/System+Requirements#SystemRequirements-RequirementsMatrix)</span><br><span class="line">If you are upgrading from an existing installation, select N if you have externalized PostgreSQL, select Y if not.</span><br><span class="line">Do you want to install PostgreSQL? [Y/n]: Y</span><br><span class="line"></span><br><span class="line">To setup PostgreSQL, please enter a password</span><br><span class="line">database password:</span><br><span class="line"></span><br><span class="line">confirm database password:</span><br><span class="line"></span><br><span class="line">Creating third party directories (if necessary)</span><br><span class="line"></span><br><span class="line">Attempting to seed PostgreSQL. This may take some time.</span><br><span class="line"></span><br><span class="line">Successfully seeded PostgreSQL</span><br><span class="line"></span><br><span class="line">Docker setup complete</span><br><span class="line"></span><br><span class="line">Installation directory: [/home/rramos/Development/github/dockers/docker-artifactory/data] contains data and configurations.</span><br><span class="line"></span><br><span class="line">Use docker-compose commands to start the application. Once the application has started, it can be accessed at [http://127.0.1.1:8082]</span><br><span class="line"></span><br><span class="line">Examples:</span><br><span class="line">cd /home/rramos/Development/github/dockers/docker-artifactory/artifactory-oss-7.12.10</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">start postgresql:    docker-compose -p rt-postgres -f docker-compose-postgres.yaml up -d</span><br><span class="line">start:               docker-compose -p rt up -d</span><br><span class="line">stop:                docker-compose -p rt down</span><br><span class="line"></span><br><span class="line">NOTE: The compose file uses several environment variables from the .env file. Remember to run from within the [/home/rramos/Development/github/dockers/docker-artifactory/artifactory-oss-7.12.10] folder</span><br><span class="line"></span><br><span class="line">Done</span><br></pre></td></tr></table></figure>
 
-<p>You can also do this globaly on your <code>~./gitconfig</code> but if you are going to work on the same machine but want to use different profiles, pay attention to have the git configuration adapted to it.</p>
-<p>Cheers,<br>RR</p>
+<p>At the end of the process the postgres container is still up. I would suggest killing it as we are going to setup the docker-compose setup for it.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># docker ps</span><br><span class="line">CONTAINER ID   IMAGE                                    COMMAND                  CREATED              STATUS              PORTS                                       NAMES</span><br><span class="line">77bbf3150642   docker.bintray.io/postgres:12.5-alpine   &quot;docker-entrypoint.s…&quot;   About a minute ago   Up About a minute   0.0.0.0:5432-&gt;5432/tcp, :::5432-&gt;5432/tcp   postgresql</span><br></pre></td></tr></table></figure>
+
+<p>Killing the containers</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker kill 77bbf3150642</span><br><span class="line">docker container prune</span><br></pre></td></tr></table></figure>
+<p><strong>NOTE:</strong> Attention don’t run the prune command if you want to keep other containers running.</p>
+<h1 id="Post-Install"><a href="#Post-Install" class="headerlink" title="Post Install"></a>Post Install</h1><p>During the setup I’ve selected the following path </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/home/rramos/Development/github/dockers/docker-artifactory/data</span><br></pre></td></tr></table></figure>
+<p>However there are some adjustments required for the services to reach the containers which will be on the same network and need to be adjusted.</p>
+<p>Following this setup you should now have on your current dir <code>data</code> and <code>artifactory-oss-7.12.10</code> folder. </p>
+<p>Create the following file template docker file that starts all the components</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cp artifactory-oss-7.12.10/templates/docker-compose-all.yaml  docker-compose.yaml</span><br></pre></td></tr></table></figure>
+<p>And replace the line</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">POSTGRES_PASSWORD=$&#123;PG_PASS&#125;</span><br></pre></td></tr></table></figure>
+<p>Let’s include that var on the env file.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cp artifactory-oss-7.12.10/.env .</span><br></pre></td></tr></table></figure>
+
+<p>Add the password you defined for postgres on <code>.env</code> file.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">PG_PASS=V3ry$$scurePasssW0rd</span><br></pre></td></tr></table></figure>
+
+<p>Let’s spin up the application</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+<p>If you start getting some issues regarding DB connection issues there is a final step.</p>
+<p>Stop all the containers </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose down</span><br></pre></td></tr></table></figure>
+
+<p>Edit the file <code>./data/var/data/nginx/conf.d/artifactory.conf</code> and replace <code>localhost</code> references with <code>artifactory</code></p>
+<p><strong>NOTE:</strong> You may need sudo permission to change those files</p>
+<p>Also edit the file <code>./data/var/etc/system.yaml</code> </p>
+<p>Making sure the DB <code>url</code> is like:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">url: jdbc:postgresql://postgres:5432/artifactory</span><br></pre></td></tr></table></figure>
+
+<p>Now let’s restart the containers</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+<p>And access on the following url: <code>http://localhost:8081/artifactory/</code></p>
+<p>The default user/password is <code>admin</code>/<code>password</code></p>
+<p>Now it’s time to explore …</p>
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>There are several ways to setup Artictory depending on your enviroment. If you want to use for local developments it may not payoff due to the limitation of the oss version. One cannot manage Nuget packages for instance and require an pro version. As that was may principal objective i didn’t explore more the tool.</p>
+<p>Also include the docker-compose setting on my dockers <a target="_blank" rel="noopener" href="https://github.com/rramos/dockers">repo</a></p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.jfrog.com/confluence/display/JFROG/Installing+Artifactory">https://www.jfrog.com/confluence/display/JFROG/Installing+Artifactory</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jfrog.com/confluence/display/JFROG/NuGet+Repositories">https://www.jfrog.com/confluence/display/JFROG/NuGet+Repositories</a></li>
+</ul>
 
       
     </div>
@@ -126,41 +172,54 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2021-10-24T11:22:37.695Z"><a href="/2021/10/24/NamingVariables/">2021-10-24</a></time>
+        <time datetime="2022-12-23T14:03:56.359Z"><a href="/2022/12/23/fish/">2022-12-23</a></time>
       
       
   
-    <h1 class="title"><a href="/2021/10/24/NamingVariables/">Guideline on Naming Variables</a></h1>
+    <h1 class="title"><a href="/2022/12/23/fish/">Fish Configs</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <blockquote>
-<p>“There are only two hard things in computer science: cache invalidation and naming things.” — Phil Karlson</p>
-</blockquote>
-<h2 id="Follow-S-I-D"><a href="#Follow-S-I-D" class="headerlink" title="Follow S-I-D"></a>Follow S-I-D</h2><p>A name must be Short, Intuitive and Descriptive.</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* Bad */</span></span><br><span class="line"><span class="keyword">const</span> a = <span class="number">5</span> <span class="comment">// &quot;a&quot; could mean anything</span></span><br><span class="line"><span class="keyword">const</span> isPaginatable = (postsCount &gt; <span class="number">10</span>) <span class="comment">// &quot;Paginatable&quot; sounds extremely unnatural</span></span><br><span class="line"><span class="keyword">const</span> shouldPaginatize = (postsCount &gt; <span class="number">10</span>) <span class="comment">// Made up verbs are so much fun!</span></span><br></pre></td></tr></table></figure>
+        <h1 id="About-fish"><a href="#About-fish" class="headerlink" title="About fish"></a>About fish</h1><h1 id="Configurations"><a href="#Configurations" class="headerlink" title="Configurations"></a>Configurations</h1><p>To disable the greeting in fish edit the file <code>.config/fish/config.fish</code> and put an empty greeting.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">set fish_greeting &quot;&quot;</span><br></pre></td></tr></table></figure>
 
-<p><strong>Suggested:</strong></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* Good */</span></span><br><span class="line"><span class="keyword">const</span> postsCount = <span class="number">5</span></span><br><span class="line"><span class="keyword">const</span> hasPagination = (postsCount &gt; <span class="number">10</span>)</span><br><span class="line"><span class="keyword">const</span> shouldDisplayPagination = (postsCount &gt; <span class="number">10</span>) <span class="comment">// alternatively</span></span><br></pre></td></tr></table></figure>
+<p>Now re-open the terminal.</p>
+<h1 id="Remove-neofetch"><a href="#Remove-neofetch" class="headerlink" title="Remove neofetch"></a>Remove neofetch</h1><p>If you don’t want the fancy computer stats everything you open a terminal comment out the last 4 lines on the conf file <code>./config/fish/config.fish</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">## Run paleofetch if session is interactive</span><br><span class="line">#if status --is-interactive</span><br><span class="line">#   neofetch</span><br><span class="line">#end</span><br></pre></td></tr></table></figure>
 
-<h2 id="Avoid-Contraction"><a href="#Avoid-Contraction" class="headerlink" title="Avoid Contraction"></a>Avoid Contraction</h2><p>Do not use contractions. They contribute to nothing but decreased readability of the code. Finding a short, descriptive name may be hard, but contraction is not an excuse for not doing so. For instance</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* Bad */</span></span><br><span class="line"><span class="keyword">const</span> onItmClk = <span class="function">() =&gt;</span> &#123;&#125;</span><br><span class="line"><span class="comment">/* Good */</span></span><br><span class="line"><span class="keyword">const</span> onItemClick = <span class="function">() =&gt;</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>Now re-open the terminal.</p>
+<h1 id="Oh-My-Fish"><a href="#Oh-My-Fish" class="headerlink" title="Oh My Fish"></a>Oh My Fish</h1><p>Install the package oh-my-fish which would allow to customize you fish configurations running the following command</p>
+<p><code>curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish</code></p>
+<p>After this install the theme agnoster</p>
+<p><code>omf install agnoster</code></p>
+<p>Apply and reload</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">omf theme agnoster</span><br><span class="line">omf reload</span><br></pre></td></tr></table></figure>
 
-<h2 id="Avoid-Context-Duplication"><a href="#Avoid-Context-Duplication" class="headerlink" title="Avoid Context Duplication"></a>Avoid Context Duplication</h2><p>Always remove the context from a name if that doesn’t decrease its readability.</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MenuItem</span> </span>&#123;</span><br><span class="line">  <span class="comment">/* Method name duplicates the context (which is &quot;MenuItem&quot;) */</span></span><br><span class="line">  handleMenuItemClick = <span class="function">(<span class="params">event</span>) =&gt;</span> &#123; ... &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">/* Reads nicely as `MenuItem.handleClick()` */</span></span><br><span class="line">  handleClick = <span class="function">(<span class="params">event</span>) =&gt;</span> &#123; ... &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Disable-starship"><a href="#Disable-starship" class="headerlink" title="Disable starship"></a>Disable starship</h1><p>Comment the following block on the file <code>./config/fish/config.fish</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">## Starship prompt</span><br><span class="line">#if status --is-interactive</span><br><span class="line">#   source (&quot;/usr/bin/starship&quot; init fish --print-full-init | psub)</span><br><span class="line">#end</span><br></pre></td></tr></table></figure>
 
-<h2 id="Should-Reflect-expected-result"><a href="#Should-Reflect-expected-result" class="headerlink" title="Should Reflect expected result"></a>Should Reflect expected result</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* Bad */</span></span><br><span class="line"><span class="keyword">const</span> isEnabled = (itemsCount &gt; <span class="number">3</span>)</span><br><span class="line"><span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">Button</span> <span class="attr">disabled</span>=<span class="string">&#123;!isEnabled&#125;</span> /&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Good */</span></span><br><span class="line"><span class="keyword">const</span> isDisabled = (itemsCount &lt;= <span class="number">3</span>)</span><br><span class="line"><span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">Button</span> <span class="attr">disabled</span>=<span class="string">&#123;isDisabled&#125;</span> /&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h1 id="Setup-the-Nord-colors-in-Alacritty"><a href="#Setup-the-Nord-colors-in-Alacritty" class="headerlink" title="Setup the Nord colors in Alacritty"></a>Setup the Nord colors in Alacritty</h1><p>Change the default color schem for Nord colors</p>
+<p>replacing on the following file <code>.config/alacritty/alacritty.yml</code> for the coloscheme available on the following <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/arcticicestudio/nord-alacritty/develop/src/nord.yml">repo</a>.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">colors:</span><br><span class="line">  primary:</span><br><span class="line">    background: &#x27;#2e3440&#x27;</span><br><span class="line">    foreground: &#x27;#d8dee9&#x27;</span><br><span class="line">    dim_foreground: &#x27;#a5abb6&#x27;</span><br><span class="line">  cursor:</span><br><span class="line">    text: &#x27;#2e3440&#x27;</span><br><span class="line">    cursor: &#x27;#d8dee9&#x27;</span><br><span class="line">  vi_mode_cursor:</span><br><span class="line">    text: &#x27;#2e3440&#x27;</span><br><span class="line">    cursor: &#x27;#d8dee9&#x27;</span><br><span class="line">  selection:</span><br><span class="line">    text: CellForeground</span><br><span class="line">    background: &#x27;#4c566a&#x27;</span><br><span class="line">  search:</span><br><span class="line">    matches:</span><br><span class="line">      foreground: CellBackground</span><br><span class="line">      background: &#x27;#88c0d0&#x27;</span><br><span class="line">    bar:</span><br><span class="line">      background: &#x27;#434c5e&#x27;</span><br><span class="line">      foreground: &#x27;#d8dee9&#x27;</span><br><span class="line">  normal:</span><br><span class="line">    black: &#x27;#3b4252&#x27;</span><br><span class="line">    red: &#x27;#bf616a&#x27;</span><br><span class="line">    green: &#x27;#a3be8c&#x27;</span><br><span class="line">    yellow: &#x27;#ebcb8b&#x27;</span><br><span class="line">    blue: &#x27;#81a1c1&#x27;</span><br><span class="line">    magenta: &#x27;#b48ead&#x27;</span><br><span class="line">    cyan: &#x27;#88c0d0&#x27;</span><br><span class="line">    white: &#x27;#e5e9f0&#x27;</span><br><span class="line">  bright:</span><br><span class="line">    black: &#x27;#4c566a&#x27;</span><br><span class="line">    red: &#x27;#bf616a&#x27;</span><br><span class="line">    green: &#x27;#a3be8c&#x27;</span><br><span class="line">    yellow: &#x27;#ebcb8b&#x27;</span><br><span class="line">    blue: &#x27;#81a1c1&#x27;</span><br><span class="line">    magenta: &#x27;#b48ead&#x27;</span><br><span class="line">    cyan: &#x27;#8fbcbb&#x27;</span><br><span class="line">    white: &#x27;#eceff4&#x27;</span><br><span class="line">  dim:</span><br><span class="line">    black: &#x27;#373e4d&#x27;</span><br><span class="line">    red: &#x27;#94545d&#x27;</span><br><span class="line">    green: &#x27;#809575&#x27;</span><br><span class="line">    yellow: &#x27;#b29e75&#x27;</span><br><span class="line">    blue: &#x27;#68809a&#x27;</span><br><span class="line">    magenta: &#x27;#8c738c&#x27;</span><br><span class="line">    cyan: &#x27;#6d96a5&#x27;</span><br><span class="line">    white: &#x27;#aeb3bb&#x27;</span><br></pre></td></tr></table></figure>
 
-<h2 id="Consider-Singular-Plurals"><a href="#Consider-Singular-Plurals" class="headerlink" title="Consider Singular/Plurals"></a>Consider Singular/Plurals</h2><p>Like a prefix, variable names can be made singular or plural depending on whether they hold a single value or multiple values.</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* Bad */</span></span><br><span class="line"><span class="keyword">const</span> friends = <span class="string">&#x27;Bob&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> friend = [<span class="string">&#x27;Bob&#x27;</span>, <span class="string">&#x27;Tony&#x27;</span>, <span class="string">&#x27;Tanya&#x27;</span>];</span><br><span class="line"><span class="comment">/* Good */</span></span><br><span class="line"><span class="keyword">const</span> friend = <span class="string">&#x27;Bob&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> friends = [<span class="string">&#x27;Bob&#x27;</span>, <span class="string">&#x27;Tony&#x27;</span>, <span class="string">&#x27;Tanya&#x27;</span>];</span><br></pre></td></tr></table></figure>
 
-<h2 id="Use-meaningful-and-pronounceable-variable-names"><a href="#Use-meaningful-and-pronounceable-variable-names" class="headerlink" title="Use meaningful and pronounceable variable names"></a>Use meaningful and pronounceable variable names</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> yyyymmdstr = moment().format(<span class="string">&quot;YYYY/MM/DD&quot;</span>);  <span class="comment">// simply awful</span></span><br><span class="line"><span class="comment">// Instead</span></span><br><span class="line"><span class="keyword">const</span> currentDate = moment().format(<span class="string">&quot;YYYY/MM/DD&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h1 id="Themes"><a href="#Themes" class="headerlink" title="Themes"></a>Themes</h1><p>If you don’ t like the color scheme check other options using the command.</p>
+<p><code>fish_config</code></p>
+<h1 id="donet-autocomplete"><a href="#donet-autocomplete" class="headerlink" title="donet autocomplete"></a>donet autocomplete</h1><p>In case you want dotnet command autocomplete to get something like this.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> ╭─rramos@buldozer in ~ via  v17.2.0</span><br><span class="line"> ╰─λ dotnet</span><br><span class="line">add               (Add a package/reference)  publish  (Publish a .NET project for deployment)</span><br><span class="line">build                (Build a .NET project)  remove              (Remove a package/reference)</span><br><span class="line">build-server  (Interact with build servers)  restore                   (Restore dependencies)</span><br><span class="line">clean                 (Clean build outputs)  run            (Run the application from source)</span><br><span class="line">…and 6 more rows</span><br></pre></td></tr></table></figure>
 
-<p>The <a target="_blank" rel="noopener" href="https://betterprogramming.pub/a-useful-framework-for-naming-your-classes-functions-and-variables-e7d186e3189f">original article</a> is more complete and has other suggestion regarding naming good practices would suggest you check it.</p>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://betterprogramming.pub/a-useful-framework-for-naming-your-classes-functions-and-variables-e7d186e3189f">https://betterprogramming.pub/a-useful-framework-for-naming-your-classes-functions-and-variables-e7d186e3189f</a></li>
+<p>You should have the following on your <code>config.fish</code> file.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">complete -f -c dotnet -a &quot;(dotnet complete)&quot;</span><br></pre></td></tr></table></figure>
+<p>For Garuda this setup seems to be present out-of-the box.</p>
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>Although Garuda brings a lot of customizations for fish if one wants to go deeper and adjust for it’s own taste can take some time. I certainly toke some time to understand where configurations where being override. I probably include some of this configurations in git to prevent future time waist on customizations.</p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/fish">https://wiki.archlinux.org/title/fish</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/dotnet/core/tools/enable-tab-autocomplete#zsh">https://docs.microsoft.com/en-us/dotnet/core/tools/enable-tab-autocomplete#zsh</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/oh-my-fish/oh-my-fish">https://github.com/oh-my-fish/oh-my-fish</a></li>
+<li><a target="_blank" rel="noopener" href="https://techviewleo.com/configure-fish-shell-with-oh-my-fish/">https://techviewleo.com/configure-fish-shell-with-oh-my-fish/</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/arcticicestudio/nord-alacritty">https://github.com/arcticicestudio/nord-alacritty</a></li>
 </ul>
 
       
@@ -184,11 +243,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2021-10-24T11:22:37.695Z"><a href="/2021/10/24/SODA/">2021-10-24</a></time>
+        <time datetime="2022-12-23T14:03:56.358Z"><a href="/2022/12/23/SODA/">2022-12-23</a></time>
       
       
   
-    <h1 class="title"><a href="/2021/10/24/SODA/">SODA</a></h1>
+    <h1 class="title"><a href="/2022/12/23/SODA/">SODA</a></h1>
   
 
     </header>
@@ -282,293 +341,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2021-10-24T11:22:37.695Z"><a href="/2021/10/24/Software Engineering Laws/">2021-10-24</a></time>
+        <time datetime="2022-12-23T14:03:56.353Z"><a href="/2022/12/23/Github ssh keys/">2022-12-23</a></time>
       
       
   
-    <h1 class="title"><a href="/2021/10/24/Software Engineering Laws/">Software Engineering Laws</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>Latest week a college shared the following <a target="_blank" rel="noopener" href="https://www.netmeister.org/blog/software-engineering-laws.html">article</a> at work that i found very interesting aggregating the info here in order not to forget.</p>
-<h2 id="Conway’s-Law"><a href="#Conway’s-Law" class="headerlink" title="Conway’s Law"></a>Conway’s Law</h2><p>Also known as: “You will ship your org chart.”</p>
-<blockquote>
-<p>“Any organization that designs a system will produce a design whose structure is a copy of the organization’s communication structure.”</p>
-</blockquote>
-<p>You may think you can avoid it via cross-functional standup meetings and stakeholder updates and decision matrices, but eventually and inevitably conflicting or diverging priorities will lead to equally conflicting or divergent processes and outcomes.</p>
-<h2 id="Brooks’s-Law"><a href="#Brooks’s-Law" class="headerlink" title="Brooks’s Law"></a>Brooks’s Law</h2><p>From The <strong>Mythical Man-Month</strong> Book:</p>
-<blockquote>
-<p>“Adding manpower to a late software project makes it later.”</p>
-</blockquote>
-<p>When you realize you’re not making the progress you thought you would and your management tries to reallocate resources from another part of the org, you’ll end up not only delaying the project, but you’ll likely ship a more brittle, more complex product</p>
-<h2 id="Zawinski’s-Law"><a href="#Zawinski’s-Law" class="headerlink" title="Zawinski’s Law"></a>Zawinski’s Law</h2><blockquote>
-<p>“Every program attempts to expand until it includes a web server. Those programs which cannot so expand are replaced by ones which can.”</p>
-</blockquote>
-<p>For web services, it’s “…until it requires a user account and collects all users’ data”; for physical devices, it’s “…until it includes an insecure wifi access point with a default password you can’t change. And a web server”.</p>
-<h2 id="Parkinson’s-Law"><a href="#Parkinson’s-Law" class="headerlink" title="Parkinson’s Law"></a>Parkinson’s Law</h2><blockquote>
-<p>“Work expands so as to fill the time available for its completion.”</p>
-</blockquote>
-<p>The primary project management lessons here is that if you don’t set a deadline, then the project will never be completed. This is why iterating on a minimum viable product within fixed timelines is important.</p>
-<p>And, of course, we can and should adjust this law for data, processing power, RAM, …:</p>
-<blockquote>
-<p>“Data/CPU/memory usage expands to use up all available storage space/bandwidth/cycles/RAM.”</p>
-</blockquote>
-<h2 id="Pareto’s-Fallacy"><a href="#Pareto’s-Fallacy" class="headerlink" title="Pareto’s Fallacy"></a>Pareto’s Fallacy</h2><p>The <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Pareto_principle">Pareto Principle</a> is easy to misinterpret, especially by management. This often leads to Pareto’s Fallacy:</p>
-<blockquote>
-<p>“When you’re 80% done, you think you only have 20% left.”</p>
-</blockquote>
-<p>The critical part that’s overlooked here is that those 20% will require 80% of your time.</p>
-<h2 id="Sturgeon’s-Revelation"><a href="#Sturgeon’s-Revelation" class="headerlink" title="Sturgeon’s Revelation"></a>Sturgeon’s Revelation</h2><blockquote>
-<p>“90% of everything is crud.”</p>
-</blockquote>
-<p>Yes, that includes your products.</p>
-<h2 id="The-Peter-Principle"><a href="#The-Peter-Principle" class="headerlink" title="The Peter Principle"></a>The Peter Principle</h2><blockquote>
-<p>“In a hierarchy, every employee tends to rise to their level of incompetence. Thus, in time, every post tends to be occupied by an employee who is incompetent to carry out its duties.”</p>
-</blockquote>
-<p>Dunning and Kruger send their regards…(<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Peter_Principle">ref</a>)</p>
-<h2 id="Eagleson’s-Law"><a href="#Eagleson’s-Law" class="headerlink" title="Eagleson’s Law"></a>Eagleson’s Law</h2><blockquote>
-<p>“Any code of your own that you haven’t looked at for six or more months might as well have been written by someone else.”</p>
-</blockquote>
-<p>6 months is rather optimistic.</p>
-<h2 id="Greenspun’s-10th-Rule-of-Programming"><a href="#Greenspun’s-10th-Rule-of-Programming" class="headerlink" title="Greenspun’s 10th Rule of Programming"></a>Greenspun’s 10th Rule of Programming</h2><p>This can be generalized to the Universal NIH-Rule: “any custom developed system contains an ad hoc, informally-specified, bug-ridden, slow implementation of half of the industry standard you refused to adopt”.</p>
-<h2 id="The-Iceberg-Fallacy"><a href="#The-Iceberg-Fallacy" class="headerlink" title="The Iceberg Fallacy"></a>The Iceberg Fallacy</h2><blockquote>
-<p>“The cost of development of a new software product is the only ~25% of the total cost of ownership management sees and budgets for.”</p>
-</blockquote>
-<h2 id="The-LGTM-Dilemma"><a href="#The-LGTM-Dilemma" class="headerlink" title="The LGTM Dilemma"></a>The LGTM Dilemma</h2><blockquote>
-<p>“If you want to quickly ship a 10 line code change, hide it in a 1500 line pull request.”</p>
-</blockquote>
-<p>Also known as The Bikeshedders’ Blind Spot.</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2021-10-24T11:22:37.694Z"><a href="/2021/10/24/CryptoArt/">2021-10-24</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2021/10/24/CryptoArt/">CryptoArt</a></h1>
+    <h1 class="title"><a href="/2022/12/23/Github ssh keys/">Github Ssh Keys</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <p>Bumped with this one the last day <strong>Crypto Art</strong> the following transcript from <a target="_blank" rel="noopener" href="https://niftygateway.com/collections/mankind">Mankind</a> explain a bit what’s under the movement.</p>
-<h2 id="Transcript"><a href="#Transcript" class="headerlink" title="Transcript"></a>Transcript</h2><blockquote>
-<p>Just like all cats are mammals, but not all mammals are cats. All Crypto Art are NFTs but not all NFTs are Crypto Art. I’ve made a video on basics of NFTs or non fungible tokens, you can go check that out. But today I’m here to explain the basics of what Crypto Art is, because Crypto Art is a digital artwork that is linked to a non fungible token.</p>
-<p>Traditionally Crypto Art was related to the rise of crypto currencies like bitcoin and ethereum and had symbolism around that, but it’s now more loosely accepted as any digital art that has been tokenized on the the blockchain in order to associate digital proof of ownership.</p>
-<p>So what does that mean? It means what we’ve taken for granted in the real world, that a physical painting can be authenticated and owned now has the equivalent in the digital world. This is huge because this has never been possible for digital artists in the past. A token acting as a digital certificate for a digital file securely held on a permanent network of computers now allows digital artists to sell their work like never before.</p>
-<p>Crypto art is not just the digital file. It is the digital file backed by the NFT. So just like you can go online and find M. C. Escher ‘drawing hands’ and download it and print it, you would never try to convince anyone it’s the original, because you don’t own the letter of authenticity. The same now goes for digital art, everyone can see or download it, but only one can prove they own it.</p>
-<p>The question of the value of owning a digital artwork now lies with the market. The market of collectors. Beeple sold this work for $1 and a couple of months later sold this one for $777k. Paris Hilton drew this picture of her cat and it sold for $17k. Justin Roiland the creator of Rick and Morty drew this sketch and it sold for $90k. Of course if you already have a fanbase, anything you sell will be worth more. But even small artists can find collectors that just like the art or want to support their work.</p>
-<p>Pop art used to be disregarded as cheap and distasteful, Street art used to just be vandalism, and until recently, digital art was just for Instagram likes.</p>
-<p>When you mint an NFT for Crypto Art you’re not giving away any copyright or rigths of reproduction. You are creating a new thing, a new product. That buyer can then enjoy it, and sell it whenever they please. </p>
-<p>So where can you sell? There’s an ever changing list of places to buy and sell on the primary or secondary market so I’ll keep a list below in the description. I’ve also made a video on popular ones in the past.</p>
-<p>Most Crypto Art sites currently use Ethereum to do their transactions so you need to be set up with an Ethereum wallet to connect and transfer to. You also need a little Ethereum to start with in your wallet to pay for minting or transaction fees. You can always transfer your Ethereum back out to your exchange of choice to cash out to FIAT or Dollars whenever you want.</p>
-<p>In the future Crypto Art will just be called art. But at the moment, digital art is going through a movement led by changes in technology. The struggle of the artist will still remain, to create something with meaning and value, to find an audience or collectors. But the success of crypto currency in general has brought a wave of investors with big wallets to make a splash and bring eyeballs to the space with large transactions. The art world is a way to legitimize the space with creative thinkers, emotional ideas, entertainment and connection to culture that is worth investing in. </p>
-<p>Early creators and collectors alike will be rewarded for their involvement in this movement.</p>
-</blockquote>
-<h2 id="What-is-NFT"><a href="#What-is-NFT" class="headerlink" title="What is NFT ?"></a>What is NFT ?</h2><blockquote>
-<p>NFT stands for Non Fungible Token.</p>
-<p>Fungible means something is able to be exchanged or substituted and will hold the same value. It’s interchangeable like the dollar, gold, casino chips, bitcoin, ethereum or frequent flyer loyalty points.</p>
-<p>If I lend you 10 dollars cash and you return to me two 5 dollar bank notes, I’m fine with that because even though they are different, they hold the same total value. </p>
-<p>So non-fungile obviously means it’s an asset that can’t be substituted. It has unique attributes that makes it different from something else in the same asset class. Like a painting, a theatre ticket, a house, a video game skin, a trademark or a CryptoKitty which was the first real use case to take off on the Ethereum blockchain in 2017.</p>
-<p>Some of these assets are physical and tangible and others are digital and intangible.</p>
-<p>So NFTs are non-fungible tokens. ‘Token’ refers to a digital certificate stored on a secure distributed database called a blockchain.</p>
-<p>NFTs are digital assets. Publicly verifiable intellectual property authenticated on a blockchain.</p>
-<p>A popular place to currently browse a variety of NFTs is on <a target="_blank" rel="noopener" href="http://opensea.io/">http://OpenSea.io​</a></p>
-<p>It’s an exciting space, I believe the NFT space will continue to grow in the coming years with some popular use cases being: Digital Art, Virtual Land, Gaming, Collectibles, Finance and much more.</p>
-</blockquote>
-<h2 id="List-of-Crypto-Art-Platforms"><a href="#List-of-Crypto-Art-Platforms" class="headerlink" title="List of Crypto Art Platforms"></a>List of Crypto Art Platforms</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://superrare.co/mankind%E2%80%8B">https://superrare.co/mankind​</a></li>
-<li><a target="_blank" rel="noopener" href="https://makersplace.com/mankind%E2%80%8B">https://makersplace.com/mankind​</a></li>
-<li><a target="_blank" rel="noopener" href="https://niftygateway.com/collections">https://niftygateway.com/collections</a></li>
-<li><a target="_blank" rel="noopener" href="https://opensea.io/">https://opensea.io​</a></li>
-<li><a target="_blank" rel="noopener" href="https://rarible.com/">https://rarible.com​</a></li>
-<li><a target="_blank" rel="noopener" href="https://knownorigin.io/">https://knownorigin.io​</a></li>
-<li><a target="_blank" rel="noopener" href="https://foundation.app/">https://foundation.app​</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.bitski.com/">https://www.bitski.com​</a></li>
-<li><a target="_blank" rel="noopener" href="https://zora.co/">https://zora.co​</a></li>
-<li><a target="_blank" rel="noopener" href="https://mintbase.io/">https://mintbase.io​</a></li>
-<li><a target="_blank" rel="noopener" href="https://mintable.app/">https://mintable.app​</a></li>
-<li><a target="_blank" rel="noopener" href="https://niftykit.com/">https://niftykit.com​</a></li>
-<li><a target="_blank" rel="noopener" href="https://viv3.com/">https://viv3.com</a></li>
-</ul>
-<h2 id="Youtube-Reference-Video"><a href="#Youtube-Reference-Video" class="headerlink" title="Youtube Reference Video"></a>Youtube Reference Video</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://youtu.be/DYyW_tTPAhU">https://youtu.be/DYyW_tTPAhU</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2021-02-21T11:25:53.000Z"><a href="/2021/02/21/VisualCode Hexo addon/">2021-02-21</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2021/02/21/VisualCode Hexo addon/">VisualCode Hexo Addon</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="VisualCode-Hexo-extension"><a href="#VisualCode-Hexo-extension" class="headerlink" title="VisualCode Hexo extension"></a>VisualCode Hexo extension</h1><p>This article explain how to activte the visualcode hexo extension which would boost your productivity if you use Hexo for your articles such has i’m doing on this blob page.</p>
-<h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><p>Install VisualCode:</p>
+        <p>When using github one of the most recommend ways to get in sync with your repo is by using ssh keys. If you don’t use it check the following article from github docs where they explain in detail how to do the setup</p>
 <ul>
-<li> <a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/setup/setup-overview">https://code.visualstudio.com/docs/setup/setup-overview</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.github.com/en/github/authenticating-to-github/about-ssh">https://docs.github.com/en/github/authenticating-to-github/about-ssh</a></li>
 </ul>
-<p>Activate the following extension by executing the following command</p>
-<p><code>ext install fantasy.vscode-hexo-utils</code></p>
-<p>Make sure you open the folder where your Hexo base code is.</p>
-<p>That’s it.</p>
-<p>The extension allows you to directly manage your posts/tags/categories. It is also very suefull if you side lane the articles and preview the Markdowns with <strong>[Ctrl] + [Shift] + [V]</strong></p>
-<p>The extension repo is available on the following github repo: </p>
-<ul>
-<li> <a target="_blank" rel="noopener" href="https://github.com/cwxyz007/vscode-hexo-utils">https://github.com/cwxyz007/vscode-hexo-utils</a></li>
-</ul>
-<p>Kudos for the <a target="_blank" rel="noopener" href="https://github.com/cwxyz007/vscode-hexo-utils/graphs/contributors">contributors</a></p>
-<p>Cheers,<br>RR</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2021-02-21T11:07:15.000Z"><a href="/2021/02/21/Git-Untrack-previous-commited-files/">2021-02-21</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2021/02/21/Git-Untrack-previous-commited-files/">Git Untrack Previous Commited Files</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>This is something that sometimes bugs me, you keep hitting the .gitinore configuration file but still the file you try to ignore always get’s referenced on your changes.</p>
-<p>If that happens most probably you’ve reference it in the past to be track and you need to remove it, so this are the steps.</p>
-<h1 id="Update-your-gitignore-and-untrack-the-file"><a href="#Update-your-gitignore-and-untrack-the-file" class="headerlink" title="Update your .gitignore and untrack the file"></a>Update your .gitignore and untrack the file</h1><p>This example to untrack <code>db.json</code></p>
+<p>On your <strong>Profile</strong> you can manage your SSH and GPG keys.</p>
+<p>But take into account the following if you have more than one account the ssh-keys are unique on the system. </p>
+<p>So if you have for example:</p>
 <ol>
-<li><p>Change the entry in .gitignore ex: <code>*.json</code></p>
-</li>
-<li><p>Execute the following command to untrack</p>
-</li>
+<li>coporate account ruiramosff</li>
+<li>personal account rramos</li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git update-index --assume-unchanged db.json</span><br></pre></td></tr></table></figure>
+<p>You need to have distinct ssh-keys per profile.</p>
+<p>I would recommend for this cases to have distinct ssh keys and to a proper setup on your repo configurations adding for example</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[user]</span><br><span class="line">        name = Rui Ramos</span><br><span class="line">        email = rui.ms.ramos@gmail.com</span><br></pre></td></tr></table></figure>
 
-<ol start="3">
-<li>Commit the changes</li>
-</ol>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-10-18T00:26:17.000Z"><a href="/2017/10/18/dockers/">2017-10-18</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/10/18/dockers/">Dockers</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>This article is just to share a list of usefull dockers, in case one wants to speed test some feature and required some of this software to be up and running.</p>
-<h1 id="Why"><a href="#Why" class="headerlink" title="Why ?"></a>Why ?</h1><p>The main ideia is that i can fireup quickly without having to worry on the ports that are allready mapped on my local machine, so the several dockers should have colision ports taken care of.</p>
-<p>One should just need to execute <code>docker-compose up</code> and that’s it.</p>
-<p>You could also use other repo, but i’ll try to make my local configurations in a way that i could interuse several dockers.</p>
-<h1 id="Dockers-repo"><a href="#Dockers-repo" class="headerlink" title="Dockers repo"></a>Dockers repo</h1><p>You just need to clone the repo <a target="_blank" rel="noopener" href="https://github.com/rramos/dockers">https://github.com/rramos/dockers</a></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/rramos/dockers.git</span><br></pre></td></tr></table></figure>
-
-
-<h1 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h1><p>Make sure you have docker and docker compose properly configured</p>
-<h1 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h1><p>Just fire-up <code>docker-compose</code> and that’s it </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd docker-portainer</span><br><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
-
-<p>Each docker has it’s own README file with more instructions.</p>
-<h1 id="Docker-List"><a href="#Docker-List" class="headerlink" title="Docker List"></a>Docker List</h1><ul>
-<li>docker-grafana  </li>
-<li>docker-hdp      </li>
-<li>docker-ksql    </li>
-<li>docker-nifi         </li>
-<li>docker-portainer  </li>
-<li>docker-zeppelin  </li>
-<li>docker-hbase    </li>
-<li>docker-jenkins  </li>
-<li>docker-moodle  </li>
-<li>docker-openproject  </li>
-<li>docker-rundeck </li>
-</ul>
-<p>This is the available list at the moment of this article, i will add up more as i’m using and testing new stuff.</p>
-<p><strong>NOTE:</strong> Use this containers at your own risk </p>
+<p>You can also do this globaly on your <code>~./gitconfig</code> but if you are going to work on the same machine but want to use different profiles, pay attention to have the git configuration adapted to it.</p>
 <p>Cheers,<br>RR</p>
 
       
@@ -592,128 +390,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2017-10-13T01:09:12.000Z"><a href="/2017/10/13/drelephat/">2017-10-13</a></time>
+        <time datetime="2022-12-23T14:03:56.353Z"><a href="/2022/12/23/KeyboardLayout/">2022-12-23</a></time>
       
       
   
-    <h1 class="title"><a href="/2017/10/13/drelephat/">Dr. Elephant Overview</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>This article would be about <a target="_blank" rel="noopener" href="https://github.com/linkedin/dr-elephant">dr-elephant</a> A Performance and Monitoring tool for Hadoop and Spark.</p>
-<blockquote><p>Dr. Elephant is a performance monitoring and tuning tool for Hadoop and Spark. It automatically gathers all the metrics, runs analysis on them, and presents them in a simple way for easy consumption. Its goal is to improve developer productivity and increase cluster efficiency by making it easier to tune the jobs. It analyzes the Hadoop and Spark jobs using a set of pluggable, configurable, rule-based heuristics that provide insights on how a job performed, and then uses the results to make suggestions about how to tune the job to make it perform more efficiently.</p>
-<footer><strong>Offical Website Definition</strong></footer></blockquote>
-
-<h1 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h1><ul>
-<li><p>Install mysql-server and create a BD for dr-elephant</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get install mysql-server </span><br></pre></td></tr></table></figure></li>
-<li><p>MySQl preparation</p>
-</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mysql&gt; create database drelephant;</span><br><span class="line">Query OK, 1 row affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; grant all on drelephant.* to drelephant@localhost identified by &#x27;drelephant&#x27;;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; flush privileges;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>Install zip command</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get install zip</span><br></pre></td></tr></table></figure></li>
-<li><p>Install sbt</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb https://dl.bintray.com/sbt/debian /&quot;</span> | sudo tee -a /etc/apt/sources.list.d/sbt.list</span><br><span class="line">sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2EE0EA64E40A89B84B2DF73499E82A75642AC823</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install sbt</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h1 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h1><ul>
-<li>Clone the repo</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git https://github.com/linkedin/dr-elephant.git</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Compile</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sbt package</span><br><span class="line">sbt dist</span><br><span class="line">cp ./target/universal/dr-elephant-2.0.3-SNAPSHOT.zip .</span><br><span class="line">./compile.sh</span><br><span class="line"><span class="built_in">cd</span> dist</span><br><span class="line">unzip dr-elephant-2.0.3-SNAPSHOT.zip</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Starting the service</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> ELEPHANT_CONF_DIR=../../app-conf</span><br><span class="line">./bin/start.sh </span><br></pre></td></tr></table></figure>
-
-<p>One can now access the web interface at: <a target="_blank" rel="noopener" href="http://localhost:8080/">http://localhost:8080</a></p>
-<img src="/2017/10/13/drelephat/DrElephant-2-dashboard.jpg" class="" title="[Dashboard]">
-
-<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>This tool seems very powerfull. At the moment i haven’t tested changing the recommendations it provided, but will try them soon. Spark 2.x applications don’t seem to be working at the momment</p>
-<h1 id="Extended-tests"><a href="#Extended-tests" class="headerlink" title="Extended tests"></a>Extended tests</h1><ul>
-<li>Test Oozie Scheduler integration</li>
-<li>Test Airflow integration</li>
-<li>Define a deployment strategy</li>
-<li>Test recommended changes</li>
-</ul>
-<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/linkedin/dr-elephant">https://github.com/linkedin/dr-elephant</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/linkedin/dr-elephant/commit/7d9e34ecdbe36a652ca4ad2db852df08da57050a">https://github.com/linkedin/dr-elephant/commit/7d9e34ecdbe36a652ca4ad2db852df08da57050a</a></li>
-<li><a target="_blank" rel="noopener" href="https://engineering.linkedin.com/blog/2016/04/dr-elephant-open-source-self-serve-performance-tuning-hadoop-spark">https://engineering.linkedin.com/blog/2016/04/dr-elephant-open-source-self-serve-performance-tuning-hadoop-spark</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-10-09T21:17:35.000Z"><a href="/2017/10/09/ansible-cmdb/">2017-10-09</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/10/09/ansible-cmdb/">Ansible-Cmdb</a></h1>
+    <h1 class="title"><a href="/2022/12/23/KeyboardLayout/">Keyboard Layout</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <p>This article is about <a target="_blank" rel="noopener" href="https://github.com/fboender/ansible-cmdb">ansible-cmdb</a> a very nice solution for gathering your ansible facts into a visual format.</p>
-<blockquote><p>Ansible-cmdb takes the output of Ansible’s fact gathering and converts it into a static HTML overview page (and other things) containing system configuration information.</p>
-<p>It supports multiple types of output (html, csv, sql, etc) and extending information gathered by Ansible with custom data. For each host it also shows the groups, host variables, custom variables and machine-local facts.</p>
-<footer><strong>Offical Website Definition</strong></footer></blockquote>
-
-<h1 id="Supported-output-formats-templates"><a href="#Supported-output-formats-templates" class="headerlink" title="Supported output formats / templates:"></a>Supported output formats / templates:</h1><ul>
-<li>Fancy HTML (–template html_fancy), as seen in the screenshots above.</li>
-<li>Fancy HTML Split (–template html_fancy_split), with each host’s details in a separate file (for large number of hosts).</li>
-<li>CSV (–template csv), the trustworthy and flexible comma-separated format.</li>
-<li>JSON (–template json), a dump of all facts in JSON format.</li>
-<li>Markdown (–template markdown), useful for copy-pasting into Wiki’s and such.</li>
-<li>Markdown Split (‘–template markdown_split’), with each host’s details in a seperate file (for large number of hosts).</li>
-<li>SQL (–template sql), for importing host facts into a (My)SQL database.<br>Plain Text table (–template txt_table), for the console gurus.<br>and of course, any custom template you’re willing to make.</li>
-</ul>
-<h1 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h1><p>And it’s so simple to setup :D</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo pip install ansible-cmdb</span><br></pre></td></tr></table></figure>
-
-<p><strong>Note:</strong> You could also use your distribution prefeered method. check the offical site.</p>
-<h1 id="Creating-Reports"><a href="#Creating-Reports" class="headerlink" title="Creating Reports"></a>Creating Reports</h1><p>Simple console generation</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ansible-cmdb -t txt_table --columns name,os,ip,mem,cpus out</span><br></pre></td></tr></table></figure>
-
-<p>The HTML Fancy one</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ansible-cmdb --template txt_table out  --template html_fancy</span><br></pre></td></tr></table></figure>
-
-<p>Official Screenshoot</p>
-<img src="/2017/10/09/ansible-cmdb/screenshot-overview.png" class="">
-
-
-<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>I found this software quite simple and very usefull. I found that <code>--template txt_table</code> is quite handy to use on Documentation for small enviroments. For bigger projects the CSV could be a better choice. Also the fancy HTML templates are very usefull on playbook development phases where you can confirm your facts very easily. Ansible-cmdb started as a short Python script, but many people made contributions so far.</p>
-<p>Cheers,<br>RR</p>
+        <p>Reminder article for as I’m constantly forgetting the keyboard layout in my Linux distribution.<br>This started mostly after I have decided to use a 65% keyboard which misses a lot of keys from a traditional 100%. </p>
+<p>Still it has other advantages less space used and linear switches which allow faster input. Being a US tradicional Layout there are some portuguese characters missing and having a 65% keyboard doesn’t help either. Nevertheless after some weeks of adjustment improvements are noticed.</p>
+<p>The best layout to choose in Linux would be <code>English (intl, with AltGr dead keys)</code> for this setup.</p>
+<p>I still think that the english layout is the best option to follow. In regards to size a 85% seems a better options specially if you need to deal with spreadsheets.</p>
 <h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/fboender/ansible-cmdb">https://github.com/fboender/ansible-cmdb</a></li>
+<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Dead_key">https://en.wikipedia.org/wiki/Dead_key</a></li>
 </ul>
 
       
@@ -789,6 +481,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Code/">Code</a><small>2</small></li>
   
+    <li><a href="/tags/Communication/">Communication</a><small>1</small></li>
+  
     <li><a href="/tags/Conferences/">Conferences</a><small>2</small></li>
   
     <li><a href="/tags/Contracts/">Contracts</a><small>1</small></li>
@@ -803,7 +497,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Data-Quality/">Data Quality</a><small>1</small></li>
   
-    <li><a href="/tags/Development/">Development</a><small>1</small></li>
+    <li><a href="/tags/Development/">Development</a><small>2</small></li>
   
     <li><a href="/tags/Dimensions/">Dimensions</a><small>1</small></li>
   
@@ -849,6 +543,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Keyboard/">Keyboard</a><small>1</small></li>
   
+    <li><a href="/tags/Kubernetes/">Kubernetes</a><small>1</small></li>
+  
     <li><a href="/tags/Laws/">Laws</a><small>1</small></li>
   
     <li><a href="/tags/Leadership/">Leadership</a><small>1</small></li>
@@ -864,6 +560,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/Metrics/">Metrics</a><small>1</small></li>
   
     <li><a href="/tags/Monitoring/">Monitoring</a><small>1</small></li>
+  
+    <li><a href="/tags/NATO/">NATO</a><small>1</small></li>
   
     <li><a href="/tags/NFT/">NFT</a><small>1</small></li>
   
@@ -1005,8 +703,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
   <footer id="footer" class="inner"><div class="alignleft">
   
-  &copy; 2021 Rui Ramos
+  &copy; 2023 Rui Ramos
   
+  <a class="disclaimer" href=/disclaimer> Disclaimer</a>
 </div>
 <div class="clearfix"></div></footer>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>

@@ -1,0 +1,730 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Page 8 | rramos.github.io</title>
+  <meta name="author" content="Rui Ramos">
+  
+  <meta name="description" content="A simple Blog related with Infrastructure Architecture and Data">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="rramos.github.io"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+  
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MXRC4DK');</script>
+<!-- End Google Tag Manager -->
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MXRC4DK"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">rramos.github.io</a></h1>
+  <h2><a href="/">Tech Notes for Infrastructure and Data</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-09-13T21:18:10.000Z"><a href="/2017/09/13/ChromeProxy/">2017-09-13</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/09/13/ChromeProxy/">Setting Up Proxy Environments With Chrome</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Something that keeps bugging me is the need to access different environments in the browser through proxy tunnels, due to security restrictions or lack of routing between your local network and the environment you are working. Very common on Cloud environments or if you are working has a consultant for several clients at the same time.</p>
+<p>So this guide is intended to help on the setup of Google Chrome to use your configured tunnels.</p>
+<h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><h3 id="Configure-your-local-tunnel"><a href="#Configure-your-local-tunnel" class="headerlink" title="Configure your local tunnel"></a>Configure your local tunnel</h3><p>You require a tunnel configuration setup. For Linux i recommend setting this up in your <code>.ssh/config</code> file. I’ll give some examples, if you have interest on expanding you <code>./ssh/config</code> check the next article ill go in depth with it. There are also other tools such as <a target="_blank" rel="noopener" href="https://sourceforge.net/projects/gstm/">gSTM</a> tool.</p>
+<p>So let’s begin to create our reverse tunnel</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh -R 19999:localhost:22 sourceuser@remoteip</span><br></pre></td></tr></table></figure>
+
+<p>You could use any other available localport</p>
+<h3 id="Install-plugin-in-Google-Chrome"><a href="#Install-plugin-in-Google-Chrome" class="headerlink" title="Install plugin in Google Chrome"></a>Install plugin in Google Chrome</h3><p>Go into your google chrome settings and search for <strong>Extensions</strong> .<br>I’m using <strong>Proxy SwitchySharp</strong> But you could use any other.</p>
+<p>Go to your Extension Options and let’s create a profile</p>
+<ul>
+<li><strong>Name:</strong> mylocaldomain.dev</li>
+<li><strong>SOCKS HOST:</strong> localhost</li>
+<li><strong>Port:</strong> 19999</li>
+<li><strong>SOCKS v5:</strong> (enable)</li>
+</ul>
+<p>Now let’s create a rule for our local domain in <strong>Switch Rules</strong></p>
+<p>Add the rule for our domain: </p>
+<ul>
+<li><strong>Rule Name:</strong> MyLocalDomain</li>
+<li><strong>URL Pattern:</strong> *.mylocaldomain.dev</li>
+<li><strong>Pattern Type:</strong> Wildcard</li>
+<li><strong>ProxyProfile:</strong> mylocaldomain.dev</li>
+</ul>
+<p><strong>NOTE:</strong> Don’t forget to active the option <strong>Enable Switch Rules</strong></p>
+<p>Also don’t forget to activate the <strong>Auto Switch Mode</strong> in the extension.</p>
+<p>And that’s it now when you access the browser to domain <a target="_blank" rel="noopener" href="http://something.mylocaldomain.dev/">http://something.mylocaldomain.dev</a> you be using your defined ssh tunnel for it.</p>
+<h2 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h2><p>Lets do a quick test :)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo sh -c &#x27;echo &quot;127.0.0.1  test.mylocaldomain.dev&quot;  &gt;&gt; /etc/hosts&#x27;</span><br><span class="line">ssh -R 19999:localhost:22 localhost</span><br><span class="line">python -m SimpleHTTPServer 8000</span><br></pre></td></tr></table></figure>
+
+<p>Now access on the browser to <a target="_blank" rel="noopener" href="http://test.mylocaldomain.dev:8000/">http://test.mylocaldomain.dev:8000</a></p>
+<p>You could now have different profiles configured and autoswitch will do the job for you of choosing the appropriate tunnel.</p>
+<p>Cheers,<br>RR </p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-09-09T00:06:30.000Z"><a href="/2017/09/09/PolybaseCDH/">2017-09-09</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/09/09/PolybaseCDH/">Polybase Configuration With Cloudera 5</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>In this article i’ll try to describe the required configuration steps to setup Polybase in SQLServer 2016 for <a target="_blank" rel="noopener" href="https://www.cloudera.com/">Cloudera</a> CDH5. </p>
+<h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>Before starting the the configuration steps, let’s just try to understand why this is being done.</p>
+<h2 id="Sqoop"><a href="#Sqoop" class="headerlink" title="Sqoop"></a>Sqoop</h2><p>Sqoop is one of the most used tools to transfer data from the Relational World to BigData infrastructures. It relies on JDBC connectors to transfer data between SQLServer and HDFS.</p>
+<h2 id="Performance"><a href="#Performance" class="headerlink" title="Performance"></a>Performance</h2><p>The transfer process to SQLServer via sqoop is taking quite a lot, so the objective of this PoC is to verify if PolyBase alternative for dumping data in/out the cluster and understand if there is a improvement on existing processes.</p>
+<h1 id="Setup-Process"><a href="#Setup-Process" class="headerlink" title="Setup Process"></a>Setup Process</h1><h2 id="Obtain-the-cluster-configuration-files"><a href="#Obtain-the-cluster-configuration-files" class="headerlink" title="Obtain the cluster configuration files"></a>Obtain the cluster configuration files</h2><p>In order to configure Polybase for you Cloudera cluster one should first gather from CM the client configurations for HDFS and YARN.</p>
+<p>After downloading the configs you need to update the following files:</p>
+<ul>
+<li>yarn-site.xml</li>
+<li>mapred-site.xml</li>
+<li>hdfs-site.xml</li>
+</ul>
+<p>Copy this files to your SQLServer instance where Polybase will be installed.</p>
+<p>The usual path is</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">C:\Program Files\Microsoft SQL Server\MSSQL13.MSSQLSERVER\MSSQL\Binn\Polybase\Hadoop\conf  </span><br></pre></td></tr></table></figure>
+
+<p><strong>Note:</strong> Please note, that when PolyBase authenticates to a Kerberos secured cluster, we require the <code>hadoop.rpc.protection</code> setting to be set to authentication. This will leave the data communication between Hadoop nodes unencrypted.</p>
+<h2 id="Activate-the-required-Feature"><a href="#Activate-the-required-Feature" class="headerlink" title="Activate the required Feature"></a>Activate the required Feature</h2><p>On the SQLServer you are going to activate Polybase make sure you have the required pre-requisites</p>
+<ul>
+<li>64-bit SQL Server Evaluation edition</li>
+<li>Microsoft .NET Framework 4.5.</li>
+<li>Oracle Java SE RunTime Environment (JRE) version 7.51 or higher (64-bit) </li>
+<li>Minimum memory: 4GB</li>
+<li>Minimum hard disk space: 2GB</li>
+<li>TCP/IP must be enabled for Polybase to function correctly. </li>
+</ul>
+<p>Follow Microsoft guide to activate the feature <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/sql/relational-databases/polybase/polybase-installation">PolyBase Install Guide</a></p>
+<p>One could test if Polybase is correctly installed by running the following command</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> SERVERPROPERTY (<span class="string">&#x27;IsPolybaseInstalled&#x27;</span>) <span class="keyword">AS</span> IsPolybaseInstalled;  </span><br></pre></td></tr></table></figure>
+
+<h2 id="Configure-External-data-source"><a href="#Configure-External-data-source" class="headerlink" title="Configure External data source"></a>Configure External data source</h2><p>Execute the following T-SQL to create Hadoop connectivity to CDH5</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- Values map to various external data sources.  </span></span><br><span class="line"><span class="comment">--  Option 6: Cloudera 5.1, 5.2, 5.3, 5.4, 5.5, 5.9, 5.10, 5.11, and 5.12 on Linux</span></span><br><span class="line">sp_configure <span class="variable">@configname</span> <span class="operator">=</span> <span class="string">&#x27;hadoop connectivity&#x27;</span>, <span class="variable">@configvalue</span> <span class="operator">=</span> <span class="number">6</span>;   </span><br><span class="line">GO   </span><br><span class="line"></span><br><span class="line">RECONFIGURE   </span><br><span class="line">GO  </span><br></pre></td></tr></table></figure>
+
+<p>You could change the option in case you use a different Hadoop Cluster check the <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/polybase-connectivity-configuration-transact-sql">Option Mapping</a></p>
+<p><strong>Note:</strong> After running RECONFIGURE, you must stop and restart the SQL Server service.</p>
+<h2 id="Create-the-T-SQL-objects"><a href="#Create-the-T-SQL-objects" class="headerlink" title="Create the T-SQL objects"></a>Create the T-SQL objects</h2><p>Follow the example configuration described in <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/sql/relational-databases/polybase/get-started-with-polybase">Getting Started with Polybase</a></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 1: Create a database scoped credential.  </span></span><br><span class="line"><span class="comment">-- Create a master key on the database. This is required to encrypt the credential secret.  </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> MASTER KEY ENCRYPTION <span class="keyword">BY</span> PASSWORD <span class="operator">=</span> <span class="string">&#x27;S0me!nfo&#x27;</span>;  </span><br><span class="line"></span><br><span class="line"><span class="comment">-- 2: Create a database scoped credential  for Kerberos-secured Hadoop clusters.  </span></span><br><span class="line"><span class="comment">-- IDENTITY: the Kerberos user name.  </span></span><br><span class="line"><span class="comment">-- SECRET: the Kerberos password  </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> DATABASE SCOPED CREDENTIAL HadoopUser1   </span><br><span class="line"><span class="keyword">WITH</span> <span class="keyword">IDENTITY</span> <span class="operator">=</span> <span class="string">&#x27;&lt;hadoop_user_name&gt;&#x27;</span>, Secret <span class="operator">=</span> <span class="string">&#x27;&lt;hadoop_password&gt;&#x27;</span>;  </span><br><span class="line"></span><br><span class="line"><span class="comment">-- 3:  Create an external data source.  </span></span><br><span class="line"><span class="comment">-- LOCATION (Required) : Hadoop Name Node IP address and port.  </span></span><br><span class="line"><span class="comment">-- RESOURCE MANAGER LOCATION (Optional): Hadoop Resource Manager location to enable pushdown computation.  </span></span><br><span class="line"><span class="comment">-- CREDENTIAL (Optional):  the database scoped credential, created above.  </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">EXTERNAL</span> DATA SOURCE MyHadoopCluster <span class="keyword">WITH</span> (  </span><br><span class="line">        TYPE <span class="operator">=</span> HADOOP,   </span><br><span class="line">        LOCATION <span class="operator">=</span><span class="string">&#x27;hdfs://10.xxx.xx.xxx:xxxx&#x27;</span>,   </span><br><span class="line">        RESOURCE_MANAGER_LOCATION <span class="operator">=</span> <span class="string">&#x27;10.xxx.xx.xxx:xxxx&#x27;</span>,   </span><br><span class="line">        CREDENTIAL <span class="operator">=</span> HadoopUser1        </span><br><span class="line">);  </span><br><span class="line"></span><br><span class="line"><span class="comment">-- 4: Create an external file format.  </span></span><br><span class="line"><span class="comment">-- FORMAT TYPE: Type of format in Hadoop (DELIMITEDTEXT,  RCFILE, ORC, PARQUET).    </span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">EXTERNAL</span> FILE FORMAT TextFileFormat <span class="keyword">WITH</span> (  </span><br><span class="line">        FORMAT_TYPE <span class="operator">=</span> DELIMITEDTEXT,   </span><br><span class="line">        FORMAT_OPTIONS (FIELD_TERMINATOR <span class="operator">=</span><span class="string">&#x27;|&#x27;</span>,   </span><br><span class="line">                USE_TYPE_DEFAULT <span class="operator">=</span> <span class="literal">TRUE</span>)  </span><br><span class="line"></span><br><span class="line"><span class="comment">-- 5:  Create an external table pointing to data stored in Hadoop.  </span></span><br><span class="line"><span class="comment">-- LOCATION: path to file or directory that contains the data (relative to HDFS root).  </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">EXTERNAL</span> <span class="keyword">TABLE</span> [dbo].[CarSensor_Data] (  </span><br><span class="line">        [SensorKey] <span class="type">int</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,   </span><br><span class="line">        [CustomerKey] <span class="type">int</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,   </span><br><span class="line">        [GeographyKey] <span class="type">int</span> <span class="keyword">NULL</span>,   </span><br><span class="line">        [Speed] <span class="type">float</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,   </span><br><span class="line">        [YearMeasured] <span class="type">int</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>  </span><br><span class="line">)  </span><br><span class="line"><span class="keyword">WITH</span> (LOCATION<span class="operator">=</span><span class="string">&#x27;/Demo/&#x27;</span>,   </span><br><span class="line">        DATA_SOURCE <span class="operator">=</span> MyHadoopCluster,  </span><br><span class="line">        FILE_FORMAT <span class="operator">=</span> TextFileFormat  </span><br><span class="line">);  </span><br><span class="line"></span><br><span class="line"><span class="comment">-- 6:  Create statistics on an external table.   </span></span><br><span class="line"><span class="keyword">CREATE</span> STATISTICS StatsForSensors <span class="keyword">on</span> CarSensor_Data(CustomerKey, Speed)  </span><br></pre></td></tr></table></figure>
+
+<h2 id="Example-Queries"><a href="#Example-Queries" class="headerlink" title="Example Queries"></a>Example Queries</h2><ul>
+<li>Import external Data</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- PolyBase Scenario 2: Import external data into SQL Server.  </span></span><br><span class="line"><span class="comment">-- Import data for fast drivers into SQL Server to do more in-depth analysis and  </span></span><br><span class="line"><span class="comment">-- leverage Columnstore technology.  </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span>   </span><br><span class="line">        Insured_Customers.FirstName, Insured_Customers.LastName,   </span><br><span class="line">        Insured_Customers.YearlyIncome, Insured_Customers.MaritalStatus  </span><br><span class="line"><span class="keyword">INTO</span> Fast_Customers <span class="keyword">from</span> Insured_Customers <span class="keyword">INNER</span> <span class="keyword">JOIN</span>   </span><br><span class="line">(  </span><br><span class="line">        <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> CarSensor_Data <span class="keyword">where</span> Speed <span class="operator">&gt;</span> <span class="number">35</span>   </span><br><span class="line">) <span class="keyword">AS</span> SensorD  </span><br><span class="line"><span class="keyword">ON</span> Insured_Customers.CustomerKey <span class="operator">=</span> SensorD.CustomerKey  </span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> YearlyIncome  </span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> CLUSTERED COLUMNSTORE INDEX CCI_FastCustomers <span class="keyword">ON</span> Fast_Customers;  </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Export External Data</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- PolyBase Scenario 3: Export data from SQL Server to Hadoop.  </span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- Enable INSERT into external table  </span></span><br><span class="line">sp_configure ‘allow polybase export’, <span class="number">1</span>;  </span><br><span class="line">reconfigure  </span><br><span class="line"></span><br><span class="line"><span class="comment">-- Create an external table.   </span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">EXTERNAL</span> <span class="keyword">TABLE</span> [dbo].[FastCustomers2009] (  </span><br><span class="line">        [FirstName] <span class="type">char</span>(<span class="number">25</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,   </span><br><span class="line">        [LastName] <span class="type">char</span>(<span class="number">25</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,   </span><br><span class="line">        [YearlyIncome] <span class="type">float</span> <span class="keyword">NULL</span>,   </span><br><span class="line">        [MaritalStatus] <span class="type">char</span>(<span class="number">1</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>  </span><br><span class="line">)  </span><br><span class="line"><span class="keyword">WITH</span> (  </span><br><span class="line">        LOCATION<span class="operator">=</span><span class="string">&#x27;/old_data/2009/customerdata&#x27;</span>,  </span><br><span class="line">        DATA_SOURCE <span class="operator">=</span> HadoopHDP2,  </span><br><span class="line">        FILE_FORMAT <span class="operator">=</span> TextFileFormat,  </span><br><span class="line">        REJECT_TYPE <span class="operator">=</span> <span class="keyword">VALUE</span>,  </span><br><span class="line">        REJECT_VALUE <span class="operator">=</span> <span class="number">0</span>  </span><br><span class="line">);  </span><br><span class="line"></span><br><span class="line"><span class="comment">-- Export data: Move old data to Hadoop while keeping it query-able via an external table.  </span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> dbo.FastCustomer2009  </span><br><span class="line"><span class="keyword">SELECT</span> T.<span class="operator">*</span> <span class="keyword">FROM</span> Insured_Customers T1 <span class="keyword">JOIN</span> CarSensor_Data T2  </span><br><span class="line"><span class="keyword">ON</span> (T1.CustomerKey <span class="operator">=</span> T2.CustomerKey)  </span><br><span class="line"><span class="keyword">WHERE</span> T2.YearMeasured <span class="operator">=</span> <span class="number">2009</span> <span class="keyword">and</span> T2.Speed <span class="operator">&gt;</span> <span class="number">40</span>;  </span><br></pre></td></tr></table></figure>
+
+<h1 id="Tests"><a href="#Tests" class="headerlink" title="Tests"></a>Tests</h1><p>Initial tests are quite good actually, even with the identified issues. Polybase seems quite limited but for the objective in hands migth present like a very viable solution.</p>
+<p>Some more tests would be required.</p>
+<h1 id="Issues"><a href="#Issues" class="headerlink" title="Issues"></a>Issues</h1><ul>
+<li>It seems one cannot truncate external tables so an extra process would be required if you plan to use this as part of an ETL process that should support re-runs</li>
+<li>It seems that <code>hadoop_user_name</code> is being ignored and polybase still uses <code>pwc_user</code> account in cluster.</li>
+<li>Take care on the compression levels you choose as they consume quite a lot CPU on your SQLServer</li>
+<li>The metadata of the tables is allways stored on SQLServer. And when you choose parquet files has source format it stores in parquet meta the colunms as <code>col-0,col-1,col-3,...</code> if you map thoose files to a Hive table would require a view with the respective column name mapping.</li>
+<li>Not sure if this can be change but the dumped files to HDFS are splitted in 8, for the initial tests, only bad for small tables.</li>
+</ul>
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><ul>
+<li>Work in progress</li>
+</ul>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/sql/relational-databases/polybase/polybase-guide">https://docs.microsoft.com/en-us/sql/relational-databases/polybase/polybase-guide</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/sql/relational-databases/polybase/get-started-with-polybase">https://docs.microsoft.com/en-us/sql/relational-databases/polybase/get-started-with-polybase</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/sql/relational-databases/polybase/polybase-installation">https://docs.microsoft.com/en-us/sql/relational-databases/polybase/polybase-installation</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-09-07T19:37:23.000Z"><a href="/2017/09/07/GA-CustomDimension/">2017-09-07</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/09/07/GA-CustomDimension/">How to Create a Google Analytics Custom Dimension</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>In order to add a custom dimension in Google Analytics follow this steps:</p>
+<ol>
+<li>Click <strong>admin</strong> and navigate to the property you which to add a custom dimension</li>
+</ol>
+<img src="/2017/09/07/GA-CustomDimension/Custom_Dimension.png" class="" title="Custom Dimension (step 1)">
+
+<ol start="2">
+<li><p>Click new <strong>Custom Dimension</strong></p>
+</li>
+<li><p>Give it a <strong>Name</strong> and a <strong>Scope</strong> and you’l get the javascript to add on your website</p>
+</li>
+</ol>
+<img src="/2017/09/07/GA-CustomDimension/GA_CustomDimension_js.png" class="" title="Custom Dimension (step 2)">
+
+<ol start="4">
+<li>After you should modify your tracking code adding for example</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ga(&#x27;send&#x27;, &#x27;pageview&#x27;, &#123;</span><br><span class="line">  &#x27;dimension1&#x27;:  &#x27;My Custom Dimension&#x27;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="When-we-should-use-this"><a href="#When-we-should-use-this" class="headerlink" title="When we should use this ?"></a>When we should use this ?</h2><p>Let’s say your website does some sort of user classification, you can create a CustomDimension ex: <code>UserCategory</code> and send enrich the data you track.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-09-07T16:57:08.000Z"><a href="/2017/09/07/unpivot/">2017-09-07</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/09/07/unpivot/">Hive - Unpivot to Avoid Multiple Joins</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>In Hive, when a table has multiple similar columns, such as:</p>
+<table>
+<thead>
+<tr>
+<th>product_id</th>
+<th>image_name1</th>
+<th>image_name2</th>
+<th>…</th>
+<th>image_name15</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>a.jpg</td>
+<td>b.jpg</td>
+<td>…</td>
+<td>c.jpg</td>
+</tr>
+<tr>
+<td>2</td>
+<td>d.jpg</td>
+<td>e.jpg</td>
+<td>…</td>
+<td>f.jpg</td>
+</tr>
+</tbody></table>
+<p>and we want to join based on all image_names, the naive approach would be to perform 15 joins (in the running example).</p>
+<p>Hive does not have an unpivot functionality, but it is possible to use the Hive builtin UDF explode to accomplish this:<br>Query example</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">select x.product_id, x.image_name from (</span><br><span class="line">  select product_id, map(&quot;image_name1&quot;, image_name1, ..., &quot;image_name15&quot;, image_name15) as image_map</span><br><span class="line">  from table ) x</span><br><span class="line">lateral view explode(image_map) expl as image_nr, image_name</span><br></pre></td></tr></table></figure>
+
+
+<p>This returns an unpivoted table like below, which allows us to perform a single join:</p>
+<table>
+<thead>
+<tr>
+<th>product_id</th>
+<th>image_name</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>a.jpg</td>
+</tr>
+<tr>
+<td>1</td>
+<td>b.jpg</td>
+</tr>
+<tr>
+<td>1</td>
+<td>c.jpg</td>
+</tr>
+<tr>
+<td>2</td>
+<td>d.jpg</td>
+</tr>
+<tr>
+<td>2</td>
+<td>e.jpg</td>
+</tr>
+<tr>
+<td>2</td>
+<td>f.jpg</td>
+</tr>
+</tbody></table>
+<p>Big thanks to Diogo Franco, for this hint ;) check also is Blog Page <a target="_blank" rel="noopener" href="https://diogoalexandrefranco.github.io/">diogoalexandrefranco.github.io</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-09-07T01:00:16.000Z"><a href="/2017/09/07/mkv/">2017-09-07</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/09/07/mkv/">Terminal Markdown Viewer and MarkDown SpellChecker</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>It’s been a while that i’ve updated this posts. So let me start for something i’ve found out the other day.</p>
+<h2 id="Terminal-Markdown-Viewer"><a href="#Terminal-Markdown-Viewer" class="headerlink" title="Terminal Markdown Viewer"></a>Terminal Markdown Viewer</h2><p>I though it would be cool to have some tool that could parse me Markdown files and present them nicely formatted, like <code>cat</code> command.</p>
+<p>And it seems i’m not the only one :)</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/axiros/terminal_markdown_viewer">https://github.com/axiros/terminal_markdown_viewer</a></p>
+<p>In order to install just follow the instruction on the site. Pip worked well for me:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pip install mdv</span><br></pre></td></tr></table></figure>
+
+<p>I’ve updated my PATH environment var on <code>.bashrc</code> with:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">export PYTHONPATH=&quot;$&#123;PYTHONPATH&#125;:/$&#123;HOME&#125;/.local/lib/python2.7/site-packages&quot;</span><br><span class="line">export PATH=&quot;$PATH:~/.local/bin&quot;</span><br></pre></td></tr></table></figure>
+
+<p>I can now execute <code>mdv</code> command try it out it some .md files :D</p>
+<h2 id="A-Markdown-spell-checking-tool"><a href="#A-Markdown-spell-checking-tool" class="headerlink" title="A Markdown spell checking tool."></a>A Markdown spell checking tool.</h2><p>The other thing is regarding spell-check, as you can probably notice i really do a lot of errors, but i don’t wont to use a high resource editor just because of this how about a MD spell checking tool ?</p>
+<p>Well i’m trying this one ad i’m using [hexo][<a href="http://hexo.io]">http://hexo.io]</a> for the page generation and it uses already npm modules just added a new one </p>
+<h3 id="install"><a href="#install" class="headerlink" title="install"></a>install</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm i markdown-spellcheck -g</span><br></pre></td></tr></table></figure>
+
+<p>One can run interactive like</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mdspell &quot;**/*.md&quot;</span><br></pre></td></tr></table></figure>
+
+<p>It’s a bit slow but the database would grow in terms, i’m giving a try to it.</p>
+<p>I also add to add <code>.spelling</code> no to keep the dictionary database on git. I probably would add it later.</p>
+<p>Cheers,<br>RR</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+<nav id="pagination">
+  
+    <a href="/page/7/" class="alignleft prev">Previous</a>
+  
+  
+    <a href="/page/9/" class="alignright next">Next</a>
+  
+  <div class="clearfix"></div>
+</nav>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:rramos.github.io">
+  </form>
+</div>
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Net/">.Net</a><small>1</small></li>
+  
+    <li><a href="/tags/API/">API</a><small>1</small></li>
+  
+    <li><a href="/tags/Agile/">Agile</a><small>1</small></li>
+  
+    <li><a href="/tags/Airflow/">Airflow</a><small>1</small></li>
+  
+    <li><a href="/tags/Alacritty/">Alacritty</a><small>1</small></li>
+  
+    <li><a href="/tags/Analytics/">Analytics</a><small>1</small></li>
+  
+    <li><a href="/tags/Ansible/">Ansible</a><small>2</small></li>
+  
+    <li><a href="/tags/Arch/">Arch</a><small>2</small></li>
+  
+    <li><a href="/tags/Artifactory/">Artifactory</a><small>1</small></li>
+  
+    <li><a href="/tags/Avro/">Avro</a><small>1</small></li>
+  
+    <li><a href="/tags/BigData/">BigData</a><small>2</small></li>
+  
+    <li><a href="/tags/BigQuery/">BigQuery</a><small>1</small></li>
+  
+    <li><a href="/tags/CDH-Parcel/">CDH Parcel</a><small>1</small></li>
+  
+    <li><a href="/tags/CheatSheet/">CheatSheet</a><small>1</small></li>
+  
+    <li><a href="/tags/Cloudera/">Cloudera</a><small>3</small></li>
+  
+    <li><a href="/tags/Code/">Code</a><small>2</small></li>
+  
+    <li><a href="/tags/Communication/">Communication</a><small>1</small></li>
+  
+    <li><a href="/tags/Conferences/">Conferences</a><small>2</small></li>
+  
+    <li><a href="/tags/Contracts/">Contracts</a><small>1</small></li>
+  
+    <li><a href="/tags/CryptoArt/">CryptoArt</a><small>1</small></li>
+  
+    <li><a href="/tags/Customization/">Customization</a><small>1</small></li>
+  
+    <li><a href="/tags/Customize/">Customize</a><small>1</small></li>
+  
+    <li><a href="/tags/Data-Ingestion/">Data Ingestion</a><small>1</small></li>
+  
+    <li><a href="/tags/Data-Quality/">Data Quality</a><small>1</small></li>
+  
+    <li><a href="/tags/Development/">Development</a><small>2</small></li>
+  
+    <li><a href="/tags/Dimensions/">Dimensions</a><small>1</small></li>
+  
+    <li><a href="/tags/Docker/">Docker</a><small>7</small></li>
+  
+    <li><a href="/tags/GA/">GA</a><small>2</small></li>
+  
+    <li><a href="/tags/GA4/">GA4</a><small>2</small></li>
+  
+    <li><a href="/tags/GC/">GC</a><small>1</small></li>
+  
+    <li><a href="/tags/GCS/">GCS</a><small>1</small></li>
+  
+    <li><a href="/tags/Garuda/">Garuda</a><small>1</small></li>
+  
+    <li><a href="/tags/Google-Analytics/">Google Analytics</a><small>3</small></li>
+  
+    <li><a href="/tags/Google-Tag-Manager/">Google Tag Manager</a><small>1</small></li>
+  
+    <li><a href="/tags/GoogleChrome/">GoogleChrome</a><small>1</small></li>
+  
+    <li><a href="/tags/Guideline/">Guideline</a><small>1</small></li>
+  
+    <li><a href="/tags/HDFS/">HDFS</a><small>3</small></li>
+  
+    <li><a href="/tags/Hadoop/">Hadoop</a><small>4</small></li>
+  
+    <li><a href="/tags/Hive/">Hive</a><small>3</small></li>
+  
+    <li><a href="/tags/IDE/">IDE</a><small>1</small></li>
+  
+    <li><a href="/tags/Install/">Install</a><small>1</small></li>
+  
+    <li><a href="/tags/Internet/">Internet</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/KSQL/">KSQL</a><small>1</small></li>
+  
+    <li><a href="/tags/KVM/">KVM</a><small>2</small></li>
+  
+    <li><a href="/tags/Kafka/">Kafka</a><small>2</small></li>
+  
+    <li><a href="/tags/Keyboard/">Keyboard</a><small>1</small></li>
+  
+    <li><a href="/tags/Kubernetes/">Kubernetes</a><small>1</small></li>
+  
+    <li><a href="/tags/Laws/">Laws</a><small>1</small></li>
+  
+    <li><a href="/tags/Leadership/">Leadership</a><small>1</small></li>
+  
+    <li><a href="/tags/Linux/">Linux</a><small>8</small></li>
+  
+    <li><a href="/tags/Management/">Management</a><small>1</small></li>
+  
+    <li><a href="/tags/Markdown/">Markdown</a><small>1</small></li>
+  
+    <li><a href="/tags/Mesos/">Mesos</a><small>1</small></li>
+  
+    <li><a href="/tags/Metrics/">Metrics</a><small>1</small></li>
+  
+    <li><a href="/tags/Monitoring/">Monitoring</a><small>1</small></li>
+  
+    <li><a href="/tags/NATO/">NATO</a><small>1</small></li>
+  
+    <li><a href="/tags/NFT/">NFT</a><small>1</small></li>
+  
+    <li><a href="/tags/Nifi/">Nifi</a><small>1</small></li>
+  
+    <li><a href="/tags/Nord/">Nord</a><small>1</small></li>
+  
+    <li><a href="/tags/Nuget/">Nuget</a><small>1</small></li>
+  
+    <li><a href="/tags/OpenAPI/">OpenAPI</a><small>1</small></li>
+  
+    <li><a href="/tags/Optimization/">Optimization</a><small>1</small></li>
+  
+    <li><a href="/tags/Parquet/">Parquet</a><small>1</small></li>
+  
+    <li><a href="/tags/Performance/">Performance</a><small>1</small></li>
+  
+    <li><a href="/tags/Polybase/">Polybase</a><small>1</small></li>
+  
+    <li><a href="/tags/Portainer/">Portainer</a><small>1</small></li>
+  
+    <li><a href="/tags/Porto/">Porto</a><small>1</small></li>
+  
+    <li><a href="/tags/PortoTechHub/">PortoTechHub</a><small>1</small></li>
+  
+    <li><a href="/tags/PowerShell/">PowerShell</a><small>1</small></li>
+  
+    <li><a href="/tags/Proxy/">Proxy</a><small>1</small></li>
+  
+    <li><a href="/tags/QEMU/">QEMU</a><small>1</small></li>
+  
+    <li><a href="/tags/Qemu/">Qemu</a><small>1</small></li>
+  
+    <li><a href="/tags/RDD/">RDD</a><small>1</small></li>
+  
+    <li><a href="/tags/SQL/">SQL</a><small>1</small></li>
+  
+    <li><a href="/tags/SQLServer/">SQLServer</a><small>1</small></li>
+  
+    <li><a href="/tags/Scala/">Scala</a><small>1</small></li>
+  
+    <li><a href="/tags/Scrum/">Scrum</a><small>1</small></li>
+  
+    <li><a href="/tags/Setup/">Setup</a><small>1</small></li>
+  
+    <li><a href="/tags/Sheetlist/">Sheetlist</a><small>1</small></li>
+  
+    <li><a href="/tags/Software/">Software</a><small>1</small></li>
+  
+    <li><a href="/tags/Software-Engineering/">Software Engineering</a><small>1</small></li>
+  
+    <li><a href="/tags/Spark/">Spark</a><small>4</small></li>
+  
+    <li><a href="/tags/SparkSummit/">SparkSummit</a><small>1</small></li>
+  
+    <li><a href="/tags/Sqoop/">Sqoop</a><small>1</small></li>
+  
+    <li><a href="/tags/Streaming/">Streaming</a><small>1</small></li>
+  
+    <li><a href="/tags/Streamming/">Streamming</a><small>1</small></li>
+  
+    <li><a href="/tags/Tech/">Tech</a><small>1</small></li>
+  
+    <li><a href="/tags/Tools/">Tools</a><small>1</small></li>
+  
+    <li><a href="/tags/Tunning/">Tunning</a><small>1</small></li>
+  
+    <li><a href="/tags/Utils/">Utils</a><small>2</small></li>
+  
+    <li><a href="/tags/Vagrant/">Vagrant</a><small>1</small></li>
+  
+    <li><a href="/tags/VirtualBox/">VirtualBox</a><small>1</small></li>
+  
+    <li><a href="/tags/Windows/">Windows</a><small>1</small></li>
+  
+    <li><a href="/tags/Zeepelin/">Zeepelin</a><small>1</small></li>
+  
+    <li><a href="/tags/beeline/">beeline</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/btrfs/">btrfs</a><small>1</small></li>
+  
+    <li><a href="/tags/cheat/">cheat</a><small>1</small></li>
+  
+    <li><a href="/tags/docker-compose/">docker-compose</a><small>1</small></li>
+  
+    <li><a href="/tags/dr-elephant/">dr-elephant</a><small>1</small></li>
+  
+    <li><a href="/tags/encryption/">encryption</a><small>1</small></li>
+  
+    <li><a href="/tags/exception/">exception</a><small>1</small></li>
+  
+    <li><a href="/tags/fish/">fish</a><small>1</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>4</small></li>
+  
+    <li><a href="/tags/github/">github</a><small>2</small></li>
+  
+    <li><a href="/tags/hadoop/">hadoop</a><small>1</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hive/">hive</a><small>1</small></li>
+  
+    <li><a href="/tags/kbfs/">kbfs</a><small>1</small></li>
+  
+    <li><a href="/tags/keybase/">keybase</a><small>1</small></li>
+  
+    <li><a href="/tags/keys/">keys</a><small>1</small></li>
+  
+    <li><a href="/tags/libvirt/">libvirt</a><small>1</small></li>
+  
+    <li><a href="/tags/markdown/">markdown</a><small>1</small></li>
+  
+    <li><a href="/tags/pgp/">pgp</a><small>1</small></li>
+  
+    <li><a href="/tags/pki/">pki</a><small>1</small></li>
+  
+    <li><a href="/tags/qcow2/">qcow2</a><small>1</small></li>
+  
+    <li><a href="/tags/sheet/">sheet</a><small>1</small></li>
+  
+    <li><a href="/tags/ssh/">ssh</a><small>2</small></li>
+  
+    <li><a href="/tags/udfs/">udfs</a><small>1</small></li>
+  
+    <li><a href="/tags/utils/">utils</a><small>1</small></li>
+  
+    <li><a href="/tags/vdi/">vdi</a><small>1</small></li>
+  
+    <li><a href="/tags/visual-code/">visual code</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2023 Rui Ramos
+  
+  <a class="disclaimer" href=/disclaimer> Disclaimer</a>
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<!-- Go to www.addthis.com/dashboard to customize your tools --> <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-59c7d222fcd19d69"></script>
+</body>
+</html>

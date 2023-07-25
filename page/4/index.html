@@ -77,160 +77,89 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2017-09-19T21:06:18.000Z"><a href="/2017/09/19/quickzeppelin/">2017-09-19</a></time>
+        <time datetime="2022-12-23T14:03:56.352Z"><a href="/2022/12/23/GTM/">2022-12-23</a></time>
       
       
   
-    <h1 class="title"><a href="/2017/09/19/quickzeppelin/">Quick Setup Zeppelin Notebook</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>In this article i describe a quick way to have zeepelin running so that you could quickly testing some Spark application.</p>
-<p><strong>NOTE:</strong> This procedure shouldn’t be used in production environments has you should setup the Notebook with auth and connected to your local infrastructure.</p>
-<h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><ul>
-<li>One should have a docker environment setup. Check my previous <a href="/2017/09/19/dockerclean/" title="article">article</a> if you need some help with that</li>
-<li><a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-14-04">Docker-compose</a></li>
-</ul>
-<h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><ol>
-<li><p>Create a folder named zeepelin</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir docker-zeepelin</span><br></pre></td></tr></table></figure></li>
-<li><p>Create a <code>data</code> where you could put some data to analyse.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir -p docker-zeepelin/data</span><br></pre></td></tr></table></figure></li>
-<li><p>Create the following <code>docker-compose.yml</code> file in dir <code>docker-zeepelin</code> :</p>
-</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">version: &#x27;2&#x27;</span><br><span class="line">services:</span><br><span class="line">  zeppelin:</span><br><span class="line">    ports:</span><br><span class="line">     - &quot;8080:8080&quot;</span><br><span class="line">    volumes:</span><br><span class="line">     - ./data:/opt/data</span><br><span class="line">    image: &quot;dylanmei/zeppelin&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li><p>Launch docker-compose</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo docker-compose up -d</span><br></pre></td></tr></table></figure></li>
-<li><p>That’s it you should now be able to access <a target="_blank" rel="noopener" href="http://localhost:8080/">http://localhost:8080</a> </p>
-</li>
-</ol>
-<h2 id="Test-it"><a href="#Test-it" class="headerlink" title="Test it"></a>Test it</h2><ol>
-<li>Lets download a demo file to our <code>data</code> dir. <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">curl -s https://api.opendota.com/api/publicMatches -o ./data/OpenDotaPublic.json</span><br></pre></td></tr></table></figure></li>
-</ol>
-<p>Yeah! I kinda like Dota so this makes sense :D</p>
-<ol start="2">
-<li>Create a new NoteBook in the web Interface and use the following code</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">%spark</span><br><span class="line"></span><br><span class="line">val df = sqlContext.read.json(&quot;file:///opt/data/OpenDotaPublic.json&quot;)</span><br><span class="line">df.show</span><br></pre></td></tr></table></figure>
-
-<p>Hit: <strong>Shift-Enter</strong></p>
-<ol start="3">
-<li>Let’s register this dataframe as temp table and create some visuals</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">%spark</span><br><span class="line">df.registerTempTable(&quot;publicmatches&quot;)</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>Create the following to generate visualizations<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">%sql</span><br><span class="line">select radiant_win,match_id</span><br><span class="line"> from publicmatches</span><br></pre></td></tr></table></figure></li>
-</ol>
-<img src="/2017/09/19/quickzeppelin/radiant_win.png" class="" title="[PieChart]">
-
-<p>Guess i need to start playing on Radiant side :D</p>
-<p>Well and that’s it.</p>
-<p>Cheers,<br>RR</p>
-<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://zeppelin.apache.org/docs/0.5.5-incubating/tutorial/tutorial.html">https://zeppelin.apache.org/docs/0.5.5-incubating/tutorial/tutorial.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://hortonworks.com/tutorial/getting-started-with-apache-zeppelin/">https://hortonworks.com/tutorial/getting-started-with-apache-zeppelin/</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-16-04">https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-16-04</a></li>
-<li><a target="_blank" rel="noopener" href="https://docs.docker.com/compose">https://docs.docker.com/compose</a></li>
-<li><a target="_blank" rel="noopener" href="https://zeppelin.apache.org/">https://zeppelin.apache.org/</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-09-19T07:37:29.000Z"><a href="/2017/09/19/dockerclean/">2017-09-19</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/09/19/dockerclean/">Clean All Dockers and Configure With Btrfs</a></h1>
+    <h1 class="title"><a href="/2022/12/23/GTM/">Google Tag Manager</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <p>So dockers tend to start growing like weeds. And cost me space i don’t have. But one could change the storage driver. You could choose LVM and take advantage of the snapshots or btrfs which i allready have.</p>
-<h2 id="Btrfs"><a href="#Btrfs" class="headerlink" title="Btrfs"></a>Btrfs</h2><p>Btrfs is a next generation copy-on-write filesystem that supports many advanced storage technologies that make it a good fit for Docker. Btrfs is included in the mainline Linux kernel.</p>
-<p>Docker’s btrfs storage driver leverages many Btrfs features for image and container management. Among these features are block-level operations, thin provisioning, copy-on-write snapshots, and ease of administration. You can easily combine multiple physical block devices into a single Btrfs filesystem.</p>
-<h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><ul>
-<li>Install btrfs </li>
-<li>Make sure you have a volume formated as btrfs (not part of the article)</li>
+        <p>In this article it will be provided a quick walkthrough on Google Tag Manager.</p>
+<h2 id="What-is-Google-Tag-Manager"><a href="#What-is-Google-Tag-Manager" class="headerlink" title="What is Google Tag Manager ?"></a>What is Google Tag Manager ?</h2><p>Google Tag Manager is a tag management system (TMS) that allows you to quickly and easily update measurement codes and related code fragments collectively known as tags on your website or mobile app. Once the small segment of Tag Manager code has been added to your project, you can safely and easily deploy analytics and measurement tag configurations from a web-based user interface.</p>
+<h3 id="What-is-a-Tag"><a href="#What-is-a-Tag" class="headerlink" title="What is a Tag ?"></a>What is a Tag ?</h3><p>Tags are segments of code provided by analytics, marketing, and support vendors to help you integrate their products into your websites or mobile apps. With Google Tag Manager, you no longer need to add these tags directly to your projects. Instead, you configure and publish tags and how they fire from within the Tag Manager user interface.</p>
+<p>When we speak of tags in an HTML context, we refer to tags such as <code>&lt;body&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;li&gt;</code>, <code>&lt;blockquote&gt;</code>, and so on. When we refer to tags used in the analytics and marketing industry, we refer to code that an organization provides to install the desired product or functionality on your website or mobile app.</p>
+<p>Tag Manager natively supports many <a target="_blank" rel="noopener" href="https://support.google.com/tagmanager/answer/6106924">Google and 3rd party tag</a> configurations. <a target="_blank" rel="noopener" href="https://support.google.com/tagmanager/answer/6107167">Custom tags</a> may be used to implement tags that are not yet supported by Tag Manager’s native templates.</p>
+<h2 id="How-it-works"><a href="#How-it-works" class="headerlink" title="How it works ?"></a>How it works ?</h2><ul>
+<li>A snippet of code (container) is required to be installed on each page of your website like it happens for instance in Google Analytics.</li>
+<li>After that one needs to setup the triggers that would fire the tags using the tagmanager UI.</li>
+<li>After publishing those tags the events are triggered based on the defined rules in a asynchronous way.</li>
 </ul>
-<h2 id="Clean-all-dockers-and-images"><a href="#Clean-all-dockers-and-images" class="headerlink" title="Clean all dockers and images"></a>Clean all dockers and images</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Delete all containers</span><br><span class="line">sudo docker rm $(sudo docker ps -a -q)</span><br><span class="line"># Delete all images</span><br><span class="line">sudo docker rmi $(sudo docker images -q)</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><p>Make sure you have btrfs on your system</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo cat /proc/filesystems | grep btrfs</span><br></pre></td></tr></table></figure>
-
+<blockquote>
+<p><strong>NOTE:</strong> You need one tag manager account per company or organization, but if you are tracking for several companies, you can connect to multiple tag manager accounts to a single user’s Google account.<br>Each Tag Manager account has at least one container.  A container includes the tags and “triggers” that determine when those tags should fire or collect data. Typically, you’ll have one container for each website domain, though you can use a single container for cross-domain tracking</p>
+</blockquote>
+<h3 id="How-to-Setup"><a href="#How-to-Setup" class="headerlink" title="How to Setup ?"></a>How to Setup ?</h3><p>In order to setup GTM the following steps are required:</p>
 <ol>
-<li>Stop docker</li>
+<li><strong>Create an account</strong>, or use an existing account, at <a href="tagmanager.google.co">tagmanager.google.com</a>. (A new container is created by default, and you can create additional containers within each account.)</li>
+<li><strong>Install the container</strong> in your website or mobile app.<ul>
+<li>For web and AMP pages: Add the container snippet as instructed by Tag Manager, and remove any existing tags.</li>
+<li>For mobile apps: Use the Firebase SDK for Android or iOS.</li>
+</ul>
+</li>
+<li><strong>Add and publish your tags</strong>.</li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo service docker stop</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>Create a backup of you docker settings</li>
+<blockquote>
+<p><strong>NOTE:</strong> A Tag Manager account represents the topmost level of organization. Typically, only one account is needed per company. A Tag Manager account contains one or more containers, and there are specific container types that may be used for websites, AMP pages, Android apps, and iOS apps.</p>
+</blockquote>
+<h4 id="Install-the-snippet"><a href="#Install-the-snippet" class="headerlink" title="Install the snippet"></a><strong>Install the snippet</strong></h4><ul>
+<li><p>Place the <code>&lt;script&gt;</code> code snippet in the <code>&lt;head&gt;</code> of your web page HTML output, preferably as close to the opening <code>&lt;head&gt;</code> tag as possible, but below any dataLayer declarations.</p>
+</li>
+<li><p>Place the <code>&lt;noscript&gt;</code> code snippet immediately after the <code>&lt;body&gt;</code> tag in your HTML output.</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>NOTE:</strong> To ensure that tags do not fire twice, remove from your code any hardcoded tags that have been migrated to your Tag Manager container.</p>
+</blockquote>
+<h2 id="Why-should-one-use-Google-Tag-Manager"><a href="#Why-should-one-use-Google-Tag-Manager" class="headerlink" title="Why should one use Google Tag Manager ?"></a>Why should one use Google Tag Manager ?</h2><ul>
+<li>Tag manager allows to simplify the management of tags and reduce the dependency from engineering teams. Acts as a bridge between Marketers and developers.</li>
+<li>Allow to have a collaborative space for marketing teams to test and source control their changes, improving the workflow to have this changes deployed.</li>
+<li>Improves page loads as the tags are fired asynchronously.</li>
+</ul>
+<h2 id="How-to-use-Google-Tag-Manager"><a href="#How-to-use-Google-Tag-Manager" class="headerlink" title="How to use Google Tag Manager ?"></a>How to use Google Tag Manager ?</h2><h3 id="Manage-Tags"><a href="#Manage-Tags" class="headerlink" title="Manage Tags"></a>Manage Tags</h3><p>Tags are fired based on triggers and these make use of:</p>
+<ul>
+<li>Variable</li>
+<li>Operators</li>
+<li>Values</li>
+</ul>
+<h4 id="Variables"><a href="#Variables" class="headerlink" title="Variables"></a>Variables</h4><ul>
+<li><strong>Built-in Variables</strong>: ex: <code>&#123;&#123;page path&#125;&#125;</code> or <code>&#123;&#123;click id&#125;&#125;</code></li>
+<li><strong>User defined variables</strong>: ex: <code>&#123;&#123;purchaseComplete&#125;&#125;</code></li>
+</ul>
+<h4 id="Operators"><a href="#Operators" class="headerlink" title="Operators"></a>Operators</h4><ul>
+<li>Operators define the relation with variable and values: ex: <em>contains, equals</em></li>
+</ul>
+<h4 id="Values"><a href="#Values" class="headerlink" title="Values"></a>Values</h4><ul>
+<li>Values like numbers or strings: ex: 1, 2, 3 or a, b , c</li>
+</ul>
+<p>When the user visit the site the container snippet will trigger tags based on firing instructions which communicates to systems such as Google Analytics.</p>
+<h2 id="DataLayer"><a href="#DataLayer" class="headerlink" title="DataLayer"></a>DataLayer</h2><p>The Data Layer in Tag Manager is a Javascript object that holds data such as custom event information or variables passed from your website. Information in the Data Layer is structured into key-value pairs, which may be passed to third-party applications like Analytics or used as a trigger to determine when tags should fire.</p>
+<p>There are two ways to populate the Data Layer with these key-value pairs.</p>
+<ol>
+<li>Pre-populating values in the data layer</li>
+<li>Javascript push into the Data Layer</li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo mv /var/lib/docker/ /var/lib/docker.bak</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>create a subvolume from an existing btrfs FS</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">btrfs subvolume create /archive/dockers</span><br></pre></td></tr></table></figure>
-
-<p><strong>NOTE:</strong> It’s better to use a dedicate disk for it</p>
-<ol start="4">
-<li>Create the symlink</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ln -s /archive/dockers /var/lib/docker</span><br></pre></td></tr></table></figure>
-
-<ol start="5">
-<li>Copy the backup data to the new location</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cp -rp /var/lib/docker.bak/* /var/lib/docker/</span><br></pre></td></tr></table></figure>
-
-<ol start="6">
-<li>Configure Docker to use the btrfs storage driver. This is required even though <code>/var/lib/docker/</code> is now using a Btrfs filesystem. Edit or create the file <code>/etc/docker/daemon.json</code>.</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;storage-driver&quot;: &quot;btrfs&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="7">
-<li>Start docker service</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo service docker start</span><br></pre></td></tr></table></figure>
-
-<ol start="8">
-<li>Check if docker is running with docker support</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo docker info|grep  &quot;Storage Driver&quot;</span><br></pre></td></tr></table></figure>
-
-<p>You could check the volumes being created with the command</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo btrfs subvolume list /var/liv/docker |grep dockers</span><br></pre></td></tr></table></figure>
-
-
+<blockquote>
+<p><strong>NOTE</strong>: It’s important to note that Data Layer variables don’t persist across pages automatically. If you wish to pass a value to the Data Layer on additional pages, you’ll need to write custom code to do so.</p>
+</blockquote>
+<h2 id="Definitions"><a href="#Definitions" class="headerlink" title="Definitions"></a>Definitions</h2><ul>
+<li><strong>KPI</strong> - Key Performance Indicator (KPI) Definition<br>A Key Performance Indicator is a measurable value that demonstrates how effectively a company is achieving key business objectives. Organizations use KPIs at multiple levels to evaluate their success at reaching targets.</li>
+</ul>
 <h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://docs.docker.com/engine/userguide/storagedriver/btrfs-driver/">https://docs.docker.com/engine/userguide/storagedriver/btrfs-driver/</a></li>
+<li><a target="_blank" rel="noopener" href="https://marketingplatform.google.com/about/tag-manager/">https://marketingplatform.google.com/about/tag-manager/</a></li>
+<li><a target="_blank" rel="noopener" href="https://developers.google.com/tag-manager">https://developers.google.com/tag-manager</a></li>
+<li><a target="_blank" rel="noopener" href="https://support.google.com/tagmanager/answer/6102821?hl=en">https://support.google.com/tagmanager/answer/6102821?hl=en</a></li>
 </ul>
 
       
@@ -254,55 +183,96 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2017-09-13T22:13:24.000Z"><a href="/2017/09/13/ssh-config/">2017-09-13</a></time>
+        <time datetime="2022-08-30T09:00:16.000Z"><a href="/2022/08/30/nato_alphabet/">2022-08-30</a></time>
       
       
   
-    <h1 class="title"><a href="/2017/09/13/ssh-config/">Optimize Your SSH Connections With SSH Config File</a></h1>
+    <h1 class="title"><a href="/2022/08/30/nato_alphabet/">NATO Phonetic Alphabet</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <p>If most of your work is done remotely though ssh, and you have to access several environments, there will come a time where you need to organize our connection settings. Which user you need to access server X or which port is configured or the case you work in consulting and have several ssh_keys.</p>
-<p>There are some tools that migth help on this, but i’m old school and still stick with plain ssh command.</p>
-<p>ssh config file helps quite a lot, here are some tips unknown to some:</p>
-<h2 id="Alias"><a href="#Alias" class="headerlink" title="Alias"></a>Alias</h2><p>Let’s say you want to take advantage of tab auto-completion when using your connections for a enviroment like</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">├── ClientA</span><br><span class="line">│   ├── server1</span><br><span class="line">│   └── server2</span><br><span class="line">├── ClientB</span><br><span class="line">│   └── server1</span><br><span class="line">├── DEV</span><br><span class="line">│   ├── BackOffice</span><br><span class="line">│   │   ├── server1</span><br><span class="line">│   │   └── server2</span><br><span class="line">│   └── FrontOffice</span><br><span class="line">│       ├── server1</span><br><span class="line">│       ├── server2</span><br><span class="line">│       └── server3</span><br><span class="line">├── LIVE</span><br><span class="line">│   ├── Cluster</span><br><span class="line">│   │   ├── node01</span><br><span class="line">│   │   ├── node02</span><br><span class="line">│   │   └── node03</span><br><span class="line">│   └── Servers</span><br><span class="line">│       ├── server01</span><br><span class="line">│       └── server02</span><br><span class="line">└── QA</span><br><span class="line">    └── server1</span><br></pre></td></tr></table></figure>
+        <blockquote>
+<p>The (International) Radiotelephony Spelling Alphabet, commonly known as the NATO phonetic alphabet, is the most widely used set of clear code words for communicating the letters of the Roman alphabet, technically a radiotelephonic</p>
+</blockquote>
+<p>A spelling alphabet is used to spell parts of a message containing letters and numbers to avoid confusion, because many letters sound similar, for instance “n” and “m” or “f” and “s”; the potential for confusion increases if static or other interference is present.</p>
+<ul>
+<li><strong>A</strong>lfa</li>
+<li><strong>B</strong>ravo</li>
+<li><strong>C</strong>harlie</li>
+<li><strong>D</strong>elta</li>
+<li><strong>E</strong>cho</li>
+<li><strong>F</strong>oxtrot</li>
+<li><strong>G</strong>olf</li>
+<li><strong>H</strong>otel</li>
+<li><strong>I</strong>ndia</li>
+<li><strong>J</strong>uliett</li>
+<li><strong>K</strong>ilo</li>
+<li><strong>L</strong>ima</li>
+<li><strong>M</strong>ike</li>
+<li><strong>N</strong>ovember</li>
+<li><strong>O</strong>scar</li>
+<li><strong>P</strong>apa</li>
+<li><strong>Q</strong>uebec</li>
+<li><strong>R</strong>omeo</li>
+<li><strong>S</strong>ierra</li>
+<li><strong>T</strong>ango</li>
+<li><strong>U</strong>niform</li>
+<li><strong>V</strong>ictor</li>
+<li><strong>W</strong>hiskey</li>
+<li><strong>X</strong>-ray</li>
+<li><strong>Y</strong>ankee</li>
+<li><strong>Z</strong>ulu</li>
+</ul>
 
-<p>this would be quicker to do something like <code>ssh DEV</code> <strong>TAB</strong> <code>Back</code> <strong>TAB</strong> <code>server1</code></p>
-<p>that’s actually possible with ssh_config alias.</p>
-<p>Add the following to <code>~/.ssh/config</code> to see this in action</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Host ClientA.server1</span><br><span class="line">     Hostname localhost</span><br><span class="line">Host ClientA.server2</span><br><span class="line">     Hostname localhost</span><br><span class="line">Host ClientB.server1</span><br><span class="line">     Hostname localhost</span><br><span class="line">Host ClientA.server1</span><br><span class="line">     Hostname localhost</span><br><span class="line">Host DEV.BackOffice.server1</span><br><span class="line">     Hostname localhost</span><br><span class="line">Host DEV.BackOffice.server2</span><br><span class="line">     Hostname localhost</span><br><span class="line">Host DEV.FrontOffice.server1</span><br><span class="line">     Hostname localhost</span><br><span class="line">Host DEV.FrontOffice.server2</span><br><span class="line">     Hostname localhost</span><br><span class="line">Host DEV.FrontOffice.server3</span><br><span class="line">     Hostname localhost</span><br><span class="line">Host LIVE.Cluster.node01</span><br><span class="line">     Hostname localhost</span><br><span class="line">Host LIVE.Cluster.node02</span><br><span class="line">     Hostname localhost</span><br><span class="line">Host LIVE.Cluster.node03</span><br><span class="line">     Hostname localhost</span><br><span class="line">Host LIVE.Servers.server01</span><br><span class="line">     Hostname localhost</span><br><span class="line">Host LIVE.Servers.server02</span><br><span class="line">     Hostname localhost</span><br><span class="line">Host QA.server01</span><br><span class="line">     Hostname localhost</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
 
-<p>Now try out the power of Tab-autocompletion. this is just an example of a type of structure you could use. </p>
-<p>You could also add alias like</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Host LIVE.Servers.server02 server01.mydomain.com</span><br><span class="line">     Hostname localhost</span><br></pre></td></tr></table></figure>
 
-<p>So that both ssh attempts to <code>LIVE.Servers.server02</code> and <code>server01.mydomain.com</code> would use the same configuration.</p>
-<h2 id="Access-customizations"><a href="#Access-customizations" class="headerlink" title="Access customizations"></a>Access customizations</h2><p>No let’s say for accessing <code>LIVE.Servers.server01</code> you require account <code>admin</code> and ssh listens on port <code>2228</code> . one could setup the following</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Host LIVE.Servers.server01</span><br><span class="line">     Hostname localhost</span><br><span class="line">     Port 2228</span><br><span class="line">     User admin</span><br></pre></td></tr></table></figure>
 
-<p>With this configuration one could simple execute <code>ssh LIVE.Servers.server01</code> and it will use the configured user and port in the connection.</p>
-<p>Or if you have a specific ssh_key for it in <code>QA</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Host QA.server01</span><br><span class="line">     Hostname localhost</span><br><span class="line">     Port 2227</span><br><span class="line">     User qa_user01</span><br><span class="line">     IdentityFile ~/.ssh/id_rsa_qa</span><br></pre></td></tr></table></figure>
 
-<h2 id="Tunnels"><a href="#Tunnels" class="headerlink" title="Tunnels"></a>Tunnels</h2><p>one could also setup tunnels directly in ssh_config like</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Host tunnel</span><br><span class="line">    HostName database.example.com</span><br><span class="line">    IdentityFile ~/.ssh/id_rsa_dev</span><br><span class="line">    LocalForward 9906 127.0.0.1:3306</span><br><span class="line">    User dba    </span><br></pre></td></tr></table></figure>
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2021-02-21T11:25:53.000Z"><a href="/2021/02/21/VisualCode Hexo addon/">2021-02-21</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2021/02/21/VisualCode Hexo addon/">VisualCode Hexo Addon</a></h1>
+  
 
-<p>You can simple execute <code>ssh -f -N tunnel</code></p>
-<p>Or if you have access to server3 only from server1</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Host DEV.FrontOffice.server3</span><br><span class="line">     Hostname 10.0.0.1</span><br><span class="line">     Port 22</span><br><span class="line">     User admin</span><br><span class="line">     IdentityFile ~/.ssh/id_rsa_dev</span><br><span class="line">     ProxyCommand ssh -q -W %h:%p DEV.FrontOffice.server1</span><br></pre></td></tr></table></figure>
-
-<p>One configuration i normally use in development with containers or virtual machines wich are deprovision with regularity is the following:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Host 192.168.77.* mesos-*</span><br><span class="line">   StrictHostKeyChecking no</span><br><span class="line">   User rramos</span><br><span class="line">   IdentityFile ~/.ssh/id_rsa</span><br><span class="line">   UserKnownHostsFile=/dev/null</span><br><span class="line">   LogLevel QUIET</span><br></pre></td></tr></table></figure>
-
-<p>This means any ssh connection to local network <code>192.168.77.*</code> or hosts with name <code>mesos-*</code> wont get registered in KnownHosts.</p>
-<p>You could also use this to change your settings for <code>TCPKeepAlive</code> or any other specific connections settings you may need the <a target="_blank" rel="noopener" href="https://linux.die.net/man/5/ssh_config">man</a> page as the full list of options.</p>
+    </header>
+    <div class="entry">
+      
+        <h1 id="VisualCode-Hexo-extension"><a href="#VisualCode-Hexo-extension" class="headerlink" title="VisualCode Hexo extension"></a>VisualCode Hexo extension</h1><p>This article explain how to activte the visualcode hexo extension which would boost your productivity if you use Hexo for your articles such has i’m doing on this blob page.</p>
+<h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><p>Install VisualCode:</p>
+<ul>
+<li> <a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/setup/setup-overview">https://code.visualstudio.com/docs/setup/setup-overview</a></li>
+</ul>
+<p>Activate the following extension by executing the following command</p>
+<p><code>ext install fantasy.vscode-hexo-utils</code></p>
+<p>Make sure you open the folder where your Hexo base code is.</p>
+<p>That’s it.</p>
+<p>The extension allows you to directly manage your posts/tags/categories. It is also very suefull if you side lane the articles and preview the Markdowns with <strong>[Ctrl] + [Shift] + [V]</strong></p>
+<p>The extension repo is available on the following github repo: </p>
+<ul>
+<li> <a target="_blank" rel="noopener" href="https://github.com/cwxyz007/vscode-hexo-utils">https://github.com/cwxyz007/vscode-hexo-utils</a></li>
+</ul>
+<p>Kudos for the <a target="_blank" rel="noopener" href="https://github.com/cwxyz007/vscode-hexo-utils/graphs/contributors">contributors</a></p>
 <p>Cheers,<br>RR</p>
-<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://linux.die.net/man/5/ssh_config">https://linux.die.net/man/5/ssh_config</a></li>
-</ul>
 
       
     </div>
@@ -325,196 +295,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2017-09-13T21:18:10.000Z"><a href="/2017/09/13/ChromeProxy/">2017-09-13</a></time>
+        <time datetime="2021-02-21T11:07:15.000Z"><a href="/2021/02/21/Git-Untrack-previous-commited-files/">2021-02-21</a></time>
       
       
   
-    <h1 class="title"><a href="/2017/09/13/ChromeProxy/">Setting Up Proxy Environments With Chrome</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>Something that keeps bugging me is the need to access different environments in the browser through proxy tunnels, due to security restrictions or lack of routing between your local network and the environment you are working. Very common on Cloud environments or if you are working has a consultant for several clients at the same time.</p>
-<p>So this guide is intended to help on the setup of Google Chrome to use your configured tunnels.</p>
-<h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><h3 id="Configure-your-local-tunnel"><a href="#Configure-your-local-tunnel" class="headerlink" title="Configure your local tunnel"></a>Configure your local tunnel</h3><p>You require a tunnel configuration setup. For Linux i recommend setting this up in your <code>.ssh/config</code> file. I’ll give some examples, if you have interest on expanding you <code>./ssh/config</code> check the next article ill go in depth with it. There are also other tools such as <a target="_blank" rel="noopener" href="https://sourceforge.net/projects/gstm/">gSTM</a> tool.</p>
-<p>So let’s begin to create our reverse tunnel</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh -R 19999:localhost:22 sourceuser@remoteip</span><br></pre></td></tr></table></figure>
-
-<p>You could use any other available localport</p>
-<h3 id="Install-plugin-in-Google-Chrome"><a href="#Install-plugin-in-Google-Chrome" class="headerlink" title="Install plugin in Google Chrome"></a>Install plugin in Google Chrome</h3><p>Go into your google chrome settings and search for <strong>Extensions</strong> .<br>I’m using <strong>Proxy SwitchySharp</strong> But you could use any other.</p>
-<p>Go to your Extension Options and let’s create a profile</p>
-<ul>
-<li><strong>Name:</strong> mylocaldomain.dev</li>
-<li><strong>SOCKS HOST:</strong> localhost</li>
-<li><strong>Port:</strong> 19999</li>
-<li><strong>SOCKS v5:</strong> (enable)</li>
-</ul>
-<p>Now let’s create a rule for our local domain in <strong>Switch Rules</strong></p>
-<p>Add the rule for our domain: </p>
-<ul>
-<li><strong>Rule Name:</strong> MyLocalDomain</li>
-<li><strong>URL Pattern:</strong> *.mylocaldomain.dev</li>
-<li><strong>Pattern Type:</strong> Wildcard</li>
-<li><strong>ProxyProfile:</strong> mylocaldomain.dev</li>
-</ul>
-<p><strong>NOTE:</strong> Don’t forget to active the option <strong>Enable Switch Rules</strong></p>
-<p>Also don’t forget to activate the <strong>Auto Switch Mode</strong> in the extension.</p>
-<p>And that’s it now when you access the browser to domain <a target="_blank" rel="noopener" href="http://something.mylocaldomain.dev/">http://something.mylocaldomain.dev</a> you be using your defined ssh tunnel for it.</p>
-<h2 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h2><p>Lets do a quick test :)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo sh -c &#x27;echo &quot;127.0.0.1  test.mylocaldomain.dev&quot;  &gt;&gt; /etc/hosts&#x27;</span><br><span class="line">ssh -R 19999:localhost:22 localhost</span><br><span class="line">python -m SimpleHTTPServer 8000</span><br></pre></td></tr></table></figure>
-
-<p>Now access on the browser to <a target="_blank" rel="noopener" href="http://test.mylocaldomain.dev:8000/">http://test.mylocaldomain.dev:8000</a></p>
-<p>You could now have different profiles configured and autoswitch will do the job for you of choosing the appropriate tunnel.</p>
-<p>Cheers,<br>RR </p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-09-09T00:06:30.000Z"><a href="/2017/09/09/PolybaseCDH/">2017-09-09</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/09/09/PolybaseCDH/">Polybase Configuration With Cloudera 5</a></h1>
+    <h1 class="title"><a href="/2021/02/21/Git-Untrack-previous-commited-files/">Git Untrack Previous Commited Files</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <p>In this article i’ll try to describe the required configuration steps to setup Polybase in SQLServer 2016 for <a target="_blank" rel="noopener" href="https://www.cloudera.com/">Cloudera</a> CDH5. </p>
-<h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>Before starting the the configuration steps, let’s just try to understand why this is being done.</p>
-<h2 id="Sqoop"><a href="#Sqoop" class="headerlink" title="Sqoop"></a>Sqoop</h2><p>Sqoop is one of the most used tools to transfer data from the Relational World to BigData infrastructures. It relies on JDBC connectors to transfer data between SQLServer and HDFS.</p>
-<h2 id="Performance"><a href="#Performance" class="headerlink" title="Performance"></a>Performance</h2><p>The transfer process to SQLServer via sqoop is taking quite a lot, so the objective of this PoC is to verify if PolyBase alternative for dumping data in/out the cluster and understand if there is a improvement on existing processes.</p>
-<h1 id="Setup-Process"><a href="#Setup-Process" class="headerlink" title="Setup Process"></a>Setup Process</h1><h2 id="Obtain-the-cluster-configuration-files"><a href="#Obtain-the-cluster-configuration-files" class="headerlink" title="Obtain the cluster configuration files"></a>Obtain the cluster configuration files</h2><p>In order to configure Polybase for you Cloudera cluster one should first gather from CM the client configurations for HDFS and YARN.</p>
-<p>After downloading the configs you need to update the following files:</p>
-<ul>
-<li>yarn-site.xml</li>
-<li>mapred-site.xml</li>
-<li>hdfs-site.xml</li>
-</ul>
-<p>Copy this files to your SQLServer instance where Polybase will be installed.</p>
-<p>The usual path is</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">C:\Program Files\Microsoft SQL Server\MSSQL13.MSSQLSERVER\MSSQL\Binn\Polybase\Hadoop\conf  </span><br></pre></td></tr></table></figure>
-
-<p><strong>Note:</strong> Please note, that when PolyBase authenticates to a Kerberos secured cluster, we require the <code>hadoop.rpc.protection</code> setting to be set to authentication. This will leave the data communication between Hadoop nodes unencrypted.</p>
-<h2 id="Activate-the-required-Feature"><a href="#Activate-the-required-Feature" class="headerlink" title="Activate the required Feature"></a>Activate the required Feature</h2><p>On the SQLServer you are going to activate Polybase make sure you have the required pre-requisites</p>
-<ul>
-<li>64-bit SQL Server Evaluation edition</li>
-<li>Microsoft .NET Framework 4.5.</li>
-<li>Oracle Java SE RunTime Environment (JRE) version 7.51 or higher (64-bit) </li>
-<li>Minimum memory: 4GB</li>
-<li>Minimum hard disk space: 2GB</li>
-<li>TCP/IP must be enabled for Polybase to function correctly. </li>
-</ul>
-<p>Follow Microsoft guide to activate the feature <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/sql/relational-databases/polybase/polybase-installation">PolyBase Install Guide</a></p>
-<p>One could test if Polybase is correctly installed by running the following command</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> SERVERPROPERTY (<span class="string">&#x27;IsPolybaseInstalled&#x27;</span>) <span class="keyword">AS</span> IsPolybaseInstalled;  </span><br></pre></td></tr></table></figure>
-
-<h2 id="Configure-External-data-source"><a href="#Configure-External-data-source" class="headerlink" title="Configure External data source"></a>Configure External data source</h2><p>Execute the following T-SQL to create Hadoop connectivity to CDH5</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- Values map to various external data sources.  </span></span><br><span class="line"><span class="comment">--  Option 6: Cloudera 5.1, 5.2, 5.3, 5.4, 5.5, 5.9, 5.10, 5.11, and 5.12 on Linux</span></span><br><span class="line">sp_configure <span class="variable">@configname</span> <span class="operator">=</span> <span class="string">&#x27;hadoop connectivity&#x27;</span>, <span class="variable">@configvalue</span> <span class="operator">=</span> <span class="number">6</span>;   </span><br><span class="line">GO   </span><br><span class="line"></span><br><span class="line">RECONFIGURE   </span><br><span class="line">GO  </span><br></pre></td></tr></table></figure>
-
-<p>You could change the option in case you use a different Hadoop Cluster check the <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/polybase-connectivity-configuration-transact-sql">Option Mapping</a></p>
-<p><strong>Note:</strong> After running RECONFIGURE, you must stop and restart the SQL Server service.</p>
-<h2 id="Create-the-T-SQL-objects"><a href="#Create-the-T-SQL-objects" class="headerlink" title="Create the T-SQL objects"></a>Create the T-SQL objects</h2><p>Follow the example configuration described in <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/sql/relational-databases/polybase/get-started-with-polybase">Getting Started with Polybase</a></p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 1: Create a database scoped credential.  </span></span><br><span class="line"><span class="comment">-- Create a master key on the database. This is required to encrypt the credential secret.  </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> MASTER KEY ENCRYPTION <span class="keyword">BY</span> PASSWORD <span class="operator">=</span> <span class="string">&#x27;S0me!nfo&#x27;</span>;  </span><br><span class="line"></span><br><span class="line"><span class="comment">-- 2: Create a database scoped credential  for Kerberos-secured Hadoop clusters.  </span></span><br><span class="line"><span class="comment">-- IDENTITY: the Kerberos user name.  </span></span><br><span class="line"><span class="comment">-- SECRET: the Kerberos password  </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> DATABASE SCOPED CREDENTIAL HadoopUser1   </span><br><span class="line"><span class="keyword">WITH</span> <span class="keyword">IDENTITY</span> <span class="operator">=</span> <span class="string">&#x27;&lt;hadoop_user_name&gt;&#x27;</span>, Secret <span class="operator">=</span> <span class="string">&#x27;&lt;hadoop_password&gt;&#x27;</span>;  </span><br><span class="line"></span><br><span class="line"><span class="comment">-- 3:  Create an external data source.  </span></span><br><span class="line"><span class="comment">-- LOCATION (Required) : Hadoop Name Node IP address and port.  </span></span><br><span class="line"><span class="comment">-- RESOURCE MANAGER LOCATION (Optional): Hadoop Resource Manager location to enable pushdown computation.  </span></span><br><span class="line"><span class="comment">-- CREDENTIAL (Optional):  the database scoped credential, created above.  </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">EXTERNAL</span> DATA SOURCE MyHadoopCluster <span class="keyword">WITH</span> (  </span><br><span class="line">        TYPE <span class="operator">=</span> HADOOP,   </span><br><span class="line">        LOCATION <span class="operator">=</span><span class="string">&#x27;hdfs://10.xxx.xx.xxx:xxxx&#x27;</span>,   </span><br><span class="line">        RESOURCE_MANAGER_LOCATION <span class="operator">=</span> <span class="string">&#x27;10.xxx.xx.xxx:xxxx&#x27;</span>,   </span><br><span class="line">        CREDENTIAL <span class="operator">=</span> HadoopUser1        </span><br><span class="line">);  </span><br><span class="line"></span><br><span class="line"><span class="comment">-- 4: Create an external file format.  </span></span><br><span class="line"><span class="comment">-- FORMAT TYPE: Type of format in Hadoop (DELIMITEDTEXT,  RCFILE, ORC, PARQUET).    </span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">EXTERNAL</span> FILE FORMAT TextFileFormat <span class="keyword">WITH</span> (  </span><br><span class="line">        FORMAT_TYPE <span class="operator">=</span> DELIMITEDTEXT,   </span><br><span class="line">        FORMAT_OPTIONS (FIELD_TERMINATOR <span class="operator">=</span><span class="string">&#x27;|&#x27;</span>,   </span><br><span class="line">                USE_TYPE_DEFAULT <span class="operator">=</span> <span class="literal">TRUE</span>)  </span><br><span class="line"></span><br><span class="line"><span class="comment">-- 5:  Create an external table pointing to data stored in Hadoop.  </span></span><br><span class="line"><span class="comment">-- LOCATION: path to file or directory that contains the data (relative to HDFS root).  </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">EXTERNAL</span> <span class="keyword">TABLE</span> [dbo].[CarSensor_Data] (  </span><br><span class="line">        [SensorKey] <span class="type">int</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,   </span><br><span class="line">        [CustomerKey] <span class="type">int</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,   </span><br><span class="line">        [GeographyKey] <span class="type">int</span> <span class="keyword">NULL</span>,   </span><br><span class="line">        [Speed] <span class="type">float</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,   </span><br><span class="line">        [YearMeasured] <span class="type">int</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>  </span><br><span class="line">)  </span><br><span class="line"><span class="keyword">WITH</span> (LOCATION<span class="operator">=</span><span class="string">&#x27;/Demo/&#x27;</span>,   </span><br><span class="line">        DATA_SOURCE <span class="operator">=</span> MyHadoopCluster,  </span><br><span class="line">        FILE_FORMAT <span class="operator">=</span> TextFileFormat  </span><br><span class="line">);  </span><br><span class="line"></span><br><span class="line"><span class="comment">-- 6:  Create statistics on an external table.   </span></span><br><span class="line"><span class="keyword">CREATE</span> STATISTICS StatsForSensors <span class="keyword">on</span> CarSensor_Data(CustomerKey, Speed)  </span><br></pre></td></tr></table></figure>
-
-<h2 id="Example-Queries"><a href="#Example-Queries" class="headerlink" title="Example Queries"></a>Example Queries</h2><ul>
-<li>Import external Data</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- PolyBase Scenario 2: Import external data into SQL Server.  </span></span><br><span class="line"><span class="comment">-- Import data for fast drivers into SQL Server to do more in-depth analysis and  </span></span><br><span class="line"><span class="comment">-- leverage Columnstore technology.  </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span>   </span><br><span class="line">        Insured_Customers.FirstName, Insured_Customers.LastName,   </span><br><span class="line">        Insured_Customers.YearlyIncome, Insured_Customers.MaritalStatus  </span><br><span class="line"><span class="keyword">INTO</span> Fast_Customers <span class="keyword">from</span> Insured_Customers <span class="keyword">INNER</span> <span class="keyword">JOIN</span>   </span><br><span class="line">(  </span><br><span class="line">        <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> CarSensor_Data <span class="keyword">where</span> Speed <span class="operator">&gt;</span> <span class="number">35</span>   </span><br><span class="line">) <span class="keyword">AS</span> SensorD  </span><br><span class="line"><span class="keyword">ON</span> Insured_Customers.CustomerKey <span class="operator">=</span> SensorD.CustomerKey  </span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> YearlyIncome  </span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> CLUSTERED COLUMNSTORE INDEX CCI_FastCustomers <span class="keyword">ON</span> Fast_Customers;  </span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Export External Data</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- PolyBase Scenario 3: Export data from SQL Server to Hadoop.  </span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- Enable INSERT into external table  </span></span><br><span class="line">sp_configure ‘allow polybase export’, <span class="number">1</span>;  </span><br><span class="line">reconfigure  </span><br><span class="line"></span><br><span class="line"><span class="comment">-- Create an external table.   </span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">EXTERNAL</span> <span class="keyword">TABLE</span> [dbo].[FastCustomers2009] (  </span><br><span class="line">        [FirstName] <span class="type">char</span>(<span class="number">25</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,   </span><br><span class="line">        [LastName] <span class="type">char</span>(<span class="number">25</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,   </span><br><span class="line">        [YearlyIncome] <span class="type">float</span> <span class="keyword">NULL</span>,   </span><br><span class="line">        [MaritalStatus] <span class="type">char</span>(<span class="number">1</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>  </span><br><span class="line">)  </span><br><span class="line"><span class="keyword">WITH</span> (  </span><br><span class="line">        LOCATION<span class="operator">=</span><span class="string">&#x27;/old_data/2009/customerdata&#x27;</span>,  </span><br><span class="line">        DATA_SOURCE <span class="operator">=</span> HadoopHDP2,  </span><br><span class="line">        FILE_FORMAT <span class="operator">=</span> TextFileFormat,  </span><br><span class="line">        REJECT_TYPE <span class="operator">=</span> <span class="keyword">VALUE</span>,  </span><br><span class="line">        REJECT_VALUE <span class="operator">=</span> <span class="number">0</span>  </span><br><span class="line">);  </span><br><span class="line"></span><br><span class="line"><span class="comment">-- Export data: Move old data to Hadoop while keeping it query-able via an external table.  </span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> dbo.FastCustomer2009  </span><br><span class="line"><span class="keyword">SELECT</span> T.<span class="operator">*</span> <span class="keyword">FROM</span> Insured_Customers T1 <span class="keyword">JOIN</span> CarSensor_Data T2  </span><br><span class="line"><span class="keyword">ON</span> (T1.CustomerKey <span class="operator">=</span> T2.CustomerKey)  </span><br><span class="line"><span class="keyword">WHERE</span> T2.YearMeasured <span class="operator">=</span> <span class="number">2009</span> <span class="keyword">and</span> T2.Speed <span class="operator">&gt;</span> <span class="number">40</span>;  </span><br></pre></td></tr></table></figure>
-
-<h1 id="Tests"><a href="#Tests" class="headerlink" title="Tests"></a>Tests</h1><p>Initial tests are quite good actually, even with the identified issues. Polybase seems quite limited but for the objective in hands migth present like a very viable solution.</p>
-<p>Some more tests would be required.</p>
-<h1 id="Issues"><a href="#Issues" class="headerlink" title="Issues"></a>Issues</h1><ul>
-<li>It seems one cannot truncate external tables so an extra process would be required if you plan to use this as part of an ETL process that should support re-runs</li>
-<li>It seems that <code>hadoop_user_name</code> is being ignored and polybase still uses <code>pwc_user</code> account in cluster.</li>
-<li>Take care on the compression levels you choose as they consume quite a lot CPU on your SQLServer</li>
-<li>The metadata of the tables is allways stored on SQLServer. And when you choose parquet files has source format it stores in parquet meta the colunms as <code>col-0,col-1,col-3,...</code> if you map thoose files to a Hive table would require a view with the respective column name mapping.</li>
-<li>Not sure if this can be change but the dumped files to HDFS are splitted in 8, for the initial tests, only bad for small tables.</li>
-</ul>
-<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><ul>
-<li>Work in progress</li>
-</ul>
-<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/sql/relational-databases/polybase/polybase-guide">https://docs.microsoft.com/en-us/sql/relational-databases/polybase/polybase-guide</a></li>
-<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/sql/relational-databases/polybase/get-started-with-polybase">https://docs.microsoft.com/en-us/sql/relational-databases/polybase/get-started-with-polybase</a></li>
-<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/sql/relational-databases/polybase/polybase-installation">https://docs.microsoft.com/en-us/sql/relational-databases/polybase/polybase-installation</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-09-07T19:37:23.000Z"><a href="/2017/09/07/GA-CustomDimension/">2017-09-07</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/09/07/GA-CustomDimension/">How to Create a Google Analytics Custom Dimension</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>In order to add a custom dimension in Google Analytics follow this steps:</p>
+        <p>This is something that sometimes bugs me, you keep hitting the .gitinore configuration file but still the file you try to ignore always get’s referenced on your changes.</p>
+<p>If that happens most probably you’ve reference it in the past to be track and you need to remove it, so this are the steps.</p>
+<h1 id="Update-your-gitignore-and-untrack-the-file"><a href="#Update-your-gitignore-and-untrack-the-file" class="headerlink" title="Update your .gitignore and untrack the file"></a>Update your .gitignore and untrack the file</h1><p>This example to untrack <code>db.json</code></p>
 <ol>
-<li>Click <strong>admin</strong> and navigate to the property you which to add a custom dimension</li>
-</ol>
-<img src="/2017/09/07/GA-CustomDimension/Custom_Dimension.png" class="" title="Custom Dimension (step 1)">
-
-<ol start="2">
-<li><p>Click new <strong>Custom Dimension</strong></p>
+<li><p>Change the entry in .gitignore ex: <code>*.json</code></p>
 </li>
-<li><p>Give it a <strong>Name</strong> and a <strong>Scope</strong> and you’l get the javascript to add on your website</p>
+<li><p>Execute the following command to untrack</p>
 </li>
 </ol>
-<img src="/2017/09/07/GA-CustomDimension/GA_CustomDimension_js.png" class="" title="Custom Dimension (step 2)">
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git update-index --assume-unchanged db.json</span><br></pre></td></tr></table></figure>
 
-<ol start="4">
-<li>After you should modify your tracking code adding for example</li>
+<ol start="3">
+<li>Commit the changes</li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ga(&#x27;send&#x27;, &#x27;pageview&#x27;, &#123;</span><br><span class="line">  &#x27;dimension1&#x27;:  &#x27;My Custom Dimension&#x27;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h2 id="When-we-should-use-this"><a href="#When-we-should-use-this" class="headerlink" title="When we should use this ?"></a>When we should use this ?</h2><p>Let’s say your website does some sort of user classification, you can create a CustomDimension ex: <code>UserCategory</code> and send enrich the data you track.</p>
 
       
     </div>
@@ -537,233 +341,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2017-09-07T16:57:08.000Z"><a href="/2017/09/07/unpivot/">2017-09-07</a></time>
+        <time datetime="2017-10-18T00:26:17.000Z"><a href="/2017/10/18/dockers/">2017-10-18</a></time>
       
       
   
-    <h1 class="title"><a href="/2017/09/07/unpivot/">Hive - Unpivot to Avoid Multiple Joins</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>In Hive, when a table has multiple similar columns, such as:</p>
-<table>
-<thead>
-<tr>
-<th>product_id</th>
-<th>image_name1</th>
-<th>image_name2</th>
-<th>…</th>
-<th>image_name15</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1</td>
-<td>a.jpg</td>
-<td>b.jpg</td>
-<td>…</td>
-<td>c.jpg</td>
-</tr>
-<tr>
-<td>2</td>
-<td>d.jpg</td>
-<td>e.jpg</td>
-<td>…</td>
-<td>f.jpg</td>
-</tr>
-</tbody></table>
-<p>and we want to join based on all image_names, the naive approach would be to perform 15 joins (in the running example).</p>
-<p>Hive does not have an unpivot functionality, but it is possible to use the Hive builtin UDF explode to accomplish this:<br>Query example</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">select x.product_id, x.image_name from (</span><br><span class="line">  select product_id, map(&quot;image_name1&quot;, image_name1, ..., &quot;image_name15&quot;, image_name15) as image_map</span><br><span class="line">  from table ) x</span><br><span class="line">lateral view explode(image_map) expl as image_nr, image_name</span><br></pre></td></tr></table></figure>
-
-
-<p>This returns an unpivoted table like below, which allows us to perform a single join:</p>
-<table>
-<thead>
-<tr>
-<th>product_id</th>
-<th>image_name</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1</td>
-<td>a.jpg</td>
-</tr>
-<tr>
-<td>1</td>
-<td>b.jpg</td>
-</tr>
-<tr>
-<td>1</td>
-<td>c.jpg</td>
-</tr>
-<tr>
-<td>2</td>
-<td>d.jpg</td>
-</tr>
-<tr>
-<td>2</td>
-<td>e.jpg</td>
-</tr>
-<tr>
-<td>2</td>
-<td>f.jpg</td>
-</tr>
-</tbody></table>
-<p>Big thanks to Diogo Franco, for this hint ;) check also is Blog Page <a target="_blank" rel="noopener" href="https://diogoalexandrefranco.github.io/">diogoalexandrefranco.github.io</a></p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-09-07T01:00:16.000Z"><a href="/2017/09/07/mkv/">2017-09-07</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/09/07/mkv/">Terminal Markdown Viewer and MarkDown SpellChecker</a></h1>
+    <h1 class="title"><a href="/2017/10/18/dockers/">Dockers</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <p>It’s been a while that i’ve updated this posts. So let me start for something i’ve found out the other day.</p>
-<h2 id="Terminal-Markdown-Viewer"><a href="#Terminal-Markdown-Viewer" class="headerlink" title="Terminal Markdown Viewer"></a>Terminal Markdown Viewer</h2><p>I though it would be cool to have some tool that could parse me Markdown files and present them nicely formatted, like <code>cat</code> command.</p>
-<p>And it seems i’m not the only one :)</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/axiros/terminal_markdown_viewer">https://github.com/axiros/terminal_markdown_viewer</a></p>
-<p>In order to install just follow the instruction on the site. Pip worked well for me:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pip install mdv</span><br></pre></td></tr></table></figure>
-
-<p>I’ve updated my PATH environment var on <code>.bashrc</code> with:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">export PYTHONPATH=&quot;$&#123;PYTHONPATH&#125;:/$&#123;HOME&#125;/.local/lib/python2.7/site-packages&quot;</span><br><span class="line">export PATH=&quot;$PATH:~/.local/bin&quot;</span><br></pre></td></tr></table></figure>
-
-<p>I can now execute <code>mdv</code> command try it out it some .md files :D</p>
-<h2 id="A-Markdown-spell-checking-tool"><a href="#A-Markdown-spell-checking-tool" class="headerlink" title="A Markdown spell checking tool."></a>A Markdown spell checking tool.</h2><p>The other thing is regarding spell-check, as you can probably notice i really do a lot of errors, but i don’t wont to use a high resource editor just because of this how about a MD spell checking tool ?</p>
-<p>Well i’m trying this one ad i’m using [hexo][<a href="http://hexo.io]">http://hexo.io]</a> for the page generation and it uses already npm modules just added a new one </p>
-<h3 id="install"><a href="#install" class="headerlink" title="install"></a>install</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm i markdown-spellcheck -g</span><br></pre></td></tr></table></figure>
-
-<p>One can run interactive like</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mdspell &quot;**/*.md&quot;</span><br></pre></td></tr></table></figure>
-
-<p>It’s a bit slow but the database would grow in terms, i’m giving a try to it.</p>
-<p>I also add to add <code>.spelling</code> no to keep the dictionary database on git. I probably would add it later.</p>
-<p>Cheers,<br>RR</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
+        <p>This article is just to share a list of usefull dockers, in case one wants to speed test some feature and required some of this software to be up and running.</p>
+<h1 id="Why"><a href="#Why" class="headerlink" title="Why ?"></a>Why ?</h1><p>The main ideia is that i can fireup quickly without having to worry on the ports that are allready mapped on my local machine, so the several dockers should have colision ports taken care of.</p>
+<p>One should just need to execute <code>docker-compose up</code> and that’s it.</p>
+<p>You could also use other repo, but i’ll try to make my local configurations in a way that i could interuse several dockers.</p>
+<h1 id="Dockers-repo"><a href="#Dockers-repo" class="headerlink" title="Dockers repo"></a>Dockers repo</h1><p>You just need to clone the repo <a target="_blank" rel="noopener" href="https://github.com/rramos/dockers">https://github.com/rramos/dockers</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/rramos/dockers.git</span><br></pre></td></tr></table></figure>
 
 
+<h1 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h1><p>Make sure you have docker and docker compose properly configured</p>
+<h1 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h1><p>Just fire-up <code>docker-compose</code> and that’s it </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd docker-portainer</span><br><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
 
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-11-03T22:09:40.000Z"><a href="/2016/11/03/SparkSummit2016/">2016-11-03</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/11/03/SparkSummit2016/">Spark Summit 2016</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>So i’ve attended 25-27 OCT in Brussels to SparkSummit 2016 in Europe. So it kind makes sense to write down some impressions regarding the event.</p>
-<p>The Event it self was pretty well organized, and the distribution of spaces was well planned.</p>
-<p>Regarding Spark it-self, is one of the ecosystem players (<a target="_blank" rel="noopener" href="https://hadoopecosystemtable.github.io/">https://hadoopecosystemtable.github.io/</a>) that’s been getting more traction from the industry, partially because of the Enterprise support from Databricks and other major BigData contributors.</p>
-<p>This Summit, had huge increase of participants, compared to last year, what guaranties that this is really here to stay.</p>
-<p>I always try to make of this conferences with two key points:</p>
-<ul>
-<li>What’s new ?</li>
-<li>What are the other Companies doing, that’s working for them ?</li>
+<p>Each docker has it’s own README file with more instructions.</p>
+<h1 id="Docker-List"><a href="#Docker-List" class="headerlink" title="Docker List"></a>Docker List</h1><ul>
+<li>docker-grafana  </li>
+<li>docker-hdp      </li>
+<li>docker-ksql    </li>
+<li>docker-nifi         </li>
+<li>docker-portainer  </li>
+<li>docker-zeppelin  </li>
+<li>docker-hbase    </li>
+<li>docker-jenkins  </li>
+<li>docker-moodle  </li>
+<li>docker-openproject  </li>
+<li>docker-rundeck </li>
 </ul>
-<h2 id="What-new"><a href="#What-new" class="headerlink" title="What new"></a>What new</h2><p>AMPLab, the creators of Spark from UC Berkeley presented some interesting projects for the future that would increase SparkEngine to a new level. They presented some comparation charts with execution times of this new engine compared with project Flink which uses real streaming and not micro-batching, which may come as a very good news, because there are more and more Streaming applications being implemented. Also some new layer of secure, the projects are called Drizzle and Opaque, let’s hope they get this ready soon :)</p>
-<p>Also one of the big announcements, was the new TensorFrames object. this output come’s from a join work of TensorFlow and Databricks in order to bring DeepLearning to Spark. What this means is that in the Future one could simple use the Spark Framework in order to take advantage of GPU’s, also that comes into alignment as you could expect with the new feature in Databricks Notebooks to support this.</p>
-<p>It is still in Beta, but if you are using both TensorFlow and Spark, this is obviously good news.</p>
-<p>IBM is also entering the race with a SaaS solution (<a target="_blank" rel="noopener" href="https://console.ng.bluemix.net/catalog/services/apache-spark">https://console.ng.bluemix.net/catalog/services/apache-spark</a>) similar to Databricks, in terms of Notebook offering but it runs on their own infrastructure, which could be good and have good stability and all, but when dealing with bigdata and moving all that data from provider to provider, you better to the maths.</p>
-<p>For that matter still prefer the Databricks model, and they have good news that until the end of the year they are planning to support a new CloudProvider.</p>
-<h2 id="Use-Cases"><a href="#Use-Cases" class="headerlink" title="Use Cases"></a>Use Cases</h2><p>There where lot’s of use cases, in the several industries, even in the <a target="_blank" rel="noopener" href="https://spark-summit.org/eu-2016/events/mmmooogle-from-big-data-to-decisions-for-dairy-cows/">Milk Industry</a> that’s right :)</p>
-<p>But looking on the overall presented cases, is clear that more and more companies are adopting Streaming solutions for they business, as <a target="_blank" rel="noopener" href="https://youtu.be/mVP9sZ6K__Y">Jacek Laskowski</a> referred in his presentation. (Really recommend that one, a really appealing one)</p>
-<p>Kafka is becoming a key-role figure in the several presented architectures.</p>
-<p>And it seems HDFS is becoming mostly used as a DataLake only solution, and starting using more high-speed memory layer as DataGrid, Alluxio solutions.</p>
-<p>They also presented some comparations regarding direct access to Cloud Blob Storage compared with traditional FS <a target="_blank" rel="noopener" href="https://spark-summit.org/eu-2016/events/spark-and-object-stores-what-you-need-to-know/">Steve Loughran</a>. Interesting values presented regarding Microsoft Cloud Solution vs AWS.</p>
-<p>On other aspect that call my attention, was the lack of monitoring solutions for Spark workloads, and there where in fact several presentations regarding this subject, mostly use cases of in-house developments that fill this gap. <a target="_blank" rel="noopener" href="https://spark-summit.org/eu-2016/events/sparklint-a-tool-for-monitoring-identifying-and-tuning-inefficient-spark-jobs-across-your-cluster/">Simon Whitear</a><br>was one of the best in my opinion.</p>
-<p>Lambda,Gamma and Omega. With all these Streaming high-speed architectures showing on, one has to play it safe right. That’s also one of the tendencies for the Industry to have these types of architectures with a speed layer and slow-layer. <a target="_blank" rel="noopener" href="https://spark-summit.org/eu-2016/speakers/william-benton/">William Benton</a> made a very enjoyable presentation regarding this topic.</p>
-<h1 id="Slides-and-Videos"><a href="#Slides-and-Videos" class="headerlink" title="Slides and Videos"></a>Slides and Videos</h1><p>It seems they updated the site and the videos and slides seem available, which is good news. </p>
-<p>Check them if you like on the site Schedule page:</p>
-<p><a target="_blank" rel="noopener" href="https://spark-summit.org/eu-2016/schedule/">https://spark-summit.org/eu-2016/schedule/</a></p>
-<p>Cheers and keep Sparking</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-10-18T23:05:00.000Z"><a href="/2016/10/19/hiveGC-md/">2016-10-19</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/10/19/hiveGC-md/">Hive Queries Crash When Inserting GC Exception</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>When running some queries with hive sometimes we get a very nice java exception of overhead limit</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Exception in thread &quot;main&quot; java.lang.OutOfMemoryError: GC overhead limit exceeded</span><br></pre></td></tr></table></figure>
-
-<p>I didn’t know but it turns out you can supply directly on the jdbc connection of beeline the parameters to increase this values.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">jdbc:hive2://localhost:10000/default?mapreduce.map.memory.mb=3809;mapreduce.map.java.opts=-Xmx3428m;mapreduce.reduce.memory.mb=2560;mapreduce.reduce.java.opts=-Xmx2304m;</span><br></pre></td></tr></table></figure>
-
-<p>It is important to understand the size of the containers in your cluster and this is usefull for some adhoc procedures.</p>
-<p>The best way is to configure the containers memory size in hadoop, but this kind of quick solutions are usefull, expecially for testing parameters of new workflows.</p>
-<p>There is some good info regarding this configuration in altiscale documentation:</p>
-<p><a target="_blank" rel="noopener" href="https://documentation.altiscale.com/heapsize-for-mappers-and-reducers">https://documentation.altiscale.com/heapsize-for-mappers-and-reducers</a></p>
+<p>This is the available list at the moment of this article, i will add up more as i’m using and testing new stuff.</p>
+<p><strong>NOTE:</strong> Use this containers at your own risk </p>
 <p>Cheers,<br>RR</p>
 
       
@@ -839,6 +454,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Code/">Code</a><small>2</small></li>
   
+    <li><a href="/tags/Communication/">Communication</a><small>1</small></li>
+  
     <li><a href="/tags/Conferences/">Conferences</a><small>2</small></li>
   
     <li><a href="/tags/Contracts/">Contracts</a><small>1</small></li>
@@ -853,7 +470,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Data-Quality/">Data Quality</a><small>1</small></li>
   
-    <li><a href="/tags/Development/">Development</a><small>1</small></li>
+    <li><a href="/tags/Development/">Development</a><small>2</small></li>
   
     <li><a href="/tags/Dimensions/">Dimensions</a><small>1</small></li>
   
@@ -899,6 +516,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Keyboard/">Keyboard</a><small>1</small></li>
   
+    <li><a href="/tags/Kubernetes/">Kubernetes</a><small>1</small></li>
+  
     <li><a href="/tags/Laws/">Laws</a><small>1</small></li>
   
     <li><a href="/tags/Leadership/">Leadership</a><small>1</small></li>
@@ -914,6 +533,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/Metrics/">Metrics</a><small>1</small></li>
   
     <li><a href="/tags/Monitoring/">Monitoring</a><small>1</small></li>
+  
+    <li><a href="/tags/NATO/">NATO</a><small>1</small></li>
   
     <li><a href="/tags/NFT/">NFT</a><small>1</small></li>
   
@@ -1055,8 +676,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
   <footer id="footer" class="inner"><div class="alignleft">
   
-  &copy; 2021 Rui Ramos
+  &copy; 2023 Rui Ramos
   
+  <a class="disclaimer" href=/disclaimer> Disclaimer</a>
 </div>
 <div class="clearfix"></div></footer>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>

@@ -77,315 +77,457 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2016-09-23T21:40:10.000Z"><a href="/2016/09/23/portotechhub-com/">2016-09-23</a></time>
+        <time datetime="2017-10-13T01:09:12.000Z"><a href="/2017/10/13/drelephat/">2017-10-13</a></time>
       
       
   
-    <h1 class="title"><a href="/2016/09/23/portotechhub-com/">Porto Tech HUB 2016</a></h1>
+    <h1 class="title"><a href="/2017/10/13/drelephat/">Dr. Elephant Overview</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <p>I’ve attend today to the second edition of Porto Tech HUB 2016. It was good to see old friends and the raising tech potencial in the City.</p>
-<p>There where some good presentations, good organization and the location was appealing also.</p>
-<p>I especially liked Christoffer Noring presentation about <a target="_blank" rel="noopener" href="https://www.nativescript.org/">NativeScript</a> and <a target="_blank" rel="noopener" href="https://angularjs.org/">Angular</a> and Miguel Veiga about <a target="_blank" rel="noopener" href="http://storm.apache.org/">Storm</a> and <a target="_blank" rel="noopener" href="http://kafka.apache.org/">Kafka</a>.</p>
-<p>This last one have more to do with my actual work.</p>
+        <p>This article would be about <a target="_blank" rel="noopener" href="https://github.com/linkedin/dr-elephant">dr-elephant</a> A Performance and Monitoring tool for Hadoop and Spark.</p>
+<blockquote><p>Dr. Elephant is a performance monitoring and tuning tool for Hadoop and Spark. It automatically gathers all the metrics, runs analysis on them, and presents them in a simple way for easy consumption. Its goal is to improve developer productivity and increase cluster efficiency by making it easier to tune the jobs. It analyzes the Hadoop and Spark jobs using a set of pluggable, configurable, rule-based heuristics that provide insights on how a job performed, and then uses the results to make suggestions about how to tune the job to make it perform more efficiently.</p>
+<footer><strong>Offical Website Definition</strong></footer></blockquote>
+
+<h1 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h1><ul>
+<li><p>Install mysql-server and create a BD for dr-elephant</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get install mysql-server </span><br></pre></td></tr></table></figure></li>
+<li><p>MySQl preparation</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mysql&gt; create database drelephant;</span><br><span class="line">Query OK, 1 row affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; grant all on drelephant.* to drelephant@localhost identified by &#x27;drelephant&#x27;;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; flush privileges;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br></pre></td></tr></table></figure>
+
 <ul>
-<li><a target="_blank" rel="noopener" href="http://www.portotechhub.com/">http://www.portotechhub.com</a></li>
-<li><a target="_blank" rel="noopener" href="https://twitter.com/PortoTechHub">https://twitter.com/PortoTechHub</a></li>
+<li><p>Install zip command</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get install zip</span><br></pre></td></tr></table></figure></li>
+<li><p>Install sbt</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb https://dl.bintray.com/sbt/debian /&quot;</span> | sudo tee -a /etc/apt/sources.list.d/sbt.list</span><br><span class="line">sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2EE0EA64E40A89B84B2DF73499E82A75642AC823</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install sbt</span><br></pre></td></tr></table></figure></li>
 </ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-09-18T12:31:09.000Z"><a href="/2016/09/18/git-cheat-sheet/">2016-09-18</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/09/18/git-cheat-sheet/">GIT Cheat Sheet</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>As i’m allways forgetting how to reset my local changes from origin HEAD. This cheat sheet might help.</p>
-<h2 id="Create"><a href="#Create" class="headerlink" title="Create"></a>Create</h2><p>Clone an existing repository</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone ssh://user@domain.com/repo.git</span><br></pre></td></tr></table></figure>
-
-<p>Create a new local repository</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
-
-<h2 id="Local-Changes"><a href="#Local-Changes" class="headerlink" title="Local Changes"></a>Local Changes</h2><p>Changed files in your working directory</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
-
-<p>Changes to tracked files</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git diff</span><br></pre></td></tr></table></figure>
-
-<p>Add all current changes to the next commit</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure>
-
-<p>Add some changes in <file> to the next commit</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git add -p &lt;file&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Commit all local changes in tracked files</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git commit -a</span><br></pre></td></tr></table></figure>
-
-<p>Commit previously staged changes</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git commmit</span><br></pre></td></tr></table></figure>
-
-<p>Change the last commit (Don’t amend publish commits)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git commit --amend</span><br></pre></td></tr></table></figure>
-
-<h2 id="Branches-amp-Tags"><a href="#Branches-amp-Tags" class="headerlink" title="Branches &amp; Tags"></a>Branches &amp; Tags</h2><p>List all existing branches</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git branch -av</span><br></pre></td></tr></table></figure>
-
-<p>Switch HEAD branch</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git checkout &lt;branch&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Create new banch based on your current HEAD</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git branch &lt;new-branch&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Create new tracking branch based on a remote branch</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git checkout --track &lt;remote/branch&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Delete a local branch</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git branch -d &lt;branch&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Mark the current commit with a tag</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git tag &lt;tag-name&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Update-amp-Publish"><a href="#Update-amp-Publish" class="headerlink" title="Update &amp; Publish"></a>Update &amp; Publish</h2><p>List all currently configured remotes</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
-
-<p>Show information about a remote</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git remote show &lt;remote&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Add new remote repository, named <remote></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git remote add &lt;shortname&gt; &lt;url&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Download all changes from <remote>, but don’t integrate into HEAD</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git fetch &lt;remote&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Download changes and directly merge/integrate into HEAD</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git pull &lt;remote&gt; &lt;branch&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Publish local changes on a remote</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git push &lt;remote&gt; &lt;branch&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Delete a branch on the remote</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git branch -dr &lt;remote/branch&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Publish your tags</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git push --tags</span><br></pre></td></tr></table></figure>
-
-<h2 id="Merge-amp-Rebase"><a href="#Merge-amp-Rebase" class="headerlink" title="Merge &amp; Rebase"></a>Merge &amp; Rebase</h2><p>Merge <branch> into your current HEAD, without fast-forward</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git merge --no-ff &lt;branch&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Rebase your current HEAD onto <branch></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git rebase &lt;branch&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Abort a rebase</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git rebase --abort</span><br></pre></td></tr></table></figure>
-
-<p>Continue a rebase after resolving conflits</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git rebase --continue</span><br></pre></td></tr></table></figure>
-
-<p>Use your configured merge tool to sove conflits</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git mergetool</span><br></pre></td></tr></table></figure>
-
-<p>Use your editor to manually solve conflits and (after resolving) mark file as resolved</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git add &lt;resolved-file&gt;</span><br><span class="line">git rm &lt;resolved-file&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Undo"><a href="#Undo" class="headerlink" title="Undo"></a>Undo</h2><p>Discard all local changes in your working directory</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git reset --hard HEAD</span><br></pre></td></tr></table></figure>
-
-<p>Discard local changes in a specific file</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git checkout HEAD &lt;file&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Revert a commit (by producing a new commit with contrary changes)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git revert &lt;commit&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Reset your HEAD pointer to a previous commit, and discard all changes since then</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git reset --hard &lt;commit&gt;</span><br></pre></td></tr></table></figure>
-
-<p>…and preserve all changes as unstaged changes</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git reset &lt;commit&gt;</span><br></pre></td></tr></table></figure>
-
-<p>…and preserve uncommitted local changes</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git reset --keep &lt;commit&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Commit-History"><a href="#Commit-History" class="headerlink" title="Commit History"></a>Commit History</h2><p>Show all commits, starting with newest</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git log</span><br></pre></td></tr></table></figure>
-
-<p>Show changes over time for a specific file</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git log -p &lt;file&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Who changed what and when in <file></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git blame &lt;file&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Git-plugins"><a href="#Git-plugins" class="headerlink" title="Git plugins"></a>Git plugins</h2><p>Store credential in manager</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config credential.helper &#x27;store&#x27;</span><br></pre></td></tr></table></figure>
-
-<p>Activate gpg signature</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config commit.gpgsign true</span><br></pre></td></tr></table></figure>
-
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://www.git-tower.com/blog/git-cheat-sheet/">https://www.git-tower.com/blog/git-cheat-sheet/</a></li>
+<h1 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h1><ul>
+<li>Clone the repo</li>
 </ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git https://github.com/linkedin/dr-elephant.git</span><br></pre></td></tr></table></figure>
 
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-09-18T00:17:20.000Z"><a href="/2016/09/18/keybase-io/">2016-09-18</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/09/18/keybase-io/">keybase.io</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="Keybase"><a href="#Keybase" class="headerlink" title="Keybase"></a>Keybase</h1><p>Some time back i used to have my PGP key registered on MIT pgp server <a target="_blank" rel="noopener" href="http://pgp.mit.edu/">http://pgp.mit.edu/</a>. It’s one of the largest public directory for PGP keys, but it’s kind of old fashnioned and attracts mostly the academic world.</p>
-<p>I’m not entirely sure how i come to find <a target="_blank" rel="noopener" href="http://keybase.io/">http://keybase.io</a> but it seems a new interesting way to get PGP to the general audience.</p>
-<p>It allows, as the slogan say:</p>
-<blockquote>
-<p>Keybase maps your identity to your public keys, and vice versa.</p>
-</blockquote>
-<p>In order to be a trully trusted PKI the registration is done by invitation only which seems interesting in order to maintain some sort of quality assurance, but will make the evolution a lot slower.</p>
-<p>So basically this allows you to associate your domain, twitter account, github account,etc with you keys.</p>
-<p>It also has it’s own distributed filesystem KBFS.</p>
-<p><a target="_blank" rel="noopener" href="https://keybase.io/docs/kbfs/understanding_kbfs">https://keybase.io/docs/kbfs/understanding_kbfs</a></p>
-<p>Now this, seems to me, like the most important factor on this solution. Because you can quickly access other people keys, trust them, and follow you know friends.</p>
-<p>I still have some invites left, in case you are interested drop me an email :)</p>
-<p>Cheers,<br>RR@keybase<br><a target="_blank" rel="noopener" href="https://keybase.io/ruimsramos">https://keybase.io/ruimsramos</a></p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-09-17T22:57:27.000Z"><a href="/2016/09/17/Created-rramos-github-io/">2016-09-17</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/09/17/Created-rramos-github-io/">Created rramos.github.io</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="Started-the-github-pages"><a href="#Started-the-github-pages" class="headerlink" title="Started the github pages"></a>Started the github pages</h1><h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>I had several blogs in the past that i normaly tend to ignore and stop writting, so this one will be a simple tech/personal blog with entries that i might find usefull in the future to search quicker.</p>
-<p>And as any normal blog i would start by writting the procedure of deploying the blog itself.</p>
-<p>The only way i would keep this thing updated is if i have very quick way to edit via terminal a Markdown file and do a command like <code>post-it</code> and that’s it.</p>
-<p>So <a target="_blank" rel="noopener" href="https://hexo.io/">hexo</a> seems like a good solution for me.</p>
-<p>Gona try this one out.</p>
-<p>So first things first, hosting. I’m cheap bastard so i don’t have cool domain yet, and i just need some git repo for the blog.</p>
-<p>Lets stick with <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a> there git service is pretty owesome so lets try this one out.</p>
-<p><strong>Mental-Note-To-Self:</strong> Get some nice english corrector ;) </p>
-<p>So i’ve just greated a new repo in github and from the settings i’ve selected to build a standard GitHub Page.</p>
-<p>cloned the dam thing to my computer</p>
-<p><code>git clone git@github.com:rramos/rramos.github.io.git</code></p>
-<h2 id="Installing-Hexo"><a href="#Installing-Hexo" class="headerlink" title="Installing Hexo"></a>Installing Hexo</h2><p>So first things first, let’s install the requirements.</p>
-<p>It requires:</p>
 <ul>
-<li>Node</li>
-<li>Git</li>
+<li>Compile</li>
 </ul>
-<p>Well, git i allready have since a clonned the repo.<br>Node must be installed, but since i’m using Ubuntu Xenial i need to install the legacy one.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt install nodejs-legacy</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sbt package</span><br><span class="line">sbt dist</span><br><span class="line">cp ./target/universal/dr-elephant-2.0.3-SNAPSHOT.zip .</span><br><span class="line">./compile.sh</span><br><span class="line"><span class="built_in">cd</span> dist</span><br><span class="line">unzip dr-elephant-2.0.3-SNAPSHOT.zip</span><br></pre></td></tr></table></figure>
 
-<p>Now starting to install hexo via npm.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo npm install -g hexo-cli</span><br><span class="line">sudo npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Starting the service</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> ELEPHANT_CONF_DIR=../../app-conf</span><br><span class="line">./bin/start.sh </span><br></pre></td></tr></table></figure>
 
-<p>Ok that’s it.</p>
-<h2 id="Start-writting"><a href="#Start-writting" class="headerlink" title="Start writting"></a>Start writting</h2><p>So i’ve run the following command on the repo, this initiates the hexo page structure.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+<p>One can now access the web interface at: <a target="_blank" rel="noopener" href="http://localhost:8080/">http://localhost:8080</a></p>
+<img src="/2017/10/13/drelephat/DrElephant-2-dashboard.jpg" class="" title="[Dashboard]">
 
-<p>I’ve added the deploy configuration in _config.yml</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:rramos/rramos.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>This tool seems very powerfull. At the moment i haven’t tested changing the recommendations it provided, but will try them soon. Spark 2.x applications don’t seem to be working at the momment</p>
+<h1 id="Extended-tests"><a href="#Extended-tests" class="headerlink" title="Extended tests"></a>Extended tests</h1><ul>
+<li>Test Oozie Scheduler integration</li>
+<li>Test Airflow integration</li>
+<li>Define a deployment strategy</li>
+<li>Test recommended changes</li>
+</ul>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/linkedin/dr-elephant">https://github.com/linkedin/dr-elephant</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/linkedin/dr-elephant/commit/7d9e34ecdbe36a652ca4ad2db852df08da57050a">https://github.com/linkedin/dr-elephant/commit/7d9e34ecdbe36a652ca4ad2db852df08da57050a</a></li>
+<li><a target="_blank" rel="noopener" href="https://engineering.linkedin.com/blog/2016/04/dr-elephant-open-source-self-serve-performance-tuning-hadoop-spark">https://engineering.linkedin.com/blog/2016/04/dr-elephant-open-source-self-serve-performance-tuning-hadoop-spark</a></li>
+</ul>
 
-<p>I also downloaded a very simple theme, cas’m a simple guy. </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd themes</span><br><span class="line">git clone https://github.com/lotabout/very-simple</span><br></pre></td></tr></table></figure>
-<p>Thanks @lotabout for the theme by the way.</p>
-<p>And installed the theme requirements</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/lotabout/very-simple themes/very-simple</span><br><span class="line">sudo npm install hexo-renderer-sass --save</span><br><span class="line">sudo npm install hexo-renderer-jade --save</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
 
-<h2 id="Writing"><a href="#Writing" class="headerlink" title="Writing"></a>Writing</h2><p>So … now i suppose i can start creating blog entries, let’s start.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new post &quot;Created rramos.github.io&quot;</span><br></pre></td></tr></table></figure>
 
-<p>I get the output where the md file is and start writting there.</p>
-<p>After i have made sure my ssh keys where registered on github i simply deployed with</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
 
-<p>And voilá: <a href="https://rramos.github.io/">https://rramos.github.io</a>  is up and running.</p>
-<h2 id="Final-touches"><a href="#Final-touches" class="headerlink" title="Final touches"></a>Final touches</h2><p>So hexo only dumps the public part of the blog which makes sense to the git repo. <del>But i want to include all the source and not have separeted repositories for that.</del></p>
-<p>I’ve created a src dir and copy all the source data there, now i can edit directly that repo, let’s take that advantage and remove the default hello world page from the structure guess there migh exist a command for that.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ hexo list post</span><br><span class="line">INFO  Start processing</span><br><span class="line">Date        Title                     Path                                Category  Tags</span><br><span class="line">2016-09-17  Created rramos.github.io  _posts/Created-rramos-github-io.md</span><br><span class="line">2016-09-18  Hello World               _posts/hello-world.md</span><br></pre></td></tr></table></figure>
 
-<p>There you are you bastard hello-world, lets get ride of you.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">rm source/_posts/hello-world.md</span><br><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-10-09T21:17:35.000Z"><a href="/2017/10/09/ansible-cmdb/">2017-10-09</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/10/09/ansible-cmdb/">Ansible-Cmdb</a></h1>
+  
 
-<p>Well guess that’s it. There is a lot to explore in hexo from what i can tell, need to check the documentation and understand the community envolvment. Also a quick way to add imagens and other objects and define the quick way to deploy.</p>
-<h2 id="Seperate-public-from-source"><a href="#Seperate-public-from-source" class="headerlink" title="Seperate public from source"></a>Seperate public from source</h2><p>It turns out that have the source and public data in the same repo causes some issues on the updates. The best aproach seems to have a separate repo for the source data and the offcial Github Pages or other hosting service with git for the public part.</p>
-<p>I’ve also added in this source repo a <code>.gitignore</code> with</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public</span><br><span class="line">db.json</span><br><span class="line">.deploy_git</span><br></pre></td></tr></table></figure>
+    </header>
+    <div class="entry">
+      
+        <p>This article is about <a target="_blank" rel="noopener" href="https://github.com/fboender/ansible-cmdb">ansible-cmdb</a> a very nice solution for gathering your ansible facts into a visual format.</p>
+<blockquote><p>Ansible-cmdb takes the output of Ansible’s fact gathering and converts it into a static HTML overview page (and other things) containing system configuration information.</p>
+<p>It supports multiple types of output (html, csv, sql, etc) and extending information gathered by Ansible with custom data. For each host it also shows the groups, host variables, custom variables and machine-local facts.</p>
+<footer><strong>Offical Website Definition</strong></footer></blockquote>
 
-<p>So now i just have to edit MarkDown hexo generate and hexo deploy, seems quick enough let’s see if this time i can keep this updated.</p>
+<h1 id="Supported-output-formats-templates"><a href="#Supported-output-formats-templates" class="headerlink" title="Supported output formats / templates:"></a>Supported output formats / templates:</h1><ul>
+<li>Fancy HTML (–template html_fancy), as seen in the screenshots above.</li>
+<li>Fancy HTML Split (–template html_fancy_split), with each host’s details in a separate file (for large number of hosts).</li>
+<li>CSV (–template csv), the trustworthy and flexible comma-separated format.</li>
+<li>JSON (–template json), a dump of all facts in JSON format.</li>
+<li>Markdown (–template markdown), useful for copy-pasting into Wiki’s and such.</li>
+<li>Markdown Split (‘–template markdown_split’), with each host’s details in a seperate file (for large number of hosts).</li>
+<li>SQL (–template sql), for importing host facts into a (My)SQL database.<br>Plain Text table (–template txt_table), for the console gurus.<br>and of course, any custom template you’re willing to make.</li>
+</ul>
+<h1 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h1><p>And it’s so simple to setup :D</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo pip install ansible-cmdb</span><br></pre></td></tr></table></figure>
+
+<p><strong>Note:</strong> You could also use your distribution prefeered method. check the offical site.</p>
+<h1 id="Creating-Reports"><a href="#Creating-Reports" class="headerlink" title="Creating Reports"></a>Creating Reports</h1><p>Simple console generation</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ansible-cmdb -t txt_table --columns name,os,ip,mem,cpus out</span><br></pre></td></tr></table></figure>
+
+<p>The HTML Fancy one</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ansible-cmdb --template txt_table out  --template html_fancy</span><br></pre></td></tr></table></figure>
+
+<p>Official Screenshoot</p>
+<img src="/2017/10/09/ansible-cmdb/screenshot-overview.png" class="">
+
+
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>I found this software quite simple and very usefull. I found that <code>--template txt_table</code> is quite handy to use on Documentation for small enviroments. For bigger projects the CSV could be a better choice. Also the fancy HTML templates are very usefull on playbook development phases where you can confirm your facts very easily. Ansible-cmdb started as a short Python script, but many people made contributions so far.</p>
 <p>Cheers,<br>RR</p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/fboender/ansible-cmdb">https://github.com/fboender/ansible-cmdb</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-10-09T19:54:12.000Z"><a href="/2017/10/09/rddstransformations/">2017-10-09</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/10/09/rddstransformations/">RDD Basic Transformations Operations</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Just a simple Basic CheatSheet on Spark RDD’s</p>
+<ul>
+<li>Basic Transformations on a RDD containing: <strong>{1,2,3,3}</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Function Name</th>
+<th>Example</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>map()</td>
+<td>rdd.map(x =&gt; x +1)</td>
+<td>{2,3,4,4}</td>
+</tr>
+<tr>
+<td>flatmap()</td>
+<td>rdd.flatMap(x =&gt; x.to(3))</td>
+<td>{1,2,3,2,3,3,3}</td>
+</tr>
+<tr>
+<td>filter()</td>
+<td>rdd.filter(x =&gt; x != 1 )</td>
+<td>{2,3,3}</td>
+</tr>
+<tr>
+<td>distinct()</td>
+<td>rdd.distinct()</td>
+<td>{1,2,3}</td>
+</tr>
+<tr>
+<td>sample()</td>
+<td>rdd.sample(false,0.5)</td>
+<td>Nondeterministic</td>
+</tr>
+</tbody></table>
+<ul>
+<li>Basic two-RDD transformations on RDDs: <strong>{1,2,3}</strong> and <strong>{3,4,5}</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Function Name</th>
+<th>Example</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>union()</td>
+<td>rdd.union(other)</td>
+<td>{1,2,3,3,4,5}</td>
+</tr>
+<tr>
+<td>intersection()</td>
+<td>rdd.intersection(other)</td>
+<td>{3}</td>
+</tr>
+<tr>
+<td>subtract()</td>
+<td>rdd.subtract(other)</td>
+<td>{1,2}</td>
+</tr>
+<tr>
+<td>cartesian()</td>
+<td>rdd.cartesian(other)</td>
+<td>{(1,3),(1,4)…(3,5)}</td>
+</tr>
+</tbody></table>
+<ul>
+<li>Basic Actions on RDD containing: <strong>{1,2,3,3}</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Function Name</th>
+<th>Example</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>collect()</td>
+<td>rdd.collect()</td>
+<td>{1,2,3,3}</td>
+</tr>
+<tr>
+<td>count()</td>
+<td>rdd.count()</td>
+<td>4</td>
+</tr>
+<tr>
+<td>countByValue()</td>
+<td>rdd.countByValue()</td>
+<td>{(1,1),(2,1),(3,2)}</td>
+</tr>
+<tr>
+<td>take()</td>
+<td>rdd.take(2)</td>
+<td>{1,2}</td>
+</tr>
+<tr>
+<td>top()</td>
+<td>rdd.top(2)</td>
+<td>{3,3}</td>
+</tr>
+<tr>
+<td>takeOrdered()</td>
+<td>rdd.takeOrdered(2)(myOrdering)</td>
+<td>{3,3}</td>
+</tr>
+<tr>
+<td>takeSample()</td>
+<td>rdd.takeSample(false,1)</td>
+<td>Nondeterministic</td>
+</tr>
+<tr>
+<td>reduce()</td>
+<td>rdd.reduce((x,y) =&gt; x + y )</td>
+<td>9</td>
+</tr>
+<tr>
+<td>fold()</td>
+<td>rdd.fold(0)((x,y) =&gt; x + y)</td>
+<td>9</td>
+</tr>
+<tr>
+<td>foreach()</td>
+<td>rdd.foreach(func)</td>
+<td>Nothing</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-10-06T22:11:39.000Z"><a href="/2017/10/06/powershellonlinux/">2017-10-06</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/10/06/powershellonlinux/">PowerShell on Linux</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>This article will present the required steps to install <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/PowerShell">powershell</a> on Linux.</p>
+<h1 id="Objective"><a href="#Objective" class="headerlink" title="Objective"></a>Objective</h1><p>The objective is to operate from Linux <a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/cloud-platform/windows-azure-pack">Windows Azure Pack</a>.</p>
+<h1 id="Procedure"><a href="#Procedure" class="headerlink" title="Procedure"></a>Procedure</h1><ul>
+<li>Import the public repository GPG keys</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Register the Microsoft Ubuntu repository</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | sudo tee /etc/apt/sources.list.d/microsoft.list</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Update the list of products</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Install PowerShell</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get install -y powershell</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Start PowerShell</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">powershell</span><br></pre></td></tr></table></figure>
+
+<h1 id="Add-Azure-module"><a href="#Add-Azure-module" class="headerlink" title="Add Azure module"></a>Add Azure module</h1><p>Install Azure module in powershell running with <code>sudo</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Install-Module AzureRM</span><br><span class="line">Install-Module Azure</span><br></pre></td></tr></table></figure>
+
+<p>Check module location</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">(gmo -l Azure*).path</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="Uninstall"><a href="#Uninstall" class="headerlink" title="Uninstall"></a>Uninstall</h1><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get remove powershell</span><br></pre></td></tr></table></figure>
+
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>After some hours i’ve given up making this thing work on Linux. The time it takes doesn’t payoff, and even if i could make it work, i would still need to make Vagrant work with it for some VM’s provisioning in a private cloud. It would take me less time to do it by hand :|</p>
+<p>From a standard testing perspective it’s nice to have this thing on Linux, because you could centralize the management, but at the moment of this article it doesn’t seem to payoff the time one would need to setup this. </p>
+<p>If you have lot’s of Windows machines or Azure infrastructure to manage just get a Windows PC, or wait for Microsoft to fix this, as there are lot’s of reports regarding this issue. But seriously i don’t see an effort from Microft to make this work properly, what’s the gain, rigth !?.</p>
+<p>Cheers,<br>RR</p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/PowerShell/PowerShell">https://github.com/PowerShell/PowerShell</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/bgelens/WAPTenantPublicAPI">https://github.com/bgelens/WAPTenantPublicAPI</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.tech-coffee.net/windows-azure-pack-powershell-tenant-api/">http://www.tech-coffee.net/windows-azure-pack-powershell-tenant-api/</a></li>
+<li><a target="_blank" rel="noopener" href="https://blogs.msdn.microsoft.com/powershell/2016/08/18/powershell-on-linux-and-open-source-2/">https://blogs.msdn.microsoft.com/powershell/2016/08/18/powershell-on-linux-and-open-source-2/</a></li>
+<li><a target="_blank" rel="noopener" href="https://blogs.technet.microsoft.com/privatecloud/2013/12/10/windows-azure-pack-reconfigure-portal-names-ports-and-use-trusted-certificates/">https://blogs.technet.microsoft.com/privatecloud/2013/12/10/windows-azure-pack-reconfigure-portal-names-ports-and-use-trusted-certificates/</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-10-02T21:32:20.000Z"><a href="/2017/10/02/vdi2qemu/">2017-10-02</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/10/02/vdi2qemu/">Convert VirtualBox Images to KVM</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>In this article i will explain a quick way to convert <a target="_blank" rel="noopener" href="https://www.virtualbox.org/">VirtualBox</a> images (vdi) into qcow2 and load them in <a target="_blank" rel="noopener" href="https://www.linux-kvm.org/">KVM</a>.</p>
+<h1 id="Why"><a href="#Why" class="headerlink" title="Why ?"></a>Why ?</h1><p>This is something i normally do, because i get better performance running Linux VM’s on KVM and saves me some space with qcow2 volume format.</p>
+<h2 id="qcow2-Features"><a href="#qcow2-Features" class="headerlink" title="qcow2 Features"></a>qcow2 Features</h2><p>One of the main characteristics of qcow disk images is that files with this format can grow as data is added. This allows for smaller file sizes than raw disk images, which allocate the whole image space to a file, even if parts of it are empty</p>
+<h1 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h1><ul>
+<li>You should have KVM configured correctly</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get install qemu-kvm</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Install qemu-utils</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get install qemu-utils</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Let’s get an example image. <ul>
+<li> I’m fetching one from <a target="_blank" rel="noopener" href="http://www.osboxes.org/ubuntu">http://www.osboxes.org/ubuntu</a>. (ex: Ubuntu 17.10 10th-August build (64bit).vdi)</li>
+</ul>
+</li>
+</ul>
+<p><strong>NOTE:</strong> Procedure executed with qemu-img version 2.5.0</p>
+<h1 id="Converting"><a href="#Converting" class="headerlink" title="Converting"></a>Converting</h1><ul>
+<li>Convert the image</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">qemu-img convert -f vdi -O qcow2 Ubuntu_17.10.vdi Ubuntu_17.10.qcow2</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>You can check the image details by executing <code>qemu-img info Ubuntu_17.10.qcow2</code> .</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">qemu-img info Ubuntu_17.10.qcow2</span><br><span class="line">image: Ubuntu_17.10.qcow2</span><br><span class="line">file format: qcow2</span><br><span class="line">virtual size: 100G (107374182400 bytes)</span><br><span class="line">disk size: 4.1G</span><br><span class="line">cluster_size: 65536</span><br><span class="line">Format specific information:</span><br><span class="line">    compat: 1.1</span><br><span class="line">    lazy refcounts: <span class="literal">false</span></span><br><span class="line">    refcount bits: 16</span><br><span class="line">    corrupt: <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Now lets Upload this image to our KVM pool and create a new VM from it:</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo virsh vol-create-as default ubuntu-17.10 100G --format qcow2</span><br><span class="line">sudo virsh vol-upload --pool default ubuntu-17.10 Ubuntu_17.10.qcow2 </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>Start <a target="_blank" rel="noopener" href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Virtualization_Host_Configuration_and_Guest_Installation_Guide/chap-Virtualization_Host_Configuration_and_Guest_Installation_Guide-Guest_Installation_Virt_Manager-Creating_guests_with_virt_manager.html">virt-manager</a> and select <strong>Import existing Disk Image</strong></p>
+</li>
+<li><p>The default password for this images are <code>osboxes.org</code> . You should have something like the following in the console.</p>
+</li>
+</ul>
+<img src="/2017/10/02/vdi2qemu/virt-manager.png" class="" title="virt-manager">
+
+<ul>
+<li>If you want to create brand new images you could use <a target="_blank" rel="noopener" href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Virtualization_Host_Configuration_and_Guest_Installation_Guide/sect-Virtualization_Host_Configuration_and_Guest_Installation_Guide-Guest_Installation-Creating_guests_with_virt_install.html">virt-install</a>, but that one would go to another article.</li>
+</ul>
+<p>Cheers,<br>RR</p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.virtualbox.org/wiki/Downloads">https://www.virtualbox.org/wiki/Downloads</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.linux-kvm.org/page/Main_Page">https://www.linux-kvm.org/page/Main_Page</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.osboxes.org/ubuntu">http://www.osboxes.org/ubuntu</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.openstack.org/image-guide/convert-images.html">https://docs.openstack.org/image-guide/convert-images.html</a></li>
+</ul>
 
       
     </div>
@@ -407,6 +549,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <a href="/page/4/" class="alignleft prev">Previous</a>
   
+  
+    <a href="/page/6/" class="alignright next">Next</a>
   
   <div class="clearfix"></div>
 </nav>
@@ -458,6 +602,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Code/">Code</a><small>2</small></li>
   
+    <li><a href="/tags/Communication/">Communication</a><small>1</small></li>
+  
     <li><a href="/tags/Conferences/">Conferences</a><small>2</small></li>
   
     <li><a href="/tags/Contracts/">Contracts</a><small>1</small></li>
@@ -472,7 +618,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Data-Quality/">Data Quality</a><small>1</small></li>
   
-    <li><a href="/tags/Development/">Development</a><small>1</small></li>
+    <li><a href="/tags/Development/">Development</a><small>2</small></li>
   
     <li><a href="/tags/Dimensions/">Dimensions</a><small>1</small></li>
   
@@ -518,6 +664,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Keyboard/">Keyboard</a><small>1</small></li>
   
+    <li><a href="/tags/Kubernetes/">Kubernetes</a><small>1</small></li>
+  
     <li><a href="/tags/Laws/">Laws</a><small>1</small></li>
   
     <li><a href="/tags/Leadership/">Leadership</a><small>1</small></li>
@@ -533,6 +681,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/Metrics/">Metrics</a><small>1</small></li>
   
     <li><a href="/tags/Monitoring/">Monitoring</a><small>1</small></li>
+  
+    <li><a href="/tags/NATO/">NATO</a><small>1</small></li>
   
     <li><a href="/tags/NFT/">NFT</a><small>1</small></li>
   
@@ -674,8 +824,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
   <footer id="footer" class="inner"><div class="alignleft">
   
-  &copy; 2021 Rui Ramos
+  &copy; 2023 Rui Ramos
   
+  <a class="disclaimer" href=/disclaimer> Disclaimer</a>
 </div>
 <div class="clearfix"></div></footer>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
