@@ -77,6 +77,208 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
+        <time datetime="2017-09-07T19:37:23.000Z"><a href="/2017/09/07/GA-CustomDimension/">2017-09-07</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/09/07/GA-CustomDimension/">How to Create a Google Analytics Custom Dimension</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>In order to add a custom dimension in Google Analytics follow this steps:</p>
+<ol>
+<li>Click <strong>admin</strong> and navigate to the property you which to add a custom dimension</li>
+</ol>
+<img src="/2017/09/07/GA-CustomDimension/Custom_Dimension.png" class="" title="Custom Dimension (step 1)">
+
+<ol start="2">
+<li><p>Click new <strong>Custom Dimension</strong></p>
+</li>
+<li><p>Give it a <strong>Name</strong> and a <strong>Scope</strong> and you’l get the javascript to add on your website</p>
+</li>
+</ol>
+<img src="/2017/09/07/GA-CustomDimension/GA_CustomDimension_js.png" class="" title="Custom Dimension (step 2)">
+
+<ol start="4">
+<li>After you should modify your tracking code adding for example</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ga(&#x27;send&#x27;, &#x27;pageview&#x27;, &#123;</span><br><span class="line">  &#x27;dimension1&#x27;:  &#x27;My Custom Dimension&#x27;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="When-we-should-use-this"><a href="#When-we-should-use-this" class="headerlink" title="When we should use this ?"></a>When we should use this ?</h2><p>Let’s say your website does some sort of user classification, you can create a CustomDimension ex: <code>UserCategory</code> and send enrich the data you track.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-09-07T16:57:08.000Z"><a href="/2017/09/07/unpivot/">2017-09-07</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/09/07/unpivot/">Hive - Unpivot to Avoid Multiple Joins</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>In Hive, when a table has multiple similar columns, such as:</p>
+<table>
+<thead>
+<tr>
+<th>product_id</th>
+<th>image_name1</th>
+<th>image_name2</th>
+<th>…</th>
+<th>image_name15</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>a.jpg</td>
+<td>b.jpg</td>
+<td>…</td>
+<td>c.jpg</td>
+</tr>
+<tr>
+<td>2</td>
+<td>d.jpg</td>
+<td>e.jpg</td>
+<td>…</td>
+<td>f.jpg</td>
+</tr>
+</tbody></table>
+<p>and we want to join based on all image_names, the naive approach would be to perform 15 joins (in the running example).</p>
+<p>Hive does not have an unpivot functionality, but it is possible to use the Hive builtin UDF explode to accomplish this:<br>Query example</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">select x.product_id, x.image_name from (</span><br><span class="line">  select product_id, map(&quot;image_name1&quot;, image_name1, ..., &quot;image_name15&quot;, image_name15) as image_map</span><br><span class="line">  from table ) x</span><br><span class="line">lateral view explode(image_map) expl as image_nr, image_name</span><br></pre></td></tr></table></figure>
+
+
+<p>This returns an unpivoted table like below, which allows us to perform a single join:</p>
+<table>
+<thead>
+<tr>
+<th>product_id</th>
+<th>image_name</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>a.jpg</td>
+</tr>
+<tr>
+<td>1</td>
+<td>b.jpg</td>
+</tr>
+<tr>
+<td>1</td>
+<td>c.jpg</td>
+</tr>
+<tr>
+<td>2</td>
+<td>d.jpg</td>
+</tr>
+<tr>
+<td>2</td>
+<td>e.jpg</td>
+</tr>
+<tr>
+<td>2</td>
+<td>f.jpg</td>
+</tr>
+</tbody></table>
+<p>Big thanks to Diogo Franco, for this hint ;) check also is Blog Page <a target="_blank" rel="noopener" href="https://diogoalexandrefranco.github.io/">diogoalexandrefranco.github.io</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-09-07T01:00:16.000Z"><a href="/2017/09/07/mkv/">2017-09-07</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/09/07/mkv/">Terminal Markdown Viewer and MarkDown SpellChecker</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>It’s been a while that i’ve updated this posts. So let me start for something i’ve found out the other day.</p>
+<h2 id="Terminal-Markdown-Viewer"><a href="#Terminal-Markdown-Viewer" class="headerlink" title="Terminal Markdown Viewer"></a>Terminal Markdown Viewer</h2><p>I though it would be cool to have some tool that could parse me Markdown files and present them nicely formatted, like <code>cat</code> command.</p>
+<p>And it seems i’m not the only one :)</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/axiros/terminal_markdown_viewer">https://github.com/axiros/terminal_markdown_viewer</a></p>
+<p>In order to install just follow the instruction on the site. Pip worked well for me:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pip install mdv</span><br></pre></td></tr></table></figure>
+
+<p>I’ve updated my PATH environment var on <code>.bashrc</code> with:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">export PYTHONPATH=&quot;$&#123;PYTHONPATH&#125;:/$&#123;HOME&#125;/.local/lib/python2.7/site-packages&quot;</span><br><span class="line">export PATH=&quot;$PATH:~/.local/bin&quot;</span><br></pre></td></tr></table></figure>
+
+<p>I can now execute <code>mdv</code> command try it out it some .md files :D</p>
+<h2 id="A-Markdown-spell-checking-tool"><a href="#A-Markdown-spell-checking-tool" class="headerlink" title="A Markdown spell checking tool."></a>A Markdown spell checking tool.</h2><p>The other thing is regarding spell-check, as you can probably notice i really do a lot of errors, but i don’t wont to use a high resource editor just because of this how about a MD spell checking tool ?</p>
+<p>Well i’m trying this one ad i’m using [hexo][<a href="http://hexo.io]">http://hexo.io]</a> for the page generation and it uses already npm modules just added a new one </p>
+<h3 id="install"><a href="#install" class="headerlink" title="install"></a>install</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm i markdown-spellcheck -g</span><br></pre></td></tr></table></figure>
+
+<p>One can run interactive like</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mdspell &quot;**/*.md&quot;</span><br></pre></td></tr></table></figure>
+
+<p>It’s a bit slow but the database would grow in terms, i’m giving a try to it.</p>
+<p>I also add to add <code>.spelling</code> no to keep the dictionary database on git. I probably would add it later.</p>
+<p>Cheers,<br>RR</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2016-11-03T22:09:40.000Z"><a href="/2016/11/03/SparkSummit2016/">2016-11-03</a></time>
       
       
@@ -171,247 +373,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-09-23T21:40:10.000Z"><a href="/2016/09/23/portotechhub-com/">2016-09-23</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/09/23/portotechhub-com/">Porto Tech HUB 2016</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>I’ve attend today to the second edition of Porto Tech HUB 2016. It was good to see old friends and the raising tech potencial in the City.</p>
-<p>There where some good presentations, good organization and the location was appealing also.</p>
-<p>I especially liked Christoffer Noring presentation about <a target="_blank" rel="noopener" href="https://www.nativescript.org/">NativeScript</a> and <a target="_blank" rel="noopener" href="https://angularjs.org/">Angular</a> and Miguel Veiga about <a target="_blank" rel="noopener" href="http://storm.apache.org/">Storm</a> and <a target="_blank" rel="noopener" href="http://kafka.apache.org/">Kafka</a>.</p>
-<p>This last one have more to do with my actual work.</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="http://www.portotechhub.com/">http://www.portotechhub.com</a></li>
-<li><a target="_blank" rel="noopener" href="https://twitter.com/PortoTechHub">https://twitter.com/PortoTechHub</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-09-18T12:31:09.000Z"><a href="/2016/09/18/git-cheat-sheet/">2016-09-18</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/09/18/git-cheat-sheet/">GIT Cheat Sheet</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>As i’m allways forgetting how to reset my local changes from origin HEAD. This cheat sheet might help.</p>
-<h2 id="Create"><a href="#Create" class="headerlink" title="Create"></a>Create</h2><p>Clone an existing repository</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone ssh://user@domain.com/repo.git</span><br></pre></td></tr></table></figure>
-
-<p>Create a new local repository</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
-
-<h2 id="Local-Changes"><a href="#Local-Changes" class="headerlink" title="Local Changes"></a>Local Changes</h2><p>Changed files in your working directory</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
-
-<p>Changes to tracked files</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git diff</span><br></pre></td></tr></table></figure>
-
-<p>Add all current changes to the next commit</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure>
-
-<p>Add some changes in <file> to the next commit</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git add -p &lt;file&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Commit all local changes in tracked files</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git commit -a</span><br></pre></td></tr></table></figure>
-
-<p>Commit previously staged changes</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git commmit</span><br></pre></td></tr></table></figure>
-
-<p>Change the last commit (Don’t amend publish commits)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git commit --amend</span><br></pre></td></tr></table></figure>
-
-<h2 id="Branches-amp-Tags"><a href="#Branches-amp-Tags" class="headerlink" title="Branches &amp; Tags"></a>Branches &amp; Tags</h2><p>List all existing branches</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git branch -av</span><br></pre></td></tr></table></figure>
-
-<p>Switch HEAD branch</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git checkout &lt;branch&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Create new banch based on your current HEAD</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git branch &lt;new-branch&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Create new tracking branch based on a remote branch</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git checkout --track &lt;remote/branch&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Delete a local branch</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git branch -d &lt;branch&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Mark the current commit with a tag</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git tag &lt;tag-name&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Update-amp-Publish"><a href="#Update-amp-Publish" class="headerlink" title="Update &amp; Publish"></a>Update &amp; Publish</h2><p>List all currently configured remotes</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
-
-<p>Show information about a remote</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git remote show &lt;remote&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Add new remote repository, named <remote></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git remote add &lt;shortname&gt; &lt;url&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Download all changes from <remote>, but don’t integrate into HEAD</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git fetch &lt;remote&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Download changes and directly merge/integrate into HEAD</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git pull &lt;remote&gt; &lt;branch&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Publish local changes on a remote</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git push &lt;remote&gt; &lt;branch&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Delete a branch on the remote</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git branch -dr &lt;remote/branch&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Publish your tags</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git push --tags</span><br></pre></td></tr></table></figure>
-
-<h2 id="Merge-amp-Rebase"><a href="#Merge-amp-Rebase" class="headerlink" title="Merge &amp; Rebase"></a>Merge &amp; Rebase</h2><p>Merge <branch> into your current HEAD, without fast-forward</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git merge --no-ff &lt;branch&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Rebase your current HEAD onto <branch></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git rebase &lt;branch&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Abort a rebase</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git rebase --abort</span><br></pre></td></tr></table></figure>
-
-<p>Continue a rebase after resolving conflits</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git rebase --continue</span><br></pre></td></tr></table></figure>
-
-<p>Use your configured merge tool to sove conflits</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git mergetool</span><br></pre></td></tr></table></figure>
-
-<p>Use your editor to manually solve conflits and (after resolving) mark file as resolved</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git add &lt;resolved-file&gt;</span><br><span class="line">git rm &lt;resolved-file&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Undo"><a href="#Undo" class="headerlink" title="Undo"></a>Undo</h2><p>Discard all local changes in your working directory</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git reset --hard HEAD</span><br></pre></td></tr></table></figure>
-
-<p>Discard local changes in a specific file</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git checkout HEAD &lt;file&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Revert a commit (by producing a new commit with contrary changes)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git revert &lt;commit&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Reset your HEAD pointer to a previous commit, and discard all changes since then</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git reset --hard &lt;commit&gt;</span><br></pre></td></tr></table></figure>
-
-<p>…and preserve all changes as unstaged changes</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git reset &lt;commit&gt;</span><br></pre></td></tr></table></figure>
-
-<p>…and preserve uncommitted local changes</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git reset --keep &lt;commit&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Commit-History"><a href="#Commit-History" class="headerlink" title="Commit History"></a>Commit History</h2><p>Show all commits, starting with newest</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git log</span><br></pre></td></tr></table></figure>
-
-<p>Show changes over time for a specific file</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git log -p &lt;file&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Who changed what and when in <file></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git blame &lt;file&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Git-plugins"><a href="#Git-plugins" class="headerlink" title="Git plugins"></a>Git plugins</h2><p>Store credential in manager</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config credential.helper &#x27;store&#x27;</span><br></pre></td></tr></table></figure>
-
-<p>Activate gpg signature</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config commit.gpgsign true</span><br></pre></td></tr></table></figure>
-
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://www.git-tower.com/blog/git-cheat-sheet/">https://www.git-tower.com/blog/git-cheat-sheet/</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-09-18T00:17:20.000Z"><a href="/2016/09/18/keybase-io/">2016-09-18</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/09/18/keybase-io/">keybase.io</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="Keybase"><a href="#Keybase" class="headerlink" title="Keybase"></a>Keybase</h1><p>Some time back i used to have my PGP key registered on MIT pgp server <a target="_blank" rel="noopener" href="http://pgp.mit.edu/">http://pgp.mit.edu/</a>. It’s one of the largest public directory for PGP keys, but it’s kind of old fashnioned and attracts mostly the academic world.</p>
-<p>I’m not entirely sure how i come to find <a target="_blank" rel="noopener" href="http://keybase.io/">http://keybase.io</a> but it seems a new interesting way to get PGP to the general audience.</p>
-<p>It allows, as the slogan say:</p>
-<blockquote>
-<p>Keybase maps your identity to your public keys, and vice versa.</p>
-</blockquote>
-<p>In order to be a trully trusted PKI the registration is done by invitation only which seems interesting in order to maintain some sort of quality assurance, but will make the evolution a lot slower.</p>
-<p>So basically this allows you to associate your domain, twitter account, github account,etc with you keys.</p>
-<p>It also has it’s own distributed filesystem KBFS.</p>
-<p><a target="_blank" rel="noopener" href="https://keybase.io/docs/kbfs/understanding_kbfs">https://keybase.io/docs/kbfs/understanding_kbfs</a></p>
-<p>Now this, seems to me, like the most important factor on this solution. Because you can quickly access other people keys, trust them, and follow you know friends.</p>
-<p>I still have some invites left, in case you are interested drop me an email :)</p>
-<p>Cheers,<br>RR@keybase<br><a target="_blank" rel="noopener" href="https://keybase.io/ruimsramos">https://keybase.io/ruimsramos</a></p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -440,6 +401,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Net/">.Net</a><small>1</small></li>
   
+    <li><a href="/tags/AI/">AI</a><small>1</small></li>
+  
     <li><a href="/tags/API/">API</a><small>1</small></li>
   
     <li><a href="/tags/Agile/">Agile</a><small>1</small></li>
@@ -464,6 +427,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/CDH-Parcel/">CDH Parcel</a><small>1</small></li>
   
+    <li><a href="/tags/CHat-PT/">CHat-PT</a><small>1</small></li>
+  
     <li><a href="/tags/CheatSheet/">CheatSheet</a><small>1</small></li>
   
     <li><a href="/tags/Cloudera/">Cloudera</a><small>3</small></li>
@@ -486,7 +451,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Data-Quality/">Data Quality</a><small>1</small></li>
   
-    <li><a href="/tags/Development/">Development</a><small>2</small></li>
+    <li><a href="/tags/Data-Science/">Data Science</a><small>1</small></li>
+  
+    <li><a href="/tags/Delegation/">Delegation</a><small>1</small></li>
+  
+    <li><a href="/tags/Development/">Development</a><small>3</small></li>
   
     <li><a href="/tags/Dimensions/">Dimensions</a><small>1</small></li>
   
@@ -540,7 +509,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Linux/">Linux</a><small>8</small></li>
   
-    <li><a href="/tags/Management/">Management</a><small>1</small></li>
+    <li><a href="/tags/Management/">Management</a><small>2</small></li>
   
     <li><a href="/tags/Markdown/">Markdown</a><small>1</small></li>
   
@@ -598,7 +567,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Sheetlist/">Sheetlist</a><small>1</small></li>
   
-    <li><a href="/tags/Software/">Software</a><small>1</small></li>
+    <li><a href="/tags/Software/">Software</a><small>2</small></li>
   
     <li><a href="/tags/Software-Engineering/">Software Engineering</a><small>1</small></li>
   
@@ -611,6 +580,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/Streaming/">Streaming</a><small>1</small></li>
   
     <li><a href="/tags/Streamming/">Streamming</a><small>1</small></li>
+  
+    <li><a href="/tags/Teams/">Teams</a><small>1</small></li>
   
     <li><a href="/tags/Tech/">Tech</a><small>1</small></li>
   

@@ -77,6 +77,248 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
+        <time datetime="2022-12-23T14:03:56.360Z"><a href="/2022/12/23/pacman/">2022-12-23</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2022/12/23/pacman/">Pacman Command in Arch Linux</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>I’ve recently started using a Arch Linux distribution <a target="_blank" rel="noopener" href="https://garudalinux.org/">Garuda Linux</a> and the package management tool is <strong>pacman</strong> this article summarizes the most common actions with based on the following article from <a target="_blank" rel="noopener" href="https://www.geeksforgeeks.org/pacman-command-in-arch-linux/">GeeksforGeeks</a>.</p>
+<h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><blockquote>
+<p>Pacman is a package manager for the arch Linux and arch-based Linux distributions. If you have used Debian-based OS like ubuntu, then the  Pacman is similar to the apt command of Debian-based operating systems. Pacman contains the compressed files as a package format and maintains a text-based package database. Pacman keeps the system up to date by synchronizing package lists with the master server. Pacman can install the packages from the official repositories or your own build packages.</p>
+</blockquote>
+<h1 id="Installing-Packages-using-the-Pacman"><a href="#Installing-Packages-using-the-Pacman" class="headerlink" title="Installing Packages using the Pacman"></a>Installing Packages using the Pacman</h1><p>When we install any new operating system on our machine, the first task we do is to install the software packages on the system. Now, to install the packages on Arch Linux, use the command Pacman with -S option and mention the package name. The -S option tells the Pacman to synchronize and to continue. Here is one example </p>
+<p><code>sudo pacman -S cmatrix</code></p>
+<p>We can mention the many package names after the -S option, separated by space.</p>
+<p><code>sudo pacman -S package1 package2 package3</code></p>
+<p>Then Pacman will show the download and install size of the package and ask for to proceed, then simply press the Y key. Pacman categorizes the installed packages into two categories.</p>
+<ul>
+<li><strong>Implicitly Installed</strong>: The package that was installed using the -S or -U option.</li>
+<li><strong>Dependencies</strong>: The package is installed because it is required by another package.</li>
+</ul>
+<h1 id="Removing-packages-using-the-Pacman"><a href="#Removing-packages-using-the-Pacman" class="headerlink" title="Removing packages using the Pacman"></a>Removing packages using the Pacman</h1><p>When we don’t need the package anymore, then we should remove the package from the system. To remove the package with all its dependencies which are not required by other packages, use the following command:</p>
+<p><code>sudo pacman -Rs &lt;package_name&gt;</code></p>
+<p>To remove the package without removing its dependency use the following command:</p>
+<p><code>sudo pacman -R &lt;package_name&gt;</code></p>
+<p>To remove the dependencies which are not required anymore, use the following command:</p>
+<p><code>pacman -Qdtq |  pacman -Rs -</code></p>
+<h1 id="Upgrading-packages"><a href="#Upgrading-packages" class="headerlink" title="Upgrading packages"></a>Upgrading packages</h1><p>In arch Linux, we can upgrade the full system by only one command using the Pacman. Use the following command to update the system:</p>
+<p><code>sudo pacman -Suy</code></p>
+<p>Let’s understand the meaning, S tell the pacman to synchronize the local database with the main database. u tells the pacman to upgrade the packages and y update the local catch on the system. Basically, this command synchronizes the local pacman database with the main repository database and then updates the system.</p>
+<h1 id="Searching-for-a-Package"><a href="#Searching-for-a-Package" class="headerlink" title="Searching for a Package"></a>Searching for a Package</h1><p>Now let’s see how we can search the package into the database of pacman. To search query in the name and description  of the package in the database use the following command:</p>
+<p><code>sudo pacman -Ss   &lt;query1&gt;  &lt;query2&gt;</code></p>
+<p>To search into already installed packages on the system, use the following command:</p>
+<p><code>sudo pacman -Qs query1&gt;  &lt;query2&gt;</code></p>
+<p>To search the query into the local database use the following command:</p>
+<p><code>sudo pacman -F query1&gt;  &lt;query2&gt;</code></p>
+<h1 id="Cleaning-the-Package-Cache"><a href="#Cleaning-the-Package-Cache" class="headerlink" title="Cleaning the Package Cache"></a>Cleaning the Package Cache</h1><p>When pacman downloads the packages it stores the packages into the <code>/var/cache/pacman/pkg/</code> and while uninstalling the package pacman does not delete these files. Pacman uses these files to downgrade the package or install the package. But it can take a lot of space to store these packages. So to delete the stored packages, use the following command:</p>
+<p><code>sudo pacman -Sc</code></p>
+<p>To remove all stored packages and cache, use the following command:</p>
+<p><code>sudp pacman -Scc</code></p>
+<h1 id="Installing-local-packages"><a href="#Installing-local-packages" class="headerlink" title="Installing local packages"></a>Installing local packages</h1><p>By using pacman we can install packages other than the main repository of Arch Linux. Use the following command to install the packages</p>
+<p>For local:</p>
+<p><code>sudo pacman -U path_to_file.pkg.tar.xz</code></p>
+<p>For remote package:</p>
+<p><code>sudo pacman -U http://www.example.com/repo/example.pkg.tar.xz</code></p>
+<h1 id="Troubleshooting"><a href="#Troubleshooting" class="headerlink" title="Troubleshooting"></a>Troubleshooting</h1><p>Sometimes installing the packages with pacman we face some errors. Following are the mainly occurred errors with pacman:</p>
+<ul>
+<li><p><strong>Conflicting file error</strong>: This error occurs due to some conflict packages present in the repository. To solve this error we can manually rename the file or force the overwrite function. We can use the following command to overwrite the function: </p>
+<ul>
+<li> <code>pacman -S --overwrite glob package</code></li>
+</ul>
+</li>
+<li><p><strong>Invalid package</strong>: This error can occur due to the partial installation of the packages. We can solve this error by deleting .part files in <code>/var/cache/pacman/pkg/</code>.</p>
+</li>
+<li><p><strong>Locking database</strong>: This error can occur when pacman is interrupted while updating the database. To solve this error, delete the file <code>/var/lib/pacman/db.lck</code> and update the database. Use the following command to delete the file:</p>
+</li>
+</ul>
+<h1 id="Garuda"><a href="#Garuda" class="headerlink" title="Garuda"></a>Garuda</h1><p> Garuda also brings a useful command <code>update</code> that abstracts all this interactions to keep your rolling system updated, still very important to understand the command line utilities to manage the packages and check the official man page for further details as this is always evolving.</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.geeksforgeeks.org/pacman-command-in-arch-linux/">https://www.geeksforgeeks.org/pacman-command-in-arch-linux/</a></li>
+<li><a target="_blank" rel="noopener" href="https://archlinux.org/pacman/pacman.8.html">https://archlinux.org/pacman/pacman.8.html</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2022-12-23T14:03:56.359Z"><a href="/2022/12/23/Software Engineering Laws/">2022-12-23</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2022/12/23/Software Engineering Laws/">Software Engineering Laws</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Latest week a college shared the following <a target="_blank" rel="noopener" href="https://www.netmeister.org/blog/software-engineering-laws.html">article</a> at work that i found very interesting aggregating the info here in order not to forget.</p>
+<h2 id="Conway’s-Law"><a href="#Conway’s-Law" class="headerlink" title="Conway’s Law"></a>Conway’s Law</h2><p>Also known as: “You will ship your org chart.”</p>
+<blockquote>
+<p>“Any organization that designs a system will produce a design whose structure is a copy of the organization’s communication structure.”</p>
+</blockquote>
+<p>You may think you can avoid it via cross-functional standup meetings and stakeholder updates and decision matrices, but eventually and inevitably conflicting or diverging priorities will lead to equally conflicting or divergent processes and outcomes.</p>
+<h2 id="Brooks’s-Law"><a href="#Brooks’s-Law" class="headerlink" title="Brooks’s Law"></a>Brooks’s Law</h2><p>From The <strong>Mythical Man-Month</strong> Book:</p>
+<blockquote>
+<p>“Adding manpower to a late software project makes it later.”</p>
+</blockquote>
+<p>When you realize you’re not making the progress you thought you would and your management tries to reallocate resources from another part of the org, you’ll end up not only delaying the project, but you’ll likely ship a more brittle, more complex product</p>
+<h2 id="Zawinski’s-Law"><a href="#Zawinski’s-Law" class="headerlink" title="Zawinski’s Law"></a>Zawinski’s Law</h2><blockquote>
+<p>“Every program attempts to expand until it includes a web server. Those programs which cannot so expand are replaced by ones which can.”</p>
+</blockquote>
+<p>For web services, it’s “…until it requires a user account and collects all users’ data”; for physical devices, it’s “…until it includes an insecure wifi access point with a default password you can’t change. And a web server”.</p>
+<h2 id="Parkinson’s-Law"><a href="#Parkinson’s-Law" class="headerlink" title="Parkinson’s Law"></a>Parkinson’s Law</h2><blockquote>
+<p>“Work expands so as to fill the time available for its completion.”</p>
+</blockquote>
+<p>The primary project management lessons here is that if you don’t set a deadline, then the project will never be completed. This is why iterating on a minimum viable product within fixed timelines is important.</p>
+<p>And, of course, we can and should adjust this law for data, processing power, RAM, …:</p>
+<blockquote>
+<p>“Data/CPU/memory usage expands to use up all available storage space/bandwidth/cycles/RAM.”</p>
+</blockquote>
+<h2 id="Pareto’s-Fallacy"><a href="#Pareto’s-Fallacy" class="headerlink" title="Pareto’s Fallacy"></a>Pareto’s Fallacy</h2><p>The <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Pareto_principle">Pareto Principle</a> is easy to misinterpret, especially by management. This often leads to Pareto’s Fallacy:</p>
+<blockquote>
+<p>“When you’re 80% done, you think you only have 20% left.”</p>
+</blockquote>
+<p>The critical part that’s overlooked here is that those 20% will require 80% of your time.</p>
+<h2 id="Sturgeon’s-Revelation"><a href="#Sturgeon’s-Revelation" class="headerlink" title="Sturgeon’s Revelation"></a>Sturgeon’s Revelation</h2><blockquote>
+<p>“90% of everything is crud.”</p>
+</blockquote>
+<p>Yes, that includes your products.</p>
+<h2 id="The-Peter-Principle"><a href="#The-Peter-Principle" class="headerlink" title="The Peter Principle"></a>The Peter Principle</h2><blockquote>
+<p>“In a hierarchy, every employee tends to rise to their level of incompetence. Thus, in time, every post tends to be occupied by an employee who is incompetent to carry out its duties.”</p>
+</blockquote>
+<p>Dunning and Kruger send their regards…(<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Peter_Principle">ref</a>)</p>
+<h2 id="Eagleson’s-Law"><a href="#Eagleson’s-Law" class="headerlink" title="Eagleson’s Law"></a>Eagleson’s Law</h2><blockquote>
+<p>“Any code of your own that you haven’t looked at for six or more months might as well have been written by someone else.”</p>
+</blockquote>
+<p>6 months is rather optimistic.</p>
+<h2 id="Greenspun’s-10th-Rule-of-Programming"><a href="#Greenspun’s-10th-Rule-of-Programming" class="headerlink" title="Greenspun’s 10th Rule of Programming"></a>Greenspun’s 10th Rule of Programming</h2><p>This can be generalized to the Universal NIH-Rule: “any custom developed system contains an ad hoc, informally-specified, bug-ridden, slow implementation of half of the industry standard you refused to adopt”.</p>
+<h2 id="The-Iceberg-Fallacy"><a href="#The-Iceberg-Fallacy" class="headerlink" title="The Iceberg Fallacy"></a>The Iceberg Fallacy</h2><blockquote>
+<p>“The cost of development of a new software product is the only ~25% of the total cost of ownership management sees and budgets for.”</p>
+</blockquote>
+<h2 id="The-LGTM-Dilemma"><a href="#The-LGTM-Dilemma" class="headerlink" title="The LGTM Dilemma"></a>The LGTM Dilemma</h2><blockquote>
+<p>“If you want to quickly ship a 10 line code change, hide it in a 1500 line pull request.”</p>
+</blockquote>
+<p>Also known as The Bikeshedders’ Blind Spot.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2022-12-23T14:03:56.359Z"><a href="/2022/12/23/agile/">2022-12-23</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2022/12/23/agile/">Agile Principals</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Agile is a highly collaborative approach suited for very complex and competitive projects. In this article, we’ll briefly explore the four values and 12 principles of the Agile Manifesto.</p>
+<h1 id="The-history-of-Agile"><a href="#The-history-of-Agile" class="headerlink" title="The history of Agile"></a>The history of Agile</h1><p>Agile as a project management approach was introduced to the world in 2001 in the United States. At a ski resort in the Wasatch mountains of Utah, 17 self-proclaimed organizational anarchists came together and combined several lightweight processes to create what we know today as the Agile Manifesto. The creators of Agile intended it to be a set of values and principles that would improve upon and transform existing software development processes, but companies in various industries quickly saw the value of Agile, too. Soon, Agile was adopted across all fields. </p>
+<h1 id="Agile-values-and-principles"><a href="#Agile-values-and-principles" class="headerlink" title="Agile values and principles"></a>Agile values and principles</h1><p>In the last video, you explored the Agile Manifesto—the guiding force behind all Agile teams—in-depth. You learned that Agile is a highly collaborative approach suited for very complex and competitive projects. In this reading, we’ll briefly explore the four values and 12 principles of the Agile Manifesto. </p>
+<p>The Agile values refer to the following four statements: </p>
+<ul>
+<li><p><strong>Individuals and interactions</strong> over processes and tools</p>
+</li>
+<li><p><strong>Working software</strong> over comprehensive documentation</p>
+</li>
+<li><p><strong>Customer collaboration</strong> over contract negotiation</p>
+</li>
+<li><p><strong>Responding to change</strong> over following a plan</p>
+</li>
+</ul>
+<p>Agile experts see these values as important underpinnings of the highest performing teams, and every team member should strive to live by these values to apply the full benefits of Agile.</p>
+<p>The same is true for the 12 principles, which are at the core of every Agile project:</p>
+<p><strong>Our highest priority is to satisfy the customer through early and continuous delivery of valuable software.</strong></p>
+<p>Whether you are working to create a product for your company or for a customer, chances are that someone is awaiting its delivery. If that delivery is delayed, the result is that the customer, user, or organization is left waiting for that added value to their lives and workflows. Agile emphasizes that delivering value to users early and often creates a steady value stream, increasing you and your customer’s success. This will build trust and confidence through continuous feedback as well as early business value realization.</p>
+<p><strong>Welcome changing requirements, even late in development. Agile processes harness change for the customer’s competitive advantage.</strong></p>
+<p>When working in Agile, it’s important to be agile. That means being able to move swiftly, shifting direction whenever necessary. That also means that you and your team are constantly scanning your environment to make sure necessary changes are factored into the plans. Acknowledging and embracing that your plans may change (once, twice, or several times) ensures that you and your customers are maximizing your success.</p>
+<p><strong>Deliver working software frequently, from a couple of weeks to a couple of months, with a preference to the shorter timescale.</strong></p>
+<p>Delivering your product in small, frequent increments is important because it allows time and regular opportunities for stakeholders—including customers—to give feedback on its progress. This ensures that the team never spends too much time going down the wrong path.</p>
+<p><strong>Business people and developers must work together daily throughout the project.</strong></p>
+<p>Removing barriers between developers and people focused on the business side of the project, builds trust and understanding and ensures that the developers, or those building the solution, are in tune with the needs of the users. </p>
+<p><strong>Build projects around motivated individuals. Give them the environment and support they need, and trust them to get the job done.</strong></p>
+<p>A successful Agile team includes team members that not only trust each other to get the work done but are also trusted by their sponsors and executives to get the work done. Teams build better solutions when they are empowered and motivated to deliver difficult projects.</p>
+<p><strong>The most efficient and effective method of information to and within a development is face-to-face conversation.</strong></p>
+<p>There isn’t anything quite like face-to-face communication. Face-to-face communication allows us to catch certain cues, body language, and facial expressions that are sometimes lost when using forms of communication like email, chat, or the phone. However, we can’t always be face-to-face. Establishing effective communication norms—no matter the format—is essential to effective teams. </p>
+<p><strong>Working software is the primary measure of progress.</strong></p>
+<p>In Agile teams, the main way to demonstrate meaningful completion of work is to show a working piece of the solution. In software teams, that might mean a functional piece of software. In non-software teams, that might mean a critical portion of the solution that is ready to be demonstrated to users or their representatives in order to collect feedback. This is in contrast to traditional or Waterfall projects, where the completion of project documents could be used to measure progress. In Agile project management, it is not enough to say that the team is 80% done with an activity if there is no working, demonstrable artifact available to review.</p>
+<p><strong>Agile processes promote sustainable development. The sponsors, developers, and users should be able to maintain a constant pace indefinitely.</strong></p>
+<p>Maintaining a steady but careful pace will prevent errors along the way. Also, you never want your team to feel overworked or overwhelmed. On the flip side, a team that is underutilized may become bored and lose the creative spark to innovate. The Agile ideal is to achieve a steady pace of effort for the team that avoids overtime and burnout.</p>
+<p><strong>Continuous attention to technical excellence and good design enhances agility.</strong></p>
+<p>This principle conveys that just because the team is working fast doesn’t mean they sacrifice quality. By emphasizing quality and design throughout the project development phase, the agility, efficiency, and speed of the team will be increased. When a team delivers a well-built solution, they can quickly respond to user feedback and new information. However, if the product is low quality, implementing changes can become problematic, complex, and slow down the entire team. </p>
+<p><strong>Simplicity—the art of maximizing the amount of work not done—is essential.</strong></p>
+<p>The team should avoid implementing extra features into the solution that weren’t explicitly requested by the user or product owner. This includes removing procedures that are no longer necessary, and reducing unnecessary documentation. </p>
+<p><strong>The best architectures, requirements, and designs emerge from self-organizing teams.</strong></p>
+<p>Team members should be able to get their work done by designing their own work processes and practices, without a manager dictating how they operate. Team members should also feel empowered to speak up with questions, concerns, or feedback.</p>
+<p><strong>At regular intervals, the team reflects on how to become more effective, then tunes and adjusts its behavior accordingly.</strong></p>
+<p>In Agile, it is important to acknowledge that learning from successes and failures is continuous. No team is perfect. There will be mistakes, challenges, trials, and triumphs. Teams should reflect on all of these different aspects of their activities so that they can make necessary adjustments. </p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.coursera.org/learn/agile-project-management">https://www.coursera.org/learn/agile-project-management</a></li>
+<li><a target="_blank" rel="noopener" href="http://agilemanifesto.org/principles.html">http://agilemanifesto.org/principles.html</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2022-12-23T14:03:56.359Z"><a href="/2022/12/23/artifactory/">2022-12-23</a></time>
       
       
@@ -237,192 +479,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2022-12-23T14:03:56.358Z"><a href="/2022/12/23/SODA/">2022-12-23</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2022/12/23/SODA/">SODA</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>Bernard Denys kindly share with me the availability of their product for the Open Source Community in <a target="_blank" rel="noopener" href="https://github.com/sodadata/soda-sql#readme">Github</a>. <a target="_blank" rel="noopener" href="https://www.soda.io/">SODA</a> provide a Data Monitoring Platform. In this article i will take some time to explore a quick setup on how to use it and final comments around it.</p>
-<h2 id="What-does-Soda-SQL-do"><a href="#What-does-Soda-SQL-do" class="headerlink" title="What does Soda SQL do?"></a>What does Soda SQL do?</h2><p>Soda SQL allows you to</p>
-<p>Stop your pipeline when bad data is detected<br>Extract metrics and column profiles through super efficient SQL<br>Full control over metrics and queries through declarative config files</p>
-<h2 id="5m-tutorial"><a href="#5m-tutorial" class="headerlink" title="5m tutorial"></a>5m tutorial</h2><p>There is a <a target="_blank" rel="noopener" href="https://docs.soda.io/soda-sql/getting-started/5_min_tutorial.html">5m tutorial</a> available on their official page let’s have a go…</p>
-<h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><p>I’m using Linux and i’m lazy so i’ve just installed the required pip</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip3 install soda-sql</span><br></pre></td></tr></table></figure>
-
-<p>Let’s check if it is working</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ soda </span><br><span class="line">Usage: soda [OPTIONS] COMMAND [ARGS]...</span><br><span class="line"></span><br><span class="line">  Soda CLI version 2.0.0b15</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">  --<span class="built_in">help</span>  Show this message and <span class="built_in">exit</span>.</span><br><span class="line"></span><br><span class="line">Commands:</span><br><span class="line">  analyze  Analyzes tables <span class="keyword">in</span> the warehouse and creates scan YAML files...</span><br><span class="line">  create   Creates a new warehouse.yml file and prepares credentials <span class="keyword">in</span></span><br><span class="line">           your...</span><br><span class="line"></span><br><span class="line">  init     Renamed to `soda analyze`</span><br><span class="line">  scan     Computes all measurements and runs all tests on one table.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>Great now let’s create some a dummy warehouse and do some tests:</p>
-<h2 id="Create-dummy-Datawarehouse"><a href="#Create-dummy-Datawarehouse" class="headerlink" title="Create dummy Datawarehouse"></a>Create dummy Datawarehouse</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run --name soda_sql_tutorial_db --rm -d \</span><br><span class="line">    -p 5432:5432 \</span><br><span class="line">    -v soda_sql_tutorial_postgres:/var/lib/postgresql/data:rw \</span><br><span class="line">    -e POSTGRES_USER=sodasql \</span><br><span class="line">    -e POSTGRES_DB=sodasql \</span><br><span class="line">    -e POSTGRES_HOST_AUTH_METHOD=trust \</span><br><span class="line">    postgres:9.6.17-alpine</span><br></pre></td></tr></table></figure>
-
-<p>And load it with data with the following command</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> soda_sql_tutorial_db \</span><br><span class="line">  sh -c <span class="string">&quot;wget -qO - https://raw.githubusercontent.com/sodadata/soda-sql/main/tests/demo/demodata.sql | psql -U sodasql -d sodasql&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>According to the tutorial one can remove the created container and volume with the following command :</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker stop soda_sql_tutorial_db</span><br><span class="line">docker volume rm soda_sql_tutorial_postgres</span><br></pre></td></tr></table></figure>
-
-<h2 id="Create-warehouse-directory"><a href="#Create-warehouse-directory" class="headerlink" title="Create warehouse directory"></a>Create warehouse directory</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir soda_sql_tutorial</span><br><span class="line"><span class="built_in">cd</span> soda_sql_tutorial/</span><br><span class="line">soda create -d sodasql -u sodasql -w soda_sql_tutorial postgres</span><br></pre></td></tr></table></figure>
-
-<p>This created the <code>warehouse.yml</code> with connection settings which are stored on your homedir <code>~/.soda/env_vars.yml</code> </p>
-<h2 id="Analyse-table-scan-YAML-files"><a href="#Analyse-table-scan-YAML-files" class="headerlink" title="Analyse table scan YAML files"></a>Analyse table scan YAML files</h2><p>The following command will analyze the exiting tables and fill the <code>./tables/</code> directory with large data warehouse it can be inputted manually.</p>
-<p>Well, i only have 5m so let’s give it a go.</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">soda analyze</span><br></pre></td></tr></table></figure>
-
-<p>Hum! interesting, queries the information schema and generates a file which i will assume per table with several metrics for validation.</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">table_name:</span> <span class="string">demodata</span></span><br><span class="line"><span class="attr">metrics:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">row_count</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">missing_count</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">missing_percentage</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">values_count</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">values_percentage</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">valid_count</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">valid_percentage</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">invalid_count</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">invalid_percentage</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">min_length</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">max_length</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">avg_length</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">min</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">max</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">avg</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">sum</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">variance</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">stddev</span></span><br><span class="line"><span class="attr">tests:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">row_count</span> <span class="string">&gt;</span> <span class="number">0</span></span><br><span class="line"><span class="attr">columns:</span></span><br><span class="line">  <span class="attr">id:</span></span><br><span class="line">    <span class="attr">valid_format:</span> <span class="string">uuid</span></span><br><span class="line">    <span class="attr">tests:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">invalid_percentage</span> <span class="string">==</span> <span class="number">0</span></span><br><span class="line">  <span class="attr">feepct:</span></span><br><span class="line">    <span class="attr">valid_format:</span> <span class="string">number_percentage</span></span><br><span class="line">    <span class="attr">tests:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">invalid_percentage</span> <span class="string">==</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Run-a-scan"><a href="#Run-a-scan" class="headerlink" title="Run a scan"></a>Run a scan</h2><p>Each scan requires a warehouse YAML and a scan YAML as input. The scan command will collect the configured metrics and run the defined tests against them.</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">soda scan warehouse.yml tables/demodata.yml</span><br></pre></td></tr></table></figure>
-
-<p>And that’s it for the tutorial</p>
-<p>One can then integrate this with a orchestration tool such as <a target="_blank" rel="noopener" href="https://docs.soda.io/soda-sql/documentation/orchestrate_scans.html">Airflow</a></p>
-<p>It is recommend to <code>PythonVirtualenvOperator</code> to prevent any dependency conflicts.</p>
-<p>Example dag:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> airflow <span class="keyword">import</span> DAG</span><br><span class="line"><span class="keyword">from</span> airflow.models.variable <span class="keyword">import</span> Variable</span><br><span class="line"><span class="keyword">from</span> airflow.operators.python <span class="keyword">import</span> PythonVirtualenvOperator</span><br><span class="line"><span class="keyword">from</span> airflow.operators.dummy <span class="keyword">import</span> DummyOperator</span><br><span class="line"><span class="keyword">from</span> airflow.utils.dates <span class="keyword">import</span> days_ago</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> timedelta</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Make sure that this variable is set in your Airflow</span></span><br><span class="line">warehouse_yml = Variable.get(<span class="string">&#x27;soda_sql_warehouse_yml_path&#x27;</span>)</span><br><span class="line">scan_yml = Variable.get(<span class="string">&#x27;soda_sql_scan_yml_path&#x27;</span>)</span><br><span class="line"></span><br><span class="line">default_args = &#123;</span><br><span class="line">    <span class="string">&#x27;owner&#x27;</span>: <span class="string">&#x27;soda_sql&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;retries&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="string">&#x27;retry_delay&#x27;</span>: timedelta(minutes=<span class="number">5</span>),</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run_soda_scan</span>(<span class="params">warehouse_yml_file, scan_yml_file</span>):</span></span><br><span class="line">    <span class="keyword">from</span> sodasql.scan.scan_builder <span class="keyword">import</span> ScanBuilder</span><br><span class="line">    scan_builder = ScanBuilder()</span><br><span class="line">    <span class="comment"># Optionally you can directly build the Warehouse dict from Airflow secrets/variables</span></span><br><span class="line">    <span class="comment"># and set scan_builder.warehouse_dict with values.</span></span><br><span class="line">    scan_builder.warehouse_yml_file = warehouse_yml_file</span><br><span class="line">    scan_builder.scan_yml_file = scan_yml_file</span><br><span class="line">    scan = scan_builder.build()</span><br><span class="line">    scan_result = scan.execute()</span><br><span class="line">    <span class="keyword">if</span> scan_result.has_failures():</span><br><span class="line">        failures = scan_result.failures_count()</span><br><span class="line">        <span class="keyword">raise</span> ValueError(<span class="string">f&quot;Soda Scan found <span class="subst">&#123;failures&#125;</span> errors in your data!&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">dag = DAG(</span><br><span class="line">    <span class="string">&#x27;soda_sql_python_venv_op&#x27;</span>,</span><br><span class="line">    default_args=default_args,</span><br><span class="line">    description=<span class="string">&#x27;A simple Soda SQL scan DAG&#x27;</span>,</span><br><span class="line">    schedule_interval=timedelta(days=<span class="number">1</span>),</span><br><span class="line">    start_date=days_ago(<span class="number">1</span>),</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">ingest_data_op = DummyOperator(</span><br><span class="line">    task_id=<span class="string">&#x27;ingest_data&#x27;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">soda_sql_scan_op = PythonVirtualenvOperator(</span><br><span class="line">    task_id=<span class="string">&#x27;soda_sql_scan_demodata&#x27;</span>,</span><br><span class="line">    python_callable=run_soda_scan,</span><br><span class="line">    requirements=[<span class="string">&quot;soda-sql==2.0.0b10&quot;</span>],</span><br><span class="line">    system_site_packages=<span class="literal">False</span>,</span><br><span class="line">    op_kwargs=&#123;<span class="string">&#x27;warehouse_yml_file&#x27;</span>: warehouse_yml,</span><br><span class="line">               <span class="string">&#x27;scan_yml_file&#x27;</span>: scan_yml&#125;,</span><br><span class="line">    dag=dag</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">publish_data_op = DummyOperator(</span><br><span class="line">    task_id=<span class="string">&#x27;publish_data&#x27;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">ingest_data_op &gt;&gt; soda_sql_scan_op &gt;&gt; publish_data_op</span><br></pre></td></tr></table></figure>
-
-<p>There is also some work being done to support a SodaScanOperator for Airflow.</p>
-<h2 id="Warehouse-types"><a href="#Warehouse-types" class="headerlink" title="Warehouse types"></a>Warehouse types</h2><p>At the moment SODA is supporting the following techs:</p>
-<ul>
-<li>Snowflake</li>
-<li>AWS Athena</li>
-<li>GCP BigQuery</li>
-<li>PostgreSQL</li>
-<li>Redshift</li>
-<li>Spark SQL -&gt; (Coming Soon)</li>
-</ul>
-<h2 id="Conclusions"><a href="#Conclusions" class="headerlink" title="Conclusions"></a>Conclusions</h2><p>This quick tutorial make’s it easy to test the tool. But i would like to extended the tests on a larger solution to check how it behaves. Also i would like to see the SparkSQL as a warehouse option as most of my teams work are centered on that technology.</p>
-<p>Topics to do extended testing with:</p>
-<ul>
-<li>Schema evolution impact on the quality test setup</li>
-<li>Not using a Warehouse solution but a Datalake<ul>
-<li>Providing schemas from a Datalake and using a processing engine on top of it (ex: spark.schemas and Parquet files)</li>
-</ul>
-</li>
-<li>Testing with Delta tables</li>
-<li>Define levels of data-quality analysis</li>
-<li>Understanding better how the scans works</li>
-</ul>
-<p>The tool seems to have good potential and seems very simple which would speed the adoption. Also by sharing this to the open source community seems to be as a good choice to increase user quorum and still offer enterprise services solution.</p>
-<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/sodadata/soda-sql#readme">https://github.com/sodadata/soda-sql#readme</a></li>
-<li><a target="_blank" rel="noopener" href="https://docs.soda.io/soda-sql/getting-started/5_min_tutorial.html">https://docs.soda.io/soda-sql/getting-started/5_min_tutorial.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://docs.soda.io/soda-sql/documentation/orchestrate_scans.html">https://docs.soda.io/soda-sql/documentation/orchestrate_scans.html</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2022-12-23T14:03:56.353Z"><a href="/2022/12/23/Github ssh keys/">2022-12-23</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2022/12/23/Github ssh keys/">Github Ssh Keys</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>When using github one of the most recommend ways to get in sync with your repo is by using ssh keys. If you don’t use it check the following article from github docs where they explain in detail how to do the setup</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://docs.github.com/en/github/authenticating-to-github/about-ssh">https://docs.github.com/en/github/authenticating-to-github/about-ssh</a></li>
-</ul>
-<p>On your <strong>Profile</strong> you can manage your SSH and GPG keys.</p>
-<p>But take into account the following if you have more than one account the ssh-keys are unique on the system. </p>
-<p>So if you have for example:</p>
-<ol>
-<li>coporate account ruiramosff</li>
-<li>personal account rramos</li>
-</ol>
-<p>You need to have distinct ssh-keys per profile.</p>
-<p>I would recommend for this cases to have distinct ssh keys and to a proper setup on your repo configurations adding for example</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[user]</span><br><span class="line">        name = Rui Ramos</span><br><span class="line">        email = rui.ms.ramos@gmail.com</span><br></pre></td></tr></table></figure>
-
-<p>You can also do this globaly on your <code>~./gitconfig</code> but if you are going to work on the same machine but want to use different profiles, pay attention to have the git configuration adapted to it.</p>
-<p>Cheers,<br>RR</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2022-12-23T14:03:56.353Z"><a href="/2022/12/23/KeyboardLayout/">2022-12-23</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2022/12/23/KeyboardLayout/">Keyboard Layout</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>Reminder article for as I’m constantly forgetting the keyboard layout in my Linux distribution.<br>This started mostly after I have decided to use a 65% keyboard which misses a lot of keys from a traditional 100%. </p>
-<p>Still it has other advantages less space used and linear switches which allow faster input. Being a US tradicional Layout there are some portuguese characters missing and having a 65% keyboard doesn’t help either. Nevertheless after some weeks of adjustment improvements are noticed.</p>
-<p>The best layout to choose in Linux would be <code>English (intl, with AltGr dead keys)</code> for this setup.</p>
-<p>I still think that the english layout is the best option to follow. In regards to size a 85% seems a better options specially if you need to deal with spreadsheets.</p>
-<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Dead_key">https://en.wikipedia.org/wiki/Dead_key</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -451,6 +507,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Net/">.Net</a><small>1</small></li>
   
+    <li><a href="/tags/AI/">AI</a><small>1</small></li>
+  
     <li><a href="/tags/API/">API</a><small>1</small></li>
   
     <li><a href="/tags/Agile/">Agile</a><small>1</small></li>
@@ -475,6 +533,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/CDH-Parcel/">CDH Parcel</a><small>1</small></li>
   
+    <li><a href="/tags/CHat-PT/">CHat-PT</a><small>1</small></li>
+  
     <li><a href="/tags/CheatSheet/">CheatSheet</a><small>1</small></li>
   
     <li><a href="/tags/Cloudera/">Cloudera</a><small>3</small></li>
@@ -497,7 +557,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Data-Quality/">Data Quality</a><small>1</small></li>
   
-    <li><a href="/tags/Development/">Development</a><small>2</small></li>
+    <li><a href="/tags/Data-Science/">Data Science</a><small>1</small></li>
+  
+    <li><a href="/tags/Delegation/">Delegation</a><small>1</small></li>
+  
+    <li><a href="/tags/Development/">Development</a><small>3</small></li>
   
     <li><a href="/tags/Dimensions/">Dimensions</a><small>1</small></li>
   
@@ -551,7 +615,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Linux/">Linux</a><small>8</small></li>
   
-    <li><a href="/tags/Management/">Management</a><small>1</small></li>
+    <li><a href="/tags/Management/">Management</a><small>2</small></li>
   
     <li><a href="/tags/Markdown/">Markdown</a><small>1</small></li>
   
@@ -609,7 +673,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Sheetlist/">Sheetlist</a><small>1</small></li>
   
-    <li><a href="/tags/Software/">Software</a><small>1</small></li>
+    <li><a href="/tags/Software/">Software</a><small>2</small></li>
   
     <li><a href="/tags/Software-Engineering/">Software Engineering</a><small>1</small></li>
   
@@ -622,6 +686,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/Streaming/">Streaming</a><small>1</small></li>
   
     <li><a href="/tags/Streamming/">Streamming</a><small>1</small></li>
+  
+    <li><a href="/tags/Teams/">Teams</a><small>1</small></li>
   
     <li><a href="/tags/Tech/">Tech</a><small>1</small></li>
   

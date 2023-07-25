@@ -77,6 +77,334 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
+        <time datetime="2017-10-09T19:54:12.000Z"><a href="/2017/10/09/rddstransformations/">2017-10-09</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/10/09/rddstransformations/">RDD Basic Transformations Operations</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Just a simple Basic CheatSheet on Spark RDD’s</p>
+<ul>
+<li>Basic Transformations on a RDD containing: <strong>{1,2,3,3}</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Function Name</th>
+<th>Example</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>map()</td>
+<td>rdd.map(x =&gt; x +1)</td>
+<td>{2,3,4,4}</td>
+</tr>
+<tr>
+<td>flatmap()</td>
+<td>rdd.flatMap(x =&gt; x.to(3))</td>
+<td>{1,2,3,2,3,3,3}</td>
+</tr>
+<tr>
+<td>filter()</td>
+<td>rdd.filter(x =&gt; x != 1 )</td>
+<td>{2,3,3}</td>
+</tr>
+<tr>
+<td>distinct()</td>
+<td>rdd.distinct()</td>
+<td>{1,2,3}</td>
+</tr>
+<tr>
+<td>sample()</td>
+<td>rdd.sample(false,0.5)</td>
+<td>Nondeterministic</td>
+</tr>
+</tbody></table>
+<ul>
+<li>Basic two-RDD transformations on RDDs: <strong>{1,2,3}</strong> and <strong>{3,4,5}</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Function Name</th>
+<th>Example</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>union()</td>
+<td>rdd.union(other)</td>
+<td>{1,2,3,3,4,5}</td>
+</tr>
+<tr>
+<td>intersection()</td>
+<td>rdd.intersection(other)</td>
+<td>{3}</td>
+</tr>
+<tr>
+<td>subtract()</td>
+<td>rdd.subtract(other)</td>
+<td>{1,2}</td>
+</tr>
+<tr>
+<td>cartesian()</td>
+<td>rdd.cartesian(other)</td>
+<td>{(1,3),(1,4)…(3,5)}</td>
+</tr>
+</tbody></table>
+<ul>
+<li>Basic Actions on RDD containing: <strong>{1,2,3,3}</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Function Name</th>
+<th>Example</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>collect()</td>
+<td>rdd.collect()</td>
+<td>{1,2,3,3}</td>
+</tr>
+<tr>
+<td>count()</td>
+<td>rdd.count()</td>
+<td>4</td>
+</tr>
+<tr>
+<td>countByValue()</td>
+<td>rdd.countByValue()</td>
+<td>{(1,1),(2,1),(3,2)}</td>
+</tr>
+<tr>
+<td>take()</td>
+<td>rdd.take(2)</td>
+<td>{1,2}</td>
+</tr>
+<tr>
+<td>top()</td>
+<td>rdd.top(2)</td>
+<td>{3,3}</td>
+</tr>
+<tr>
+<td>takeOrdered()</td>
+<td>rdd.takeOrdered(2)(myOrdering)</td>
+<td>{3,3}</td>
+</tr>
+<tr>
+<td>takeSample()</td>
+<td>rdd.takeSample(false,1)</td>
+<td>Nondeterministic</td>
+</tr>
+<tr>
+<td>reduce()</td>
+<td>rdd.reduce((x,y) =&gt; x + y )</td>
+<td>9</td>
+</tr>
+<tr>
+<td>fold()</td>
+<td>rdd.fold(0)((x,y) =&gt; x + y)</td>
+<td>9</td>
+</tr>
+<tr>
+<td>foreach()</td>
+<td>rdd.foreach(func)</td>
+<td>Nothing</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-10-06T22:11:39.000Z"><a href="/2017/10/06/powershellonlinux/">2017-10-06</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/10/06/powershellonlinux/">PowerShell on Linux</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>This article will present the required steps to install <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/PowerShell">powershell</a> on Linux.</p>
+<h1 id="Objective"><a href="#Objective" class="headerlink" title="Objective"></a>Objective</h1><p>The objective is to operate from Linux <a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/cloud-platform/windows-azure-pack">Windows Azure Pack</a>.</p>
+<h1 id="Procedure"><a href="#Procedure" class="headerlink" title="Procedure"></a>Procedure</h1><ul>
+<li>Import the public repository GPG keys</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Register the Microsoft Ubuntu repository</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | sudo tee /etc/apt/sources.list.d/microsoft.list</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Update the list of products</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Install PowerShell</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get install -y powershell</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Start PowerShell</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">powershell</span><br></pre></td></tr></table></figure>
+
+<h1 id="Add-Azure-module"><a href="#Add-Azure-module" class="headerlink" title="Add Azure module"></a>Add Azure module</h1><p>Install Azure module in powershell running with <code>sudo</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Install-Module AzureRM</span><br><span class="line">Install-Module Azure</span><br></pre></td></tr></table></figure>
+
+<p>Check module location</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">(gmo -l Azure*).path</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="Uninstall"><a href="#Uninstall" class="headerlink" title="Uninstall"></a>Uninstall</h1><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get remove powershell</span><br></pre></td></tr></table></figure>
+
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>After some hours i’ve given up making this thing work on Linux. The time it takes doesn’t payoff, and even if i could make it work, i would still need to make Vagrant work with it for some VM’s provisioning in a private cloud. It would take me less time to do it by hand :|</p>
+<p>From a standard testing perspective it’s nice to have this thing on Linux, because you could centralize the management, but at the moment of this article it doesn’t seem to payoff the time one would need to setup this. </p>
+<p>If you have lot’s of Windows machines or Azure infrastructure to manage just get a Windows PC, or wait for Microsoft to fix this, as there are lot’s of reports regarding this issue. But seriously i don’t see an effort from Microft to make this work properly, what’s the gain, rigth !?.</p>
+<p>Cheers,<br>RR</p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/PowerShell/PowerShell">https://github.com/PowerShell/PowerShell</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/bgelens/WAPTenantPublicAPI">https://github.com/bgelens/WAPTenantPublicAPI</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.tech-coffee.net/windows-azure-pack-powershell-tenant-api/">http://www.tech-coffee.net/windows-azure-pack-powershell-tenant-api/</a></li>
+<li><a target="_blank" rel="noopener" href="https://blogs.msdn.microsoft.com/powershell/2016/08/18/powershell-on-linux-and-open-source-2/">https://blogs.msdn.microsoft.com/powershell/2016/08/18/powershell-on-linux-and-open-source-2/</a></li>
+<li><a target="_blank" rel="noopener" href="https://blogs.technet.microsoft.com/privatecloud/2013/12/10/windows-azure-pack-reconfigure-portal-names-ports-and-use-trusted-certificates/">https://blogs.technet.microsoft.com/privatecloud/2013/12/10/windows-azure-pack-reconfigure-portal-names-ports-and-use-trusted-certificates/</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-10-02T21:32:20.000Z"><a href="/2017/10/02/vdi2qemu/">2017-10-02</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/10/02/vdi2qemu/">Convert VirtualBox Images to KVM</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>In this article i will explain a quick way to convert <a target="_blank" rel="noopener" href="https://www.virtualbox.org/">VirtualBox</a> images (vdi) into qcow2 and load them in <a target="_blank" rel="noopener" href="https://www.linux-kvm.org/">KVM</a>.</p>
+<h1 id="Why"><a href="#Why" class="headerlink" title="Why ?"></a>Why ?</h1><p>This is something i normally do, because i get better performance running Linux VM’s on KVM and saves me some space with qcow2 volume format.</p>
+<h2 id="qcow2-Features"><a href="#qcow2-Features" class="headerlink" title="qcow2 Features"></a>qcow2 Features</h2><p>One of the main characteristics of qcow disk images is that files with this format can grow as data is added. This allows for smaller file sizes than raw disk images, which allocate the whole image space to a file, even if parts of it are empty</p>
+<h1 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h1><ul>
+<li>You should have KVM configured correctly</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get install qemu-kvm</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Install qemu-utils</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get install qemu-utils</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Let’s get an example image. <ul>
+<li> I’m fetching one from <a target="_blank" rel="noopener" href="http://www.osboxes.org/ubuntu">http://www.osboxes.org/ubuntu</a>. (ex: Ubuntu 17.10 10th-August build (64bit).vdi)</li>
+</ul>
+</li>
+</ul>
+<p><strong>NOTE:</strong> Procedure executed with qemu-img version 2.5.0</p>
+<h1 id="Converting"><a href="#Converting" class="headerlink" title="Converting"></a>Converting</h1><ul>
+<li>Convert the image</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">qemu-img convert -f vdi -O qcow2 Ubuntu_17.10.vdi Ubuntu_17.10.qcow2</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>You can check the image details by executing <code>qemu-img info Ubuntu_17.10.qcow2</code> .</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">qemu-img info Ubuntu_17.10.qcow2</span><br><span class="line">image: Ubuntu_17.10.qcow2</span><br><span class="line">file format: qcow2</span><br><span class="line">virtual size: 100G (107374182400 bytes)</span><br><span class="line">disk size: 4.1G</span><br><span class="line">cluster_size: 65536</span><br><span class="line">Format specific information:</span><br><span class="line">    compat: 1.1</span><br><span class="line">    lazy refcounts: <span class="literal">false</span></span><br><span class="line">    refcount bits: 16</span><br><span class="line">    corrupt: <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Now lets Upload this image to our KVM pool and create a new VM from it:</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo virsh vol-create-as default ubuntu-17.10 100G --format qcow2</span><br><span class="line">sudo virsh vol-upload --pool default ubuntu-17.10 Ubuntu_17.10.qcow2 </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>Start <a target="_blank" rel="noopener" href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Virtualization_Host_Configuration_and_Guest_Installation_Guide/chap-Virtualization_Host_Configuration_and_Guest_Installation_Guide-Guest_Installation_Virt_Manager-Creating_guests_with_virt_manager.html">virt-manager</a> and select <strong>Import existing Disk Image</strong></p>
+</li>
+<li><p>The default password for this images are <code>osboxes.org</code> . You should have something like the following in the console.</p>
+</li>
+</ul>
+<img src="/2017/10/02/vdi2qemu/virt-manager.png" class="" title="virt-manager">
+
+<ul>
+<li>If you want to create brand new images you could use <a target="_blank" rel="noopener" href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Virtualization_Host_Configuration_and_Guest_Installation_Guide/sect-Virtualization_Host_Configuration_and_Guest_Installation_Guide-Guest_Installation-Creating_guests_with_virt_install.html">virt-install</a>, but that one would go to another article.</li>
+</ul>
+<p>Cheers,<br>RR</p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.virtualbox.org/wiki/Downloads">https://www.virtualbox.org/wiki/Downloads</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.linux-kvm.org/page/Main_Page">https://www.linux-kvm.org/page/Main_Page</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.osboxes.org/ubuntu">http://www.osboxes.org/ubuntu</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.openstack.org/image-guide/convert-images.html">https://docs.openstack.org/image-guide/convert-images.html</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2017-09-29T01:01:48.000Z"><a href="/2017/09/29/nifiparcel/">2017-09-29</a></time>
       
       
@@ -287,351 +615,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-09-26T22:43:35.000Z"><a href="/2017/09/26/vagrant-qemu/">2017-09-26</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/09/26/vagrant-qemu/">Quick Guide for Vagrant and Libvirt</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>This article is going to be about a quick way to setup a PoC environment using <a target="_blank" rel="noopener" href="https://libvirt.org/">libvirt</a> (<a target="_blank" rel="noopener" href="https://www.qemu.org/">QEMU</a>) and <a target="_blank" rel="noopener" href="https://www.vagrantup.com/">vagrant</a>, and auto configure the enviroment using <a target="_blank" rel="noopener" href="https://www.ansible.com/">ansible</a>.</p>
-<h1 id="Why"><a href="#Why" class="headerlink" title="Why ?"></a>Why ?</h1><p>One migth go a bit further in the testing enviroments, instead of dockers using virtualized enviroment. This kind of approcah whould be suitable when you like to try infrastructure services, or simple don’t want to use dockers.</p>
-<p>If you check Internet Trends we can see docker interest have grown quite a lot on the last 5 years. </p>
-
-<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1154_RC03/embed_loader.js"></script> <script type="text/javascript"> trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"docker","geo":"","time":"today 5-y"},{"keyword":"Virtual Machines","geo":"","time":"today 5-y"}],"category":13,"property":""}, {"exploreQuery":"cat=13&date=today 5-y,today 5-y&q=docker,Virtual%20Machines","guestPath":"https://trends.google.com:443/trends/embed/"}); </script> 
-
-
-<p><strong>Still i’m OldSchool and i like my plain-simple-VMs some times :D</strong></p>
-<p>A later article would be about configuring a Mesos Cluster so this one makes sense as a preparation guide for it.</p>
-<h1 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h1><ul>
-<li>Make sure you have vagrant installed</li>
-<li>Make sure your machine supports virtualization :)</li>
-<li>Make sure you have QEMU installed</li>
-<li>Make sure you have libvirt up and running</li>
-<li>Make sure you have ansible (Optional)</li>
-</ul>
-<p><strong>Note:</strong> This guide was tested on Ubuntu 16. Use at your own risk</p>
-<p>One can test libvirt version suing the command</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ virsh version</span><br><span class="line">Compiled against library: libvirt 1.3.1</span><br><span class="line">Using library: libvirt 1.3.1</span><br><span class="line">Using API: QEMU 1.3.1</span><br><span class="line">Running hypervisor: QEMU 2.5.0</span><br></pre></td></tr></table></figure>
-
-<p><strong>NOTE:</strong> Before you start using Vagrant-libvirt, please make sure your libvirt and qemu installation is working correctly and you are able to create qemu or kvm type virtual machines with virsh or virt-manager.</p>
-<h1 id="setup"><a href="#setup" class="headerlink" title="setup"></a>setup</h1><p>Install dependencies</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get install qemu libvirt-bin ebtables dnsmasq</span><br><span class="line">sudo apt-get install libxslt-dev libxml2-dev libvirt-dev zlib1g-dev ruby-dev</span><br><span class="line">sudo apt-get install vagrant ruby-libvirt</span><br></pre></td></tr></table></figure>
-
-<p>Install vagrant-libvirt plugin:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vagrant plugin install vagrant-libvirt</span><br></pre></td></tr></table></figure>
-
-<p>Now let’s test by creating a startup Box. There are several available <a target="_blank" rel="noopener" href="https://app.vagrantup.com/boxes/search?provider=libvirt">here</a></p>
-<p>Example: (Ubuntu 16)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir Vagrant</span><br><span class="line">cd Vagrant</span><br><span class="line">vagrant init marczis/ubuntu_16_04</span><br></pre></td></tr></table></figure>
-
-<p>Let’s start the VM</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vagrant up --provider=libvirt</span><br></pre></td></tr></table></figure>
-
-<p>After executing the comman you should have some output similar</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">==&gt; default: Successfully added box &#x27;marczis/ubuntu_16_04&#x27; (v0.1.2) for &#x27;libvirt&#x27;!</span><br><span class="line">==&gt; default: Uploading base box image as volume into libvirt storage...</span><br><span class="line">==&gt; default: Creating image (snapshot of base box volume).</span><br><span class="line">==&gt; default: Creating domain with the following settings...</span><br><span class="line">==&gt; default:  -- Name:              Vagrant_default</span><br><span class="line">==&gt; default:  -- Domain type:       kvm</span><br><span class="line">==&gt; default:  -- Cpus:              1</span><br><span class="line">==&gt; default:  -- Feature:           acpi</span><br><span class="line">==&gt; default:  -- Feature:           apic</span><br><span class="line">==&gt; default:  -- Feature:           pae</span><br><span class="line">==&gt; default:  -- Memory:            512M</span><br><span class="line">==&gt; default:  -- Management MAC:    </span><br><span class="line">==&gt; default:  -- Loader:            </span><br><span class="line">==&gt; default:  -- Base box:          marczis/ubuntu_16_04</span><br><span class="line">==&gt; default:  -- Storage pool:      default</span><br><span class="line">==&gt; default:  -- Image:             /var/lib/libvirt/images/Vagrant_default.img (10G)</span><br><span class="line">==&gt; default:  -- Volume Cache:      default</span><br><span class="line">==&gt; default:  -- Kernel:            </span><br><span class="line">==&gt; default:  -- Initrd:            </span><br><span class="line">==&gt; default:  -- Graphics Type:     vnc</span><br><span class="line">==&gt; default:  -- Graphics Port:     5900</span><br><span class="line">==&gt; default:  -- Graphics IP:       127.0.0.1</span><br><span class="line">==&gt; default:  -- Graphics Password: Not defined</span><br><span class="line">==&gt; default:  -- Video Type:        cirrus</span><br><span class="line">==&gt; default:  -- Video VRAM:        9216</span><br><span class="line">==&gt; default:  -- Sound Type:    </span><br><span class="line">==&gt; default:  -- Keymap:            en-us</span><br><span class="line">==&gt; default:  -- TPM Path:          </span><br><span class="line">==&gt; default:  -- INPUT:             type=mouse, bus=ps2</span><br><span class="line">==&gt; default: Creating shared folders metadata...</span><br><span class="line">==&gt; default: Starting domain.</span><br><span class="line">==&gt; default: Waiting for domain to get an IP address...</span><br><span class="line">==&gt; default: Waiting for SSH to become available...</span><br><span class="line">    default: </span><br><span class="line">    default: Vagrant insecure key detected. Vagrant will automatically replace</span><br><span class="line">    default: this with a newly generated keypair for better security.</span><br><span class="line">    default: </span><br><span class="line">    default: Inserting generated public key within guest...</span><br><span class="line">    default: Removing insecure key from the guest if it&#x27;s present...</span><br><span class="line">    default: Key inserted! Disconnecting and reconnecting using new SSH key...</span><br><span class="line">==&gt; default: Configuring and enabling network interfaces...</span><br><span class="line">==&gt; default: Rsyncing folder: /home/rramos/Development/Vagrant/ =&gt; /vagrant</span><br><span class="line">==&gt; default: Check for insecure vagrant key: OK (not present)</span><br></pre></td></tr></table></figure>
-
-<p>If you execute <code>virt-manager</code> you can see the virtual machine specification and adapt the Vagrant file to you needs.</p>
-<img src="/2017/09/26/vagrant-qemu/virt-manager.png" class="" title="virt-manager">
-
-<p>You can then ssh to the VM using the command <code>vagrant ssh</code>. You should have a prompt like:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Welcome to Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-77-generic x86_64)</span><br><span class="line"></span><br><span class="line"> * Documentation:  https://help.ubuntu.com</span><br><span class="line"> * Management:     https://landscape.canonical.com</span><br><span class="line"> * Support:        https://ubuntu.com/advantage</span><br><span class="line">vagrant@ubuntu:~$ </span><br></pre></td></tr></table></figure>
-
-<p>You can add the ssh key to your ssh configuration executing the following command. ( Check my previous  <a href="/2017/09/13/ssh-config/" title="[article]">[article]</a> regarding this topic)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vagrant ssh-config &gt;&gt; ~/.ssh/config</span><br></pre></td></tr></table></figure>
-
-
-<p>then try the command <code>ssh default</code> . Default if the default name of the VM defined in the vagrant file. </p>
-<h1 id="Let’s-extend-a-bit"><a href="#Let’s-extend-a-bit" class="headerlink" title="Let’s extend a bit."></a>Let’s extend a bit.</h1><p>The next step is to set Ansible as our provisioning provider for the Vagrant Box. Add the following lines before the end statement in your Vagrantfile to set Ansible as the provisioning provider:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">config.vm.provision :ansible do |ansible|</span><br><span class="line">  ansible.playbook = &quot;playbook.yml&quot;</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-
-<p>Let’s create the playbook.yml file with the following content</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">- hosts: all</span><br><span class="line">  become: yes</span><br><span class="line">  become_user: root</span><br><span class="line">  tasks:</span><br><span class="line">    - name: install apache2</span><br><span class="line">      apt: name=apache2 update_cache=yes state=latest</span><br><span class="line">  handlers:</span><br><span class="line">    - name: restart apache2</span><br><span class="line">      service: name=apache2 state=restarted</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>This example playbook will install apache service on the all hosts given by Vagrantfile and start the service.</p>
-<p>Then we can run the command to just run the provision stuff</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vagrant provision</span><br></pre></td></tr></table></figure>
-
-<p>Let’s add the following configuration on our Vagrant file</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">config.vm.network &quot;forwarded_port&quot;, guest: 80, host: 8080</span><br></pre></td></tr></table></figure>
-
-<p>And execute <code>vagrant reload</code></p>
-<p>If one access <a target="_blank" rel="noopener" href="http://localhost:8080/">http://localhost:8080</a> we are now accessing the VM installed service.</p>
-<p>If you recreate the VM it would run the ansible part at the end. </p>
-<p>So it’s quite easy to recreate your environment.</p>
-<h1 id="Cluster-Configuration"><a href="#Cluster-Configuration" class="headerlink" title="Cluster Configuration"></a>Cluster Configuration</h1><p>One could have Vagrant more complex configuration like the following for several VMs.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Vagrant.configure(&quot;2&quot;) do |config|</span><br><span class="line">  config.vm.provision &quot;shell&quot;, inline: &quot;echo Hello&quot;</span><br><span class="line"></span><br><span class="line">  config.vm.define &quot;web&quot; do |web|</span><br><span class="line">    web.vm.box = &quot;apache&quot;</span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line">  config.vm.define &quot;db&quot; do |db|</span><br><span class="line">    db.vm.box = &quot;mysql&quot;</span><br><span class="line">  end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-
-<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>In this article is described a simple way to integrate Vangrant with libvirt for quickly spinning VM’s and running ansible playbooks on them.</p>
-<p>This could be usefull for testing ansible playbooks before shipping them to LIVE enviroments or testing purposes. </p>
-<p>Also to quickly configure a more complex infrastructure, where you don’t wont to use dockers.</p>
-<p>On the next article i will write a step-by-step guide to spin up a Mesos Cluster using this approach, so this article could be used as prep-guide.</p>
-<p>Cheers,<br>RR</p>
-<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://libvirt.org/">https://libvirt.org/</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.qemu.org/">https://www.qemu.org/</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.vagrantup.com/">https://www.vagrantup.com/</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.ansible.com/">https://www.ansible.com/</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/vagrant-libvirt/vagrant-libvirt">https://github.com/vagrant-libvirt/vagrant-libvirt</a></li>
-<li><a target="_blank" rel="noopener" href="https://app.vagrantup.com/boxes/search?provider=libvirt">https://app.vagrantup.com/boxes/search?provider=libvirt</a></li>
-<li><a target="_blank" rel="noopener" href="https://fedoramagazine.org/using-ansible-provision-vagrant-boxes/">https://fedoramagazine.org/using-ansible-provision-vagrant-boxes/</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.vagrantup.com/docs/multi-machine/">https://www.vagrantup.com/docs/multi-machine/</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-09-24T14:54:00.000Z"><a href="/2017/09/24/ksql/">2017-09-24</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/09/24/ksql/">Streaming SQL for Kafka (KSQL)</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>In this article i’ll explore Apache Kafka KSQL</p>
-<h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><ul>
-<li>Docker</li>
-<li>docker-compose</li>
-</ul>
-<h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><blockquote><p>KSQL is an open source streaming SQL engine that implements continuous, interactive queries against Apache Kafka™. It allows you to query, read, write, and process data in Apache Kafka in real-time, at scale using SQL commands. KSQL interacts directly with the Kafka Streams API, removing the requirement of building a Java app.</p>
-<footer><strong>Offical Website Definition</strong></footer></blockquote>
-
-<h2 id="PoC-Setup"><a href="#PoC-Setup" class="headerlink" title="PoC Setup"></a>PoC Setup</h2><p>Create the following file <code>docker-compose.yml</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">version: &#x27;2&#x27;</span><br><span class="line">services:</span><br><span class="line">  zookeeper:</span><br><span class="line">    image: &quot;confluentinc/cp-zookeeper:latest&quot;</span><br><span class="line">    hostname: zookeeper</span><br><span class="line">    ports:</span><br><span class="line">      - &#x27;32181:32181&#x27;</span><br><span class="line">    environment:</span><br><span class="line">      ZOOKEEPER_CLIENT_PORT: 32181</span><br><span class="line">      ZOOKEEPER_TICK_TIME: 2000</span><br><span class="line">    extra_hosts:</span><br><span class="line">      - &quot;moby:127.0.0.1&quot;</span><br><span class="line"></span><br><span class="line">  kafka:</span><br><span class="line">    image: &quot;confluentinc/cp-enterprise-kafka:latest&quot;</span><br><span class="line">    hostname: kafka</span><br><span class="line">    ports:</span><br><span class="line">      - &#x27;9092:9092&#x27;</span><br><span class="line">      - &#x27;29092:29092&#x27;</span><br><span class="line">    depends_on:</span><br><span class="line">      - zookeeper</span><br><span class="line">    environment:</span><br><span class="line">      KAFKA_BROKER_ID: 1</span><br><span class="line">      KAFKA_ZOOKEEPER_CONNECT: zookeeper:32181</span><br><span class="line">      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT</span><br><span class="line">      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT</span><br><span class="line">      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092</span><br><span class="line">      KAFKA_AUTO_CREATE_TOPICS_ENABLE: &quot;true&quot;</span><br><span class="line">      KAFKA_METRIC_REPORTERS: io.confluent.metrics.reporter.ConfluentMetricsReporter</span><br><span class="line">      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1</span><br><span class="line">      CONFLUENT_METRICS_REPORTER_BOOTSTRAP_SERVERS: kafka:29092</span><br><span class="line">      CONFLUENT_METRICS_REPORTER_ZOOKEEPER_CONNECT: zookeeper:32181</span><br><span class="line">      CONFLUENT_METRICS_REPORTER_TOPIC_REPLICAS: 1</span><br><span class="line">      CONFLUENT_METRICS_ENABLE: &#x27;true&#x27;</span><br><span class="line">      CONFLUENT_SUPPORT_CUSTOMER_ID: &#x27;anonymous&#x27;</span><br><span class="line">    extra_hosts:</span><br><span class="line">      - &quot;moby:127.0.0.1&quot;</span><br><span class="line"></span><br><span class="line">  schema-registry:</span><br><span class="line">    image: &quot;confluentinc/cp-schema-registry:latest&quot;</span><br><span class="line">    hostname: schema-registry</span><br><span class="line">    depends_on:</span><br><span class="line">      - zookeeper</span><br><span class="line">      - kafka</span><br><span class="line">    ports:</span><br><span class="line">      - &#x27;8081:8081&#x27;</span><br><span class="line">    environment:</span><br><span class="line">      SCHEMA_REGISTRY_HOST_NAME: schema-registry</span><br><span class="line">      SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: zookeeper:32181</span><br><span class="line">    extra_hosts:</span><br><span class="line">      - &quot;moby:127.0.0.1&quot;</span><br><span class="line"></span><br><span class="line">  # Runs the Kafka KSQL data generator for topic called &quot;pageviews&quot;</span><br><span class="line">  ksql-datagen-pageviews:</span><br><span class="line">    image: &quot;confluentinc/ksql-examples:latest&quot;</span><br><span class="line">    hostname: ksql-datagen-pageviews</span><br><span class="line">    depends_on:</span><br><span class="line">      - kafka</span><br><span class="line">      - schema-registry</span><br><span class="line">    # Note: The container&#x27;s `run` script will perform the same readiness checks</span><br><span class="line">    # for Kafka and Confluent Schema Registry, but that&#x27;s ok because they complete fast.</span><br><span class="line">    # The reason we check for readiness here is that we can insert a sleep time</span><br><span class="line">    # for topic creation before we start the application.</span><br><span class="line">    command: &quot;bash -c &#x27;echo Waiting for Kafka to be ready... &amp;&amp; \</span><br><span class="line">                       cub kafka-ready -b kafka:29092 1 20 &amp;&amp; \</span><br><span class="line">                       echo Waiting for Confluent Schema Registry to be ready... &amp;&amp; \</span><br><span class="line">                       cub sr-ready schema-registry 8081 20 &amp;&amp; \</span><br><span class="line">                       echo Waiting a few seconds for topic creation to finish... &amp;&amp; \</span><br><span class="line">                       sleep 2 &amp;&amp; \</span><br><span class="line">                       java -jar /usr/share/java/ksql-examples/ksql-examples-0.1-SNAPSHOT-standalone.jar</span><br><span class="line">                       quickstart=pageviews format=delimited topic=pageviews bootstrap-server=kafka:29092 maxInterval=100 iterations=1000 &amp;&amp; \</span><br><span class="line">                       java -jar /usr/share/java/ksql-examples/ksql-examples-0.1-SNAPSHOT-standalone.jar</span><br><span class="line">                       quickstart=pageviews format=delimited topic=pageviews bootstrap-server=kafka:29092 maxInterval=1000&#x27;&quot;</span><br><span class="line">    environment:</span><br><span class="line">      KSQL_CONFIG_DIR: &quot;/etc/ksql&quot;</span><br><span class="line">      KSQL_LOG4J_OPTS: &quot;-Dlog4j.configuration=file:/etc/ksql/log4j-rolling.properties&quot;</span><br><span class="line">      STREAMS_BOOTSTRAP_SERVERS: kafka:29092</span><br><span class="line">      STREAMS_SCHEMA_REGISTRY_HOST: schema-registry</span><br><span class="line">      STREAMS_SCHEMA_REGISTRY_PORT: 8081</span><br><span class="line">    extra_hosts:</span><br><span class="line">      - &quot;moby:127.0.0.1&quot;</span><br><span class="line"></span><br><span class="line">  # Runs the Kafka KSQL data generator for topic called &quot;users&quot;</span><br><span class="line">  ksql-datagen-users:</span><br><span class="line">    image: &quot;confluentinc/ksql-examples:latest&quot;</span><br><span class="line">    hostname: ksql-datagen-users</span><br><span class="line">    depends_on:</span><br><span class="line">      - kafka</span><br><span class="line">      - schema-registry</span><br><span class="line">    # Note: The container&#x27;s `run` script will perform the same readiness checks</span><br><span class="line">    # for Kafka and Confluent Schema Registry, but that&#x27;s ok because they complete fast.</span><br><span class="line">    # The reason we check for readiness here is that we can insert a sleep time</span><br><span class="line">    # for topic creation before we start the application.</span><br><span class="line">    command: &quot;bash -c &#x27;echo Waiting for Kafka to be ready... &amp;&amp; \</span><br><span class="line">                       cub kafka-ready -b kafka:29092 1 20 &amp;&amp; \</span><br><span class="line">                       echo Waiting for Confluent Schema Registry to be ready... &amp;&amp; \</span><br><span class="line">                       cub sr-ready schema-registry 8081 20 &amp;&amp; \</span><br><span class="line">                       echo Waiting a few seconds for topic creation to finish... &amp;&amp; \</span><br><span class="line">                       sleep 2 &amp;&amp; \</span><br><span class="line">                       java -jar /usr/share/java/ksql-examples/ksql-examples-0.1-SNAPSHOT-standalone.jar</span><br><span class="line">                       quickstart=users format=json topic=users bootstrap-server=kafka:29092 maxInterval=100 iterations=1000 &amp;&amp; \</span><br><span class="line">                       java -jar /usr/share/java/ksql-examples/ksql-examples-0.1-SNAPSHOT-standalone.jar</span><br><span class="line">                       quickstart=users format=json topic=users bootstrap-server=kafka:29092 maxInterval=1000&#x27;&quot;</span><br><span class="line">    environment:</span><br><span class="line">      KSQL_CONFIG_DIR: &quot;/etc/ksql&quot;</span><br><span class="line">      KSQL_LOG4J_OPTS: &quot;-Dlog4j.configuration=file:/etc/ksql/log4j-rolling.properties&quot;</span><br><span class="line">      STREAMS_BOOTSTRAP_SERVERS: kafka:29092</span><br><span class="line">      STREAMS_SCHEMA_REGISTRY_HOST: schema-registry</span><br><span class="line">      STREAMS_SCHEMA_REGISTRY_PORT: 8081</span><br><span class="line">    extra_hosts:</span><br><span class="line">      - &quot;moby:127.0.0.1&quot;</span><br><span class="line"></span><br><span class="line">  # Runs the Kafka KSQL application</span><br><span class="line">  ksql-cli:</span><br><span class="line">    image: &quot;confluentinc/ksql-cli:latest&quot;</span><br><span class="line">    hostname: ksql-cli</span><br><span class="line">    depends_on:</span><br><span class="line">      - kafka</span><br><span class="line">      - schema-registry</span><br><span class="line">      - ksql-datagen-pageviews</span><br><span class="line">      - ksql-datagen-users</span><br><span class="line">    command: &quot;perl -e &#x27;while(1)&#123; sleep 99999 &#125;&#x27;&quot;</span><br><span class="line">    environment:</span><br><span class="line">      KSQL_CONFIG_DIR: &quot;/etc/ksql&quot;</span><br><span class="line">      KSQL_LOG4J_OPTS: &quot;-Dlog4j.configuration=file:/etc/ksql/log4j-rolling.properties&quot;</span><br><span class="line">      STREAMS_BOOTSTRAP_SERVERS: kafka:29092</span><br><span class="line">      STREAMS_SCHEMA_REGISTRY_HOST: schema-registry</span><br><span class="line">      STREAMS_SCHEMA_REGISTRY_PORT: 8081</span><br><span class="line">    extra_hosts:</span><br><span class="line">      - &quot;moby:127.0.0.1&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>Prepare the enviroment with the following command</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo docker-compose up -d</span><br></pre></td></tr></table></figure>
-
-<p>This will create the minimal services to test ksql</p>
-<ul>
-<li>zookeeper</li>
-<li>schema-registry</li>
-<li>kafka</li>
-<li>ksql-cli</li>
-</ul>
-<p>It also will create 2 dockers which will generate data in order to test:</p>
-<ul>
-<li>ksql-datagen-pageviews</li>
-<li>ksql-datagen-users</li>
-</ul>
-<p>Thoose dockers are kafka producers, which we will use to test KSQL.</p>
-<h2 id="KSQL"><a href="#KSQL" class="headerlink" title="KSQL"></a>KSQL</h2><p>Execute the CLI in order to test</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo docker-compose exec ksql-cli ksql-cli local --bootstrap-server kafka:29092</span><br></pre></td></tr></table></figure>
-
-<p>You will see something like this</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">                       ======================================</span><br><span class="line">                       =      _  __ _____  ____  _          =</span><br><span class="line">                       =     | |/ // ____|/ __ \| |         =</span><br><span class="line">                       =     | &#x27; /| (___ | |  | | |         =</span><br><span class="line">                       =     |  &lt;  \___ \| |  | | |         =</span><br><span class="line">                       =     | . \ ____) | |__| | |____     =</span><br><span class="line">                       =     |_|\_\_____/ \___\_\______|    =</span><br><span class="line">                       =                                    =</span><br><span class="line">                       =   Streaming SQL Engine for Kafka   =</span><br><span class="line">Copyright 2017 Confluent Inc.                         </span><br><span class="line"></span><br><span class="line">CLI v0.1, Server v0.1 located at http://localhost:9098</span><br><span class="line"></span><br><span class="line">Having trouble? Type &#x27;help&#x27; (case-insensitive) for a rundown of how things work!</span><br><span class="line"></span><br><span class="line">ksql&gt;</span><br></pre></td></tr></table></figure>
-
-
-<p>Now let’s create a new <strong>STREAM</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE STREAM pageviews_original (viewtime bigint, userid varchar, pageid varchar) WITH (kafka_topic=&#x27;pageviews&#x27;, value_format=&#x27;DELIMITED&#x27;);</span><br></pre></td></tr></table></figure>
-
-<p>Let’s describe the created object</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ksql&gt; DESCRIBE pageviews_original;</span><br><span class="line"></span><br><span class="line"> Field    | Type            </span><br><span class="line">----------------------------</span><br><span class="line"> ROWTIME  | BIGINT          </span><br><span class="line"> ROWKEY   | VARCHAR(STRING) </span><br><span class="line"> VIEWTIME | BIGINT          </span><br><span class="line"> USERID   | VARCHAR(STRING) </span><br><span class="line"> PAGEID   | VARCHAR(STRING) </span><br></pre></td></tr></table></figure>
-
-<p>Now lets create a users <strong>TABLE</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE TABLE users_original (registertime bigint, gender varchar, regionid varchar, userid varchar) WITH (kafka_topic=&#x27;users&#x27;, value_format=&#x27;JSON&#x27;);</span><br></pre></td></tr></table></figure>
-
-<p>And confirm the DDL</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ksql&gt; DESCRIBE users_original;</span><br><span class="line"></span><br><span class="line"> Field        | Type            </span><br><span class="line">--------------------------------</span><br><span class="line"> ROWTIME      | BIGINT          </span><br><span class="line"> ROWKEY       | VARCHAR(STRING) </span><br><span class="line"> REGISTERTIME | BIGINT          </span><br><span class="line"> GENDER       | VARCHAR(STRING) </span><br><span class="line"> REGIONID     | VARCHAR(STRING) </span><br><span class="line"> USERID       | VARCHAR(STRING) </span><br></pre></td></tr></table></figure>
-
-<p>So there are two main objects <strong>TABLES</strong> and <strong>STREAMS</strong>. To see the existing ones, execute:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ksql&gt; SHOW STREAMS;</span><br><span class="line"></span><br><span class="line"> Stream Name        | Kafka Topic | Format    </span><br><span class="line">----------------------------------------------</span><br><span class="line"> PAGEVIEWS_ORIGINAL | pageviews   | DELIMITED </span><br></pre></td></tr></table></figure>
-
-<p>and </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ksql&gt; SHOW TABLES;</span><br><span class="line"></span><br><span class="line"> Table Name     | Kafka Topic | Format | Windowed </span><br><span class="line">--------------------------------------------------</span><br><span class="line"> USERS_ORIGINAL | users       | JSON   | false    </span><br></pre></td></tr></table></figure>
-
-<h3 id="Differences-between-STREAMS-and-TABLES"><a href="#Differences-between-STREAMS-and-TABLES" class="headerlink" title="Differences between STREAMS and TABLES"></a>Differences between STREAMS and TABLES</h3><p><strong>Stream</strong></p>
-<p>A stream is an unbounded sequence of structured data (“facts”). For example, we could have a stream of financial transactions such as “Alice sent $100 to Bob, then Charlie sent $50 to Bob”. Facts in a stream are immutable, which means new facts can be inserted to a stream, but existing facts can never be updated or deleted. Streams can be created from a Kafka topic or derived from existing streams and tables.</p>
-<p><strong>Table</strong></p>
-<p>A table is a view of a stream, or another table, and represents a collection of evolving facts. For example, we could have a table that contains the latest financial information such as “Bob’s current account balance is $150”. It is the equivalent of a traditional database table but enriched by streaming semantics such as windowing. Facts in a table are mutable, which means new facts can be inserted to the table, and existing facts can be updated or deleted. Tables can be created from a Kafka topic or derived from existing streams and tables.</p>
-<h3 id="Extending-the-Model"><a href="#Extending-the-Model" class="headerlink" title="Extending the Model"></a>Extending the Model</h3><p>Lets create a new pageviews stream with key <code>pageid</code> and joi it with table <code>users</code>.</p>
-<p>First create the new stream</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE STREAM pageviews \</span><br><span class="line">   (viewtime BIGINT, \</span><br><span class="line">    userid VARCHAR, \</span><br><span class="line">    pageid VARCHAR) \</span><br><span class="line">   WITH (kafka_topic=&#x27;pageviews&#x27;, \</span><br><span class="line">         value_format=&#x27;DELIMITED&#x27;, \</span><br><span class="line">         key=&#x27;pageid&#x27;, \</span><br><span class="line">         timestamp=&#x27;viewtime&#x27;);</span><br></pre></td></tr></table></figure>
-
-<p>And users table</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE TABLE users \</span><br><span class="line">   (registertime BIGINT, \</span><br><span class="line">    gender VARCHAR, \</span><br><span class="line">    regionid VARCHAR, \</span><br><span class="line">    userid VARCHAR, \</span><br><span class="line">    interests array&lt;VARCHAR&gt;, \</span><br><span class="line">    contact_info map&lt;VARCHAR, VARCHAR&gt;) \</span><br><span class="line">   WITH (kafka_topic=&#x27;users&#x27;, \</span><br><span class="line">         value_format=&#x27;JSON&#x27;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h4 id="Aggregations"><a href="#Aggregations" class="headerlink" title="Aggregations"></a>Aggregations</h4><p>Let’s test some aggregations</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT count(*),userid FROM pageviews GROUP BY userid;</span><br></pre></td></tr></table></figure>
-
-<p>As data arrives in stream this is constantly updating , but we can verify that the count values begins from the start of the query, this could be usefull to dump to another topic with transformed data.</p>
-<p>Let’s do that.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE TABLE user_counts AS select count(*),userid from pageviews group by userid;</span><br></pre></td></tr></table></figure>
-
-<p>We can use the statement <code>SHOW TOPICS</code> which is usefull and confirmed that the USER_COUNTS TOPICS is created.</p>
-<p>The following aggregations are available</p>
-<table>
-<thead>
-<tr>
-<th>Function</th>
-<th>Example</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>COUNT</td>
-<td>COUNT(col1)</td>
-<td>Count the number of rows</td>
-</tr>
-<tr>
-<td>MAX</td>
-<td>MAX(col1)</td>
-<td>Return the maximum value for a given column and window</td>
-</tr>
-<tr>
-<td>MIN</td>
-<td>MIN(col1)</td>
-<td>Return the minimum value for a given column and window</td>
-</tr>
-<tr>
-<td>SUM</td>
-<td>SUM(col1)</td>
-<td>Sums the column values</td>
-</tr>
-</tbody></table>
-<h2 id="Window"><a href="#Window" class="headerlink" title="Window"></a>Window</h2><p>The WINDOW clause lets you control how to group input records that have the same key into so-called windows for operations such as aggregations or joins. Windows are tracked per record key. KSQL supports the following WINDOW types:</p>
-<ul>
-<li>TUMBLING</li>
-<li>HOPPING</li>
-<li>SESSION</li>
-</ul>
-<h3 id="Window-Tumbling"><a href="#Window-Tumbling" class="headerlink" title="Window Tumbling"></a>Window Tumbling</h3><p>TUMBLING: Tumbling windows group input records into fixed-sized, non-overlapping windows based on the records’ timestamps. You must specify the window size for tumbling windows. Note: Tumbling windows are a special case of hopping windows where the window size is equal to the advance interval.</p>
-<p>Example:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT item_id, SUM(quantity)</span><br><span class="line">  FROM orders</span><br><span class="line">  WINDOW TUMBLING (SIZE 20 SECONDS)</span><br><span class="line">  GROUP BY item_id;</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="Window-HOPPING"><a href="#Window-HOPPING" class="headerlink" title="Window HOPPING"></a>Window HOPPING</h3><p>HOPPING: Hopping windows group input records into fixed-sized, (possibly) overlapping windows based on the records’ timestamps. You must specify the window size and the advance interval for hopping windows.</p>
-<p>Example:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT item_id, SUM(quantity)</span><br><span class="line">  FROM orders</span><br><span class="line">  WINDOW HOPPING (SIZE 20 SECONDS, ADVANCE BY 5 SECONDS)</span><br><span class="line">  GROUP BY item_id;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Window-SESSION"><a href="#Window-SESSION" class="headerlink" title="Window SESSION"></a>Window SESSION</h3><p>SESSION: Session windows group input records into so-called sessions. You must specify the session inactivity gap parameter for session windows. For example, imagine you set the inactivity gap to 5 minutes. If, for a given record key such as “alice”, no new input data arrives for more than 5 minutes, then the current session for “alice” is closed, and any newly arriving data for “alice” in the future will mark the beginning of a new session.</p>
-<p>Example:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT item_id, SUM(quantity)</span><br><span class="line">  FROM orders</span><br><span class="line">  WINDOW SESSION (20 SECONDS)</span><br><span class="line">  GROUP BY item_id;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Transformations"><a href="#Transformations" class="headerlink" title="Transformations"></a>Transformations</h2><p>Let’s create a new stream with a column transformation</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE STREAM pageviews_transformed \</span><br><span class="line">  WITH (timestamp=&#x27;viewtime&#x27;, \</span><br><span class="line">        partitions=5, \</span><br><span class="line">        value_format=&#x27;JSON&#x27;) AS \</span><br><span class="line">  SELECT viewtime, \</span><br><span class="line">         userid, \</span><br><span class="line">         pageid, \</span><br><span class="line">         TIMESTAMPTOSTRING(viewtime, &#x27;yyyy-MM-dd HH:mm:ss.SSS&#x27;) AS timestring \</span><br><span class="line">  FROM pageviews \</span><br><span class="line">  PARTITION BY userid;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Joining"><a href="#Joining" class="headerlink" title="Joining"></a>Joining</h2><p>And joining the STREAM with enriched data from TABLE</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE STREAM pageviews_enriched AS \</span><br><span class="line">   SELECT pv.viewtime, \</span><br><span class="line">          pv.userid AS userid, \</span><br><span class="line">          pv.pageid, \</span><br><span class="line">          pv.timestring, \</span><br><span class="line">          u.gender, \</span><br><span class="line">          u.regionid, \</span><br><span class="line">          u.interests, \</span><br><span class="line">          u.contact_info \</span><br><span class="line">   FROM pageviews_transformed pv \</span><br><span class="line">   LEFT JOIN users u ON pv.userid = users.userid;</span><br></pre></td></tr></table></figure>
-
-<h1 id="Use-Cases"><a href="#Use-Cases" class="headerlink" title="Use Cases"></a>Use Cases</h1><p>Common KSQL use cases are:</p>
-<ul>
-<li>Fraud detection - identify and act on out of the ordinary data to provide real-time awareness.</li>
-<li>Personalization - create real-time experiences and insight for end users driven by data.</li>
-<li>Notifications - build custom alerts and messages based on real-time data.</li>
-<li>Real-time Analytics - power real-time dashboards to understand what’s happening as it does.</li>
-<li>Sensor data and IoT - understand and deliver sensor data how and where it needs to be.</li>
-<li>Customer 360 - provide a clear, real-time understanding of your customers across every interaction.</li>
-</ul>
-<h3 id="Streaming-ETL"><a href="#Streaming-ETL" class="headerlink" title="Streaming ETL"></a>Streaming ETL</h3><p>KSQL makes it simple to transform data within the pipeline, readying messages to cleanly land in another system</p>
-<h3 id="Anomaly-Detection"><a href="#Anomaly-Detection" class="headerlink" title="Anomaly Detection"></a>Anomaly Detection</h3><p>KSQL is a good fit for identifying patterns or anomalies on real-time data. By processing the stream as data arrives you can identify and properly surface out of the ordinary events with millisecond latency.</p>
-<h3 id="Monitoring"><a href="#Monitoring" class="headerlink" title="Monitoring"></a>Monitoring</h3><p>Kafka’s ability to provide scalable ordered messages with stream processing make it a common solution for log data monitoring and alerting. KSQL lends a familiar syntax for tracking, understanding, and managing alerts.</p>
-<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>On a first glance KSQL seems pretty easy to start using it. It’s still pretty new, i would give it a time to mature before start using it on production.</p>
-<p>For small transformations, data-quality control and analytical queries that don’t take into account a large windows this seems a good solution. For more complex queries i still prefer to keep Kafka to it’s core business and let the computation work to Spark.  </p>
-<h2 id="More-Information"><a href="#More-Information" class="headerlink" title="More Information"></a>More Information</h2><ul>
-<li>KSQL is available as a developer preview on <a target="_blank" rel="noopener" href="http://go2.confluent.io/Q0KX0lH0Qq2kx0t3r00U8X0">Github</a></li>
-<li>Read the <a target="_blank" rel="noopener" href="http://go2.confluent.io/m000tV2080xr3kXlHKr0QX0">documentation</a> for KSQL</li>
-<li>Join the conversation in the #ksql channel in the <a target="_blank" rel="noopener" href="http://go2.confluent.io/m000tW2080xr3kXlHKs0QX0">Confluent Community Slack</a>. </li>
-</ul>
-<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/confluentinc/ksql">https://github.com/confluentinc/ksql</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/confluentinc/ksql/tree/0.1.x/docs/quickstart#quick-start">https://github.com/confluentinc/ksql/tree/0.1.x/docs/quickstart#quick-start</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/confluentinc/ksql/tree/0.1.x/ksql-clickstream-demo#clickstream-analysis">https://github.com/confluentinc/ksql/tree/0.1.x/ksql-clickstream-demo#clickstream-analysis</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-09-23T16:22:37.000Z"><a href="/2017/09/23/portainer/">2017-09-23</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/09/23/portainer/">Portainer a UI for Docker Management</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p><a target="_blank" rel="noopener" href="https://portainer.io/">Portainer</a> is:</p>
-<blockquote><p>PORTAINER IS AN OPEN-SOURCE LIGHTWEIGHT MANAGEMENT UI WHICH ALLOWS YOU TO EASILY MANAGE YOUR DOCKER HOSTS OR SWARM CLUSTERS</p>
-<footer><strong>Offical Website Definition</strong></footer></blockquote>
-
-<p>In order to manage the dockers where it is running one should pass the following option</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock portainer/portainer</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="Snapshot"><a href="#Snapshot" class="headerlink" title="Snapshot"></a>Snapshot</h2><img src="/2017/09/23/portainer/portainer.io.png" class="" title="[Portainer.io]">
-
-<h1 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h1><p>Create the following <code>docker-compose.yml</code> file </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">version: &#x27;2&#x27;</span><br><span class="line">services:</span><br><span class="line">  portainer:</span><br><span class="line">    restart: always</span><br><span class="line">    ports:</span><br><span class="line">     - &quot;9000:9000&quot;</span><br><span class="line">    volumes:</span><br><span class="line">     - ./data:/opt/data</span><br><span class="line">     - /var/run/docker.sock:/var/run/docker.sock</span><br><span class="line">    image: &quot;portainer/portainer&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>and execute <code>docker-compose up -d</code></p>
-<p>You can then access the interface at: <a target="_blank" rel="noopener" href="http://localhost:9000/">http://localhost:9000</a></p>
-<p>Cheers,<br>RR</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -660,6 +643,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Net/">.Net</a><small>1</small></li>
   
+    <li><a href="/tags/AI/">AI</a><small>1</small></li>
+  
     <li><a href="/tags/API/">API</a><small>1</small></li>
   
     <li><a href="/tags/Agile/">Agile</a><small>1</small></li>
@@ -684,6 +669,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/CDH-Parcel/">CDH Parcel</a><small>1</small></li>
   
+    <li><a href="/tags/CHat-PT/">CHat-PT</a><small>1</small></li>
+  
     <li><a href="/tags/CheatSheet/">CheatSheet</a><small>1</small></li>
   
     <li><a href="/tags/Cloudera/">Cloudera</a><small>3</small></li>
@@ -706,7 +693,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Data-Quality/">Data Quality</a><small>1</small></li>
   
-    <li><a href="/tags/Development/">Development</a><small>2</small></li>
+    <li><a href="/tags/Data-Science/">Data Science</a><small>1</small></li>
+  
+    <li><a href="/tags/Delegation/">Delegation</a><small>1</small></li>
+  
+    <li><a href="/tags/Development/">Development</a><small>3</small></li>
   
     <li><a href="/tags/Dimensions/">Dimensions</a><small>1</small></li>
   
@@ -760,7 +751,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Linux/">Linux</a><small>8</small></li>
   
-    <li><a href="/tags/Management/">Management</a><small>1</small></li>
+    <li><a href="/tags/Management/">Management</a><small>2</small></li>
   
     <li><a href="/tags/Markdown/">Markdown</a><small>1</small></li>
   
@@ -818,7 +809,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Sheetlist/">Sheetlist</a><small>1</small></li>
   
-    <li><a href="/tags/Software/">Software</a><small>1</small></li>
+    <li><a href="/tags/Software/">Software</a><small>2</small></li>
   
     <li><a href="/tags/Software-Engineering/">Software Engineering</a><small>1</small></li>
   
@@ -831,6 +822,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/Streaming/">Streaming</a><small>1</small></li>
   
     <li><a href="/tags/Streamming/">Streamming</a><small>1</small></li>
+  
+    <li><a href="/tags/Teams/">Teams</a><small>1</small></li>
   
     <li><a href="/tags/Tech/">Tech</a><small>1</small></li>
   

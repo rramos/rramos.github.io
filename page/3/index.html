@@ -77,6 +77,192 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
+        <time datetime="2022-12-23T14:03:56.358Z"><a href="/2022/12/23/SODA/">2022-12-23</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2022/12/23/SODA/">SODA</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Bernard Denys kindly share with me the availability of their product for the Open Source Community in <a target="_blank" rel="noopener" href="https://github.com/sodadata/soda-sql#readme">Github</a>. <a target="_blank" rel="noopener" href="https://www.soda.io/">SODA</a> provide a Data Monitoring Platform. In this article i will take some time to explore a quick setup on how to use it and final comments around it.</p>
+<h2 id="What-does-Soda-SQL-do"><a href="#What-does-Soda-SQL-do" class="headerlink" title="What does Soda SQL do?"></a>What does Soda SQL do?</h2><p>Soda SQL allows you to</p>
+<p>Stop your pipeline when bad data is detected<br>Extract metrics and column profiles through super efficient SQL<br>Full control over metrics and queries through declarative config files</p>
+<h2 id="5m-tutorial"><a href="#5m-tutorial" class="headerlink" title="5m tutorial"></a>5m tutorial</h2><p>There is a <a target="_blank" rel="noopener" href="https://docs.soda.io/soda-sql/getting-started/5_min_tutorial.html">5m tutorial</a> available on their official page let’s have a go…</p>
+<h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><p>I’m using Linux and i’m lazy so i’ve just installed the required pip</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip3 install soda-sql</span><br></pre></td></tr></table></figure>
+
+<p>Let’s check if it is working</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ soda </span><br><span class="line">Usage: soda [OPTIONS] COMMAND [ARGS]...</span><br><span class="line"></span><br><span class="line">  Soda CLI version 2.0.0b15</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">  --<span class="built_in">help</span>  Show this message and <span class="built_in">exit</span>.</span><br><span class="line"></span><br><span class="line">Commands:</span><br><span class="line">  analyze  Analyzes tables <span class="keyword">in</span> the warehouse and creates scan YAML files...</span><br><span class="line">  create   Creates a new warehouse.yml file and prepares credentials <span class="keyword">in</span></span><br><span class="line">           your...</span><br><span class="line"></span><br><span class="line">  init     Renamed to `soda analyze`</span><br><span class="line">  scan     Computes all measurements and runs all tests on one table.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>Great now let’s create some a dummy warehouse and do some tests:</p>
+<h2 id="Create-dummy-Datawarehouse"><a href="#Create-dummy-Datawarehouse" class="headerlink" title="Create dummy Datawarehouse"></a>Create dummy Datawarehouse</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run --name soda_sql_tutorial_db --rm -d \</span><br><span class="line">    -p 5432:5432 \</span><br><span class="line">    -v soda_sql_tutorial_postgres:/var/lib/postgresql/data:rw \</span><br><span class="line">    -e POSTGRES_USER=sodasql \</span><br><span class="line">    -e POSTGRES_DB=sodasql \</span><br><span class="line">    -e POSTGRES_HOST_AUTH_METHOD=trust \</span><br><span class="line">    postgres:9.6.17-alpine</span><br></pre></td></tr></table></figure>
+
+<p>And load it with data with the following command</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> soda_sql_tutorial_db \</span><br><span class="line">  sh -c <span class="string">&quot;wget -qO - https://raw.githubusercontent.com/sodadata/soda-sql/main/tests/demo/demodata.sql | psql -U sodasql -d sodasql&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>According to the tutorial one can remove the created container and volume with the following command :</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker stop soda_sql_tutorial_db</span><br><span class="line">docker volume rm soda_sql_tutorial_postgres</span><br></pre></td></tr></table></figure>
+
+<h2 id="Create-warehouse-directory"><a href="#Create-warehouse-directory" class="headerlink" title="Create warehouse directory"></a>Create warehouse directory</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir soda_sql_tutorial</span><br><span class="line"><span class="built_in">cd</span> soda_sql_tutorial/</span><br><span class="line">soda create -d sodasql -u sodasql -w soda_sql_tutorial postgres</span><br></pre></td></tr></table></figure>
+
+<p>This created the <code>warehouse.yml</code> with connection settings which are stored on your homedir <code>~/.soda/env_vars.yml</code> </p>
+<h2 id="Analyse-table-scan-YAML-files"><a href="#Analyse-table-scan-YAML-files" class="headerlink" title="Analyse table scan YAML files"></a>Analyse table scan YAML files</h2><p>The following command will analyze the exiting tables and fill the <code>./tables/</code> directory with large data warehouse it can be inputted manually.</p>
+<p>Well, i only have 5m so let’s give it a go.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">soda analyze</span><br></pre></td></tr></table></figure>
+
+<p>Hum! interesting, queries the information schema and generates a file which i will assume per table with several metrics for validation.</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">table_name:</span> <span class="string">demodata</span></span><br><span class="line"><span class="attr">metrics:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">row_count</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">missing_count</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">missing_percentage</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">values_count</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">values_percentage</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">valid_count</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">valid_percentage</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">invalid_count</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">invalid_percentage</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">min_length</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">max_length</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">avg_length</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">min</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">max</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">avg</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">sum</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">variance</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">stddev</span></span><br><span class="line"><span class="attr">tests:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">row_count</span> <span class="string">&gt;</span> <span class="number">0</span></span><br><span class="line"><span class="attr">columns:</span></span><br><span class="line">  <span class="attr">id:</span></span><br><span class="line">    <span class="attr">valid_format:</span> <span class="string">uuid</span></span><br><span class="line">    <span class="attr">tests:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">invalid_percentage</span> <span class="string">==</span> <span class="number">0</span></span><br><span class="line">  <span class="attr">feepct:</span></span><br><span class="line">    <span class="attr">valid_format:</span> <span class="string">number_percentage</span></span><br><span class="line">    <span class="attr">tests:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">invalid_percentage</span> <span class="string">==</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Run-a-scan"><a href="#Run-a-scan" class="headerlink" title="Run a scan"></a>Run a scan</h2><p>Each scan requires a warehouse YAML and a scan YAML as input. The scan command will collect the configured metrics and run the defined tests against them.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">soda scan warehouse.yml tables/demodata.yml</span><br></pre></td></tr></table></figure>
+
+<p>And that’s it for the tutorial</p>
+<p>One can then integrate this with a orchestration tool such as <a target="_blank" rel="noopener" href="https://docs.soda.io/soda-sql/documentation/orchestrate_scans.html">Airflow</a></p>
+<p>It is recommend to <code>PythonVirtualenvOperator</code> to prevent any dependency conflicts.</p>
+<p>Example dag:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> airflow <span class="keyword">import</span> DAG</span><br><span class="line"><span class="keyword">from</span> airflow.models.variable <span class="keyword">import</span> Variable</span><br><span class="line"><span class="keyword">from</span> airflow.operators.python <span class="keyword">import</span> PythonVirtualenvOperator</span><br><span class="line"><span class="keyword">from</span> airflow.operators.dummy <span class="keyword">import</span> DummyOperator</span><br><span class="line"><span class="keyword">from</span> airflow.utils.dates <span class="keyword">import</span> days_ago</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> timedelta</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Make sure that this variable is set in your Airflow</span></span><br><span class="line">warehouse_yml = Variable.get(<span class="string">&#x27;soda_sql_warehouse_yml_path&#x27;</span>)</span><br><span class="line">scan_yml = Variable.get(<span class="string">&#x27;soda_sql_scan_yml_path&#x27;</span>)</span><br><span class="line"></span><br><span class="line">default_args = &#123;</span><br><span class="line">    <span class="string">&#x27;owner&#x27;</span>: <span class="string">&#x27;soda_sql&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;retries&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="string">&#x27;retry_delay&#x27;</span>: timedelta(minutes=<span class="number">5</span>),</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run_soda_scan</span>(<span class="params">warehouse_yml_file, scan_yml_file</span>):</span></span><br><span class="line">    <span class="keyword">from</span> sodasql.scan.scan_builder <span class="keyword">import</span> ScanBuilder</span><br><span class="line">    scan_builder = ScanBuilder()</span><br><span class="line">    <span class="comment"># Optionally you can directly build the Warehouse dict from Airflow secrets/variables</span></span><br><span class="line">    <span class="comment"># and set scan_builder.warehouse_dict with values.</span></span><br><span class="line">    scan_builder.warehouse_yml_file = warehouse_yml_file</span><br><span class="line">    scan_builder.scan_yml_file = scan_yml_file</span><br><span class="line">    scan = scan_builder.build()</span><br><span class="line">    scan_result = scan.execute()</span><br><span class="line">    <span class="keyword">if</span> scan_result.has_failures():</span><br><span class="line">        failures = scan_result.failures_count()</span><br><span class="line">        <span class="keyword">raise</span> ValueError(<span class="string">f&quot;Soda Scan found <span class="subst">&#123;failures&#125;</span> errors in your data!&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">dag = DAG(</span><br><span class="line">    <span class="string">&#x27;soda_sql_python_venv_op&#x27;</span>,</span><br><span class="line">    default_args=default_args,</span><br><span class="line">    description=<span class="string">&#x27;A simple Soda SQL scan DAG&#x27;</span>,</span><br><span class="line">    schedule_interval=timedelta(days=<span class="number">1</span>),</span><br><span class="line">    start_date=days_ago(<span class="number">1</span>),</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">ingest_data_op = DummyOperator(</span><br><span class="line">    task_id=<span class="string">&#x27;ingest_data&#x27;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">soda_sql_scan_op = PythonVirtualenvOperator(</span><br><span class="line">    task_id=<span class="string">&#x27;soda_sql_scan_demodata&#x27;</span>,</span><br><span class="line">    python_callable=run_soda_scan,</span><br><span class="line">    requirements=[<span class="string">&quot;soda-sql==2.0.0b10&quot;</span>],</span><br><span class="line">    system_site_packages=<span class="literal">False</span>,</span><br><span class="line">    op_kwargs=&#123;<span class="string">&#x27;warehouse_yml_file&#x27;</span>: warehouse_yml,</span><br><span class="line">               <span class="string">&#x27;scan_yml_file&#x27;</span>: scan_yml&#125;,</span><br><span class="line">    dag=dag</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">publish_data_op = DummyOperator(</span><br><span class="line">    task_id=<span class="string">&#x27;publish_data&#x27;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">ingest_data_op &gt;&gt; soda_sql_scan_op &gt;&gt; publish_data_op</span><br></pre></td></tr></table></figure>
+
+<p>There is also some work being done to support a SodaScanOperator for Airflow.</p>
+<h2 id="Warehouse-types"><a href="#Warehouse-types" class="headerlink" title="Warehouse types"></a>Warehouse types</h2><p>At the moment SODA is supporting the following techs:</p>
+<ul>
+<li>Snowflake</li>
+<li>AWS Athena</li>
+<li>GCP BigQuery</li>
+<li>PostgreSQL</li>
+<li>Redshift</li>
+<li>Spark SQL -&gt; (Coming Soon)</li>
+</ul>
+<h2 id="Conclusions"><a href="#Conclusions" class="headerlink" title="Conclusions"></a>Conclusions</h2><p>This quick tutorial make’s it easy to test the tool. But i would like to extended the tests on a larger solution to check how it behaves. Also i would like to see the SparkSQL as a warehouse option as most of my teams work are centered on that technology.</p>
+<p>Topics to do extended testing with:</p>
+<ul>
+<li>Schema evolution impact on the quality test setup</li>
+<li>Not using a Warehouse solution but a Datalake<ul>
+<li>Providing schemas from a Datalake and using a processing engine on top of it (ex: spark.schemas and Parquet files)</li>
+</ul>
+</li>
+<li>Testing with Delta tables</li>
+<li>Define levels of data-quality analysis</li>
+<li>Understanding better how the scans works</li>
+</ul>
+<p>The tool seems to have good potential and seems very simple which would speed the adoption. Also by sharing this to the open source community seems to be as a good choice to increase user quorum and still offer enterprise services solution.</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/sodadata/soda-sql#readme">https://github.com/sodadata/soda-sql#readme</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.soda.io/soda-sql/getting-started/5_min_tutorial.html">https://docs.soda.io/soda-sql/getting-started/5_min_tutorial.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.soda.io/soda-sql/documentation/orchestrate_scans.html">https://docs.soda.io/soda-sql/documentation/orchestrate_scans.html</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2022-12-23T14:03:56.353Z"><a href="/2022/12/23/Github ssh keys/">2022-12-23</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2022/12/23/Github ssh keys/">Github Ssh Keys</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>When using github one of the most recommend ways to get in sync with your repo is by using ssh keys. If you don’t use it check the following article from github docs where they explain in detail how to do the setup</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.github.com/en/github/authenticating-to-github/about-ssh">https://docs.github.com/en/github/authenticating-to-github/about-ssh</a></li>
+</ul>
+<p>On your <strong>Profile</strong> you can manage your SSH and GPG keys.</p>
+<p>But take into account the following if you have more than one account the ssh-keys are unique on the system. </p>
+<p>So if you have for example:</p>
+<ol>
+<li>coporate account ruiramosff</li>
+<li>personal account rramos</li>
+</ol>
+<p>You need to have distinct ssh-keys per profile.</p>
+<p>I would recommend for this cases to have distinct ssh keys and to a proper setup on your repo configurations adding for example</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[user]</span><br><span class="line">        name = Rui Ramos</span><br><span class="line">        email = rui.ms.ramos@gmail.com</span><br></pre></td></tr></table></figure>
+
+<p>You can also do this globaly on your <code>~./gitconfig</code> but if you are going to work on the same machine but want to use different profiles, pay attention to have the git configuration adapted to it.</p>
+<p>Cheers,<br>RR</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2022-12-23T14:03:56.353Z"><a href="/2022/12/23/KeyboardLayout/">2022-12-23</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2022/12/23/KeyboardLayout/">Keyboard Layout</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Reminder article for as I’m constantly forgetting the keyboard layout in my Linux distribution.<br>This started mostly after I have decided to use a 65% keyboard which misses a lot of keys from a traditional 100%. </p>
+<p>Still it has other advantages less space used and linear switches which allow faster input. Being a US tradicional Layout there are some portuguese characters missing and having a 65% keyboard doesn’t help either. Nevertheless after some weeks of adjustment improvements are noticed.</p>
+<p>The best layout to choose in Linux would be <code>English (intl, with AltGr dead keys)</code> for this setup.</p>
+<p>I still think that the english layout is the best option to follow. In regards to size a 85% seems a better options specially if you need to deal with spreadsheets.</p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Dead_key">https://en.wikipedia.org/wiki/Dead_key</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2022-12-23T14:03:56.353Z"><a href="/2022/12/23/NamingVariables/">2022-12-23</a></time>
       
       
@@ -248,305 +434,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2022-12-23T14:03:56.352Z"><a href="/2022/12/23/API Lifecycles/">2022-12-23</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2022/12/23/API Lifecycles/">API Lifecycles</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>A very interesting talk regarding API Lifecycle where Thomas Betts talks with Kin Lane about managing your API lifecycle using standards and specifications, including OpenAPI, AsyncAPI, and JSON Schema. These specifications and the tooling based on them can help reduce communication problems, by creating documentation, generating code, and automating testing.</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.infoq.com/podcasts/api-lifecycles-specifications-standards">InfoQ Article</a></li>
-</ul>
-<h1 id="Communication-Problems"><a href="#Communication-Problems" class="headerlink" title="Communication Problems"></a>Communication Problems</h1><blockquote>
-<p>Almost every problem in software comes down to a communication problem, whether that’s the ability to send, receive and understand a message. It can break down whether it’s client to server, or product manager to developer trying to understand requirements. Anytime you have two things trying to  communicate, explaining the contract is really important.</p>
-</blockquote>
-<blockquote>
-<p> breaking changes aren’t bad or good. They are only bad or good if the communication is lacking or the communication is there.</p>
-</blockquote>
-<h1 id="Versioning-API"><a href="#Versioning-API" class="headerlink" title="Versioning API"></a>Versioning API</h1><blockquote>
-<p>he most common way for folks to handle change management using versioning like this is with semantic versioning, where you have a 1.0.0 and then that’s a major release. And then when you release any changes that are minor changes, feature enhancements, you go 1.1. If you do a patch, if you’re needing to fix something it’d be 1.1.1. So that last digit is just for a fix a patch, something you’re making better. That middle digit is for incremental changes. But the first one, so if we went to version 2.0, that’s a major change.</p>
-</blockquote>
-<p>Full Chapter list  from the talk:</p>
-<ul>
-<li>API Lifecycle vs. Software Development Lifecycle</li>
-<li>Swagger and OpenAPI</li>
-<li>More Than Just Documentation</li>
-<li>Improving Communication</li>
-<li>AsyncAPI is OpenAPI For Event-Driven APIs</li>
-<li>Better Naming Suggestions</li>
-<li>Relationship Between OpenAPI, AsyncAPI, and JSON Schema</li>
-<li>Maturity Level of AsyncAPI and OpenAPI</li>
-<li>API Specifications Are Not a New Idea</li>
-<li>Versioning an API</li>
-<li>Validation and Testing</li>
-<li>API Specifications For Non-Technical Stakeholders</li>
-<li>What’s Coming For API Lifecycles</li>
-<li>Closing</li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2022-12-23T14:03:56.352Z"><a href="/2022/12/23/CryptoArt/">2022-12-23</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2022/12/23/CryptoArt/">CryptoArt</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>Bumped with this one the last day <strong>Crypto Art</strong> the following transcript from <a target="_blank" rel="noopener" href="https://niftygateway.com/collections/mankind">Mankind</a> explain a bit what’s under the movement.</p>
-<h2 id="Transcript"><a href="#Transcript" class="headerlink" title="Transcript"></a>Transcript</h2><blockquote>
-<p>Just like all cats are mammals, but not all mammals are cats. All Crypto Art are NFTs but not all NFTs are Crypto Art. I’ve made a video on basics of NFTs or non fungible tokens, you can go check that out. But today I’m here to explain the basics of what Crypto Art is, because Crypto Art is a digital artwork that is linked to a non fungible token.</p>
-<p>Traditionally Crypto Art was related to the rise of crypto currencies like bitcoin and ethereum and had symbolism around that, but it’s now more loosely accepted as any digital art that has been tokenized on the the blockchain in order to associate digital proof of ownership.</p>
-<p>So what does that mean? It means what we’ve taken for granted in the real world, that a physical painting can be authenticated and owned now has the equivalent in the digital world. This is huge because this has never been possible for digital artists in the past. A token acting as a digital certificate for a digital file securely held on a permanent network of computers now allows digital artists to sell their work like never before.</p>
-<p>Crypto art is not just the digital file. It is the digital file backed by the NFT. So just like you can go online and find M. C. Escher ‘drawing hands’ and download it and print it, you would never try to convince anyone it’s the original, because you don’t own the letter of authenticity. The same now goes for digital art, everyone can see or download it, but only one can prove they own it.</p>
-<p>The question of the value of owning a digital artwork now lies with the market. The market of collectors. Beeple sold this work for $1 and a couple of months later sold this one for $777k. Paris Hilton drew this picture of her cat and it sold for $17k. Justin Roiland the creator of Rick and Morty drew this sketch and it sold for $90k. Of course if you already have a fanbase, anything you sell will be worth more. But even small artists can find collectors that just like the art or want to support their work.</p>
-<p>Pop art used to be disregarded as cheap and distasteful, Street art used to just be vandalism, and until recently, digital art was just for Instagram likes.</p>
-<p>When you mint an NFT for Crypto Art you’re not giving away any copyright or rigths of reproduction. You are creating a new thing, a new product. That buyer can then enjoy it, and sell it whenever they please. </p>
-<p>So where can you sell? There’s an ever changing list of places to buy and sell on the primary or secondary market so I’ll keep a list below in the description. I’ve also made a video on popular ones in the past.</p>
-<p>Most Crypto Art sites currently use Ethereum to do their transactions so you need to be set up with an Ethereum wallet to connect and transfer to. You also need a little Ethereum to start with in your wallet to pay for minting or transaction fees. You can always transfer your Ethereum back out to your exchange of choice to cash out to FIAT or Dollars whenever you want.</p>
-<p>In the future Crypto Art will just be called art. But at the moment, digital art is going through a movement led by changes in technology. The struggle of the artist will still remain, to create something with meaning and value, to find an audience or collectors. But the success of crypto currency in general has brought a wave of investors with big wallets to make a splash and bring eyeballs to the space with large transactions. The art world is a way to legitimize the space with creative thinkers, emotional ideas, entertainment and connection to culture that is worth investing in. </p>
-<p>Early creators and collectors alike will be rewarded for their involvement in this movement.</p>
-</blockquote>
-<h2 id="What-is-NFT"><a href="#What-is-NFT" class="headerlink" title="What is NFT ?"></a>What is NFT ?</h2><blockquote>
-<p>NFT stands for Non Fungible Token.</p>
-<p>Fungible means something is able to be exchanged or substituted and will hold the same value. It’s interchangeable like the dollar, gold, casino chips, bitcoin, ethereum or frequent flyer loyalty points.</p>
-<p>If I lend you 10 dollars cash and you return to me two 5 dollar bank notes, I’m fine with that because even though they are different, they hold the same total value. </p>
-<p>So non-fungile obviously means it’s an asset that can’t be substituted. It has unique attributes that makes it different from something else in the same asset class. Like a painting, a theatre ticket, a house, a video game skin, a trademark or a CryptoKitty which was the first real use case to take off on the Ethereum blockchain in 2017.</p>
-<p>Some of these assets are physical and tangible and others are digital and intangible.</p>
-<p>So NFTs are non-fungible tokens. ‘Token’ refers to a digital certificate stored on a secure distributed database called a blockchain.</p>
-<p>NFTs are digital assets. Publicly verifiable intellectual property authenticated on a blockchain.</p>
-<p>A popular place to currently browse a variety of NFTs is on <a target="_blank" rel="noopener" href="http://opensea.io/">http://OpenSea.io​</a></p>
-<p>It’s an exciting space, I believe the NFT space will continue to grow in the coming years with some popular use cases being: Digital Art, Virtual Land, Gaming, Collectibles, Finance and much more.</p>
-</blockquote>
-<h2 id="List-of-Crypto-Art-Platforms"><a href="#List-of-Crypto-Art-Platforms" class="headerlink" title="List of Crypto Art Platforms"></a>List of Crypto Art Platforms</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://superrare.co/mankind%E2%80%8B">https://superrare.co/mankind​</a></li>
-<li><a target="_blank" rel="noopener" href="https://makersplace.com/mankind%E2%80%8B">https://makersplace.com/mankind​</a></li>
-<li><a target="_blank" rel="noopener" href="https://niftygateway.com/collections">https://niftygateway.com/collections</a></li>
-<li><a target="_blank" rel="noopener" href="https://opensea.io/">https://opensea.io​</a></li>
-<li><a target="_blank" rel="noopener" href="https://rarible.com/">https://rarible.com​</a></li>
-<li><a target="_blank" rel="noopener" href="https://knownorigin.io/">https://knownorigin.io​</a></li>
-<li><a target="_blank" rel="noopener" href="https://foundation.app/">https://foundation.app​</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.bitski.com/">https://www.bitski.com​</a></li>
-<li><a target="_blank" rel="noopener" href="https://zora.co/">https://zora.co​</a></li>
-<li><a target="_blank" rel="noopener" href="https://mintbase.io/">https://mintbase.io​</a></li>
-<li><a target="_blank" rel="noopener" href="https://mintable.app/">https://mintable.app​</a></li>
-<li><a target="_blank" rel="noopener" href="https://niftykit.com/">https://niftykit.com​</a></li>
-<li><a target="_blank" rel="noopener" href="https://viv3.com/">https://viv3.com</a></li>
-</ul>
-<h2 id="Youtube-Reference-Video"><a href="#Youtube-Reference-Video" class="headerlink" title="Youtube Reference Video"></a>Youtube Reference Video</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://youtu.be/DYyW_tTPAhU">https://youtu.be/DYyW_tTPAhU</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2022-12-23T14:03:56.352Z"><a href="/2022/12/23/GA4/">2022-12-23</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2022/12/23/GA4/">Google Analytics - UA vs GA4</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h2 id="Google-Analytics-quick-History"><a href="#Google-Analytics-quick-History" class="headerlink" title="Google Analytics quick History"></a>Google Analytics quick History</h2><p>In the October of 2020, Google rolled out Google Analytics 4 (GA4), the latest iteration of the Google Analytics platform. GA4 replaces Universal Analytics (UA) as the default for digital analytics measurement in GA.</p>
-<p>The objective of this article is to consolidate the most significative changes, and required operations to migrate to the new data model.</p>
-<h2 id="Differences-in-UA-and-GA4-data-models"><a href="#Differences-in-UA-and-GA4-data-models" class="headerlink" title="Differences in UA and GA4 data models"></a>Differences in UA and GA4 data models</h2><h3 id="Events-and-Hit-types"><a href="#Events-and-Hit-types" class="headerlink" title="Events and Hit types"></a>Events and Hit types</h3><p>The most significative change from UA to GA4 in my opinion is the fact that all interactions are now reported as events.</p>
-<p>In UA an event has a Category, Action and Label for that specific hit type. In GA4 all hits are events there is no distinction on the hit types</p>
-<table>
-<thead>
-<tr>
-<th>Hit type in (UA)</th>
-<th>Measurement in GA4</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Page View</td>
-<td>Event</td>
-</tr>
-<tr>
-<td>Event</td>
-<td>Event</td>
-</tr>
-<tr>
-<td>Social</td>
-<td>Event</td>
-</tr>
-<tr>
-<td>Transaction/e-commerce</td>
-<td>Event</td>
-</tr>
-<tr>
-<td>User timing</td>
-<td>Event</td>
-</tr>
-<tr>
-<td>Exception</td>
-<td>Event</td>
-</tr>
-<tr>
-<td>App/screen view</td>
-<td>Event</td>
-</tr>
-</tbody></table>
-<hr>
-<p>GA4 events fall into four categories:</p>
-<ul>
-<li>Automatically collected events</li>
-<li>Enhanced measurements events</li>
-<li>Recommended events</li>
-<li>Custom events</li>
-</ul>
-<h4 id="Automatically-collected-events"><a href="#Automatically-collected-events" class="headerlink" title="Automatically collected events"></a><strong>Automatically collected events</strong></h4><p>This events are logged as long you have the base code for GA4 snippet on your site either via gtag.js or Google Tag Manager. No code required</p>
-<h4 id="Enhanced-Measurements"><a href="#Enhanced-Measurements" class="headerlink" title="Enhanced Measurements"></a><strong>Enhanced Measurements</strong></h4><p>Enhanced measurements events are events that are automatically logged no code required and can be enable/disabled on the properties. also they don’t count for the named events limit that we will check next. They allow you to measure interactions with your content.</p>
-<h4 id="Recommended-Events"><a href="#Recommended-Events" class="headerlink" title="Recommended Events"></a><strong>Recommended Events</strong></h4><p>This events have predefined names and parameters and are recommend for specific business use cases. This events allow you to have more detail on your reports and enables the benefit from latest features but require you to add code as they are not logged automatically.</p>
-<p>They are recommended for:</p>
-<ul>
-<li>Retail and e-commerce</li>
-<li>Jobs/Education, Local Deals, Real Estate</li>
-<li>Travel</li>
-<li>Games</li>
-</ul>
-<h4 id="Custom-Events"><a href="#Custom-Events" class="headerlink" title="Custom Events"></a><strong>Custom Events</strong></h4><p>Custom events are implemented by yourself. You should use as a last resource and identify if the previous ones provide the data you require.</p>
-<h3 id="Pageviews"><a href="#Pageviews" class="headerlink" title="Pageviews"></a>Pageviews</h3><p>Page view in UA translate to the <code>page_view</code> event . This event is trigger automatically using the gtag.js snippet or by Google Tag manager. For Mobile apps the analog to a pageview a <em>screenview</em> is mapped to a <code>screen_view</code> event</p>
-<h3 id="Sessions"><a href="#Sessions" class="headerlink" title="Sessions"></a>Sessions</h3><p>Sessions is a group of interactions with your website that takes place within a given time frame. In UA sessions are typically defined as having ended once there has been a 30m period of inactivity or another reset event. In GA4 session metrics are derived from session_start event and the last event in the session.</p>
-<ul>
-<li><strong>Active user calculation</strong>: User activity is now detected automatically in GA4 in contrast with UA. Due to the fact that the ID can span to multiple devices it’s normal that we find mismatch when comparing both UA and GA4 data.</li>
-<li><strong>Session counting</strong>: One important change is that a new Campaign does not reset the session in GA4 has occurs in UA. Also GA4 processes the sessions with arrives up to 72 hours late while in UA the processing takes place getting data if they arrive 4 hours of close of the preceding day. Another important feature is that the iOS SDK uploads metrics automatically when apps are background, this can also result in different values if compared with UA data.</li>
-</ul>
-<h3 id="Custom-Metrics-and-Dimensions"><a href="#Custom-Metrics-and-Dimensions" class="headerlink" title="Custom Metrics and Dimensions"></a>Custom Metrics and Dimensions</h3><p>Custom Metrics and Dimensions have their own scope. When changing to GA4 the following mapping should be applied.</p>
-<table>
-<thead>
-<tr>
-<th>Scope in UA</th>
-<th>GA4 property</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Hit-scoped</td>
-<td>Events or parameters</td>
-</tr>
-<tr>
-<td>User-scoped</td>
-<td>User properties</td>
-</tr>
-<tr>
-<td>Session-scoped</td>
-<td>N/A</td>
-</tr>
-<tr>
-<td>Product-scoped</td>
-<td>E-commerce parameters</td>
-</tr>
-</tbody></table>
-<p>Remember that events, event parameters and user properties are subject to limits.</p>
-<h3 id="Content-Grouping"><a href="#Content-Grouping" class="headerlink" title="Content Grouping"></a>Content Grouping</h3><p>This is also big change as in UA you could group content into a logical structure, and then compare metrics by group. (ex: Man/Shirts). In GA4 there is a predefined event <code>content_group</code> that populates data into a “Content Group” Dimension</p>
-<h3 id="Parameters"><a href="#Parameters" class="headerlink" title="Parameters"></a>Parameters</h3><p>In GA4 you can send parameters with each event. Parameters are additional pieces of information that can further specify the action the user took, or add more context.Each event can log up to 25 parameters.</p>
-<h3 id="User-property"><a href="#User-property" class="headerlink" title="User property"></a>User property</h3><p>User properties are attributes about the users who interact with your app or website. They are used to describe segments of your user base.</p>
-<h2 id="Data-collection-settings-that-can-be-migrated"><a href="#Data-collection-settings-that-can-be-migrated" class="headerlink" title="Data collection settings that can be migrated"></a>Data collection settings that can be migrated</h2><p>The following data collection settings migrate in one-to-one from UA to GA4 as long as you use the gtag.js snippet or Google tag Manager.</p>
-<ul>
-<li>cookie customization</li>
-<li>ads personalization</li>
-</ul>
-<h2 id="Data-collection-settings-with-no-equivalent-in-GA4"><a href="#Data-collection-settings-with-no-equivalent-in-GA4" class="headerlink" title="Data collection settings with no equivalent in GA4"></a>Data collection settings with no equivalent in GA4</h2><ul>
-<li>control over IP anonymization - Enabled by default in GA4 properties</li>
-<li>get clientID - Not currently available</li>
-<li>custom task - Not available in GA4</li>
-<li>timing - Not available in GA4</li>
-</ul>
-<h2 id="Limits"><a href="#Limits" class="headerlink" title="Limits"></a>Limits</h2><p>Collections and configurations limits at the date:</p>
-<ul>
-<li>Distinctly named events <strong>500</strong> per app instance. (Can not be deleted if reaching limit)</li>
-<li>Length of event names is <strong>40</strong> characters</li>
-<li>Limit of <strong>25</strong> parameters per event</li>
-<li>Parameters value have the length limit of <strong>100</strong> characters</li>
-<li><strong>25</strong> user properties that can be added</li>
-<li>length of user property names is <strong>24</strong> charaters</li>
-<li>length of user property values is <strong>36</strong> characters</li>
-<li><strong>100</strong> audiences can be created by property</li>
-<li><strong>30</strong> convertions can be created by property</li>
-<li>Data retention up to <strong>14</strong> months</li>
-</ul>
-<p>For a complete list check the following <a target="_blank" rel="noopener" href="https://support.google.com/analytics/answer/9267744">article</a></p>
-<h2 id="Comparing-report-data-in-UA-and-GA4"><a href="#Comparing-report-data-in-UA-and-GA4" class="headerlink" title="Comparing report data in UA and GA4"></a>Comparing report data in UA and GA4</h2><p>As refereed there are several changes that may impact your report when shifting from UA to GA4. Google recommends that one creates a new tracking ID and keep both tracking options working simultaneously, preferably manged in Google Tag manager.</p>
-<p>Make sure of the following:</p>
-<ul>
-<li>Your tracking ID from UA and GA4 are both collecting the same web pages</li>
-<li>Both properties have equivalent tag implementations </li>
-<li>All tags are firing successfully</li>
-<li>Both properties use the same time zone</li>
-<li>Make sure to compare an unfiltered view in UA with a single web data stream in GA4</li>
-<li>Both properties have been collecting data for at least 30m in order to compare on the realtime report</li>
-</ul>
-<p>Cheers,<br>RR</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -575,6 +462,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Net/">.Net</a><small>1</small></li>
   
+    <li><a href="/tags/AI/">AI</a><small>1</small></li>
+  
     <li><a href="/tags/API/">API</a><small>1</small></li>
   
     <li><a href="/tags/Agile/">Agile</a><small>1</small></li>
@@ -599,6 +488,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/CDH-Parcel/">CDH Parcel</a><small>1</small></li>
   
+    <li><a href="/tags/CHat-PT/">CHat-PT</a><small>1</small></li>
+  
     <li><a href="/tags/CheatSheet/">CheatSheet</a><small>1</small></li>
   
     <li><a href="/tags/Cloudera/">Cloudera</a><small>3</small></li>
@@ -621,7 +512,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Data-Quality/">Data Quality</a><small>1</small></li>
   
-    <li><a href="/tags/Development/">Development</a><small>2</small></li>
+    <li><a href="/tags/Data-Science/">Data Science</a><small>1</small></li>
+  
+    <li><a href="/tags/Delegation/">Delegation</a><small>1</small></li>
+  
+    <li><a href="/tags/Development/">Development</a><small>3</small></li>
   
     <li><a href="/tags/Dimensions/">Dimensions</a><small>1</small></li>
   
@@ -675,7 +570,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Linux/">Linux</a><small>8</small></li>
   
-    <li><a href="/tags/Management/">Management</a><small>1</small></li>
+    <li><a href="/tags/Management/">Management</a><small>2</small></li>
   
     <li><a href="/tags/Markdown/">Markdown</a><small>1</small></li>
   
@@ -733,7 +628,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Sheetlist/">Sheetlist</a><small>1</small></li>
   
-    <li><a href="/tags/Software/">Software</a><small>1</small></li>
+    <li><a href="/tags/Software/">Software</a><small>2</small></li>
   
     <li><a href="/tags/Software-Engineering/">Software Engineering</a><small>1</small></li>
   
@@ -746,6 +641,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/Streaming/">Streaming</a><small>1</small></li>
   
     <li><a href="/tags/Streamming/">Streamming</a><small>1</small></li>
+  
+    <li><a href="/tags/Teams/">Teams</a><small>1</small></li>
   
     <li><a href="/tags/Tech/">Tech</a><small>1</small></li>
   
