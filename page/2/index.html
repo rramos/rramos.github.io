@@ -77,6 +77,71 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
+        <time datetime="2022-12-23T14:03:56.361Z"><a href="/2022/12/23/stories/">2022-12-23</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2022/12/23/stories/">Scrum User Stories</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>When writing user stories, you will need to include the following components: </p>
+<ul>
+<li><strong>User persona.</strong> What is your user like? What is their relation to the project? What goals do they have? </li>
+</ul>
+<ul>
+<li><p><strong>Definition of Done.</strong> This refers to an agreed upon set of items that must be completed before a user story can be considered complete. </p>
+</li>
+<li><p><strong>Tasks.</strong> What are the key activities needed to complete the user story?</p>
+</li>
+<li><p><strong>Any feedback already provided.</strong> If you are adding features to an existing product and you have already received feedback from customers on a past iteration, make sure to consider this feedback.  </p>
+</li>
+</ul>
+<h1 id="I-N-V-E-S-T"><a href="#I-N-V-E-S-T" class="headerlink" title="I.N.V.E.S.T."></a>I.N.V.E.S.T.</h1><p>Your user stories should meet the I.N.V.E.S.T. criteria: </p>
+<ul>
+<li><p><strong>Independent:</strong> The story’s completion is not dependent on another story.</p>
+</li>
+<li><p><strong>Negotiable:</strong> There is room for discussion about this item.</p>
+</li>
+<li><p><strong>Valuable:</strong> Completing the user story has to deliver value. </p>
+</li>
+<li><p><strong>Estimable:</strong> The Definition of Done must be clear so that the team can give each user story an estimate. </p>
+</li>
+<li><p><strong>Small:</strong> Each user story needs to be able to fit within a planned Sprint.</p>
+</li>
+<li><p><strong>Testable:</strong> A test can be conducted to check that it meets the criteria.</p>
+</li>
+</ul>
+<h1 id="Story-Structure"><a href="#Story-Structure" class="headerlink" title="Story Structure"></a>Story Structure</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">As a &lt;user role&gt;, I want &lt;this action&gt; so that I can &lt;get this value&gt;. </span><br></pre></td></tr></table></figure>
+
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.coursera.org/learn/agile-project-management">https://www.coursera.org/learn/agile-project-management</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.mountaingoatsoftware.com/blog/stories-epics-and-themes">https://www.mountaingoatsoftware.com/blog/stories-epics-and-themes</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2022-12-23T14:03:56.360Z"><a href="/2022/12/23/pacman/">2022-12-23</a></time>
       
       
@@ -408,77 +473,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2022-12-23T14:03:56.359Z"><a href="/2022/12/23/fish/">2022-12-23</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2022/12/23/fish/">Fish Configs</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="About-fish"><a href="#About-fish" class="headerlink" title="About fish"></a>About fish</h1><h1 id="Configurations"><a href="#Configurations" class="headerlink" title="Configurations"></a>Configurations</h1><p>To disable the greeting in fish edit the file <code>.config/fish/config.fish</code> and put an empty greeting.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">set fish_greeting &quot;&quot;</span><br></pre></td></tr></table></figure>
-
-<p>Now re-open the terminal.</p>
-<h1 id="Remove-neofetch"><a href="#Remove-neofetch" class="headerlink" title="Remove neofetch"></a>Remove neofetch</h1><p>If you don’t want the fancy computer stats everything you open a terminal comment out the last 4 lines on the conf file <code>./config/fish/config.fish</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">## Run paleofetch if session is interactive</span><br><span class="line">#if status --is-interactive</span><br><span class="line">#   neofetch</span><br><span class="line">#end</span><br></pre></td></tr></table></figure>
-
-<p>Now re-open the terminal.</p>
-<h1 id="Oh-My-Fish"><a href="#Oh-My-Fish" class="headerlink" title="Oh My Fish"></a>Oh My Fish</h1><p>Install the package oh-my-fish which would allow to customize you fish configurations running the following command</p>
-<p><code>curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish</code></p>
-<p>After this install the theme agnoster</p>
-<p><code>omf install agnoster</code></p>
-<p>Apply and reload</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">omf theme agnoster</span><br><span class="line">omf reload</span><br></pre></td></tr></table></figure>
-
-<h1 id="Disable-starship"><a href="#Disable-starship" class="headerlink" title="Disable starship"></a>Disable starship</h1><p>Comment the following block on the file <code>./config/fish/config.fish</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">## Starship prompt</span><br><span class="line">#if status --is-interactive</span><br><span class="line">#   source (&quot;/usr/bin/starship&quot; init fish --print-full-init | psub)</span><br><span class="line">#end</span><br></pre></td></tr></table></figure>
-
-<h1 id="Setup-the-Nord-colors-in-Alacritty"><a href="#Setup-the-Nord-colors-in-Alacritty" class="headerlink" title="Setup the Nord colors in Alacritty"></a>Setup the Nord colors in Alacritty</h1><p>Change the default color schem for Nord colors</p>
-<p>replacing on the following file <code>.config/alacritty/alacritty.yml</code> for the coloscheme available on the following <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/arcticicestudio/nord-alacritty/develop/src/nord.yml">repo</a>.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">colors:</span><br><span class="line">  primary:</span><br><span class="line">    background: &#x27;#2e3440&#x27;</span><br><span class="line">    foreground: &#x27;#d8dee9&#x27;</span><br><span class="line">    dim_foreground: &#x27;#a5abb6&#x27;</span><br><span class="line">  cursor:</span><br><span class="line">    text: &#x27;#2e3440&#x27;</span><br><span class="line">    cursor: &#x27;#d8dee9&#x27;</span><br><span class="line">  vi_mode_cursor:</span><br><span class="line">    text: &#x27;#2e3440&#x27;</span><br><span class="line">    cursor: &#x27;#d8dee9&#x27;</span><br><span class="line">  selection:</span><br><span class="line">    text: CellForeground</span><br><span class="line">    background: &#x27;#4c566a&#x27;</span><br><span class="line">  search:</span><br><span class="line">    matches:</span><br><span class="line">      foreground: CellBackground</span><br><span class="line">      background: &#x27;#88c0d0&#x27;</span><br><span class="line">    bar:</span><br><span class="line">      background: &#x27;#434c5e&#x27;</span><br><span class="line">      foreground: &#x27;#d8dee9&#x27;</span><br><span class="line">  normal:</span><br><span class="line">    black: &#x27;#3b4252&#x27;</span><br><span class="line">    red: &#x27;#bf616a&#x27;</span><br><span class="line">    green: &#x27;#a3be8c&#x27;</span><br><span class="line">    yellow: &#x27;#ebcb8b&#x27;</span><br><span class="line">    blue: &#x27;#81a1c1&#x27;</span><br><span class="line">    magenta: &#x27;#b48ead&#x27;</span><br><span class="line">    cyan: &#x27;#88c0d0&#x27;</span><br><span class="line">    white: &#x27;#e5e9f0&#x27;</span><br><span class="line">  bright:</span><br><span class="line">    black: &#x27;#4c566a&#x27;</span><br><span class="line">    red: &#x27;#bf616a&#x27;</span><br><span class="line">    green: &#x27;#a3be8c&#x27;</span><br><span class="line">    yellow: &#x27;#ebcb8b&#x27;</span><br><span class="line">    blue: &#x27;#81a1c1&#x27;</span><br><span class="line">    magenta: &#x27;#b48ead&#x27;</span><br><span class="line">    cyan: &#x27;#8fbcbb&#x27;</span><br><span class="line">    white: &#x27;#eceff4&#x27;</span><br><span class="line">  dim:</span><br><span class="line">    black: &#x27;#373e4d&#x27;</span><br><span class="line">    red: &#x27;#94545d&#x27;</span><br><span class="line">    green: &#x27;#809575&#x27;</span><br><span class="line">    yellow: &#x27;#b29e75&#x27;</span><br><span class="line">    blue: &#x27;#68809a&#x27;</span><br><span class="line">    magenta: &#x27;#8c738c&#x27;</span><br><span class="line">    cyan: &#x27;#6d96a5&#x27;</span><br><span class="line">    white: &#x27;#aeb3bb&#x27;</span><br></pre></td></tr></table></figure>
-
-
-<h1 id="Themes"><a href="#Themes" class="headerlink" title="Themes"></a>Themes</h1><p>If you don’ t like the color scheme check other options using the command.</p>
-<p><code>fish_config</code></p>
-<h1 id="donet-autocomplete"><a href="#donet-autocomplete" class="headerlink" title="donet autocomplete"></a>donet autocomplete</h1><p>In case you want dotnet command autocomplete to get something like this.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> ╭─rramos@buldozer in ~ via  v17.2.0</span><br><span class="line"> ╰─λ dotnet</span><br><span class="line">add               (Add a package/reference)  publish  (Publish a .NET project for deployment)</span><br><span class="line">build                (Build a .NET project)  remove              (Remove a package/reference)</span><br><span class="line">build-server  (Interact with build servers)  restore                   (Restore dependencies)</span><br><span class="line">clean                 (Clean build outputs)  run            (Run the application from source)</span><br><span class="line">…and 6 more rows</span><br></pre></td></tr></table></figure>
-
-<p>You should have the following on your <code>config.fish</code> file.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">complete -f -c dotnet -a &quot;(dotnet complete)&quot;</span><br></pre></td></tr></table></figure>
-<p>For Garuda this setup seems to be present out-of-the box.</p>
-<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>Although Garuda brings a lot of customizations for fish if one wants to go deeper and adjust for it’s own taste can take some time. I certainly toke some time to understand where configurations where being override. I probably include some of this configurations in git to prevent future time waist on customizations.</p>
-<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/fish">https://wiki.archlinux.org/title/fish</a></li>
-<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/dotnet/core/tools/enable-tab-autocomplete#zsh">https://docs.microsoft.com/en-us/dotnet/core/tools/enable-tab-autocomplete#zsh</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/oh-my-fish/oh-my-fish">https://github.com/oh-my-fish/oh-my-fish</a></li>
-<li><a target="_blank" rel="noopener" href="https://techviewleo.com/configure-fish-shell-with-oh-my-fish/">https://techviewleo.com/configure-fish-shell-with-oh-my-fish/</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/arcticicestudio/nord-alacritty">https://github.com/arcticicestudio/nord-alacritty</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -511,6 +505,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/API/">API</a><small>1</small></li>
   
+    <li><a href="/tags/AUR/">AUR</a><small>1</small></li>
+  
     <li><a href="/tags/Agile/">Agile</a><small>1</small></li>
   
     <li><a href="/tags/Airflow/">Airflow</a><small>1</small></li>
@@ -521,7 +517,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Ansible/">Ansible</a><small>2</small></li>
   
-    <li><a href="/tags/Arch/">Arch</a><small>2</small></li>
+    <li><a href="/tags/Arch/">Arch</a><small>3</small></li>
   
     <li><a href="/tags/Artifactory/">Artifactory</a><small>1</small></li>
   
@@ -613,7 +609,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Leadership/">Leadership</a><small>1</small></li>
   
-    <li><a href="/tags/Linux/">Linux</a><small>8</small></li>
+    <li><a href="/tags/Linux/">Linux</a><small>9</small></li>
   
     <li><a href="/tags/Management/">Management</a><small>2</small></li>
   
@@ -639,6 +635,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Optimization/">Optimization</a><small>1</small></li>
   
+    <li><a href="/tags/Packages/">Packages</a><small>1</small></li>
+  
     <li><a href="/tags/Parquet/">Parquet</a><small>1</small></li>
   
     <li><a href="/tags/Performance/">Performance</a><small>1</small></li>
@@ -660,6 +658,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/Qemu/">Qemu</a><small>1</small></li>
   
     <li><a href="/tags/RDD/">RDD</a><small>1</small></li>
+  
+    <li><a href="/tags/Rust/">Rust</a><small>1</small></li>
   
     <li><a href="/tags/SQL/">SQL</a><small>1</small></li>
   
