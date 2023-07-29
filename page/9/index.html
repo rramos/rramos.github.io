@@ -77,6 +77,70 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
+        <time datetime="2017-09-13T21:18:10.000Z"><a href="/2017/09/13/ChromeProxy/">2017-09-13</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/09/13/ChromeProxy/">Setting Up Proxy Environments With Chrome</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Something that keeps bugging me is the need to access different environments in the browser through proxy tunnels, due to security restrictions or lack of routing between your local network and the environment you are working. Very common on Cloud environments or if you are working has a consultant for several clients at the same time.</p>
+<p>So this guide is intended to help on the setup of Google Chrome to use your configured tunnels.</p>
+<h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><h3 id="Configure-your-local-tunnel"><a href="#Configure-your-local-tunnel" class="headerlink" title="Configure your local tunnel"></a>Configure your local tunnel</h3><p>You require a tunnel configuration setup. For Linux i recommend setting this up in your <code>.ssh/config</code> file. I’ll give some examples, if you have interest on expanding you <code>./ssh/config</code> check the next article ill go in depth with it. There are also other tools such as <a target="_blank" rel="noopener" href="https://sourceforge.net/projects/gstm/">gSTM</a> tool.</p>
+<p>So let’s begin to create our reverse tunnel</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh -R 19999:localhost:22 sourceuser@remoteip</span><br></pre></td></tr></table></figure>
+
+<p>You could use any other available localport</p>
+<h3 id="Install-plugin-in-Google-Chrome"><a href="#Install-plugin-in-Google-Chrome" class="headerlink" title="Install plugin in Google Chrome"></a>Install plugin in Google Chrome</h3><p>Go into your google chrome settings and search for <strong>Extensions</strong> .<br>I’m using <strong>Proxy SwitchySharp</strong> But you could use any other.</p>
+<p>Go to your Extension Options and let’s create a profile</p>
+<ul>
+<li><strong>Name:</strong> mylocaldomain.dev</li>
+<li><strong>SOCKS HOST:</strong> localhost</li>
+<li><strong>Port:</strong> 19999</li>
+<li><strong>SOCKS v5:</strong> (enable)</li>
+</ul>
+<p>Now let’s create a rule for our local domain in <strong>Switch Rules</strong></p>
+<p>Add the rule for our domain: </p>
+<ul>
+<li><strong>Rule Name:</strong> MyLocalDomain</li>
+<li><strong>URL Pattern:</strong> *.mylocaldomain.dev</li>
+<li><strong>Pattern Type:</strong> Wildcard</li>
+<li><strong>ProxyProfile:</strong> mylocaldomain.dev</li>
+</ul>
+<p><strong>NOTE:</strong> Don’t forget to active the option <strong>Enable Switch Rules</strong></p>
+<p>Also don’t forget to activate the <strong>Auto Switch Mode</strong> in the extension.</p>
+<p>And that’s it now when you access the browser to domain <a target="_blank" rel="noopener" href="http://something.mylocaldomain.dev/">http://something.mylocaldomain.dev</a> you be using your defined ssh tunnel for it.</p>
+<h2 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h2><p>Lets do a quick test :)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo sh -c &#x27;echo &quot;127.0.0.1  test.mylocaldomain.dev&quot;  &gt;&gt; /etc/hosts&#x27;</span><br><span class="line">ssh -R 19999:localhost:22 localhost</span><br><span class="line">python -m SimpleHTTPServer 8000</span><br></pre></td></tr></table></figure>
+
+<p>Now access on the browser to <a target="_blank" rel="noopener" href="http://test.mylocaldomain.dev:8000/">http://test.mylocaldomain.dev:8000</a></p>
+<p>You could now have different profiles configured and autoswitch will do the job for you of choosing the appropriate tunnel.</p>
+<p>Cheers,<br>RR </p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2017-09-09T00:06:30.000Z"><a href="/2017/09/09/PolybaseCDH/">2017-09-09</a></time>
       
       
@@ -369,63 +433,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-11-03T22:09:40.000Z"><a href="/2016/11/03/SparkSummit2016/">2016-11-03</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/11/03/SparkSummit2016/">Spark Summit 2016</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>So i’ve attended 25-27 OCT in Brussels to SparkSummit 2016 in Europe. So it kind makes sense to write down some impressions regarding the event.</p>
-<p>The Event it self was pretty well organized, and the distribution of spaces was well planned.</p>
-<p>Regarding Spark it-self, is one of the ecosystem players (<a target="_blank" rel="noopener" href="https://hadoopecosystemtable.github.io/">https://hadoopecosystemtable.github.io/</a>) that’s been getting more traction from the industry, partially because of the Enterprise support from Databricks and other major BigData contributors.</p>
-<p>This Summit, had huge increase of participants, compared to last year, what guaranties that this is really here to stay.</p>
-<p>I always try to make of this conferences with two key points:</p>
-<ul>
-<li>What’s new ?</li>
-<li>What are the other Companies doing, that’s working for them ?</li>
-</ul>
-<h2 id="What-new"><a href="#What-new" class="headerlink" title="What new"></a>What new</h2><p>AMPLab, the creators of Spark from UC Berkeley presented some interesting projects for the future that would increase SparkEngine to a new level. They presented some comparation charts with execution times of this new engine compared with project Flink which uses real streaming and not micro-batching, which may come as a very good news, because there are more and more Streaming applications being implemented. Also some new layer of secure, the projects are called Drizzle and Opaque, let’s hope they get this ready soon :)</p>
-<p>Also one of the big announcements, was the new TensorFrames object. this output come’s from a join work of TensorFlow and Databricks in order to bring DeepLearning to Spark. What this means is that in the Future one could simple use the Spark Framework in order to take advantage of GPU’s, also that comes into alignment as you could expect with the new feature in Databricks Notebooks to support this.</p>
-<p>It is still in Beta, but if you are using both TensorFlow and Spark, this is obviously good news.</p>
-<p>IBM is also entering the race with a SaaS solution (<a target="_blank" rel="noopener" href="https://console.ng.bluemix.net/catalog/services/apache-spark">https://console.ng.bluemix.net/catalog/services/apache-spark</a>) similar to Databricks, in terms of Notebook offering but it runs on their own infrastructure, which could be good and have good stability and all, but when dealing with bigdata and moving all that data from provider to provider, you better to the maths.</p>
-<p>For that matter still prefer the Databricks model, and they have good news that until the end of the year they are planning to support a new CloudProvider.</p>
-<h2 id="Use-Cases"><a href="#Use-Cases" class="headerlink" title="Use Cases"></a>Use Cases</h2><p>There where lot’s of use cases, in the several industries, even in the <a target="_blank" rel="noopener" href="https://spark-summit.org/eu-2016/events/mmmooogle-from-big-data-to-decisions-for-dairy-cows/">Milk Industry</a> that’s right :)</p>
-<p>But looking on the overall presented cases, is clear that more and more companies are adopting Streaming solutions for they business, as <a target="_blank" rel="noopener" href="https://youtu.be/mVP9sZ6K__Y">Jacek Laskowski</a> referred in his presentation. (Really recommend that one, a really appealing one)</p>
-<p>Kafka is becoming a key-role figure in the several presented architectures.</p>
-<p>And it seems HDFS is becoming mostly used as a DataLake only solution, and starting using more high-speed memory layer as DataGrid, Alluxio solutions.</p>
-<p>They also presented some comparations regarding direct access to Cloud Blob Storage compared with traditional FS <a target="_blank" rel="noopener" href="https://spark-summit.org/eu-2016/events/spark-and-object-stores-what-you-need-to-know/">Steve Loughran</a>. Interesting values presented regarding Microsoft Cloud Solution vs AWS.</p>
-<p>On other aspect that call my attention, was the lack of monitoring solutions for Spark workloads, and there where in fact several presentations regarding this subject, mostly use cases of in-house developments that fill this gap. <a target="_blank" rel="noopener" href="https://spark-summit.org/eu-2016/events/sparklint-a-tool-for-monitoring-identifying-and-tuning-inefficient-spark-jobs-across-your-cluster/">Simon Whitear</a><br>was one of the best in my opinion.</p>
-<p>Lambda,Gamma and Omega. With all these Streaming high-speed architectures showing on, one has to play it safe right. That’s also one of the tendencies for the Industry to have these types of architectures with a speed layer and slow-layer. <a target="_blank" rel="noopener" href="https://spark-summit.org/eu-2016/speakers/william-benton/">William Benton</a> made a very enjoyable presentation regarding this topic.</p>
-<h1 id="Slides-and-Videos"><a href="#Slides-and-Videos" class="headerlink" title="Slides and Videos"></a>Slides and Videos</h1><p>It seems they updated the site and the videos and slides seem available, which is good news. </p>
-<p>Check them if you like on the site Schedule page:</p>
-<p><a target="_blank" rel="noopener" href="https://spark-summit.org/eu-2016/schedule/">https://spark-summit.org/eu-2016/schedule/</a></p>
-<p>Cheers and keep Sparking</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -458,6 +465,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/API/">API</a><small>1</small></li>
   
+    <li><a href="/tags/APIs/">APIs</a><small>1</small></li>
+  
     <li><a href="/tags/AUR/">AUR</a><small>1</small></li>
   
     <li><a href="/tags/Agile/">Agile</a><small>1</small></li>
@@ -471,6 +480,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/Ansible/">Ansible</a><small>2</small></li>
   
     <li><a href="/tags/Arch/">Arch</a><small>3</small></li>
+  
+    <li><a href="/tags/Architecture/">Architecture</a><small>1</small></li>
   
     <li><a href="/tags/Artifactory/">Artifactory</a><small>1</small></li>
   
@@ -626,7 +637,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Sheetlist/">Sheetlist</a><small>1</small></li>
   
-    <li><a href="/tags/Software/">Software</a><small>2</small></li>
+    <li><a href="/tags/Software/">Software</a><small>3</small></li>
   
     <li><a href="/tags/Software-Engineering/">Software Engineering</a><small>1</small></li>
   

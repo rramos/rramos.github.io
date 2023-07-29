@@ -77,6 +77,101 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
+        <time datetime="2022-12-23T14:03:56.359Z"><a href="/2022/12/23/artifactory/">2022-12-23</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2022/12/23/artifactory/">Artifactory Setup</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>In this article i will describe how to setup a docker enviroment to have a JFrog Artifactory local solution. </p>
+<h1 id="Objective"><a href="#Objective" class="headerlink" title="Objective"></a>Objective</h1><p>The main objective of this walkthrough is to have a local repository to manage packages such as Nugets, jars, rpms, etc.</p>
+<p>Could be usefull to test CI/CD pipelines also.</p>
+<h1 id="Versions"><a href="#Versions" class="headerlink" title="Versions"></a>Versions</h1><p>Artifactory has several versions. It is recommend to use a Professional edition for productivity workloads. For this article we consider the OSS version </p>
+<h1 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h1><p>For this setup one should have:</p>
+<ul>
+<li>docker</li>
+<li>docker-compose</li>
+</ul>
+<h1 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h1><p>Obtain the docker-compose image</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://releases.jfrog.io/artifactory/bintray-artifactory/org/artifactory/oss/docker/jfrog-artifactory-oss/7.12.10/jfrog-artifactory-oss-7.12.10-compose.tar.gz</span><br></pre></td></tr></table></figure>
+<p><strong>NOTE:</strong> Check the latest version on the official <a target="_blank" rel="noopener" href="https://jfrog.com/download-jfrog-platform/">website</a>.</p>
+<p>Extract the tarball</p>
+<p>Run the <code>config.sh</code> with privileges to setup your folder with the proper permissions.</p>
+<p>In my case i also installed the PostgreSQL service.</p>
+<p>One should have an output similar to this one</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Beginning JFrog Artifactory setup</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Validating System requirements</span><br><span class="line"></span><br><span class="line">Installation Directory (Default: /root/.jfrog/artifactory): /home/rramos/Development/github/dockers/docker-artifactory/data</span><br><span class="line"></span><br><span class="line">Running system diagnostics checks, logs can be found at [/home/rramos/Development/github/dockers/docker-artifactory/artifactory-oss-7.12.10/systemDiagnostics.log]</span><br><span class="line"></span><br><span class="line">Triggering migration script. This will migrate if needed and may take some time.</span><br><span class="line"></span><br><span class="line">Migration logs will be available at [/home/rramos/Development/github/dockers/docker-artifactory/artifactory-oss-7.12.10/bin/migration.log]. The file will be archived at [/home/rramos/Development/github/dockers/docker-artifactory/data/var/log] after installation</span><br><span class="line"></span><br><span class="line">For IPv6 address, enclose value within square brackets as follows : [&lt;ipv6_address&gt;]</span><br><span class="line">Please specify the IP address of this machine (Default: 127.0.1.1):</span><br><span class="line"></span><br><span class="line">Are you adding an additional node to an existing product cluster? [y/N]: N</span><br><span class="line"></span><br><span class="line">The installer can install a PostgreSQL database, or you can connect to an existing compatible PostgreSQL database</span><br><span class="line">(https://service.jfrog.org/installer/System+Requirements#SystemRequirements-RequirementsMatrix)</span><br><span class="line">If you are upgrading from an existing installation, select N if you have externalized PostgreSQL, select Y if not.</span><br><span class="line">Do you want to install PostgreSQL? [Y/n]: Y</span><br><span class="line"></span><br><span class="line">To setup PostgreSQL, please enter a password</span><br><span class="line">database password:</span><br><span class="line"></span><br><span class="line">confirm database password:</span><br><span class="line"></span><br><span class="line">Creating third party directories (if necessary)</span><br><span class="line"></span><br><span class="line">Attempting to seed PostgreSQL. This may take some time.</span><br><span class="line"></span><br><span class="line">Successfully seeded PostgreSQL</span><br><span class="line"></span><br><span class="line">Docker setup complete</span><br><span class="line"></span><br><span class="line">Installation directory: [/home/rramos/Development/github/dockers/docker-artifactory/data] contains data and configurations.</span><br><span class="line"></span><br><span class="line">Use docker-compose commands to start the application. Once the application has started, it can be accessed at [http://127.0.1.1:8082]</span><br><span class="line"></span><br><span class="line">Examples:</span><br><span class="line">cd /home/rramos/Development/github/dockers/docker-artifactory/artifactory-oss-7.12.10</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">start postgresql:    docker-compose -p rt-postgres -f docker-compose-postgres.yaml up -d</span><br><span class="line">start:               docker-compose -p rt up -d</span><br><span class="line">stop:                docker-compose -p rt down</span><br><span class="line"></span><br><span class="line">NOTE: The compose file uses several environment variables from the .env file. Remember to run from within the [/home/rramos/Development/github/dockers/docker-artifactory/artifactory-oss-7.12.10] folder</span><br><span class="line"></span><br><span class="line">Done</span><br></pre></td></tr></table></figure>
+
+<p>At the end of the process the postgres container is still up. I would suggest killing it as we are going to setup the docker-compose setup for it.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># docker ps</span><br><span class="line">CONTAINER ID   IMAGE                                    COMMAND                  CREATED              STATUS              PORTS                                       NAMES</span><br><span class="line">77bbf3150642   docker.bintray.io/postgres:12.5-alpine   &quot;docker-entrypoint.s…&quot;   About a minute ago   Up About a minute   0.0.0.0:5432-&gt;5432/tcp, :::5432-&gt;5432/tcp   postgresql</span><br></pre></td></tr></table></figure>
+
+<p>Killing the containers</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker kill 77bbf3150642</span><br><span class="line">docker container prune</span><br></pre></td></tr></table></figure>
+<p><strong>NOTE:</strong> Attention don’t run the prune command if you want to keep other containers running.</p>
+<h1 id="Post-Install"><a href="#Post-Install" class="headerlink" title="Post Install"></a>Post Install</h1><p>During the setup I’ve selected the following path </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/home/rramos/Development/github/dockers/docker-artifactory/data</span><br></pre></td></tr></table></figure>
+<p>However there are some adjustments required for the services to reach the containers which will be on the same network and need to be adjusted.</p>
+<p>Following this setup you should now have on your current dir <code>data</code> and <code>artifactory-oss-7.12.10</code> folder. </p>
+<p>Create the following file template docker file that starts all the components</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cp artifactory-oss-7.12.10/templates/docker-compose-all.yaml  docker-compose.yaml</span><br></pre></td></tr></table></figure>
+<p>And replace the line</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">POSTGRES_PASSWORD=$&#123;PG_PASS&#125;</span><br></pre></td></tr></table></figure>
+<p>Let’s include that var on the env file.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cp artifactory-oss-7.12.10/.env .</span><br></pre></td></tr></table></figure>
+
+<p>Add the password you defined for postgres on <code>.env</code> file.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">PG_PASS=V3ry$$scurePasssW0rd</span><br></pre></td></tr></table></figure>
+
+<p>Let’s spin up the application</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+<p>If you start getting some issues regarding DB connection issues there is a final step.</p>
+<p>Stop all the containers </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose down</span><br></pre></td></tr></table></figure>
+
+<p>Edit the file <code>./data/var/data/nginx/conf.d/artifactory.conf</code> and replace <code>localhost</code> references with <code>artifactory</code></p>
+<p><strong>NOTE:</strong> You may need sudo permission to change those files</p>
+<p>Also edit the file <code>./data/var/etc/system.yaml</code> </p>
+<p>Making sure the DB <code>url</code> is like:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">url: jdbc:postgresql://postgres:5432/artifactory</span><br></pre></td></tr></table></figure>
+
+<p>Now let’s restart the containers</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+<p>And access on the following url: <code>http://localhost:8081/artifactory/</code></p>
+<p>The default user/password is <code>admin</code>/<code>password</code></p>
+<p>Now it’s time to explore …</p>
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>There are several ways to setup Artictory depending on your enviroment. If you want to use for local developments it may not payoff due to the limitation of the oss version. One cannot manage Nuget packages for instance and require an pro version. As that was may principal objective i didn’t explore more the tool.</p>
+<p>Also include the docker-compose setting on my dockers <a target="_blank" rel="noopener" href="https://github.com/rramos/dockers">repo</a></p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.jfrog.com/confluence/display/JFROG/Installing+Artifactory">https://www.jfrog.com/confluence/display/JFROG/Installing+Artifactory</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jfrog.com/confluence/display/JFROG/NuGet+Repositories">https://www.jfrog.com/confluence/display/JFROG/NuGet+Repositories</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2022-12-23T14:03:56.359Z"><a href="/2022/12/23/fish/">2022-12-23</a></time>
       
       
@@ -328,64 +423,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2022-12-23T14:03:56.353Z"><a href="/2022/12/23/NamingVariables/">2022-12-23</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2022/12/23/NamingVariables/">Guideline on Naming Variables</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <blockquote>
-<p>“There are only two hard things in computer science: cache invalidation and naming things.” — Phil Karlson</p>
-</blockquote>
-<h2 id="Follow-S-I-D"><a href="#Follow-S-I-D" class="headerlink" title="Follow S-I-D"></a>Follow S-I-D</h2><p>A name must be Short, Intuitive and Descriptive.</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* Bad */</span></span><br><span class="line"><span class="keyword">const</span> a = <span class="number">5</span> <span class="comment">// &quot;a&quot; could mean anything</span></span><br><span class="line"><span class="keyword">const</span> isPaginatable = (postsCount &gt; <span class="number">10</span>) <span class="comment">// &quot;Paginatable&quot; sounds extremely unnatural</span></span><br><span class="line"><span class="keyword">const</span> shouldPaginatize = (postsCount &gt; <span class="number">10</span>) <span class="comment">// Made up verbs are so much fun!</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>Suggested:</strong></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* Good */</span></span><br><span class="line"><span class="keyword">const</span> postsCount = <span class="number">5</span></span><br><span class="line"><span class="keyword">const</span> hasPagination = (postsCount &gt; <span class="number">10</span>)</span><br><span class="line"><span class="keyword">const</span> shouldDisplayPagination = (postsCount &gt; <span class="number">10</span>) <span class="comment">// alternatively</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Avoid-Contraction"><a href="#Avoid-Contraction" class="headerlink" title="Avoid Contraction"></a>Avoid Contraction</h2><p>Do not use contractions. They contribute to nothing but decreased readability of the code. Finding a short, descriptive name may be hard, but contraction is not an excuse for not doing so. For instance</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* Bad */</span></span><br><span class="line"><span class="keyword">const</span> onItmClk = <span class="function">() =&gt;</span> &#123;&#125;</span><br><span class="line"><span class="comment">/* Good */</span></span><br><span class="line"><span class="keyword">const</span> onItemClick = <span class="function">() =&gt;</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Avoid-Context-Duplication"><a href="#Avoid-Context-Duplication" class="headerlink" title="Avoid Context Duplication"></a>Avoid Context Duplication</h2><p>Always remove the context from a name if that doesn’t decrease its readability.</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MenuItem</span> </span>&#123;</span><br><span class="line">  <span class="comment">/* Method name duplicates the context (which is &quot;MenuItem&quot;) */</span></span><br><span class="line">  handleMenuItemClick = <span class="function">(<span class="params">event</span>) =&gt;</span> &#123; ... &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">/* Reads nicely as `MenuItem.handleClick()` */</span></span><br><span class="line">  handleClick = <span class="function">(<span class="params">event</span>) =&gt;</span> &#123; ... &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Should-Reflect-expected-result"><a href="#Should-Reflect-expected-result" class="headerlink" title="Should Reflect expected result"></a>Should Reflect expected result</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* Bad */</span></span><br><span class="line"><span class="keyword">const</span> isEnabled = (itemsCount &gt; <span class="number">3</span>)</span><br><span class="line"><span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">Button</span> <span class="attr">disabled</span>=<span class="string">&#123;!isEnabled&#125;</span> /&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Good */</span></span><br><span class="line"><span class="keyword">const</span> isDisabled = (itemsCount &lt;= <span class="number">3</span>)</span><br><span class="line"><span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">Button</span> <span class="attr">disabled</span>=<span class="string">&#123;isDisabled&#125;</span> /&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Consider-Singular-Plurals"><a href="#Consider-Singular-Plurals" class="headerlink" title="Consider Singular/Plurals"></a>Consider Singular/Plurals</h2><p>Like a prefix, variable names can be made singular or plural depending on whether they hold a single value or multiple values.</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* Bad */</span></span><br><span class="line"><span class="keyword">const</span> friends = <span class="string">&#x27;Bob&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> friend = [<span class="string">&#x27;Bob&#x27;</span>, <span class="string">&#x27;Tony&#x27;</span>, <span class="string">&#x27;Tanya&#x27;</span>];</span><br><span class="line"><span class="comment">/* Good */</span></span><br><span class="line"><span class="keyword">const</span> friend = <span class="string">&#x27;Bob&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> friends = [<span class="string">&#x27;Bob&#x27;</span>, <span class="string">&#x27;Tony&#x27;</span>, <span class="string">&#x27;Tanya&#x27;</span>];</span><br></pre></td></tr></table></figure>
-
-<h2 id="Use-meaningful-and-pronounceable-variable-names"><a href="#Use-meaningful-and-pronounceable-variable-names" class="headerlink" title="Use meaningful and pronounceable variable names"></a>Use meaningful and pronounceable variable names</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> yyyymmdstr = moment().format(<span class="string">&quot;YYYY/MM/DD&quot;</span>);  <span class="comment">// simply awful</span></span><br><span class="line"><span class="comment">// Instead</span></span><br><span class="line"><span class="keyword">const</span> currentDate = moment().format(<span class="string">&quot;YYYY/MM/DD&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<p>The <a target="_blank" rel="noopener" href="https://betterprogramming.pub/a-useful-framework-for-naming-your-classes-functions-and-variables-e7d186e3189f">original article</a> is more complete and has other suggestion regarding naming good practices would suggest you check it.</p>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://betterprogramming.pub/a-useful-framework-for-naming-your-classes-functions-and-variables-e7d186e3189f">https://betterprogramming.pub/a-useful-framework-for-naming-your-classes-functions-and-variables-e7d186e3189f</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -418,6 +455,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/API/">API</a><small>1</small></li>
   
+    <li><a href="/tags/APIs/">APIs</a><small>1</small></li>
+  
     <li><a href="/tags/AUR/">AUR</a><small>1</small></li>
   
     <li><a href="/tags/Agile/">Agile</a><small>1</small></li>
@@ -431,6 +470,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/Ansible/">Ansible</a><small>2</small></li>
   
     <li><a href="/tags/Arch/">Arch</a><small>3</small></li>
+  
+    <li><a href="/tags/Architecture/">Architecture</a><small>1</small></li>
   
     <li><a href="/tags/Artifactory/">Artifactory</a><small>1</small></li>
   
@@ -586,7 +627,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Sheetlist/">Sheetlist</a><small>1</small></li>
   
-    <li><a href="/tags/Software/">Software</a><small>2</small></li>
+    <li><a href="/tags/Software/">Software</a><small>3</small></li>
   
     <li><a href="/tags/Software-Engineering/">Software Engineering</a><small>1</small></li>
   
