@@ -77,6 +77,77 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
+        <time datetime="2017-09-13T22:13:24.000Z"><a href="/2017/09/13/ssh-config/">2017-09-13</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/09/13/ssh-config/">Optimize Your SSH Connections With SSH Config File</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>If most of your work is done remotely though ssh, and you have to access several environments, there will come a time where you need to organize our connection settings. Which user you need to access server X or which port is configured or the case you work in consulting and have several ssh_keys.</p>
+<p>There are some tools that migth help on this, but i’m old school and still stick with plain ssh command.</p>
+<p>ssh config file helps quite a lot, here are some tips unknown to some:</p>
+<h2 id="Alias"><a href="#Alias" class="headerlink" title="Alias"></a>Alias</h2><p>Let’s say you want to take advantage of tab auto-completion when using your connections for a enviroment like</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">├── ClientA</span><br><span class="line">│   ├── server1</span><br><span class="line">│   └── server2</span><br><span class="line">├── ClientB</span><br><span class="line">│   └── server1</span><br><span class="line">├── DEV</span><br><span class="line">│   ├── BackOffice</span><br><span class="line">│   │   ├── server1</span><br><span class="line">│   │   └── server2</span><br><span class="line">│   └── FrontOffice</span><br><span class="line">│       ├── server1</span><br><span class="line">│       ├── server2</span><br><span class="line">│       └── server3</span><br><span class="line">├── LIVE</span><br><span class="line">│   ├── Cluster</span><br><span class="line">│   │   ├── node01</span><br><span class="line">│   │   ├── node02</span><br><span class="line">│   │   └── node03</span><br><span class="line">│   └── Servers</span><br><span class="line">│       ├── server01</span><br><span class="line">│       └── server02</span><br><span class="line">└── QA</span><br><span class="line">    └── server1</span><br></pre></td></tr></table></figure>
+
+<p>this would be quicker to do something like <code>ssh DEV</code> <strong>TAB</strong> <code>Back</code> <strong>TAB</strong> <code>server1</code></p>
+<p>that’s actually possible with ssh_config alias.</p>
+<p>Add the following to <code>~/.ssh/config</code> to see this in action</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Host ClientA.server1</span><br><span class="line">     Hostname localhost</span><br><span class="line">Host ClientA.server2</span><br><span class="line">     Hostname localhost</span><br><span class="line">Host ClientB.server1</span><br><span class="line">     Hostname localhost</span><br><span class="line">Host ClientA.server1</span><br><span class="line">     Hostname localhost</span><br><span class="line">Host DEV.BackOffice.server1</span><br><span class="line">     Hostname localhost</span><br><span class="line">Host DEV.BackOffice.server2</span><br><span class="line">     Hostname localhost</span><br><span class="line">Host DEV.FrontOffice.server1</span><br><span class="line">     Hostname localhost</span><br><span class="line">Host DEV.FrontOffice.server2</span><br><span class="line">     Hostname localhost</span><br><span class="line">Host DEV.FrontOffice.server3</span><br><span class="line">     Hostname localhost</span><br><span class="line">Host LIVE.Cluster.node01</span><br><span class="line">     Hostname localhost</span><br><span class="line">Host LIVE.Cluster.node02</span><br><span class="line">     Hostname localhost</span><br><span class="line">Host LIVE.Cluster.node03</span><br><span class="line">     Hostname localhost</span><br><span class="line">Host LIVE.Servers.server01</span><br><span class="line">     Hostname localhost</span><br><span class="line">Host LIVE.Servers.server02</span><br><span class="line">     Hostname localhost</span><br><span class="line">Host QA.server01</span><br><span class="line">     Hostname localhost</span><br></pre></td></tr></table></figure>
+
+<p>Now try out the power of Tab-autocompletion. this is just an example of a type of structure you could use. </p>
+<p>You could also add alias like</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Host LIVE.Servers.server02 server01.mydomain.com</span><br><span class="line">     Hostname localhost</span><br></pre></td></tr></table></figure>
+
+<p>So that both ssh attempts to <code>LIVE.Servers.server02</code> and <code>server01.mydomain.com</code> would use the same configuration.</p>
+<h2 id="Access-customizations"><a href="#Access-customizations" class="headerlink" title="Access customizations"></a>Access customizations</h2><p>No let’s say for accessing <code>LIVE.Servers.server01</code> you require account <code>admin</code> and ssh listens on port <code>2228</code> . one could setup the following</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Host LIVE.Servers.server01</span><br><span class="line">     Hostname localhost</span><br><span class="line">     Port 2228</span><br><span class="line">     User admin</span><br></pre></td></tr></table></figure>
+
+<p>With this configuration one could simple execute <code>ssh LIVE.Servers.server01</code> and it will use the configured user and port in the connection.</p>
+<p>Or if you have a specific ssh_key for it in <code>QA</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Host QA.server01</span><br><span class="line">     Hostname localhost</span><br><span class="line">     Port 2227</span><br><span class="line">     User qa_user01</span><br><span class="line">     IdentityFile ~/.ssh/id_rsa_qa</span><br></pre></td></tr></table></figure>
+
+<h2 id="Tunnels"><a href="#Tunnels" class="headerlink" title="Tunnels"></a>Tunnels</h2><p>one could also setup tunnels directly in ssh_config like</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Host tunnel</span><br><span class="line">    HostName database.example.com</span><br><span class="line">    IdentityFile ~/.ssh/id_rsa_dev</span><br><span class="line">    LocalForward 9906 127.0.0.1:3306</span><br><span class="line">    User dba    </span><br></pre></td></tr></table></figure>
+
+<p>You can simple execute <code>ssh -f -N tunnel</code></p>
+<p>Or if you have access to server3 only from server1</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Host DEV.FrontOffice.server3</span><br><span class="line">     Hostname 10.0.0.1</span><br><span class="line">     Port 22</span><br><span class="line">     User admin</span><br><span class="line">     IdentityFile ~/.ssh/id_rsa_dev</span><br><span class="line">     ProxyCommand ssh -q -W %h:%p DEV.FrontOffice.server1</span><br></pre></td></tr></table></figure>
+
+<p>One configuration i normally use in development with containers or virtual machines wich are deprovision with regularity is the following:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Host 192.168.77.* mesos-*</span><br><span class="line">   StrictHostKeyChecking no</span><br><span class="line">   User rramos</span><br><span class="line">   IdentityFile ~/.ssh/id_rsa</span><br><span class="line">   UserKnownHostsFile=/dev/null</span><br><span class="line">   LogLevel QUIET</span><br></pre></td></tr></table></figure>
+
+<p>This means any ssh connection to local network <code>192.168.77.*</code> or hosts with name <code>mesos-*</code> wont get registered in KnownHosts.</p>
+<p>You could also use this to change your settings for <code>TCPKeepAlive</code> or any other specific connections settings you may need the <a target="_blank" rel="noopener" href="https://linux.die.net/man/5/ssh_config">man</a> page as the full list of options.</p>
+<p>Cheers,<br>RR</p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://linux.die.net/man/5/ssh_config">https://linux.die.net/man/5/ssh_config</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2017-09-13T21:18:10.000Z"><a href="/2017/09/13/ChromeProxy/">2017-09-13</a></time>
       
       
@@ -380,59 +451,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-09-07T01:00:16.000Z"><a href="/2017/09/07/mkv/">2017-09-07</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/09/07/mkv/">Terminal Markdown Viewer and MarkDown SpellChecker</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>It’s been a while that i’ve updated this posts. So let me start for something i’ve found out the other day.</p>
-<h2 id="Terminal-Markdown-Viewer"><a href="#Terminal-Markdown-Viewer" class="headerlink" title="Terminal Markdown Viewer"></a>Terminal Markdown Viewer</h2><p>I though it would be cool to have some tool that could parse me Markdown files and present them nicely formatted, like <code>cat</code> command.</p>
-<p>And it seems i’m not the only one :)</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/axiros/terminal_markdown_viewer">https://github.com/axiros/terminal_markdown_viewer</a></p>
-<p>In order to install just follow the instruction on the site. Pip worked well for me:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pip install mdv</span><br></pre></td></tr></table></figure>
-
-<p>I’ve updated my PATH environment var on <code>.bashrc</code> with:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">export PYTHONPATH=&quot;$&#123;PYTHONPATH&#125;:/$&#123;HOME&#125;/.local/lib/python2.7/site-packages&quot;</span><br><span class="line">export PATH=&quot;$PATH:~/.local/bin&quot;</span><br></pre></td></tr></table></figure>
-
-<p>I can now execute <code>mdv</code> command try it out it some .md files :D</p>
-<h2 id="A-Markdown-spell-checking-tool"><a href="#A-Markdown-spell-checking-tool" class="headerlink" title="A Markdown spell checking tool."></a>A Markdown spell checking tool.</h2><p>The other thing is regarding spell-check, as you can probably notice i really do a lot of errors, but i don’t wont to use a high resource editor just because of this how about a MD spell checking tool ?</p>
-<p>Well i’m trying this one ad i’m using [hexo][<a href="http://hexo.io]">http://hexo.io]</a> for the page generation and it uses already npm modules just added a new one </p>
-<h3 id="install"><a href="#install" class="headerlink" title="install"></a>install</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm i markdown-spellcheck -g</span><br></pre></td></tr></table></figure>
-
-<p>One can run interactive like</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mdspell &quot;**/*.md&quot;</span><br></pre></td></tr></table></figure>
-
-<p>It’s a bit slow but the database would grow in terms, i’m giving a try to it.</p>
-<p>I also add to add <code>.spelling</code> no to keep the dictionary database on git. I probably would add it later.</p>
-<p>Cheers,<br>RR</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -479,7 +497,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Ansible/">Ansible</a><small>2</small></li>
   
-    <li><a href="/tags/Arch/">Arch</a><small>3</small></li>
+    <li><a href="/tags/Arch/">Arch</a><small>4</small></li>
   
     <li><a href="/tags/Architecture/">Architecture</a><small>1</small></li>
   
@@ -566,6 +584,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/Kafka/">Kafka</a><small>2</small></li>
   
     <li><a href="/tags/Keyboard/">Keyboard</a><small>1</small></li>
+  
+    <li><a href="/tags/Kobo/">Kobo</a><small>1</small></li>
   
     <li><a href="/tags/Kubernetes/">Kubernetes</a><small>1</small></li>
   
@@ -680,6 +700,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/docker-compose/">docker-compose</a><small>1</small></li>
   
     <li><a href="/tags/dr-elephant/">dr-elephant</a><small>1</small></li>
+  
+    <li><a href="/tags/ebooks/">ebooks</a><small>1</small></li>
   
     <li><a href="/tags/encryption/">encryption</a><small>1</small></li>
   
