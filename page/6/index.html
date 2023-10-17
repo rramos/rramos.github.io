@@ -77,6 +77,52 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
+        <time datetime="2021-02-21T11:07:15.000Z"><a href="/2021/02/21/Git-Untrack-previous-commited-files/">2021-02-21</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2021/02/21/Git-Untrack-previous-commited-files/">Git Untrack Previous Commited Files</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>This is something that sometimes bugs me, you keep hitting the .gitinore configuration file but still the file you try to ignore always get’s referenced on your changes.</p>
+<p>If that happens most probably you’ve reference it in the past to be track and you need to remove it, so this are the steps.</p>
+<h1 id="Update-your-gitignore-and-untrack-the-file"><a href="#Update-your-gitignore-and-untrack-the-file" class="headerlink" title="Update your .gitignore and untrack the file"></a>Update your .gitignore and untrack the file</h1><p>This example to untrack <code>db.json</code></p>
+<ol>
+<li><p>Change the entry in .gitignore ex: <code>*.json</code></p>
+</li>
+<li><p>Execute the following command to untrack</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git update-index --assume-unchanged db.json</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>Commit the changes</li>
+</ol>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2017-10-18T00:26:17.000Z"><a href="/2017/10/18/dockers/">2017-10-18</a></time>
       
       
@@ -441,85 +487,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-10-06T22:11:39.000Z"><a href="/2017/10/06/powershellonlinux/">2017-10-06</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/10/06/powershellonlinux/">PowerShell on Linux</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>This article will present the required steps to install <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/PowerShell">powershell</a> on Linux.</p>
-<h1 id="Objective"><a href="#Objective" class="headerlink" title="Objective"></a>Objective</h1><p>The objective is to operate from Linux <a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/cloud-platform/windows-azure-pack">Windows Azure Pack</a>.</p>
-<h1 id="Procedure"><a href="#Procedure" class="headerlink" title="Procedure"></a>Procedure</h1><ul>
-<li>Import the public repository GPG keys</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Register the Microsoft Ubuntu repository</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | sudo tee /etc/apt/sources.list.d/microsoft.list</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Update the list of products</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Install PowerShell</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get install -y powershell</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Start PowerShell</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">powershell</span><br></pre></td></tr></table></figure>
-
-<h1 id="Add-Azure-module"><a href="#Add-Azure-module" class="headerlink" title="Add Azure module"></a>Add Azure module</h1><p>Install Azure module in powershell running with <code>sudo</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Install-Module AzureRM</span><br><span class="line">Install-Module Azure</span><br></pre></td></tr></table></figure>
-
-<p>Check module location</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">(gmo -l Azure*).path</span><br></pre></td></tr></table></figure>
-
-
-<h1 id="Uninstall"><a href="#Uninstall" class="headerlink" title="Uninstall"></a>Uninstall</h1><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get remove powershell</span><br></pre></td></tr></table></figure>
-
-<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>After some hours i’ve given up making this thing work on Linux. The time it takes doesn’t payoff, and even if i could make it work, i would still need to make Vagrant work with it for some VM’s provisioning in a private cloud. It would take me less time to do it by hand :|</p>
-<p>From a standard testing perspective it’s nice to have this thing on Linux, because you could centralize the management, but at the moment of this article it doesn’t seem to payoff the time one would need to setup this. </p>
-<p>If you have lot’s of Windows machines or Azure infrastructure to manage just get a Windows PC, or wait for Microsoft to fix this, as there are lot’s of reports regarding this issue. But seriously i don’t see an effort from Microft to make this work properly, what’s the gain, rigth !?.</p>
-<p>Cheers,<br>RR</p>
-<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/PowerShell/PowerShell">https://github.com/PowerShell/PowerShell</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/bgelens/WAPTenantPublicAPI">https://github.com/bgelens/WAPTenantPublicAPI</a></li>
-<li><a target="_blank" rel="noopener" href="http://www.tech-coffee.net/windows-azure-pack-powershell-tenant-api/">http://www.tech-coffee.net/windows-azure-pack-powershell-tenant-api/</a></li>
-<li><a target="_blank" rel="noopener" href="https://blogs.msdn.microsoft.com/powershell/2016/08/18/powershell-on-linux-and-open-source-2/">https://blogs.msdn.microsoft.com/powershell/2016/08/18/powershell-on-linux-and-open-source-2/</a></li>
-<li><a target="_blank" rel="noopener" href="https://blogs.technet.microsoft.com/privatecloud/2013/12/10/windows-azure-pack-reconfigure-portal-names-ports-and-use-trusted-certificates/">https://blogs.technet.microsoft.com/privatecloud/2013/12/10/windows-azure-pack-reconfigure-portal-names-ports-and-use-trusted-certificates/</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -636,6 +603,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Hadoop/">Hadoop</a><small>4</small></li>
   
+    <li><a href="/tags/Hiring/">Hiring</a><small>1</small></li>
+  
     <li><a href="/tags/Hive/">Hive</a><small>3</small></li>
   
     <li><a href="/tags/IDE/">IDE</a><small>1</small></li>
@@ -660,7 +629,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Laws/">Laws</a><small>1</small></li>
   
-    <li><a href="/tags/Leadership/">Leadership</a><small>1</small></li>
+    <li><a href="/tags/Leadership/">Leadership</a><small>2</small></li>
   
     <li><a href="/tags/Linux/">Linux</a><small>9</small></li>
   

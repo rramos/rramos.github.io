@@ -77,6 +77,62 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
+        <time datetime="2023-07-25T22:19:25.901Z"><a href="/2023/07/25/softwareprincipals/">2023-07-25</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2023/07/25/softwareprincipals/">Software Engineering Principals</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>When developing software it is important not to forget some important principals</p>
+<ul>
+<li><p><strong>Modularity</strong>: Break complex software into smaller, more manageable pieces that can be developed, tested, and maintained independently.</p>
+</li>
+<li><p><strong>Abstraction</strong>: Hide the implementation details of a module or component behind an interface or API, so that users of that component only need to know how to interact with it, not how it works.</p>
+</li>
+<li><p><strong>Separation of Concerns</strong>: Organize software into separate layers, modules, or components, each with a specific responsibility or concern, to minimize dependencies and improve maintainability.</p>
+</li>
+<li><p><strong>Encapsulation</strong>: Limit the visibility of data and functions to only the parts of the software that need to interact with them, to prevent unintended interference and improve maintainability.</p>
+</li>
+<li><p><strong>Single Responsibility Principle</strong>: Ensure that each module or component has only one responsibility, so that changes to one aspect of the software do not affect unrelated parts.</p>
+</li>
+<li><p><strong>Open/Closed Principle</strong>: Design modules and components so that they are open for extension (i.e., new functionality can be added) but closed for modification (i.e., existing functionality does not need to be changed).</p>
+</li>
+<li><p><strong>Don’t Repeat Yourself (DRY)</strong>: Eliminate duplication of code or logic within a software system, to improve maintainability and reduce the risk of errors.</p>
+</li>
+<li><p><strong>Test-Driven Development</strong>: Write automated tests before writing code, to ensure that the code is correct and to improve maintainability.</p>
+</li>
+<li><p><strong>Continuous Integration and Continuous Deployment (CI/CD)</strong>: Automate the process of building, testing, and deploying software, to reduce the risk of errors and to improve efficiency.</p>
+</li>
+<li><p><strong>Code Reviews</strong>: Have other developers review code changes before they are merged into the main codebase, to catch errors and improve maintainability.</p>
+</li>
+</ul>
+<p>Think on ways to incorporate this principals not only on the design phase but also on your daily development activities.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2023-07-25T22:19:25.900Z"><a href="/2023/07/25/EfectiveDelegation/">2023-07-25</a></time>
       
       
@@ -525,86 +581,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2022-12-23T14:03:56.359Z"><a href="/2022/12/23/Software Engineering Laws/">2022-12-23</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2022/12/23/Software Engineering Laws/">Software Engineering Laws</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>Latest week a college shared the following <a target="_blank" rel="noopener" href="https://www.netmeister.org/blog/software-engineering-laws.html">article</a> at work that i found very interesting aggregating the info here in order not to forget.</p>
-<h2 id="Conway’s-Law"><a href="#Conway’s-Law" class="headerlink" title="Conway’s Law"></a>Conway’s Law</h2><p>Also known as: “You will ship your org chart.”</p>
-<blockquote>
-<p>“Any organization that designs a system will produce a design whose structure is a copy of the organization’s communication structure.”</p>
-</blockquote>
-<p>You may think you can avoid it via cross-functional standup meetings and stakeholder updates and decision matrices, but eventually and inevitably conflicting or diverging priorities will lead to equally conflicting or divergent processes and outcomes.</p>
-<h2 id="Brooks’s-Law"><a href="#Brooks’s-Law" class="headerlink" title="Brooks’s Law"></a>Brooks’s Law</h2><p>From The <strong>Mythical Man-Month</strong> Book:</p>
-<blockquote>
-<p>“Adding manpower to a late software project makes it later.”</p>
-</blockquote>
-<p>When you realize you’re not making the progress you thought you would and your management tries to reallocate resources from another part of the org, you’ll end up not only delaying the project, but you’ll likely ship a more brittle, more complex product</p>
-<h2 id="Zawinski’s-Law"><a href="#Zawinski’s-Law" class="headerlink" title="Zawinski’s Law"></a>Zawinski’s Law</h2><blockquote>
-<p>“Every program attempts to expand until it includes a web server. Those programs which cannot so expand are replaced by ones which can.”</p>
-</blockquote>
-<p>For web services, it’s “…until it requires a user account and collects all users’ data”; for physical devices, it’s “…until it includes an insecure wifi access point with a default password you can’t change. And a web server”.</p>
-<h2 id="Parkinson’s-Law"><a href="#Parkinson’s-Law" class="headerlink" title="Parkinson’s Law"></a>Parkinson’s Law</h2><blockquote>
-<p>“Work expands so as to fill the time available for its completion.”</p>
-</blockquote>
-<p>The primary project management lessons here is that if you don’t set a deadline, then the project will never be completed. This is why iterating on a minimum viable product within fixed timelines is important.</p>
-<p>And, of course, we can and should adjust this law for data, processing power, RAM, …:</p>
-<blockquote>
-<p>“Data/CPU/memory usage expands to use up all available storage space/bandwidth/cycles/RAM.”</p>
-</blockquote>
-<h2 id="Pareto’s-Fallacy"><a href="#Pareto’s-Fallacy" class="headerlink" title="Pareto’s Fallacy"></a>Pareto’s Fallacy</h2><p>The <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Pareto_principle">Pareto Principle</a> is easy to misinterpret, especially by management. This often leads to Pareto’s Fallacy:</p>
-<blockquote>
-<p>“When you’re 80% done, you think you only have 20% left.”</p>
-</blockquote>
-<p>The critical part that’s overlooked here is that those 20% will require 80% of your time.</p>
-<h2 id="Sturgeon’s-Revelation"><a href="#Sturgeon’s-Revelation" class="headerlink" title="Sturgeon’s Revelation"></a>Sturgeon’s Revelation</h2><blockquote>
-<p>“90% of everything is crud.”</p>
-</blockquote>
-<p>Yes, that includes your products.</p>
-<h2 id="The-Peter-Principle"><a href="#The-Peter-Principle" class="headerlink" title="The Peter Principle"></a>The Peter Principle</h2><blockquote>
-<p>“In a hierarchy, every employee tends to rise to their level of incompetence. Thus, in time, every post tends to be occupied by an employee who is incompetent to carry out its duties.”</p>
-</blockquote>
-<p>Dunning and Kruger send their regards…(<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Peter_Principle">ref</a>)</p>
-<h2 id="Eagleson’s-Law"><a href="#Eagleson’s-Law" class="headerlink" title="Eagleson’s Law"></a>Eagleson’s Law</h2><blockquote>
-<p>“Any code of your own that you haven’t looked at for six or more months might as well have been written by someone else.”</p>
-</blockquote>
-<p>6 months is rather optimistic.</p>
-<h2 id="Greenspun’s-10th-Rule-of-Programming"><a href="#Greenspun’s-10th-Rule-of-Programming" class="headerlink" title="Greenspun’s 10th Rule of Programming"></a>Greenspun’s 10th Rule of Programming</h2><p>This can be generalized to the Universal NIH-Rule: “any custom developed system contains an ad hoc, informally-specified, bug-ridden, slow implementation of half of the industry standard you refused to adopt”.</p>
-<h2 id="The-Iceberg-Fallacy"><a href="#The-Iceberg-Fallacy" class="headerlink" title="The Iceberg Fallacy"></a>The Iceberg Fallacy</h2><blockquote>
-<p>“The cost of development of a new software product is the only ~25% of the total cost of ownership management sees and budgets for.”</p>
-</blockquote>
-<h2 id="The-LGTM-Dilemma"><a href="#The-LGTM-Dilemma" class="headerlink" title="The LGTM Dilemma"></a>The LGTM Dilemma</h2><blockquote>
-<p>“If you want to quickly ship a 10 line code change, hide it in a 1500 line pull request.”</p>
-</blockquote>
-<p>Also known as The Bikeshedders’ Blind Spot.</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -721,6 +697,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Hadoop/">Hadoop</a><small>4</small></li>
   
+    <li><a href="/tags/Hiring/">Hiring</a><small>1</small></li>
+  
     <li><a href="/tags/Hive/">Hive</a><small>3</small></li>
   
     <li><a href="/tags/IDE/">IDE</a><small>1</small></li>
@@ -745,7 +723,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Laws/">Laws</a><small>1</small></li>
   
-    <li><a href="/tags/Leadership/">Leadership</a><small>1</small></li>
+    <li><a href="/tags/Leadership/">Leadership</a><small>2</small></li>
   
     <li><a href="/tags/Linux/">Linux</a><small>9</small></li>
   
