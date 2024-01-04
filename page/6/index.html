@@ -77,170 +77,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2021-02-21T11:07:15.000Z"><a href="/2021/02/21/Git-Untrack-previous-commited-files/">2021-02-21</a></time>
+        <time datetime="2022-12-23T14:03:56.353Z"><a href="/2022/12/23/KeyboardLayout/">2022-12-23</a></time>
       
       
   
-    <h1 class="title"><a href="/2021/02/21/Git-Untrack-previous-commited-files/">Git Untrack Previous Commited Files</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>This is something that sometimes bugs me, you keep hitting the .gitinore configuration file but still the file you try to ignore always get’s referenced on your changes.</p>
-<p>If that happens most probably you’ve reference it in the past to be track and you need to remove it, so this are the steps.</p>
-<h1 id="Update-your-gitignore-and-untrack-the-file"><a href="#Update-your-gitignore-and-untrack-the-file" class="headerlink" title="Update your .gitignore and untrack the file"></a>Update your .gitignore and untrack the file</h1><p>This example to untrack <code>db.json</code></p>
-<ol>
-<li><p>Change the entry in .gitignore ex: <code>*.json</code></p>
-</li>
-<li><p>Execute the following command to untrack</p>
-</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git update-index --assume-unchanged db.json</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>Commit the changes</li>
-</ol>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-10-18T00:26:17.000Z"><a href="/2017/10/18/dockers/">2017-10-18</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/10/18/dockers/">Dockers</a></h1>
+    <h1 class="title"><a href="/2022/12/23/KeyboardLayout/">Keyboard Layout</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <p>This article is just to share a list of usefull dockers, in case one wants to speed test some feature and required some of this software to be up and running.</p>
-<h1 id="Why"><a href="#Why" class="headerlink" title="Why ?"></a>Why ?</h1><p>The main ideia is that i can fireup quickly without having to worry on the ports that are allready mapped on my local machine, so the several dockers should have colision ports taken care of.</p>
-<p>One should just need to execute <code>docker-compose up</code> and that’s it.</p>
-<p>You could also use other repo, but i’ll try to make my local configurations in a way that i could interuse several dockers.</p>
-<h1 id="Dockers-repo"><a href="#Dockers-repo" class="headerlink" title="Dockers repo"></a>Dockers repo</h1><p>You just need to clone the repo <a target="_blank" rel="noopener" href="https://github.com/rramos/dockers">https://github.com/rramos/dockers</a></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/rramos/dockers.git</span><br></pre></td></tr></table></figure>
-
-
-<h1 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h1><p>Make sure you have docker and docker compose properly configured</p>
-<h1 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h1><p>Just fire-up <code>docker-compose</code> and that’s it </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd docker-portainer</span><br><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
-
-<p>Each docker has it’s own README file with more instructions.</p>
-<h1 id="Docker-List"><a href="#Docker-List" class="headerlink" title="Docker List"></a>Docker List</h1><ul>
-<li>docker-grafana  </li>
-<li>docker-hdp      </li>
-<li>docker-ksql    </li>
-<li>docker-nifi         </li>
-<li>docker-portainer  </li>
-<li>docker-zeppelin  </li>
-<li>docker-hbase    </li>
-<li>docker-jenkins  </li>
-<li>docker-moodle  </li>
-<li>docker-openproject  </li>
-<li>docker-rundeck </li>
-</ul>
-<p>This is the available list at the moment of this article, i will add up more as i’m using and testing new stuff.</p>
-<p><strong>NOTE:</strong> Use this containers at your own risk </p>
-<p>Cheers,<br>RR</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-10-13T01:09:12.000Z"><a href="/2017/10/13/drelephat/">2017-10-13</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/10/13/drelephat/">Dr. Elephant Overview</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>This article would be about <a target="_blank" rel="noopener" href="https://github.com/linkedin/dr-elephant">dr-elephant</a> A Performance and Monitoring tool for Hadoop and Spark.</p>
-<blockquote><p>Dr. Elephant is a performance monitoring and tuning tool for Hadoop and Spark. It automatically gathers all the metrics, runs analysis on them, and presents them in a simple way for easy consumption. Its goal is to improve developer productivity and increase cluster efficiency by making it easier to tune the jobs. It analyzes the Hadoop and Spark jobs using a set of pluggable, configurable, rule-based heuristics that provide insights on how a job performed, and then uses the results to make suggestions about how to tune the job to make it perform more efficiently.</p>
-<footer><strong>Offical Website Definition</strong></footer></blockquote>
-
-<h1 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h1><ul>
-<li><p>Install mysql-server and create a BD for dr-elephant</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get install mysql-server </span><br></pre></td></tr></table></figure></li>
-<li><p>MySQl preparation</p>
-</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mysql&gt; create database drelephant;</span><br><span class="line">Query OK, 1 row affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; grant all on drelephant.* to drelephant@localhost identified by &#x27;drelephant&#x27;;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; flush privileges;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>Install zip command</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get install zip</span><br></pre></td></tr></table></figure></li>
-<li><p>Install sbt</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb https://dl.bintray.com/sbt/debian /&quot;</span> | sudo tee -a /etc/apt/sources.list.d/sbt.list</span><br><span class="line">sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2EE0EA64E40A89B84B2DF73499E82A75642AC823</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install sbt</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h1 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h1><ul>
-<li>Clone the repo</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git https://github.com/linkedin/dr-elephant.git</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Compile</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sbt package</span><br><span class="line">sbt dist</span><br><span class="line">cp ./target/universal/dr-elephant-2.0.3-SNAPSHOT.zip .</span><br><span class="line">./compile.sh</span><br><span class="line"><span class="built_in">cd</span> dist</span><br><span class="line">unzip dr-elephant-2.0.3-SNAPSHOT.zip</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Starting the service</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> ELEPHANT_CONF_DIR=../../app-conf</span><br><span class="line">./bin/start.sh </span><br></pre></td></tr></table></figure>
-
-<p>One can now access the web interface at: <a target="_blank" rel="noopener" href="http://localhost:8080/">http://localhost:8080</a></p>
-<img src="/2017/10/13/drelephat/DrElephant-2-dashboard.jpg" class="" title="[Dashboard]">
-
-<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>This tool seems very powerfull. At the moment i haven’t tested changing the recommendations it provided, but will try them soon. Spark 2.x applications don’t seem to be working at the momment</p>
-<h1 id="Extended-tests"><a href="#Extended-tests" class="headerlink" title="Extended tests"></a>Extended tests</h1><ul>
-<li>Test Oozie Scheduler integration</li>
-<li>Test Airflow integration</li>
-<li>Define a deployment strategy</li>
-<li>Test recommended changes</li>
-</ul>
+        <p>Reminder article for as I’m constantly forgetting the keyboard layout in my Linux distribution.<br>This started mostly after I have decided to use a 65% keyboard which misses a lot of keys from a traditional 100%. </p>
+<p>Still it has other advantages less space used and linear switches which allow faster input. Being a US tradicional Layout there are some portuguese characters missing and having a 65% keyboard doesn’t help either. Nevertheless after some weeks of adjustment improvements are noticed.</p>
+<p>The best layout to choose in Linux would be <code>English (intl, with AltGr dead keys)</code> for this setup.</p>
+<p>I still think that the english layout is the best option to follow. In regards to size a 85% seems a better options specially if you need to deal with spreadsheets.</p>
 <h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/linkedin/dr-elephant">https://github.com/linkedin/dr-elephant</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/linkedin/dr-elephant/commit/7d9e34ecdbe36a652ca4ad2db852df08da57050a">https://github.com/linkedin/dr-elephant/commit/7d9e34ecdbe36a652ca4ad2db852df08da57050a</a></li>
-<li><a target="_blank" rel="noopener" href="https://engineering.linkedin.com/blog/2016/04/dr-elephant-open-source-self-serve-performance-tuning-hadoop-spark">https://engineering.linkedin.com/blog/2016/04/dr-elephant-open-source-self-serve-performance-tuning-hadoop-spark</a></li>
+<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Dead_key">https://en.wikipedia.org/wiki/Dead_key</a></li>
 </ul>
 
       
@@ -264,48 +116,160 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2017-10-09T21:17:35.000Z"><a href="/2017/10/09/ansible-cmdb/">2017-10-09</a></time>
+        <time datetime="2022-12-23T14:03:56.353Z"><a href="/2022/12/23/NamingVariables/">2022-12-23</a></time>
       
       
   
-    <h1 class="title"><a href="/2017/10/09/ansible-cmdb/">Ansible-Cmdb</a></h1>
+    <h1 class="title"><a href="/2022/12/23/NamingVariables/">Guideline on Naming Variables</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <p>This article is about <a target="_blank" rel="noopener" href="https://github.com/fboender/ansible-cmdb">ansible-cmdb</a> a very nice solution for gathering your ansible facts into a visual format.</p>
-<blockquote><p>Ansible-cmdb takes the output of Ansible’s fact gathering and converts it into a static HTML overview page (and other things) containing system configuration information.</p>
-<p>It supports multiple types of output (html, csv, sql, etc) and extending information gathered by Ansible with custom data. For each host it also shows the groups, host variables, custom variables and machine-local facts.</p>
-<footer><strong>Offical Website Definition</strong></footer></blockquote>
+        <blockquote>
+<p>“There are only two hard things in computer science: cache invalidation and naming things.” — Phil Karlson</p>
+</blockquote>
+<h2 id="Follow-S-I-D"><a href="#Follow-S-I-D" class="headerlink" title="Follow S-I-D"></a>Follow S-I-D</h2><p>A name must be Short, Intuitive and Descriptive.</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* Bad */</span></span><br><span class="line"><span class="keyword">const</span> a = <span class="number">5</span> <span class="comment">// &quot;a&quot; could mean anything</span></span><br><span class="line"><span class="keyword">const</span> isPaginatable = (postsCount &gt; <span class="number">10</span>) <span class="comment">// &quot;Paginatable&quot; sounds extremely unnatural</span></span><br><span class="line"><span class="keyword">const</span> shouldPaginatize = (postsCount &gt; <span class="number">10</span>) <span class="comment">// Made up verbs are so much fun!</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="Supported-output-formats-templates"><a href="#Supported-output-formats-templates" class="headerlink" title="Supported output formats / templates:"></a>Supported output formats / templates:</h1><ul>
-<li>Fancy HTML (–template html_fancy), as seen in the screenshots above.</li>
-<li>Fancy HTML Split (–template html_fancy_split), with each host’s details in a separate file (for large number of hosts).</li>
-<li>CSV (–template csv), the trustworthy and flexible comma-separated format.</li>
-<li>JSON (–template json), a dump of all facts in JSON format.</li>
-<li>Markdown (–template markdown), useful for copy-pasting into Wiki’s and such.</li>
-<li>Markdown Split (‘–template markdown_split’), with each host’s details in a seperate file (for large number of hosts).</li>
-<li>SQL (–template sql), for importing host facts into a (My)SQL database.<br>Plain Text table (–template txt_table), for the console gurus.<br>and of course, any custom template you’re willing to make.</li>
+<p><strong>Suggested:</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* Good */</span></span><br><span class="line"><span class="keyword">const</span> postsCount = <span class="number">5</span></span><br><span class="line"><span class="keyword">const</span> hasPagination = (postsCount &gt; <span class="number">10</span>)</span><br><span class="line"><span class="keyword">const</span> shouldDisplayPagination = (postsCount &gt; <span class="number">10</span>) <span class="comment">// alternatively</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Avoid-Contraction"><a href="#Avoid-Contraction" class="headerlink" title="Avoid Contraction"></a>Avoid Contraction</h2><p>Do not use contractions. They contribute to nothing but decreased readability of the code. Finding a short, descriptive name may be hard, but contraction is not an excuse for not doing so. For instance</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* Bad */</span></span><br><span class="line"><span class="keyword">const</span> onItmClk = <span class="function">() =&gt;</span> &#123;&#125;</span><br><span class="line"><span class="comment">/* Good */</span></span><br><span class="line"><span class="keyword">const</span> onItemClick = <span class="function">() =&gt;</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Avoid-Context-Duplication"><a href="#Avoid-Context-Duplication" class="headerlink" title="Avoid Context Duplication"></a>Avoid Context Duplication</h2><p>Always remove the context from a name if that doesn’t decrease its readability.</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MenuItem</span> </span>&#123;</span><br><span class="line">  <span class="comment">/* Method name duplicates the context (which is &quot;MenuItem&quot;) */</span></span><br><span class="line">  handleMenuItemClick = <span class="function">(<span class="params">event</span>) =&gt;</span> &#123; ... &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">/* Reads nicely as `MenuItem.handleClick()` */</span></span><br><span class="line">  handleClick = <span class="function">(<span class="params">event</span>) =&gt;</span> &#123; ... &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Should-Reflect-expected-result"><a href="#Should-Reflect-expected-result" class="headerlink" title="Should Reflect expected result"></a>Should Reflect expected result</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* Bad */</span></span><br><span class="line"><span class="keyword">const</span> isEnabled = (itemsCount &gt; <span class="number">3</span>)</span><br><span class="line"><span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">Button</span> <span class="attr">disabled</span>=<span class="string">&#123;!isEnabled&#125;</span> /&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Good */</span></span><br><span class="line"><span class="keyword">const</span> isDisabled = (itemsCount &lt;= <span class="number">3</span>)</span><br><span class="line"><span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">Button</span> <span class="attr">disabled</span>=<span class="string">&#123;isDisabled&#125;</span> /&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Consider-Singular-Plurals"><a href="#Consider-Singular-Plurals" class="headerlink" title="Consider Singular/Plurals"></a>Consider Singular/Plurals</h2><p>Like a prefix, variable names can be made singular or plural depending on whether they hold a single value or multiple values.</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* Bad */</span></span><br><span class="line"><span class="keyword">const</span> friends = <span class="string">&#x27;Bob&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> friend = [<span class="string">&#x27;Bob&#x27;</span>, <span class="string">&#x27;Tony&#x27;</span>, <span class="string">&#x27;Tanya&#x27;</span>];</span><br><span class="line"><span class="comment">/* Good */</span></span><br><span class="line"><span class="keyword">const</span> friend = <span class="string">&#x27;Bob&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> friends = [<span class="string">&#x27;Bob&#x27;</span>, <span class="string">&#x27;Tony&#x27;</span>, <span class="string">&#x27;Tanya&#x27;</span>];</span><br></pre></td></tr></table></figure>
+
+<h2 id="Use-meaningful-and-pronounceable-variable-names"><a href="#Use-meaningful-and-pronounceable-variable-names" class="headerlink" title="Use meaningful and pronounceable variable names"></a>Use meaningful and pronounceable variable names</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> yyyymmdstr = moment().format(<span class="string">&quot;YYYY/MM/DD&quot;</span>);  <span class="comment">// simply awful</span></span><br><span class="line"><span class="comment">// Instead</span></span><br><span class="line"><span class="keyword">const</span> currentDate = moment().format(<span class="string">&quot;YYYY/MM/DD&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>The <a target="_blank" rel="noopener" href="https://betterprogramming.pub/a-useful-framework-for-naming-your-classes-functions-and-variables-e7d186e3189f">original article</a> is more complete and has other suggestion regarding naming good practices would suggest you check it.</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://betterprogramming.pub/a-useful-framework-for-naming-your-classes-functions-and-variables-e7d186e3189f">https://betterprogramming.pub/a-useful-framework-for-naming-your-classes-functions-and-variables-e7d186e3189f</a></li>
 </ul>
-<h1 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h1><p>And it’s so simple to setup :D</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo pip install ansible-cmdb</span><br></pre></td></tr></table></figure>
 
-<p><strong>Note:</strong> You could also use your distribution prefeered method. check the offical site.</p>
-<h1 id="Creating-Reports"><a href="#Creating-Reports" class="headerlink" title="Creating Reports"></a>Creating Reports</h1><p>Simple console generation</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ansible-cmdb -t txt_table --columns name,os,ip,mem,cpus out</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
 
-<p>The HTML Fancy one</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ansible-cmdb --template txt_table out  --template html_fancy</span><br></pre></td></tr></table></figure>
-
-<p>Official Screenshoot</p>
-<img src="/2017/10/09/ansible-cmdb/screenshot-overview.png" class="">
 
 
-<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>I found this software quite simple and very usefull. I found that <code>--template txt_table</code> is quite handy to use on Documentation for small enviroments. For bigger projects the CSV could be a better choice. Also the fancy HTML templates are very usefull on playbook development phases where you can confirm your facts very easily. Ansible-cmdb started as a short Python script, but many people made contributions so far.</p>
-<p>Cheers,<br>RR</p>
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2022-12-23T14:03:56.353Z"><a href="/2022/12/23/OpenAPIArch/">2022-12-23</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2022/12/23/OpenAPIArch/">OpenAPI Develeopment in Arch Linux</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>It as been a while since i’ve engaged with C#. In this article I’ll describe a step-by-step on how to setup your Arch Linux to implement a .netcore application implementation of OpenAPI.</p>
+<h1 id="Instalation"><a href="#Instalation" class="headerlink" title="Instalation"></a>Instalation</h1><p>Let’s start by making sure we have the SDK and runtime packages available on the system.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo pacman -S dotnet-runtime dotnet-sdk</span><br></pre></td></tr></table></figure>
+
+<p>We can validate the existing enviroments with the command</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dotnet --list-sdks</span><br></pre></td></tr></table></figure>
+
+<p>At the time of this writing</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">6.0.100 [/usr/share/dotnet/sdk]</span><br></pre></td></tr></table></figure>
+
+<p>Microsoft recommends using Visual Studio Code i will skip that part but here is the <a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Visual_Studio_Code">url</a> in case of need.</p>
+<h1 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h1><p>Now let’s do a quick 5m Hello world just to make sure everything is working properly.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dotnet new console -o MyApp</span><br></pre></td></tr></table></figure>
+<p>One should have a similar output</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">The template <span class="string">&quot;Console App&quot;</span> was created successfully.</span><br><span class="line"></span><br><span class="line">Processing post-creation actions...</span><br><span class="line">Running <span class="string">&#x27;dotnet restore&#x27;</span> on /home/rramos/Development/hello/MyApp/MyApp.csproj...</span><br><span class="line">  Determining projects to restore...</span><br><span class="line">  Restored /home/rramos/Development/hello/MyApp/MyApp.csproj (<span class="keyword">in</span> 2.82 sec).</span><br><span class="line">Restore succeeded.</span><br></pre></td></tr></table></figure>
+
+<p>Now let’s run this amazing helloworld</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> MyApp</span><br><span class="line">dotnet run</span><br></pre></td></tr></table></figure>
+
+<p>One should get the desirable outcome</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Hello, World!</span><br></pre></td></tr></table></figure>
+
+<p>Congratulations, you’ve built and run your .NET app. Let’s clean the space now</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ..</span><br><span class="line">rm  -rf MyApp</span><br></pre></td></tr></table></figure>
+
+<h1 id="OpenAPI"><a href="#OpenAPI" class="headerlink" title="OpenAPI"></a>OpenAPI</h1><p>Now let’s create our webAPI</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dotnet new webapi -o WebApi1</span><br></pre></td></tr></table></figure>
+
+<p>Next lets add the Swashbuckle.AspNetCore package</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dotnet add package Swashbuckle.AspNetCore</span><br></pre></td></tr></table></figure>
+
+<p>At this stage if you try to build it works  but fails on the execution with the following error:</p>
+<p>That is because Arch linux ships ASPNet in a different package. To Solve one should install the extra package using pacman.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo pacman -Sy aspnet-runtime</span><br></pre></td></tr></table></figure>
+
+<p>After the installation if we check the exiting runtimes</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dotnet --list-runtimes</span><br></pre></td></tr></table></figure>
+
+<p>One should have the following</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Microsoft.AspNetCore.App 6.0.0 [/usr/share/dotnet/shared/Microsoft.AspNetCore.App]</span><br><span class="line">Microsoft.NETCore.App 6.0.0 [/usr/share/dotnet/shared/Microsoft.NETCore.App]</span><br></pre></td></tr></table></figure>
+
+<p>Lets try to run it now</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dotnet run</span><br></pre></td></tr></table></figure>
+<p>You should have a similar output</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Building...</span><br><span class="line">info: Microsoft.Hosting.Lifetime[14]</span><br><span class="line">      Now listening on: https://localhost:7177</span><br><span class="line">info: Microsoft.Hosting.Lifetime[14]</span><br><span class="line">      Now listening on: http://localhost:5169</span><br><span class="line">info: Microsoft.Hosting.Lifetime[0]</span><br><span class="line">      Application started. Press Ctrl+C to shut down.</span><br><span class="line">info: Microsoft.Hosting.Lifetime[0]</span><br><span class="line">      Hosting environment: Development</span><br><span class="line">info: Microsoft.Hosting.Lifetime[0]</span><br><span class="line">      Content root path: /home/rramos/Development/WebApi1/</span><br></pre></td></tr></table></figure>
+
+<p>Now that looks promissing let’s test the the endpoint by using the browser on</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://localhost:7177/swagger/index.html</span><br></pre></td></tr></table></figure>
+
+<p>One should see a WeatherForecast service which is the baseline service when created the project.</p>
+<p>Leave this runnig for now and open a new terminal to create a client.</p>
+<h1 id="Client"><a href="#Client" class="headerlink" title="Client"></a>Client</h1><p>Now that we have our service running let’c create a client by retrieving the OpenAPI description.</p>
+<p>For that we will be using the <code>NSwag.ApiDescription.Client</code> package.</p>
+<p>Let’s start by creating a new client project and retrieving the OpenAPI description file from swagger.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ..</span><br><span class="line">dotnet new console -o console</span><br><span class="line"><span class="built_in">cd</span> console</span><br><span class="line">mkdir openapi</span><br><span class="line">wget --no-check-certificate https://localhost:7177/swagger/v1/swagger.json -O openapi/weather.json</span><br></pre></td></tr></table></figure>
+
+<p>Now lets add the required package</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dotnet add package NSwag.ApiDescription.Client --version 13.15.5</span><br></pre></td></tr></table></figure>
+
+<p>If one checks the <code>console.csproj</code> file we can see the package was added. Although i have added a specific version is not relevant.</p>
+<p>We are also going to need the following package</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dotnet add package Newtonsoft.Json</span><br></pre></td></tr></table></figure>
+
+<p>Add the following block on the <code>console.csproj</code> file</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ItemGroup</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">OpenApiReference</span> <span class="attr">Include</span>=<span class="string">&quot;openapi/weather.json&quot;</span> <span class="attr">Namespace</span>=<span class="string">&quot;WeatherService&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ClassName</span>&gt;</span>WeatherClient<span class="tag">&lt;/<span class="name">ClassName</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">OutputPath</span>&gt;</span>WeatherClient.cs<span class="tag">&lt;/<span class="name">OutputPath</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">OpenApiReference</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ItemGroup</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Now execute the build command to generate the WeatherService classes</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dotnet build</span><br></pre></td></tr></table></figure>
+
+<p>You should have a similar output</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Microsoft (R) Build Engine version 17.0.0+c9eb9dd64 <span class="keyword">for</span> .NET</span><br><span class="line">Copyright (C) Microsoft Corporation. All rights reserved.</span><br><span class="line"></span><br><span class="line">  Determining projects to restore...</span><br><span class="line">  All projects are up-to-date <span class="keyword">for</span> restore.</span><br><span class="line"></span><br><span class="line">  GenerateNSwagCSharp:</span><br><span class="line">    dotnet --roll-forward-on-no-candidate-fx 2 <span class="string">&quot;/home/rramos/.nuget/packages/nswag.msbuild/13.14.5/build/../tools/Net60//dotnet-nswag.dll&quot;</span> openapi2csclient /className:WeatherClient /namespace:WeatherService /input:<span class="string">&quot;/home/rramos/Development/console/openapi/weather.json&quot;</span> /output:<span class="string">&quot;obj/WeatherClient.cs&quot;</span></span><br><span class="line">  NSwag <span class="built_in">command</span> line tool <span class="keyword">for</span> .NET Core Net60, toolchain v13.14.5.0 (NJsonSchema v10.5.2.0 (Newtonsoft.Json v13.0.0.0))</span><br><span class="line">  Visit http://NSwag.org <span class="keyword">for</span> more information.</span><br><span class="line">  NSwag bin directory: /home/rramos/.nuget/packages/nswag.msbuild/13.14.5/tools/Net60</span><br><span class="line">  Code has been successfully written to file.</span><br><span class="line"></span><br><span class="line">  Duration: 00:00:00.6921924</span><br><span class="line">  console -&gt; /home/rramos/Development/console/bin/Debug/net6.0/console.dll</span><br><span class="line"></span><br><span class="line">Build succeeded.</span><br><span class="line">    0 Warning(s)</span><br><span class="line">    0 Error(s)</span><br><span class="line"></span><br><span class="line">Time Elapsed 00:00:04.17</span><br></pre></td></tr></table></figure>
+
+<p>And a brand new WeatherClient Class is now available to use on your main Program so let’s use the following on <code>Program.cs</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// Configure HttpClientHandler to ignore certificate validation errors.</span><br><span class="line">using var httpClientHandler = new HttpClientHandler();</span><br><span class="line">httpClientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) =&gt; &#123; return true; &#125;;</span><br><span class="line"></span><br><span class="line">// Create WeatherClient.</span><br><span class="line">using var httpClient = new HttpClient(httpClientHandler);</span><br><span class="line">var weatherClient = new WeatherService.WeatherClient(&quot;https://localhost:7177&quot;, httpClient);</span><br><span class="line"></span><br><span class="line">// Call WeatherForecast API.</span><br><span class="line">var forecast = await weatherClient.GetWeatherForecastAsync();</span><br><span class="line">foreach (var item in forecast)</span><br><span class="line">&#123;</span><br><span class="line">  Console.WriteLine($&quot;&#123;item.Date&#125; - &#123;item.Summary&#125;&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>If one runs the client now with <code>dotnet run</code> the following output is expected.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">12/20/2021 10:34:23 PM +00:00 - Freezing</span><br><span class="line">12/21/2021 10:34:23 PM +00:00 - Cool</span><br><span class="line">12/22/2021 10:34:23 PM +00:00 - Hot</span><br><span class="line">12/23/2021 10:34:23 PM +00:00 - Scorching</span><br><span class="line">12/24/2021 10:34:23 PM +00:00 - Scorching</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>Hurray our client receives the API data and both client and server seems to be working</p>
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>In this article is described the setup in Rach to have dotnet frameworks and setup of a simples OpenAPI service and client console taking advanatge of the OpenAPI specification to generate the class to interact with the service in a Async way.<br>The good thing is that is relatively quick to setup a consumer using this methodology. The bad part is that by incorporating this abstraction the developer may lack the knowledge to understand what is happening under the hood so is important to support the communities that supply this packages not only for a contribution effort but also to deepdive on the internals.<br>A good extend for this article would be to setup a docker enviroment to run the service and setup a CI/CD process for it. Also to extend the service or create something more appealing.</p>
 <h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/fboender/ansible-cmdb">https://github.com/fboender/ansible-cmdb</a></li>
+<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/.NET">https://wiki.archlinux.org/title/.NET</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/aspnet/core/tutorials/web-api-help-pages-using-swagger">https://docs.microsoft.com/en-us/aspnet/core/tutorials/web-api-help-pages-using-swagger</a></li>
+<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Visual_Studio_Code">https://wiki.archlinux.org/title/Visual_Studio_Code</a></li>
+<li><a target="_blank" rel="noopener" href="https://dotnet.microsoft.com/en-us/learn/dotnet/hello-world-tutorial/create">https://dotnet.microsoft.com/en-us/learn/dotnet/hello-world-tutorial/create</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/domaindrivendev/Swashbuckle.AspNetCore">https://github.com/domaindrivendev/Swashbuckle.AspNetCore</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/RicoSuter/NSwag">https://github.com/RicoSuter/NSwag</a></li>
 </ul>
 
       
@@ -329,148 +293,121 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2017-10-09T19:54:12.000Z"><a href="/2017/10/09/rddstransformations/">2017-10-09</a></time>
+        <time datetime="2022-12-23T14:03:56.352Z"><a href="/2022/12/23/API Lifecycles/">2022-12-23</a></time>
       
       
   
-    <h1 class="title"><a href="/2017/10/09/rddstransformations/">RDD Basic Transformations Operations</a></h1>
+    <h1 class="title"><a href="/2022/12/23/API Lifecycles/">API Lifecycles</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <p>Just a simple Basic CheatSheet on Spark RDD’s</p>
+        <p>A very interesting talk regarding API Lifecycle where Thomas Betts talks with Kin Lane about managing your API lifecycle using standards and specifications, including OpenAPI, AsyncAPI, and JSON Schema. These specifications and the tooling based on them can help reduce communication problems, by creating documentation, generating code, and automating testing.</p>
 <ul>
-<li>Basic Transformations on a RDD containing: <strong>{1,2,3,3}</strong></li>
+<li><a target="_blank" rel="noopener" href="https://www.infoq.com/podcasts/api-lifecycles-specifications-standards">InfoQ Article</a></li>
 </ul>
-<table>
-<thead>
-<tr>
-<th>Function Name</th>
-<th>Example</th>
-<th>Result</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>map()</td>
-<td>rdd.map(x =&gt; x +1)</td>
-<td>{2,3,4,4}</td>
-</tr>
-<tr>
-<td>flatmap()</td>
-<td>rdd.flatMap(x =&gt; x.to(3))</td>
-<td>{1,2,3,2,3,3,3}</td>
-</tr>
-<tr>
-<td>filter()</td>
-<td>rdd.filter(x =&gt; x != 1 )</td>
-<td>{2,3,3}</td>
-</tr>
-<tr>
-<td>distinct()</td>
-<td>rdd.distinct()</td>
-<td>{1,2,3}</td>
-</tr>
-<tr>
-<td>sample()</td>
-<td>rdd.sample(false,0.5)</td>
-<td>Nondeterministic</td>
-</tr>
-</tbody></table>
+<h1 id="Communication-Problems"><a href="#Communication-Problems" class="headerlink" title="Communication Problems"></a>Communication Problems</h1><blockquote>
+<p>Almost every problem in software comes down to a communication problem, whether that’s the ability to send, receive and understand a message. It can break down whether it’s client to server, or product manager to developer trying to understand requirements. Anytime you have two things trying to  communicate, explaining the contract is really important.</p>
+</blockquote>
+<blockquote>
+<p> breaking changes aren’t bad or good. They are only bad or good if the communication is lacking or the communication is there.</p>
+</blockquote>
+<h1 id="Versioning-API"><a href="#Versioning-API" class="headerlink" title="Versioning API"></a>Versioning API</h1><blockquote>
+<p>he most common way for folks to handle change management using versioning like this is with semantic versioning, where you have a 1.0.0 and then that’s a major release. And then when you release any changes that are minor changes, feature enhancements, you go 1.1. If you do a patch, if you’re needing to fix something it’d be 1.1.1. So that last digit is just for a fix a patch, something you’re making better. That middle digit is for incremental changes. But the first one, so if we went to version 2.0, that’s a major change.</p>
+</blockquote>
+<p>Full Chapter list  from the talk:</p>
 <ul>
-<li>Basic two-RDD transformations on RDDs: <strong>{1,2,3}</strong> and <strong>{3,4,5}</strong></li>
+<li>API Lifecycle vs. Software Development Lifecycle</li>
+<li>Swagger and OpenAPI</li>
+<li>More Than Just Documentation</li>
+<li>Improving Communication</li>
+<li>AsyncAPI is OpenAPI For Event-Driven APIs</li>
+<li>Better Naming Suggestions</li>
+<li>Relationship Between OpenAPI, AsyncAPI, and JSON Schema</li>
+<li>Maturity Level of AsyncAPI and OpenAPI</li>
+<li>API Specifications Are Not a New Idea</li>
+<li>Versioning an API</li>
+<li>Validation and Testing</li>
+<li>API Specifications For Non-Technical Stakeholders</li>
+<li>What’s Coming For API Lifecycles</li>
+<li>Closing</li>
 </ul>
-<table>
-<thead>
-<tr>
-<th>Function Name</th>
-<th>Example</th>
-<th>Result</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>union()</td>
-<td>rdd.union(other)</td>
-<td>{1,2,3,3,4,5}</td>
-</tr>
-<tr>
-<td>intersection()</td>
-<td>rdd.intersection(other)</td>
-<td>{3}</td>
-</tr>
-<tr>
-<td>subtract()</td>
-<td>rdd.subtract(other)</td>
-<td>{1,2}</td>
-</tr>
-<tr>
-<td>cartesian()</td>
-<td>rdd.cartesian(other)</td>
-<td>{(1,3),(1,4)…(3,5)}</td>
-</tr>
-</tbody></table>
-<ul>
-<li>Basic Actions on RDD containing: <strong>{1,2,3,3}</strong></li>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2022-12-23T14:03:56.352Z"><a href="/2022/12/23/CryptoArt/">2022-12-23</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2022/12/23/CryptoArt/">CryptoArt</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Bumped with this one the last day <strong>Crypto Art</strong> the following transcript from <a target="_blank" rel="noopener" href="https://niftygateway.com/collections/mankind">Mankind</a> explain a bit what’s under the movement.</p>
+<h2 id="Transcript"><a href="#Transcript" class="headerlink" title="Transcript"></a>Transcript</h2><blockquote>
+<p>Just like all cats are mammals, but not all mammals are cats. All Crypto Art are NFTs but not all NFTs are Crypto Art. I’ve made a video on basics of NFTs or non fungible tokens, you can go check that out. But today I’m here to explain the basics of what Crypto Art is, because Crypto Art is a digital artwork that is linked to a non fungible token.</p>
+<p>Traditionally Crypto Art was related to the rise of crypto currencies like bitcoin and ethereum and had symbolism around that, but it’s now more loosely accepted as any digital art that has been tokenized on the the blockchain in order to associate digital proof of ownership.</p>
+<p>So what does that mean? It means what we’ve taken for granted in the real world, that a physical painting can be authenticated and owned now has the equivalent in the digital world. This is huge because this has never been possible for digital artists in the past. A token acting as a digital certificate for a digital file securely held on a permanent network of computers now allows digital artists to sell their work like never before.</p>
+<p>Crypto art is not just the digital file. It is the digital file backed by the NFT. So just like you can go online and find M. C. Escher ‘drawing hands’ and download it and print it, you would never try to convince anyone it’s the original, because you don’t own the letter of authenticity. The same now goes for digital art, everyone can see or download it, but only one can prove they own it.</p>
+<p>The question of the value of owning a digital artwork now lies with the market. The market of collectors. Beeple sold this work for $1 and a couple of months later sold this one for $777k. Paris Hilton drew this picture of her cat and it sold for $17k. Justin Roiland the creator of Rick and Morty drew this sketch and it sold for $90k. Of course if you already have a fanbase, anything you sell will be worth more. But even small artists can find collectors that just like the art or want to support their work.</p>
+<p>Pop art used to be disregarded as cheap and distasteful, Street art used to just be vandalism, and until recently, digital art was just for Instagram likes.</p>
+<p>When you mint an NFT for Crypto Art you’re not giving away any copyright or rigths of reproduction. You are creating a new thing, a new product. That buyer can then enjoy it, and sell it whenever they please. </p>
+<p>So where can you sell? There’s an ever changing list of places to buy and sell on the primary or secondary market so I’ll keep a list below in the description. I’ve also made a video on popular ones in the past.</p>
+<p>Most Crypto Art sites currently use Ethereum to do their transactions so you need to be set up with an Ethereum wallet to connect and transfer to. You also need a little Ethereum to start with in your wallet to pay for minting or transaction fees. You can always transfer your Ethereum back out to your exchange of choice to cash out to FIAT or Dollars whenever you want.</p>
+<p>In the future Crypto Art will just be called art. But at the moment, digital art is going through a movement led by changes in technology. The struggle of the artist will still remain, to create something with meaning and value, to find an audience or collectors. But the success of crypto currency in general has brought a wave of investors with big wallets to make a splash and bring eyeballs to the space with large transactions. The art world is a way to legitimize the space with creative thinkers, emotional ideas, entertainment and connection to culture that is worth investing in. </p>
+<p>Early creators and collectors alike will be rewarded for their involvement in this movement.</p>
+</blockquote>
+<h2 id="What-is-NFT"><a href="#What-is-NFT" class="headerlink" title="What is NFT ?"></a>What is NFT ?</h2><blockquote>
+<p>NFT stands for Non Fungible Token.</p>
+<p>Fungible means something is able to be exchanged or substituted and will hold the same value. It’s interchangeable like the dollar, gold, casino chips, bitcoin, ethereum or frequent flyer loyalty points.</p>
+<p>If I lend you 10 dollars cash and you return to me two 5 dollar bank notes, I’m fine with that because even though they are different, they hold the same total value. </p>
+<p>So non-fungile obviously means it’s an asset that can’t be substituted. It has unique attributes that makes it different from something else in the same asset class. Like a painting, a theatre ticket, a house, a video game skin, a trademark or a CryptoKitty which was the first real use case to take off on the Ethereum blockchain in 2017.</p>
+<p>Some of these assets are physical and tangible and others are digital and intangible.</p>
+<p>So NFTs are non-fungible tokens. ‘Token’ refers to a digital certificate stored on a secure distributed database called a blockchain.</p>
+<p>NFTs are digital assets. Publicly verifiable intellectual property authenticated on a blockchain.</p>
+<p>A popular place to currently browse a variety of NFTs is on <a target="_blank" rel="noopener" href="http://opensea.io/">http://OpenSea.io​</a></p>
+<p>It’s an exciting space, I believe the NFT space will continue to grow in the coming years with some popular use cases being: Digital Art, Virtual Land, Gaming, Collectibles, Finance and much more.</p>
+</blockquote>
+<h2 id="List-of-Crypto-Art-Platforms"><a href="#List-of-Crypto-Art-Platforms" class="headerlink" title="List of Crypto Art Platforms"></a>List of Crypto Art Platforms</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://superrare.co/mankind%E2%80%8B">https://superrare.co/mankind​</a></li>
+<li><a target="_blank" rel="noopener" href="https://makersplace.com/mankind%E2%80%8B">https://makersplace.com/mankind​</a></li>
+<li><a target="_blank" rel="noopener" href="https://niftygateway.com/collections">https://niftygateway.com/collections</a></li>
+<li><a target="_blank" rel="noopener" href="https://opensea.io/">https://opensea.io​</a></li>
+<li><a target="_blank" rel="noopener" href="https://rarible.com/">https://rarible.com​</a></li>
+<li><a target="_blank" rel="noopener" href="https://knownorigin.io/">https://knownorigin.io​</a></li>
+<li><a target="_blank" rel="noopener" href="https://foundation.app/">https://foundation.app​</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bitski.com/">https://www.bitski.com​</a></li>
+<li><a target="_blank" rel="noopener" href="https://zora.co/">https://zora.co​</a></li>
+<li><a target="_blank" rel="noopener" href="https://mintbase.io/">https://mintbase.io​</a></li>
+<li><a target="_blank" rel="noopener" href="https://mintable.app/">https://mintable.app​</a></li>
+<li><a target="_blank" rel="noopener" href="https://niftykit.com/">https://niftykit.com​</a></li>
+<li><a target="_blank" rel="noopener" href="https://viv3.com/">https://viv3.com</a></li>
 </ul>
-<table>
-<thead>
-<tr>
-<th>Function Name</th>
-<th>Example</th>
-<th>Result</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>collect()</td>
-<td>rdd.collect()</td>
-<td>{1,2,3,3}</td>
-</tr>
-<tr>
-<td>count()</td>
-<td>rdd.count()</td>
-<td>4</td>
-</tr>
-<tr>
-<td>countByValue()</td>
-<td>rdd.countByValue()</td>
-<td>{(1,1),(2,1),(3,2)}</td>
-</tr>
-<tr>
-<td>take()</td>
-<td>rdd.take(2)</td>
-<td>{1,2}</td>
-</tr>
-<tr>
-<td>top()</td>
-<td>rdd.top(2)</td>
-<td>{3,3}</td>
-</tr>
-<tr>
-<td>takeOrdered()</td>
-<td>rdd.takeOrdered(2)(myOrdering)</td>
-<td>{3,3}</td>
-</tr>
-<tr>
-<td>takeSample()</td>
-<td>rdd.takeSample(false,1)</td>
-<td>Nondeterministic</td>
-</tr>
-<tr>
-<td>reduce()</td>
-<td>rdd.reduce((x,y) =&gt; x + y )</td>
-<td>9</td>
-</tr>
-<tr>
-<td>fold()</td>
-<td>rdd.fold(0)((x,y) =&gt; x + y)</td>
-<td>9</td>
-</tr>
-<tr>
-<td>foreach()</td>
-<td>rdd.foreach(func)</td>
-<td>Nothing</td>
-</tr>
-</tbody></table>
+<h2 id="Youtube-Reference-Video"><a href="#Youtube-Reference-Video" class="headerlink" title="Youtube Reference Video"></a>Youtube Reference Video</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://youtu.be/DYyW_tTPAhU">https://youtu.be/DYyW_tTPAhU</a></li>
+</ul>
 
       
     </div>
@@ -513,6 +450,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <h3 class="title">Tags</h3>
   <ul class="entry">
   
+    <li><a href="/tags/NET/">.NET</a><small>1</small></li>
+  
     <li><a href="/tags/Net/">.Net</a><small>1</small></li>
   
     <li><a href="/tags/AI/">AI</a><small>1</small></li>
@@ -535,6 +474,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Arch/">Arch</a><small>4</small></li>
   
+    <li><a href="/tags/Arch-Linux/">Arch Linux</a><small>1</small></li>
+  
     <li><a href="/tags/Architecture/">Architecture</a><small>1</small></li>
   
     <li><a href="/tags/Artifactory/">Artifactory</a><small>1</small></li>
@@ -544,6 +485,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/BigData/">BigData</a><small>2</small></li>
   
     <li><a href="/tags/BigQuery/">BigQuery</a><small>1</small></li>
+  
+    <li><a href="/tags/Books/">Books</a><small>1</small></li>
   
     <li><a href="/tags/CDH-Parcel/">CDH Parcel</a><small>1</small></li>
   
@@ -567,11 +510,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Customize/">Customize</a><small>1</small></li>
   
+    <li><a href="/tags/DBT/">DBT</a><small>1</small></li>
+  
+    <li><a href="/tags/Data-Engineering/">Data Engineering</a><small>4</small></li>
+  
+    <li><a href="/tags/Data-Generation/">Data Generation</a><small>1</small></li>
+  
     <li><a href="/tags/Data-Ingestion/">Data Ingestion</a><small>1</small></li>
+  
+    <li><a href="/tags/Data-Modeling/">Data Modeling</a><small>2</small></li>
   
     <li><a href="/tags/Data-Quality/">Data Quality</a><small>1</small></li>
   
     <li><a href="/tags/Data-Science/">Data Science</a><small>1</small></li>
+  
+    <li><a href="/tags/Data-Visualization/">Data Visualization</a><small>2</small></li>
   
     <li><a href="/tags/Delegation/">Delegation</a><small>1</small></li>
   
@@ -580,6 +533,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/Dimensions/">Dimensions</a><small>1</small></li>
   
     <li><a href="/tags/Docker/">Docker</a><small>7</small></li>
+  
+    <li><a href="/tags/DuckDB/">DuckDB</a><small>1</small></li>
   
     <li><a href="/tags/GA/">GA</a><small>2</small></li>
   
@@ -609,6 +564,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/IDE/">IDE</a><small>1</small></li>
   
+    <li><a href="/tags/Infrastructure/">Infrastructure</a><small>1</small></li>
+  
+    <li><a href="/tags/Inspiration/">Inspiration</a><small>1</small></li>
+  
     <li><a href="/tags/Install/">Install</a><small>1</small></li>
   
     <li><a href="/tags/Internet/">Internet</a><small>1</small></li>
@@ -635,7 +594,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Management/">Management</a><small>2</small></li>
   
-    <li><a href="/tags/Markdown/">Markdown</a><small>1</small></li>
+    <li><a href="/tags/Markdown/">Markdown</a><small>2</small></li>
   
     <li><a href="/tags/Mesos/">Mesos</a><small>1</small></li>
   
@@ -681,13 +640,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/RDD/">RDD</a><small>1</small></li>
   
+    <li><a href="/tags/Reserve-Proxy/">Reserve Proxy</a><small>1</small></li>
+  
     <li><a href="/tags/Rust/">Rust</a><small>1</small></li>
   
     <li><a href="/tags/SQL/">SQL</a><small>1</small></li>
   
     <li><a href="/tags/SQLServer/">SQLServer</a><small>1</small></li>
   
-    <li><a href="/tags/Scala/">Scala</a><small>1</small></li>
+    <li><a href="/tags/Scala/">Scala</a><small>2</small></li>
   
     <li><a href="/tags/Scrum/">Scrum</a><small>1</small></li>
   
@@ -697,7 +658,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Software/">Software</a><small>3</small></li>
   
-    <li><a href="/tags/Software-Engineering/">Software Engineering</a><small>1</small></li>
+    <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
+  
+    <li><a href="/tags/Software-Engineering/">Software Engineering</a><small>2</small></li>
   
     <li><a href="/tags/Spark/">Spark</a><small>4</small></li>
   
@@ -793,7 +756,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
   <footer id="footer" class="inner"><div class="alignleft">
   
-  &copy; 2023 Rui Ramos
+  &copy; 2024 Rui Ramos
   
   <a class="disclaimer" href=/disclaimer> Disclaimer</a>
 </div>

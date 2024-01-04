@@ -77,363 +77,251 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2017-10-06T22:11:39.000Z"><a href="/2017/10/06/powershellonlinux/">2017-10-06</a></time>
+        <time datetime="2022-12-23T14:03:56.352Z"><a href="/2022/12/23/GA4/">2022-12-23</a></time>
       
       
   
-    <h1 class="title"><a href="/2017/10/06/powershellonlinux/">PowerShell on Linux</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>This article will present the required steps to install <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/PowerShell">powershell</a> on Linux.</p>
-<h1 id="Objective"><a href="#Objective" class="headerlink" title="Objective"></a>Objective</h1><p>The objective is to operate from Linux <a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/cloud-platform/windows-azure-pack">Windows Azure Pack</a>.</p>
-<h1 id="Procedure"><a href="#Procedure" class="headerlink" title="Procedure"></a>Procedure</h1><ul>
-<li>Import the public repository GPG keys</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Register the Microsoft Ubuntu repository</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | sudo tee /etc/apt/sources.list.d/microsoft.list</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Update the list of products</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Install PowerShell</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get install -y powershell</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Start PowerShell</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">powershell</span><br></pre></td></tr></table></figure>
-
-<h1 id="Add-Azure-module"><a href="#Add-Azure-module" class="headerlink" title="Add Azure module"></a>Add Azure module</h1><p>Install Azure module in powershell running with <code>sudo</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Install-Module AzureRM</span><br><span class="line">Install-Module Azure</span><br></pre></td></tr></table></figure>
-
-<p>Check module location</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">(gmo -l Azure*).path</span><br></pre></td></tr></table></figure>
-
-
-<h1 id="Uninstall"><a href="#Uninstall" class="headerlink" title="Uninstall"></a>Uninstall</h1><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get remove powershell</span><br></pre></td></tr></table></figure>
-
-<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>After some hours i’ve given up making this thing work on Linux. The time it takes doesn’t payoff, and even if i could make it work, i would still need to make Vagrant work with it for some VM’s provisioning in a private cloud. It would take me less time to do it by hand :|</p>
-<p>From a standard testing perspective it’s nice to have this thing on Linux, because you could centralize the management, but at the moment of this article it doesn’t seem to payoff the time one would need to setup this. </p>
-<p>If you have lot’s of Windows machines or Azure infrastructure to manage just get a Windows PC, or wait for Microsoft to fix this, as there are lot’s of reports regarding this issue. But seriously i don’t see an effort from Microft to make this work properly, what’s the gain, rigth !?.</p>
-<p>Cheers,<br>RR</p>
-<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/PowerShell/PowerShell">https://github.com/PowerShell/PowerShell</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/bgelens/WAPTenantPublicAPI">https://github.com/bgelens/WAPTenantPublicAPI</a></li>
-<li><a target="_blank" rel="noopener" href="http://www.tech-coffee.net/windows-azure-pack-powershell-tenant-api/">http://www.tech-coffee.net/windows-azure-pack-powershell-tenant-api/</a></li>
-<li><a target="_blank" rel="noopener" href="https://blogs.msdn.microsoft.com/powershell/2016/08/18/powershell-on-linux-and-open-source-2/">https://blogs.msdn.microsoft.com/powershell/2016/08/18/powershell-on-linux-and-open-source-2/</a></li>
-<li><a target="_blank" rel="noopener" href="https://blogs.technet.microsoft.com/privatecloud/2013/12/10/windows-azure-pack-reconfigure-portal-names-ports-and-use-trusted-certificates/">https://blogs.technet.microsoft.com/privatecloud/2013/12/10/windows-azure-pack-reconfigure-portal-names-ports-and-use-trusted-certificates/</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-10-02T21:32:20.000Z"><a href="/2017/10/02/vdi2qemu/">2017-10-02</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/10/02/vdi2qemu/">Convert VirtualBox Images to KVM</a></h1>
+    <h1 class="title"><a href="/2022/12/23/GA4/">Google Analytics - UA vs GA4</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <p>In this article i will explain a quick way to convert <a target="_blank" rel="noopener" href="https://www.virtualbox.org/">VirtualBox</a> images (vdi) into qcow2 and load them in <a target="_blank" rel="noopener" href="https://www.linux-kvm.org/">KVM</a>.</p>
-<h1 id="Why"><a href="#Why" class="headerlink" title="Why ?"></a>Why ?</h1><p>This is something i normally do, because i get better performance running Linux VM’s on KVM and saves me some space with qcow2 volume format.</p>
-<h2 id="qcow2-Features"><a href="#qcow2-Features" class="headerlink" title="qcow2 Features"></a>qcow2 Features</h2><p>One of the main characteristics of qcow disk images is that files with this format can grow as data is added. This allows for smaller file sizes than raw disk images, which allocate the whole image space to a file, even if parts of it are empty</p>
-<h1 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h1><ul>
-<li>You should have KVM configured correctly</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get install qemu-kvm</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Install qemu-utils</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get install qemu-utils</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Let’s get an example image. <ul>
-<li> I’m fetching one from <a target="_blank" rel="noopener" href="http://www.osboxes.org/ubuntu">http://www.osboxes.org/ubuntu</a>. (ex: Ubuntu 17.10 10th-August build (64bit).vdi)</li>
-</ul>
-</li>
-</ul>
-<p><strong>NOTE:</strong> Procedure executed with qemu-img version 2.5.0</p>
-<h1 id="Converting"><a href="#Converting" class="headerlink" title="Converting"></a>Converting</h1><ul>
-<li>Convert the image</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">qemu-img convert -f vdi -O qcow2 Ubuntu_17.10.vdi Ubuntu_17.10.qcow2</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>You can check the image details by executing <code>qemu-img info Ubuntu_17.10.qcow2</code> .</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">qemu-img info Ubuntu_17.10.qcow2</span><br><span class="line">image: Ubuntu_17.10.qcow2</span><br><span class="line">file format: qcow2</span><br><span class="line">virtual size: 100G (107374182400 bytes)</span><br><span class="line">disk size: 4.1G</span><br><span class="line">cluster_size: 65536</span><br><span class="line">Format specific information:</span><br><span class="line">    compat: 1.1</span><br><span class="line">    lazy refcounts: <span class="literal">false</span></span><br><span class="line">    refcount bits: 16</span><br><span class="line">    corrupt: <span class="literal">false</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Now lets Upload this image to our KVM pool and create a new VM from it:</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo virsh vol-create-as default ubuntu-17.10 100G --format qcow2</span><br><span class="line">sudo virsh vol-upload --pool default ubuntu-17.10 Ubuntu_17.10.qcow2 </span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>Start <a target="_blank" rel="noopener" href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Virtualization_Host_Configuration_and_Guest_Installation_Guide/chap-Virtualization_Host_Configuration_and_Guest_Installation_Guide-Guest_Installation_Virt_Manager-Creating_guests_with_virt_manager.html">virt-manager</a> and select <strong>Import existing Disk Image</strong></p>
-</li>
-<li><p>The default password for this images are <code>osboxes.org</code> . You should have something like the following in the console.</p>
-</li>
-</ul>
-<img src="/2017/10/02/vdi2qemu/virt-manager.png" class="" title="virt-manager">
-
-<ul>
-<li>If you want to create brand new images you could use <a target="_blank" rel="noopener" href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Virtualization_Host_Configuration_and_Guest_Installation_Guide/sect-Virtualization_Host_Configuration_and_Guest_Installation_Guide-Guest_Installation-Creating_guests_with_virt_install.html">virt-install</a>, but that one would go to another article.</li>
-</ul>
-<p>Cheers,<br>RR</p>
-<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://www.virtualbox.org/wiki/Downloads">https://www.virtualbox.org/wiki/Downloads</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.linux-kvm.org/page/Main_Page">https://www.linux-kvm.org/page/Main_Page</a></li>
-<li><a target="_blank" rel="noopener" href="http://www.osboxes.org/ubuntu">http://www.osboxes.org/ubuntu</a></li>
-<li><a target="_blank" rel="noopener" href="https://docs.openstack.org/image-guide/convert-images.html">https://docs.openstack.org/image-guide/convert-images.html</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-09-29T01:01:48.000Z"><a href="/2017/09/29/nifiparcel/">2017-09-29</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/09/29/nifiparcel/">Nifi Parcel for CDH</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>I’ve been using <a target="_blank" rel="noopener" href="https://nifi.apache.org/">Apache Nifi</a> for some time now. But has a Cloudera user it would be nice to have it managed centralized in Cloudera Manager.</p>
-<p>I found this <a href="">repo</a> which had only one commit for doing exactly this, so i decided to give it a try, to see if it worked.</p>
-<h1 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h1><ul>
-<li>Virtual machine with Cloudera quickstart pre-installed</li>
-<li>I had to patch the available Nifi version with <a target="_blank" rel="noopener" href="https://github.com/apache/nifi/pull/1604">NIFI-3466</a></li>
-<li>And parcel repo also with <a target="_blank" rel="noopener" href="https://github.com/prateek/nifi-parcel/issues/1">Issue1</a></li>
-</ul>
-<p>So i’ll be using my own forks that have this changes allready, but will be following the author (prateek) instructions.</p>
-<h1 id="Instructions"><a href="#Instructions" class="headerlink" title="Instructions"></a>Instructions</h1><h2 id="Install-Requirements"><a href="#Install-Requirements" class="headerlink" title="Install Requirements"></a>Install Requirements</h2><ul>
-<li>cloudera/cm_ext</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /tmp</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/cloudera/cm_ext</span><br><span class="line"><span class="built_in">cd</span> cm_ext/validator</span><br><span class="line">mvn install</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Create parcel &amp; CSD:</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /tmp</span><br><span class="line">$ git <span class="built_in">clone</span> git@github.com:rramos/nifi.git</span><br><span class="line">$ <span class="built_in">cd</span> nifi</span><br><span class="line">$ mvn clean install</span><br><span class="line">$ <span class="built_in">cd</span> /tmp</span><br><span class="line">$ git <span class="built_in">clone</span> git@github.com:rramos/nifi-parcel.git</span><br><span class="line">$ <span class="built_in">cd</span> nifi-parcel</span><br><span class="line">$ POINT_VERSION=5 VALIDATOR_DIR=/tmp/cm_ext ./build-parcel.sh /tmp/nifi/nifi-assembly/target/nifi-*-SNAPSHOT-bin.tar.gz</span><br><span class="line">$ VALIDATOR_DIR=/tmp/cm_ext ./build-csd.sh</span><br></pre></td></tr></table></figure>
-
-<h1 id="Test-the-Parcel"><a href="#Test-the-Parcel" class="headerlink" title="Test the Parcel"></a>Test the Parcel</h1><p>Cloudera quickstart images comes with java version 1.7. But i need version 1.8 for Nifi otherwise i’ll get minor major version missmatch issue. So i had to make some changes.</p>
-<ul>
-<li>First start your cloudera quickstart VM and copy the folders:<ul>
-<li><code>build-csd</code> </li>
-<li><code>build-parcel</code> </li>
-</ul>
-</li>
-</ul>
-<p>there in my case i had IP <code>192.168.122.132</code> (change for your case).</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">scp -r build-parcel cloudera@192.168.122.132:/tmp</span><br><span class="line">scp -r build-csd cloudera@192.168.122.132:/tmp</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>SSH in the machine and install java8</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">yum install java-1.8.0-openjdk</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Run the following command in <code>build-parcel</code> folder</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> build-parcel</span><br><span class="line">python -m  SimpleHTTPServer 14641</span><br></pre></td></tr></table></figure>
-
-<p>Now open your browser at <code>http://192.168.122.132:7180</code> and access Cloudera Manager (cloudera:cloudera).</p>
-<p>Navigate to -&gt; Parcels -&gt; Edit Settings. </p>
-<p>Add <code>http://192.168.122.132:14641</code> </p>
-<img src="/2017/09/29/nifiparcel/parcel01.png" class="" title="[NIFI Parcel]">
-
-<p>Download and install the Nifi Parcel.</p>
-<ul>
-<li>Copy NIFI home</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">cp -r /tmp/build-parcel/NIFI-0.0.5.nifi.p0.5 /opt/cloudera/parcels/NIFI/</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Correct java path in file <code>/opt/cloudera/parcels/NIFI/bin/nifi-env.sh</code></li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># The java implementation to use.</span></span><br><span class="line"><span class="built_in">export</span> JAVA_HOME=/usr/lib/jvm/jre-1.8.0</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Copy the csd jars </li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">cp /tmp/build-csd/NIFI-1.2.0.jar /opt/cloudera/csd/</span><br><span class="line">mkdir /opt/cloudera/csd/NIFI-1.2.0</span><br><span class="line">cp /tmp/build-csd/NIFI-1.2.0.jar /opt/cloudera/csd/NIFI-1.2.0/</span><br><span class="line"><span class="built_in">cd</span> /opt/cloudera/csd/NIFI-1.2.0/</span><br><span class="line">jar xvf NIFI-1.2.0.jar</span><br><span class="line">rm -f NIFI-1.2.0.jar</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Correct ownership</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">chown -R cloudera-scm:cloudera-scm /opt/cloudera</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>Apply Configuration changes to Cloudera Manager and restart the service</p>
-</li>
-<li><p>Move CSD to Cloudera Manager’s CSD Repo</p>
-</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo service cloudera-scm-server restart</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>After login again in CM wait for zookeeper to be running normal, and add a new service (Nifi)</li>
-</ul>
-<img src="/2017/09/29/nifiparcel/parcel02.png" class="" title="[Add NIFI Service]">
-
-<p>After terminating the wizard you should have access to Nifi Interface</p>
-<img src="/2017/09/29/nifiparcel/parcel03.png" class="" title="[Nifi Web UI]">
-
-<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>I must say that prateek repo with only that commit worked pretty well and the instructions where also clear. There where some minor adjustments because of the java version, but we can start/stop the service via Cloudera Manager.</p>
-<p>There are some pending items refered in his github page:</p>
-<ul>
-<li>Currently <code>NiFi</code> runs under the <code>root</code> user</li>
-<li>Expose config options under Cloudera Manager</li>
-<li>Conf folder from parcels is used, this needs to be migrated to ConfigWriter</li>
-<li>Expose metrics from NiFi</li>
-</ul>
-<p>I haven’t tested the configuration in cluster mode as i has using the quickstart VM.</p>
-<p>The configuration options in CM would be very good improvement. Auto configuring zookeeper and the other nifi options. I’ll try to contribute to prateek excelent work if i manage to get some time.</p>
-<p>Cheers,<br>RR</p>
-<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://nifi.apache.org/">https://nifi.apache.org</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/prateek/nifi-parcel">https://github.com/prateek/nifi-parcel</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/cloudera/cm_ext">https://github.com/cloudera/cm_ext</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.cloudera.com/downloads/quickstart_vms/5-12.html">https://www.cloudera.com/downloads/quickstart_vms/5-12.html</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-09-27T20:16:37.000Z"><a href="/2017/09/27/hive-udfs/">2017-09-27</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/09/27/hive-udfs/">Hive UDFS Functions</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>Today i was going to use a simple sha256 funtion in <a target="_blank" rel="noopener" href="https://hive.apache.org/">Hive</a> in order to mask a colunm and aparently in the latest <a target="_blank" rel="noopener" href="https://www.cloudera.com/">Cloudera</a> distribution the Shipped hive version doesn’t have that native function.</p>
-<p>This article will explain how you can build a sha256 or other udfs function and add it in Hive.</p>
-<h1 id="Checking-Cloudera-Packages-Version"><a href="#Checking-Cloudera-Packages-Version" class="headerlink" title="Checking Cloudera Packages Version"></a>Checking Cloudera Packages Version</h1><p>Check the following <a target="_blank" rel="noopener" href="https://www.cloudera.com/documentation/enterprise/release-notes/topics/cdh_vd_cdh_package_tarball.html">URL</a> in order to see the latest shipped package versions in Cloudera.</p>
-<blockquote>
-<p>CDH 5.12 -&gt; hive-1.1.0+cdh5.12.1+1197</p>
-</blockquote>
+        <h2 id="Google-Analytics-quick-History"><a href="#Google-Analytics-quick-History" class="headerlink" title="Google Analytics quick History"></a>Google Analytics quick History</h2><p>In the October of 2020, Google rolled out Google Analytics 4 (GA4), the latest iteration of the Google Analytics platform. GA4 replaces Universal Analytics (UA) as the default for digital analytics measurement in GA.</p>
+<p>The objective of this article is to consolidate the most significative changes, and required operations to migrate to the new data model.</p>
+<h2 id="Differences-in-UA-and-GA4-data-models"><a href="#Differences-in-UA-and-GA4-data-models" class="headerlink" title="Differences in UA and GA4 data models"></a>Differences in UA and GA4 data models</h2><h3 id="Events-and-Hit-types"><a href="#Events-and-Hit-types" class="headerlink" title="Events and Hit types"></a>Events and Hit types</h3><p>The most significative change from UA to GA4 in my opinion is the fact that all interactions are now reported as events.</p>
+<p>In UA an event has a Category, Action and Label for that specific hit type. In GA4 all hits are events there is no distinction on the hit types</p>
 <table>
 <thead>
 <tr>
-<th>Return Type</th>
-<th>Name(Signature)</th>
-<th>Description</th>
+<th>Hit type in (UA)</th>
+<th>Measurement in GA4</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>string</td>
-<td>sha2(string/binary, int)</td>
-<td>Calculates the SHA-2 family of hash functions (SHA-224, SHA-256, SHA-384, and SHA-512) (as of Hive 1.3.0). The first argument is the string or binary to be hashed. The second argument indicates the desired bit length of the result, which must have a value of 224, 256, 384, 512, or 0 (which is equivalent to 256). SHA-224 is supported starting from Java 8. If either argument is NULL or the hash length is not one of the permitted values, the return value is NULL. Example: sha2(‘ABC’, 256) = ‘b5d4045c3f466fa91fe2cc6abe79232a1a57cdf104f7a26e716e0a1e2789df78’.</td>
+<td>Page View</td>
+<td>Event</td>
+</tr>
+<tr>
+<td>Event</td>
+<td>Event</td>
+</tr>
+<tr>
+<td>Social</td>
+<td>Event</td>
+</tr>
+<tr>
+<td>Transaction/e-commerce</td>
+<td>Event</td>
+</tr>
+<tr>
+<td>User timing</td>
+<td>Event</td>
+</tr>
+<tr>
+<td>Exception</td>
+<td>Event</td>
+</tr>
+<tr>
+<td>App/screen view</td>
+<td>Event</td>
 </tr>
 </tbody></table>
-<p><a target="_blank" rel="noopener" href="https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF">Full Version</a></p>
-<h1 id="Implement-UDFS"><a href="#Implement-UDFS" class="headerlink" title="Implement UDFS"></a>Implement UDFS</h1><p>this will server more as an exercise, one could create a more complex udf funtion. For the time being let’s create a GenericUDFSha2 based on existing hive 1.3.0 version</p>
-<p>You code clone my repo with some udfs-utils <a href="git@github.com:rramos/udfs-utils.git">here</a></p>
-<p>The original code for hive version 1.3.0 is available in the repo</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFSha2.java">https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFSha2.java</a></p>
-<p>Let’s create the building structure</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir -p GenericUDFSha2/org/apache/hadoop/hive/ql/udf/generic</span><br><span class="line">cd GenericUDFSha2</span><br></pre></td></tr></table></figure>
-
-<p>Let’s create a <code>pom.xml</code> file</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">  xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd&quot;&gt;</span><br><span class="line">  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;</span><br><span class="line">  &lt;groupId&gt;com.rramos.bigdata.utils&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;GenericUDFSha2&lt;/artifactId&gt;</span><br><span class="line">  &lt;packaging&gt;jar&lt;/packaging&gt;</span><br><span class="line">  &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;</span><br><span class="line">  &lt;name&gt;GenericUDFSha2&lt;/name&gt;</span><br><span class="line">  &lt;url&gt;http://maven.apache.org&lt;/url&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- properties --&gt;</span><br><span class="line">  &lt;properties&gt;</span><br><span class="line">    &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;</span><br><span class="line">  &lt;/properties&gt;</span><br><span class="line">     </span><br><span class="line">  &lt;!-- prerequisitesprerequisites --&gt;</span><br><span class="line">  &lt;prerequisites&gt;</span><br><span class="line">     &lt;maven&gt;3.0&lt;/maven&gt;</span><br><span class="line">  &lt;/prerequisites&gt;</span><br><span class="line"></span><br><span class="line">   &lt;!-- Dependencies --&gt;</span><br><span class="line">   &lt;dependencies&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;junit&lt;/groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;junit&lt;/artifactId&gt;</span><br><span class="line">      &lt;version&gt;4.12&lt;/version&gt;</span><br><span class="line">      &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">       &lt;groupId&gt;org.apache.hive&lt;/groupId&gt;</span><br><span class="line">       &lt;artifactId&gt;hive-exec&lt;/artifactId&gt;</span><br><span class="line">       &lt;version&gt;2.0.0&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;joda-time&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;joda-time&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.9.3&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">  &lt;/dependencies&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- Build options --&gt;</span><br><span class="line">  &lt;build&gt;</span><br><span class="line">   &lt;plugins&gt;</span><br><span class="line">    &lt;plugin&gt;</span><br><span class="line">     &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt;</span><br><span class="line">      &lt;version&gt;2.6&lt;/version&gt;</span><br><span class="line">       &lt;configuration&gt;</span><br><span class="line">        &lt;archive&gt;</span><br><span class="line">          &lt;manifest&gt;</span><br><span class="line">           &lt;addClasspath&gt;true&lt;/addClasspath&gt;</span><br><span class="line">           &lt;mainClass&gt;com.rramos.bigdata.utils.GenericUDFSha2&lt;/mainClass&gt;</span><br><span class="line">          &lt;/manifest&gt;</span><br><span class="line">        &lt;/archive&gt;</span><br><span class="line">       &lt;/configuration&gt;</span><br><span class="line">      &lt;/plugin&gt;</span><br><span class="line"></span><br><span class="line">      &lt;plugin&gt;</span><br><span class="line">          &lt;artifactId&gt;maven-assembly-plugin&lt;/artifactId&gt;</span><br><span class="line">          &lt;configuration&gt;</span><br><span class="line">                &lt;archive&gt;</span><br><span class="line">                    &lt;manifest&gt;</span><br><span class="line">                        &lt;mainClass&gt;</span><br><span class="line">                            com.rramos.bigdata.utils.GenericUDFSha2</span><br><span class="line">                        &lt;/mainClass&gt;</span><br><span class="line">                    &lt;/manifest&gt;</span><br><span class="line">                &lt;/archive&gt;</span><br><span class="line">                &lt;descriptorRefs&gt;</span><br><span class="line">                    &lt;descriptorRef&gt;jar-with-dependencies&lt;/descriptorRef&gt;</span><br><span class="line">                &lt;/descriptorRefs&gt;</span><br><span class="line">           &lt;/configuration&gt;</span><br><span class="line">      &lt;/plugin&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/plugins&gt;</span><br><span class="line">  &lt;/build&gt;</span><br><span class="line"></span><br><span class="line">&lt;/project&gt;</span><br></pre></td></tr></table></figure>
-
-<p>You should obviously change for you packaging namespace, i’m just using <code>com.rramos.bigdata.utils</code> to be simpler.</p>
-<p>Next, let’s create the following file</p>
-<p><code>org/apache/hadoop/hive/ql/udf/generic/GenericUDFSha2.java</code></p>
-<p>with the content</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package com.rramos.bigdata.utils;</span><br><span class="line"></span><br><span class="line">import static org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorUtils.PrimitiveGrouping.BINARY_GROUP;</span><br><span class="line">import static org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorUtils.PrimitiveGrouping.NUMERIC_GROUP;</span><br><span class="line">import static org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorUtils.PrimitiveGrouping.STRING_GROUP;</span><br><span class="line"></span><br><span class="line">import java.security.MessageDigest;</span><br><span class="line">import java.security.NoSuchAlgorithmException;</span><br><span class="line"></span><br><span class="line">import org.apache.commons.codec.binary.Hex;</span><br><span class="line">import org.apache.hadoop.hive.ql.exec.Description;</span><br><span class="line">import org.apache.hadoop.hive.ql.exec.UDFArgumentException;</span><br><span class="line">import org.apache.hadoop.hive.ql.exec.UDFArgumentTypeException;</span><br><span class="line">import org.apache.hadoop.hive.ql.metadata.HiveException;</span><br><span class="line">import org.apache.hadoop.hive.serde2.objectinspector.ConstantObjectInspector;</span><br><span class="line">import org.apache.hadoop.hive.serde2.objectinspector.ObjectInspector;</span><br><span class="line">import org.apache.hadoop.hive.serde2.objectinspector.ObjectInspectorConverters.Converter;</span><br><span class="line">import org.apache.hadoop.hive.serde2.objectinspector.PrimitiveObjectInspector.PrimitiveCategory;</span><br><span class="line">import org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorFactory;</span><br><span class="line">import org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorUtils;</span><br><span class="line">import org.apache.hadoop.io.BytesWritable;</span><br><span class="line">import org.apache.hadoop.io.Text;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * GenericUDFSha2.</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">@Description(name = &quot;sha2&quot;, value = &quot;_FUNC_(string/binary, len) - Calculates the SHA-2 family of hash functions &quot;</span><br><span class="line">    + &quot;(SHA-224, SHA-256, SHA-384, and SHA-512).&quot;,</span><br><span class="line">    extended = &quot;The first argument is the string or binary to be hashed. &quot;</span><br><span class="line">    + &quot;The second argument indicates the desired bit length of the result, &quot;</span><br><span class="line">    + &quot;which must have a value of 224, 256, 384, 512, or 0 (which is equivalent to 256). &quot;</span><br><span class="line">    + &quot;SHA-224 is supported starting from Java 8. &quot;</span><br><span class="line">    + &quot;If either argument is NULL or the hash length is not one of the permitted values, the return value is NULL.\n&quot;</span><br><span class="line">    + &quot;Example: &gt; SELECT _FUNC_(&#x27;ABC&#x27;, 256);\n &#x27;b5d4045c3f466fa91fe2cc6abe79232a1a57cdf104f7a26e716e0a1e2789df78&#x27;&quot;)</span><br><span class="line">public class GenericUDFSha2 extends GenericUDF &#123;</span><br><span class="line">  private transient Converter[] converters = new Converter[2];</span><br><span class="line">  private transient PrimitiveCategory[] inputTypes = new PrimitiveCategory[2];</span><br><span class="line">  private final Text output = new Text();</span><br><span class="line">  private transient boolean isStr;</span><br><span class="line">  private transient MessageDigest digest;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  public ObjectInspector initialize(ObjectInspector[] arguments) throws UDFArgumentException &#123;</span><br><span class="line">    checkArgsSize(arguments, 2, 2);</span><br><span class="line"></span><br><span class="line">    checkArgPrimitive(arguments, 0);</span><br><span class="line">    checkArgPrimitive(arguments, 1);</span><br><span class="line"></span><br><span class="line">    // the function should support both string and binary input types</span><br><span class="line">    checkArgGroups(arguments, 0, inputTypes, STRING_GROUP, BINARY_GROUP);</span><br><span class="line">    checkArgGroups(arguments, 1, inputTypes, NUMERIC_GROUP);</span><br><span class="line"></span><br><span class="line">    if (PrimitiveObjectInspectorUtils.getPrimitiveGrouping(inputTypes[0]) == STRING_GROUP) &#123;</span><br><span class="line">      obtainStringConverter(arguments, 0, inputTypes, converters);</span><br><span class="line">      isStr = true;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      GenericUDFParamUtils.obtainBinaryConverter(arguments, 0, inputTypes, converters);</span><br><span class="line">      isStr = false;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (arguments[1] instanceof ConstantObjectInspector) &#123;</span><br><span class="line">      Integer lenObj = getConstantIntValue(arguments, 1);</span><br><span class="line">      if (lenObj != null) &#123;</span><br><span class="line">        int len = lenObj.intValue();</span><br><span class="line">        if (len == 0) &#123;</span><br><span class="line">          len = 256;</span><br><span class="line">        &#125;</span><br><span class="line">        try &#123;</span><br><span class="line">          digest = MessageDigest.getInstance(&quot;SHA-&quot; + len);</span><br><span class="line">        &#125; catch (NoSuchAlgorithmException e) &#123;</span><br><span class="line">          // ignore</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      throw new UDFArgumentTypeException(1, getFuncName() + &quot; only takes constant as &quot;</span><br><span class="line">          + getArgOrder(1) + &quot; argument&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ObjectInspector outputOI = PrimitiveObjectInspectorFactory.writableStringObjectInspector;</span><br><span class="line">    return outputOI;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  public Object evaluate(DeferredObject[] arguments) throws HiveException &#123;</span><br><span class="line">    if (digest == null) &#123;</span><br><span class="line">      return null;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    digest.reset();</span><br><span class="line">    if (isStr) &#123;</span><br><span class="line">      Text n = GenericUDFParamUtils.getTextValue(arguments, 0, converters);</span><br><span class="line">      if (n == null) &#123;</span><br><span class="line">        return null;</span><br><span class="line">      &#125;</span><br><span class="line">      digest.update(n.getBytes(), 0, n.getLength());</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      BytesWritable bWr = GenericUDFParamUtils.getBinaryValue(arguments, 0, converters);</span><br><span class="line">      if (bWr == null) &#123;</span><br><span class="line">        return null;</span><br><span class="line">      &#125;</span><br><span class="line">      digest.update(bWr.getBytes(), 0, bWr.getLength());</span><br><span class="line">    &#125;</span><br><span class="line">    byte[] resBin = digest.digest();</span><br><span class="line">    String resStr = Hex.encodeHexString(resBin);</span><br><span class="line"></span><br><span class="line">    output.set(resStr);</span><br><span class="line">    return output;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  public String getDisplayString(String[] children) &#123;</span><br><span class="line">    return getStandardDisplayString(getFuncName(), children);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  protected String getFuncName() &#123;</span><br><span class="line">    return &quot;sha2&quot;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<p>And build the package.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mvn package</span><br></pre></td></tr></table></figure>
-
-<p>After compile you find in <code>target</code> dir the require jar (<code>GenericUDFSha2-1.0-SNAPSHOT.jar</code>) you need to add in Hive.</p>
-<p>You should use your Hadoop Distribution instructions for deploying new jars.</p>
-<p>Here are <a target="_blank" rel="noopener" href="https://www.cloudera.com/documentation/enterprise/5-6-x/topics/cm_mc_hive_udf.html">Cloudera Instructions</a>.</p>
-<p>Next on your Hive session you need to <code>ADD JAR</code> and create a <code>FUNCTION</code> or <code>TEMPORARY FUNCTION</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ADD JAR ./target/GenericUDFSha2-1.0-SNAPSHOT.jar</span><br><span class="line">CREATE TEMPORARY FUNCTION sha2 AS &#x27;com.rramos.bigdata.utils.GenericUDFSha2&#x27;;</span><br><span class="line">SELECT sha2(foo) from bar LIMIT1; </span><br></pre></td></tr></table></figure>
-
-<p><a target="_blank" rel="noopener" href="https://blog.matthewrathbone.com/2013/08/10/guide-to-writing-hive-udfs.html">Matthew Rathbone</a> Blog has some great tutorial on Hive Funtions. Take a look if you want to go deep with it.</p>
+<hr>
+<p>GA4 events fall into four categories:</p>
+<ul>
+<li>Automatically collected events</li>
+<li>Enhanced measurements events</li>
+<li>Recommended events</li>
+<li>Custom events</li>
+</ul>
+<h4 id="Automatically-collected-events"><a href="#Automatically-collected-events" class="headerlink" title="Automatically collected events"></a><strong>Automatically collected events</strong></h4><p>This events are logged as long you have the base code for GA4 snippet on your site either via gtag.js or Google Tag Manager. No code required</p>
+<h4 id="Enhanced-Measurements"><a href="#Enhanced-Measurements" class="headerlink" title="Enhanced Measurements"></a><strong>Enhanced Measurements</strong></h4><p>Enhanced measurements events are events that are automatically logged no code required and can be enable/disabled on the properties. also they don’t count for the named events limit that we will check next. They allow you to measure interactions with your content.</p>
+<h4 id="Recommended-Events"><a href="#Recommended-Events" class="headerlink" title="Recommended Events"></a><strong>Recommended Events</strong></h4><p>This events have predefined names and parameters and are recommend for specific business use cases. This events allow you to have more detail on your reports and enables the benefit from latest features but require you to add code as they are not logged automatically.</p>
+<p>They are recommended for:</p>
+<ul>
+<li>Retail and e-commerce</li>
+<li>Jobs/Education, Local Deals, Real Estate</li>
+<li>Travel</li>
+<li>Games</li>
+</ul>
+<h4 id="Custom-Events"><a href="#Custom-Events" class="headerlink" title="Custom Events"></a><strong>Custom Events</strong></h4><p>Custom events are implemented by yourself. You should use as a last resource and identify if the previous ones provide the data you require.</p>
+<h3 id="Pageviews"><a href="#Pageviews" class="headerlink" title="Pageviews"></a>Pageviews</h3><p>Page view in UA translate to the <code>page_view</code> event . This event is trigger automatically using the gtag.js snippet or by Google Tag manager. For Mobile apps the analog to a pageview a <em>screenview</em> is mapped to a <code>screen_view</code> event</p>
+<h3 id="Sessions"><a href="#Sessions" class="headerlink" title="Sessions"></a>Sessions</h3><p>Sessions is a group of interactions with your website that takes place within a given time frame. In UA sessions are typically defined as having ended once there has been a 30m period of inactivity or another reset event. In GA4 session metrics are derived from session_start event and the last event in the session.</p>
+<ul>
+<li><strong>Active user calculation</strong>: User activity is now detected automatically in GA4 in contrast with UA. Due to the fact that the ID can span to multiple devices it’s normal that we find mismatch when comparing both UA and GA4 data.</li>
+<li><strong>Session counting</strong>: One important change is that a new Campaign does not reset the session in GA4 has occurs in UA. Also GA4 processes the sessions with arrives up to 72 hours late while in UA the processing takes place getting data if they arrive 4 hours of close of the preceding day. Another important feature is that the iOS SDK uploads metrics automatically when apps are background, this can also result in different values if compared with UA data.</li>
+</ul>
+<h3 id="Custom-Metrics-and-Dimensions"><a href="#Custom-Metrics-and-Dimensions" class="headerlink" title="Custom Metrics and Dimensions"></a>Custom Metrics and Dimensions</h3><p>Custom Metrics and Dimensions have their own scope. When changing to GA4 the following mapping should be applied.</p>
+<table>
+<thead>
+<tr>
+<th>Scope in UA</th>
+<th>GA4 property</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Hit-scoped</td>
+<td>Events or parameters</td>
+</tr>
+<tr>
+<td>User-scoped</td>
+<td>User properties</td>
+</tr>
+<tr>
+<td>Session-scoped</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>Product-scoped</td>
+<td>E-commerce parameters</td>
+</tr>
+</tbody></table>
+<p>Remember that events, event parameters and user properties are subject to limits.</p>
+<h3 id="Content-Grouping"><a href="#Content-Grouping" class="headerlink" title="Content Grouping"></a>Content Grouping</h3><p>This is also big change as in UA you could group content into a logical structure, and then compare metrics by group. (ex: Man/Shirts). In GA4 there is a predefined event <code>content_group</code> that populates data into a “Content Group” Dimension</p>
+<h3 id="Parameters"><a href="#Parameters" class="headerlink" title="Parameters"></a>Parameters</h3><p>In GA4 you can send parameters with each event. Parameters are additional pieces of information that can further specify the action the user took, or add more context.Each event can log up to 25 parameters.</p>
+<h3 id="User-property"><a href="#User-property" class="headerlink" title="User property"></a>User property</h3><p>User properties are attributes about the users who interact with your app or website. They are used to describe segments of your user base.</p>
+<h2 id="Data-collection-settings-that-can-be-migrated"><a href="#Data-collection-settings-that-can-be-migrated" class="headerlink" title="Data collection settings that can be migrated"></a>Data collection settings that can be migrated</h2><p>The following data collection settings migrate in one-to-one from UA to GA4 as long as you use the gtag.js snippet or Google tag Manager.</p>
+<ul>
+<li>cookie customization</li>
+<li>ads personalization</li>
+</ul>
+<h2 id="Data-collection-settings-with-no-equivalent-in-GA4"><a href="#Data-collection-settings-with-no-equivalent-in-GA4" class="headerlink" title="Data collection settings with no equivalent in GA4"></a>Data collection settings with no equivalent in GA4</h2><ul>
+<li>control over IP anonymization - Enabled by default in GA4 properties</li>
+<li>get clientID - Not currently available</li>
+<li>custom task - Not available in GA4</li>
+<li>timing - Not available in GA4</li>
+</ul>
+<h2 id="Limits"><a href="#Limits" class="headerlink" title="Limits"></a>Limits</h2><p>Collections and configurations limits at the date:</p>
+<ul>
+<li>Distinctly named events <strong>500</strong> per app instance. (Can not be deleted if reaching limit)</li>
+<li>Length of event names is <strong>40</strong> characters</li>
+<li>Limit of <strong>25</strong> parameters per event</li>
+<li>Parameters value have the length limit of <strong>100</strong> characters</li>
+<li><strong>25</strong> user properties that can be added</li>
+<li>length of user property names is <strong>24</strong> charaters</li>
+<li>length of user property values is <strong>36</strong> characters</li>
+<li><strong>100</strong> audiences can be created by property</li>
+<li><strong>30</strong> convertions can be created by property</li>
+<li>Data retention up to <strong>14</strong> months</li>
+</ul>
+<p>For a complete list check the following <a target="_blank" rel="noopener" href="https://support.google.com/analytics/answer/9267744">article</a></p>
+<h2 id="Comparing-report-data-in-UA-and-GA4"><a href="#Comparing-report-data-in-UA-and-GA4" class="headerlink" title="Comparing report data in UA and GA4"></a>Comparing report data in UA and GA4</h2><p>As refereed there are several changes that may impact your report when shifting from UA to GA4. Google recommends that one creates a new tracking ID and keep both tracking options working simultaneously, preferably manged in Google Tag manager.</p>
+<p>Make sure of the following:</p>
+<ul>
+<li>Your tracking ID from UA and GA4 are both collecting the same web pages</li>
+<li>Both properties have equivalent tag implementations </li>
+<li>All tags are firing successfully</li>
+<li>Both properties use the same time zone</li>
+<li>Make sure to compare an unfiltered view in UA with a single web data stream in GA4</li>
+<li>Both properties have been collecting data for at least 30m in order to compare on the realtime report</li>
+</ul>
 <p>Cheers,<br>RR</p>
-<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://www.cloudera.com/documentation/enterprise/release-notes/topics/rg_cdh_vd.html">https://www.cloudera.com/documentation/enterprise/release-notes/topics/rg_cdh_vd.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.cloudera.com/documentation/enterprise/5-6-x/topics/cm_mc_hive_udf.html">https://www.cloudera.com/documentation/enterprise/5-6-x/topics/cm_mc_hive_udf.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.matthewrathbone.com/2013/08/10/guide-to-writing-hive-udfs.html">https://blog.matthewrathbone.com/2013/08/10/guide-to-writing-hive-udfs.html</a></li>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2022-12-23T14:03:56.352Z"><a href="/2022/12/23/GTM/">2022-12-23</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2022/12/23/GTM/">Google Tag Manager</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>In this article it will be provided a quick walkthrough on Google Tag Manager.</p>
+<h2 id="What-is-Google-Tag-Manager"><a href="#What-is-Google-Tag-Manager" class="headerlink" title="What is Google Tag Manager ?"></a>What is Google Tag Manager ?</h2><p>Google Tag Manager is a tag management system (TMS) that allows you to quickly and easily update measurement codes and related code fragments collectively known as tags on your website or mobile app. Once the small segment of Tag Manager code has been added to your project, you can safely and easily deploy analytics and measurement tag configurations from a web-based user interface.</p>
+<h3 id="What-is-a-Tag"><a href="#What-is-a-Tag" class="headerlink" title="What is a Tag ?"></a>What is a Tag ?</h3><p>Tags are segments of code provided by analytics, marketing, and support vendors to help you integrate their products into your websites or mobile apps. With Google Tag Manager, you no longer need to add these tags directly to your projects. Instead, you configure and publish tags and how they fire from within the Tag Manager user interface.</p>
+<p>When we speak of tags in an HTML context, we refer to tags such as <code>&lt;body&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;li&gt;</code>, <code>&lt;blockquote&gt;</code>, and so on. When we refer to tags used in the analytics and marketing industry, we refer to code that an organization provides to install the desired product or functionality on your website or mobile app.</p>
+<p>Tag Manager natively supports many <a target="_blank" rel="noopener" href="https://support.google.com/tagmanager/answer/6106924">Google and 3rd party tag</a> configurations. <a target="_blank" rel="noopener" href="https://support.google.com/tagmanager/answer/6107167">Custom tags</a> may be used to implement tags that are not yet supported by Tag Manager’s native templates.</p>
+<h2 id="How-it-works"><a href="#How-it-works" class="headerlink" title="How it works ?"></a>How it works ?</h2><ul>
+<li>A snippet of code (container) is required to be installed on each page of your website like it happens for instance in Google Analytics.</li>
+<li>After that one needs to setup the triggers that would fire the tags using the tagmanager UI.</li>
+<li>After publishing those tags the events are triggered based on the defined rules in a asynchronous way.</li>
+</ul>
+<blockquote>
+<p><strong>NOTE:</strong> You need one tag manager account per company or organization, but if you are tracking for several companies, you can connect to multiple tag manager accounts to a single user’s Google account.<br>Each Tag Manager account has at least one container.  A container includes the tags and “triggers” that determine when those tags should fire or collect data. Typically, you’ll have one container for each website domain, though you can use a single container for cross-domain tracking</p>
+</blockquote>
+<h3 id="How-to-Setup"><a href="#How-to-Setup" class="headerlink" title="How to Setup ?"></a>How to Setup ?</h3><p>In order to setup GTM the following steps are required:</p>
+<ol>
+<li><strong>Create an account</strong>, or use an existing account, at <a href="tagmanager.google.co">tagmanager.google.com</a>. (A new container is created by default, and you can create additional containers within each account.)</li>
+<li><strong>Install the container</strong> in your website or mobile app.<ul>
+<li>For web and AMP pages: Add the container snippet as instructed by Tag Manager, and remove any existing tags.</li>
+<li>For mobile apps: Use the Firebase SDK for Android or iOS.</li>
+</ul>
+</li>
+<li><strong>Add and publish your tags</strong>.</li>
+</ol>
+<blockquote>
+<p><strong>NOTE:</strong> A Tag Manager account represents the topmost level of organization. Typically, only one account is needed per company. A Tag Manager account contains one or more containers, and there are specific container types that may be used for websites, AMP pages, Android apps, and iOS apps.</p>
+</blockquote>
+<h4 id="Install-the-snippet"><a href="#Install-the-snippet" class="headerlink" title="Install the snippet"></a><strong>Install the snippet</strong></h4><ul>
+<li><p>Place the <code>&lt;script&gt;</code> code snippet in the <code>&lt;head&gt;</code> of your web page HTML output, preferably as close to the opening <code>&lt;head&gt;</code> tag as possible, but below any dataLayer declarations.</p>
+</li>
+<li><p>Place the <code>&lt;noscript&gt;</code> code snippet immediately after the <code>&lt;body&gt;</code> tag in your HTML output.</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>NOTE:</strong> To ensure that tags do not fire twice, remove from your code any hardcoded tags that have been migrated to your Tag Manager container.</p>
+</blockquote>
+<h2 id="Why-should-one-use-Google-Tag-Manager"><a href="#Why-should-one-use-Google-Tag-Manager" class="headerlink" title="Why should one use Google Tag Manager ?"></a>Why should one use Google Tag Manager ?</h2><ul>
+<li>Tag manager allows to simplify the management of tags and reduce the dependency from engineering teams. Acts as a bridge between Marketers and developers.</li>
+<li>Allow to have a collaborative space for marketing teams to test and source control their changes, improving the workflow to have this changes deployed.</li>
+<li>Improves page loads as the tags are fired asynchronously.</li>
+</ul>
+<h2 id="How-to-use-Google-Tag-Manager"><a href="#How-to-use-Google-Tag-Manager" class="headerlink" title="How to use Google Tag Manager ?"></a>How to use Google Tag Manager ?</h2><h3 id="Manage-Tags"><a href="#Manage-Tags" class="headerlink" title="Manage Tags"></a>Manage Tags</h3><p>Tags are fired based on triggers and these make use of:</p>
+<ul>
+<li>Variable</li>
+<li>Operators</li>
+<li>Values</li>
+</ul>
+<h4 id="Variables"><a href="#Variables" class="headerlink" title="Variables"></a>Variables</h4><ul>
+<li><strong>Built-in Variables</strong>: ex: <code>&#123;&#123;page path&#125;&#125;</code> or <code>&#123;&#123;click id&#125;&#125;</code></li>
+<li><strong>User defined variables</strong>: ex: <code>&#123;&#123;purchaseComplete&#125;&#125;</code></li>
+</ul>
+<h4 id="Operators"><a href="#Operators" class="headerlink" title="Operators"></a>Operators</h4><ul>
+<li>Operators define the relation with variable and values: ex: <em>contains, equals</em></li>
+</ul>
+<h4 id="Values"><a href="#Values" class="headerlink" title="Values"></a>Values</h4><ul>
+<li>Values like numbers or strings: ex: 1, 2, 3 or a, b , c</li>
+</ul>
+<p>When the user visit the site the container snippet will trigger tags based on firing instructions which communicates to systems such as Google Analytics.</p>
+<h2 id="DataLayer"><a href="#DataLayer" class="headerlink" title="DataLayer"></a>DataLayer</h2><p>The Data Layer in Tag Manager is a Javascript object that holds data such as custom event information or variables passed from your website. Information in the Data Layer is structured into key-value pairs, which may be passed to third-party applications like Analytics or used as a trigger to determine when tags should fire.</p>
+<p>There are two ways to populate the Data Layer with these key-value pairs.</p>
+<ol>
+<li>Pre-populating values in the data layer</li>
+<li>Javascript push into the Data Layer</li>
+</ol>
+<blockquote>
+<p><strong>NOTE</strong>: It’s important to note that Data Layer variables don’t persist across pages automatically. If you wish to pass a value to the Data Layer on additional pages, you’ll need to write custom code to do so.</p>
+</blockquote>
+<h2 id="Definitions"><a href="#Definitions" class="headerlink" title="Definitions"></a>Definitions</h2><ul>
+<li><strong>KPI</strong> - Key Performance Indicator (KPI) Definition<br>A Key Performance Indicator is a measurable value that demonstrates how effectively a company is achieving key business objectives. Organizations use KPIs at multiple levels to evaluate their success at reaching targets.</li>
+</ul>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://marketingplatform.google.com/about/tag-manager/">https://marketingplatform.google.com/about/tag-manager/</a></li>
+<li><a target="_blank" rel="noopener" href="https://developers.google.com/tag-manager">https://developers.google.com/tag-manager</a></li>
+<li><a target="_blank" rel="noopener" href="https://support.google.com/tagmanager/answer/6102821?hl=en">https://support.google.com/tagmanager/answer/6102821?hl=en</a></li>
 </ul>
 
       
@@ -457,99 +345,142 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2017-09-26T22:43:35.000Z"><a href="/2017/09/26/vagrant-qemu/">2017-09-26</a></time>
+        <time datetime="2022-08-30T09:00:16.000Z"><a href="/2022/08/30/nato_alphabet/">2022-08-30</a></time>
       
       
   
-    <h1 class="title"><a href="/2017/09/26/vagrant-qemu/">Quick Guide for Vagrant and Libvirt</a></h1>
+    <h1 class="title"><a href="/2022/08/30/nato_alphabet/">NATO Phonetic Alphabet</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <p>This article is going to be about a quick way to setup a PoC environment using <a target="_blank" rel="noopener" href="https://libvirt.org/">libvirt</a> (<a target="_blank" rel="noopener" href="https://www.qemu.org/">QEMU</a>) and <a target="_blank" rel="noopener" href="https://www.vagrantup.com/">vagrant</a>, and auto configure the enviroment using <a target="_blank" rel="noopener" href="https://www.ansible.com/">ansible</a>.</p>
-<h1 id="Why"><a href="#Why" class="headerlink" title="Why ?"></a>Why ?</h1><p>One migth go a bit further in the testing enviroments, instead of dockers using virtualized enviroment. This kind of approcah whould be suitable when you like to try infrastructure services, or simple don’t want to use dockers.</p>
-<p>If you check Internet Trends we can see docker interest have grown quite a lot on the last 5 years. </p>
-
-<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1154_RC03/embed_loader.js"></script> <script type="text/javascript"> trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"docker","geo":"","time":"today 5-y"},{"keyword":"Virtual Machines","geo":"","time":"today 5-y"}],"category":13,"property":""}, {"exploreQuery":"cat=13&date=today 5-y,today 5-y&q=docker,Virtual%20Machines","guestPath":"https://trends.google.com:443/trends/embed/"}); </script> 
-
-
-<p><strong>Still i’m OldSchool and i like my plain-simple-VMs some times :D</strong></p>
-<p>A later article would be about configuring a Mesos Cluster so this one makes sense as a preparation guide for it.</p>
-<h1 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h1><ul>
-<li>Make sure you have vagrant installed</li>
-<li>Make sure your machine supports virtualization :)</li>
-<li>Make sure you have QEMU installed</li>
-<li>Make sure you have libvirt up and running</li>
-<li>Make sure you have ansible (Optional)</li>
+        <blockquote>
+<p>The (International) Radiotelephony Spelling Alphabet, commonly known as the NATO phonetic alphabet, is the most widely used set of clear code words for communicating the letters of the Roman alphabet, technically a radiotelephonic</p>
+</blockquote>
+<p>A spelling alphabet is used to spell parts of a message containing letters and numbers to avoid confusion, because many letters sound similar, for instance “n” and “m” or “f” and “s”; the potential for confusion increases if static or other interference is present.</p>
+<ul>
+<li><strong>A</strong>lfa</li>
+<li><strong>B</strong>ravo</li>
+<li><strong>C</strong>harlie</li>
+<li><strong>D</strong>elta</li>
+<li><strong>E</strong>cho</li>
+<li><strong>F</strong>oxtrot</li>
+<li><strong>G</strong>olf</li>
+<li><strong>H</strong>otel</li>
+<li><strong>I</strong>ndia</li>
+<li><strong>J</strong>uliett</li>
+<li><strong>K</strong>ilo</li>
+<li><strong>L</strong>ima</li>
+<li><strong>M</strong>ike</li>
+<li><strong>N</strong>ovember</li>
+<li><strong>O</strong>scar</li>
+<li><strong>P</strong>apa</li>
+<li><strong>Q</strong>uebec</li>
+<li><strong>R</strong>omeo</li>
+<li><strong>S</strong>ierra</li>
+<li><strong>T</strong>ango</li>
+<li><strong>U</strong>niform</li>
+<li><strong>V</strong>ictor</li>
+<li><strong>W</strong>hiskey</li>
+<li><strong>X</strong>-ray</li>
+<li><strong>Y</strong>ankee</li>
+<li><strong>Z</strong>ulu</li>
 </ul>
-<p><strong>Note:</strong> This guide was tested on Ubuntu 16. Use at your own risk</p>
-<p>One can test libvirt version suing the command</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ virsh version</span><br><span class="line">Compiled against library: libvirt 1.3.1</span><br><span class="line">Using library: libvirt 1.3.1</span><br><span class="line">Using API: QEMU 1.3.1</span><br><span class="line">Running hypervisor: QEMU 2.5.0</span><br></pre></td></tr></table></figure>
 
-<p><strong>NOTE:</strong> Before you start using Vagrant-libvirt, please make sure your libvirt and qemu installation is working correctly and you are able to create qemu or kvm type virtual machines with virsh or virt-manager.</p>
-<h1 id="setup"><a href="#setup" class="headerlink" title="setup"></a>setup</h1><p>Install dependencies</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get install qemu libvirt-bin ebtables dnsmasq</span><br><span class="line">sudo apt-get install libxslt-dev libxml2-dev libvirt-dev zlib1g-dev ruby-dev</span><br><span class="line">sudo apt-get install vagrant ruby-libvirt</span><br></pre></td></tr></table></figure>
-
-<p>Install vagrant-libvirt plugin:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vagrant plugin install vagrant-libvirt</span><br></pre></td></tr></table></figure>
-
-<p>Now let’s test by creating a startup Box. There are several available <a target="_blank" rel="noopener" href="https://app.vagrantup.com/boxes/search?provider=libvirt">here</a></p>
-<p>Example: (Ubuntu 16)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir Vagrant</span><br><span class="line">cd Vagrant</span><br><span class="line">vagrant init marczis/ubuntu_16_04</span><br></pre></td></tr></table></figure>
-
-<p>Let’s start the VM</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vagrant up --provider=libvirt</span><br></pre></td></tr></table></figure>
-
-<p>After executing the comman you should have some output similar</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">==&gt; default: Successfully added box &#x27;marczis/ubuntu_16_04&#x27; (v0.1.2) for &#x27;libvirt&#x27;!</span><br><span class="line">==&gt; default: Uploading base box image as volume into libvirt storage...</span><br><span class="line">==&gt; default: Creating image (snapshot of base box volume).</span><br><span class="line">==&gt; default: Creating domain with the following settings...</span><br><span class="line">==&gt; default:  -- Name:              Vagrant_default</span><br><span class="line">==&gt; default:  -- Domain type:       kvm</span><br><span class="line">==&gt; default:  -- Cpus:              1</span><br><span class="line">==&gt; default:  -- Feature:           acpi</span><br><span class="line">==&gt; default:  -- Feature:           apic</span><br><span class="line">==&gt; default:  -- Feature:           pae</span><br><span class="line">==&gt; default:  -- Memory:            512M</span><br><span class="line">==&gt; default:  -- Management MAC:    </span><br><span class="line">==&gt; default:  -- Loader:            </span><br><span class="line">==&gt; default:  -- Base box:          marczis/ubuntu_16_04</span><br><span class="line">==&gt; default:  -- Storage pool:      default</span><br><span class="line">==&gt; default:  -- Image:             /var/lib/libvirt/images/Vagrant_default.img (10G)</span><br><span class="line">==&gt; default:  -- Volume Cache:      default</span><br><span class="line">==&gt; default:  -- Kernel:            </span><br><span class="line">==&gt; default:  -- Initrd:            </span><br><span class="line">==&gt; default:  -- Graphics Type:     vnc</span><br><span class="line">==&gt; default:  -- Graphics Port:     5900</span><br><span class="line">==&gt; default:  -- Graphics IP:       127.0.0.1</span><br><span class="line">==&gt; default:  -- Graphics Password: Not defined</span><br><span class="line">==&gt; default:  -- Video Type:        cirrus</span><br><span class="line">==&gt; default:  -- Video VRAM:        9216</span><br><span class="line">==&gt; default:  -- Sound Type:    </span><br><span class="line">==&gt; default:  -- Keymap:            en-us</span><br><span class="line">==&gt; default:  -- TPM Path:          </span><br><span class="line">==&gt; default:  -- INPUT:             type=mouse, bus=ps2</span><br><span class="line">==&gt; default: Creating shared folders metadata...</span><br><span class="line">==&gt; default: Starting domain.</span><br><span class="line">==&gt; default: Waiting for domain to get an IP address...</span><br><span class="line">==&gt; default: Waiting for SSH to become available...</span><br><span class="line">    default: </span><br><span class="line">    default: Vagrant insecure key detected. Vagrant will automatically replace</span><br><span class="line">    default: this with a newly generated keypair for better security.</span><br><span class="line">    default: </span><br><span class="line">    default: Inserting generated public key within guest...</span><br><span class="line">    default: Removing insecure key from the guest if it&#x27;s present...</span><br><span class="line">    default: Key inserted! Disconnecting and reconnecting using new SSH key...</span><br><span class="line">==&gt; default: Configuring and enabling network interfaces...</span><br><span class="line">==&gt; default: Rsyncing folder: /home/rramos/Development/Vagrant/ =&gt; /vagrant</span><br><span class="line">==&gt; default: Check for insecure vagrant key: OK (not present)</span><br></pre></td></tr></table></figure>
-
-<p>If you execute <code>virt-manager</code> you can see the virtual machine specification and adapt the Vagrant file to you needs.</p>
-<img src="/2017/09/26/vagrant-qemu/virt-manager.png" class="" title="virt-manager">
-
-<p>You can then ssh to the VM using the command <code>vagrant ssh</code>. You should have a prompt like:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Welcome to Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-77-generic x86_64)</span><br><span class="line"></span><br><span class="line"> * Documentation:  https://help.ubuntu.com</span><br><span class="line"> * Management:     https://landscape.canonical.com</span><br><span class="line"> * Support:        https://ubuntu.com/advantage</span><br><span class="line">vagrant@ubuntu:~$ </span><br></pre></td></tr></table></figure>
-
-<p>You can add the ssh key to your ssh configuration executing the following command. ( Check my previous  <a href="/2017/09/13/ssh-config/" title="[article]">[article]</a> regarding this topic)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vagrant ssh-config &gt;&gt; ~/.ssh/config</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
 
 
-<p>then try the command <code>ssh default</code> . Default if the default name of the VM defined in the vagrant file. </p>
-<h1 id="Let’s-extend-a-bit"><a href="#Let’s-extend-a-bit" class="headerlink" title="Let’s extend a bit."></a>Let’s extend a bit.</h1><p>The next step is to set Ansible as our provisioning provider for the Vagrant Box. Add the following lines before the end statement in your Vagrantfile to set Ansible as the provisioning provider:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">config.vm.provision :ansible do |ansible|</span><br><span class="line">  ansible.playbook = &quot;playbook.yml&quot;</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
 
-<p>Let’s create the playbook.yml file with the following content</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">- hosts: all</span><br><span class="line">  become: yes</span><br><span class="line">  become_user: root</span><br><span class="line">  tasks:</span><br><span class="line">    - name: install apache2</span><br><span class="line">      apt: name=apache2 update_cache=yes state=latest</span><br><span class="line">  handlers:</span><br><span class="line">    - name: restart apache2</span><br><span class="line">      service: name=apache2 state=restarted</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>This example playbook will install apache service on the all hosts given by Vagrantfile and start the service.</p>
-<p>Then we can run the command to just run the provision stuff</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vagrant provision</span><br></pre></td></tr></table></figure>
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2021-02-21T11:25:53.000Z"><a href="/2021/02/21/VisualCode Hexo addon/">2021-02-21</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2021/02/21/VisualCode Hexo addon/">VisualCode Hexo Addon</a></h1>
+  
 
-<p>Let’s add the following configuration on our Vagrant file</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">config.vm.network &quot;forwarded_port&quot;, guest: 80, host: 8080</span><br></pre></td></tr></table></figure>
-
-<p>And execute <code>vagrant reload</code></p>
-<p>If one access <a target="_blank" rel="noopener" href="http://localhost:8080/">http://localhost:8080</a> we are now accessing the VM installed service.</p>
-<p>If you recreate the VM it would run the ansible part at the end. </p>
-<p>So it’s quite easy to recreate your environment.</p>
-<h1 id="Cluster-Configuration"><a href="#Cluster-Configuration" class="headerlink" title="Cluster Configuration"></a>Cluster Configuration</h1><p>One could have Vagrant more complex configuration like the following for several VMs.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Vagrant.configure(&quot;2&quot;) do |config|</span><br><span class="line">  config.vm.provision &quot;shell&quot;, inline: &quot;echo Hello&quot;</span><br><span class="line"></span><br><span class="line">  config.vm.define &quot;web&quot; do |web|</span><br><span class="line">    web.vm.box = &quot;apache&quot;</span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line">  config.vm.define &quot;db&quot; do |db|</span><br><span class="line">    db.vm.box = &quot;mysql&quot;</span><br><span class="line">  end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-
-<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>In this article is described a simple way to integrate Vangrant with libvirt for quickly spinning VM’s and running ansible playbooks on them.</p>
-<p>This could be usefull for testing ansible playbooks before shipping them to LIVE enviroments or testing purposes. </p>
-<p>Also to quickly configure a more complex infrastructure, where you don’t wont to use dockers.</p>
-<p>On the next article i will write a step-by-step guide to spin up a Mesos Cluster using this approach, so this article could be used as prep-guide.</p>
+    </header>
+    <div class="entry">
+      
+        <h1 id="VisualCode-Hexo-extension"><a href="#VisualCode-Hexo-extension" class="headerlink" title="VisualCode Hexo extension"></a>VisualCode Hexo extension</h1><p>This article explain how to activte the visualcode hexo extension which would boost your productivity if you use Hexo for your articles such has i’m doing on this blob page.</p>
+<h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><p>Install VisualCode:</p>
+<ul>
+<li> <a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/setup/setup-overview">https://code.visualstudio.com/docs/setup/setup-overview</a></li>
+</ul>
+<p>Activate the following extension by executing the following command</p>
+<p><code>ext install fantasy.vscode-hexo-utils</code></p>
+<p>Make sure you open the folder where your Hexo base code is.</p>
+<p>That’s it.</p>
+<p>The extension allows you to directly manage your posts/tags/categories. It is also very suefull if you side lane the articles and preview the Markdowns with <strong>[Ctrl] + [Shift] + [V]</strong></p>
+<p>The extension repo is available on the following github repo: </p>
+<ul>
+<li> <a target="_blank" rel="noopener" href="https://github.com/cwxyz007/vscode-hexo-utils">https://github.com/cwxyz007/vscode-hexo-utils</a></li>
+</ul>
+<p>Kudos for the <a target="_blank" rel="noopener" href="https://github.com/cwxyz007/vscode-hexo-utils/graphs/contributors">contributors</a></p>
 <p>Cheers,<br>RR</p>
-<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://libvirt.org/">https://libvirt.org/</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.qemu.org/">https://www.qemu.org/</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.vagrantup.com/">https://www.vagrantup.com/</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.ansible.com/">https://www.ansible.com/</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/vagrant-libvirt/vagrant-libvirt">https://github.com/vagrant-libvirt/vagrant-libvirt</a></li>
-<li><a target="_blank" rel="noopener" href="https://app.vagrantup.com/boxes/search?provider=libvirt">https://app.vagrantup.com/boxes/search?provider=libvirt</a></li>
-<li><a target="_blank" rel="noopener" href="https://fedoramagazine.org/using-ansible-provision-vagrant-boxes/">https://fedoramagazine.org/using-ansible-provision-vagrant-boxes/</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.vagrantup.com/docs/multi-machine/">https://www.vagrantup.com/docs/multi-machine/</a></li>
-</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2021-02-21T11:07:15.000Z"><a href="/2021/02/21/Git-Untrack-previous-commited-files/">2021-02-21</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2021/02/21/Git-Untrack-previous-commited-files/">Git Untrack Previous Commited Files</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>This is something that sometimes bugs me, you keep hitting the .gitinore configuration file but still the file you try to ignore always get’s referenced on your changes.</p>
+<p>If that happens most probably you’ve reference it in the past to be track and you need to remove it, so this are the steps.</p>
+<h1 id="Update-your-gitignore-and-untrack-the-file"><a href="#Update-your-gitignore-and-untrack-the-file" class="headerlink" title="Update your .gitignore and untrack the file"></a>Update your .gitignore and untrack the file</h1><p>This example to untrack <code>db.json</code></p>
+<ol>
+<li><p>Change the entry in .gitignore ex: <code>*.json</code></p>
+</li>
+<li><p>Execute the following command to untrack</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git update-index --assume-unchanged db.json</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>Commit the changes</li>
+</ol>
 
       
     </div>
@@ -592,6 +523,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <h3 class="title">Tags</h3>
   <ul class="entry">
   
+    <li><a href="/tags/NET/">.NET</a><small>1</small></li>
+  
     <li><a href="/tags/Net/">.Net</a><small>1</small></li>
   
     <li><a href="/tags/AI/">AI</a><small>1</small></li>
@@ -614,6 +547,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Arch/">Arch</a><small>4</small></li>
   
+    <li><a href="/tags/Arch-Linux/">Arch Linux</a><small>1</small></li>
+  
     <li><a href="/tags/Architecture/">Architecture</a><small>1</small></li>
   
     <li><a href="/tags/Artifactory/">Artifactory</a><small>1</small></li>
@@ -623,6 +558,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/BigData/">BigData</a><small>2</small></li>
   
     <li><a href="/tags/BigQuery/">BigQuery</a><small>1</small></li>
+  
+    <li><a href="/tags/Books/">Books</a><small>1</small></li>
   
     <li><a href="/tags/CDH-Parcel/">CDH Parcel</a><small>1</small></li>
   
@@ -646,11 +583,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Customize/">Customize</a><small>1</small></li>
   
+    <li><a href="/tags/DBT/">DBT</a><small>1</small></li>
+  
+    <li><a href="/tags/Data-Engineering/">Data Engineering</a><small>4</small></li>
+  
+    <li><a href="/tags/Data-Generation/">Data Generation</a><small>1</small></li>
+  
     <li><a href="/tags/Data-Ingestion/">Data Ingestion</a><small>1</small></li>
+  
+    <li><a href="/tags/Data-Modeling/">Data Modeling</a><small>2</small></li>
   
     <li><a href="/tags/Data-Quality/">Data Quality</a><small>1</small></li>
   
     <li><a href="/tags/Data-Science/">Data Science</a><small>1</small></li>
+  
+    <li><a href="/tags/Data-Visualization/">Data Visualization</a><small>2</small></li>
   
     <li><a href="/tags/Delegation/">Delegation</a><small>1</small></li>
   
@@ -659,6 +606,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/Dimensions/">Dimensions</a><small>1</small></li>
   
     <li><a href="/tags/Docker/">Docker</a><small>7</small></li>
+  
+    <li><a href="/tags/DuckDB/">DuckDB</a><small>1</small></li>
   
     <li><a href="/tags/GA/">GA</a><small>2</small></li>
   
@@ -688,6 +637,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/IDE/">IDE</a><small>1</small></li>
   
+    <li><a href="/tags/Infrastructure/">Infrastructure</a><small>1</small></li>
+  
+    <li><a href="/tags/Inspiration/">Inspiration</a><small>1</small></li>
+  
     <li><a href="/tags/Install/">Install</a><small>1</small></li>
   
     <li><a href="/tags/Internet/">Internet</a><small>1</small></li>
@@ -714,7 +667,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Management/">Management</a><small>2</small></li>
   
-    <li><a href="/tags/Markdown/">Markdown</a><small>1</small></li>
+    <li><a href="/tags/Markdown/">Markdown</a><small>2</small></li>
   
     <li><a href="/tags/Mesos/">Mesos</a><small>1</small></li>
   
@@ -760,13 +713,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/RDD/">RDD</a><small>1</small></li>
   
+    <li><a href="/tags/Reserve-Proxy/">Reserve Proxy</a><small>1</small></li>
+  
     <li><a href="/tags/Rust/">Rust</a><small>1</small></li>
   
     <li><a href="/tags/SQL/">SQL</a><small>1</small></li>
   
     <li><a href="/tags/SQLServer/">SQLServer</a><small>1</small></li>
   
-    <li><a href="/tags/Scala/">Scala</a><small>1</small></li>
+    <li><a href="/tags/Scala/">Scala</a><small>2</small></li>
   
     <li><a href="/tags/Scrum/">Scrum</a><small>1</small></li>
   
@@ -776,7 +731,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Software/">Software</a><small>3</small></li>
   
-    <li><a href="/tags/Software-Engineering/">Software Engineering</a><small>1</small></li>
+    <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
+  
+    <li><a href="/tags/Software-Engineering/">Software Engineering</a><small>2</small></li>
   
     <li><a href="/tags/Spark/">Spark</a><small>4</small></li>
   
@@ -872,7 +829,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
   <footer id="footer" class="inner"><div class="alignleft">
   
-  &copy; 2023 Rui Ramos
+  &copy; 2024 Rui Ramos
   
   <a class="disclaimer" href=/disclaimer> Disclaimer</a>
 </div>
