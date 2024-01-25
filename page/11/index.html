@@ -77,6 +77,99 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
+        <time datetime="2017-09-19T07:37:29.000Z"><a href="/2017/09/19/dockerclean/">2017-09-19</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/09/19/dockerclean/">Clean All Dockers and Configure With Btrfs</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>So dockers tend to start growing like weeds. And cost me space i don’t have. But one could change the storage driver. You could choose LVM and take advantage of the snapshots or btrfs which i allready have.</p>
+<h2 id="Btrfs"><a href="#Btrfs" class="headerlink" title="Btrfs"></a>Btrfs</h2><p>Btrfs is a next generation copy-on-write filesystem that supports many advanced storage technologies that make it a good fit for Docker. Btrfs is included in the mainline Linux kernel.</p>
+<p>Docker’s btrfs storage driver leverages many Btrfs features for image and container management. Among these features are block-level operations, thin provisioning, copy-on-write snapshots, and ease of administration. You can easily combine multiple physical block devices into a single Btrfs filesystem.</p>
+<h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><ul>
+<li>Install btrfs </li>
+<li>Make sure you have a volume formated as btrfs (not part of the article)</li>
+</ul>
+<h2 id="Clean-all-dockers-and-images"><a href="#Clean-all-dockers-and-images" class="headerlink" title="Clean all dockers and images"></a>Clean all dockers and images</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Delete all containers</span><br><span class="line">sudo docker rm $(sudo docker ps -a -q)</span><br><span class="line"># Delete all images</span><br><span class="line">sudo docker rmi $(sudo docker images -q)</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><p>Make sure you have btrfs on your system</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo cat /proc/filesystems | grep btrfs</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>Stop docker</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo service docker stop</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>Create a backup of you docker settings</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo mv /var/lib/docker/ /var/lib/docker.bak</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>create a subvolume from an existing btrfs FS</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">btrfs subvolume create /archive/dockers</span><br></pre></td></tr></table></figure>
+
+<p><strong>NOTE:</strong> It’s better to use a dedicate disk for it</p>
+<ol start="4">
+<li>Create the symlink</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ln -s /archive/dockers /var/lib/docker</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>Copy the backup data to the new location</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cp -rp /var/lib/docker.bak/* /var/lib/docker/</span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li>Configure Docker to use the btrfs storage driver. This is required even though <code>/var/lib/docker/</code> is now using a Btrfs filesystem. Edit or create the file <code>/etc/docker/daemon.json</code>.</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;storage-driver&quot;: &quot;btrfs&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="7">
+<li>Start docker service</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo service docker start</span><br></pre></td></tr></table></figure>
+
+<ol start="8">
+<li>Check if docker is running with docker support</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo docker info|grep  &quot;Storage Driver&quot;</span><br></pre></td></tr></table></figure>
+
+<p>You could check the volumes being created with the command</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo btrfs subvolume list /var/liv/docker |grep dockers</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.docker.com/engine/userguide/storagedriver/btrfs-driver/">https://docs.docker.com/engine/userguide/storagedriver/btrfs-driver/</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2017-09-13T22:13:24.000Z"><a href="/2017/09/13/ssh-config/">2017-09-13</a></time>
       
       
@@ -354,103 +447,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-09-07T16:57:08.000Z"><a href="/2017/09/07/unpivot/">2017-09-07</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/09/07/unpivot/">Hive - Unpivot to Avoid Multiple Joins</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>In Hive, when a table has multiple similar columns, such as:</p>
-<table>
-<thead>
-<tr>
-<th>product_id</th>
-<th>image_name1</th>
-<th>image_name2</th>
-<th>…</th>
-<th>image_name15</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1</td>
-<td>a.jpg</td>
-<td>b.jpg</td>
-<td>…</td>
-<td>c.jpg</td>
-</tr>
-<tr>
-<td>2</td>
-<td>d.jpg</td>
-<td>e.jpg</td>
-<td>…</td>
-<td>f.jpg</td>
-</tr>
-</tbody></table>
-<p>and we want to join based on all image_names, the naive approach would be to perform 15 joins (in the running example).</p>
-<p>Hive does not have an unpivot functionality, but it is possible to use the Hive builtin UDF explode to accomplish this:<br>Query example</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">select x.product_id, x.image_name from (</span><br><span class="line">  select product_id, map(&quot;image_name1&quot;, image_name1, ..., &quot;image_name15&quot;, image_name15) as image_map</span><br><span class="line">  from table ) x</span><br><span class="line">lateral view explode(image_map) expl as image_nr, image_name</span><br></pre></td></tr></table></figure>
-
-
-<p>This returns an unpivoted table like below, which allows us to perform a single join:</p>
-<table>
-<thead>
-<tr>
-<th>product_id</th>
-<th>image_name</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1</td>
-<td>a.jpg</td>
-</tr>
-<tr>
-<td>1</td>
-<td>b.jpg</td>
-</tr>
-<tr>
-<td>1</td>
-<td>c.jpg</td>
-</tr>
-<tr>
-<td>2</td>
-<td>d.jpg</td>
-</tr>
-<tr>
-<td>2</td>
-<td>e.jpg</td>
-</tr>
-<tr>
-<td>2</td>
-<td>f.jpg</td>
-</tr>
-</tbody></table>
-<p>Big thanks to Diogo Franco, for this hint ;) check also is Blog Page <a target="_blank" rel="noopener" href="https://diogoalexandrefranco.github.io/">diogoalexandrefranco.github.io</a></p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -626,6 +622,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/Mesos/">Mesos</a><small>1</small></li>
   
     <li><a href="/tags/Metrics/">Metrics</a><small>1</small></li>
+  
+    <li><a href="/tags/Microsoft-Fabric/">Microsoft Fabric</a><small>1</small></li>
   
     <li><a href="/tags/Monitoring/">Monitoring</a><small>1</small></li>
   
