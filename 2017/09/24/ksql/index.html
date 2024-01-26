@@ -95,10 +95,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <footer><strong>Offical Website Definition</strong></footer></blockquote>
 
 <h2 id="PoC-Setup"><a href="#PoC-Setup" class="headerlink" title="PoC Setup"></a>PoC Setup</h2><p>Create the following file <code>docker-compose.yml</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">version: &#x27;2&#x27;</span><br><span class="line">services:</span><br><span class="line">  zookeeper:</span><br><span class="line">    image: &quot;confluentinc/cp-zookeeper:latest&quot;</span><br><span class="line">    hostname: zookeeper</span><br><span class="line">    ports:</span><br><span class="line">      - &#x27;32181:32181&#x27;</span><br><span class="line">    environment:</span><br><span class="line">      ZOOKEEPER_CLIENT_PORT: 32181</span><br><span class="line">      ZOOKEEPER_TICK_TIME: 2000</span><br><span class="line">    extra_hosts:</span><br><span class="line">      - &quot;moby:127.0.0.1&quot;</span><br><span class="line"></span><br><span class="line">  kafka:</span><br><span class="line">    image: &quot;confluentinc/cp-enterprise-kafka:latest&quot;</span><br><span class="line">    hostname: kafka</span><br><span class="line">    ports:</span><br><span class="line">      - &#x27;9092:9092&#x27;</span><br><span class="line">      - &#x27;29092:29092&#x27;</span><br><span class="line">    depends_on:</span><br><span class="line">      - zookeeper</span><br><span class="line">    environment:</span><br><span class="line">      KAFKA_BROKER_ID: 1</span><br><span class="line">      KAFKA_ZOOKEEPER_CONNECT: zookeeper:32181</span><br><span class="line">      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT</span><br><span class="line">      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT</span><br><span class="line">      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092</span><br><span class="line">      KAFKA_AUTO_CREATE_TOPICS_ENABLE: &quot;true&quot;</span><br><span class="line">      KAFKA_METRIC_REPORTERS: io.confluent.metrics.reporter.ConfluentMetricsReporter</span><br><span class="line">      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1</span><br><span class="line">      CONFLUENT_METRICS_REPORTER_BOOTSTRAP_SERVERS: kafka:29092</span><br><span class="line">      CONFLUENT_METRICS_REPORTER_ZOOKEEPER_CONNECT: zookeeper:32181</span><br><span class="line">      CONFLUENT_METRICS_REPORTER_TOPIC_REPLICAS: 1</span><br><span class="line">      CONFLUENT_METRICS_ENABLE: &#x27;true&#x27;</span><br><span class="line">      CONFLUENT_SUPPORT_CUSTOMER_ID: &#x27;anonymous&#x27;</span><br><span class="line">    extra_hosts:</span><br><span class="line">      - &quot;moby:127.0.0.1&quot;</span><br><span class="line"></span><br><span class="line">  schema-registry:</span><br><span class="line">    image: &quot;confluentinc/cp-schema-registry:latest&quot;</span><br><span class="line">    hostname: schema-registry</span><br><span class="line">    depends_on:</span><br><span class="line">      - zookeeper</span><br><span class="line">      - kafka</span><br><span class="line">    ports:</span><br><span class="line">      - &#x27;8081:8081&#x27;</span><br><span class="line">    environment:</span><br><span class="line">      SCHEMA_REGISTRY_HOST_NAME: schema-registry</span><br><span class="line">      SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: zookeeper:32181</span><br><span class="line">    extra_hosts:</span><br><span class="line">      - &quot;moby:127.0.0.1&quot;</span><br><span class="line"></span><br><span class="line">  # Runs the Kafka KSQL data generator for topic called &quot;pageviews&quot;</span><br><span class="line">  ksql-datagen-pageviews:</span><br><span class="line">    image: &quot;confluentinc/ksql-examples:latest&quot;</span><br><span class="line">    hostname: ksql-datagen-pageviews</span><br><span class="line">    depends_on:</span><br><span class="line">      - kafka</span><br><span class="line">      - schema-registry</span><br><span class="line">    # Note: The container&#x27;s `run` script will perform the same readiness checks</span><br><span class="line">    # for Kafka and Confluent Schema Registry, but that&#x27;s ok because they complete fast.</span><br><span class="line">    # The reason we check for readiness here is that we can insert a sleep time</span><br><span class="line">    # for topic creation before we start the application.</span><br><span class="line">    command: &quot;bash -c &#x27;echo Waiting for Kafka to be ready... &amp;&amp; \</span><br><span class="line">                       cub kafka-ready -b kafka:29092 1 20 &amp;&amp; \</span><br><span class="line">                       echo Waiting for Confluent Schema Registry to be ready... &amp;&amp; \</span><br><span class="line">                       cub sr-ready schema-registry 8081 20 &amp;&amp; \</span><br><span class="line">                       echo Waiting a few seconds for topic creation to finish... &amp;&amp; \</span><br><span class="line">                       sleep 2 &amp;&amp; \</span><br><span class="line">                       java -jar /usr/share/java/ksql-examples/ksql-examples-0.1-SNAPSHOT-standalone.jar</span><br><span class="line">                       quickstart=pageviews format=delimited topic=pageviews bootstrap-server=kafka:29092 maxInterval=100 iterations=1000 &amp;&amp; \</span><br><span class="line">                       java -jar /usr/share/java/ksql-examples/ksql-examples-0.1-SNAPSHOT-standalone.jar</span><br><span class="line">                       quickstart=pageviews format=delimited topic=pageviews bootstrap-server=kafka:29092 maxInterval=1000&#x27;&quot;</span><br><span class="line">    environment:</span><br><span class="line">      KSQL_CONFIG_DIR: &quot;/etc/ksql&quot;</span><br><span class="line">      KSQL_LOG4J_OPTS: &quot;-Dlog4j.configuration=file:/etc/ksql/log4j-rolling.properties&quot;</span><br><span class="line">      STREAMS_BOOTSTRAP_SERVERS: kafka:29092</span><br><span class="line">      STREAMS_SCHEMA_REGISTRY_HOST: schema-registry</span><br><span class="line">      STREAMS_SCHEMA_REGISTRY_PORT: 8081</span><br><span class="line">    extra_hosts:</span><br><span class="line">      - &quot;moby:127.0.0.1&quot;</span><br><span class="line"></span><br><span class="line">  # Runs the Kafka KSQL data generator for topic called &quot;users&quot;</span><br><span class="line">  ksql-datagen-users:</span><br><span class="line">    image: &quot;confluentinc/ksql-examples:latest&quot;</span><br><span class="line">    hostname: ksql-datagen-users</span><br><span class="line">    depends_on:</span><br><span class="line">      - kafka</span><br><span class="line">      - schema-registry</span><br><span class="line">    # Note: The container&#x27;s `run` script will perform the same readiness checks</span><br><span class="line">    # for Kafka and Confluent Schema Registry, but that&#x27;s ok because they complete fast.</span><br><span class="line">    # The reason we check for readiness here is that we can insert a sleep time</span><br><span class="line">    # for topic creation before we start the application.</span><br><span class="line">    command: &quot;bash -c &#x27;echo Waiting for Kafka to be ready... &amp;&amp; \</span><br><span class="line">                       cub kafka-ready -b kafka:29092 1 20 &amp;&amp; \</span><br><span class="line">                       echo Waiting for Confluent Schema Registry to be ready... &amp;&amp; \</span><br><span class="line">                       cub sr-ready schema-registry 8081 20 &amp;&amp; \</span><br><span class="line">                       echo Waiting a few seconds for topic creation to finish... &amp;&amp; \</span><br><span class="line">                       sleep 2 &amp;&amp; \</span><br><span class="line">                       java -jar /usr/share/java/ksql-examples/ksql-examples-0.1-SNAPSHOT-standalone.jar</span><br><span class="line">                       quickstart=users format=json topic=users bootstrap-server=kafka:29092 maxInterval=100 iterations=1000 &amp;&amp; \</span><br><span class="line">                       java -jar /usr/share/java/ksql-examples/ksql-examples-0.1-SNAPSHOT-standalone.jar</span><br><span class="line">                       quickstart=users format=json topic=users bootstrap-server=kafka:29092 maxInterval=1000&#x27;&quot;</span><br><span class="line">    environment:</span><br><span class="line">      KSQL_CONFIG_DIR: &quot;/etc/ksql&quot;</span><br><span class="line">      KSQL_LOG4J_OPTS: &quot;-Dlog4j.configuration=file:/etc/ksql/log4j-rolling.properties&quot;</span><br><span class="line">      STREAMS_BOOTSTRAP_SERVERS: kafka:29092</span><br><span class="line">      STREAMS_SCHEMA_REGISTRY_HOST: schema-registry</span><br><span class="line">      STREAMS_SCHEMA_REGISTRY_PORT: 8081</span><br><span class="line">    extra_hosts:</span><br><span class="line">      - &quot;moby:127.0.0.1&quot;</span><br><span class="line"></span><br><span class="line">  # Runs the Kafka KSQL application</span><br><span class="line">  ksql-cli:</span><br><span class="line">    image: &quot;confluentinc/ksql-cli:latest&quot;</span><br><span class="line">    hostname: ksql-cli</span><br><span class="line">    depends_on:</span><br><span class="line">      - kafka</span><br><span class="line">      - schema-registry</span><br><span class="line">      - ksql-datagen-pageviews</span><br><span class="line">      - ksql-datagen-users</span><br><span class="line">    command: &quot;perl -e &#x27;while(1)&#123; sleep 99999 &#125;&#x27;&quot;</span><br><span class="line">    environment:</span><br><span class="line">      KSQL_CONFIG_DIR: &quot;/etc/ksql&quot;</span><br><span class="line">      KSQL_LOG4J_OPTS: &quot;-Dlog4j.configuration=file:/etc/ksql/log4j-rolling.properties&quot;</span><br><span class="line">      STREAMS_BOOTSTRAP_SERVERS: kafka:29092</span><br><span class="line">      STREAMS_SCHEMA_REGISTRY_HOST: schema-registry</span><br><span class="line">      STREAMS_SCHEMA_REGISTRY_PORT: 8081</span><br><span class="line">    extra_hosts:</span><br><span class="line">      - &quot;moby:127.0.0.1&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">version:</span> <span class="string">&#x27;2&#x27;</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">zookeeper:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">&quot;confluentinc/cp-zookeeper:latest&quot;</span></span><br><span class="line">    <span class="attr">hostname:</span> <span class="string">zookeeper</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&#x27;32181:32181&#x27;</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">ZOOKEEPER_CLIENT_PORT:</span> <span class="number">32181</span></span><br><span class="line">      <span class="attr">ZOOKEEPER_TICK_TIME:</span> <span class="number">2000</span></span><br><span class="line">    <span class="attr">extra_hosts:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;moby:127.0.0.1&quot;</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">kafka:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">&quot;confluentinc/cp-enterprise-kafka:latest&quot;</span></span><br><span class="line">    <span class="attr">hostname:</span> <span class="string">kafka</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&#x27;9092:9092&#x27;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&#x27;29092:29092&#x27;</span></span><br><span class="line">    <span class="attr">depends_on:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">zookeeper</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">KAFKA_BROKER_ID:</span> <span class="number">1</span></span><br><span class="line">      <span class="attr">KAFKA_ZOOKEEPER_CONNECT:</span> <span class="string">zookeeper:32181</span></span><br><span class="line">      <span class="attr">KAFKA_LISTENER_SECURITY_PROTOCOL_MAP:</span> <span class="string">PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT</span></span><br><span class="line">      <span class="attr">KAFKA_INTER_BROKER_LISTENER_NAME:</span> <span class="string">PLAINTEXT</span></span><br><span class="line">      <span class="attr">KAFKA_ADVERTISED_LISTENERS:</span> <span class="string">PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092</span></span><br><span class="line">      <span class="attr">KAFKA_AUTO_CREATE_TOPICS_ENABLE:</span> <span class="string">&quot;true&quot;</span></span><br><span class="line">      <span class="attr">KAFKA_METRIC_REPORTERS:</span> <span class="string">io.confluent.metrics.reporter.ConfluentMetricsReporter</span></span><br><span class="line">      <span class="attr">KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR:</span> <span class="number">1</span></span><br><span class="line">      <span class="attr">CONFLUENT_METRICS_REPORTER_BOOTSTRAP_SERVERS:</span> <span class="string">kafka:29092</span></span><br><span class="line">      <span class="attr">CONFLUENT_METRICS_REPORTER_ZOOKEEPER_CONNECT:</span> <span class="string">zookeeper:32181</span></span><br><span class="line">      <span class="attr">CONFLUENT_METRICS_REPORTER_TOPIC_REPLICAS:</span> <span class="number">1</span></span><br><span class="line">      <span class="attr">CONFLUENT_METRICS_ENABLE:</span> <span class="string">&#x27;true&#x27;</span></span><br><span class="line">      <span class="attr">CONFLUENT_SUPPORT_CUSTOMER_ID:</span> <span class="string">&#x27;anonymous&#x27;</span></span><br><span class="line">    <span class="attr">extra_hosts:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;moby:127.0.0.1&quot;</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">schema-registry:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">&quot;confluentinc/cp-schema-registry:latest&quot;</span></span><br><span class="line">    <span class="attr">hostname:</span> <span class="string">schema-registry</span></span><br><span class="line">    <span class="attr">depends_on:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">zookeeper</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">kafka</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&#x27;8081:8081&#x27;</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">SCHEMA_REGISTRY_HOST_NAME:</span> <span class="string">schema-registry</span></span><br><span class="line">      <span class="attr">SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL:</span> <span class="string">zookeeper:32181</span></span><br><span class="line">    <span class="attr">extra_hosts:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;moby:127.0.0.1&quot;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Runs the Kafka KSQL data generator for topic called &quot;pageviews&quot;</span></span><br><span class="line">  <span class="attr">ksql-datagen-pageviews:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">&quot;confluentinc/ksql-examples:latest&quot;</span></span><br><span class="line">    <span class="attr">hostname:</span> <span class="string">ksql-datagen-pageviews</span></span><br><span class="line">    <span class="attr">depends_on:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">kafka</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">schema-registry</span></span><br><span class="line">    <span class="comment"># <span class="doctag">Note:</span> The container&#x27;s `run` script will perform the same readiness checks</span></span><br><span class="line">    <span class="comment"># for Kafka and Confluent Schema Registry, but that&#x27;s ok because they complete fast.</span></span><br><span class="line">    <span class="comment"># The reason we check for readiness here is that we can insert a sleep time</span></span><br><span class="line">    <span class="comment"># for topic creation before we start the application.</span></span><br><span class="line">    <span class="attr">command:</span> <span class="string">&quot;bash -c &#x27;echo Waiting for Kafka to be ready... &amp;&amp; \</span></span><br><span class="line"><span class="string">                       cub kafka-ready -b kafka:29092 1 20 &amp;&amp; \</span></span><br><span class="line"><span class="string">                       echo Waiting for Confluent Schema Registry to be ready... &amp;&amp; \</span></span><br><span class="line"><span class="string">                       cub sr-ready schema-registry 8081 20 &amp;&amp; \</span></span><br><span class="line"><span class="string">                       echo Waiting a few seconds for topic creation to finish... &amp;&amp; \</span></span><br><span class="line"><span class="string">                       sleep 2 &amp;&amp; \</span></span><br><span class="line"><span class="string">                       java -jar /usr/share/java/ksql-examples/ksql-examples-0.1-SNAPSHOT-standalone.jar</span></span><br><span class="line"><span class="string">                       quickstart=pageviews format=delimited topic=pageviews bootstrap-server=kafka:29092 maxInterval=100 iterations=1000 &amp;&amp; \</span></span><br><span class="line"><span class="string">                       java -jar /usr/share/java/ksql-examples/ksql-examples-0.1-SNAPSHOT-standalone.jar</span></span><br><span class="line"><span class="string">                       quickstart=pageviews format=delimited topic=pageviews bootstrap-server=kafka:29092 maxInterval=1000&#x27;&quot;</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">KSQL_CONFIG_DIR:</span> <span class="string">&quot;/etc/ksql&quot;</span></span><br><span class="line">      <span class="attr">KSQL_LOG4J_OPTS:</span> <span class="string">&quot;-Dlog4j.configuration=file:/etc/ksql/log4j-rolling.properties&quot;</span></span><br><span class="line">      <span class="attr">STREAMS_BOOTSTRAP_SERVERS:</span> <span class="string">kafka:29092</span></span><br><span class="line">      <span class="attr">STREAMS_SCHEMA_REGISTRY_HOST:</span> <span class="string">schema-registry</span></span><br><span class="line">      <span class="attr">STREAMS_SCHEMA_REGISTRY_PORT:</span> <span class="number">8081</span></span><br><span class="line">    <span class="attr">extra_hosts:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;moby:127.0.0.1&quot;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Runs the Kafka KSQL data generator for topic called &quot;users&quot;</span></span><br><span class="line">  <span class="attr">ksql-datagen-users:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">&quot;confluentinc/ksql-examples:latest&quot;</span></span><br><span class="line">    <span class="attr">hostname:</span> <span class="string">ksql-datagen-users</span></span><br><span class="line">    <span class="attr">depends_on:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">kafka</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">schema-registry</span></span><br><span class="line">    <span class="comment"># <span class="doctag">Note:</span> The container&#x27;s `run` script will perform the same readiness checks</span></span><br><span class="line">    <span class="comment"># for Kafka and Confluent Schema Registry, but that&#x27;s ok because they complete fast.</span></span><br><span class="line">    <span class="comment"># The reason we check for readiness here is that we can insert a sleep time</span></span><br><span class="line">    <span class="comment"># for topic creation before we start the application.</span></span><br><span class="line">    <span class="attr">command:</span> <span class="string">&quot;bash -c &#x27;echo Waiting for Kafka to be ready... &amp;&amp; \</span></span><br><span class="line"><span class="string">                       cub kafka-ready -b kafka:29092 1 20 &amp;&amp; \</span></span><br><span class="line"><span class="string">                       echo Waiting for Confluent Schema Registry to be ready... &amp;&amp; \</span></span><br><span class="line"><span class="string">                       cub sr-ready schema-registry 8081 20 &amp;&amp; \</span></span><br><span class="line"><span class="string">                       echo Waiting a few seconds for topic creation to finish... &amp;&amp; \</span></span><br><span class="line"><span class="string">                       sleep 2 &amp;&amp; \</span></span><br><span class="line"><span class="string">                       java -jar /usr/share/java/ksql-examples/ksql-examples-0.1-SNAPSHOT-standalone.jar</span></span><br><span class="line"><span class="string">                       quickstart=users format=json topic=users bootstrap-server=kafka:29092 maxInterval=100 iterations=1000 &amp;&amp; \</span></span><br><span class="line"><span class="string">                       java -jar /usr/share/java/ksql-examples/ksql-examples-0.1-SNAPSHOT-standalone.jar</span></span><br><span class="line"><span class="string">                       quickstart=users format=json topic=users bootstrap-server=kafka:29092 maxInterval=1000&#x27;&quot;</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">KSQL_CONFIG_DIR:</span> <span class="string">&quot;/etc/ksql&quot;</span></span><br><span class="line">      <span class="attr">KSQL_LOG4J_OPTS:</span> <span class="string">&quot;-Dlog4j.configuration=file:/etc/ksql/log4j-rolling.properties&quot;</span></span><br><span class="line">      <span class="attr">STREAMS_BOOTSTRAP_SERVERS:</span> <span class="string">kafka:29092</span></span><br><span class="line">      <span class="attr">STREAMS_SCHEMA_REGISTRY_HOST:</span> <span class="string">schema-registry</span></span><br><span class="line">      <span class="attr">STREAMS_SCHEMA_REGISTRY_PORT:</span> <span class="number">8081</span></span><br><span class="line">    <span class="attr">extra_hosts:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;moby:127.0.0.1&quot;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Runs the Kafka KSQL application</span></span><br><span class="line">  <span class="attr">ksql-cli:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">&quot;confluentinc/ksql-cli:latest&quot;</span></span><br><span class="line">    <span class="attr">hostname:</span> <span class="string">ksql-cli</span></span><br><span class="line">    <span class="attr">depends_on:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">kafka</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">schema-registry</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">ksql-datagen-pageviews</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">ksql-datagen-users</span></span><br><span class="line">    <span class="attr">command:</span> <span class="string">&quot;perl -e &#x27;while(1)&#123; sleep 99999 &#125;&#x27;&quot;</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">KSQL_CONFIG_DIR:</span> <span class="string">&quot;/etc/ksql&quot;</span></span><br><span class="line">      <span class="attr">KSQL_LOG4J_OPTS:</span> <span class="string">&quot;-Dlog4j.configuration=file:/etc/ksql/log4j-rolling.properties&quot;</span></span><br><span class="line">      <span class="attr">STREAMS_BOOTSTRAP_SERVERS:</span> <span class="string">kafka:29092</span></span><br><span class="line">      <span class="attr">STREAMS_SCHEMA_REGISTRY_HOST:</span> <span class="string">schema-registry</span></span><br><span class="line">      <span class="attr">STREAMS_SCHEMA_REGISTRY_PORT:</span> <span class="number">8081</span></span><br><span class="line">    <span class="attr">extra_hosts:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;moby:127.0.0.1&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>Prepare the enviroment with the following command</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo docker-compose up -d</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo docker-compose up -d</span><br></pre></td></tr></table></figure>
 
 <p>This will create the minimal services to test ksql</p>
 <ul>
@@ -114,7 +114,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </ul>
 <p>Thoose dockers are kafka producers, which we will use to test KSQL.</p>
 <h2 id="KSQL"><a href="#KSQL" class="headerlink" title="KSQL"></a>KSQL</h2><p>Execute the CLI in order to test</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo docker-compose exec ksql-cli ksql-cli local --bootstrap-server kafka:29092</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo docker-compose <span class="built_in">exec</span> ksql-cli ksql-cli <span class="built_in">local</span> --bootstrap-server kafka:29092</span><br></pre></td></tr></table></figure>
 
 <p>You will see something like this</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">                       ======================================</span><br><span class="line">                       =      _  __ _____  ____  _          =</span><br><span class="line">                       =     | |/ // ____|/ __ \| |         =</span><br><span class="line">                       =     | &#x27; /| (___ | |  | | |         =</span><br><span class="line">                       =     |  &lt;  \___ \| |  | | |         =</span><br><span class="line">                       =     | . \ ____) | |__| | |____     =</span><br><span class="line">                       =     |_|\_\_____/ \___\_\______|    =</span><br><span class="line">                       =                                    =</span><br><span class="line">                       =   Streaming SQL Engine for Kafka   =</span><br><span class="line">Copyright 2017 Confluent Inc.                         </span><br><span class="line"></span><br><span class="line">CLI v0.1, Server v0.1 located at http://localhost:9098</span><br><span class="line"></span><br><span class="line">Having trouble? Type &#x27;help&#x27; (case-insensitive) for a rundown of how things work!</span><br><span class="line"></span><br><span class="line">ksql&gt;</span><br></pre></td></tr></table></figure>
@@ -124,19 +124,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE STREAM pageviews_original (viewtime bigint, userid varchar, pageid varchar) WITH (kafka_topic=&#x27;pageviews&#x27;, value_format=&#x27;DELIMITED&#x27;);</span><br></pre></td></tr></table></figure>
 
 <p>Let’s describe the created object</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ksql&gt; DESCRIBE pageviews_original;</span><br><span class="line"></span><br><span class="line"> Field    | Type            </span><br><span class="line">----------------------------</span><br><span class="line"> ROWTIME  | BIGINT          </span><br><span class="line"> ROWKEY   | VARCHAR(STRING) </span><br><span class="line"> VIEWTIME | BIGINT          </span><br><span class="line"> USERID   | VARCHAR(STRING) </span><br><span class="line"> PAGEID   | VARCHAR(STRING) </span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">ksql<span class="operator">&gt;</span> <span class="keyword">DESCRIBE</span> pageviews_original;</span><br><span class="line"></span><br><span class="line"> Field    <span class="operator">|</span> Type            </span><br><span class="line"><span class="comment">----------------------------</span></span><br><span class="line"> ROWTIME  <span class="operator">|</span> <span class="type">BIGINT</span>          </span><br><span class="line"> ROWKEY   <span class="operator">|</span> <span class="type">VARCHAR</span>(STRING) </span><br><span class="line"> VIEWTIME <span class="operator">|</span> <span class="type">BIGINT</span>          </span><br><span class="line"> USERID   <span class="operator">|</span> <span class="type">VARCHAR</span>(STRING) </span><br><span class="line"> PAGEID   <span class="operator">|</span> <span class="type">VARCHAR</span>(STRING) </span><br></pre></td></tr></table></figure>
 
 <p>Now lets create a users <strong>TABLE</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE TABLE users_original (registertime bigint, gender varchar, regionid varchar, userid varchar) WITH (kafka_topic=&#x27;users&#x27;, value_format=&#x27;JSON&#x27;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> users_original (registertime <span class="type">bigint</span>, gender <span class="type">varchar</span>, regionid <span class="type">varchar</span>, userid <span class="type">varchar</span>) <span class="keyword">WITH</span> (kafka_topic<span class="operator">=</span><span class="string">&#x27;users&#x27;</span>, value_format<span class="operator">=</span><span class="string">&#x27;JSON&#x27;</span>);</span><br></pre></td></tr></table></figure>
 
 <p>And confirm the DDL</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ksql&gt; DESCRIBE users_original;</span><br><span class="line"></span><br><span class="line"> Field        | Type            </span><br><span class="line">--------------------------------</span><br><span class="line"> ROWTIME      | BIGINT          </span><br><span class="line"> ROWKEY       | VARCHAR(STRING) </span><br><span class="line"> REGISTERTIME | BIGINT          </span><br><span class="line"> GENDER       | VARCHAR(STRING) </span><br><span class="line"> REGIONID     | VARCHAR(STRING) </span><br><span class="line"> USERID       | VARCHAR(STRING) </span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">ksql<span class="operator">&gt;</span> <span class="keyword">DESCRIBE</span> users_original;</span><br><span class="line"></span><br><span class="line"> Field        <span class="operator">|</span> Type            </span><br><span class="line"><span class="comment">--------------------------------</span></span><br><span class="line"> ROWTIME      <span class="operator">|</span> <span class="type">BIGINT</span>          </span><br><span class="line"> ROWKEY       <span class="operator">|</span> <span class="type">VARCHAR</span>(STRING) </span><br><span class="line"> REGISTERTIME <span class="operator">|</span> <span class="type">BIGINT</span>          </span><br><span class="line"> GENDER       <span class="operator">|</span> <span class="type">VARCHAR</span>(STRING) </span><br><span class="line"> REGIONID     <span class="operator">|</span> <span class="type">VARCHAR</span>(STRING) </span><br><span class="line"> USERID       <span class="operator">|</span> <span class="type">VARCHAR</span>(STRING) </span><br></pre></td></tr></table></figure>
 
 <p>So there are two main objects <strong>TABLES</strong> and <strong>STREAMS</strong>. To see the existing ones, execute:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ksql&gt; SHOW STREAMS;</span><br><span class="line"></span><br><span class="line"> Stream Name        | Kafka Topic | Format    </span><br><span class="line">----------------------------------------------</span><br><span class="line"> PAGEVIEWS_ORIGINAL | pageviews   | DELIMITED </span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">ksql<span class="operator">&gt;</span> <span class="keyword">SHOW</span> STREAMS;</span><br><span class="line"></span><br><span class="line"> Stream Name        <span class="operator">|</span> Kafka Topic <span class="operator">|</span> Format    </span><br><span class="line"><span class="comment">----------------------------------------------</span></span><br><span class="line"> PAGEVIEWS_ORIGINAL <span class="operator">|</span> pageviews   <span class="operator">|</span> DELIMITED </span><br></pre></td></tr></table></figure>
 
 <p>and </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ksql&gt; SHOW TABLES;</span><br><span class="line"></span><br><span class="line"> Table Name     | Kafka Topic | Format | Windowed </span><br><span class="line">--------------------------------------------------</span><br><span class="line"> USERS_ORIGINAL | users       | JSON   | false    </span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">ksql<span class="operator">&gt;</span> <span class="keyword">SHOW</span> TABLES;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">Table</span> Name     <span class="operator">|</span> Kafka Topic <span class="operator">|</span> Format <span class="operator">|</span> Windowed </span><br><span class="line"><span class="comment">--------------------------------------------------</span></span><br><span class="line"> USERS_ORIGINAL <span class="operator">|</span> users       <span class="operator">|</span> JSON   <span class="operator">|</span> <span class="literal">false</span>    </span><br></pre></td></tr></table></figure>
 
 <h3 id="Differences-between-STREAMS-and-TABLES"><a href="#Differences-between-STREAMS-and-TABLES" class="headerlink" title="Differences between STREAMS and TABLES"></a>Differences between STREAMS and TABLES</h3><p><strong>Stream</strong></p>
 <p>A stream is an unbounded sequence of structured data (“facts”). For example, we could have a stream of financial transactions such as “Alice sent $100 to Bob, then Charlie sent $50 to Bob”. Facts in a stream are immutable, which means new facts can be inserted to a stream, but existing facts can never be updated or deleted. Streams can be created from a Kafka topic or derived from existing streams and tables.</p>
@@ -144,17 +144,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>A table is a view of a stream, or another table, and represents a collection of evolving facts. For example, we could have a table that contains the latest financial information such as “Bob’s current account balance is $150”. It is the equivalent of a traditional database table but enriched by streaming semantics such as windowing. Facts in a table are mutable, which means new facts can be inserted to the table, and existing facts can be updated or deleted. Tables can be created from a Kafka topic or derived from existing streams and tables.</p>
 <h3 id="Extending-the-Model"><a href="#Extending-the-Model" class="headerlink" title="Extending the Model"></a>Extending the Model</h3><p>Lets create a new pageviews stream with key <code>pageid</code> and joi it with table <code>users</code>.</p>
 <p>First create the new stream</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE STREAM pageviews \</span><br><span class="line">   (viewtime BIGINT, \</span><br><span class="line">    userid VARCHAR, \</span><br><span class="line">    pageid VARCHAR) \</span><br><span class="line">   WITH (kafka_topic=&#x27;pageviews&#x27;, \</span><br><span class="line">         value_format=&#x27;DELIMITED&#x27;, \</span><br><span class="line">         key=&#x27;pageid&#x27;, \</span><br><span class="line">         timestamp=&#x27;viewtime&#x27;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> STREAM pageviews \</span><br><span class="line">   (viewtime <span class="type">BIGINT</span>, \</span><br><span class="line">    userid <span class="type">VARCHAR</span>, \</span><br><span class="line">    pageid <span class="type">VARCHAR</span>) \</span><br><span class="line">   <span class="keyword">WITH</span> (kafka_topic<span class="operator">=</span><span class="string">&#x27;pageviews&#x27;</span>, \</span><br><span class="line">         value_format<span class="operator">=</span><span class="string">&#x27;DELIMITED&#x27;</span>, \</span><br><span class="line">         key<span class="operator">=</span><span class="string">&#x27;pageid&#x27;</span>, \</span><br><span class="line">         <span class="type">timestamp</span><span class="operator">=</span><span class="string">&#x27;viewtime&#x27;</span>);</span><br></pre></td></tr></table></figure>
 
 <p>And users table</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE TABLE users \</span><br><span class="line">   (registertime BIGINT, \</span><br><span class="line">    gender VARCHAR, \</span><br><span class="line">    regionid VARCHAR, \</span><br><span class="line">    userid VARCHAR, \</span><br><span class="line">    interests array&lt;VARCHAR&gt;, \</span><br><span class="line">    contact_info map&lt;VARCHAR, VARCHAR&gt;) \</span><br><span class="line">   WITH (kafka_topic=&#x27;users&#x27;, \</span><br><span class="line">         value_format=&#x27;JSON&#x27;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> users \</span><br><span class="line">   (registertime <span class="type">BIGINT</span>, \</span><br><span class="line">    gender <span class="type">VARCHAR</span>, \</span><br><span class="line">    regionid <span class="type">VARCHAR</span>, \</span><br><span class="line">    userid <span class="type">VARCHAR</span>, \</span><br><span class="line">    interests <span class="keyword">array</span><span class="operator">&lt;</span><span class="type">VARCHAR</span><span class="operator">&gt;</span>, \</span><br><span class="line">    contact_info map<span class="operator">&lt;</span><span class="type">VARCHAR</span>, <span class="type">VARCHAR</span><span class="operator">&gt;</span>) \</span><br><span class="line">   <span class="keyword">WITH</span> (kafka_topic<span class="operator">=</span><span class="string">&#x27;users&#x27;</span>, \</span><br><span class="line">         value_format<span class="operator">=</span><span class="string">&#x27;JSON&#x27;</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <h4 id="Aggregations"><a href="#Aggregations" class="headerlink" title="Aggregations"></a>Aggregations</h4><p>Let’s test some aggregations</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT count(*),userid FROM pageviews GROUP BY userid;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="built_in">count</span>(<span class="operator">*</span>),userid <span class="keyword">FROM</span> pageviews <span class="keyword">GROUP</span> <span class="keyword">BY</span> userid;</span><br></pre></td></tr></table></figure>
 
 <p>As data arrives in stream this is constantly updating , but we can verify that the count values begins from the start of the query, this could be usefull to dump to another topic with transformed data.</p>
 <p>Let’s do that.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE TABLE user_counts AS select count(*),userid from pageviews group by userid;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> user_counts <span class="keyword">AS</span> <span class="keyword">select</span> <span class="built_in">count</span>(<span class="operator">*</span>),userid <span class="keyword">from</span> pageviews <span class="keyword">group</span> <span class="keyword">by</span> userid;</span><br></pre></td></tr></table></figure>
 
 <p>We can use the statement <code>SHOW TOPICS</code> which is usefull and confirmed that the USER_COUNTS TOPICS is created.</p>
 <p>The following aggregations are available</p>
@@ -195,22 +195,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </ul>
 <h3 id="Window-Tumbling"><a href="#Window-Tumbling" class="headerlink" title="Window Tumbling"></a>Window Tumbling</h3><p>TUMBLING: Tumbling windows group input records into fixed-sized, non-overlapping windows based on the records’ timestamps. You must specify the window size for tumbling windows. Note: Tumbling windows are a special case of hopping windows where the window size is equal to the advance interval.</p>
 <p>Example:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT item_id, SUM(quantity)</span><br><span class="line">  FROM orders</span><br><span class="line">  WINDOW TUMBLING (SIZE 20 SECONDS)</span><br><span class="line">  GROUP BY item_id;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> item_id, <span class="built_in">SUM</span>(quantity)</span><br><span class="line">  <span class="keyword">FROM</span> orders</span><br><span class="line">  <span class="keyword">WINDOW</span> TUMBLING (SIZE <span class="number">20</span> SECONDS)</span><br><span class="line">  <span class="keyword">GROUP</span> <span class="keyword">BY</span> item_id;</span><br></pre></td></tr></table></figure>
 
 
 <h3 id="Window-HOPPING"><a href="#Window-HOPPING" class="headerlink" title="Window HOPPING"></a>Window HOPPING</h3><p>HOPPING: Hopping windows group input records into fixed-sized, (possibly) overlapping windows based on the records’ timestamps. You must specify the window size and the advance interval for hopping windows.</p>
 <p>Example:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT item_id, SUM(quantity)</span><br><span class="line">  FROM orders</span><br><span class="line">  WINDOW HOPPING (SIZE 20 SECONDS, ADVANCE BY 5 SECONDS)</span><br><span class="line">  GROUP BY item_id;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> item_id, <span class="built_in">SUM</span>(quantity)</span><br><span class="line">  <span class="keyword">FROM</span> orders</span><br><span class="line">  <span class="keyword">WINDOW</span> HOPPING (SIZE <span class="number">20</span> SECONDS, ADVANCE <span class="keyword">BY</span> <span class="number">5</span> SECONDS)</span><br><span class="line">  <span class="keyword">GROUP</span> <span class="keyword">BY</span> item_id;</span><br></pre></td></tr></table></figure>
 
 <h3 id="Window-SESSION"><a href="#Window-SESSION" class="headerlink" title="Window SESSION"></a>Window SESSION</h3><p>SESSION: Session windows group input records into so-called sessions. You must specify the session inactivity gap parameter for session windows. For example, imagine you set the inactivity gap to 5 minutes. If, for a given record key such as “alice”, no new input data arrives for more than 5 minutes, then the current session for “alice” is closed, and any newly arriving data for “alice” in the future will mark the beginning of a new session.</p>
 <p>Example:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT item_id, SUM(quantity)</span><br><span class="line">  FROM orders</span><br><span class="line">  WINDOW SESSION (20 SECONDS)</span><br><span class="line">  GROUP BY item_id;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> item_id, <span class="built_in">SUM</span>(quantity)</span><br><span class="line">  <span class="keyword">FROM</span> orders</span><br><span class="line">  <span class="keyword">WINDOW</span> SESSION (<span class="number">20</span> SECONDS)</span><br><span class="line">  <span class="keyword">GROUP</span> <span class="keyword">BY</span> item_id;</span><br></pre></td></tr></table></figure>
 
 <h2 id="Transformations"><a href="#Transformations" class="headerlink" title="Transformations"></a>Transformations</h2><p>Let’s create a new stream with a column transformation</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE STREAM pageviews_transformed \</span><br><span class="line">  WITH (timestamp=&#x27;viewtime&#x27;, \</span><br><span class="line">        partitions=5, \</span><br><span class="line">        value_format=&#x27;JSON&#x27;) AS \</span><br><span class="line">  SELECT viewtime, \</span><br><span class="line">         userid, \</span><br><span class="line">         pageid, \</span><br><span class="line">         TIMESTAMPTOSTRING(viewtime, &#x27;yyyy-MM-dd HH:mm:ss.SSS&#x27;) AS timestring \</span><br><span class="line">  FROM pageviews \</span><br><span class="line">  PARTITION BY userid;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> STREAM pageviews_transformed \</span><br><span class="line">  <span class="keyword">WITH</span> (<span class="type">timestamp</span><span class="operator">=</span><span class="string">&#x27;viewtime&#x27;</span>, \</span><br><span class="line">        partitions<span class="operator">=</span><span class="number">5</span>, \</span><br><span class="line">        value_format<span class="operator">=</span><span class="string">&#x27;JSON&#x27;</span>) <span class="keyword">AS</span> \</span><br><span class="line">  <span class="keyword">SELECT</span> viewtime, \</span><br><span class="line">         userid, \</span><br><span class="line">         pageid, \</span><br><span class="line">         TIMESTAMPTOSTRING(viewtime, <span class="string">&#x27;yyyy-MM-dd HH:mm:ss.SSS&#x27;</span>) <span class="keyword">AS</span> timestring \</span><br><span class="line">  <span class="keyword">FROM</span> pageviews \</span><br><span class="line">  <span class="keyword">PARTITION</span> <span class="keyword">BY</span> userid;</span><br></pre></td></tr></table></figure>
 
 <h2 id="Joining"><a href="#Joining" class="headerlink" title="Joining"></a>Joining</h2><p>And joining the STREAM with enriched data from TABLE</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE STREAM pageviews_enriched AS \</span><br><span class="line">   SELECT pv.viewtime, \</span><br><span class="line">          pv.userid AS userid, \</span><br><span class="line">          pv.pageid, \</span><br><span class="line">          pv.timestring, \</span><br><span class="line">          u.gender, \</span><br><span class="line">          u.regionid, \</span><br><span class="line">          u.interests, \</span><br><span class="line">          u.contact_info \</span><br><span class="line">   FROM pageviews_transformed pv \</span><br><span class="line">   LEFT JOIN users u ON pv.userid = users.userid;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> STREAM pageviews_enriched <span class="keyword">AS</span> \</span><br><span class="line">   <span class="keyword">SELECT</span> pv.viewtime, \</span><br><span class="line">          pv.userid <span class="keyword">AS</span> userid, \</span><br><span class="line">          pv.pageid, \</span><br><span class="line">          pv.timestring, \</span><br><span class="line">          u.gender, \</span><br><span class="line">          u.regionid, \</span><br><span class="line">          u.interests, \</span><br><span class="line">          u.contact_info \</span><br><span class="line">   <span class="keyword">FROM</span> pageviews_transformed pv \</span><br><span class="line">   <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> users u <span class="keyword">ON</span> pv.userid <span class="operator">=</span> users.userid;</span><br></pre></td></tr></table></figure>
 
 <h1 id="Use-Cases"><a href="#Use-Cases" class="headerlink" title="Use Cases"></a>Use Cases</h1><p>Common KSQL use cases are:</p>
 <ul>
@@ -307,15 +307,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <h3 class="title">Tags</h3>
   <ul class="entry">
   
-    <li><a href="/tags/NET/">.NET</a><small>1</small></li>
+    <li><a href="/tags/NET/">.NET</a><small>2</small></li>
   
-    <li><a href="/tags/Net/">.Net</a><small>1</small></li>
-  
-    <li><a href="/tags/AI/">AI</a><small>1</small></li>
-  
-    <li><a href="/tags/API/">API</a><small>1</small></li>
-  
-    <li><a href="/tags/APIs/">APIs</a><small>1</small></li>
+    <li><a href="/tags/API/">API</a><small>2</small></li>
   
     <li><a href="/tags/AUR/">AUR</a><small>1</small></li>
   
@@ -329,31 +323,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Ansible/">Ansible</a><small>2</small></li>
   
-    <li><a href="/tags/Arch/">Arch</a><small>4</small></li>
+    <li><a href="/tags/Arch/">Arch</a><small>3</small></li>
   
-    <li><a href="/tags/Arch-Linux/">Arch Linux</a><small>1</small></li>
-  
-    <li><a href="/tags/Architecture/">Architecture</a><small>1</small></li>
+    <li><a href="/tags/Architecture/">Architecture</a><small>2</small></li>
   
     <li><a href="/tags/Artifactory/">Artifactory</a><small>1</small></li>
   
     <li><a href="/tags/Avro/">Avro</a><small>1</small></li>
   
-    <li><a href="/tags/BigData/">BigData</a><small>2</small></li>
+    <li><a href="/tags/BTRFS/">BTRFS</a><small>1</small></li>
+  
+    <li><a href="/tags/Beeline/">Beeline</a><small>1</small></li>
+  
+    <li><a href="/tags/Big-Data/">Big Data</a><small>2</small></li>
   
     <li><a href="/tags/BigQuery/">BigQuery</a><small>1</small></li>
   
-    <li><a href="/tags/Books/">Books</a><small>1</small></li>
+    <li><a href="/tags/Books/">Books</a><small>2</small></li>
   
-    <li><a href="/tags/CDH-Parcel/">CDH Parcel</a><small>1</small></li>
+    <li><a href="/tags/CI-CD/">CI/CD</a><small>1</small></li>
   
-    <li><a href="/tags/CHat-PT/">CHat-PT</a><small>1</small></li>
+    <li><a href="/tags/ChatGPT/">ChatGPT</a><small>1</small></li>
   
     <li><a href="/tags/CheatSheet/">CheatSheet</a><small>1</small></li>
   
     <li><a href="/tags/Cloudera/">Cloudera</a><small>3</small></li>
   
-    <li><a href="/tags/Code/">Code</a><small>2</small></li>
+    <li><a href="/tags/Code/">Code</a><small>1</small></li>
   
     <li><a href="/tags/Communication/">Communication</a><small>1</small></li>
   
@@ -361,11 +357,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Contracts/">Contracts</a><small>1</small></li>
   
-    <li><a href="/tags/CryptoArt/">CryptoArt</a><small>1</small></li>
+    <li><a href="/tags/Crypto/">Crypto</a><small>1</small></li>
   
-    <li><a href="/tags/Customization/">Customization</a><small>1</small></li>
-  
-    <li><a href="/tags/Customize/">Customize</a><small>1</small></li>
+    <li><a href="/tags/Customization/">Customization</a><small>2</small></li>
   
     <li><a href="/tags/DBT/">DBT</a><small>1</small></li>
   
@@ -385,23 +379,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Delegation/">Delegation</a><small>1</small></li>
   
-    <li><a href="/tags/Development/">Development</a><small>3</small></li>
+    <li><a href="/tags/DevOps/">DevOps</a><small>1</small></li>
+  
+    <li><a href="/tags/Development/">Development</a><small>5</small></li>
   
     <li><a href="/tags/Dimensions/">Dimensions</a><small>1</small></li>
   
     <li><a href="/tags/Docker/">Docker</a><small>7</small></li>
   
+    <li><a href="/tags/Dr-Elephant/">Dr-Elephant</a><small>1</small></li>
+  
     <li><a href="/tags/DuckDB/">DuckDB</a><small>1</small></li>
   
-    <li><a href="/tags/GA/">GA</a><small>2</small></li>
+    <li><a href="/tags/Encryption/">Encryption</a><small>1</small></li>
   
-    <li><a href="/tags/GA4/">GA4</a><small>2</small></li>
+    <li><a href="/tags/Events/">Events</a><small>1</small></li>
   
-    <li><a href="/tags/GC/">GC</a><small>1</small></li>
+    <li><a href="/tags/Fish/">Fish</a><small>1</small></li>
   
     <li><a href="/tags/GCS/">GCS</a><small>1</small></li>
   
-    <li><a href="/tags/Garuda/">Garuda</a><small>1</small></li>
+    <li><a href="/tags/Git/">Git</a><small>5</small></li>
+  
+    <li><a href="/tags/GitHub/">GitHub</a><small>3</small></li>
   
     <li><a href="/tags/Google-Analytics/">Google Analytics</a><small>3</small></li>
   
@@ -413,19 +413,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/HDFS/">HDFS</a><small>3</small></li>
   
-    <li><a href="/tags/Hadoop/">Hadoop</a><small>4</small></li>
+    <li><a href="/tags/Hadoop/">Hadoop</a><small>5</small></li>
+  
+    <li><a href="/tags/Hexo/">Hexo</a><small>2</small></li>
   
     <li><a href="/tags/Hiring/">Hiring</a><small>1</small></li>
   
-    <li><a href="/tags/Hive/">Hive</a><small>3</small></li>
+    <li><a href="/tags/Hive/">Hive</a><small>4</small></li>
   
-    <li><a href="/tags/IDE/">IDE</a><small>1</small></li>
+    <li><a href="/tags/IDE/">IDE</a><small>2</small></li>
   
     <li><a href="/tags/Infrastructure/">Infrastructure</a><small>1</small></li>
   
     <li><a href="/tags/Inspiration/">Inspiration</a><small>1</small></li>
-  
-    <li><a href="/tags/Install/">Install</a><small>1</small></li>
   
     <li><a href="/tags/Internet/">Internet</a><small>1</small></li>
   
@@ -437,7 +437,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Kafka/">Kafka</a><small>2</small></li>
   
-    <li><a href="/tags/Keyboard/">Keyboard</a><small>1</small></li>
+    <li><a href="/tags/Keybase/">Keybase</a><small>1</small></li>
+  
+    <li><a href="/tags/Keyboards/">Keyboards</a><small>1</small></li>
   
     <li><a href="/tags/Kobo/">Kobo</a><small>1</small></li>
   
@@ -447,11 +449,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Leadership/">Leadership</a><small>2</small></li>
   
-    <li><a href="/tags/Linux/">Linux</a><small>9</small></li>
+    <li><a href="/tags/Linux/">Linux</a><small>12</small></li>
   
     <li><a href="/tags/Management/">Management</a><small>2</small></li>
   
-    <li><a href="/tags/Markdown/">Markdown</a><small>2</small></li>
+    <li><a href="/tags/Markdown/">Markdown</a><small>3</small></li>
   
     <li><a href="/tags/Mesos/">Mesos</a><small>1</small></li>
   
@@ -461,19 +463,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Monitoring/">Monitoring</a><small>1</small></li>
   
-    <li><a href="/tags/NATO/">NATO</a><small>1</small></li>
-  
-    <li><a href="/tags/NFT/">NFT</a><small>1</small></li>
-  
     <li><a href="/tags/Nifi/">Nifi</a><small>1</small></li>
   
     <li><a href="/tags/Nord/">Nord</a><small>1</small></li>
   
     <li><a href="/tags/Nuget/">Nuget</a><small>1</small></li>
   
+    <li><a href="/tags/OpenAI/">OpenAI</a><small>1</small></li>
+  
     <li><a href="/tags/OpenAPI/">OpenAPI</a><small>1</small></li>
   
     <li><a href="/tags/Optimization/">Optimization</a><small>1</small></li>
+  
+    <li><a href="/tags/PGP/">PGP</a><small>1</small></li>
+  
+    <li><a href="/tags/PKI/">PKI</a><small>1</small></li>
   
     <li><a href="/tags/Packages/">Packages</a><small>1</small></li>
   
@@ -487,15 +491,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Porto/">Porto</a><small>1</small></li>
   
-    <li><a href="/tags/PortoTechHub/">PortoTechHub</a><small>1</small></li>
-  
     <li><a href="/tags/PowerShell/">PowerShell</a><small>1</small></li>
+  
+    <li><a href="/tags/Prompt-Engineering/">Prompt Engineering</a><small>1</small></li>
   
     <li><a href="/tags/Proxy/">Proxy</a><small>1</small></li>
   
-    <li><a href="/tags/QEMU/">QEMU</a><small>1</small></li>
-  
-    <li><a href="/tags/Qemu/">Qemu</a><small>1</small></li>
+    <li><a href="/tags/QEMU/">QEMU</a><small>2</small></li>
   
     <li><a href="/tags/RDD/">RDD</a><small>1</small></li>
   
@@ -507,11 +509,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/SQLServer/">SQLServer</a><small>1</small></li>
   
+    <li><a href="/tags/SSH/">SSH</a><small>2</small></li>
+  
     <li><a href="/tags/Scala/">Scala</a><small>2</small></li>
   
     <li><a href="/tags/Scrum/">Scrum</a><small>1</small></li>
-  
-    <li><a href="/tags/Setup/">Setup</a><small>1</small></li>
   
     <li><a href="/tags/Sheetlist/">Sheetlist</a><small>1</small></li>
   
@@ -523,13 +525,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Spark/">Spark</a><small>4</small></li>
   
-    <li><a href="/tags/SparkSummit/">SparkSummit</a><small>1</small></li>
-  
     <li><a href="/tags/Sqoop/">Sqoop</a><small>1</small></li>
   
-    <li><a href="/tags/Streaming/">Streaming</a><small>1</small></li>
-  
-    <li><a href="/tags/Streamming/">Streamming</a><small>1</small></li>
+    <li><a href="/tags/Streaming/">Streaming</a><small>2</small></li>
   
     <li><a href="/tags/Teams/">Teams</a><small>1</small></li>
   
@@ -537,9 +535,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Tools/">Tools</a><small>1</small></li>
   
+    <li><a href="/tags/Troubleshooting/">Troubleshooting</a><small>2</small></li>
+  
     <li><a href="/tags/Tunning/">Tunning</a><small>1</small></li>
   
-    <li><a href="/tags/Utils/">Utils</a><small>2</small></li>
+    <li><a href="/tags/UDFS/">UDFS</a><small>1</small></li>
+  
+    <li><a href="/tags/Utils/">Utils</a><small>7</small></li>
+  
+    <li><a href="/tags/VDI/">VDI</a><small>1</small></li>
   
     <li><a href="/tags/Vagrant/">Vagrant</a><small>1</small></li>
   
@@ -549,63 +553,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Zeepelin/">Zeepelin</a><small>1</small></li>
   
-    <li><a href="/tags/beeline/">beeline</a><small>1</small></li>
-  
-    <li><a href="/tags/blog/">blog</a><small>1</small></li>
-  
-    <li><a href="/tags/btrfs/">btrfs</a><small>1</small></li>
-  
-    <li><a href="/tags/cheat/">cheat</a><small>1</small></li>
-  
-    <li><a href="/tags/docker-compose/">docker-compose</a><small>1</small></li>
-  
-    <li><a href="/tags/dr-elephant/">dr-elephant</a><small>1</small></li>
-  
-    <li><a href="/tags/ebooks/">ebooks</a><small>1</small></li>
-  
-    <li><a href="/tags/encryption/">encryption</a><small>1</small></li>
-  
-    <li><a href="/tags/exception/">exception</a><small>1</small></li>
-  
-    <li><a href="/tags/fish/">fish</a><small>1</small></li>
-  
-    <li><a href="/tags/git/">git</a><small>4</small></li>
-  
-    <li><a href="/tags/github/">github</a><small>2</small></li>
-  
-    <li><a href="/tags/hadoop/">hadoop</a><small>1</small></li>
-  
-    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
-  
-    <li><a href="/tags/hive/">hive</a><small>1</small></li>
-  
-    <li><a href="/tags/kbfs/">kbfs</a><small>1</small></li>
-  
-    <li><a href="/tags/keybase/">keybase</a><small>1</small></li>
-  
-    <li><a href="/tags/keys/">keys</a><small>1</small></li>
-  
     <li><a href="/tags/libvirt/">libvirt</a><small>1</small></li>
-  
-    <li><a href="/tags/markdown/">markdown</a><small>1</small></li>
-  
-    <li><a href="/tags/pgp/">pgp</a><small>1</small></li>
-  
-    <li><a href="/tags/pki/">pki</a><small>1</small></li>
-  
-    <li><a href="/tags/qcow2/">qcow2</a><small>1</small></li>
-  
-    <li><a href="/tags/sheet/">sheet</a><small>1</small></li>
-  
-    <li><a href="/tags/ssh/">ssh</a><small>2</small></li>
-  
-    <li><a href="/tags/udfs/">udfs</a><small>1</small></li>
-  
-    <li><a href="/tags/utils/">utils</a><small>1</small></li>
-  
-    <li><a href="/tags/vdi/">vdi</a><small>1</small></li>
-  
-    <li><a href="/tags/visual-code/">visual code</a><small>1</small></li>
   
   </ul>
 </div>

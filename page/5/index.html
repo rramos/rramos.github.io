@@ -77,64 +77,81 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2022-12-23T14:03:56.359Z"><a href="/2022/12/23/Software Engineering Laws/">2022-12-23</a></time>
+        <time datetime="2022-12-23T22:00:00.000Z"><a href="/2022/12/23/artifactory/">2022-12-23</a></time>
       
       
   
-    <h1 class="title"><a href="/2022/12/23/Software Engineering Laws/">Software Engineering Laws</a></h1>
+    <h1 class="title"><a href="/2022/12/23/artifactory/">Artifactory Setup</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <p>Latest week a college shared the following <a target="_blank" rel="noopener" href="https://www.netmeister.org/blog/software-engineering-laws.html">article</a> at work that i found very interesting aggregating the info here in order not to forget.</p>
-<h2 id="Conway’s-Law"><a href="#Conway’s-Law" class="headerlink" title="Conway’s Law"></a>Conway’s Law</h2><p>Also known as: “You will ship your org chart.”</p>
-<blockquote>
-<p>“Any organization that designs a system will produce a design whose structure is a copy of the organization’s communication structure.”</p>
-</blockquote>
-<p>You may think you can avoid it via cross-functional standup meetings and stakeholder updates and decision matrices, but eventually and inevitably conflicting or diverging priorities will lead to equally conflicting or divergent processes and outcomes.</p>
-<h2 id="Brooks’s-Law"><a href="#Brooks’s-Law" class="headerlink" title="Brooks’s Law"></a>Brooks’s Law</h2><p>From The <strong>Mythical Man-Month</strong> Book:</p>
-<blockquote>
-<p>“Adding manpower to a late software project makes it later.”</p>
-</blockquote>
-<p>When you realize you’re not making the progress you thought you would and your management tries to reallocate resources from another part of the org, you’ll end up not only delaying the project, but you’ll likely ship a more brittle, more complex product</p>
-<h2 id="Zawinski’s-Law"><a href="#Zawinski’s-Law" class="headerlink" title="Zawinski’s Law"></a>Zawinski’s Law</h2><blockquote>
-<p>“Every program attempts to expand until it includes a web server. Those programs which cannot so expand are replaced by ones which can.”</p>
-</blockquote>
-<p>For web services, it’s “…until it requires a user account and collects all users’ data”; for physical devices, it’s “…until it includes an insecure wifi access point with a default password you can’t change. And a web server”.</p>
-<h2 id="Parkinson’s-Law"><a href="#Parkinson’s-Law" class="headerlink" title="Parkinson’s Law"></a>Parkinson’s Law</h2><blockquote>
-<p>“Work expands so as to fill the time available for its completion.”</p>
-</blockquote>
-<p>The primary project management lessons here is that if you don’t set a deadline, then the project will never be completed. This is why iterating on a minimum viable product within fixed timelines is important.</p>
-<p>And, of course, we can and should adjust this law for data, processing power, RAM, …:</p>
-<blockquote>
-<p>“Data/CPU/memory usage expands to use up all available storage space/bandwidth/cycles/RAM.”</p>
-</blockquote>
-<h2 id="Pareto’s-Fallacy"><a href="#Pareto’s-Fallacy" class="headerlink" title="Pareto’s Fallacy"></a>Pareto’s Fallacy</h2><p>The <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Pareto_principle">Pareto Principle</a> is easy to misinterpret, especially by management. This often leads to Pareto’s Fallacy:</p>
-<blockquote>
-<p>“When you’re 80% done, you think you only have 20% left.”</p>
-</blockquote>
-<p>The critical part that’s overlooked here is that those 20% will require 80% of your time.</p>
-<h2 id="Sturgeon’s-Revelation"><a href="#Sturgeon’s-Revelation" class="headerlink" title="Sturgeon’s Revelation"></a>Sturgeon’s Revelation</h2><blockquote>
-<p>“90% of everything is crud.”</p>
-</blockquote>
-<p>Yes, that includes your products.</p>
-<h2 id="The-Peter-Principle"><a href="#The-Peter-Principle" class="headerlink" title="The Peter Principle"></a>The Peter Principle</h2><blockquote>
-<p>“In a hierarchy, every employee tends to rise to their level of incompetence. Thus, in time, every post tends to be occupied by an employee who is incompetent to carry out its duties.”</p>
-</blockquote>
-<p>Dunning and Kruger send their regards…(<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Peter_Principle">ref</a>)</p>
-<h2 id="Eagleson’s-Law"><a href="#Eagleson’s-Law" class="headerlink" title="Eagleson’s Law"></a>Eagleson’s Law</h2><blockquote>
-<p>“Any code of your own that you haven’t looked at for six or more months might as well have been written by someone else.”</p>
-</blockquote>
-<p>6 months is rather optimistic.</p>
-<h2 id="Greenspun’s-10th-Rule-of-Programming"><a href="#Greenspun’s-10th-Rule-of-Programming" class="headerlink" title="Greenspun’s 10th Rule of Programming"></a>Greenspun’s 10th Rule of Programming</h2><p>This can be generalized to the Universal NIH-Rule: “any custom developed system contains an ad hoc, informally-specified, bug-ridden, slow implementation of half of the industry standard you refused to adopt”.</p>
-<h2 id="The-Iceberg-Fallacy"><a href="#The-Iceberg-Fallacy" class="headerlink" title="The Iceberg Fallacy"></a>The Iceberg Fallacy</h2><blockquote>
-<p>“The cost of development of a new software product is the only ~25% of the total cost of ownership management sees and budgets for.”</p>
-</blockquote>
-<h2 id="The-LGTM-Dilemma"><a href="#The-LGTM-Dilemma" class="headerlink" title="The LGTM Dilemma"></a>The LGTM Dilemma</h2><blockquote>
-<p>“If you want to quickly ship a 10 line code change, hide it in a 1500 line pull request.”</p>
-</blockquote>
-<p>Also known as The Bikeshedders’ Blind Spot.</p>
+        <p>In this article i will describe how to setup a docker enviroment to have a JFrog Artifactory local solution. </p>
+<h1 id="Objective"><a href="#Objective" class="headerlink" title="Objective"></a>Objective</h1><p>The main objective of this walkthrough is to have a local repository to manage packages such as Nugets, jars, rpms, etc.</p>
+<p>Could be usefull to test CI/CD pipelines also.</p>
+<h1 id="Versions"><a href="#Versions" class="headerlink" title="Versions"></a>Versions</h1><p>Artifactory has several versions. It is recommend to use a Professional edition for productivity workloads. For this article we consider the OSS version </p>
+<h1 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h1><p>For this setup one should have:</p>
+<ul>
+<li>docker</li>
+<li>docker-compose</li>
+</ul>
+<h1 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h1><p>Obtain the docker-compose image</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://releases.jfrog.io/artifactory/bintray-artifactory/org/artifactory/oss/docker/jfrog-artifactory-oss/7.12.10/jfrog-artifactory-oss-7.12.10-compose.tar.gz</span><br></pre></td></tr></table></figure>
+<p><strong>NOTE:</strong> Check the latest version on the official <a target="_blank" rel="noopener" href="https://jfrog.com/download-jfrog-platform/">website</a>.</p>
+<p>Extract the tarball</p>
+<p>Run the <code>config.sh</code> with privileges to setup your folder with the proper permissions.</p>
+<p>In my case i also installed the PostgreSQL service.</p>
+<p>One should have an output similar to this one</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Beginning JFrog Artifactory setup</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Validating System requirements</span><br><span class="line"></span><br><span class="line">Installation Directory (Default: /root/.jfrog/artifactory): /home/rramos/Development/github/dockers/docker-artifactory/data</span><br><span class="line"></span><br><span class="line">Running system diagnostics checks, logs can be found at [/home/rramos/Development/github/dockers/docker-artifactory/artifactory-oss-7.12.10/systemDiagnostics.log]</span><br><span class="line"></span><br><span class="line">Triggering migration script. This will migrate if needed and may take some time.</span><br><span class="line"></span><br><span class="line">Migration logs will be available at [/home/rramos/Development/github/dockers/docker-artifactory/artifactory-oss-7.12.10/bin/migration.log]. The file will be archived at [/home/rramos/Development/github/dockers/docker-artifactory/data/var/log] after installation</span><br><span class="line"></span><br><span class="line">For IPv6 address, enclose value within square brackets as follows : [&lt;ipv6_address&gt;]</span><br><span class="line">Please specify the IP address of this machine (Default: 127.0.1.1):</span><br><span class="line"></span><br><span class="line">Are you adding an additional node to an existing product cluster? [y/N]: N</span><br><span class="line"></span><br><span class="line">The installer can install a PostgreSQL database, or you can connect to an existing compatible PostgreSQL database</span><br><span class="line">(https://service.jfrog.org/installer/System+Requirements#SystemRequirements-RequirementsMatrix)</span><br><span class="line">If you are upgrading from an existing installation, select N if you have externalized PostgreSQL, select Y if not.</span><br><span class="line">Do you want to install PostgreSQL? [Y/n]: Y</span><br><span class="line"></span><br><span class="line">To setup PostgreSQL, please enter a password</span><br><span class="line">database password:</span><br><span class="line"></span><br><span class="line">confirm database password:</span><br><span class="line"></span><br><span class="line">Creating third party directories (if necessary)</span><br><span class="line"></span><br><span class="line">Attempting to seed PostgreSQL. This may take some time.</span><br><span class="line"></span><br><span class="line">Successfully seeded PostgreSQL</span><br><span class="line"></span><br><span class="line">Docker setup complete</span><br><span class="line"></span><br><span class="line">Installation directory: [/home/rramos/Development/github/dockers/docker-artifactory/data] contains data and configurations.</span><br><span class="line"></span><br><span class="line">Use docker-compose commands to start the application. Once the application has started, it can be accessed at [http://127.0.1.1:8082]</span><br><span class="line"></span><br><span class="line">Examples:</span><br><span class="line">cd /home/rramos/Development/github/dockers/docker-artifactory/artifactory-oss-7.12.10</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">start postgresql:    docker-compose -p rt-postgres -f docker-compose-postgres.yaml up -d</span><br><span class="line">start:               docker-compose -p rt up -d</span><br><span class="line">stop:                docker-compose -p rt down</span><br><span class="line"></span><br><span class="line">NOTE: The compose file uses several environment variables from the .env file. Remember to run from within the [/home/rramos/Development/github/dockers/docker-artifactory/artifactory-oss-7.12.10] folder</span><br><span class="line"></span><br><span class="line">Done</span><br></pre></td></tr></table></figure>
+
+<p>At the end of the process the postgres container is still up. I would suggest killing it as we are going to setup the docker-compose setup for it.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># docker ps</span></span><br><span class="line">CONTAINER ID   IMAGE                                    COMMAND                  CREATED              STATUS              PORTS                                       NAMES</span><br><span class="line">77bbf3150642   docker.bintray.io/postgres:12.5-alpine   <span class="string">&quot;docker-entrypoint.s…&quot;</span>   About a minute ago   Up About a minute   0.0.0.0:5432-&gt;5432/tcp, :::5432-&gt;5432/tcp   postgresql</span><br></pre></td></tr></table></figure>
+
+<p>Killing the containers</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">kill</span> 77bbf3150642</span><br><span class="line">docker container prune</span><br></pre></td></tr></table></figure>
+<p><strong>NOTE:</strong> Attention don’t run the prune command if you want to keep other containers running.</p>
+<h1 id="Post-Install"><a href="#Post-Install" class="headerlink" title="Post Install"></a>Post Install</h1><p>During the setup I’ve selected the following path </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/home/rramos/Development/github/dockers/docker-artifactory/data</span><br></pre></td></tr></table></figure>
+<p>However there are some adjustments required for the services to reach the containers which will be on the same network and need to be adjusted.</p>
+<p>Following this setup you should now have on your current dir <code>data</code> and <code>artifactory-oss-7.12.10</code> folder. </p>
+<p>Create the following file template docker file that starts all the components</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cp artifactory-oss-7.12.10/templates/docker-compose-all.yaml  docker-compose.yaml</span><br></pre></td></tr></table></figure>
+
+<p>And replace the line</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">POSTGRES_PASSWORD=$&#123;PG_PASS&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Let’s include that var on the env file.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cp artifactory-oss-7.12.10/.env .</span><br></pre></td></tr></table></figure>
+
+<p>Add the password you defined for postgres on <code>.env</code> file.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">PG_PASS=V3ry$$scurePasssW0rd</span><br></pre></td></tr></table></figure>
+
+<p>Let’s spin up the application</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+<p>If you start getting some issues regarding DB connection issues there is a final step.</p>
+<p>Stop all the containers </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker-compose down</span><br></pre></td></tr></table></figure>
+
+<p>Edit the file <code>./data/var/data/nginx/conf.d/artifactory.conf</code> and replace <code>localhost</code> references with <code>artifactory</code></p>
+<p><strong>NOTE:</strong> You may need sudo permission to change those files</p>
+<p>Also edit the file <code>./data/var/etc/system.yaml</code> </p>
+<p>Making sure the DB <code>url</code> is like:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">url: jdbc:postgresql://postgres:5432/artifactory</span><br></pre></td></tr></table></figure>
+
+<p>Now let’s restart the containers</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+<p>And access on the following url: <code>http://localhost:8081/artifactory/</code></p>
+<p>The default user/password is <code>admin</code>/<code>password</code></p>
+<p>Now it’s time to explore …</p>
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>There are several ways to setup Artictory depending on your enviroment. If you want to use for local developments it may not payoff due to the limitation of the oss version. One cannot manage Nuget packages for instance and require an pro version. As that was may principal objective i didn’t explore more the tool.</p>
+<p>Also include the docker-compose setting on my dockers <a target="_blank" rel="noopener" href="https://github.com/rramos/dockers">repo</a></p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.jfrog.com/confluence/display/JFROG/Installing+Artifactory">https://www.jfrog.com/confluence/display/JFROG/Installing+Artifactory</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jfrog.com/confluence/display/JFROG/NuGet+Repositories">https://www.jfrog.com/confluence/display/JFROG/NuGet+Repositories</a></li>
+</ul>
 
       
     </div>
@@ -157,7 +174,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2022-12-23T14:03:56.359Z"><a href="/2022/12/23/agile/">2022-12-23</a></time>
+        <time datetime="2022-12-23T21:00:00.000Z"><a href="/2022/12/23/agile/">2022-12-23</a></time>
       
       
   
@@ -233,78 +250,101 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2022-12-23T14:03:56.359Z"><a href="/2022/12/23/artifactory/">2022-12-23</a></time>
+        <time datetime="2022-12-23T20:00:00.000Z"><a href="/2022/12/23/OpenAPIArch/">2022-12-23</a></time>
       
       
   
-    <h1 class="title"><a href="/2022/12/23/artifactory/">Artifactory Setup</a></h1>
+    <h1 class="title"><a href="/2022/12/23/OpenAPIArch/">OpenAPI Development in Arch Linux</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <p>In this article i will describe how to setup a docker enviroment to have a JFrog Artifactory local solution. </p>
-<h1 id="Objective"><a href="#Objective" class="headerlink" title="Objective"></a>Objective</h1><p>The main objective of this walkthrough is to have a local repository to manage packages such as Nugets, jars, rpms, etc.</p>
-<p>Could be usefull to test CI/CD pipelines also.</p>
-<h1 id="Versions"><a href="#Versions" class="headerlink" title="Versions"></a>Versions</h1><p>Artifactory has several versions. It is recommend to use a Professional edition for productivity workloads. For this article we consider the OSS version </p>
-<h1 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h1><p>For this setup one should have:</p>
-<ul>
-<li>docker</li>
-<li>docker-compose</li>
-</ul>
-<h1 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h1><p>Obtain the docker-compose image</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://releases.jfrog.io/artifactory/bintray-artifactory/org/artifactory/oss/docker/jfrog-artifactory-oss/7.12.10/jfrog-artifactory-oss-7.12.10-compose.tar.gz</span><br></pre></td></tr></table></figure>
-<p><strong>NOTE:</strong> Check the latest version on the official <a target="_blank" rel="noopener" href="https://jfrog.com/download-jfrog-platform/">website</a>.</p>
-<p>Extract the tarball</p>
-<p>Run the <code>config.sh</code> with privileges to setup your folder with the proper permissions.</p>
-<p>In my case i also installed the PostgreSQL service.</p>
-<p>One should have an output similar to this one</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Beginning JFrog Artifactory setup</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Validating System requirements</span><br><span class="line"></span><br><span class="line">Installation Directory (Default: /root/.jfrog/artifactory): /home/rramos/Development/github/dockers/docker-artifactory/data</span><br><span class="line"></span><br><span class="line">Running system diagnostics checks, logs can be found at [/home/rramos/Development/github/dockers/docker-artifactory/artifactory-oss-7.12.10/systemDiagnostics.log]</span><br><span class="line"></span><br><span class="line">Triggering migration script. This will migrate if needed and may take some time.</span><br><span class="line"></span><br><span class="line">Migration logs will be available at [/home/rramos/Development/github/dockers/docker-artifactory/artifactory-oss-7.12.10/bin/migration.log]. The file will be archived at [/home/rramos/Development/github/dockers/docker-artifactory/data/var/log] after installation</span><br><span class="line"></span><br><span class="line">For IPv6 address, enclose value within square brackets as follows : [&lt;ipv6_address&gt;]</span><br><span class="line">Please specify the IP address of this machine (Default: 127.0.1.1):</span><br><span class="line"></span><br><span class="line">Are you adding an additional node to an existing product cluster? [y/N]: N</span><br><span class="line"></span><br><span class="line">The installer can install a PostgreSQL database, or you can connect to an existing compatible PostgreSQL database</span><br><span class="line">(https://service.jfrog.org/installer/System+Requirements#SystemRequirements-RequirementsMatrix)</span><br><span class="line">If you are upgrading from an existing installation, select N if you have externalized PostgreSQL, select Y if not.</span><br><span class="line">Do you want to install PostgreSQL? [Y/n]: Y</span><br><span class="line"></span><br><span class="line">To setup PostgreSQL, please enter a password</span><br><span class="line">database password:</span><br><span class="line"></span><br><span class="line">confirm database password:</span><br><span class="line"></span><br><span class="line">Creating third party directories (if necessary)</span><br><span class="line"></span><br><span class="line">Attempting to seed PostgreSQL. This may take some time.</span><br><span class="line"></span><br><span class="line">Successfully seeded PostgreSQL</span><br><span class="line"></span><br><span class="line">Docker setup complete</span><br><span class="line"></span><br><span class="line">Installation directory: [/home/rramos/Development/github/dockers/docker-artifactory/data] contains data and configurations.</span><br><span class="line"></span><br><span class="line">Use docker-compose commands to start the application. Once the application has started, it can be accessed at [http://127.0.1.1:8082]</span><br><span class="line"></span><br><span class="line">Examples:</span><br><span class="line">cd /home/rramos/Development/github/dockers/docker-artifactory/artifactory-oss-7.12.10</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">start postgresql:    docker-compose -p rt-postgres -f docker-compose-postgres.yaml up -d</span><br><span class="line">start:               docker-compose -p rt up -d</span><br><span class="line">stop:                docker-compose -p rt down</span><br><span class="line"></span><br><span class="line">NOTE: The compose file uses several environment variables from the .env file. Remember to run from within the [/home/rramos/Development/github/dockers/docker-artifactory/artifactory-oss-7.12.10] folder</span><br><span class="line"></span><br><span class="line">Done</span><br></pre></td></tr></table></figure>
+        <p>It as been a while since i’ve engaged with C#. In this article I’ll describe a step-by-step on how to setup your Arch Linux to implement a .netcore application implementation of OpenAPI.</p>
+<h1 id="Instalation"><a href="#Instalation" class="headerlink" title="Instalation"></a>Instalation</h1><p>Let’s start by making sure we have the SDK and runtime packages available on the system.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -S dotnet-runtime dotnet-sdk</span><br></pre></td></tr></table></figure>
 
-<p>At the end of the process the postgres container is still up. I would suggest killing it as we are going to setup the docker-compose setup for it.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># docker ps</span><br><span class="line">CONTAINER ID   IMAGE                                    COMMAND                  CREATED              STATUS              PORTS                                       NAMES</span><br><span class="line">77bbf3150642   docker.bintray.io/postgres:12.5-alpine   &quot;docker-entrypoint.s…&quot;   About a minute ago   Up About a minute   0.0.0.0:5432-&gt;5432/tcp, :::5432-&gt;5432/tcp   postgresql</span><br></pre></td></tr></table></figure>
+<p>We can validate the existing enviroments with the command</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dotnet --list-sdks</span><br></pre></td></tr></table></figure>
 
-<p>Killing the containers</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker kill 77bbf3150642</span><br><span class="line">docker container prune</span><br></pre></td></tr></table></figure>
-<p><strong>NOTE:</strong> Attention don’t run the prune command if you want to keep other containers running.</p>
-<h1 id="Post-Install"><a href="#Post-Install" class="headerlink" title="Post Install"></a>Post Install</h1><p>During the setup I’ve selected the following path </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/home/rramos/Development/github/dockers/docker-artifactory/data</span><br></pre></td></tr></table></figure>
-<p>However there are some adjustments required for the services to reach the containers which will be on the same network and need to be adjusted.</p>
-<p>Following this setup you should now have on your current dir <code>data</code> and <code>artifactory-oss-7.12.10</code> folder. </p>
-<p>Create the following file template docker file that starts all the components</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cp artifactory-oss-7.12.10/templates/docker-compose-all.yaml  docker-compose.yaml</span><br></pre></td></tr></table></figure>
-<p>And replace the line</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">POSTGRES_PASSWORD=$&#123;PG_PASS&#125;</span><br></pre></td></tr></table></figure>
-<p>Let’s include that var on the env file.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cp artifactory-oss-7.12.10/.env .</span><br></pre></td></tr></table></figure>
+<p>At the time of this writing</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">6.0.100 [/usr/share/dotnet/sdk]</span><br></pre></td></tr></table></figure>
 
-<p>Add the password you defined for postgres on <code>.env</code> file.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">PG_PASS=V3ry$$scurePasssW0rd</span><br></pre></td></tr></table></figure>
+<p>Microsoft recommends using Visual Studio Code i will skip that part but here is the <a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Visual_Studio_Code">url</a> in case of need.</p>
+<h1 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h1><p>Now let’s do a quick 5m Hello world just to make sure everything is working properly.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dotnet new console -o MyApp</span><br></pre></td></tr></table></figure>
+<p>One should have a similar output</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">The template <span class="string">&quot;Console App&quot;</span> was created successfully.</span><br><span class="line"></span><br><span class="line">Processing post-creation actions...</span><br><span class="line">Running <span class="string">&#x27;dotnet restore&#x27;</span> on /home/rramos/Development/hello/MyApp/MyApp.csproj...</span><br><span class="line">  Determining projects to restore...</span><br><span class="line">  Restored /home/rramos/Development/hello/MyApp/MyApp.csproj (<span class="keyword">in</span> 2.82 sec).</span><br><span class="line">Restore succeeded.</span><br></pre></td></tr></table></figure>
 
-<p>Let’s spin up the application</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+<p>Now let’s run this amazing helloworld</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> MyApp</span><br><span class="line">dotnet run</span><br></pre></td></tr></table></figure>
 
-<p>If you start getting some issues regarding DB connection issues there is a final step.</p>
-<p>Stop all the containers </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose down</span><br></pre></td></tr></table></figure>
+<p>One should get the desirable outcome</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Hello, World!</span><br></pre></td></tr></table></figure>
 
-<p>Edit the file <code>./data/var/data/nginx/conf.d/artifactory.conf</code> and replace <code>localhost</code> references with <code>artifactory</code></p>
-<p><strong>NOTE:</strong> You may need sudo permission to change those files</p>
-<p>Also edit the file <code>./data/var/etc/system.yaml</code> </p>
-<p>Making sure the DB <code>url</code> is like:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">url: jdbc:postgresql://postgres:5432/artifactory</span><br></pre></td></tr></table></figure>
+<p>Congratulations, you’ve built and run your .NET app. Let’s clean the space now</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ..</span><br><span class="line">rm  -rf MyApp</span><br></pre></td></tr></table></figure>
 
-<p>Now let’s restart the containers</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+<h1 id="OpenAPI"><a href="#OpenAPI" class="headerlink" title="OpenAPI"></a>OpenAPI</h1><p>Now let’s create our webAPI</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dotnet new webapi -o WebApi1</span><br></pre></td></tr></table></figure>
 
-<p>And access on the following url: <code>http://localhost:8081/artifactory/</code></p>
-<p>The default user/password is <code>admin</code>/<code>password</code></p>
-<p>Now it’s time to explore …</p>
-<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>There are several ways to setup Artictory depending on your enviroment. If you want to use for local developments it may not payoff due to the limitation of the oss version. One cannot manage Nuget packages for instance and require an pro version. As that was may principal objective i didn’t explore more the tool.</p>
-<p>Also include the docker-compose setting on my dockers <a target="_blank" rel="noopener" href="https://github.com/rramos/dockers">repo</a></p>
+<p>Next lets add the Swashbuckle.AspNetCore package</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dotnet add package Swashbuckle.AspNetCore</span><br></pre></td></tr></table></figure>
+
+<p>At this stage if you try to build it works  but fails on the execution with the following error:</p>
+<p>That is because Arch linux ships ASPNet in a different package. To Solve one should install the extra package using pacman.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -Sy aspnet-runtime</span><br></pre></td></tr></table></figure>
+
+<p>After the installation if we check the exiting runtimes</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dotnet --list-runtimes</span><br></pre></td></tr></table></figure>
+
+<p>One should have the following</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Microsoft.AspNetCore.App 6.0.0 [/usr/share/dotnet/shared/Microsoft.AspNetCore.App]</span><br><span class="line">Microsoft.NETCore.App 6.0.0 [/usr/share/dotnet/shared/Microsoft.NETCore.App]</span><br></pre></td></tr></table></figure>
+
+<p>Lets try to run it now</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dotnet run</span><br></pre></td></tr></table></figure>
+<p>You should have a similar output</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Building...</span><br><span class="line">info: Microsoft.Hosting.Lifetime[14]</span><br><span class="line">      Now listening on: https://localhost:7177</span><br><span class="line">info: Microsoft.Hosting.Lifetime[14]</span><br><span class="line">      Now listening on: http://localhost:5169</span><br><span class="line">info: Microsoft.Hosting.Lifetime[0]</span><br><span class="line">      Application started. Press Ctrl+C to shut down.</span><br><span class="line">info: Microsoft.Hosting.Lifetime[0]</span><br><span class="line">      Hosting environment: Development</span><br><span class="line">info: Microsoft.Hosting.Lifetime[0]</span><br><span class="line">      Content root path: /home/rramos/Development/WebApi1/</span><br></pre></td></tr></table></figure>
+
+<p>Now that looks promissing let’s test the the endpoint by using the browser on</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">https://localhost:7177/swagger/index.html</span><br></pre></td></tr></table></figure>
+
+<p>One should see a WeatherForecast service which is the baseline service when created the project.</p>
+<p>Leave this runnig for now and open a new terminal to create a client.</p>
+<h1 id="Client"><a href="#Client" class="headerlink" title="Client"></a>Client</h1><p>Now that we have our service running let’c create a client by retrieving the OpenAPI description.</p>
+<p>For that we will be using the <code>NSwag.ApiDescription.Client</code> package.</p>
+<p>Let’s start by creating a new client project and retrieving the OpenAPI description file from swagger.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ..</span><br><span class="line">dotnet new console -o console</span><br><span class="line"><span class="built_in">cd</span> console</span><br><span class="line">mkdir openapi</span><br><span class="line">wget --no-check-certificate https://localhost:7177/swagger/v1/swagger.json -O openapi/weather.json</span><br></pre></td></tr></table></figure>
+
+<p>Now lets add the required package</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dotnet add package NSwag.ApiDescription.Client --version 13.15.5</span><br></pre></td></tr></table></figure>
+
+<p>If one checks the <code>console.csproj</code> file we can see the package was added. Although i have added a specific version is not relevant.</p>
+<p>We are also going to need the following package</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dotnet add package Newtonsoft.Json</span><br></pre></td></tr></table></figure>
+
+<p>Add the following block on the <code>console.csproj</code> file</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ItemGroup</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">OpenApiReference</span> <span class="attr">Include</span>=<span class="string">&quot;openapi/weather.json&quot;</span> <span class="attr">Namespace</span>=<span class="string">&quot;WeatherService&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ClassName</span>&gt;</span>WeatherClient<span class="tag">&lt;/<span class="name">ClassName</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">OutputPath</span>&gt;</span>WeatherClient.cs<span class="tag">&lt;/<span class="name">OutputPath</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">OpenApiReference</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ItemGroup</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Now execute the build command to generate the WeatherService classes</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dotnet build</span><br></pre></td></tr></table></figure>
+
+<p>You should have a similar output</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Microsoft (R) Build Engine version 17.0.0+c9eb9dd64 <span class="keyword">for</span> .NET</span><br><span class="line">Copyright (C) Microsoft Corporation. All rights reserved.</span><br><span class="line"></span><br><span class="line">  Determining projects to restore...</span><br><span class="line">  All projects are up-to-date <span class="keyword">for</span> restore.</span><br><span class="line"></span><br><span class="line">  GenerateNSwagCSharp:</span><br><span class="line">    dotnet --roll-forward-on-no-candidate-fx 2 <span class="string">&quot;/home/rramos/.nuget/packages/nswag.msbuild/13.14.5/build/../tools/Net60//dotnet-nswag.dll&quot;</span> openapi2csclient /className:WeatherClient /namespace:WeatherService /input:<span class="string">&quot;/home/rramos/Development/console/openapi/weather.json&quot;</span> /output:<span class="string">&quot;obj/WeatherClient.cs&quot;</span></span><br><span class="line">  NSwag <span class="built_in">command</span> line tool <span class="keyword">for</span> .NET Core Net60, toolchain v13.14.5.0 (NJsonSchema v10.5.2.0 (Newtonsoft.Json v13.0.0.0))</span><br><span class="line">  Visit http://NSwag.org <span class="keyword">for</span> more information.</span><br><span class="line">  NSwag bin directory: /home/rramos/.nuget/packages/nswag.msbuild/13.14.5/tools/Net60</span><br><span class="line">  Code has been successfully written to file.</span><br><span class="line"></span><br><span class="line">  Duration: 00:00:00.6921924</span><br><span class="line">  console -&gt; /home/rramos/Development/console/bin/Debug/net6.0/console.dll</span><br><span class="line"></span><br><span class="line">Build succeeded.</span><br><span class="line">    0 Warning(s)</span><br><span class="line">    0 Error(s)</span><br><span class="line"></span><br><span class="line">Time Elapsed 00:00:04.17</span><br></pre></td></tr></table></figure>
+
+<p>And a brand new WeatherClient Class is now available to use on your main Program so let’s use the following on <code>Program.cs</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// Configure HttpClientHandler to ignore certificate validation errors.</span><br><span class="line">using var httpClientHandler = new HttpClientHandler();</span><br><span class="line">httpClientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) =&gt; &#123; return true; &#125;;</span><br><span class="line"></span><br><span class="line">// Create WeatherClient.</span><br><span class="line">using var httpClient = new HttpClient(httpClientHandler);</span><br><span class="line">var weatherClient = new WeatherService.WeatherClient(&quot;https://localhost:7177&quot;, httpClient);</span><br><span class="line"></span><br><span class="line">// Call WeatherForecast API.</span><br><span class="line">var forecast = await weatherClient.GetWeatherForecastAsync();</span><br><span class="line">foreach (var item in forecast)</span><br><span class="line">&#123;</span><br><span class="line">  Console.WriteLine($&quot;&#123;item.Date&#125; - &#123;item.Summary&#125;&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>If one runs the client now with <code>dotnet run</code> the following output is expected.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">12/20/2021 10:34:23 PM +00:00 - Freezing</span><br><span class="line">12/21/2021 10:34:23 PM +00:00 - Cool</span><br><span class="line">12/22/2021 10:34:23 PM +00:00 - Hot</span><br><span class="line">12/23/2021 10:34:23 PM +00:00 - Scorching</span><br><span class="line">12/24/2021 10:34:23 PM +00:00 - Scorching</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>Hurray our client receives the API data and both client and server seems to be working<br>Archnt to run the service and setup a CI/CD process for it. Also to extend the service or create something more appealing.</p>
 <h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://www.jfrog.com/confluence/display/JFROG/Installing+Artifactory">https://www.jfrog.com/confluence/display/JFROG/Installing+Artifactory</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.jfrog.com/confluence/display/JFROG/NuGet+Repositories">https://www.jfrog.com/confluence/display/JFROG/NuGet+Repositories</a></li>
+<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/.NET">https://wiki.archlinux.org/title/.NET</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/aspnet/core/tutorials/web-api-help-pages-using-swagger">https://docs.microsoft.com/en-us/aspnet/core/tutorials/web-api-help-pages-using-swagger</a></li>
+<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Visual_Studio_Code">https://wiki.archlinux.org/title/Visual_Studio_Code</a></li>
+<li><a target="_blank" rel="noopener" href="https://dotnet.microsoft.com/en-us/learn/dotnet/hello-world-tutorial/create">https://dotnet.microsoft.com/en-us/learn/dotnet/hello-world-tutorial/create</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/domaindrivendev/Swashbuckle.AspNetCore">https://github.com/domaindrivendev/Swashbuckle.AspNetCore</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/RicoSuter/NSwag">https://github.com/RicoSuter/NSwag</a></li>
 </ul>
 
       
@@ -328,78 +368,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2022-12-23T14:03:56.359Z"><a href="/2022/12/23/fish/">2022-12-23</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2022/12/23/fish/">Fish Configs</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="About-fish"><a href="#About-fish" class="headerlink" title="About fish"></a>About fish</h1><h1 id="Configurations"><a href="#Configurations" class="headerlink" title="Configurations"></a>Configurations</h1><p>To disable the greeting in fish edit the file <code>.config/fish/config.fish</code> and put an empty greeting.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">set fish_greeting &quot;&quot;</span><br></pre></td></tr></table></figure>
-
-<p>Now re-open the terminal.</p>
-<h1 id="Remove-neofetch"><a href="#Remove-neofetch" class="headerlink" title="Remove neofetch"></a>Remove neofetch</h1><p>If you don’t want the fancy computer stats everything you open a terminal comment out the last 4 lines on the conf file <code>./config/fish/config.fish</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">## Run paleofetch if session is interactive</span><br><span class="line">#if status --is-interactive</span><br><span class="line">#   neofetch</span><br><span class="line">#end</span><br></pre></td></tr></table></figure>
-
-<p>Now re-open the terminal.</p>
-<h1 id="Oh-My-Fish"><a href="#Oh-My-Fish" class="headerlink" title="Oh My Fish"></a>Oh My Fish</h1><p>Install the package oh-my-fish which would allow to customize you fish configurations running the following command</p>
-<p><code>curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish</code></p>
-<p>After this install the theme agnoster</p>
-<p><code>omf install agnoster</code></p>
-<p>Apply and reload</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">omf theme agnoster</span><br><span class="line">omf reload</span><br></pre></td></tr></table></figure>
-
-<h1 id="Disable-starship"><a href="#Disable-starship" class="headerlink" title="Disable starship"></a>Disable starship</h1><p>Comment the following block on the file <code>./config/fish/config.fish</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">## Starship prompt</span><br><span class="line">#if status --is-interactive</span><br><span class="line">#   source (&quot;/usr/bin/starship&quot; init fish --print-full-init | psub)</span><br><span class="line">#end</span><br></pre></td></tr></table></figure>
-
-<h1 id="Setup-the-Nord-colors-in-Alacritty"><a href="#Setup-the-Nord-colors-in-Alacritty" class="headerlink" title="Setup the Nord colors in Alacritty"></a>Setup the Nord colors in Alacritty</h1><p>Change the default color schem for Nord colors</p>
-<p>replacing on the following file <code>.config/alacritty/alacritty.yml</code> for the coloscheme available on the following <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/arcticicestudio/nord-alacritty/develop/src/nord.yml">repo</a>.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">colors:</span><br><span class="line">  primary:</span><br><span class="line">    background: &#x27;#2e3440&#x27;</span><br><span class="line">    foreground: &#x27;#d8dee9&#x27;</span><br><span class="line">    dim_foreground: &#x27;#a5abb6&#x27;</span><br><span class="line">  cursor:</span><br><span class="line">    text: &#x27;#2e3440&#x27;</span><br><span class="line">    cursor: &#x27;#d8dee9&#x27;</span><br><span class="line">  vi_mode_cursor:</span><br><span class="line">    text: &#x27;#2e3440&#x27;</span><br><span class="line">    cursor: &#x27;#d8dee9&#x27;</span><br><span class="line">  selection:</span><br><span class="line">    text: CellForeground</span><br><span class="line">    background: &#x27;#4c566a&#x27;</span><br><span class="line">  search:</span><br><span class="line">    matches:</span><br><span class="line">      foreground: CellBackground</span><br><span class="line">      background: &#x27;#88c0d0&#x27;</span><br><span class="line">    bar:</span><br><span class="line">      background: &#x27;#434c5e&#x27;</span><br><span class="line">      foreground: &#x27;#d8dee9&#x27;</span><br><span class="line">  normal:</span><br><span class="line">    black: &#x27;#3b4252&#x27;</span><br><span class="line">    red: &#x27;#bf616a&#x27;</span><br><span class="line">    green: &#x27;#a3be8c&#x27;</span><br><span class="line">    yellow: &#x27;#ebcb8b&#x27;</span><br><span class="line">    blue: &#x27;#81a1c1&#x27;</span><br><span class="line">    magenta: &#x27;#b48ead&#x27;</span><br><span class="line">    cyan: &#x27;#88c0d0&#x27;</span><br><span class="line">    white: &#x27;#e5e9f0&#x27;</span><br><span class="line">  bright:</span><br><span class="line">    black: &#x27;#4c566a&#x27;</span><br><span class="line">    red: &#x27;#bf616a&#x27;</span><br><span class="line">    green: &#x27;#a3be8c&#x27;</span><br><span class="line">    yellow: &#x27;#ebcb8b&#x27;</span><br><span class="line">    blue: &#x27;#81a1c1&#x27;</span><br><span class="line">    magenta: &#x27;#b48ead&#x27;</span><br><span class="line">    cyan: &#x27;#8fbcbb&#x27;</span><br><span class="line">    white: &#x27;#eceff4&#x27;</span><br><span class="line">  dim:</span><br><span class="line">    black: &#x27;#373e4d&#x27;</span><br><span class="line">    red: &#x27;#94545d&#x27;</span><br><span class="line">    green: &#x27;#809575&#x27;</span><br><span class="line">    yellow: &#x27;#b29e75&#x27;</span><br><span class="line">    blue: &#x27;#68809a&#x27;</span><br><span class="line">    magenta: &#x27;#8c738c&#x27;</span><br><span class="line">    cyan: &#x27;#6d96a5&#x27;</span><br><span class="line">    white: &#x27;#aeb3bb&#x27;</span><br></pre></td></tr></table></figure>
-
-
-<h1 id="Themes"><a href="#Themes" class="headerlink" title="Themes"></a>Themes</h1><p>If you don’ t like the color scheme check other options using the command.</p>
-<p><code>fish_config</code></p>
-<h1 id="donet-autocomplete"><a href="#donet-autocomplete" class="headerlink" title="donet autocomplete"></a>donet autocomplete</h1><p>In case you want dotnet command autocomplete to get something like this.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> ╭─rramos@buldozer in ~ via  v17.2.0</span><br><span class="line"> ╰─λ dotnet</span><br><span class="line">add               (Add a package/reference)  publish  (Publish a .NET project for deployment)</span><br><span class="line">build                (Build a .NET project)  remove              (Remove a package/reference)</span><br><span class="line">build-server  (Interact with build servers)  restore                   (Restore dependencies)</span><br><span class="line">clean                 (Clean build outputs)  run            (Run the application from source)</span><br><span class="line">…and 6 more rows</span><br></pre></td></tr></table></figure>
-
-<p>You should have the following on your <code>config.fish</code> file.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">complete -f -c dotnet -a &quot;(dotnet complete)&quot;</span><br></pre></td></tr></table></figure>
-<p>For Garuda this setup seems to be present out-of-the box.</p>
-<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>Although Garuda brings a lot of customizations for fish if one wants to go deeper and adjust for it’s own taste can take some time. I certainly toke some time to understand where configurations where being override. I probably include some of this configurations in git to prevent future time waist on customizations.</p>
-<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/fish">https://wiki.archlinux.org/title/fish</a></li>
-<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/dotnet/core/tools/enable-tab-autocomplete#zsh">https://docs.microsoft.com/en-us/dotnet/core/tools/enable-tab-autocomplete#zsh</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/oh-my-fish/oh-my-fish">https://github.com/oh-my-fish/oh-my-fish</a></li>
-<li><a target="_blank" rel="noopener" href="https://techviewleo.com/configure-fish-shell-with-oh-my-fish/">https://techviewleo.com/configure-fish-shell-with-oh-my-fish/</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/arcticicestudio/nord-alacritty">https://github.com/arcticicestudio/nord-alacritty</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2022-12-23T14:03:56.358Z"><a href="/2022/12/23/SODA/">2022-12-23</a></time>
+        <time datetime="2022-12-23T19:00:00.000Z"><a href="/2022/12/23/SODA/">2022-12-23</a></time>
       
       
   
@@ -491,6 +460,77 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2022-12-23T18:30:00.000Z"><a href="/2022/12/23/fish/">2022-12-23</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2022/12/23/fish/">Fish Configs</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="About-fish"><a href="#About-fish" class="headerlink" title="About fish"></a>About fish</h1><h1 id="Configurations"><a href="#Configurations" class="headerlink" title="Configurations"></a>Configurations</h1><p>To disable the greeting in fish edit the file <code>.config/fish/config.fish</code> and put an empty greeting.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">set fish_greeting &quot;&quot;</span><br></pre></td></tr></table></figure>
+
+<p>Now re-open the terminal.</p>
+<h1 id="Remove-neofetch"><a href="#Remove-neofetch" class="headerlink" title="Remove neofetch"></a>Remove neofetch</h1><p>If you don’t want the fancy computer stats everything you open a terminal comment out the last 4 lines on the conf file <code>./config/fish/config.fish</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">## Run paleofetch if session is interactive</span><br><span class="line">#if status --is-interactive</span><br><span class="line">#   neofetch</span><br><span class="line">#end</span><br></pre></td></tr></table></figure>
+
+<p>Now re-open the terminal.</p>
+<h1 id="Oh-My-Fish"><a href="#Oh-My-Fish" class="headerlink" title="Oh My Fish"></a>Oh My Fish</h1><p>Install the package oh-my-fish which would allow to customize you fish configurations running the following command</p>
+<p><code>curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish</code></p>
+<p>After this install the theme agnoster</p>
+<p><code>omf install agnoster</code></p>
+<p>Apply and reload</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">omf theme agnoster</span><br><span class="line">omf reload</span><br></pre></td></tr></table></figure>
+
+<h1 id="Disable-starship"><a href="#Disable-starship" class="headerlink" title="Disable starship"></a>Disable starship</h1><p>Comment the following block on the file <code>./config/fish/config.fish</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">## Starship prompt</span><br><span class="line">#if status --is-interactive</span><br><span class="line">#   source (&quot;/usr/bin/starship&quot; init fish --print-full-init | psub)</span><br><span class="line">#end</span><br></pre></td></tr></table></figure>
+
+<h1 id="Setup-the-Nord-colors-in-Alacritty"><a href="#Setup-the-Nord-colors-in-Alacritty" class="headerlink" title="Setup the Nord colors in Alacritty"></a>Setup the Nord colors in Alacritty</h1><p>Change the default color schem for Nord colors</p>
+<p>replacing on the following file <code>.config/alacritty/alacritty.yml</code> for the coloscheme available on the following <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/arcticicestudio/nord-alacritty/develop/src/nord.yml">repo</a>.</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">colors:</span></span><br><span class="line">  <span class="attr">primary:</span></span><br><span class="line">    <span class="attr">background:</span> <span class="string">&#x27;#2e3440&#x27;</span></span><br><span class="line">    <span class="attr">foreground:</span> <span class="string">&#x27;#d8dee9&#x27;</span></span><br><span class="line">    <span class="attr">dim_foreground:</span> <span class="string">&#x27;#a5abb6&#x27;</span></span><br><span class="line">  <span class="attr">cursor:</span></span><br><span class="line">    <span class="attr">text:</span> <span class="string">&#x27;#2e3440&#x27;</span></span><br><span class="line">    <span class="attr">cursor:</span> <span class="string">&#x27;#d8dee9&#x27;</span></span><br><span class="line">  <span class="attr">vi_mode_cursor:</span></span><br><span class="line">    <span class="attr">text:</span> <span class="string">&#x27;#2e3440&#x27;</span></span><br><span class="line">    <span class="attr">cursor:</span> <span class="string">&#x27;#d8dee9&#x27;</span></span><br><span class="line">  <span class="attr">selection:</span></span><br><span class="line">    <span class="attr">text:</span> <span class="string">CellForeground</span></span><br><span class="line">    <span class="attr">background:</span> <span class="string">&#x27;#4c566a&#x27;</span></span><br><span class="line">  <span class="attr">search:</span></span><br><span class="line">    <span class="attr">matches:</span></span><br><span class="line">      <span class="attr">foreground:</span> <span class="string">CellBackground</span></span><br><span class="line">      <span class="attr">background:</span> <span class="string">&#x27;#88c0d0&#x27;</span></span><br><span class="line">    <span class="attr">bar:</span></span><br><span class="line">      <span class="attr">background:</span> <span class="string">&#x27;#434c5e&#x27;</span></span><br><span class="line">      <span class="attr">foreground:</span> <span class="string">&#x27;#d8dee9&#x27;</span></span><br><span class="line">  <span class="attr">normal:</span></span><br><span class="line">    <span class="attr">black:</span> <span class="string">&#x27;#3b4252&#x27;</span></span><br><span class="line">    <span class="attr">red:</span> <span class="string">&#x27;#bf616a&#x27;</span></span><br><span class="line">    <span class="attr">green:</span> <span class="string">&#x27;#a3be8c&#x27;</span></span><br><span class="line">    <span class="attr">yellow:</span> <span class="string">&#x27;#ebcb8b&#x27;</span></span><br><span class="line">    <span class="attr">blue:</span> <span class="string">&#x27;#81a1c1&#x27;</span></span><br><span class="line">    <span class="attr">magenta:</span> <span class="string">&#x27;#b48ead&#x27;</span></span><br><span class="line">    <span class="attr">cyan:</span> <span class="string">&#x27;#88c0d0&#x27;</span></span><br><span class="line">    <span class="attr">white:</span> <span class="string">&#x27;#e5e9f0&#x27;</span></span><br><span class="line">  <span class="attr">bright:</span></span><br><span class="line">    <span class="attr">black:</span> <span class="string">&#x27;#4c566a&#x27;</span></span><br><span class="line">    <span class="attr">red:</span> <span class="string">&#x27;#bf616a&#x27;</span></span><br><span class="line">    <span class="attr">green:</span> <span class="string">&#x27;#a3be8c&#x27;</span></span><br><span class="line">    <span class="attr">yellow:</span> <span class="string">&#x27;#ebcb8b&#x27;</span></span><br><span class="line">    <span class="attr">blue:</span> <span class="string">&#x27;#81a1c1&#x27;</span></span><br><span class="line">    <span class="attr">magenta:</span> <span class="string">&#x27;#b48ead&#x27;</span></span><br><span class="line">    <span class="attr">cyan:</span> <span class="string">&#x27;#8fbcbb&#x27;</span></span><br><span class="line">    <span class="attr">white:</span> <span class="string">&#x27;#eceff4&#x27;</span></span><br><span class="line">  <span class="attr">dim:</span></span><br><span class="line">    <span class="attr">black:</span> <span class="string">&#x27;#373e4d&#x27;</span></span><br><span class="line">    <span class="attr">red:</span> <span class="string">&#x27;#94545d&#x27;</span></span><br><span class="line">    <span class="attr">green:</span> <span class="string">&#x27;#809575&#x27;</span></span><br><span class="line">    <span class="attr">yellow:</span> <span class="string">&#x27;#b29e75&#x27;</span></span><br><span class="line">    <span class="attr">blue:</span> <span class="string">&#x27;#68809a&#x27;</span></span><br><span class="line">    <span class="attr">magenta:</span> <span class="string">&#x27;#8c738c&#x27;</span></span><br><span class="line">    <span class="attr">cyan:</span> <span class="string">&#x27;#6d96a5&#x27;</span></span><br><span class="line">    <span class="attr">white:</span> <span class="string">&#x27;#aeb3bb&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+<h1 id="Themes"><a href="#Themes" class="headerlink" title="Themes"></a>Themes</h1><p>If you don’ t like the color scheme check other options using the command.</p>
+<p><code>fish_config</code></p>
+<h1 id="donet-autocomplete"><a href="#donet-autocomplete" class="headerlink" title="donet autocomplete"></a>donet autocomplete</h1><p>In case you want dotnet command autocomplete to get something like this.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"> ╭─rramos@buldozer <span class="keyword">in</span> ~ via  v17.2.0</span><br><span class="line"> ╰─λ dotnet</span><br><span class="line">add               (Add a package/reference)  publish  (Publish a .NET project <span class="keyword">for</span> deployment)</span><br><span class="line">build                (Build a .NET project)  remove              (Remove a package/reference)</span><br><span class="line">build-server  (Interact with build servers)  restore                   (Restore dependencies)</span><br><span class="line">clean                 (Clean build outputs)  run            (Run the application from <span class="built_in">source</span>)</span><br><span class="line">…and 6 more rows</span><br></pre></td></tr></table></figure>
+
+<p>You should have the following on your <code>config.fish</code> file.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">complete -f -c dotnet -a &quot;(dotnet complete)&quot;</span><br></pre></td></tr></table></figure>
+<p>For Garuda this setup seems to be present out-of-the box.</p>
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>Although Garuda brings a lot of customizations for fish if one wants to go deeper and adjust for it’s own taste can take some time. I certainly toke some time to understand where configurations where being override. I probably include some of this configurations in git to prevent future time waist on customizations.</p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/fish">https://wiki.archlinux.org/title/fish</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/dotnet/core/tools/enable-tab-autocomplete#zsh">https://docs.microsoft.com/en-us/dotnet/core/tools/enable-tab-autocomplete#zsh</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/oh-my-fish/oh-my-fish">https://github.com/oh-my-fish/oh-my-fish</a></li>
+<li><a target="_blank" rel="noopener" href="https://techviewleo.com/configure-fish-shell-with-oh-my-fish/">https://techviewleo.com/configure-fish-shell-with-oh-my-fish/</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/arcticicestudio/nord-alacritty">https://github.com/arcticicestudio/nord-alacritty</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
 
 <nav id="pagination">
   
@@ -517,15 +557,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <h3 class="title">Tags</h3>
   <ul class="entry">
   
-    <li><a href="/tags/NET/">.NET</a><small>1</small></li>
+    <li><a href="/tags/NET/">.NET</a><small>2</small></li>
   
-    <li><a href="/tags/Net/">.Net</a><small>1</small></li>
-  
-    <li><a href="/tags/AI/">AI</a><small>1</small></li>
-  
-    <li><a href="/tags/API/">API</a><small>1</small></li>
-  
-    <li><a href="/tags/APIs/">APIs</a><small>1</small></li>
+    <li><a href="/tags/API/">API</a><small>2</small></li>
   
     <li><a href="/tags/AUR/">AUR</a><small>1</small></li>
   
@@ -539,31 +573,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Ansible/">Ansible</a><small>2</small></li>
   
-    <li><a href="/tags/Arch/">Arch</a><small>4</small></li>
+    <li><a href="/tags/Arch/">Arch</a><small>3</small></li>
   
-    <li><a href="/tags/Arch-Linux/">Arch Linux</a><small>1</small></li>
-  
-    <li><a href="/tags/Architecture/">Architecture</a><small>1</small></li>
+    <li><a href="/tags/Architecture/">Architecture</a><small>2</small></li>
   
     <li><a href="/tags/Artifactory/">Artifactory</a><small>1</small></li>
   
     <li><a href="/tags/Avro/">Avro</a><small>1</small></li>
   
-    <li><a href="/tags/BigData/">BigData</a><small>2</small></li>
+    <li><a href="/tags/BTRFS/">BTRFS</a><small>1</small></li>
+  
+    <li><a href="/tags/Beeline/">Beeline</a><small>1</small></li>
+  
+    <li><a href="/tags/Big-Data/">Big Data</a><small>2</small></li>
   
     <li><a href="/tags/BigQuery/">BigQuery</a><small>1</small></li>
   
-    <li><a href="/tags/Books/">Books</a><small>1</small></li>
+    <li><a href="/tags/Books/">Books</a><small>2</small></li>
   
-    <li><a href="/tags/CDH-Parcel/">CDH Parcel</a><small>1</small></li>
+    <li><a href="/tags/CI-CD/">CI/CD</a><small>1</small></li>
   
-    <li><a href="/tags/CHat-PT/">CHat-PT</a><small>1</small></li>
+    <li><a href="/tags/ChatGPT/">ChatGPT</a><small>1</small></li>
   
     <li><a href="/tags/CheatSheet/">CheatSheet</a><small>1</small></li>
   
     <li><a href="/tags/Cloudera/">Cloudera</a><small>3</small></li>
   
-    <li><a href="/tags/Code/">Code</a><small>2</small></li>
+    <li><a href="/tags/Code/">Code</a><small>1</small></li>
   
     <li><a href="/tags/Communication/">Communication</a><small>1</small></li>
   
@@ -571,11 +607,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Contracts/">Contracts</a><small>1</small></li>
   
-    <li><a href="/tags/CryptoArt/">CryptoArt</a><small>1</small></li>
+    <li><a href="/tags/Crypto/">Crypto</a><small>1</small></li>
   
-    <li><a href="/tags/Customization/">Customization</a><small>1</small></li>
-  
-    <li><a href="/tags/Customize/">Customize</a><small>1</small></li>
+    <li><a href="/tags/Customization/">Customization</a><small>2</small></li>
   
     <li><a href="/tags/DBT/">DBT</a><small>1</small></li>
   
@@ -595,23 +629,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Delegation/">Delegation</a><small>1</small></li>
   
-    <li><a href="/tags/Development/">Development</a><small>3</small></li>
+    <li><a href="/tags/DevOps/">DevOps</a><small>1</small></li>
+  
+    <li><a href="/tags/Development/">Development</a><small>5</small></li>
   
     <li><a href="/tags/Dimensions/">Dimensions</a><small>1</small></li>
   
     <li><a href="/tags/Docker/">Docker</a><small>7</small></li>
   
+    <li><a href="/tags/Dr-Elephant/">Dr-Elephant</a><small>1</small></li>
+  
     <li><a href="/tags/DuckDB/">DuckDB</a><small>1</small></li>
   
-    <li><a href="/tags/GA/">GA</a><small>2</small></li>
+    <li><a href="/tags/Encryption/">Encryption</a><small>1</small></li>
   
-    <li><a href="/tags/GA4/">GA4</a><small>2</small></li>
+    <li><a href="/tags/Events/">Events</a><small>1</small></li>
   
-    <li><a href="/tags/GC/">GC</a><small>1</small></li>
+    <li><a href="/tags/Fish/">Fish</a><small>1</small></li>
   
     <li><a href="/tags/GCS/">GCS</a><small>1</small></li>
   
-    <li><a href="/tags/Garuda/">Garuda</a><small>1</small></li>
+    <li><a href="/tags/Git/">Git</a><small>5</small></li>
+  
+    <li><a href="/tags/GitHub/">GitHub</a><small>3</small></li>
   
     <li><a href="/tags/Google-Analytics/">Google Analytics</a><small>3</small></li>
   
@@ -623,19 +663,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/HDFS/">HDFS</a><small>3</small></li>
   
-    <li><a href="/tags/Hadoop/">Hadoop</a><small>4</small></li>
+    <li><a href="/tags/Hadoop/">Hadoop</a><small>5</small></li>
+  
+    <li><a href="/tags/Hexo/">Hexo</a><small>2</small></li>
   
     <li><a href="/tags/Hiring/">Hiring</a><small>1</small></li>
   
-    <li><a href="/tags/Hive/">Hive</a><small>3</small></li>
+    <li><a href="/tags/Hive/">Hive</a><small>4</small></li>
   
-    <li><a href="/tags/IDE/">IDE</a><small>1</small></li>
+    <li><a href="/tags/IDE/">IDE</a><small>2</small></li>
   
     <li><a href="/tags/Infrastructure/">Infrastructure</a><small>1</small></li>
   
     <li><a href="/tags/Inspiration/">Inspiration</a><small>1</small></li>
-  
-    <li><a href="/tags/Install/">Install</a><small>1</small></li>
   
     <li><a href="/tags/Internet/">Internet</a><small>1</small></li>
   
@@ -647,7 +687,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Kafka/">Kafka</a><small>2</small></li>
   
-    <li><a href="/tags/Keyboard/">Keyboard</a><small>1</small></li>
+    <li><a href="/tags/Keybase/">Keybase</a><small>1</small></li>
+  
+    <li><a href="/tags/Keyboards/">Keyboards</a><small>1</small></li>
   
     <li><a href="/tags/Kobo/">Kobo</a><small>1</small></li>
   
@@ -657,11 +699,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Leadership/">Leadership</a><small>2</small></li>
   
-    <li><a href="/tags/Linux/">Linux</a><small>9</small></li>
+    <li><a href="/tags/Linux/">Linux</a><small>12</small></li>
   
     <li><a href="/tags/Management/">Management</a><small>2</small></li>
   
-    <li><a href="/tags/Markdown/">Markdown</a><small>2</small></li>
+    <li><a href="/tags/Markdown/">Markdown</a><small>3</small></li>
   
     <li><a href="/tags/Mesos/">Mesos</a><small>1</small></li>
   
@@ -671,19 +713,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Monitoring/">Monitoring</a><small>1</small></li>
   
-    <li><a href="/tags/NATO/">NATO</a><small>1</small></li>
-  
-    <li><a href="/tags/NFT/">NFT</a><small>1</small></li>
-  
     <li><a href="/tags/Nifi/">Nifi</a><small>1</small></li>
   
     <li><a href="/tags/Nord/">Nord</a><small>1</small></li>
   
     <li><a href="/tags/Nuget/">Nuget</a><small>1</small></li>
   
+    <li><a href="/tags/OpenAI/">OpenAI</a><small>1</small></li>
+  
     <li><a href="/tags/OpenAPI/">OpenAPI</a><small>1</small></li>
   
     <li><a href="/tags/Optimization/">Optimization</a><small>1</small></li>
+  
+    <li><a href="/tags/PGP/">PGP</a><small>1</small></li>
+  
+    <li><a href="/tags/PKI/">PKI</a><small>1</small></li>
   
     <li><a href="/tags/Packages/">Packages</a><small>1</small></li>
   
@@ -697,15 +741,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Porto/">Porto</a><small>1</small></li>
   
-    <li><a href="/tags/PortoTechHub/">PortoTechHub</a><small>1</small></li>
-  
     <li><a href="/tags/PowerShell/">PowerShell</a><small>1</small></li>
+  
+    <li><a href="/tags/Prompt-Engineering/">Prompt Engineering</a><small>1</small></li>
   
     <li><a href="/tags/Proxy/">Proxy</a><small>1</small></li>
   
-    <li><a href="/tags/QEMU/">QEMU</a><small>1</small></li>
-  
-    <li><a href="/tags/Qemu/">Qemu</a><small>1</small></li>
+    <li><a href="/tags/QEMU/">QEMU</a><small>2</small></li>
   
     <li><a href="/tags/RDD/">RDD</a><small>1</small></li>
   
@@ -717,11 +759,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/SQLServer/">SQLServer</a><small>1</small></li>
   
+    <li><a href="/tags/SSH/">SSH</a><small>2</small></li>
+  
     <li><a href="/tags/Scala/">Scala</a><small>2</small></li>
   
     <li><a href="/tags/Scrum/">Scrum</a><small>1</small></li>
-  
-    <li><a href="/tags/Setup/">Setup</a><small>1</small></li>
   
     <li><a href="/tags/Sheetlist/">Sheetlist</a><small>1</small></li>
   
@@ -733,13 +775,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Spark/">Spark</a><small>4</small></li>
   
-    <li><a href="/tags/SparkSummit/">SparkSummit</a><small>1</small></li>
-  
     <li><a href="/tags/Sqoop/">Sqoop</a><small>1</small></li>
   
-    <li><a href="/tags/Streaming/">Streaming</a><small>1</small></li>
-  
-    <li><a href="/tags/Streamming/">Streamming</a><small>1</small></li>
+    <li><a href="/tags/Streaming/">Streaming</a><small>2</small></li>
   
     <li><a href="/tags/Teams/">Teams</a><small>1</small></li>
   
@@ -747,9 +785,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Tools/">Tools</a><small>1</small></li>
   
+    <li><a href="/tags/Troubleshooting/">Troubleshooting</a><small>2</small></li>
+  
     <li><a href="/tags/Tunning/">Tunning</a><small>1</small></li>
   
-    <li><a href="/tags/Utils/">Utils</a><small>2</small></li>
+    <li><a href="/tags/UDFS/">UDFS</a><small>1</small></li>
+  
+    <li><a href="/tags/Utils/">Utils</a><small>7</small></li>
+  
+    <li><a href="/tags/VDI/">VDI</a><small>1</small></li>
   
     <li><a href="/tags/Vagrant/">Vagrant</a><small>1</small></li>
   
@@ -759,63 +803,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Zeepelin/">Zeepelin</a><small>1</small></li>
   
-    <li><a href="/tags/beeline/">beeline</a><small>1</small></li>
-  
-    <li><a href="/tags/blog/">blog</a><small>1</small></li>
-  
-    <li><a href="/tags/btrfs/">btrfs</a><small>1</small></li>
-  
-    <li><a href="/tags/cheat/">cheat</a><small>1</small></li>
-  
-    <li><a href="/tags/docker-compose/">docker-compose</a><small>1</small></li>
-  
-    <li><a href="/tags/dr-elephant/">dr-elephant</a><small>1</small></li>
-  
-    <li><a href="/tags/ebooks/">ebooks</a><small>1</small></li>
-  
-    <li><a href="/tags/encryption/">encryption</a><small>1</small></li>
-  
-    <li><a href="/tags/exception/">exception</a><small>1</small></li>
-  
-    <li><a href="/tags/fish/">fish</a><small>1</small></li>
-  
-    <li><a href="/tags/git/">git</a><small>4</small></li>
-  
-    <li><a href="/tags/github/">github</a><small>2</small></li>
-  
-    <li><a href="/tags/hadoop/">hadoop</a><small>1</small></li>
-  
-    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
-  
-    <li><a href="/tags/hive/">hive</a><small>1</small></li>
-  
-    <li><a href="/tags/kbfs/">kbfs</a><small>1</small></li>
-  
-    <li><a href="/tags/keybase/">keybase</a><small>1</small></li>
-  
-    <li><a href="/tags/keys/">keys</a><small>1</small></li>
-  
     <li><a href="/tags/libvirt/">libvirt</a><small>1</small></li>
-  
-    <li><a href="/tags/markdown/">markdown</a><small>1</small></li>
-  
-    <li><a href="/tags/pgp/">pgp</a><small>1</small></li>
-  
-    <li><a href="/tags/pki/">pki</a><small>1</small></li>
-  
-    <li><a href="/tags/qcow2/">qcow2</a><small>1</small></li>
-  
-    <li><a href="/tags/sheet/">sheet</a><small>1</small></li>
-  
-    <li><a href="/tags/ssh/">ssh</a><small>2</small></li>
-  
-    <li><a href="/tags/udfs/">udfs</a><small>1</small></li>
-  
-    <li><a href="/tags/utils/">utils</a><small>1</small></li>
-  
-    <li><a href="/tags/vdi/">vdi</a><small>1</small></li>
-  
-    <li><a href="/tags/visual-code/">visual code</a><small>1</small></li>
   
   </ul>
 </div>

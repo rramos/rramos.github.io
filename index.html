@@ -77,6 +77,75 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
+        <time datetime="2024-01-26T18:00:00.000Z"><a href="/2024/01/26/githubactions/">2024-01-26</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2024/01/26/githubactions/">GitHub Actions</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>In this article I will go through the steps to setup github actions to deploy hexo pages upon push requests into <a target="_blank" rel="noopener" href="https://pages.github.com/">Github pages</a></p>
+<h2 id="Github-Actions"><a href="#Github-Actions" class="headerlink" title="Github Actions"></a>Github Actions</h2><p>GitHub Actions makes it easy to automate all your software workflows, now with world-class CI/CD. Build, test, and deploy your code right from GitHub. Make code reviews, branch management, and issue triaging work the way you want.</p>
+<p>Check the available <a target="_blank" rel="noopener" href="https://docs.github.com/en/actions">documentation</a> as there are several interesting examples</p>
+<h2 id="Hexo-Setup"><a href="#Hexo-Setup" class="headerlink" title="Hexo Setup"></a>Hexo Setup</h2><p>This tech notes site is maintained by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> a markdown blob framework.</p>
+<p>The framework generates html static content based on Markdown articles an one needs carry the following steps to update content</p>
+<ul>
+<li>Create/Update Markdown content</li>
+<li>Execute <code>hexo generate</code> to generte content</li>
+<li>Validate the pages with <code>hexo serve</code></li>
+<li>Deploy to your hosting service <code>hexo deploy</code></li>
+</ul>
+<h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><p>Include the following file <code>.github/workflows/hexo-deploy.yml</code> on your hexo repo with the content:</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">Deploy</span></span><br><span class="line"></span><br><span class="line"><span class="attr">on:</span> [<span class="string">push</span>]</span><br><span class="line"></span><br><span class="line"><span class="attr">jobs:</span></span><br><span class="line">  <span class="attr">build:</span></span><br><span class="line">    <span class="attr">runs-on:</span> <span class="string">ubuntu-latest</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">Deploying</span> <span class="string">udateds</span> <span class="string">Hexo</span> <span class="string">articles</span></span><br><span class="line">    <span class="attr">steps:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Checkout</span></span><br><span class="line">      <span class="attr">uses:</span> <span class="string">actions/checkout@v2</span></span><br><span class="line">      <span class="attr">with:</span></span><br><span class="line">        <span class="attr">submodules:</span> <span class="string">&#x27;true&#x27;</span></span><br><span class="line">        <span class="attr">token:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.ACCESS_TOKEN</span> <span class="string">&#125;&#125;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Caching dependencies to speed up workflows. (GitHub will remove any cache entries that have not been accessed in over 7 days.)</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Cache</span> <span class="string">node</span> <span class="string">modules</span></span><br><span class="line">      <span class="attr">uses:</span> <span class="string">actions/cache@v1</span></span><br><span class="line">      <span class="attr">id:</span> <span class="string">cache</span></span><br><span class="line">      <span class="attr">with:</span></span><br><span class="line">        <span class="attr">path:</span> <span class="string">node_modules</span></span><br><span class="line">        <span class="attr">key:</span> <span class="string">$&#123;&#123;</span> <span class="string">runner.os</span> <span class="string">&#125;&#125;-node-$&#123;&#123;</span> <span class="string">hashFiles(&#x27;**/package-lock.json&#x27;)</span> <span class="string">&#125;&#125;</span></span><br><span class="line">        <span class="attr">restore-keys:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          $&#123;&#123; runner.os &#125;&#125;-node-</span></span><br><span class="line"><span class="string"></span>          </span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Install</span> <span class="string">Dependencies</span></span><br><span class="line">      <span class="attr">if:</span> <span class="string">steps.cache.outputs.cache-hit</span> <span class="type">!=</span> <span class="string">&#x27;true&#x27;</span></span><br><span class="line">      <span class="attr">run:</span> <span class="string">npm</span> <span class="string">ci</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Deploy hexo blog website.</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Deploy</span></span><br><span class="line">      <span class="attr">id:</span> <span class="string">deploy</span></span><br><span class="line">      <span class="attr">uses:</span> <span class="string">sma11black/hexo-action@v1.0.4</span></span><br><span class="line">      <span class="attr">with:</span></span><br><span class="line">        <span class="attr">deploy_key:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.HEXO_DEPLOY_KEY</span> <span class="string">&#125;&#125;</span></span><br><span class="line">        <span class="attr">user_name:</span> <span class="string">&lt;GITHUB_USER&gt;</span>  <span class="comment"># (or delete this input setting to use bot account)</span></span><br><span class="line">        <span class="attr">user_email:</span> <span class="string">&lt;GITHUB_EMAIL&gt;</span>  <span class="comment"># (or delete this input setting to use bot account)</span></span><br><span class="line">        <span class="attr">commit_msg:</span> <span class="string">$&#123;&#123;</span> <span class="string">github.event.head_commit.message</span> <span class="string">&#125;&#125;</span> </span><br><span class="line"></span><br><span class="line">    <span class="comment"># Use the output from the `deploy` step(use for test action)</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Get</span> <span class="string">the</span> <span class="string">output</span></span><br><span class="line">      <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line">        <span class="string">echo</span> <span class="string">&quot;$<span class="template-variable">&#123;&#123; steps.deploy.outputs.notify &#125;&#125;</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Replace <code>&lt;GITHUB_USER&gt;</code> with your user account and <code>&lt;GITHUB_EMAIL&gt;</code> with your email address</li>
+<li>Generate a new ssh-key with the comand <code>ssh-keygen -t rsa -C &quot;&lt;GITHUB_EMAIL&gt;&quot;</code> making sure to use you email account<ul>
+<li>This step will generate 2 files a pub key which you need to configure on the destination repo as one allowed <strong>Deployment key</strong></li>
+<li>And on the source repo you need to configure a secret where you will put the ssh-key</li>
+</ul>
+</li>
+<li>Configure a personal token and register also as a secret on the source repository as <strong>ACCESS_TOKEN</strong></li>
+</ul>
+<p>That’s it you just need to start pushing changes</p>
+<p><strong>NOTE:</strong> This assumes the hexo source repository was already configured for the destination github pages account.</p>
+<h2 id="Multi-repos"><a href="#Multi-repos" class="headerlink" title="Multi repos"></a>Multi repos</h2><p>It is important to notice that you cannot assign the same deployment key for several repositories.</p>
+<p>That is why I used a personal token, but there should be better alternatives.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Github Actions is a really powerfull CI/CD tool and for this type of static generation content works rather well.</p>
+<p>I had several issues regarding github submodules where the authetication was not passing. If you use the same approach for themes, you may endup on the same situation and using a token approach would be preferable</p>
+<p>Also the ssh-keys being bounded by repo caused some initial confusion and there should be a better way to setup the autentication but I didn’t explore it in detail.</p>
+<p>Also <code>package-lock.json</code> are required for this to work and is advisable to have your source repo as private.</p>
+<p>This workflow can certainly be improve like including tests and making sure that grammar validation is done as one example.</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://hexo.io/">https://hexo.io</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/marketplace/actions/hexo-action">https://github.com/marketplace/actions/hexo-action</a></li>
+<li><a target="_blank" rel="noopener" href="https://pages.github.com/">https://pages.github.com/</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2024-01-25T10:00:00.000Z"><a href="/2024/01/25/fabric/">2024-01-25</a></time>
       
       
@@ -180,7 +249,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2024-01-02T00:00:00.000Z"><a href="/2024/01/02/scalavariance/">2024-01-02</a></time>
+        <time datetime="2024-01-02T10:00:00.000Z"><a href="/2024/01/02/scalavariance/">2024-01-02</a></time>
       
       
   
@@ -352,76 +421,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2023-12-26T20:20:00.000Z"><a href="/2023/12/26/ngrok/">2023-12-26</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2023/12/26/ngrok/">Ngrok</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>In this article I configure a local endpoint using ngrok for testing purposes.</p>
-<h2 id="What-is-ngrok"><a href="#What-is-ngrok" class="headerlink" title="What is ngrok ?"></a>What is ngrok ?</h2><p>ngrok is a globally distributed reverse proxy that secures, protects and accelerates your applications and network services, no matter where you run them. You can think of ngrok as the front door to your applications</p>
-<h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><p>For this guide I will use snap. Checkout the <a target="_blank" rel="noopener" href="https://ngrok.com/docs/getting-started/">Official guide</a> for other alternatives.</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">snap install ngrok</span><br></pre></td></tr></table></figure>
-
-<h2 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h2><p>Next step create an account with the Free tier at <a target="_blank" rel="noopener" href="https://ngrok.com/">https://ngrok.com</a>.</p>
-<blockquote>
-<p><strong>NOTE:</strong> This option is intended only for testing purposes for Production workloads you should consider a different option based on your network usage. Use this instructions at your own risk</p>
-</blockquote>
-<p>When you access the service you can get your token run the folloing command to add it to your local configuration</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ngrok config add-authtoken &lt;TOKEN&gt;</span><br></pre></td></tr></table></figure>
-
-<p>you can run the following command to make sure your configuration checks out</p>
-<h2 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h2><p>Open two terminals.<br>On the first let’s start a listener using netcat</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">nc -l -p 9393</span><br></pre></td></tr></table></figure>
-
-<p>On the second one let’s spin up ngrok</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ngrok tcp localhost:9393</span><br></pre></td></tr></table></figure>
-
-<p>You will be presented with a forward URL ( check Forwarding option on the output )</p>
-<p>For my example it was: <code>tcp://0.tcp.eu.ngrok.io:15537</code></p>
-<p>If you go through a browser and choose <code>http://0.tcp.eu.ngrok.io:15537/</code></p>
-<p>You should see the http GET request on the terminal for the listener</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">GET / HTTP/1.1</span><br><span class="line">Host: 0.tcp.eu.ngrok.io:15537</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line">User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Accept-Language: en-US,en;q=0.9,pt-PT;q=0.8,pt;q=0.7</span><br></pre></td></tr></table></figure>
-
-<p>You could use a much more interesting example like <a target="_blank" rel="noopener" href="https://mockingbird.tinybird.co/">MockingBird</a> or some other mocking data service, but for reference this will do.</p>
-<p>Another point to take into consideration is the security part.<br>When you create the enpoint you can define a differente security mechanism (advisible) like Oauth.</p>
-<p>You could run something like the following to use Google OAuth:</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ngrok http http://localhost:8080 --oauth=google --oauth-allow-email=&lt;YOUR_EMAIL&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Take into account that IP control will require that you upgrade your plan</p>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>ngrok seems to be very easy to setup. Although I didn’t go in depth on the CI/CD configuration their Offical documentation has more information on that one (example for <a target="_blank" rel="noopener" href="https://ngrok.com/docs/integrations/github/webhooks/">Github integration</a>). Check there documentation regarding <a target="_blank" rel="noopener" href="https://ngrok.com/use-cases">Production usecases</a>.</p>
-<p>For me personally I think is quite interesting if you want to speed up development and provide a local endpoint quickly to a client to assess in a secure and reliable way. Or quicky provide a webhook for testing something.</p>
-<p>Let me know if you know similar alternatives that I should look into.</p>
-<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://ngrok.com/">https://ngrok.com</a></li>
-<li><a target="_blank" rel="noopener" href="https://ngrok.com/docs/">https://ngrok.com/docs/</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -446,15 +445,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <h3 class="title">Tags</h3>
   <ul class="entry">
   
-    <li><a href="/tags/NET/">.NET</a><small>1</small></li>
+    <li><a href="/tags/NET/">.NET</a><small>2</small></li>
   
-    <li><a href="/tags/Net/">.Net</a><small>1</small></li>
-  
-    <li><a href="/tags/AI/">AI</a><small>1</small></li>
-  
-    <li><a href="/tags/API/">API</a><small>1</small></li>
-  
-    <li><a href="/tags/APIs/">APIs</a><small>1</small></li>
+    <li><a href="/tags/API/">API</a><small>2</small></li>
   
     <li><a href="/tags/AUR/">AUR</a><small>1</small></li>
   
@@ -468,31 +461,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Ansible/">Ansible</a><small>2</small></li>
   
-    <li><a href="/tags/Arch/">Arch</a><small>4</small></li>
+    <li><a href="/tags/Arch/">Arch</a><small>3</small></li>
   
-    <li><a href="/tags/Arch-Linux/">Arch Linux</a><small>1</small></li>
-  
-    <li><a href="/tags/Architecture/">Architecture</a><small>1</small></li>
+    <li><a href="/tags/Architecture/">Architecture</a><small>2</small></li>
   
     <li><a href="/tags/Artifactory/">Artifactory</a><small>1</small></li>
   
     <li><a href="/tags/Avro/">Avro</a><small>1</small></li>
   
-    <li><a href="/tags/BigData/">BigData</a><small>2</small></li>
+    <li><a href="/tags/BTRFS/">BTRFS</a><small>1</small></li>
+  
+    <li><a href="/tags/Beeline/">Beeline</a><small>1</small></li>
+  
+    <li><a href="/tags/Big-Data/">Big Data</a><small>2</small></li>
   
     <li><a href="/tags/BigQuery/">BigQuery</a><small>1</small></li>
   
-    <li><a href="/tags/Books/">Books</a><small>1</small></li>
+    <li><a href="/tags/Books/">Books</a><small>2</small></li>
   
-    <li><a href="/tags/CDH-Parcel/">CDH Parcel</a><small>1</small></li>
+    <li><a href="/tags/CI-CD/">CI/CD</a><small>1</small></li>
   
-    <li><a href="/tags/CHat-PT/">CHat-PT</a><small>1</small></li>
+    <li><a href="/tags/ChatGPT/">ChatGPT</a><small>1</small></li>
   
     <li><a href="/tags/CheatSheet/">CheatSheet</a><small>1</small></li>
   
     <li><a href="/tags/Cloudera/">Cloudera</a><small>3</small></li>
   
-    <li><a href="/tags/Code/">Code</a><small>2</small></li>
+    <li><a href="/tags/Code/">Code</a><small>1</small></li>
   
     <li><a href="/tags/Communication/">Communication</a><small>1</small></li>
   
@@ -500,11 +495,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Contracts/">Contracts</a><small>1</small></li>
   
-    <li><a href="/tags/CryptoArt/">CryptoArt</a><small>1</small></li>
+    <li><a href="/tags/Crypto/">Crypto</a><small>1</small></li>
   
-    <li><a href="/tags/Customization/">Customization</a><small>1</small></li>
-  
-    <li><a href="/tags/Customize/">Customize</a><small>1</small></li>
+    <li><a href="/tags/Customization/">Customization</a><small>2</small></li>
   
     <li><a href="/tags/DBT/">DBT</a><small>1</small></li>
   
@@ -524,23 +517,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Delegation/">Delegation</a><small>1</small></li>
   
-    <li><a href="/tags/Development/">Development</a><small>3</small></li>
+    <li><a href="/tags/DevOps/">DevOps</a><small>1</small></li>
+  
+    <li><a href="/tags/Development/">Development</a><small>5</small></li>
   
     <li><a href="/tags/Dimensions/">Dimensions</a><small>1</small></li>
   
     <li><a href="/tags/Docker/">Docker</a><small>7</small></li>
   
+    <li><a href="/tags/Dr-Elephant/">Dr-Elephant</a><small>1</small></li>
+  
     <li><a href="/tags/DuckDB/">DuckDB</a><small>1</small></li>
   
-    <li><a href="/tags/GA/">GA</a><small>2</small></li>
+    <li><a href="/tags/Encryption/">Encryption</a><small>1</small></li>
   
-    <li><a href="/tags/GA4/">GA4</a><small>2</small></li>
+    <li><a href="/tags/Events/">Events</a><small>1</small></li>
   
-    <li><a href="/tags/GC/">GC</a><small>1</small></li>
+    <li><a href="/tags/Fish/">Fish</a><small>1</small></li>
   
     <li><a href="/tags/GCS/">GCS</a><small>1</small></li>
   
-    <li><a href="/tags/Garuda/">Garuda</a><small>1</small></li>
+    <li><a href="/tags/Git/">Git</a><small>5</small></li>
+  
+    <li><a href="/tags/GitHub/">GitHub</a><small>3</small></li>
   
     <li><a href="/tags/Google-Analytics/">Google Analytics</a><small>3</small></li>
   
@@ -552,19 +551,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/HDFS/">HDFS</a><small>3</small></li>
   
-    <li><a href="/tags/Hadoop/">Hadoop</a><small>4</small></li>
+    <li><a href="/tags/Hadoop/">Hadoop</a><small>5</small></li>
+  
+    <li><a href="/tags/Hexo/">Hexo</a><small>2</small></li>
   
     <li><a href="/tags/Hiring/">Hiring</a><small>1</small></li>
   
-    <li><a href="/tags/Hive/">Hive</a><small>3</small></li>
+    <li><a href="/tags/Hive/">Hive</a><small>4</small></li>
   
-    <li><a href="/tags/IDE/">IDE</a><small>1</small></li>
+    <li><a href="/tags/IDE/">IDE</a><small>2</small></li>
   
     <li><a href="/tags/Infrastructure/">Infrastructure</a><small>1</small></li>
   
     <li><a href="/tags/Inspiration/">Inspiration</a><small>1</small></li>
-  
-    <li><a href="/tags/Install/">Install</a><small>1</small></li>
   
     <li><a href="/tags/Internet/">Internet</a><small>1</small></li>
   
@@ -576,7 +575,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Kafka/">Kafka</a><small>2</small></li>
   
-    <li><a href="/tags/Keyboard/">Keyboard</a><small>1</small></li>
+    <li><a href="/tags/Keybase/">Keybase</a><small>1</small></li>
+  
+    <li><a href="/tags/Keyboards/">Keyboards</a><small>1</small></li>
   
     <li><a href="/tags/Kobo/">Kobo</a><small>1</small></li>
   
@@ -586,11 +587,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Leadership/">Leadership</a><small>2</small></li>
   
-    <li><a href="/tags/Linux/">Linux</a><small>9</small></li>
+    <li><a href="/tags/Linux/">Linux</a><small>12</small></li>
   
     <li><a href="/tags/Management/">Management</a><small>2</small></li>
   
-    <li><a href="/tags/Markdown/">Markdown</a><small>2</small></li>
+    <li><a href="/tags/Markdown/">Markdown</a><small>3</small></li>
   
     <li><a href="/tags/Mesos/">Mesos</a><small>1</small></li>
   
@@ -600,19 +601,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Monitoring/">Monitoring</a><small>1</small></li>
   
-    <li><a href="/tags/NATO/">NATO</a><small>1</small></li>
-  
-    <li><a href="/tags/NFT/">NFT</a><small>1</small></li>
-  
     <li><a href="/tags/Nifi/">Nifi</a><small>1</small></li>
   
     <li><a href="/tags/Nord/">Nord</a><small>1</small></li>
   
     <li><a href="/tags/Nuget/">Nuget</a><small>1</small></li>
   
+    <li><a href="/tags/OpenAI/">OpenAI</a><small>1</small></li>
+  
     <li><a href="/tags/OpenAPI/">OpenAPI</a><small>1</small></li>
   
     <li><a href="/tags/Optimization/">Optimization</a><small>1</small></li>
+  
+    <li><a href="/tags/PGP/">PGP</a><small>1</small></li>
+  
+    <li><a href="/tags/PKI/">PKI</a><small>1</small></li>
   
     <li><a href="/tags/Packages/">Packages</a><small>1</small></li>
   
@@ -626,15 +629,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Porto/">Porto</a><small>1</small></li>
   
-    <li><a href="/tags/PortoTechHub/">PortoTechHub</a><small>1</small></li>
-  
     <li><a href="/tags/PowerShell/">PowerShell</a><small>1</small></li>
+  
+    <li><a href="/tags/Prompt-Engineering/">Prompt Engineering</a><small>1</small></li>
   
     <li><a href="/tags/Proxy/">Proxy</a><small>1</small></li>
   
-    <li><a href="/tags/QEMU/">QEMU</a><small>1</small></li>
-  
-    <li><a href="/tags/Qemu/">Qemu</a><small>1</small></li>
+    <li><a href="/tags/QEMU/">QEMU</a><small>2</small></li>
   
     <li><a href="/tags/RDD/">RDD</a><small>1</small></li>
   
@@ -646,11 +647,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/SQLServer/">SQLServer</a><small>1</small></li>
   
+    <li><a href="/tags/SSH/">SSH</a><small>2</small></li>
+  
     <li><a href="/tags/Scala/">Scala</a><small>2</small></li>
   
     <li><a href="/tags/Scrum/">Scrum</a><small>1</small></li>
-  
-    <li><a href="/tags/Setup/">Setup</a><small>1</small></li>
   
     <li><a href="/tags/Sheetlist/">Sheetlist</a><small>1</small></li>
   
@@ -662,13 +663,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Spark/">Spark</a><small>4</small></li>
   
-    <li><a href="/tags/SparkSummit/">SparkSummit</a><small>1</small></li>
-  
     <li><a href="/tags/Sqoop/">Sqoop</a><small>1</small></li>
   
-    <li><a href="/tags/Streaming/">Streaming</a><small>1</small></li>
-  
-    <li><a href="/tags/Streamming/">Streamming</a><small>1</small></li>
+    <li><a href="/tags/Streaming/">Streaming</a><small>2</small></li>
   
     <li><a href="/tags/Teams/">Teams</a><small>1</small></li>
   
@@ -676,9 +673,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Tools/">Tools</a><small>1</small></li>
   
+    <li><a href="/tags/Troubleshooting/">Troubleshooting</a><small>2</small></li>
+  
     <li><a href="/tags/Tunning/">Tunning</a><small>1</small></li>
   
-    <li><a href="/tags/Utils/">Utils</a><small>2</small></li>
+    <li><a href="/tags/UDFS/">UDFS</a><small>1</small></li>
+  
+    <li><a href="/tags/Utils/">Utils</a><small>7</small></li>
+  
+    <li><a href="/tags/VDI/">VDI</a><small>1</small></li>
   
     <li><a href="/tags/Vagrant/">Vagrant</a><small>1</small></li>
   
@@ -688,63 +691,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Zeepelin/">Zeepelin</a><small>1</small></li>
   
-    <li><a href="/tags/beeline/">beeline</a><small>1</small></li>
-  
-    <li><a href="/tags/blog/">blog</a><small>1</small></li>
-  
-    <li><a href="/tags/btrfs/">btrfs</a><small>1</small></li>
-  
-    <li><a href="/tags/cheat/">cheat</a><small>1</small></li>
-  
-    <li><a href="/tags/docker-compose/">docker-compose</a><small>1</small></li>
-  
-    <li><a href="/tags/dr-elephant/">dr-elephant</a><small>1</small></li>
-  
-    <li><a href="/tags/ebooks/">ebooks</a><small>1</small></li>
-  
-    <li><a href="/tags/encryption/">encryption</a><small>1</small></li>
-  
-    <li><a href="/tags/exception/">exception</a><small>1</small></li>
-  
-    <li><a href="/tags/fish/">fish</a><small>1</small></li>
-  
-    <li><a href="/tags/git/">git</a><small>4</small></li>
-  
-    <li><a href="/tags/github/">github</a><small>2</small></li>
-  
-    <li><a href="/tags/hadoop/">hadoop</a><small>1</small></li>
-  
-    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
-  
-    <li><a href="/tags/hive/">hive</a><small>1</small></li>
-  
-    <li><a href="/tags/kbfs/">kbfs</a><small>1</small></li>
-  
-    <li><a href="/tags/keybase/">keybase</a><small>1</small></li>
-  
-    <li><a href="/tags/keys/">keys</a><small>1</small></li>
-  
     <li><a href="/tags/libvirt/">libvirt</a><small>1</small></li>
-  
-    <li><a href="/tags/markdown/">markdown</a><small>1</small></li>
-  
-    <li><a href="/tags/pgp/">pgp</a><small>1</small></li>
-  
-    <li><a href="/tags/pki/">pki</a><small>1</small></li>
-  
-    <li><a href="/tags/qcow2/">qcow2</a><small>1</small></li>
-  
-    <li><a href="/tags/sheet/">sheet</a><small>1</small></li>
-  
-    <li><a href="/tags/ssh/">ssh</a><small>2</small></li>
-  
-    <li><a href="/tags/udfs/">udfs</a><small>1</small></li>
-  
-    <li><a href="/tags/utils/">utils</a><small>1</small></li>
-  
-    <li><a href="/tags/vdi/">vdi</a><small>1</small></li>
-  
-    <li><a href="/tags/visual-code/">visual code</a><small>1</small></li>
   
   </ul>
 </div>

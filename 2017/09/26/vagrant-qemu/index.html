@@ -76,7 +76,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2017-09-26T22:43:35.000Z"><a href="/2017/09/26/vagrant-qemu/">2017-09-26</a></time>
+        <time datetime="2017-09-26T22:43:00.000Z"><a href="/2017/09/26/vagrant-qemu/">2017-09-26</a></time>
       
       
   
@@ -104,21 +104,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </ul>
 <p><strong>Note:</strong> This guide was tested on Ubuntu 16. Use at your own risk</p>
 <p>One can test libvirt version suing the command</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ virsh version</span><br><span class="line">Compiled against library: libvirt 1.3.1</span><br><span class="line">Using library: libvirt 1.3.1</span><br><span class="line">Using API: QEMU 1.3.1</span><br><span class="line">Running hypervisor: QEMU 2.5.0</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ virsh version</span><br><span class="line">Compiled against library: libvirt 1.3.1</span><br><span class="line">Using library: libvirt 1.3.1</span><br><span class="line">Using API: QEMU 1.3.1</span><br><span class="line">Running hypervisor: QEMU 2.5.0</span><br></pre></td></tr></table></figure>
 
 <p><strong>NOTE:</strong> Before you start using Vagrant-libvirt, please make sure your libvirt and qemu installation is working correctly and you are able to create qemu or kvm type virtual machines with virsh or virt-manager.</p>
 <h1 id="setup"><a href="#setup" class="headerlink" title="setup"></a>setup</h1><p>Install dependencies</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get install qemu libvirt-bin ebtables dnsmasq</span><br><span class="line">sudo apt-get install libxslt-dev libxml2-dev libvirt-dev zlib1g-dev ruby-dev</span><br><span class="line">sudo apt-get install vagrant ruby-libvirt</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install qemu libvirt-bin ebtables dnsmasq</span><br><span class="line">sudo apt-get install libxslt-dev libxml2-dev libvirt-dev zlib1g-dev ruby-dev</span><br><span class="line">sudo apt-get install vagrant ruby-libvirt</span><br></pre></td></tr></table></figure>
 
 <p>Install vagrant-libvirt plugin:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vagrant plugin install vagrant-libvirt</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vagrant plugin install vagrant-libvirt</span><br></pre></td></tr></table></figure>
 
 <p>Now let’s test by creating a startup Box. There are several available <a target="_blank" rel="noopener" href="https://app.vagrantup.com/boxes/search?provider=libvirt">here</a></p>
 <p>Example: (Ubuntu 16)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir Vagrant</span><br><span class="line">cd Vagrant</span><br><span class="line">vagrant init marczis/ubuntu_16_04</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir Vagrant</span><br><span class="line"><span class="built_in">cd</span> Vagrant</span><br><span class="line">vagrant init marczis/ubuntu_16_04</span><br></pre></td></tr></table></figure>
 
 <p>Let’s start the VM</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vagrant up --provider=libvirt</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vagrant up --provider=libvirt</span><br></pre></td></tr></table></figure>
 
 <p>After executing the comman you should have some output similar</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">==&gt; default: Successfully added box &#x27;marczis/ubuntu_16_04&#x27; (v0.1.2) for &#x27;libvirt&#x27;!</span><br><span class="line">==&gt; default: Uploading base box image as volume into libvirt storage...</span><br><span class="line">==&gt; default: Creating image (snapshot of base box volume).</span><br><span class="line">==&gt; default: Creating domain with the following settings...</span><br><span class="line">==&gt; default:  -- Name:              Vagrant_default</span><br><span class="line">==&gt; default:  -- Domain type:       kvm</span><br><span class="line">==&gt; default:  -- Cpus:              1</span><br><span class="line">==&gt; default:  -- Feature:           acpi</span><br><span class="line">==&gt; default:  -- Feature:           apic</span><br><span class="line">==&gt; default:  -- Feature:           pae</span><br><span class="line">==&gt; default:  -- Memory:            512M</span><br><span class="line">==&gt; default:  -- Management MAC:    </span><br><span class="line">==&gt; default:  -- Loader:            </span><br><span class="line">==&gt; default:  -- Base box:          marczis/ubuntu_16_04</span><br><span class="line">==&gt; default:  -- Storage pool:      default</span><br><span class="line">==&gt; default:  -- Image:             /var/lib/libvirt/images/Vagrant_default.img (10G)</span><br><span class="line">==&gt; default:  -- Volume Cache:      default</span><br><span class="line">==&gt; default:  -- Kernel:            </span><br><span class="line">==&gt; default:  -- Initrd:            </span><br><span class="line">==&gt; default:  -- Graphics Type:     vnc</span><br><span class="line">==&gt; default:  -- Graphics Port:     5900</span><br><span class="line">==&gt; default:  -- Graphics IP:       127.0.0.1</span><br><span class="line">==&gt; default:  -- Graphics Password: Not defined</span><br><span class="line">==&gt; default:  -- Video Type:        cirrus</span><br><span class="line">==&gt; default:  -- Video VRAM:        9216</span><br><span class="line">==&gt; default:  -- Sound Type:    </span><br><span class="line">==&gt; default:  -- Keymap:            en-us</span><br><span class="line">==&gt; default:  -- TPM Path:          </span><br><span class="line">==&gt; default:  -- INPUT:             type=mouse, bus=ps2</span><br><span class="line">==&gt; default: Creating shared folders metadata...</span><br><span class="line">==&gt; default: Starting domain.</span><br><span class="line">==&gt; default: Waiting for domain to get an IP address...</span><br><span class="line">==&gt; default: Waiting for SSH to become available...</span><br><span class="line">    default: </span><br><span class="line">    default: Vagrant insecure key detected. Vagrant will automatically replace</span><br><span class="line">    default: this with a newly generated keypair for better security.</span><br><span class="line">    default: </span><br><span class="line">    default: Inserting generated public key within guest...</span><br><span class="line">    default: Removing insecure key from the guest if it&#x27;s present...</span><br><span class="line">    default: Key inserted! Disconnecting and reconnecting using new SSH key...</span><br><span class="line">==&gt; default: Configuring and enabling network interfaces...</span><br><span class="line">==&gt; default: Rsyncing folder: /home/rramos/Development/Vagrant/ =&gt; /vagrant</span><br><span class="line">==&gt; default: Check for insecure vagrant key: OK (not present)</span><br></pre></td></tr></table></figure>
@@ -138,7 +138,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">config.vm.provision :ansible do |ansible|</span><br><span class="line">  ansible.playbook = &quot;playbook.yml&quot;</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
 
 <p>Let’s create the playbook.yml file with the following content</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">- hosts: all</span><br><span class="line">  become: yes</span><br><span class="line">  become_user: root</span><br><span class="line">  tasks:</span><br><span class="line">    - name: install apache2</span><br><span class="line">      apt: name=apache2 update_cache=yes state=latest</span><br><span class="line">  handlers:</span><br><span class="line">    - name: restart apache2</span><br><span class="line">      service: name=apache2 state=restarted</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">hosts:</span> <span class="string">all</span></span><br><span class="line">  <span class="attr">become:</span> <span class="literal">yes</span></span><br><span class="line">  <span class="attr">become_user:</span> <span class="string">root</span></span><br><span class="line">  <span class="attr">tasks:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">install</span> <span class="string">apache2</span></span><br><span class="line">      <span class="attr">apt:</span> <span class="string">name=apache2</span> <span class="string">update_cache=yes</span> <span class="string">state=latest</span></span><br><span class="line">  <span class="attr">handlers:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">restart</span> <span class="string">apache2</span></span><br><span class="line">      <span class="attr">service:</span> <span class="string">name=apache2</span> <span class="string">state=restarted</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>This example playbook will install apache service on the all hosts given by Vagrantfile and start the service.</p>
 <p>Then we can run the command to just run the provision stuff</p>
@@ -178,7 +178,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         
   
   <div class="tags">
-    <a href="/tags/Ansible/">Ansible</a>, <a href="/tags/Vagrant/">Vagrant</a>, <a href="/tags/Qemu/">Qemu</a>, <a href="/tags/KVM/">KVM</a>, <a href="/tags/libvirt/">libvirt</a>, <a href="/tags/Mesos/">Mesos</a>
+    <a href="/tags/Ansible/">Ansible</a>, <a href="/tags/Vagrant/">Vagrant</a>, <a href="/tags/KVM/">KVM</a>, <a href="/tags/libvirt/">libvirt</a>, <a href="/tags/Mesos/">Mesos</a>, <a href="/tags/QEMU/">QEMU</a>
   </div>
 
         
@@ -240,15 +240,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <h3 class="title">Tags</h3>
   <ul class="entry">
   
-    <li><a href="/tags/NET/">.NET</a><small>1</small></li>
+    <li><a href="/tags/NET/">.NET</a><small>2</small></li>
   
-    <li><a href="/tags/Net/">.Net</a><small>1</small></li>
-  
-    <li><a href="/tags/AI/">AI</a><small>1</small></li>
-  
-    <li><a href="/tags/API/">API</a><small>1</small></li>
-  
-    <li><a href="/tags/APIs/">APIs</a><small>1</small></li>
+    <li><a href="/tags/API/">API</a><small>2</small></li>
   
     <li><a href="/tags/AUR/">AUR</a><small>1</small></li>
   
@@ -262,31 +256,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Ansible/">Ansible</a><small>2</small></li>
   
-    <li><a href="/tags/Arch/">Arch</a><small>4</small></li>
+    <li><a href="/tags/Arch/">Arch</a><small>3</small></li>
   
-    <li><a href="/tags/Arch-Linux/">Arch Linux</a><small>1</small></li>
-  
-    <li><a href="/tags/Architecture/">Architecture</a><small>1</small></li>
+    <li><a href="/tags/Architecture/">Architecture</a><small>2</small></li>
   
     <li><a href="/tags/Artifactory/">Artifactory</a><small>1</small></li>
   
     <li><a href="/tags/Avro/">Avro</a><small>1</small></li>
   
-    <li><a href="/tags/BigData/">BigData</a><small>2</small></li>
+    <li><a href="/tags/BTRFS/">BTRFS</a><small>1</small></li>
+  
+    <li><a href="/tags/Beeline/">Beeline</a><small>1</small></li>
+  
+    <li><a href="/tags/Big-Data/">Big Data</a><small>2</small></li>
   
     <li><a href="/tags/BigQuery/">BigQuery</a><small>1</small></li>
   
-    <li><a href="/tags/Books/">Books</a><small>1</small></li>
+    <li><a href="/tags/Books/">Books</a><small>2</small></li>
   
-    <li><a href="/tags/CDH-Parcel/">CDH Parcel</a><small>1</small></li>
+    <li><a href="/tags/CI-CD/">CI/CD</a><small>1</small></li>
   
-    <li><a href="/tags/CHat-PT/">CHat-PT</a><small>1</small></li>
+    <li><a href="/tags/ChatGPT/">ChatGPT</a><small>1</small></li>
   
     <li><a href="/tags/CheatSheet/">CheatSheet</a><small>1</small></li>
   
     <li><a href="/tags/Cloudera/">Cloudera</a><small>3</small></li>
   
-    <li><a href="/tags/Code/">Code</a><small>2</small></li>
+    <li><a href="/tags/Code/">Code</a><small>1</small></li>
   
     <li><a href="/tags/Communication/">Communication</a><small>1</small></li>
   
@@ -294,11 +290,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Contracts/">Contracts</a><small>1</small></li>
   
-    <li><a href="/tags/CryptoArt/">CryptoArt</a><small>1</small></li>
+    <li><a href="/tags/Crypto/">Crypto</a><small>1</small></li>
   
-    <li><a href="/tags/Customization/">Customization</a><small>1</small></li>
-  
-    <li><a href="/tags/Customize/">Customize</a><small>1</small></li>
+    <li><a href="/tags/Customization/">Customization</a><small>2</small></li>
   
     <li><a href="/tags/DBT/">DBT</a><small>1</small></li>
   
@@ -318,23 +312,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Delegation/">Delegation</a><small>1</small></li>
   
-    <li><a href="/tags/Development/">Development</a><small>3</small></li>
+    <li><a href="/tags/DevOps/">DevOps</a><small>1</small></li>
+  
+    <li><a href="/tags/Development/">Development</a><small>5</small></li>
   
     <li><a href="/tags/Dimensions/">Dimensions</a><small>1</small></li>
   
     <li><a href="/tags/Docker/">Docker</a><small>7</small></li>
   
+    <li><a href="/tags/Dr-Elephant/">Dr-Elephant</a><small>1</small></li>
+  
     <li><a href="/tags/DuckDB/">DuckDB</a><small>1</small></li>
   
-    <li><a href="/tags/GA/">GA</a><small>2</small></li>
+    <li><a href="/tags/Encryption/">Encryption</a><small>1</small></li>
   
-    <li><a href="/tags/GA4/">GA4</a><small>2</small></li>
+    <li><a href="/tags/Events/">Events</a><small>1</small></li>
   
-    <li><a href="/tags/GC/">GC</a><small>1</small></li>
+    <li><a href="/tags/Fish/">Fish</a><small>1</small></li>
   
     <li><a href="/tags/GCS/">GCS</a><small>1</small></li>
   
-    <li><a href="/tags/Garuda/">Garuda</a><small>1</small></li>
+    <li><a href="/tags/Git/">Git</a><small>5</small></li>
+  
+    <li><a href="/tags/GitHub/">GitHub</a><small>3</small></li>
   
     <li><a href="/tags/Google-Analytics/">Google Analytics</a><small>3</small></li>
   
@@ -346,19 +346,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/HDFS/">HDFS</a><small>3</small></li>
   
-    <li><a href="/tags/Hadoop/">Hadoop</a><small>4</small></li>
+    <li><a href="/tags/Hadoop/">Hadoop</a><small>5</small></li>
+  
+    <li><a href="/tags/Hexo/">Hexo</a><small>2</small></li>
   
     <li><a href="/tags/Hiring/">Hiring</a><small>1</small></li>
   
-    <li><a href="/tags/Hive/">Hive</a><small>3</small></li>
+    <li><a href="/tags/Hive/">Hive</a><small>4</small></li>
   
-    <li><a href="/tags/IDE/">IDE</a><small>1</small></li>
+    <li><a href="/tags/IDE/">IDE</a><small>2</small></li>
   
     <li><a href="/tags/Infrastructure/">Infrastructure</a><small>1</small></li>
   
     <li><a href="/tags/Inspiration/">Inspiration</a><small>1</small></li>
-  
-    <li><a href="/tags/Install/">Install</a><small>1</small></li>
   
     <li><a href="/tags/Internet/">Internet</a><small>1</small></li>
   
@@ -370,7 +370,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Kafka/">Kafka</a><small>2</small></li>
   
-    <li><a href="/tags/Keyboard/">Keyboard</a><small>1</small></li>
+    <li><a href="/tags/Keybase/">Keybase</a><small>1</small></li>
+  
+    <li><a href="/tags/Keyboards/">Keyboards</a><small>1</small></li>
   
     <li><a href="/tags/Kobo/">Kobo</a><small>1</small></li>
   
@@ -380,11 +382,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Leadership/">Leadership</a><small>2</small></li>
   
-    <li><a href="/tags/Linux/">Linux</a><small>9</small></li>
+    <li><a href="/tags/Linux/">Linux</a><small>12</small></li>
   
     <li><a href="/tags/Management/">Management</a><small>2</small></li>
   
-    <li><a href="/tags/Markdown/">Markdown</a><small>2</small></li>
+    <li><a href="/tags/Markdown/">Markdown</a><small>3</small></li>
   
     <li><a href="/tags/Mesos/">Mesos</a><small>1</small></li>
   
@@ -394,19 +396,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Monitoring/">Monitoring</a><small>1</small></li>
   
-    <li><a href="/tags/NATO/">NATO</a><small>1</small></li>
-  
-    <li><a href="/tags/NFT/">NFT</a><small>1</small></li>
-  
     <li><a href="/tags/Nifi/">Nifi</a><small>1</small></li>
   
     <li><a href="/tags/Nord/">Nord</a><small>1</small></li>
   
     <li><a href="/tags/Nuget/">Nuget</a><small>1</small></li>
   
+    <li><a href="/tags/OpenAI/">OpenAI</a><small>1</small></li>
+  
     <li><a href="/tags/OpenAPI/">OpenAPI</a><small>1</small></li>
   
     <li><a href="/tags/Optimization/">Optimization</a><small>1</small></li>
+  
+    <li><a href="/tags/PGP/">PGP</a><small>1</small></li>
+  
+    <li><a href="/tags/PKI/">PKI</a><small>1</small></li>
   
     <li><a href="/tags/Packages/">Packages</a><small>1</small></li>
   
@@ -420,15 +424,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Porto/">Porto</a><small>1</small></li>
   
-    <li><a href="/tags/PortoTechHub/">PortoTechHub</a><small>1</small></li>
-  
     <li><a href="/tags/PowerShell/">PowerShell</a><small>1</small></li>
+  
+    <li><a href="/tags/Prompt-Engineering/">Prompt Engineering</a><small>1</small></li>
   
     <li><a href="/tags/Proxy/">Proxy</a><small>1</small></li>
   
-    <li><a href="/tags/QEMU/">QEMU</a><small>1</small></li>
-  
-    <li><a href="/tags/Qemu/">Qemu</a><small>1</small></li>
+    <li><a href="/tags/QEMU/">QEMU</a><small>2</small></li>
   
     <li><a href="/tags/RDD/">RDD</a><small>1</small></li>
   
@@ -440,11 +442,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/SQLServer/">SQLServer</a><small>1</small></li>
   
+    <li><a href="/tags/SSH/">SSH</a><small>2</small></li>
+  
     <li><a href="/tags/Scala/">Scala</a><small>2</small></li>
   
     <li><a href="/tags/Scrum/">Scrum</a><small>1</small></li>
-  
-    <li><a href="/tags/Setup/">Setup</a><small>1</small></li>
   
     <li><a href="/tags/Sheetlist/">Sheetlist</a><small>1</small></li>
   
@@ -456,13 +458,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Spark/">Spark</a><small>4</small></li>
   
-    <li><a href="/tags/SparkSummit/">SparkSummit</a><small>1</small></li>
-  
     <li><a href="/tags/Sqoop/">Sqoop</a><small>1</small></li>
   
-    <li><a href="/tags/Streaming/">Streaming</a><small>1</small></li>
-  
-    <li><a href="/tags/Streamming/">Streamming</a><small>1</small></li>
+    <li><a href="/tags/Streaming/">Streaming</a><small>2</small></li>
   
     <li><a href="/tags/Teams/">Teams</a><small>1</small></li>
   
@@ -470,9 +468,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Tools/">Tools</a><small>1</small></li>
   
+    <li><a href="/tags/Troubleshooting/">Troubleshooting</a><small>2</small></li>
+  
     <li><a href="/tags/Tunning/">Tunning</a><small>1</small></li>
   
-    <li><a href="/tags/Utils/">Utils</a><small>2</small></li>
+    <li><a href="/tags/UDFS/">UDFS</a><small>1</small></li>
+  
+    <li><a href="/tags/Utils/">Utils</a><small>7</small></li>
+  
+    <li><a href="/tags/VDI/">VDI</a><small>1</small></li>
   
     <li><a href="/tags/Vagrant/">Vagrant</a><small>1</small></li>
   
@@ -482,63 +486,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Zeepelin/">Zeepelin</a><small>1</small></li>
   
-    <li><a href="/tags/beeline/">beeline</a><small>1</small></li>
-  
-    <li><a href="/tags/blog/">blog</a><small>1</small></li>
-  
-    <li><a href="/tags/btrfs/">btrfs</a><small>1</small></li>
-  
-    <li><a href="/tags/cheat/">cheat</a><small>1</small></li>
-  
-    <li><a href="/tags/docker-compose/">docker-compose</a><small>1</small></li>
-  
-    <li><a href="/tags/dr-elephant/">dr-elephant</a><small>1</small></li>
-  
-    <li><a href="/tags/ebooks/">ebooks</a><small>1</small></li>
-  
-    <li><a href="/tags/encryption/">encryption</a><small>1</small></li>
-  
-    <li><a href="/tags/exception/">exception</a><small>1</small></li>
-  
-    <li><a href="/tags/fish/">fish</a><small>1</small></li>
-  
-    <li><a href="/tags/git/">git</a><small>4</small></li>
-  
-    <li><a href="/tags/github/">github</a><small>2</small></li>
-  
-    <li><a href="/tags/hadoop/">hadoop</a><small>1</small></li>
-  
-    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
-  
-    <li><a href="/tags/hive/">hive</a><small>1</small></li>
-  
-    <li><a href="/tags/kbfs/">kbfs</a><small>1</small></li>
-  
-    <li><a href="/tags/keybase/">keybase</a><small>1</small></li>
-  
-    <li><a href="/tags/keys/">keys</a><small>1</small></li>
-  
     <li><a href="/tags/libvirt/">libvirt</a><small>1</small></li>
-  
-    <li><a href="/tags/markdown/">markdown</a><small>1</small></li>
-  
-    <li><a href="/tags/pgp/">pgp</a><small>1</small></li>
-  
-    <li><a href="/tags/pki/">pki</a><small>1</small></li>
-  
-    <li><a href="/tags/qcow2/">qcow2</a><small>1</small></li>
-  
-    <li><a href="/tags/sheet/">sheet</a><small>1</small></li>
-  
-    <li><a href="/tags/ssh/">ssh</a><small>2</small></li>
-  
-    <li><a href="/tags/udfs/">udfs</a><small>1</small></li>
-  
-    <li><a href="/tags/utils/">utils</a><small>1</small></li>
-  
-    <li><a href="/tags/vdi/">vdi</a><small>1</small></li>
-  
-    <li><a href="/tags/visual-code/">visual code</a><small>1</small></li>
   
   </ul>
 </div>

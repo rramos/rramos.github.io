@@ -77,7 +77,171 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2017-10-06T22:11:39.000Z"><a href="/2017/10/06/powershellonlinux/">2017-10-06</a></time>
+        <time datetime="2017-10-09T19:54:00.000Z"><a href="/2017/10/09/rddstransformations/">2017-10-09</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/10/09/rddstransformations/">RDD Basic Transformations Operations</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Just a simple Basic CheatSheet on Spark RDD’s</p>
+<ul>
+<li>Basic Transformations on a RDD containing: <strong>{1,2,3,3}</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Function Name</th>
+<th>Example</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>map()</td>
+<td>rdd.map(x =&gt; x +1)</td>
+<td>{2,3,4,4}</td>
+</tr>
+<tr>
+<td>flatmap()</td>
+<td>rdd.flatMap(x =&gt; x.to(3))</td>
+<td>{1,2,3,2,3,3,3}</td>
+</tr>
+<tr>
+<td>filter()</td>
+<td>rdd.filter(x =&gt; x != 1 )</td>
+<td>{2,3,3}</td>
+</tr>
+<tr>
+<td>distinct()</td>
+<td>rdd.distinct()</td>
+<td>{1,2,3}</td>
+</tr>
+<tr>
+<td>sample()</td>
+<td>rdd.sample(false,0.5)</td>
+<td>Nondeterministic</td>
+</tr>
+</tbody></table>
+<ul>
+<li>Basic two-RDD transformations on RDDs: <strong>{1,2,3}</strong> and <strong>{3,4,5}</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Function Name</th>
+<th>Example</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>union()</td>
+<td>rdd.union(other)</td>
+<td>{1,2,3,3,4,5}</td>
+</tr>
+<tr>
+<td>intersection()</td>
+<td>rdd.intersection(other)</td>
+<td>{3}</td>
+</tr>
+<tr>
+<td>subtract()</td>
+<td>rdd.subtract(other)</td>
+<td>{1,2}</td>
+</tr>
+<tr>
+<td>cartesian()</td>
+<td>rdd.cartesian(other)</td>
+<td>{(1,3),(1,4)…(3,5)}</td>
+</tr>
+</tbody></table>
+<ul>
+<li>Basic Actions on RDD containing: <strong>{1,2,3,3}</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Function Name</th>
+<th>Example</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>collect()</td>
+<td>rdd.collect()</td>
+<td>{1,2,3,3}</td>
+</tr>
+<tr>
+<td>count()</td>
+<td>rdd.count()</td>
+<td>4</td>
+</tr>
+<tr>
+<td>countByValue()</td>
+<td>rdd.countByValue()</td>
+<td>{(1,1),(2,1),(3,2)}</td>
+</tr>
+<tr>
+<td>take()</td>
+<td>rdd.take(2)</td>
+<td>{1,2}</td>
+</tr>
+<tr>
+<td>top()</td>
+<td>rdd.top(2)</td>
+<td>{3,3}</td>
+</tr>
+<tr>
+<td>takeOrdered()</td>
+<td>rdd.takeOrdered(2)(myOrdering)</td>
+<td>{3,3}</td>
+</tr>
+<tr>
+<td>takeSample()</td>
+<td>rdd.takeSample(false,1)</td>
+<td>Nondeterministic</td>
+</tr>
+<tr>
+<td>reduce()</td>
+<td>rdd.reduce((x,y) =&gt; x + y )</td>
+<td>9</td>
+</tr>
+<tr>
+<td>fold()</td>
+<td>rdd.fold(0)((x,y) =&gt; x + y)</td>
+<td>9</td>
+</tr>
+<tr>
+<td>foreach()</td>
+<td>rdd.foreach(func)</td>
+<td>Nothing</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-10-06T22:11:00.000Z"><a href="/2017/10/06/powershellonlinux/">2017-10-06</a></time>
       
       
   
@@ -156,7 +320,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2017-10-02T21:32:20.000Z"><a href="/2017/10/02/vdi2qemu/">2017-10-02</a></time>
+        <time datetime="2017-10-02T21:32:00.000Z"><a href="/2017/10/02/vdi2qemu/">2017-10-02</a></time>
       
       
   
@@ -172,12 +336,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h1 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h1><ul>
 <li>You should have KVM configured correctly</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get install qemu-kvm</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install qemu-kvm</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>Install qemu-utils</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get install qemu-utils</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install qemu-utils</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>Let’s get an example image. <ul>
@@ -241,7 +405,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2017-09-29T01:01:48.000Z"><a href="/2017/09/29/nifiparcel/">2017-09-29</a></time>
+        <time datetime="2017-09-29T01:01:00.000Z"><a href="/2017/09/29/nifiparcel/">2017-09-29</a></time>
       
       
   
@@ -371,7 +535,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2017-09-27T20:16:37.000Z"><a href="/2017/09/27/hive-udfs/">2017-09-27</a></time>
+        <time datetime="2017-09-27T20:16:00.000Z"><a href="/2017/09/27/hive-udfs/">2017-09-27</a></time>
       
       
   
@@ -407,26 +571,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>The original code for hive version 1.3.0 is available in the repo</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFSha2.java">https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFSha2.java</a></p>
 <p>Let’s create the building structure</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir -p GenericUDFSha2/org/apache/hadoop/hive/ql/udf/generic</span><br><span class="line">cd GenericUDFSha2</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir -p GenericUDFSha2/org/apache/hadoop/hive/ql/udf/generic</span><br><span class="line"><span class="built_in">cd</span> GenericUDFSha2</span><br></pre></td></tr></table></figure>
 
 <p>Let’s create a <code>pom.xml</code> file</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">  xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd&quot;&gt;</span><br><span class="line">  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;</span><br><span class="line">  &lt;groupId&gt;com.rramos.bigdata.utils&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;GenericUDFSha2&lt;/artifactId&gt;</span><br><span class="line">  &lt;packaging&gt;jar&lt;/packaging&gt;</span><br><span class="line">  &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;</span><br><span class="line">  &lt;name&gt;GenericUDFSha2&lt;/name&gt;</span><br><span class="line">  &lt;url&gt;http://maven.apache.org&lt;/url&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- properties --&gt;</span><br><span class="line">  &lt;properties&gt;</span><br><span class="line">    &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;</span><br><span class="line">  &lt;/properties&gt;</span><br><span class="line">     </span><br><span class="line">  &lt;!-- prerequisitesprerequisites --&gt;</span><br><span class="line">  &lt;prerequisites&gt;</span><br><span class="line">     &lt;maven&gt;3.0&lt;/maven&gt;</span><br><span class="line">  &lt;/prerequisites&gt;</span><br><span class="line"></span><br><span class="line">   &lt;!-- Dependencies --&gt;</span><br><span class="line">   &lt;dependencies&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;junit&lt;/groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;junit&lt;/artifactId&gt;</span><br><span class="line">      &lt;version&gt;4.12&lt;/version&gt;</span><br><span class="line">      &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">       &lt;groupId&gt;org.apache.hive&lt;/groupId&gt;</span><br><span class="line">       &lt;artifactId&gt;hive-exec&lt;/artifactId&gt;</span><br><span class="line">       &lt;version&gt;2.0.0&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;joda-time&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;joda-time&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.9.3&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">  &lt;/dependencies&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- Build options --&gt;</span><br><span class="line">  &lt;build&gt;</span><br><span class="line">   &lt;plugins&gt;</span><br><span class="line">    &lt;plugin&gt;</span><br><span class="line">     &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt;</span><br><span class="line">      &lt;version&gt;2.6&lt;/version&gt;</span><br><span class="line">       &lt;configuration&gt;</span><br><span class="line">        &lt;archive&gt;</span><br><span class="line">          &lt;manifest&gt;</span><br><span class="line">           &lt;addClasspath&gt;true&lt;/addClasspath&gt;</span><br><span class="line">           &lt;mainClass&gt;com.rramos.bigdata.utils.GenericUDFSha2&lt;/mainClass&gt;</span><br><span class="line">          &lt;/manifest&gt;</span><br><span class="line">        &lt;/archive&gt;</span><br><span class="line">       &lt;/configuration&gt;</span><br><span class="line">      &lt;/plugin&gt;</span><br><span class="line"></span><br><span class="line">      &lt;plugin&gt;</span><br><span class="line">          &lt;artifactId&gt;maven-assembly-plugin&lt;/artifactId&gt;</span><br><span class="line">          &lt;configuration&gt;</span><br><span class="line">                &lt;archive&gt;</span><br><span class="line">                    &lt;manifest&gt;</span><br><span class="line">                        &lt;mainClass&gt;</span><br><span class="line">                            com.rramos.bigdata.utils.GenericUDFSha2</span><br><span class="line">                        &lt;/mainClass&gt;</span><br><span class="line">                    &lt;/manifest&gt;</span><br><span class="line">                &lt;/archive&gt;</span><br><span class="line">                &lt;descriptorRefs&gt;</span><br><span class="line">                    &lt;descriptorRef&gt;jar-with-dependencies&lt;/descriptorRef&gt;</span><br><span class="line">                &lt;/descriptorRefs&gt;</span><br><span class="line">           &lt;/configuration&gt;</span><br><span class="line">      &lt;/plugin&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/plugins&gt;</span><br><span class="line">  &lt;/build&gt;</span><br><span class="line"></span><br><span class="line">&lt;/project&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span> <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.rramos.bigdata.utils<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>GenericUDFSha2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>GenericUDFSha2<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.apache.org<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- properties --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line">     </span><br><span class="line">  <span class="comment">&lt;!-- prerequisitesprerequisites --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">prerequisites</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">maven</span>&gt;</span>3.0<span class="tag">&lt;/<span class="name">maven</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">prerequisites</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">&lt;!-- Dependencies --&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.12<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.hive<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hive-exec<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>joda-time<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>joda-time<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- Build options --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-jar-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.6<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">archive</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">manifest</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">addClasspath</span>&gt;</span>true<span class="tag">&lt;/<span class="name">addClasspath</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">mainClass</span>&gt;</span>com.rramos.bigdata.utils.GenericUDFSha2<span class="tag">&lt;/<span class="name">mainClass</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">manifest</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">archive</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-assembly-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">archive</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">manifest</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">mainClass</span>&gt;</span></span><br><span class="line">                            com.rramos.bigdata.utils.GenericUDFSha2</span><br><span class="line">                        <span class="tag">&lt;/<span class="name">mainClass</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">manifest</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">archive</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">descriptorRefs</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">descriptorRef</span>&gt;</span>jar-with-dependencies<span class="tag">&lt;/<span class="name">descriptorRef</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">descriptorRefs</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>You should obviously change for you packaging namespace, i’m just using <code>com.rramos.bigdata.utils</code> to be simpler.</p>
 <p>Next, let’s create the following file</p>
 <p><code>org/apache/hadoop/hive/ql/udf/generic/GenericUDFSha2.java</code></p>
 <p>with the content</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package com.rramos.bigdata.utils;</span><br><span class="line"></span><br><span class="line">import static org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorUtils.PrimitiveGrouping.BINARY_GROUP;</span><br><span class="line">import static org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorUtils.PrimitiveGrouping.NUMERIC_GROUP;</span><br><span class="line">import static org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorUtils.PrimitiveGrouping.STRING_GROUP;</span><br><span class="line"></span><br><span class="line">import java.security.MessageDigest;</span><br><span class="line">import java.security.NoSuchAlgorithmException;</span><br><span class="line"></span><br><span class="line">import org.apache.commons.codec.binary.Hex;</span><br><span class="line">import org.apache.hadoop.hive.ql.exec.Description;</span><br><span class="line">import org.apache.hadoop.hive.ql.exec.UDFArgumentException;</span><br><span class="line">import org.apache.hadoop.hive.ql.exec.UDFArgumentTypeException;</span><br><span class="line">import org.apache.hadoop.hive.ql.metadata.HiveException;</span><br><span class="line">import org.apache.hadoop.hive.serde2.objectinspector.ConstantObjectInspector;</span><br><span class="line">import org.apache.hadoop.hive.serde2.objectinspector.ObjectInspector;</span><br><span class="line">import org.apache.hadoop.hive.serde2.objectinspector.ObjectInspectorConverters.Converter;</span><br><span class="line">import org.apache.hadoop.hive.serde2.objectinspector.PrimitiveObjectInspector.PrimitiveCategory;</span><br><span class="line">import org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorFactory;</span><br><span class="line">import org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorUtils;</span><br><span class="line">import org.apache.hadoop.io.BytesWritable;</span><br><span class="line">import org.apache.hadoop.io.Text;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * GenericUDFSha2.</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">@Description(name = &quot;sha2&quot;, value = &quot;_FUNC_(string/binary, len) - Calculates the SHA-2 family of hash functions &quot;</span><br><span class="line">    + &quot;(SHA-224, SHA-256, SHA-384, and SHA-512).&quot;,</span><br><span class="line">    extended = &quot;The first argument is the string or binary to be hashed. &quot;</span><br><span class="line">    + &quot;The second argument indicates the desired bit length of the result, &quot;</span><br><span class="line">    + &quot;which must have a value of 224, 256, 384, 512, or 0 (which is equivalent to 256). &quot;</span><br><span class="line">    + &quot;SHA-224 is supported starting from Java 8. &quot;</span><br><span class="line">    + &quot;If either argument is NULL or the hash length is not one of the permitted values, the return value is NULL.\n&quot;</span><br><span class="line">    + &quot;Example: &gt; SELECT _FUNC_(&#x27;ABC&#x27;, 256);\n &#x27;b5d4045c3f466fa91fe2cc6abe79232a1a57cdf104f7a26e716e0a1e2789df78&#x27;&quot;)</span><br><span class="line">public class GenericUDFSha2 extends GenericUDF &#123;</span><br><span class="line">  private transient Converter[] converters = new Converter[2];</span><br><span class="line">  private transient PrimitiveCategory[] inputTypes = new PrimitiveCategory[2];</span><br><span class="line">  private final Text output = new Text();</span><br><span class="line">  private transient boolean isStr;</span><br><span class="line">  private transient MessageDigest digest;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  public ObjectInspector initialize(ObjectInspector[] arguments) throws UDFArgumentException &#123;</span><br><span class="line">    checkArgsSize(arguments, 2, 2);</span><br><span class="line"></span><br><span class="line">    checkArgPrimitive(arguments, 0);</span><br><span class="line">    checkArgPrimitive(arguments, 1);</span><br><span class="line"></span><br><span class="line">    // the function should support both string and binary input types</span><br><span class="line">    checkArgGroups(arguments, 0, inputTypes, STRING_GROUP, BINARY_GROUP);</span><br><span class="line">    checkArgGroups(arguments, 1, inputTypes, NUMERIC_GROUP);</span><br><span class="line"></span><br><span class="line">    if (PrimitiveObjectInspectorUtils.getPrimitiveGrouping(inputTypes[0]) == STRING_GROUP) &#123;</span><br><span class="line">      obtainStringConverter(arguments, 0, inputTypes, converters);</span><br><span class="line">      isStr = true;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      GenericUDFParamUtils.obtainBinaryConverter(arguments, 0, inputTypes, converters);</span><br><span class="line">      isStr = false;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (arguments[1] instanceof ConstantObjectInspector) &#123;</span><br><span class="line">      Integer lenObj = getConstantIntValue(arguments, 1);</span><br><span class="line">      if (lenObj != null) &#123;</span><br><span class="line">        int len = lenObj.intValue();</span><br><span class="line">        if (len == 0) &#123;</span><br><span class="line">          len = 256;</span><br><span class="line">        &#125;</span><br><span class="line">        try &#123;</span><br><span class="line">          digest = MessageDigest.getInstance(&quot;SHA-&quot; + len);</span><br><span class="line">        &#125; catch (NoSuchAlgorithmException e) &#123;</span><br><span class="line">          // ignore</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      throw new UDFArgumentTypeException(1, getFuncName() + &quot; only takes constant as &quot;</span><br><span class="line">          + getArgOrder(1) + &quot; argument&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ObjectInspector outputOI = PrimitiveObjectInspectorFactory.writableStringObjectInspector;</span><br><span class="line">    return outputOI;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  public Object evaluate(DeferredObject[] arguments) throws HiveException &#123;</span><br><span class="line">    if (digest == null) &#123;</span><br><span class="line">      return null;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    digest.reset();</span><br><span class="line">    if (isStr) &#123;</span><br><span class="line">      Text n = GenericUDFParamUtils.getTextValue(arguments, 0, converters);</span><br><span class="line">      if (n == null) &#123;</span><br><span class="line">        return null;</span><br><span class="line">      &#125;</span><br><span class="line">      digest.update(n.getBytes(), 0, n.getLength());</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      BytesWritable bWr = GenericUDFParamUtils.getBinaryValue(arguments, 0, converters);</span><br><span class="line">      if (bWr == null) &#123;</span><br><span class="line">        return null;</span><br><span class="line">      &#125;</span><br><span class="line">      digest.update(bWr.getBytes(), 0, bWr.getLength());</span><br><span class="line">    &#125;</span><br><span class="line">    byte[] resBin = digest.digest();</span><br><span class="line">    String resStr = Hex.encodeHexString(resBin);</span><br><span class="line"></span><br><span class="line">    output.set(resStr);</span><br><span class="line">    return output;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  public String getDisplayString(String[] children) &#123;</span><br><span class="line">    return getStandardDisplayString(getFuncName(), children);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  protected String getFuncName() &#123;</span><br><span class="line">    return &quot;sha2&quot;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.rramos.bigdata.utils;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorUtils.PrimitiveGrouping.BINARY_GROUP;</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorUtils.PrimitiveGrouping.NUMERIC_GROUP;</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorUtils.PrimitiveGrouping.STRING_GROUP;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.security.MessageDigest;</span><br><span class="line"><span class="keyword">import</span> java.security.NoSuchAlgorithmException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.commons.codec.binary.Hex;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hive.ql.exec.Description;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hive.ql.exec.UDFArgumentException;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hive.ql.exec.UDFArgumentTypeException;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hive.ql.metadata.HiveException;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hive.serde2.objectinspector.ConstantObjectInspector;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hive.serde2.objectinspector.ObjectInspector;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hive.serde2.objectinspector.ObjectInspectorConverters.Converter;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hive.serde2.objectinspector.PrimitiveObjectInspector.PrimitiveCategory;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorFactory;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorUtils;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.io.BytesWritable;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.io.Text;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * GenericUDFSha2.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Description(name = &quot;sha2&quot;, value = &quot;_FUNC_(string/binary, len) - Calculates the SHA-2 family of hash functions &quot;</span></span><br><span class="line"><span class="meta">    + &quot;(SHA-224, SHA-256, SHA-384, and SHA-512).&quot;,</span></span><br><span class="line"><span class="meta">    extended = &quot;The first argument is the string or binary to be hashed. &quot;</span></span><br><span class="line"><span class="meta">    + &quot;The second argument indicates the desired bit length of the result, &quot;</span></span><br><span class="line"><span class="meta">    + &quot;which must have a value of 224, 256, 384, 512, or 0 (which is equivalent to 256). &quot;</span></span><br><span class="line"><span class="meta">    + &quot;SHA-224 is supported starting from Java 8. &quot;</span></span><br><span class="line"><span class="meta">    + &quot;If either argument is NULL or the hash length is not one of the permitted values, the return value is NULL.\n&quot;</span></span><br><span class="line"><span class="meta">    + &quot;Example: &gt; SELECT _FUNC_(&#x27;ABC&#x27;, 256);\n &#x27;b5d4045c3f466fa91fe2cc6abe79232a1a57cdf104f7a26e716e0a1e2789df78&#x27;&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GenericUDFSha2</span> <span class="keyword">extends</span> <span class="title">GenericUDF</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">transient</span> Converter[] converters = <span class="keyword">new</span> Converter[<span class="number">2</span>];</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">transient</span> PrimitiveCategory[] inputTypes = <span class="keyword">new</span> PrimitiveCategory[<span class="number">2</span>];</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">final</span> Text output = <span class="keyword">new</span> Text();</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">transient</span> <span class="keyword">boolean</span> isStr;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">transient</span> MessageDigest digest;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> ObjectInspector <span class="title">initialize</span><span class="params">(ObjectInspector[] arguments)</span> <span class="keyword">throws</span> UDFArgumentException </span>&#123;</span><br><span class="line">    checkArgsSize(arguments, <span class="number">2</span>, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    checkArgPrimitive(arguments, <span class="number">0</span>);</span><br><span class="line">    checkArgPrimitive(arguments, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// the function should support both string and binary input types</span></span><br><span class="line">    checkArgGroups(arguments, <span class="number">0</span>, inputTypes, STRING_GROUP, BINARY_GROUP);</span><br><span class="line">    checkArgGroups(arguments, <span class="number">1</span>, inputTypes, NUMERIC_GROUP);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (PrimitiveObjectInspectorUtils.getPrimitiveGrouping(inputTypes[<span class="number">0</span>]) == STRING_GROUP) &#123;</span><br><span class="line">      obtainStringConverter(arguments, <span class="number">0</span>, inputTypes, converters);</span><br><span class="line">      isStr = <span class="keyword">true</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      GenericUDFParamUtils.obtainBinaryConverter(arguments, <span class="number">0</span>, inputTypes, converters);</span><br><span class="line">      isStr = <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (arguments[<span class="number">1</span>] <span class="keyword">instanceof</span> ConstantObjectInspector) &#123;</span><br><span class="line">      Integer lenObj = getConstantIntValue(arguments, <span class="number">1</span>);</span><br><span class="line">      <span class="keyword">if</span> (lenObj != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> len = lenObj.intValue();</span><br><span class="line">        <span class="keyword">if</span> (len == <span class="number">0</span>) &#123;</span><br><span class="line">          len = <span class="number">256</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">          digest = MessageDigest.getInstance(<span class="string">&quot;SHA-&quot;</span> + len);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (NoSuchAlgorithmException e) &#123;</span><br><span class="line">          <span class="comment">// ignore</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> UDFArgumentTypeException(<span class="number">1</span>, getFuncName() + <span class="string">&quot; only takes constant as &quot;</span></span><br><span class="line">          + getArgOrder(<span class="number">1</span>) + <span class="string">&quot; argument&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ObjectInspector outputOI = PrimitiveObjectInspectorFactory.writableStringObjectInspector;</span><br><span class="line">    <span class="keyword">return</span> outputOI;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> Object <span class="title">evaluate</span><span class="params">(DeferredObject[] arguments)</span> <span class="keyword">throws</span> HiveException </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (digest == <span class="keyword">null</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    digest.reset();</span><br><span class="line">    <span class="keyword">if</span> (isStr) &#123;</span><br><span class="line">      Text n = GenericUDFParamUtils.getTextValue(arguments, <span class="number">0</span>, converters);</span><br><span class="line">      <span class="keyword">if</span> (n == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      digest.update(n.getBytes(), <span class="number">0</span>, n.getLength());</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      BytesWritable bWr = GenericUDFParamUtils.getBinaryValue(arguments, <span class="number">0</span>, converters);</span><br><span class="line">      <span class="keyword">if</span> (bWr == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      digest.update(bWr.getBytes(), <span class="number">0</span>, bWr.getLength());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">byte</span>[] resBin = digest.digest();</span><br><span class="line">    String resStr = Hex.encodeHexString(resBin);</span><br><span class="line"></span><br><span class="line">    output.set(resStr);</span><br><span class="line">    <span class="keyword">return</span> output;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getDisplayString</span><span class="params">(String[] children)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> getStandardDisplayString(getFuncName(), children);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> String <span class="title">getFuncName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;sha2&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 <p>And build the package.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mvn package</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mvn package</span><br></pre></td></tr></table></figure>
 
 <p>After compile you find in <code>target</code> dir the require jar (<code>GenericUDFSha2-1.0-SNAPSHOT.jar</code>) you need to add in Hive.</p>
 <p>You should use your Hadoop Distribution instructions for deploying new jars.</p>
 <p>Here are <a target="_blank" rel="noopener" href="https://www.cloudera.com/documentation/enterprise/5-6-x/topics/cm_mc_hive_udf.html">Cloudera Instructions</a>.</p>
 <p>Next on your Hive session you need to <code>ADD JAR</code> and create a <code>FUNCTION</code> or <code>TEMPORARY FUNCTION</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ADD JAR ./target/GenericUDFSha2-1.0-SNAPSHOT.jar</span><br><span class="line">CREATE TEMPORARY FUNCTION sha2 AS &#x27;com.rramos.bigdata.utils.GenericUDFSha2&#x27;;</span><br><span class="line">SELECT sha2(foo) from bar LIMIT1; </span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ADD JAR ./target/GenericUDFSha2-1.0-SNAPSHOT.jar</span><br><span class="line">CREATE TEMPORARY FUNCTION sha2 AS <span class="string">&#x27;com.rramos.bigdata.utils.GenericUDFSha2&#x27;</span>;</span><br><span class="line">SELECT sha2(foo) from bar LIMIT1; </span><br></pre></td></tr></table></figure>
 
 <p><a target="_blank" rel="noopener" href="https://blog.matthewrathbone.com/2013/08/10/guide-to-writing-hive-udfs.html">Matthew Rathbone</a> Blog has some great tutorial on Hive Funtions. Take a look if you want to go deep with it.</p>
 <p>Cheers,<br>RR</p>
@@ -434,121 +598,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li><a target="_blank" rel="noopener" href="https://www.cloudera.com/documentation/enterprise/release-notes/topics/rg_cdh_vd.html">https://www.cloudera.com/documentation/enterprise/release-notes/topics/rg_cdh_vd.html</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.cloudera.com/documentation/enterprise/5-6-x/topics/cm_mc_hive_udf.html">https://www.cloudera.com/documentation/enterprise/5-6-x/topics/cm_mc_hive_udf.html</a></li>
 <li><a target="_blank" rel="noopener" href="https://blog.matthewrathbone.com/2013/08/10/guide-to-writing-hive-udfs.html">https://blog.matthewrathbone.com/2013/08/10/guide-to-writing-hive-udfs.html</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-09-26T22:43:35.000Z"><a href="/2017/09/26/vagrant-qemu/">2017-09-26</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/09/26/vagrant-qemu/">Quick Guide for Vagrant and Libvirt</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>This article is going to be about a quick way to setup a PoC environment using <a target="_blank" rel="noopener" href="https://libvirt.org/">libvirt</a> (<a target="_blank" rel="noopener" href="https://www.qemu.org/">QEMU</a>) and <a target="_blank" rel="noopener" href="https://www.vagrantup.com/">vagrant</a>, and auto configure the enviroment using <a target="_blank" rel="noopener" href="https://www.ansible.com/">ansible</a>.</p>
-<h1 id="Why"><a href="#Why" class="headerlink" title="Why ?"></a>Why ?</h1><p>One migth go a bit further in the testing enviroments, instead of dockers using virtualized enviroment. This kind of approcah whould be suitable when you like to try infrastructure services, or simple don’t want to use dockers.</p>
-<p>If you check Internet Trends we can see docker interest have grown quite a lot on the last 5 years. </p>
-
-<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1154_RC03/embed_loader.js"></script> <script type="text/javascript"> trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"docker","geo":"","time":"today 5-y"},{"keyword":"Virtual Machines","geo":"","time":"today 5-y"}],"category":13,"property":""}, {"exploreQuery":"cat=13&date=today 5-y,today 5-y&q=docker,Virtual%20Machines","guestPath":"https://trends.google.com:443/trends/embed/"}); </script> 
-
-
-<p><strong>Still i’m OldSchool and i like my plain-simple-VMs some times :D</strong></p>
-<p>A later article would be about configuring a Mesos Cluster so this one makes sense as a preparation guide for it.</p>
-<h1 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h1><ul>
-<li>Make sure you have vagrant installed</li>
-<li>Make sure your machine supports virtualization :)</li>
-<li>Make sure you have QEMU installed</li>
-<li>Make sure you have libvirt up and running</li>
-<li>Make sure you have ansible (Optional)</li>
-</ul>
-<p><strong>Note:</strong> This guide was tested on Ubuntu 16. Use at your own risk</p>
-<p>One can test libvirt version suing the command</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ virsh version</span><br><span class="line">Compiled against library: libvirt 1.3.1</span><br><span class="line">Using library: libvirt 1.3.1</span><br><span class="line">Using API: QEMU 1.3.1</span><br><span class="line">Running hypervisor: QEMU 2.5.0</span><br></pre></td></tr></table></figure>
-
-<p><strong>NOTE:</strong> Before you start using Vagrant-libvirt, please make sure your libvirt and qemu installation is working correctly and you are able to create qemu or kvm type virtual machines with virsh or virt-manager.</p>
-<h1 id="setup"><a href="#setup" class="headerlink" title="setup"></a>setup</h1><p>Install dependencies</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get install qemu libvirt-bin ebtables dnsmasq</span><br><span class="line">sudo apt-get install libxslt-dev libxml2-dev libvirt-dev zlib1g-dev ruby-dev</span><br><span class="line">sudo apt-get install vagrant ruby-libvirt</span><br></pre></td></tr></table></figure>
-
-<p>Install vagrant-libvirt plugin:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vagrant plugin install vagrant-libvirt</span><br></pre></td></tr></table></figure>
-
-<p>Now let’s test by creating a startup Box. There are several available <a target="_blank" rel="noopener" href="https://app.vagrantup.com/boxes/search?provider=libvirt">here</a></p>
-<p>Example: (Ubuntu 16)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir Vagrant</span><br><span class="line">cd Vagrant</span><br><span class="line">vagrant init marczis/ubuntu_16_04</span><br></pre></td></tr></table></figure>
-
-<p>Let’s start the VM</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vagrant up --provider=libvirt</span><br></pre></td></tr></table></figure>
-
-<p>After executing the comman you should have some output similar</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">==&gt; default: Successfully added box &#x27;marczis/ubuntu_16_04&#x27; (v0.1.2) for &#x27;libvirt&#x27;!</span><br><span class="line">==&gt; default: Uploading base box image as volume into libvirt storage...</span><br><span class="line">==&gt; default: Creating image (snapshot of base box volume).</span><br><span class="line">==&gt; default: Creating domain with the following settings...</span><br><span class="line">==&gt; default:  -- Name:              Vagrant_default</span><br><span class="line">==&gt; default:  -- Domain type:       kvm</span><br><span class="line">==&gt; default:  -- Cpus:              1</span><br><span class="line">==&gt; default:  -- Feature:           acpi</span><br><span class="line">==&gt; default:  -- Feature:           apic</span><br><span class="line">==&gt; default:  -- Feature:           pae</span><br><span class="line">==&gt; default:  -- Memory:            512M</span><br><span class="line">==&gt; default:  -- Management MAC:    </span><br><span class="line">==&gt; default:  -- Loader:            </span><br><span class="line">==&gt; default:  -- Base box:          marczis/ubuntu_16_04</span><br><span class="line">==&gt; default:  -- Storage pool:      default</span><br><span class="line">==&gt; default:  -- Image:             /var/lib/libvirt/images/Vagrant_default.img (10G)</span><br><span class="line">==&gt; default:  -- Volume Cache:      default</span><br><span class="line">==&gt; default:  -- Kernel:            </span><br><span class="line">==&gt; default:  -- Initrd:            </span><br><span class="line">==&gt; default:  -- Graphics Type:     vnc</span><br><span class="line">==&gt; default:  -- Graphics Port:     5900</span><br><span class="line">==&gt; default:  -- Graphics IP:       127.0.0.1</span><br><span class="line">==&gt; default:  -- Graphics Password: Not defined</span><br><span class="line">==&gt; default:  -- Video Type:        cirrus</span><br><span class="line">==&gt; default:  -- Video VRAM:        9216</span><br><span class="line">==&gt; default:  -- Sound Type:    </span><br><span class="line">==&gt; default:  -- Keymap:            en-us</span><br><span class="line">==&gt; default:  -- TPM Path:          </span><br><span class="line">==&gt; default:  -- INPUT:             type=mouse, bus=ps2</span><br><span class="line">==&gt; default: Creating shared folders metadata...</span><br><span class="line">==&gt; default: Starting domain.</span><br><span class="line">==&gt; default: Waiting for domain to get an IP address...</span><br><span class="line">==&gt; default: Waiting for SSH to become available...</span><br><span class="line">    default: </span><br><span class="line">    default: Vagrant insecure key detected. Vagrant will automatically replace</span><br><span class="line">    default: this with a newly generated keypair for better security.</span><br><span class="line">    default: </span><br><span class="line">    default: Inserting generated public key within guest...</span><br><span class="line">    default: Removing insecure key from the guest if it&#x27;s present...</span><br><span class="line">    default: Key inserted! Disconnecting and reconnecting using new SSH key...</span><br><span class="line">==&gt; default: Configuring and enabling network interfaces...</span><br><span class="line">==&gt; default: Rsyncing folder: /home/rramos/Development/Vagrant/ =&gt; /vagrant</span><br><span class="line">==&gt; default: Check for insecure vagrant key: OK (not present)</span><br></pre></td></tr></table></figure>
-
-<p>If you execute <code>virt-manager</code> you can see the virtual machine specification and adapt the Vagrant file to you needs.</p>
-<img src="/2017/09/26/vagrant-qemu/virt-manager.png" class="" title="virt-manager">
-
-<p>You can then ssh to the VM using the command <code>vagrant ssh</code>. You should have a prompt like:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Welcome to Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-77-generic x86_64)</span><br><span class="line"></span><br><span class="line"> * Documentation:  https://help.ubuntu.com</span><br><span class="line"> * Management:     https://landscape.canonical.com</span><br><span class="line"> * Support:        https://ubuntu.com/advantage</span><br><span class="line">vagrant@ubuntu:~$ </span><br></pre></td></tr></table></figure>
-
-<p>You can add the ssh key to your ssh configuration executing the following command. ( Check my previous  <a href="/2017/09/13/ssh-config/" title="[article]">[article]</a> regarding this topic)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vagrant ssh-config &gt;&gt; ~/.ssh/config</span><br></pre></td></tr></table></figure>
-
-
-<p>then try the command <code>ssh default</code> . Default if the default name of the VM defined in the vagrant file. </p>
-<h1 id="Let’s-extend-a-bit"><a href="#Let’s-extend-a-bit" class="headerlink" title="Let’s extend a bit."></a>Let’s extend a bit.</h1><p>The next step is to set Ansible as our provisioning provider for the Vagrant Box. Add the following lines before the end statement in your Vagrantfile to set Ansible as the provisioning provider:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">config.vm.provision :ansible do |ansible|</span><br><span class="line">  ansible.playbook = &quot;playbook.yml&quot;</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-
-<p>Let’s create the playbook.yml file with the following content</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">- hosts: all</span><br><span class="line">  become: yes</span><br><span class="line">  become_user: root</span><br><span class="line">  tasks:</span><br><span class="line">    - name: install apache2</span><br><span class="line">      apt: name=apache2 update_cache=yes state=latest</span><br><span class="line">  handlers:</span><br><span class="line">    - name: restart apache2</span><br><span class="line">      service: name=apache2 state=restarted</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>This example playbook will install apache service on the all hosts given by Vagrantfile and start the service.</p>
-<p>Then we can run the command to just run the provision stuff</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vagrant provision</span><br></pre></td></tr></table></figure>
-
-<p>Let’s add the following configuration on our Vagrant file</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">config.vm.network &quot;forwarded_port&quot;, guest: 80, host: 8080</span><br></pre></td></tr></table></figure>
-
-<p>And execute <code>vagrant reload</code></p>
-<p>If one access <a target="_blank" rel="noopener" href="http://localhost:8080/">http://localhost:8080</a> we are now accessing the VM installed service.</p>
-<p>If you recreate the VM it would run the ansible part at the end. </p>
-<p>So it’s quite easy to recreate your environment.</p>
-<h1 id="Cluster-Configuration"><a href="#Cluster-Configuration" class="headerlink" title="Cluster Configuration"></a>Cluster Configuration</h1><p>One could have Vagrant more complex configuration like the following for several VMs.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Vagrant.configure(&quot;2&quot;) do |config|</span><br><span class="line">  config.vm.provision &quot;shell&quot;, inline: &quot;echo Hello&quot;</span><br><span class="line"></span><br><span class="line">  config.vm.define &quot;web&quot; do |web|</span><br><span class="line">    web.vm.box = &quot;apache&quot;</span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line">  config.vm.define &quot;db&quot; do |db|</span><br><span class="line">    db.vm.box = &quot;mysql&quot;</span><br><span class="line">  end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-
-<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>In this article is described a simple way to integrate Vangrant with libvirt for quickly spinning VM’s and running ansible playbooks on them.</p>
-<p>This could be usefull for testing ansible playbooks before shipping them to LIVE enviroments or testing purposes. </p>
-<p>Also to quickly configure a more complex infrastructure, where you don’t wont to use dockers.</p>
-<p>On the next article i will write a step-by-step guide to spin up a Mesos Cluster using this approach, so this article could be used as prep-guide.</p>
-<p>Cheers,<br>RR</p>
-<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://libvirt.org/">https://libvirt.org/</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.qemu.org/">https://www.qemu.org/</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.vagrantup.com/">https://www.vagrantup.com/</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.ansible.com/">https://www.ansible.com/</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/vagrant-libvirt/vagrant-libvirt">https://github.com/vagrant-libvirt/vagrant-libvirt</a></li>
-<li><a target="_blank" rel="noopener" href="https://app.vagrantup.com/boxes/search?provider=libvirt">https://app.vagrantup.com/boxes/search?provider=libvirt</a></li>
-<li><a target="_blank" rel="noopener" href="https://fedoramagazine.org/using-ansible-provision-vagrant-boxes/">https://fedoramagazine.org/using-ansible-provision-vagrant-boxes/</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.vagrantup.com/docs/multi-machine/">https://www.vagrantup.com/docs/multi-machine/</a></li>
 </ul>
 
       
@@ -592,15 +641,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <h3 class="title">Tags</h3>
   <ul class="entry">
   
-    <li><a href="/tags/NET/">.NET</a><small>1</small></li>
+    <li><a href="/tags/NET/">.NET</a><small>2</small></li>
   
-    <li><a href="/tags/Net/">.Net</a><small>1</small></li>
-  
-    <li><a href="/tags/AI/">AI</a><small>1</small></li>
-  
-    <li><a href="/tags/API/">API</a><small>1</small></li>
-  
-    <li><a href="/tags/APIs/">APIs</a><small>1</small></li>
+    <li><a href="/tags/API/">API</a><small>2</small></li>
   
     <li><a href="/tags/AUR/">AUR</a><small>1</small></li>
   
@@ -614,31 +657,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Ansible/">Ansible</a><small>2</small></li>
   
-    <li><a href="/tags/Arch/">Arch</a><small>4</small></li>
+    <li><a href="/tags/Arch/">Arch</a><small>3</small></li>
   
-    <li><a href="/tags/Arch-Linux/">Arch Linux</a><small>1</small></li>
-  
-    <li><a href="/tags/Architecture/">Architecture</a><small>1</small></li>
+    <li><a href="/tags/Architecture/">Architecture</a><small>2</small></li>
   
     <li><a href="/tags/Artifactory/">Artifactory</a><small>1</small></li>
   
     <li><a href="/tags/Avro/">Avro</a><small>1</small></li>
   
-    <li><a href="/tags/BigData/">BigData</a><small>2</small></li>
+    <li><a href="/tags/BTRFS/">BTRFS</a><small>1</small></li>
+  
+    <li><a href="/tags/Beeline/">Beeline</a><small>1</small></li>
+  
+    <li><a href="/tags/Big-Data/">Big Data</a><small>2</small></li>
   
     <li><a href="/tags/BigQuery/">BigQuery</a><small>1</small></li>
   
-    <li><a href="/tags/Books/">Books</a><small>1</small></li>
+    <li><a href="/tags/Books/">Books</a><small>2</small></li>
   
-    <li><a href="/tags/CDH-Parcel/">CDH Parcel</a><small>1</small></li>
+    <li><a href="/tags/CI-CD/">CI/CD</a><small>1</small></li>
   
-    <li><a href="/tags/CHat-PT/">CHat-PT</a><small>1</small></li>
+    <li><a href="/tags/ChatGPT/">ChatGPT</a><small>1</small></li>
   
     <li><a href="/tags/CheatSheet/">CheatSheet</a><small>1</small></li>
   
     <li><a href="/tags/Cloudera/">Cloudera</a><small>3</small></li>
   
-    <li><a href="/tags/Code/">Code</a><small>2</small></li>
+    <li><a href="/tags/Code/">Code</a><small>1</small></li>
   
     <li><a href="/tags/Communication/">Communication</a><small>1</small></li>
   
@@ -646,11 +691,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Contracts/">Contracts</a><small>1</small></li>
   
-    <li><a href="/tags/CryptoArt/">CryptoArt</a><small>1</small></li>
+    <li><a href="/tags/Crypto/">Crypto</a><small>1</small></li>
   
-    <li><a href="/tags/Customization/">Customization</a><small>1</small></li>
-  
-    <li><a href="/tags/Customize/">Customize</a><small>1</small></li>
+    <li><a href="/tags/Customization/">Customization</a><small>2</small></li>
   
     <li><a href="/tags/DBT/">DBT</a><small>1</small></li>
   
@@ -670,23 +713,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Delegation/">Delegation</a><small>1</small></li>
   
-    <li><a href="/tags/Development/">Development</a><small>3</small></li>
+    <li><a href="/tags/DevOps/">DevOps</a><small>1</small></li>
+  
+    <li><a href="/tags/Development/">Development</a><small>5</small></li>
   
     <li><a href="/tags/Dimensions/">Dimensions</a><small>1</small></li>
   
     <li><a href="/tags/Docker/">Docker</a><small>7</small></li>
   
+    <li><a href="/tags/Dr-Elephant/">Dr-Elephant</a><small>1</small></li>
+  
     <li><a href="/tags/DuckDB/">DuckDB</a><small>1</small></li>
   
-    <li><a href="/tags/GA/">GA</a><small>2</small></li>
+    <li><a href="/tags/Encryption/">Encryption</a><small>1</small></li>
   
-    <li><a href="/tags/GA4/">GA4</a><small>2</small></li>
+    <li><a href="/tags/Events/">Events</a><small>1</small></li>
   
-    <li><a href="/tags/GC/">GC</a><small>1</small></li>
+    <li><a href="/tags/Fish/">Fish</a><small>1</small></li>
   
     <li><a href="/tags/GCS/">GCS</a><small>1</small></li>
   
-    <li><a href="/tags/Garuda/">Garuda</a><small>1</small></li>
+    <li><a href="/tags/Git/">Git</a><small>5</small></li>
+  
+    <li><a href="/tags/GitHub/">GitHub</a><small>3</small></li>
   
     <li><a href="/tags/Google-Analytics/">Google Analytics</a><small>3</small></li>
   
@@ -698,19 +747,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/HDFS/">HDFS</a><small>3</small></li>
   
-    <li><a href="/tags/Hadoop/">Hadoop</a><small>4</small></li>
+    <li><a href="/tags/Hadoop/">Hadoop</a><small>5</small></li>
+  
+    <li><a href="/tags/Hexo/">Hexo</a><small>2</small></li>
   
     <li><a href="/tags/Hiring/">Hiring</a><small>1</small></li>
   
-    <li><a href="/tags/Hive/">Hive</a><small>3</small></li>
+    <li><a href="/tags/Hive/">Hive</a><small>4</small></li>
   
-    <li><a href="/tags/IDE/">IDE</a><small>1</small></li>
+    <li><a href="/tags/IDE/">IDE</a><small>2</small></li>
   
     <li><a href="/tags/Infrastructure/">Infrastructure</a><small>1</small></li>
   
     <li><a href="/tags/Inspiration/">Inspiration</a><small>1</small></li>
-  
-    <li><a href="/tags/Install/">Install</a><small>1</small></li>
   
     <li><a href="/tags/Internet/">Internet</a><small>1</small></li>
   
@@ -722,7 +771,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Kafka/">Kafka</a><small>2</small></li>
   
-    <li><a href="/tags/Keyboard/">Keyboard</a><small>1</small></li>
+    <li><a href="/tags/Keybase/">Keybase</a><small>1</small></li>
+  
+    <li><a href="/tags/Keyboards/">Keyboards</a><small>1</small></li>
   
     <li><a href="/tags/Kobo/">Kobo</a><small>1</small></li>
   
@@ -732,11 +783,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Leadership/">Leadership</a><small>2</small></li>
   
-    <li><a href="/tags/Linux/">Linux</a><small>9</small></li>
+    <li><a href="/tags/Linux/">Linux</a><small>12</small></li>
   
     <li><a href="/tags/Management/">Management</a><small>2</small></li>
   
-    <li><a href="/tags/Markdown/">Markdown</a><small>2</small></li>
+    <li><a href="/tags/Markdown/">Markdown</a><small>3</small></li>
   
     <li><a href="/tags/Mesos/">Mesos</a><small>1</small></li>
   
@@ -746,19 +797,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Monitoring/">Monitoring</a><small>1</small></li>
   
-    <li><a href="/tags/NATO/">NATO</a><small>1</small></li>
-  
-    <li><a href="/tags/NFT/">NFT</a><small>1</small></li>
-  
     <li><a href="/tags/Nifi/">Nifi</a><small>1</small></li>
   
     <li><a href="/tags/Nord/">Nord</a><small>1</small></li>
   
     <li><a href="/tags/Nuget/">Nuget</a><small>1</small></li>
   
+    <li><a href="/tags/OpenAI/">OpenAI</a><small>1</small></li>
+  
     <li><a href="/tags/OpenAPI/">OpenAPI</a><small>1</small></li>
   
     <li><a href="/tags/Optimization/">Optimization</a><small>1</small></li>
+  
+    <li><a href="/tags/PGP/">PGP</a><small>1</small></li>
+  
+    <li><a href="/tags/PKI/">PKI</a><small>1</small></li>
   
     <li><a href="/tags/Packages/">Packages</a><small>1</small></li>
   
@@ -772,15 +825,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Porto/">Porto</a><small>1</small></li>
   
-    <li><a href="/tags/PortoTechHub/">PortoTechHub</a><small>1</small></li>
-  
     <li><a href="/tags/PowerShell/">PowerShell</a><small>1</small></li>
+  
+    <li><a href="/tags/Prompt-Engineering/">Prompt Engineering</a><small>1</small></li>
   
     <li><a href="/tags/Proxy/">Proxy</a><small>1</small></li>
   
-    <li><a href="/tags/QEMU/">QEMU</a><small>1</small></li>
-  
-    <li><a href="/tags/Qemu/">Qemu</a><small>1</small></li>
+    <li><a href="/tags/QEMU/">QEMU</a><small>2</small></li>
   
     <li><a href="/tags/RDD/">RDD</a><small>1</small></li>
   
@@ -792,11 +843,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/SQLServer/">SQLServer</a><small>1</small></li>
   
+    <li><a href="/tags/SSH/">SSH</a><small>2</small></li>
+  
     <li><a href="/tags/Scala/">Scala</a><small>2</small></li>
   
     <li><a href="/tags/Scrum/">Scrum</a><small>1</small></li>
-  
-    <li><a href="/tags/Setup/">Setup</a><small>1</small></li>
   
     <li><a href="/tags/Sheetlist/">Sheetlist</a><small>1</small></li>
   
@@ -808,13 +859,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Spark/">Spark</a><small>4</small></li>
   
-    <li><a href="/tags/SparkSummit/">SparkSummit</a><small>1</small></li>
-  
     <li><a href="/tags/Sqoop/">Sqoop</a><small>1</small></li>
   
-    <li><a href="/tags/Streaming/">Streaming</a><small>1</small></li>
-  
-    <li><a href="/tags/Streamming/">Streamming</a><small>1</small></li>
+    <li><a href="/tags/Streaming/">Streaming</a><small>2</small></li>
   
     <li><a href="/tags/Teams/">Teams</a><small>1</small></li>
   
@@ -822,9 +869,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Tools/">Tools</a><small>1</small></li>
   
+    <li><a href="/tags/Troubleshooting/">Troubleshooting</a><small>2</small></li>
+  
     <li><a href="/tags/Tunning/">Tunning</a><small>1</small></li>
   
-    <li><a href="/tags/Utils/">Utils</a><small>2</small></li>
+    <li><a href="/tags/UDFS/">UDFS</a><small>1</small></li>
+  
+    <li><a href="/tags/Utils/">Utils</a><small>7</small></li>
+  
+    <li><a href="/tags/VDI/">VDI</a><small>1</small></li>
   
     <li><a href="/tags/Vagrant/">Vagrant</a><small>1</small></li>
   
@@ -834,63 +887,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Zeepelin/">Zeepelin</a><small>1</small></li>
   
-    <li><a href="/tags/beeline/">beeline</a><small>1</small></li>
-  
-    <li><a href="/tags/blog/">blog</a><small>1</small></li>
-  
-    <li><a href="/tags/btrfs/">btrfs</a><small>1</small></li>
-  
-    <li><a href="/tags/cheat/">cheat</a><small>1</small></li>
-  
-    <li><a href="/tags/docker-compose/">docker-compose</a><small>1</small></li>
-  
-    <li><a href="/tags/dr-elephant/">dr-elephant</a><small>1</small></li>
-  
-    <li><a href="/tags/ebooks/">ebooks</a><small>1</small></li>
-  
-    <li><a href="/tags/encryption/">encryption</a><small>1</small></li>
-  
-    <li><a href="/tags/exception/">exception</a><small>1</small></li>
-  
-    <li><a href="/tags/fish/">fish</a><small>1</small></li>
-  
-    <li><a href="/tags/git/">git</a><small>4</small></li>
-  
-    <li><a href="/tags/github/">github</a><small>2</small></li>
-  
-    <li><a href="/tags/hadoop/">hadoop</a><small>1</small></li>
-  
-    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
-  
-    <li><a href="/tags/hive/">hive</a><small>1</small></li>
-  
-    <li><a href="/tags/kbfs/">kbfs</a><small>1</small></li>
-  
-    <li><a href="/tags/keybase/">keybase</a><small>1</small></li>
-  
-    <li><a href="/tags/keys/">keys</a><small>1</small></li>
-  
     <li><a href="/tags/libvirt/">libvirt</a><small>1</small></li>
-  
-    <li><a href="/tags/markdown/">markdown</a><small>1</small></li>
-  
-    <li><a href="/tags/pgp/">pgp</a><small>1</small></li>
-  
-    <li><a href="/tags/pki/">pki</a><small>1</small></li>
-  
-    <li><a href="/tags/qcow2/">qcow2</a><small>1</small></li>
-  
-    <li><a href="/tags/sheet/">sheet</a><small>1</small></li>
-  
-    <li><a href="/tags/ssh/">ssh</a><small>2</small></li>
-  
-    <li><a href="/tags/udfs/">udfs</a><small>1</small></li>
-  
-    <li><a href="/tags/utils/">utils</a><small>1</small></li>
-  
-    <li><a href="/tags/vdi/">vdi</a><small>1</small></li>
-  
-    <li><a href="/tags/visual-code/">visual code</a><small>1</small></li>
   
   </ul>
 </div>

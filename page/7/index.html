@@ -77,7 +77,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2022-12-23T14:03:56.352Z"><a href="/2022/12/23/CryptoArt/">2022-12-23</a></time>
+        <time datetime="2022-12-23T10:00:00.000Z"><a href="/2022/12/23/CryptoArt/">2022-12-23</a></time>
       
       
   
@@ -152,7 +152,178 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2022-12-23T14:03:56.352Z"><a href="/2022/12/23/GA4/">2022-12-23</a></time>
+        <time datetime="2022-12-23T10:00:00.000Z"><a href="/2022/12/23/GTM/">2022-12-23</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2022/12/23/GTM/">Google Tag Manager</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>In this article it will be provided a quick walkthrough on Google Tag Manager.</p>
+<h2 id="What-is-Google-Tag-Manager"><a href="#What-is-Google-Tag-Manager" class="headerlink" title="What is Google Tag Manager ?"></a>What is Google Tag Manager ?</h2><p>Google Tag Manager is a tag management system (TMS) that allows you to quickly and easily update measurement codes and related code fragments collectively known as tags on your website or mobile app. Once the small segment of Tag Manager code has been added to your project, you can safely and easily deploy analytics and measurement tag configurations from a web-based user interface.</p>
+<h3 id="What-is-a-Tag"><a href="#What-is-a-Tag" class="headerlink" title="What is a Tag ?"></a>What is a Tag ?</h3><p>Tags are segments of code provided by analytics, marketing, and support vendors to help you integrate their products into your websites or mobile apps. With Google Tag Manager, you no longer need to add these tags directly to your projects. Instead, you configure and publish tags and how they fire from within the Tag Manager user interface.</p>
+<p>When we speak of tags in an HTML context, we refer to tags such as <code>&lt;body&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;li&gt;</code>, <code>&lt;blockquote&gt;</code>, and so on. When we refer to tags used in the analytics and marketing industry, we refer to code that an organization provides to install the desired product or functionality on your website or mobile app.</p>
+<p>Tag Manager natively supports many <a target="_blank" rel="noopener" href="https://support.google.com/tagmanager/answer/6106924">Google and 3rd party tag</a> configurations. <a target="_blank" rel="noopener" href="https://support.google.com/tagmanager/answer/6107167">Custom tags</a> may be used to implement tags that are not yet supported by Tag Manager’s native templates.</p>
+<h2 id="How-it-works"><a href="#How-it-works" class="headerlink" title="How it works ?"></a>How it works ?</h2><ul>
+<li>A snippet of code (container) is required to be installed on each page of your website like it happens for instance in Google Analytics.</li>
+<li>After that one needs to setup the triggers that would fire the tags using the tagmanager UI.</li>
+<li>After publishing those tags the events are triggered based on the defined rules in a asynchronous way.</li>
+</ul>
+<blockquote>
+<p><strong>NOTE:</strong> You need one tag manager account per company or organization, but if you are tracking for several companies, you can connect to multiple tag manager accounts to a single user’s Google account.<br>Each Tag Manager account has at least one container.  A container includes the tags and “triggers” that determine when those tags should fire or collect data. Typically, you’ll have one container for each website domain, though you can use a single container for cross-domain tracking</p>
+</blockquote>
+<h3 id="How-to-Setup"><a href="#How-to-Setup" class="headerlink" title="How to Setup ?"></a>How to Setup ?</h3><p>In order to setup GTM the following steps are required:</p>
+<ol>
+<li><strong>Create an account</strong>, or use an existing account, at <a href="tagmanager.google.co">tagmanager.google.com</a>. (A new container is created by default, and you can create additional containers within each account.)</li>
+<li><strong>Install the container</strong> in your website or mobile app.<ul>
+<li>For web and AMP pages: Add the container snippet as instructed by Tag Manager, and remove any existing tags.</li>
+<li>For mobile apps: Use the Firebase SDK for Android or iOS.</li>
+</ul>
+</li>
+<li><strong>Add and publish your tags</strong>.</li>
+</ol>
+<blockquote>
+<p><strong>NOTE:</strong> A Tag Manager account represents the topmost level of organization. Typically, only one account is needed per company. A Tag Manager account contains one or more containers, and there are specific container types that may be used for websites, AMP pages, Android apps, and iOS apps.</p>
+</blockquote>
+<h4 id="Install-the-snippet"><a href="#Install-the-snippet" class="headerlink" title="Install the snippet"></a><strong>Install the snippet</strong></h4><ul>
+<li><p>Place the <code>&lt;script&gt;</code> code snippet in the <code>&lt;head&gt;</code> of your web page HTML output, preferably as close to the opening <code>&lt;head&gt;</code> tag as possible, but below any dataLayer declarations.</p>
+</li>
+<li><p>Place the <code>&lt;noscript&gt;</code> code snippet immediately after the <code>&lt;body&gt;</code> tag in your HTML output.</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>NOTE:</strong> To ensure that tags do not fire twice, remove from your code any hardcoded tags that have been migrated to your Tag Manager container.</p>
+</blockquote>
+<h2 id="Why-should-one-use-Google-Tag-Manager"><a href="#Why-should-one-use-Google-Tag-Manager" class="headerlink" title="Why should one use Google Tag Manager ?"></a>Why should one use Google Tag Manager ?</h2><ul>
+<li>Tag manager allows to simplify the management of tags and reduce the dependency from engineering teams. Acts as a bridge between Marketers and developers.</li>
+<li>Allow to have a collaborative space for marketing teams to test and source control their changes, improving the workflow to have this changes deployed.</li>
+<li>Improves page loads as the tags are fired asynchronously.</li>
+</ul>
+<h2 id="How-to-use-Google-Tag-Manager"><a href="#How-to-use-Google-Tag-Manager" class="headerlink" title="How to use Google Tag Manager ?"></a>How to use Google Tag Manager ?</h2><h3 id="Manage-Tags"><a href="#Manage-Tags" class="headerlink" title="Manage Tags"></a>Manage Tags</h3><p>Tags are fired based on triggers and these make use of:</p>
+<ul>
+<li>Variable</li>
+<li>Operators</li>
+<li>Values</li>
+</ul>
+<h4 id="Variables"><a href="#Variables" class="headerlink" title="Variables"></a>Variables</h4><ul>
+<li><strong>Built-in Variables</strong>: ex: <code>&#123;&#123;page path&#125;&#125;</code> or <code>&#123;&#123;click id&#125;&#125;</code></li>
+<li><strong>User defined variables</strong>: ex: <code>&#123;&#123;purchaseComplete&#125;&#125;</code></li>
+</ul>
+<h4 id="Operators"><a href="#Operators" class="headerlink" title="Operators"></a>Operators</h4><ul>
+<li>Operators define the relation with variable and values: ex: <em>contains, equals</em></li>
+</ul>
+<h4 id="Values"><a href="#Values" class="headerlink" title="Values"></a>Values</h4><ul>
+<li>Values like numbers or strings: ex: 1, 2, 3 or a, b , c</li>
+</ul>
+<p>When the user visit the site the container snippet will trigger tags based on firing instructions which communicates to systems such as Google Analytics.</p>
+<h2 id="DataLayer"><a href="#DataLayer" class="headerlink" title="DataLayer"></a>DataLayer</h2><p>The Data Layer in Tag Manager is a Javascript object that holds data such as custom event information or variables passed from your website. Information in the Data Layer is structured into key-value pairs, which may be passed to third-party applications like Analytics or used as a trigger to determine when tags should fire.</p>
+<p>There are two ways to populate the Data Layer with these key-value pairs.</p>
+<ol>
+<li>Pre-populating values in the data layer</li>
+<li>Javascript push into the Data Layer</li>
+</ol>
+<blockquote>
+<p><strong>NOTE</strong>: It’s important to note that Data Layer variables don’t persist across pages automatically. If you wish to pass a value to the Data Layer on additional pages, you’ll need to write custom code to do so.</p>
+</blockquote>
+<h2 id="Definitions"><a href="#Definitions" class="headerlink" title="Definitions"></a>Definitions</h2><ul>
+<li><strong>KPI</strong> - Key Performance Indicator (KPI) Definition<br>A Key Performance Indicator is a measurable value that demonstrates how effectively a company is achieving key business objectives. Organizations use KPIs at multiple levels to evaluate their success at reaching targets.</li>
+</ul>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://marketingplatform.google.com/about/tag-manager/">https://marketingplatform.google.com/about/tag-manager/</a></li>
+<li><a target="_blank" rel="noopener" href="https://developers.google.com/tag-manager">https://developers.google.com/tag-manager</a></li>
+<li><a target="_blank" rel="noopener" href="https://support.google.com/tagmanager/answer/6102821?hl=en">https://support.google.com/tagmanager/answer/6102821?hl=en</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2022-12-23T10:00:00.000Z"><a href="/2022/12/23/stories/">2022-12-23</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2022/12/23/stories/">Scrum User Stories</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>When writing user stories, you will need to include the following components: </p>
+<ul>
+<li><strong>User persona.</strong> What is your user like? What is their relation to the project? What goals do they have? </li>
+</ul>
+<ul>
+<li><p><strong>Definition of Done.</strong> This refers to an agreed upon set of items that must be completed before a user story can be considered complete. </p>
+</li>
+<li><p><strong>Tasks.</strong> What are the key activities needed to complete the user story?</p>
+</li>
+<li><p><strong>Any feedback already provided.</strong> If you are adding features to an existing product and you have already received feedback from customers on a past iteration, make sure to consider this feedback.  </p>
+</li>
+</ul>
+<h1 id="I-N-V-E-S-T"><a href="#I-N-V-E-S-T" class="headerlink" title="I.N.V.E.S.T."></a>I.N.V.E.S.T.</h1><p>Your user stories should meet the I.N.V.E.S.T. criteria: </p>
+<ul>
+<li><p><strong>Independent:</strong> The story’s completion is not dependent on another story.</p>
+</li>
+<li><p><strong>Negotiable:</strong> There is room for discussion about this item.</p>
+</li>
+<li><p><strong>Valuable:</strong> Completing the user story has to deliver value. </p>
+</li>
+<li><p><strong>Estimable:</strong> The Definition of Done must be clear so that the team can give each user story an estimate. </p>
+</li>
+<li><p><strong>Small:</strong> Each user story needs to be able to fit within a planned Sprint.</p>
+</li>
+<li><p><strong>Testable:</strong> A test can be conducted to check that it meets the criteria.</p>
+</li>
+</ul>
+<h1 id="Story-Structure"><a href="#Story-Structure" class="headerlink" title="Story Structure"></a>Story Structure</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">As a &lt;user role&gt;, I want &lt;this action&gt; so that I can &lt;get this value&gt;. </span><br></pre></td></tr></table></figure>
+
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.coursera.org/learn/agile-project-management">https://www.coursera.org/learn/agile-project-management</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.mountaingoatsoftware.com/blog/stories-epics-and-themes">https://www.mountaingoatsoftware.com/blog/stories-epics-and-themes</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2022-12-23T08:00:00.000Z"><a href="/2022/12/23/GA4/">2022-12-23</a></time>
       
       
   
@@ -314,113 +485,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2022-12-23T14:03:56.352Z"><a href="/2022/12/23/GTM/">2022-12-23</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2022/12/23/GTM/">Google Tag Manager</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>In this article it will be provided a quick walkthrough on Google Tag Manager.</p>
-<h2 id="What-is-Google-Tag-Manager"><a href="#What-is-Google-Tag-Manager" class="headerlink" title="What is Google Tag Manager ?"></a>What is Google Tag Manager ?</h2><p>Google Tag Manager is a tag management system (TMS) that allows you to quickly and easily update measurement codes and related code fragments collectively known as tags on your website or mobile app. Once the small segment of Tag Manager code has been added to your project, you can safely and easily deploy analytics and measurement tag configurations from a web-based user interface.</p>
-<h3 id="What-is-a-Tag"><a href="#What-is-a-Tag" class="headerlink" title="What is a Tag ?"></a>What is a Tag ?</h3><p>Tags are segments of code provided by analytics, marketing, and support vendors to help you integrate their products into your websites or mobile apps. With Google Tag Manager, you no longer need to add these tags directly to your projects. Instead, you configure and publish tags and how they fire from within the Tag Manager user interface.</p>
-<p>When we speak of tags in an HTML context, we refer to tags such as <code>&lt;body&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;li&gt;</code>, <code>&lt;blockquote&gt;</code>, and so on. When we refer to tags used in the analytics and marketing industry, we refer to code that an organization provides to install the desired product or functionality on your website or mobile app.</p>
-<p>Tag Manager natively supports many <a target="_blank" rel="noopener" href="https://support.google.com/tagmanager/answer/6106924">Google and 3rd party tag</a> configurations. <a target="_blank" rel="noopener" href="https://support.google.com/tagmanager/answer/6107167">Custom tags</a> may be used to implement tags that are not yet supported by Tag Manager’s native templates.</p>
-<h2 id="How-it-works"><a href="#How-it-works" class="headerlink" title="How it works ?"></a>How it works ?</h2><ul>
-<li>A snippet of code (container) is required to be installed on each page of your website like it happens for instance in Google Analytics.</li>
-<li>After that one needs to setup the triggers that would fire the tags using the tagmanager UI.</li>
-<li>After publishing those tags the events are triggered based on the defined rules in a asynchronous way.</li>
-</ul>
-<blockquote>
-<p><strong>NOTE:</strong> You need one tag manager account per company or organization, but if you are tracking for several companies, you can connect to multiple tag manager accounts to a single user’s Google account.<br>Each Tag Manager account has at least one container.  A container includes the tags and “triggers” that determine when those tags should fire or collect data. Typically, you’ll have one container for each website domain, though you can use a single container for cross-domain tracking</p>
-</blockquote>
-<h3 id="How-to-Setup"><a href="#How-to-Setup" class="headerlink" title="How to Setup ?"></a>How to Setup ?</h3><p>In order to setup GTM the following steps are required:</p>
-<ol>
-<li><strong>Create an account</strong>, or use an existing account, at <a href="tagmanager.google.co">tagmanager.google.com</a>. (A new container is created by default, and you can create additional containers within each account.)</li>
-<li><strong>Install the container</strong> in your website or mobile app.<ul>
-<li>For web and AMP pages: Add the container snippet as instructed by Tag Manager, and remove any existing tags.</li>
-<li>For mobile apps: Use the Firebase SDK for Android or iOS.</li>
-</ul>
-</li>
-<li><strong>Add and publish your tags</strong>.</li>
-</ol>
-<blockquote>
-<p><strong>NOTE:</strong> A Tag Manager account represents the topmost level of organization. Typically, only one account is needed per company. A Tag Manager account contains one or more containers, and there are specific container types that may be used for websites, AMP pages, Android apps, and iOS apps.</p>
-</blockquote>
-<h4 id="Install-the-snippet"><a href="#Install-the-snippet" class="headerlink" title="Install the snippet"></a><strong>Install the snippet</strong></h4><ul>
-<li><p>Place the <code>&lt;script&gt;</code> code snippet in the <code>&lt;head&gt;</code> of your web page HTML output, preferably as close to the opening <code>&lt;head&gt;</code> tag as possible, but below any dataLayer declarations.</p>
-</li>
-<li><p>Place the <code>&lt;noscript&gt;</code> code snippet immediately after the <code>&lt;body&gt;</code> tag in your HTML output.</p>
-</li>
-</ul>
-<blockquote>
-<p><strong>NOTE:</strong> To ensure that tags do not fire twice, remove from your code any hardcoded tags that have been migrated to your Tag Manager container.</p>
-</blockquote>
-<h2 id="Why-should-one-use-Google-Tag-Manager"><a href="#Why-should-one-use-Google-Tag-Manager" class="headerlink" title="Why should one use Google Tag Manager ?"></a>Why should one use Google Tag Manager ?</h2><ul>
-<li>Tag manager allows to simplify the management of tags and reduce the dependency from engineering teams. Acts as a bridge between Marketers and developers.</li>
-<li>Allow to have a collaborative space for marketing teams to test and source control their changes, improving the workflow to have this changes deployed.</li>
-<li>Improves page loads as the tags are fired asynchronously.</li>
-</ul>
-<h2 id="How-to-use-Google-Tag-Manager"><a href="#How-to-use-Google-Tag-Manager" class="headerlink" title="How to use Google Tag Manager ?"></a>How to use Google Tag Manager ?</h2><h3 id="Manage-Tags"><a href="#Manage-Tags" class="headerlink" title="Manage Tags"></a>Manage Tags</h3><p>Tags are fired based on triggers and these make use of:</p>
-<ul>
-<li>Variable</li>
-<li>Operators</li>
-<li>Values</li>
-</ul>
-<h4 id="Variables"><a href="#Variables" class="headerlink" title="Variables"></a>Variables</h4><ul>
-<li><strong>Built-in Variables</strong>: ex: <code>&#123;&#123;page path&#125;&#125;</code> or <code>&#123;&#123;click id&#125;&#125;</code></li>
-<li><strong>User defined variables</strong>: ex: <code>&#123;&#123;purchaseComplete&#125;&#125;</code></li>
-</ul>
-<h4 id="Operators"><a href="#Operators" class="headerlink" title="Operators"></a>Operators</h4><ul>
-<li>Operators define the relation with variable and values: ex: <em>contains, equals</em></li>
-</ul>
-<h4 id="Values"><a href="#Values" class="headerlink" title="Values"></a>Values</h4><ul>
-<li>Values like numbers or strings: ex: 1, 2, 3 or a, b , c</li>
-</ul>
-<p>When the user visit the site the container snippet will trigger tags based on firing instructions which communicates to systems such as Google Analytics.</p>
-<h2 id="DataLayer"><a href="#DataLayer" class="headerlink" title="DataLayer"></a>DataLayer</h2><p>The Data Layer in Tag Manager is a Javascript object that holds data such as custom event information or variables passed from your website. Information in the Data Layer is structured into key-value pairs, which may be passed to third-party applications like Analytics or used as a trigger to determine when tags should fire.</p>
-<p>There are two ways to populate the Data Layer with these key-value pairs.</p>
-<ol>
-<li>Pre-populating values in the data layer</li>
-<li>Javascript push into the Data Layer</li>
-</ol>
-<blockquote>
-<p><strong>NOTE</strong>: It’s important to note that Data Layer variables don’t persist across pages automatically. If you wish to pass a value to the Data Layer on additional pages, you’ll need to write custom code to do so.</p>
-</blockquote>
-<h2 id="Definitions"><a href="#Definitions" class="headerlink" title="Definitions"></a>Definitions</h2><ul>
-<li><strong>KPI</strong> - Key Performance Indicator (KPI) Definition<br>A Key Performance Indicator is a measurable value that demonstrates how effectively a company is achieving key business objectives. Organizations use KPIs at multiple levels to evaluate their success at reaching targets.</li>
-</ul>
-<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://marketingplatform.google.com/about/tag-manager/">https://marketingplatform.google.com/about/tag-manager/</a></li>
-<li><a target="_blank" rel="noopener" href="https://developers.google.com/tag-manager">https://developers.google.com/tag-manager</a></li>
-<li><a target="_blank" rel="noopener" href="https://support.google.com/tagmanager/answer/6102821?hl=en">https://support.google.com/tagmanager/answer/6102821?hl=en</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2022-08-30T09:00:16.000Z"><a href="/2022/08/30/nato_alphabet/">2022-08-30</a></time>
+        <time datetime="2022-08-30T09:00:00.000Z"><a href="/2022/08/30/nato_alphabet/">2022-08-30</a></time>
       
       
   
@@ -478,54 +543,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2021-02-21T11:25:53.000Z"><a href="/2021/02/21/VisualCode Hexo addon/">2021-02-21</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2021/02/21/VisualCode Hexo addon/">VisualCode Hexo Addon</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="VisualCode-Hexo-extension"><a href="#VisualCode-Hexo-extension" class="headerlink" title="VisualCode Hexo extension"></a>VisualCode Hexo extension</h1><p>This article explain how to activte the visualcode hexo extension which would boost your productivity if you use Hexo for your articles such has i’m doing on this blob page.</p>
-<h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><p>Install VisualCode:</p>
-<ul>
-<li> <a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/setup/setup-overview">https://code.visualstudio.com/docs/setup/setup-overview</a></li>
-</ul>
-<p>Activate the following extension by executing the following command</p>
-<p><code>ext install fantasy.vscode-hexo-utils</code></p>
-<p>Make sure you open the folder where your Hexo base code is.</p>
-<p>That’s it.</p>
-<p>The extension allows you to directly manage your posts/tags/categories. It is also very suefull if you side lane the articles and preview the Markdowns with <strong>[Ctrl] + [Shift] + [V]</strong></p>
-<p>The extension repo is available on the following github repo: </p>
-<ul>
-<li> <a target="_blank" rel="noopener" href="https://github.com/cwxyz007/vscode-hexo-utils">https://github.com/cwxyz007/vscode-hexo-utils</a></li>
-</ul>
-<p>Kudos for the <a target="_blank" rel="noopener" href="https://github.com/cwxyz007/vscode-hexo-utils/graphs/contributors">contributors</a></p>
-<p>Cheers,<br>RR</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -552,15 +569,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <h3 class="title">Tags</h3>
   <ul class="entry">
   
-    <li><a href="/tags/NET/">.NET</a><small>1</small></li>
+    <li><a href="/tags/NET/">.NET</a><small>2</small></li>
   
-    <li><a href="/tags/Net/">.Net</a><small>1</small></li>
-  
-    <li><a href="/tags/AI/">AI</a><small>1</small></li>
-  
-    <li><a href="/tags/API/">API</a><small>1</small></li>
-  
-    <li><a href="/tags/APIs/">APIs</a><small>1</small></li>
+    <li><a href="/tags/API/">API</a><small>2</small></li>
   
     <li><a href="/tags/AUR/">AUR</a><small>1</small></li>
   
@@ -574,31 +585,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Ansible/">Ansible</a><small>2</small></li>
   
-    <li><a href="/tags/Arch/">Arch</a><small>4</small></li>
+    <li><a href="/tags/Arch/">Arch</a><small>3</small></li>
   
-    <li><a href="/tags/Arch-Linux/">Arch Linux</a><small>1</small></li>
-  
-    <li><a href="/tags/Architecture/">Architecture</a><small>1</small></li>
+    <li><a href="/tags/Architecture/">Architecture</a><small>2</small></li>
   
     <li><a href="/tags/Artifactory/">Artifactory</a><small>1</small></li>
   
     <li><a href="/tags/Avro/">Avro</a><small>1</small></li>
   
-    <li><a href="/tags/BigData/">BigData</a><small>2</small></li>
+    <li><a href="/tags/BTRFS/">BTRFS</a><small>1</small></li>
+  
+    <li><a href="/tags/Beeline/">Beeline</a><small>1</small></li>
+  
+    <li><a href="/tags/Big-Data/">Big Data</a><small>2</small></li>
   
     <li><a href="/tags/BigQuery/">BigQuery</a><small>1</small></li>
   
-    <li><a href="/tags/Books/">Books</a><small>1</small></li>
+    <li><a href="/tags/Books/">Books</a><small>2</small></li>
   
-    <li><a href="/tags/CDH-Parcel/">CDH Parcel</a><small>1</small></li>
+    <li><a href="/tags/CI-CD/">CI/CD</a><small>1</small></li>
   
-    <li><a href="/tags/CHat-PT/">CHat-PT</a><small>1</small></li>
+    <li><a href="/tags/ChatGPT/">ChatGPT</a><small>1</small></li>
   
     <li><a href="/tags/CheatSheet/">CheatSheet</a><small>1</small></li>
   
     <li><a href="/tags/Cloudera/">Cloudera</a><small>3</small></li>
   
-    <li><a href="/tags/Code/">Code</a><small>2</small></li>
+    <li><a href="/tags/Code/">Code</a><small>1</small></li>
   
     <li><a href="/tags/Communication/">Communication</a><small>1</small></li>
   
@@ -606,11 +619,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Contracts/">Contracts</a><small>1</small></li>
   
-    <li><a href="/tags/CryptoArt/">CryptoArt</a><small>1</small></li>
+    <li><a href="/tags/Crypto/">Crypto</a><small>1</small></li>
   
-    <li><a href="/tags/Customization/">Customization</a><small>1</small></li>
-  
-    <li><a href="/tags/Customize/">Customize</a><small>1</small></li>
+    <li><a href="/tags/Customization/">Customization</a><small>2</small></li>
   
     <li><a href="/tags/DBT/">DBT</a><small>1</small></li>
   
@@ -630,23 +641,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Delegation/">Delegation</a><small>1</small></li>
   
-    <li><a href="/tags/Development/">Development</a><small>3</small></li>
+    <li><a href="/tags/DevOps/">DevOps</a><small>1</small></li>
+  
+    <li><a href="/tags/Development/">Development</a><small>5</small></li>
   
     <li><a href="/tags/Dimensions/">Dimensions</a><small>1</small></li>
   
     <li><a href="/tags/Docker/">Docker</a><small>7</small></li>
   
+    <li><a href="/tags/Dr-Elephant/">Dr-Elephant</a><small>1</small></li>
+  
     <li><a href="/tags/DuckDB/">DuckDB</a><small>1</small></li>
   
-    <li><a href="/tags/GA/">GA</a><small>2</small></li>
+    <li><a href="/tags/Encryption/">Encryption</a><small>1</small></li>
   
-    <li><a href="/tags/GA4/">GA4</a><small>2</small></li>
+    <li><a href="/tags/Events/">Events</a><small>1</small></li>
   
-    <li><a href="/tags/GC/">GC</a><small>1</small></li>
+    <li><a href="/tags/Fish/">Fish</a><small>1</small></li>
   
     <li><a href="/tags/GCS/">GCS</a><small>1</small></li>
   
-    <li><a href="/tags/Garuda/">Garuda</a><small>1</small></li>
+    <li><a href="/tags/Git/">Git</a><small>5</small></li>
+  
+    <li><a href="/tags/GitHub/">GitHub</a><small>3</small></li>
   
     <li><a href="/tags/Google-Analytics/">Google Analytics</a><small>3</small></li>
   
@@ -658,19 +675,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/HDFS/">HDFS</a><small>3</small></li>
   
-    <li><a href="/tags/Hadoop/">Hadoop</a><small>4</small></li>
+    <li><a href="/tags/Hadoop/">Hadoop</a><small>5</small></li>
+  
+    <li><a href="/tags/Hexo/">Hexo</a><small>2</small></li>
   
     <li><a href="/tags/Hiring/">Hiring</a><small>1</small></li>
   
-    <li><a href="/tags/Hive/">Hive</a><small>3</small></li>
+    <li><a href="/tags/Hive/">Hive</a><small>4</small></li>
   
-    <li><a href="/tags/IDE/">IDE</a><small>1</small></li>
+    <li><a href="/tags/IDE/">IDE</a><small>2</small></li>
   
     <li><a href="/tags/Infrastructure/">Infrastructure</a><small>1</small></li>
   
     <li><a href="/tags/Inspiration/">Inspiration</a><small>1</small></li>
-  
-    <li><a href="/tags/Install/">Install</a><small>1</small></li>
   
     <li><a href="/tags/Internet/">Internet</a><small>1</small></li>
   
@@ -682,7 +699,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Kafka/">Kafka</a><small>2</small></li>
   
-    <li><a href="/tags/Keyboard/">Keyboard</a><small>1</small></li>
+    <li><a href="/tags/Keybase/">Keybase</a><small>1</small></li>
+  
+    <li><a href="/tags/Keyboards/">Keyboards</a><small>1</small></li>
   
     <li><a href="/tags/Kobo/">Kobo</a><small>1</small></li>
   
@@ -692,11 +711,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Leadership/">Leadership</a><small>2</small></li>
   
-    <li><a href="/tags/Linux/">Linux</a><small>9</small></li>
+    <li><a href="/tags/Linux/">Linux</a><small>12</small></li>
   
     <li><a href="/tags/Management/">Management</a><small>2</small></li>
   
-    <li><a href="/tags/Markdown/">Markdown</a><small>2</small></li>
+    <li><a href="/tags/Markdown/">Markdown</a><small>3</small></li>
   
     <li><a href="/tags/Mesos/">Mesos</a><small>1</small></li>
   
@@ -706,19 +725,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Monitoring/">Monitoring</a><small>1</small></li>
   
-    <li><a href="/tags/NATO/">NATO</a><small>1</small></li>
-  
-    <li><a href="/tags/NFT/">NFT</a><small>1</small></li>
-  
     <li><a href="/tags/Nifi/">Nifi</a><small>1</small></li>
   
     <li><a href="/tags/Nord/">Nord</a><small>1</small></li>
   
     <li><a href="/tags/Nuget/">Nuget</a><small>1</small></li>
   
+    <li><a href="/tags/OpenAI/">OpenAI</a><small>1</small></li>
+  
     <li><a href="/tags/OpenAPI/">OpenAPI</a><small>1</small></li>
   
     <li><a href="/tags/Optimization/">Optimization</a><small>1</small></li>
+  
+    <li><a href="/tags/PGP/">PGP</a><small>1</small></li>
+  
+    <li><a href="/tags/PKI/">PKI</a><small>1</small></li>
   
     <li><a href="/tags/Packages/">Packages</a><small>1</small></li>
   
@@ -732,15 +753,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Porto/">Porto</a><small>1</small></li>
   
-    <li><a href="/tags/PortoTechHub/">PortoTechHub</a><small>1</small></li>
-  
     <li><a href="/tags/PowerShell/">PowerShell</a><small>1</small></li>
+  
+    <li><a href="/tags/Prompt-Engineering/">Prompt Engineering</a><small>1</small></li>
   
     <li><a href="/tags/Proxy/">Proxy</a><small>1</small></li>
   
-    <li><a href="/tags/QEMU/">QEMU</a><small>1</small></li>
-  
-    <li><a href="/tags/Qemu/">Qemu</a><small>1</small></li>
+    <li><a href="/tags/QEMU/">QEMU</a><small>2</small></li>
   
     <li><a href="/tags/RDD/">RDD</a><small>1</small></li>
   
@@ -752,11 +771,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/SQLServer/">SQLServer</a><small>1</small></li>
   
+    <li><a href="/tags/SSH/">SSH</a><small>2</small></li>
+  
     <li><a href="/tags/Scala/">Scala</a><small>2</small></li>
   
     <li><a href="/tags/Scrum/">Scrum</a><small>1</small></li>
-  
-    <li><a href="/tags/Setup/">Setup</a><small>1</small></li>
   
     <li><a href="/tags/Sheetlist/">Sheetlist</a><small>1</small></li>
   
@@ -768,13 +787,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Spark/">Spark</a><small>4</small></li>
   
-    <li><a href="/tags/SparkSummit/">SparkSummit</a><small>1</small></li>
-  
     <li><a href="/tags/Sqoop/">Sqoop</a><small>1</small></li>
   
-    <li><a href="/tags/Streaming/">Streaming</a><small>1</small></li>
-  
-    <li><a href="/tags/Streamming/">Streamming</a><small>1</small></li>
+    <li><a href="/tags/Streaming/">Streaming</a><small>2</small></li>
   
     <li><a href="/tags/Teams/">Teams</a><small>1</small></li>
   
@@ -782,9 +797,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Tools/">Tools</a><small>1</small></li>
   
+    <li><a href="/tags/Troubleshooting/">Troubleshooting</a><small>2</small></li>
+  
     <li><a href="/tags/Tunning/">Tunning</a><small>1</small></li>
   
-    <li><a href="/tags/Utils/">Utils</a><small>2</small></li>
+    <li><a href="/tags/UDFS/">UDFS</a><small>1</small></li>
+  
+    <li><a href="/tags/Utils/">Utils</a><small>7</small></li>
+  
+    <li><a href="/tags/VDI/">VDI</a><small>1</small></li>
   
     <li><a href="/tags/Vagrant/">Vagrant</a><small>1</small></li>
   
@@ -794,63 +815,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Zeepelin/">Zeepelin</a><small>1</small></li>
   
-    <li><a href="/tags/beeline/">beeline</a><small>1</small></li>
-  
-    <li><a href="/tags/blog/">blog</a><small>1</small></li>
-  
-    <li><a href="/tags/btrfs/">btrfs</a><small>1</small></li>
-  
-    <li><a href="/tags/cheat/">cheat</a><small>1</small></li>
-  
-    <li><a href="/tags/docker-compose/">docker-compose</a><small>1</small></li>
-  
-    <li><a href="/tags/dr-elephant/">dr-elephant</a><small>1</small></li>
-  
-    <li><a href="/tags/ebooks/">ebooks</a><small>1</small></li>
-  
-    <li><a href="/tags/encryption/">encryption</a><small>1</small></li>
-  
-    <li><a href="/tags/exception/">exception</a><small>1</small></li>
-  
-    <li><a href="/tags/fish/">fish</a><small>1</small></li>
-  
-    <li><a href="/tags/git/">git</a><small>4</small></li>
-  
-    <li><a href="/tags/github/">github</a><small>2</small></li>
-  
-    <li><a href="/tags/hadoop/">hadoop</a><small>1</small></li>
-  
-    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
-  
-    <li><a href="/tags/hive/">hive</a><small>1</small></li>
-  
-    <li><a href="/tags/kbfs/">kbfs</a><small>1</small></li>
-  
-    <li><a href="/tags/keybase/">keybase</a><small>1</small></li>
-  
-    <li><a href="/tags/keys/">keys</a><small>1</small></li>
-  
     <li><a href="/tags/libvirt/">libvirt</a><small>1</small></li>
-  
-    <li><a href="/tags/markdown/">markdown</a><small>1</small></li>
-  
-    <li><a href="/tags/pgp/">pgp</a><small>1</small></li>
-  
-    <li><a href="/tags/pki/">pki</a><small>1</small></li>
-  
-    <li><a href="/tags/qcow2/">qcow2</a><small>1</small></li>
-  
-    <li><a href="/tags/sheet/">sheet</a><small>1</small></li>
-  
-    <li><a href="/tags/ssh/">ssh</a><small>2</small></li>
-  
-    <li><a href="/tags/udfs/">udfs</a><small>1</small></li>
-  
-    <li><a href="/tags/utils/">utils</a><small>1</small></li>
-  
-    <li><a href="/tags/vdi/">vdi</a><small>1</small></li>
-  
-    <li><a href="/tags/visual-code/">visual code</a><small>1</small></li>
   
   </ul>
 </div>
