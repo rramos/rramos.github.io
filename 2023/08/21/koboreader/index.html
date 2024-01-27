@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Prompt Engineering | rramos.github.io</title>
+  <title>How to Bypass Kobo Wizard in Linux | rramos.github.io</title>
   <meta name="author" content="Rui Ramos">
   
   <meta name="description" content="A simple Blog related with Infrastructure Architecture and Data">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
+  <meta property="og:title" content="How to Bypass Kobo Wizard in Linux"/>
   <meta property="og:site_name" content="rramos.github.io"/>
 
   
@@ -70,25 +70,111 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="clearfix"></div>
 </header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
-<h2 class="archive-title tag">Prompt Engineering</h2>
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2023-08-21T22:00:00.000Z"><a href="/2023/08/21/koboreader/">2023-08-21</a></time>
+      
+      
+  
+    <h1 class="title">How to Bypass Kobo Wizard in Linux</h1>
+  
 
+    </header>
+    <div class="entry">
+      
+        <p>This article is a copy from <strong>Curtis Gedak</strong> in the following <a target="_blank" rel="noopener" href="https://gedakc.users.sourceforge.net/display-doc.php%3Fname%3Dkobo-desktop-ereader-setup">reference</a>. </p>
+<blockquote>
+<p>Kobo eReaders can no longer be set up using the Kobo Desktop on GNU&#x2F;Linux (see warning below). Fortunately there is a work around to get your Kobo eReader working without a Kobo Account.</p>
+</blockquote>
+<p>If you have a kobo reader stuck in the setup wizard as it happen to me (wifi got broken) there is a quick setup you can do to bypass the initial setup wizard.</p>
+<p><strong>Notice:</strong> This procedure was done in a old Kobo ebook reader, and is not guarantee that it will work on newer versions, use at your own risk</p>
+<h1 id="Issue"><a href="#Issue" class="headerlink" title="Issue"></a>Issue</h1><p>Kobo ebook reader stuck on the initial setup phase. Wifi doesn’t work and plugging to a computer requires the windows software installed, which for linux users doesn’t not work.</p>
+<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><p>Create a dummy user on the device to bypass the initial setup</p>
+<h1 id="Pre-Requisites"><a href="#Pre-Requisites" class="headerlink" title="Pre-Requisites"></a>Pre-Requisites</h1><p>You need to install sqlitebrowser</p>
+<p>Using the following code for Arch there should be a similar option Ubuntu or Fedora distributions</p>
+<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">sudo pacman -S sqlitebrowser</span><br></pre></td></tr></table></figure>
+<h1 id="Procedure"><a href="#Procedure" class="headerlink" title="Procedure"></a>Procedure</h1><ol>
+<li><p>Plug you ebook reader via usb </p>
+<ul>
+<li>You can check the mount points you should see a <code>/media/your-user-name/KOBOeReader</code> device . Assuming this path as reference</li>
+</ul>
+</li>
+<li><p>Connect with SLQliteBrowser</p>
+  <figure class="highlight console"><table><tr><td class="code"><pre><span class="line">sqlitebrowser /media/your-user-name/KOBOeReader/.kobo/KoboReader.sqlite</span><br></pre></td></tr></table></figure></li>
+<li><p>Click on the Execute SQL tab and in the SQL string: section enter the following statement</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">USER</span></span><br><span class="line">  (UserID, UserKey, UserDisplayName, UserEmail, ___DeviceID)</span><br><span class="line"><span class="keyword">values</span></span><br><span class="line">  (&quot;foo&quot;, &quot;foo&quot;, &quot;foo&quot;, &quot;foo&quot;,&quot;foo&quot;);</span><br></pre></td></tr></table></figure></li>
+<li><p>Save the changes</p>
+<ul>
+<li>Save these changes by selecting the menu option: File -&gt; Save Database or File -&gt; Write Changes.</li>
+</ul>
+</li>
+<li><p>Close the sqlitebrowser by selecting the menu option: File -&gt; Exit.</p>
+</li>
+<li><p>Safely unmount your Kobo eReader.</p>
+</li>
+</ol>
+<p>And voilá, your eReader should now boot up and display the QUICK TOUR screen</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://gedakc.users.sourceforge.net/display-doc.php%3Fname%3Dkobo-desktop-ereader-setup">https://gedakc.users.sourceforge.net/display-doc.php%3Fname%3Dkobo-desktop-ereader-setup</a></li>
+</ul>
 
-  <div class="archive">
-    
-      <article class="post">
-        <div class="post-content-archive">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2024-01-27T11:23:44.851Z"><a href="/2024/01/27/chatgpt-prompts/">2024-01-27</a></time>
-            
-              <h1 class="title-archive"><a href="/2024/01/27/chatgpt-prompts/">Chat-GPT Data Science Prompts</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/Books/">Books</a>, <a href="/tags/Troubleshooting/">Troubleshooting</a>, <a href="/tags/Kobo/">Kobo</a>
   </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_linkedin_counter" li:counter="none"></a>
+    
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+
+
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Coments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=524446951221420";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://rramos.github.io/2023/08/21/koboreader/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
 
 </div></div>
     <aside id="sidebar" class="alignright">

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Pacman Command in Arch Linux | rramos.github.io</title>
+  <title>Archive: 2023/1 | rramos.github.io</title>
   <meta name="author" content="Rui Ramos">
   
   <meta name="description" content="A simple Blog related with Infrastructure Architecture and Data">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Pacman Command in Arch Linux"/>
+  
   <meta property="og:site_name" content="rramos.github.io"/>
 
   
@@ -70,130 +70,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="clearfix"></div>
 </header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2024-01-27T10:53:22.782Z"><a href="/2024/01/27/pacman/">2024-01-27</a></time>
-      
-      
-  
-    <h1 class="title">Pacman Command in Arch Linux</h1>
-  
+    <div id="main-col" class="alignleft"><div id="wrapper">
+<h2 class="archive-title">2023/1</h2>
 
-    </header>
-    <div class="entry">
-      
-        <p>I’ve recently started using a Arch Linux distribution <a target="_blank" rel="noopener" href="https://garudalinux.org/">Garuda Linux</a> and the package management tool is <strong>pacman</strong> this article summarizes the most common actions with based on the following article from <a target="_blank" rel="noopener" href="https://www.geeksforgeeks.org/pacman-command-in-arch-linux/">GeeksforGeeks</a>.</p>
-<h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><blockquote>
-<p>Pacman is a package manager for the arch Linux and arch-based Linux distributions. If you have used Debian-based OS like ubuntu, then the  Pacman is similar to the apt command of Debian-based operating systems. Pacman contains the compressed files as a package format and maintains a text-based package database. Pacman keeps the system up to date by synchronizing package lists with the master server. Pacman can install the packages from the official repositories or your own build packages.</p>
-</blockquote>
-<h1 id="Installing-Packages-using-the-Pacman"><a href="#Installing-Packages-using-the-Pacman" class="headerlink" title="Installing Packages using the Pacman"></a>Installing Packages using the Pacman</h1><p>When we install any new operating system on our machine, the first task we do is to install the software packages on the system. Now, to install the packages on Arch Linux, use the command Pacman with -S option and mention the package name. The -S option tells the Pacman to synchronize and to continue. Here is one example </p>
-<p><code>sudo pacman -S cmatrix</code></p>
-<p>We can mention the many package names after the -S option, separated by space.</p>
-<p><code>sudo pacman -S package1 package2 package3</code></p>
-<p>Then Pacman will show the download and install size of the package and ask for to proceed, then simply press the Y key. Pacman categorizes the installed packages into two categories.</p>
-<ul>
-<li><strong>Implicitly Installed</strong>: The package that was installed using the -S or -U option.</li>
-<li><strong>Dependencies</strong>: The package is installed because it is required by another package.</li>
-</ul>
-<h1 id="Removing-packages-using-the-Pacman"><a href="#Removing-packages-using-the-Pacman" class="headerlink" title="Removing packages using the Pacman"></a>Removing packages using the Pacman</h1><p>When we don’t need the package anymore, then we should remove the package from the system. To remove the package with all its dependencies which are not required by other packages, use the following command:</p>
-<p><code>sudo pacman -Rs &lt;package_name&gt;</code></p>
-<p>To remove the package without removing its dependency use the following command:</p>
-<p><code>sudo pacman -R &lt;package_name&gt;</code></p>
-<p>To remove the dependencies which are not required anymore, use the following command:</p>
-<p><code>pacman -Qdtq |  pacman -Rs -</code></p>
-<h1 id="Upgrading-packages"><a href="#Upgrading-packages" class="headerlink" title="Upgrading packages"></a>Upgrading packages</h1><p>In arch Linux, we can upgrade the full system by only one command using the Pacman. Use the following command to update the system:</p>
-<p><code>sudo pacman -Suy</code></p>
-<p>Let’s understand the meaning, S tell the pacman to synchronize the local database with the main database. u tells the pacman to upgrade the packages and y update the local catch on the system. Basically, this command synchronizes the local pacman database with the main repository database and then updates the system.</p>
-<h1 id="Searching-for-a-Package"><a href="#Searching-for-a-Package" class="headerlink" title="Searching for a Package"></a>Searching for a Package</h1><p>Now let’s see how we can search the package into the database of pacman. To search query in the name and description  of the package in the database use the following command:</p>
-<p><code>sudo pacman -Ss   &lt;query1&gt;  &lt;query2&gt;</code></p>
-<p>To search into already installed packages on the system, use the following command:</p>
-<p><code>sudo pacman -Qs query1&gt;  &lt;query2&gt;</code></p>
-<p>To search the query into the local database use the following command:</p>
-<p><code>sudo pacman -F query1&gt;  &lt;query2&gt;</code></p>
-<h1 id="Cleaning-the-Package-Cache"><a href="#Cleaning-the-Package-Cache" class="headerlink" title="Cleaning the Package Cache"></a>Cleaning the Package Cache</h1><p>When pacman downloads the packages it stores the packages into the <code>/var/cache/pacman/pkg/</code> and while uninstalling the package pacman does not delete these files. Pacman uses these files to downgrade the package or install the package. But it can take a lot of space to store these packages. So to delete the stored packages, use the following command:</p>
-<p><code>sudo pacman -Sc</code></p>
-<p>To remove all stored packages and cache, use the following command:</p>
-<p><code>sudp pacman -Scc</code></p>
-<h1 id="Installing-local-packages"><a href="#Installing-local-packages" class="headerlink" title="Installing local packages"></a>Installing local packages</h1><p>By using pacman we can install packages other than the main repository of Arch Linux. Use the following command to install the packages</p>
-<p>For local:</p>
-<p><code>sudo pacman -U path_to_file.pkg.tar.xz</code></p>
-<p>For remote package:</p>
-<p><code>sudo pacman -U http://www.example.com/repo/example.pkg.tar.xz</code></p>
-<h1 id="Troubleshooting"><a href="#Troubleshooting" class="headerlink" title="Troubleshooting"></a>Troubleshooting</h1><p>Sometimes installing the packages with pacman we face some errors. Following are the mainly occurred errors with pacman:</p>
-<ul>
-<li><p><strong>Conflicting file error</strong>: This error occurs due to some conflict packages present in the repository. To solve this error we can manually rename the file or force the overwrite function. We can use the following command to overwrite the function: </p>
-<ul>
-<li><code>pacman -S --overwrite glob package</code></li>
-</ul>
-</li>
-<li><p><strong>Invalid package</strong>: This error can occur due to the partial installation of the packages. We can solve this error by deleting .part files in <code>/var/cache/pacman/pkg/</code>.</p>
-</li>
-<li><p><strong>Locking database</strong>: This error can occur when pacman is interrupted while updating the database. To solve this error, delete the file <code>/var/lib/pacman/db.lck</code> and update the database. Use the following command to delete the file:</p>
-</li>
-</ul>
-<h1 id="Garuda"><a href="#Garuda" class="headerlink" title="Garuda"></a>Garuda</h1><p> Garuda also brings a useful command <code>update</code> that abstracts all this interactions to keep your rolling system updated, still very important to understand the command line utilities to manage the packages and check the official man page for further details as this is always evolving.</p>
-<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://www.geeksforgeeks.org/pacman-command-in-arch-linux/">https://www.geeksforgeeks.org/pacman-command-in-arch-linux/</a></li>
-<li><a target="_blank" rel="noopener" href="https://archlinux.org/pacman/pacman.8.html">https://archlinux.org/pacman/pacman.8.html</a></li>
-</ul>
 
-      
-    </div>
-    <footer>
-      
-        
-        
-  
-  <div class="tags">
-    <a href="/tags/Linux/">Linux</a>, <a href="/tags/Arch/">Arch</a>, <a href="/tags/Sheetlist/">Sheetlist</a>
+  <div class="archive">
+    
+      <article class="post">
+        <div class="post-content-archive">
+          <header>
+            <div class="icon"></div>
+            <time datetime="2023-01-27T10:00:00.000Z"><a href="/2023/01/27/pacman/">2023-01-27</a></time>
+            
+              <h1 class="title-archive"><a href="/2023/01/27/pacman/">Pacman Command in Arch Linux</a></h1>
+            
+          </header>
+        </div>
+      </article>
+    
   </div>
 
-        
-  <div class="addthis addthis_toolbox addthis_default_style">
-    
-      <a class="addthis_button_linkedin_counter" li:counter="none"></a>
-    
-    
-      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-    
-    
-      <a class="addthis_button_tweet"></a>
-    
-    <a class="addthis_counter addthis_pill_style"></a>
-  </div>
-
-
-
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-<section id="comment">
-  <h1 class="title">Coments</h1>
-
-  
-      <div id="fb-root"></div>
-<script>
-  (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=524446951221420";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
-</script>
-
-<div class="fb-comments" data-href="http://rramos.github.io/2024/01/27/pacman/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
-      
-  
-</section>
 
 </div></div>
     <aside id="sidebar" class="alignright">

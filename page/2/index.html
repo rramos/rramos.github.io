@@ -77,138 +77,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2024-01-04T20:00:00.000Z"><a href="/2024/01/04/p3scontroller/">2024-01-04</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2024/01/04/p3scontroller/">PS3 Controller in Arch</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h2 id="Configuration-for-PS3-Controller-in-Arch-Linux"><a href="#Configuration-for-PS3-Controller-in-Arch-Linux" class="headerlink" title="Configuration for PS3 Controller in Arch Linux"></a>Configuration for PS3 Controller in Arch Linux</h2><p>This quick guide explains how to setup your PS3 controller in Arch Linux making sure the Bluetooth connection works</p>
-<h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><p>Make sure to install the bluetooth packages and have a working usb device.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo pacman -S bluez bluez-utils bluez-plugins</span><br></pre></td></tr></table></figure>
-
-<p>Create the following file <code>/etc/bluetooth/main.conf</code> with the content:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[General]</span><br><span class="line">ClassicBondedOnly=false</span><br></pre></td></tr></table></figure>
-
-<p>And just restart you computer.</p>
-<p>Press the Middle <strong>PS</strong> button until leds start blinking, then connect the usb cable from the controller to the PC and you should se a warning to authorize the device.</p>
-<p>After that you can unplug the controller and manage via you bluetooth manager.</p>
-<blockquote>
-<p><strong>NOTE:</strong> Take into account that the ClassicalBondedOnly Option is a solution that regresses you security configuration for bluetooth pairing, more details <a target="_blank" rel="noopener" href="https://github.com/bluez/bluez/issues/673#issuecomment-1858431729">here</a> use at you own risk</p>
-</blockquote>
-<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Gamepad">https://wiki.archlinux.org/title/Gamepad</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2024-01-02T10:00:00.000Z"><a href="/2024/01/02/scalavariance/">2024-01-02</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2024/01/02/scalavariance/">Scala Variance</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>Variance lets you control how type parameters behave with regards to subtyping. Scala supports variance annotations of type parameters of generic classes, to allow them to be covariant, contravariant, or invariant if no annotations are used. The use of variance in the type system allows us to make intuitive connections between complex types.</p>
-<blockquote>
-<p>Variance: If B Extends A, Should List[B] extend List[A] ?</p>
-</blockquote>
-<h3 id="Invariance"><a href="#Invariance" class="headerlink" title="Invariance"></a>Invariance</h3><p>By <strong>default</strong>, type parameters in Scala are invariant: subtyping relationships between the type parameters aren’t reflected in the parameterized type.</p>
-<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">trait</span> <span class="title">List</span>[<span class="type">A</span>]</span></span><br></pre></td></tr></table></figure>
-
-<p>Example</p>
-<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Box</span>[<span class="type">A</span>](<span class="params">var content: <span class="type">A</span></span>)</span></span><br></pre></td></tr></table></figure>
-
-<p>We’re going to be putting values of type <code>Animal</code> in it. This type is defined as follows:</p>
-<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">name</span></span>: <span class="type">String</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">case</span> <span class="class"><span class="keyword">class</span> <span class="title">Cat</span>(<span class="params">name: <span class="type">String</span></span>) <span class="keyword">extends</span> <span class="title">Animal</span></span></span><br><span class="line"><span class="keyword">case</span> <span class="class"><span class="keyword">class</span> <span class="title">Dog</span>(<span class="params">name: <span class="type">String</span></span>) <span class="keyword">extends</span> <span class="title">Animal</span></span></span><br></pre></td></tr></table></figure>
-
-<p>We can say that <code>Cat</code> is a subtype of <code>Animal</code>, and that <code>Dog</code> is also a subtype of <code>Animal</code>. That means that the following is well-typed:</p>
-<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> myAnimal: <span class="type">Animal</span> = <span class="type">Cat</span>(<span class="string">&quot;Felix&quot;</span>)</span><br></pre></td></tr></table></figure>
-<p>What about boxes? Is <code>Box[Cat]</code> a subtype of <code>Box[Animal]</code>, like <code>Cat</code> is a subtype of <code>Animal</code>? </p>
-<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> myCatBox: <span class="type">Box</span>[<span class="type">Cat</span>] = <span class="keyword">new</span> <span class="type">Box</span>[<span class="type">Cat</span>](<span class="type">Cat</span>(<span class="string">&quot;Felix&quot;</span>))</span><br><span class="line"><span class="keyword">val</span> myAnimalBox: <span class="type">Box</span>[<span class="type">Animal</span>] = myCatBox <span class="comment">// this doesn&#x27;t compile</span></span><br></pre></td></tr></table></figure>
-
-<p>Although this is valid</p>
-<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> myAnimal: <span class="type">Animal</span> = myAnimalBox.content</span><br><span class="line">myAnimalBox.content = <span class="type">Dog</span>(<span class="string">&quot;Fido&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>From this, we have to conclude that <code>Box[Cat]</code> and <code>Box[Animal]</code> can’t have a subtyping relationship, even though <code>Cat</code> and <code>Animal</code> do.</p>
-<h3 id="Covarience"><a href="#Covarience" class="headerlink" title="Covarience"></a>Covarience</h3><p>The The problem we ran in to above, is that because we could put a Dog in an Animal Box, a Cat Box can’t be an Animal Box.</p>
-<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">trait</span> <span class="title">List</span>[+<span class="type">A</span>]</span></span><br></pre></td></tr></table></figure>
-
-<p>Example:</p>
-<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ImmutableBox</span>[+<span class="type">A</span>](<span class="params">val content: <span class="type">A</span></span>)</span></span><br><span class="line"><span class="keyword">val</span> catbox: <span class="type">ImmutableBox</span>[<span class="type">Cat</span>] = <span class="keyword">new</span> <span class="type">ImmutableBox</span>[<span class="type">Cat</span>](<span class="type">Cat</span>(<span class="string">&quot;Felix&quot;</span>))</span><br><span class="line"><span class="keyword">val</span> animalBox: <span class="type">ImmutableBox</span>[<span class="type">Animal</span>] = catbox <span class="comment">// now this compiles</span></span><br></pre></td></tr></table></figure>
-
-<p>We say that ImmutableBox is <strong>covariant</strong> in <code>A</code>, and this is indicated by the <code>+</code> before the <code>A</code>.</p>
-<h3 id="Contravarience"><a href="#Contravarience" class="headerlink" title="Contravarience"></a>Contravarience</h3><p>We’ve seen we can accomplish covariance by making sure that we can’t put something in the covariant type, but only get something out. What if we had the opposite, something you can put something in, but can’t take out?</p>
-<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">trait</span> <span class="title">List</span>[-<span class="type">A</span>]</span></span><br></pre></td></tr></table></figure>
-
-<p>Example:</p>
-<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Serializer</span>[-<span class="type">A</span>] </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">serialize</span></span>(a: <span class="type">A</span>): <span class="type">String</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> animalSerializer: <span class="type">Serializer</span>[<span class="type">Animal</span>] = <span class="keyword">new</span> <span class="type">Serializer</span>[<span class="type">Animal</span>] &#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">serialize</span></span>(animal: <span class="type">Animal</span>): <span class="type">String</span> = <span class="string">s&quot;&quot;</span><span class="string">&quot;&#123; &quot;</span><span class="string">name&quot;: &quot;</span>$&#123;animal.name&#125;<span class="string">&quot; &#125;&quot;</span><span class="string">&quot;&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">val</span> catSerializer: <span class="type">Serializer</span>[<span class="type">Cat</span>] = animalSerializer</span><br><span class="line">catSerializer.serialize(<span class="type">Cat</span>(<span class="string">&quot;Felix&quot;</span>))</span><br></pre></td></tr></table></figure>
-
-<p>We say that <code>Serializer</code> is contravariant in <code>A</code>, and this is indicated by the <code>-</code> before the <code>A</code>. A more general serializer is a subtype of a more specific serializer.</p>
-<p>More formally, that gives us the reverse relationship: given some class <code>Contra[-T]</code>, then if <code>A</code> is a subtype of <code>B</code>, <code>Contra[B]</code> is a subtype of <code>Contra[A]</code>.</p>
-<h2 id="Bounded-Types"><a href="#Bounded-Types" class="headerlink" title="Bounded Types"></a>Bounded Types</h2><p>The type of Variance would lead to have members defined with upper or lower bounded types like the following example.</p>
-<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SuperCar</span> <span class="keyword">extends</span> <span class="title">Car</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Garage</span>[<span class="type">T</span> &lt;: <span class="type">Car</span>&gt;](<span class="params">car: <span class="type">T</span></span>)</span></span><br></pre></td></tr></table></figure>
-
-<p>More deatils on bounded values on the following articles:</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://docs.scala-lang.org/tour/upper-type-bounds.html">https://docs.scala-lang.org/tour/upper-type-bounds.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://docs.scala-lang.org/tour/lower-type-bounds.html">https://docs.scala-lang.org/tour/lower-type-bounds.html</a></li>
-</ul>
-<h2 id="Immutability-and-Variance"><a href="#Immutability-and-Variance" class="headerlink" title="Immutability and Variance"></a>Immutability and Variance</h2><p>Immutability constitutes an important part of the design decision behind using variance. For example, Scala’s collections systematically distinguish between mutable and immutable collections. The main issue is that a covariant mutable collection can break type safety. This is why List is a covariant collection, while scala.collection.mutable.ListBuffer is an invariant collection.</p>
-<h2 id="Comparison-With-Other-Languages"><a href="#Comparison-With-Other-Languages" class="headerlink" title="Comparison With Other Languages"></a>Comparison With Other Languages</h2><p>Variance is supported in different ways by some languages that are similar to Scala. Scala’s tendency towards immutable types makes it that covariant and contravariant types are more common than in other languages, since a mutable generic type must be invariant.</p>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://docs.scala-lang.org/tour/variances.html">https://docs.scala-lang.org/tour/variances.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://docs.scala-lang.org/tour/upper-type-bounds.html">https://docs.scala-lang.org/tour/upper-type-bounds.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://docs.scala-lang.org/tour/lower-type-bounds.html">https://docs.scala-lang.org/tour/lower-type-bounds.html</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
         <time datetime="2023-12-27T10:00:00.000Z"><a href="/2023/12/27/aspire/">2023-12-27</a></time>
       
       
@@ -430,6 +298,155 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li><a target="_blank" rel="noopener" href="https://duckdb.org/">https://duckdb.org</a></li>
 <li><a target="_blank" rel="noopener" href="https://duckdb.org/docs/guides/performance/benchmarks">https://duckdb.org/docs/guides/performance/benchmarks</a></li>
 <li><a target="_blank" rel="noopener" href="https://duckdb.org/docs/data/csv/overview">https://duckdb.org/docs/data/csv/overview</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2023-12-26T16:00:00.000Z"><a href="/2023/12/26/evidence/">2023-12-26</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2023/12/26/evidence/">Evidence</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>In this article I will go through <a target="_blank" rel="noopener" href="https://docs.evidence.dev/">Evidence</a></p>
+<h1 id="What-is-Evidence"><a href="#What-is-Evidence" class="headerlink" title="What is Evidence"></a>What is Evidence</h1><p>Evidence is an open source, code-based alternative to drag-and-drop business intelligence tools.</p>
+<p>Evidence reports are written in <a target="_blank" rel="noopener" href="https://docs.evidence.dev/markdown">Evidence-flavored Markdown</a> - an extension of markdown that includes SQL queries, data viz components, and programmatic features.</p>
+<h2 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h2><p>Code fences in Evidence markdown files run inline queries and return data. These code fences run the DuckDB SQL dialect.</p>
+<figure class="highlight sql"><figcaption><span>orders_by_month</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span></span><br><span class="line">    date_trunc(<span class="string">&#x27;month&#x27;</span>, order_datetime) <span class="keyword">as</span> order_month,</span><br><span class="line">    <span class="built_in">count</span>(<span class="operator">*</span>) <span class="keyword">as</span> number_of_orders,</span><br><span class="line">    <span class="built_in">sum</span>(sales) <span class="keyword">as</span> sales_usd</span><br><span class="line"><span class="keyword">from</span> needful_things.orders</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> <span class="number">1</span>, <span class="keyword">order</span> <span class="keyword">by</span> <span class="number">1</span> <span class="keyword">desc</span></span><br></pre></td></tr></table></figure>
+<p>More information on queries available at <a target="_blank" rel="noopener" href="https://docs.evidence.dev/core-concepts/queries">Queries Section</a></p>
+<h2 id="Components"><a href="#Components" class="headerlink" title="Components"></a>Components</h2><p>Evidence has a built in component library to create charts and other visual elements. More on Components.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;LineChart </span><br><span class="line">    data = &#123;orders_by_month&#125;    </span><br><span class="line">    y = sales_usd </span><br><span class="line">    title = &#x27;Sales by Month, USD&#x27; </span><br><span class="line">/&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Check the <a target="_blank" rel="noopener" href="https://docs.evidence.dev/components/all-components">Component Library</a> for more information.</p>
+<p>One can also use, Loops, If&#x2F;Then Statements, Partials, Page Variables, and also sorts of customizations checkout the <a target="_blank" rel="noopener" href="https://docs.evidence.dev/core-concepts/syntax/#">Core Components</a> page for more details.</p>
+<p>In production, Evidence is a static site generator. This means it doesn’t run queries when someone visits your site, but pre-builds all possible pages as HTML beforehand.</p>
+<p>You can host your Evidence project using Evidence Cloud, cloud services like Netlify or Vercel, or your own infrastructure. Evidence does not currently support Github Pages.</p>
+<h2 id="Build-Process"><a href="#Build-Process" class="headerlink" title="Build Process"></a>Build Process</h2><p>Evidence doesn’t run new queries each time someone visits one of your reports.</p>
+<p>Instead, Evidence runs your queries once, at build time, and statically generates all of the pages in your project. This includes all possible permutations of any paramaterized pages.</p>
+<p>You can schedule (or trigger) regular builds of your site to keep it up-to-date with your data warehouse.</p>
+<p>This has two benefits for you and your users:</p>
+<p>If something goes wrong with your SQL, Evidence just stops building your project, and continues to serve older results.<br>Your site will be exceptionally fast. Under most conditions, pages will load in milliseconds.</p>
+<h1 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h1><table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Min Version</th>
+<th>Max Version</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Node.js</td>
+<td>16.14</td>
+<td>20.10</td>
+</tr>
+<tr>
+<td>NPM</td>
+<td>7</td>
+<td>10.1</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>NOTE:</strong> This requirements may change based on the evolution of the Product. At the time of this writing was 3.0.2</p>
+</blockquote>
+<h1 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h1><p>There are several ways to install Evidence, for this article following the traditional one with npx, but there is an option using <a target="_blank" rel="noopener" href="https://github.com/evidence-dev/docker-devenv">docker</a> if you prefeer that option</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npx degit evidence-dev/template evidence-test</span><br><span class="line">cd evidence-test</span><br><span class="line">npm install</span><br><span class="line">npm run sources</span><br><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
+
+<p>I would suggest however to setup the <a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=Evidence.evidence-vscode">VSCode Plugin</a> if you use that IDE, as it do all this work underneat :D</p>
+<h1 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h1><p>Now let’s generate Some Random data using <a href="https://rramos.github.io/2023/12/21/jafgen/">jafgen</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd evidence-test/sources</span><br><span class="line">jafgen --years 1</span><br><span class="line">mv jaffgen-data jaffgendata</span><br></pre></td></tr></table></figure>
+<p>Create the following file <code>jaffledata/connection.yaml</code> with the content:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># This file was automatically generated</span><br><span class="line">name: jaffledata</span><br><span class="line">type: csv</span><br><span class="line">options: &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Then run </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm run sources</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>NOTE:</strong> A better way to configure sources would be by accessing the following URL: <a target="_blank" rel="noopener" href="http://localhost:3000/settings/">http://localhost:3000/settings/</a></p>
+</blockquote>
+<h1 id="Create-a-sample-report"><a href="#Create-a-sample-report" class="headerlink" title="Create a sample report"></a>Create a sample report</h1><p>Create the following page <code>pages/jaffle.md</code> with the content</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Jaffle Example Report</span><br><span class="line"></span><br><span class="line">This example is based on mock data from jaffle. </span><br><span class="line"></span><br><span class="line">Let&#x27;s check the data</span><br><span class="line"></span><br><span class="line">## Orders</span><br><span class="line">```sql orders</span><br><span class="line">select * from raw_orders</span><br><span class="line">```</span><br><span class="line"></span><br><span class="line">## Customers</span><br><span class="line">```sql customers</span><br><span class="line">select * from raw_customers</span><br><span class="line">```</span><br><span class="line"></span><br><span class="line"># Orders by Customer</span><br><span class="line">```sql orders_by_customer</span><br><span class="line">select</span><br><span class="line">     count(o.id) as orders,</span><br><span class="line">     c.column0 as customerid</span><br><span class="line">from raw_orders as o</span><br><span class="line">left join raw_customers as c</span><br><span class="line">on o.customer = c.column0</span><br><span class="line">group by c.column0</span><br><span class="line">order by orders desc</span><br><span class="line">```</span><br><span class="line"></span><br><span class="line">&lt;BarChart</span><br><span class="line">    data=&quot;&#123;orders_by_customer&#125;&quot;</span><br><span class="line">    x=&quot;customerid&quot;</span><br><span class="line">    y=&quot;orders&quot;</span><br><span class="line">    series=&quot;customerid&quot;</span><br><span class="line">    title=&quot;Orders by Customer&quot;</span><br><span class="line">/&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>You can test the report through the URL:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://localhost:3000/jaffle">http://localhost:3000/jaffle</a></li>
+</ul>
+<p>And that’s it :)</p>
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>This article provided a quick intro on how to setup evidence to quickly generate analytical visualization based on Markdown documents. The sample data used was CSV mocked data. In general seems a very useful tools for generating quick reports the renderization in the interface is quite fast.</p>
+<p>Points that I found some issues. Loading directly from CSV doesn’t seem a good approach as there seems to be a lack of configuration, and CSV by nature tend to need some work in terms of data treatment, a rather convert the data to duckdb to mitigate this.</p>
+<p>Also take into account the pages are static so the refresh rate of our sources is up to you. The good news is that it seems to fit well with some CI&#x2F;CD process. Github pages not supported at the momment, but there are other options.</p>
+<p>Guess I will try this option further in future. I Strongly recommend to check the Official documentation on the Components and Syntax.</p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.evidence.dev/getting-started/install-evidence">https://docs.evidence.dev/getting-started/install-evidence</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/evidence-dev/docker-devenv">https://github.com/evidence-dev/docker-devenv</a></li>
+<li><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=Evidence.evidence-vscode">https://marketplace.visualstudio.com/items?itemName=Evidence.evidence-vscode</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.evidence.dev/markdown">https://docs.evidence.dev/markdown</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2023-12-25T10:00:00.000Z"><a href="/2023/12/25/TheOnething/">2023-12-25</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2023/12/25/TheOnething/">The One Thing</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>One of the references that I most enjoyed on the book:</p>
+<ul>
+<li><strong>The One Thing</strong>, by <em>Gary Keller, Jay Papasan</em></li>
+</ul>
+<p>Passion for something leads to disproportionate time practicing or working at it. That time spent eventually translates to skill, and when skill improves, results improve. Better results generally lead to more enjoyment, and more passion and more time is invested. It can be a virtuous cycle all the way to extraordinary results</p>
+<blockquote>
+<p>Find something you love, put your energy on it and good things will come out of it</p>
+</blockquote>
+<p>Many people struggle to achieve their goals because they lack clear direction and focus. Our One Thing Approach provides a clear path to success.</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://the1thing.com/book">https://the1thing.com/book</a></li>
 </ul>
 
       

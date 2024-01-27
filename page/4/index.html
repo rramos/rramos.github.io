@@ -77,215 +77,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2023-08-29T21:00:00.000Z"><a href="/2023/08/29/apiarchitectures/">2023-08-29</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2023/08/29/apiarchitectures/">API Architectures</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>This article resumes the video by Alex Xu and Sahn Lam regarding 6 types of API Architectures and there usecases. Checkout there youtube channel as it has very interesting content</p>
-<img src="/2023/08/29/apiarchitectures/6-API-Archs.jpeg" class="" title="apiarchitectures">
-
-<h1 id="SOAP"><a href="#SOAP" class="headerlink" title="SOAP"></a>SOAP</h1><p>XML-based for enterprise application where security and reliability are key, but it could be overkill if you are developing a webapp for instance due to fact that it is complex.</p>
-<h1 id="RESTful"><a href="#RESTful" class="headerlink" title="RESTful"></a>RESTful</h1><p>Resource-based for webservers, implemented on top of HTTP methods very popular in web development. It may not be the best option if you need real time data or operate with a higly connected data model may not be the best choice</p>
-<h1 id="GraphQL"><a href="#GraphQL" class="headerlink" title="GraphQL"></a>GraphQL</h1><p>query language reduce network load. allow the client to ask for the specific data that it needs, more faster responses as you don’t need to over fetch data you don’t require. Good choice for applications with complex data requirements</p>
-<h1 id="gRPC"><a href="#gRPC" class="headerlink" title="gRPC"></a>gRPC</h1><p>High performance for microservices, used protocol buffers by default. Good choice for micro-services architecture for inter-service communications but if dealing with browser client there are some limitations</p>
-<h1 id="WebSocket"><a href="#WebSocket" class="headerlink" title="WebSocket"></a>WebSocket</h1><p>Bi-directional for low-latency data exchange. Perfect for real chat applications and real time gaming where low latency exchange is crucial</p>
-<h1 id="Webhook"><a href="#Webhook" class="headerlink" title="Webhook"></a>Webhook</h1><p>Asynchronous for event-driven application. Very usefull if you don’ t need immediate response and latency is not an issue</p>
-<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=4vLxWqE94l4&ab_channel=ByteByteGo">https://www.youtube.com/watch?v=4vLxWqE94l4&amp;ab_channel=ByteByteGo</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2023-08-27T23:00:00.000Z"><a href="/2023/08/27/aur/">2023-08-27</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2023/08/27/aur/">AUR Packages</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>In this article i will review how AUR packages are defined. I used to create rpm and debian packages, but switched recently to use Arch Linux. As such makes sense to review how to create a aur package and how does it works the ecosystem.</p>
-<h1 id="Arch-Packages"><a href="#Arch-Packages" class="headerlink" title="Arch Packages"></a>Arch Packages</h1><p>The Arch User Repository (AUR) is a community-driven repository for Arch users. It contains package descriptions (PKGBUILDs) that allow you to compile a package from source with makepkg and then install it via pacman. The AUR was created to organize and share new packages from the community and to help expedite popular packages’ inclusion into the extra repository. </p>
-<h1 id="Getting-Started"><a href="#Getting-Started" class="headerlink" title="Getting Started"></a>Getting Started</h1><ol>
-<li>Ensure <strong>base-devel</strong> is installed.</li>
-<li>Adjust &#x2F;etc&#x2F;makepkg.conf</li>
-</ol>
-<h2 id="etc-makepkg-conf"><a href="#etc-makepkg-conf" class="headerlink" title="&#x2F;etc&#x2F;makepkg.conf"></a>&#x2F;etc&#x2F;makepkg.conf</h2><p>You may wish to adjust <code>/etc/makepkg.conf</code> to optimize the build process to your system prior to building packages from the AUR. A significant improvement in package build times can be realized on systems with multi-core processors by adjusting the MAKEFLAGS variable, by using multiple cores for compression, or by using different compression algorithm. Users can also enable hardware-specific compiler optimizations via the CFLAGS variable.</p>
-<p>I will just adjust the parallelism for compilation to use the 8-cores I have </p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">MAKEFLAGS=&quot;-j8&quot;</span><br></pre></td></tr></table></figure>
-
-<p>The overall flags seem to be very optimized already, checkout the <a target="_blank" rel="noopener" href="https://wiki.gentoo.org/wiki/GCC_optimization/en#What_are_CFLAGS_and_CXXFLAGS.3F">article</a> if you want to go into that rabbit hole</p>
-<h2 id="Installing-and-upgrading-packages"><a href="#Installing-and-upgrading-packages" class="headerlink" title="Installing and upgrading packages"></a>Installing and upgrading packages</h2><p>Installing packages from the AUR is a relatively simple process. Essentially:</p>
-<ol>
-<li>Acquire the build files, including the <strong>PKGBUILD</strong> and possibly other required files, like systemd units and patches (often not the actual code).</li>
-<li>Verify that the <strong>PKGBUILD</strong> and accompanying files are not malicious or untrustworthy.</li>
-<li>Run <code>makepkg</code> in the directory where the files are saved. This will download the code, compile it, and package it.</li>
-<li>Run <code>pacman -U package_file</code> to install the package onto your system.</li>
-</ol>
-<h2 id="Acquire-build-files"><a href="#Acquire-build-files" class="headerlink" title="Acquire build files"></a>Acquire build files</h2><p>Locate the package in the AUR. This is done using the search field at the top of the <a target="_blank" rel="noopener" href="https://aur.archlinux.org/">AUR home page</a>. Clicking the application’s name in the search list brings up an information page on the package. Read through the description to confirm that this is the desired package, note when the package was last updated, and read any comments.</p>
-<p>Clone git the repository for the package</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">git clone https://aur.archlinux.org/package_name.git</span><br></pre></td></tr></table></figure>
-
-<h2 id="Acquire-a-PGP-public-key-if-needed"><a href="#Acquire-a-PGP-public-key-if-needed" class="headerlink" title="Acquire a PGP public key if needed"></a>Acquire a PGP public key if needed</h2><p>Check if a signature file in the form of .sig or .asc is part of the PKGBUILD source array. If that is the case, then acquire one of the public keys listed in the PKGBUILD <a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/PKGBUILD#validpgpkeys">validpgpkeys</a> array</p>
-<h2 id="Build-the-package"><a href="#Build-the-package" class="headerlink" title="Build the package"></a>Build the package</h2><p>Change directories to the directory containing the package’s <strong>PKGBUILD</strong>.</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> package_name</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">makepkg -si</span></span><br></pre></td></tr></table></figure>
-<h2 id="Install-the-package"><a href="#Install-the-package" class="headerlink" title="Install the package"></a>Install the package</h2><p>The package can now be installed with pacman:</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">pacman -U package_name-version-architecture.pkg.tar.zst</span><br></pre></td></tr></table></figure>
-
-<h2 id="Lets-test-…"><a href="#Lets-test-…" class="headerlink" title="Lets test …"></a>Lets test …</h2><p>Using one example package <strong>paru</strong>. one can use the following commands</p>
-<p>Let’s check available updates with paru</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">paru -Qua</span><br></pre></td></tr></table></figure>
-
-<h1 id="PKGBUILD"><a href="#PKGBUILD" class="headerlink" title="PKGBUILD"></a>PKGBUILD</h1><p>The following manpage <a target="_blank" rel="noopener" href="https://man.archlinux.org/man/PKGBUILD.5">PKGBUILD(5)</a> provides more in-depth information regarding the <strong>PKBUILD</strong> package description file.</p>
-<h2 id="Creating-Packages"><a href="#Creating-Packages" class="headerlink" title="Creating Packages"></a>Creating Packages</h2><h3 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h3><p>Packages in Arch Linux are built using the <code>makepkg</code> utility and the information stored in a <code>PKGBUILD</code> file. When makepkg runs, it searches for a PKGBUILD in the current directory and follows the instructions in it to acquire the required files and&#x2F;or compile them to be packed within a package file (<code>pkgname.pkg.tar.zst</code>). The resulting package contains binary files and installation instructions ready to be installed by pacman.</p>
-<p>An Arch package is no more than a tar archive, or ‘tarball’, compressed using <a target="_blank" rel="noopener" href="https://man.archlinux.org/man/zstd.1">zstd(1)</a>, which contains the following files generated by makepkg:</p>
-<ul>
-<li>The binary files to install.</li>
-<li><code>.PKGINFO</code>: contains all the metadata needed by pacman to deal with packages, dependencies, etc.</li>
-<li><code>.BUILDINFO</code>: contains information needed for reproducible builds. This file is present only if a package is built with pacman 5.1 or newer. See BUILDINFO(5).</li>
-<li><code>.MTREE</code>: contains hashes and timestamps of the files, which are included in the local database so that pacman can verify the integrity of the package.</li>
-<li><code>.INSTALL</code>: an optional file used to execute commands after the install&#x2F;upgrade&#x2F;remove stage. (This file is present only if specified in the PKGBUILD.)</li>
-<li><code>.Changelog</code>: an optional file kept by the package maintainer documenting the changes of the package. (It is not present in all packages.)</li>
-</ul>
-<h3 id="Preparation"><a href="#Preparation" class="headerlink" title="Preparation"></a>Preparation</h3><p>First, ensure that the necessary tools are installed: the meta package base-devel should be sufficient; it pulls in make and additional tools needed for compiling from source.</p>
-<p>The key tool for building packages is <strong>makepkg</strong> (provided by <strong>pacman</strong>), which does the following:</p>
-<ol>
-<li><strong>Checks if package dependencies are installed.</strong></li>
-<li><strong>Downloads the source file(s) from the specified server(s).</strong></li>
-<li><strong>Unpacks the source file(s).</strong></li>
-<li><strong>Compiles the software and installs it under a fakeroot environment.</strong></li>
-<li><strong>Strips symbols from binaries and libraries.</strong></li>
-<li><strong>Generates the package meta file which is included with each package.</strong></li>
-<li><strong>Compresses the fakeroot environment into a package file.</strong></li>
-<li><strong>Stores the package file in the configured destination directory, which is the current working directory by default.</strong></li>
-</ol>
-<p>Download the source tarball of the software you want to package, extract it, and follow the author’s steps to install the program. Make a note of all commands and&#x2F;or steps needed to compile and install it. You will be repeating those same commands in the <strong>PKGBUILD</strong> file.</p>
-<p>Most software authors stick to the 3-step build cycle:</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
-
-<h3 id="Creating-a-PKGBUILD"><a href="#Creating-a-PKGBUILD" class="headerlink" title="Creating a PKGBUILD"></a>Creating a PKGBUILD</h3><p>To start building a new package, first create a new directory for the package and change current directory into this one. Then, a <strong>PKGBUILD</strong> file needs to be created: a prototype PKGBUILD found in <code>/usr/share/pacman/</code> can be used or you can start from a <strong>PKGBUILD</strong> from another package. The latter may be a good choice if a similar package already exists.</p>
-<p>makepkg defines two variables that you should use as part of the build and install process:</p>
-<ul>
-<li><strong>srcdir</strong>: This points to the directory where makepkg extracts or symlinks all files in the source array.</li>
-<li><strong>pkgdir</strong>: This points to the directory where makepkg bundles the installed package, which becomes the root directory of your built package.</li>
-</ul>
-<p><strong>PKGBUILD functions</strong></p>
-<p>When building a package, <strong>makepkg</strong> will invoke the following five functions if they have been defined in the PKGBUILD. Function <code>package()</code> is required in every <strong>PKGBUILD</strong> and will always be invoked. If any of the other functions is not defined, makepkg will simply skip the invocation of that function.</p>
-<ul>
-<li><p><strong>prepare()</strong>: With this function, commands that are used to prepare sources for building are run, such as patching. This function runs right after package extraction, before <code>pkgver()</code> and the build function. If extraction is skipped (<code>makepkg --noextract</code>), then <code>prepare()</code> is not run</p>
-</li>
-<li><p><strong>pkgver()</strong>: pkgver() runs after the sources are fetched, extracted and prepare() executed. So you can update the pkgver variable during a makepkg stage. This is particularly useful if you are making git&#x2F;svn&#x2F;hg&#x2F;etc. packages, where the build process may remain the same, but the source could be updated every day, even every hour.</p>
-</li>
-<li><p><strong>build()</strong>: Now, you need to implement the build() function in the PKGBUILD file. This function uses common shell commands in Bash syntax to automatically compile software and create a directory called pkg to install the software to. This allows makepkg to package files without having to sift through your file system.</p>
-</li>
-<li><p><strong>check()</strong>: Place for calls to make check and similar testing routines. It is highly recommended to have check() as it helps to make sure software has been built correctly and works fine with its dependencies.</p>
-</li>
-<li><p><strong>package()</strong>: The final step is to put the compiled files in a directory where makepkg can retrieve them to create a package. This by default is the pkg directory—a simple fakeroot environment. The pkg directory replicates the hierarchy of the root file system of the software’s installation paths. If you have to manually place files under the root of your filesystem, you should install them in the pkg directory under the same directory structure. For example, if you want to install a file to &#x2F;usr&#x2F;bin, it should instead be placed under <code>$pkgdir/usr/bin</code>. Very few install procedures require the user to copy dozens of files manually. Instead, for most software, calling make install will do so.</p>
-</li>
-</ul>
-<h1 id="Lets-create-our-package"><a href="#Lets-create-our-package" class="headerlink" title="Lets create our package"></a>Lets create our package</h1><p>For testing purposes lets create a hello world application in rust and package it as a new AUR</p>
-<p>Create a new directory for this app (make sure you have rust installed)</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">cargo new myhello</span><br><span class="line">cd myhello</span><br><span class="line">cargo run</span><br></pre></td></tr></table></figure>
-<p>Great we have a Hello World App</p>
-<p>Let’s clean up</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">cargo clean</span><br></pre></td></tr></table></figure>
-
-<p>You should have this structure</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line">├── Cargo.lock</span><br><span class="line">├── Cargo.toml</span><br><span class="line">└── src</span><br><span class="line">    └── main.rs</span><br></pre></td></tr></table></figure>
-
-<p>Lets add a cargo module to generate our PKGBUILD file</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">cargo install cargo-aur</span><br></pre></td></tr></table></figure>
-
-<p>Let’s add some Metadata required for generating the AUR on <strong>Cargo.toml</strong> file</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">[package]</span><br><span class="line">name = &quot;myhello&quot;</span><br><span class="line">version = &quot;0.1.0&quot;</span><br><span class="line">edition = &quot;2021&quot;</span><br><span class="line"></span><br><span class="line">authors = [&quot;Rui Ramos&quot;, &quot;Rui Ramos &lt;no-reply@rust-lang.org&gt;&quot;]</span><br><span class="line">description = &quot;A HelloWorld Application for AUR testing purposes&quot;</span><br><span class="line">homepage=&quot;https://rramos.github.io&quot;</span><br><span class="line">repository = &quot;https://github.com/rramos/rust-helloworld.git&quot;  </span><br><span class="line">license = &quot;MIT&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html</span></span><br><span class="line"></span><br><span class="line">[dependencies]</span><br></pre></td></tr></table></figure>
-
-<p>For a complete list please check the <a target="_blank" rel="noopener" href="https://doc.rust-lang.org/cargo/reference/manifest.html">Cargo Manifest</a> page.</p>
-<p>Now run the following command</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">cargo aur</span><br></pre></td></tr></table></figure>
-
-<p>We now have a <strong>PKGBUILD</strong> package generated for this application with something similar</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Maintainer: Rui Ramos</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Maintainer: Rui Ramos &lt;no-reply@rust-lang.org&gt;</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># This PKGBUILD was generated by `cargo aur`: https://crates.io/crates/cargo-aur</span></span></span><br><span class="line"></span><br><span class="line">pkgname=myhello-bin</span><br><span class="line">pkgver=0.1.0</span><br><span class="line">pkgrel=1</span><br><span class="line">pkgdesc=&quot;A HelloWorld Application for AUR testing purposes&quot;</span><br><span class="line">url=&quot;https://rramos.github.io&quot;</span><br><span class="line">license=(&quot;MIT&quot;)</span><br><span class="line">arch=(&quot;x86_64&quot;)</span><br><span class="line">provides=(&quot;myhello&quot;)</span><br><span class="line">conflicts=(&quot;myhello&quot;)</span><br><span class="line">source=(&quot;https://github.com/rramos/rust-helloworld.git/releases/download/v$pkgver/myhello-$pkgver-x86_64.tar.gz&quot;)</span><br><span class="line">sha256sums=(&quot;ef8ce03c73185ef872116c17971c21f6f8f2c8f67d42a5c0b4ca876d164191b2&quot;)</span><br><span class="line"></span><br><span class="line">package() &#123;</span><br><span class="line">    install -Dm755 myhello -t &quot;$pkgdir/usr/bin&quot;</span><br><span class="line">    install -Dm644 LICENSE &quot;$pkgdir/usr/share/licenses/$pkgname/LICENSE&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>It also generated a tarball for the application <strong>myhello-0.1.0-x86_64.tar.gz</strong> .</p>
-<p>Now lets use pacman to build and install the package</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">makepkg -si</span><br></pre></td></tr></table></figure>
-
-<p>You should now have a executable <strong>myhello</strong> application congrats.</p>
-<h1 id="Clean-Up"><a href="#Clean-Up" class="headerlink" title="Clean Up"></a>Clean Up</h1><p>Let’s remove our application using the command</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">sudo pacman -R myhello-bin</span><br></pre></td></tr></table></figure>
-
-<h1 id="Checking-package-sanity"><a href="#Checking-package-sanity" class="headerlink" title="Checking package sanity"></a>Checking package sanity</h1><p>After testing package functionality, check it for errors using <a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Namcap">namcap</a></p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">namcap PKGBUILD</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">namcap &lt;package file name&gt;.pkg.tar.zst</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="Submitting-packages-to-the-AUR"><a href="#Submitting-packages-to-the-AUR" class="headerlink" title="Submitting packages to the AUR"></a>Submitting packages to the AUR</h1><p>In order to contribute to the community one can submit the AUR package. For that read <a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/AUR_submission_guidelines">AUR submission guidelines</a> for a detailed description of the submission process.</p>
-<p>You would need one ssh account and key.</p>
-<p>If you are developing in Rust I would advise following the <a target="_blank" rel="noopener" href="https://manojkarthick.com/posts/2021/03/rust-aur/">guide</a> from Manoj Karthick</p>
-<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>AUR packages seem quite similar to debian or rpm packages in a sense that you need to specify a set of instructions for compiling and installing, and those functions would be called by the packaging system. I liked the simplified structure of it and <strong>cargo-aur</strong> package is amazing for rust developers who want to quickly prepare and package their applications.</p>
-<p>On the article I didn’t deep dive on more complex preparation&#x2F;compilation options that some applications have or dependencies. Also is important to check the <a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Arch_package_guidelines">Arch guidelines</a> if you intend to release your application for the community and also follow good practices not only for the package build but also files organization.</p>
-<p>In general as a past RedHat, Debian and Gentoo Linux user, I’m really becoming a fan of this packaging system.</p>
-<p>Hope this helps, the following References section contains the source of information used to consolidate this article.</p>
-<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://aur.archlinux.org/">https://aur.archlinux.org/</a></li>
-<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/pacman">https://wiki.archlinux.org/title/pacman</a></li>
-<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/official_repositories">https://wiki.archlinux.org/title/official_repositories</a></li>
-<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Arch_package_guidelines">https://wiki.archlinux.org/title/Arch_package_guidelines</a></li>
-<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/general_recommendations">https://wiki.archlinux.org/title/general_recommendations</a></li>
-<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Arch_User_Repository">https://wiki.archlinux.org/title/Arch_User_Repository</a></li>
-<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Arch_User_Repository#Frequently_asked_questions">https://wiki.archlinux.org/title/Arch_User_Repository#Frequently_asked_questions</a></li>
-<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/PKGBUILD#validpgpkeys">https://wiki.archlinux.org/title/PKGBUILD#validpgpkeys</a></li>
-<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Creating_packages">https://wiki.archlinux.org/title/Creating_packages</a></li>
-<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/AUR_submission_guidelines">https://wiki.archlinux.org/title/AUR_submission_guidelines</a></li>
-<li><a target="_blank" rel="noopener" href="https://manojkarthick.com/posts/2021/03/rust-aur/">https://manojkarthick.com/posts/2021/03/rust-aur/</a></li>
-<li><a target="_blank" rel="noopener" href="https://doc.rust-lang.org/cargo/reference/manifest.html">https://doc.rust-lang.org/cargo/reference/manifest.html</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
         <time datetime="2023-08-26T21:00:00.000Z"><a href="/2023/08/26/minikube/">2023-08-26</a></time>
       
       
@@ -336,6 +127,73 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Minikube">https://wiki.archlinux.org/title/Minikube</a></li>
 <li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Kubernetes">https://wiki.archlinux.org/title/Kubernetes</a></li>
 <li><a target="_blank" rel="noopener" href="https://minikube.sigs.k8s.io/docs/handbook/">https://minikube.sigs.k8s.io/docs/handbook/</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2023-08-21T22:00:00.000Z"><a href="/2023/08/21/koboreader/">2023-08-21</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2023/08/21/koboreader/">How to Bypass Kobo Wizard in Linux</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>This article is a copy from <strong>Curtis Gedak</strong> in the following <a target="_blank" rel="noopener" href="https://gedakc.users.sourceforge.net/display-doc.php%3Fname%3Dkobo-desktop-ereader-setup">reference</a>. </p>
+<blockquote>
+<p>Kobo eReaders can no longer be set up using the Kobo Desktop on GNU&#x2F;Linux (see warning below). Fortunately there is a work around to get your Kobo eReader working without a Kobo Account.</p>
+</blockquote>
+<p>If you have a kobo reader stuck in the setup wizard as it happen to me (wifi got broken) there is a quick setup you can do to bypass the initial setup wizard.</p>
+<p><strong>Notice:</strong> This procedure was done in a old Kobo ebook reader, and is not guarantee that it will work on newer versions, use at your own risk</p>
+<h1 id="Issue"><a href="#Issue" class="headerlink" title="Issue"></a>Issue</h1><p>Kobo ebook reader stuck on the initial setup phase. Wifi doesn’t work and plugging to a computer requires the windows software installed, which for linux users doesn’t not work.</p>
+<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><p>Create a dummy user on the device to bypass the initial setup</p>
+<h1 id="Pre-Requisites"><a href="#Pre-Requisites" class="headerlink" title="Pre-Requisites"></a>Pre-Requisites</h1><p>You need to install sqlitebrowser</p>
+<p>Using the following code for Arch there should be a similar option Ubuntu or Fedora distributions</p>
+<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">sudo pacman -S sqlitebrowser</span><br></pre></td></tr></table></figure>
+<h1 id="Procedure"><a href="#Procedure" class="headerlink" title="Procedure"></a>Procedure</h1><ol>
+<li><p>Plug you ebook reader via usb </p>
+<ul>
+<li>You can check the mount points you should see a <code>/media/your-user-name/KOBOeReader</code> device . Assuming this path as reference</li>
+</ul>
+</li>
+<li><p>Connect with SLQliteBrowser</p>
+  <figure class="highlight console"><table><tr><td class="code"><pre><span class="line">sqlitebrowser /media/your-user-name/KOBOeReader/.kobo/KoboReader.sqlite</span><br></pre></td></tr></table></figure></li>
+<li><p>Click on the Execute SQL tab and in the SQL string: section enter the following statement</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">USER</span></span><br><span class="line">  (UserID, UserKey, UserDisplayName, UserEmail, ___DeviceID)</span><br><span class="line"><span class="keyword">values</span></span><br><span class="line">  (&quot;foo&quot;, &quot;foo&quot;, &quot;foo&quot;, &quot;foo&quot;,&quot;foo&quot;);</span><br></pre></td></tr></table></figure></li>
+<li><p>Save the changes</p>
+<ul>
+<li>Save these changes by selecting the menu option: File -&gt; Save Database or File -&gt; Write Changes.</li>
+</ul>
+</li>
+<li><p>Close the sqlitebrowser by selecting the menu option: File -&gt; Exit.</p>
+</li>
+<li><p>Safely unmount your Kobo eReader.</p>
+</li>
+</ol>
+<p>And voilá, your eReader should now boot up and display the QUICK TOUR screen</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://gedakc.users.sourceforge.net/display-doc.php%3Fname%3Dkobo-desktop-ereader-setup">https://gedakc.users.sourceforge.net/display-doc.php%3Fname%3Dkobo-desktop-ereader-setup</a></li>
 </ul>
 
       
@@ -479,6 +337,92 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </ul>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
 <li>These tips are available on Markus Amanto Leadership Training in Udemy, very insigthfull content recommended</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2023-01-27T10:00:00.000Z"><a href="/2023/01/27/pacman/">2023-01-27</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2023/01/27/pacman/">Pacman Command in Arch Linux</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>I’ve recently started using a Arch Linux distribution <a target="_blank" rel="noopener" href="https://garudalinux.org/">Garuda Linux</a> and the package management tool is <strong>pacman</strong> this article summarizes the most common actions with based on the following article from <a target="_blank" rel="noopener" href="https://www.geeksforgeeks.org/pacman-command-in-arch-linux/">GeeksforGeeks</a>.</p>
+<h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><blockquote>
+<p>Pacman is a package manager for the arch Linux and arch-based Linux distributions. If you have used Debian-based OS like ubuntu, then the  Pacman is similar to the apt command of Debian-based operating systems. Pacman contains the compressed files as a package format and maintains a text-based package database. Pacman keeps the system up to date by synchronizing package lists with the master server. Pacman can install the packages from the official repositories or your own build packages.</p>
+</blockquote>
+<h1 id="Installing-Packages-using-the-Pacman"><a href="#Installing-Packages-using-the-Pacman" class="headerlink" title="Installing Packages using the Pacman"></a>Installing Packages using the Pacman</h1><p>When we install any new operating system on our machine, the first task we do is to install the software packages on the system. Now, to install the packages on Arch Linux, use the command Pacman with -S option and mention the package name. The -S option tells the Pacman to synchronize and to continue. Here is one example </p>
+<p><code>sudo pacman -S cmatrix</code></p>
+<p>We can mention the many package names after the -S option, separated by space.</p>
+<p><code>sudo pacman -S package1 package2 package3</code></p>
+<p>Then Pacman will show the download and install size of the package and ask for to proceed, then simply press the Y key. Pacman categorizes the installed packages into two categories.</p>
+<ul>
+<li><strong>Implicitly Installed</strong>: The package that was installed using the -S or -U option.</li>
+<li><strong>Dependencies</strong>: The package is installed because it is required by another package.</li>
+</ul>
+<h1 id="Removing-packages-using-the-Pacman"><a href="#Removing-packages-using-the-Pacman" class="headerlink" title="Removing packages using the Pacman"></a>Removing packages using the Pacman</h1><p>When we don’t need the package anymore, then we should remove the package from the system. To remove the package with all its dependencies which are not required by other packages, use the following command:</p>
+<p><code>sudo pacman -Rs &lt;package_name&gt;</code></p>
+<p>To remove the package without removing its dependency use the following command:</p>
+<p><code>sudo pacman -R &lt;package_name&gt;</code></p>
+<p>To remove the dependencies which are not required anymore, use the following command:</p>
+<p><code>pacman -Qdtq |  pacman -Rs -</code></p>
+<h1 id="Upgrading-packages"><a href="#Upgrading-packages" class="headerlink" title="Upgrading packages"></a>Upgrading packages</h1><p>In arch Linux, we can upgrade the full system by only one command using the Pacman. Use the following command to update the system:</p>
+<p><code>sudo pacman -Suy</code></p>
+<p>Let’s understand the meaning, S tell the pacman to synchronize the local database with the main database. u tells the pacman to upgrade the packages and y update the local catch on the system. Basically, this command synchronizes the local pacman database with the main repository database and then updates the system.</p>
+<h1 id="Searching-for-a-Package"><a href="#Searching-for-a-Package" class="headerlink" title="Searching for a Package"></a>Searching for a Package</h1><p>Now let’s see how we can search the package into the database of pacman. To search query in the name and description  of the package in the database use the following command:</p>
+<p><code>sudo pacman -Ss   &lt;query1&gt;  &lt;query2&gt;</code></p>
+<p>To search into already installed packages on the system, use the following command:</p>
+<p><code>sudo pacman -Qs query1&gt;  &lt;query2&gt;</code></p>
+<p>To search the query into the local database use the following command:</p>
+<p><code>sudo pacman -F query1&gt;  &lt;query2&gt;</code></p>
+<h1 id="Cleaning-the-Package-Cache"><a href="#Cleaning-the-Package-Cache" class="headerlink" title="Cleaning the Package Cache"></a>Cleaning the Package Cache</h1><p>When pacman downloads the packages it stores the packages into the <code>/var/cache/pacman/pkg/</code> and while uninstalling the package pacman does not delete these files. Pacman uses these files to downgrade the package or install the package. But it can take a lot of space to store these packages. So to delete the stored packages, use the following command:</p>
+<p><code>sudo pacman -Sc</code></p>
+<p>To remove all stored packages and cache, use the following command:</p>
+<p><code>sudp pacman -Scc</code></p>
+<h1 id="Installing-local-packages"><a href="#Installing-local-packages" class="headerlink" title="Installing local packages"></a>Installing local packages</h1><p>By using pacman we can install packages other than the main repository of Arch Linux. Use the following command to install the packages</p>
+<p>For local:</p>
+<p><code>sudo pacman -U path_to_file.pkg.tar.xz</code></p>
+<p>For remote package:</p>
+<p><code>sudo pacman -U http://www.example.com/repo/example.pkg.tar.xz</code></p>
+<h1 id="Troubleshooting"><a href="#Troubleshooting" class="headerlink" title="Troubleshooting"></a>Troubleshooting</h1><p>Sometimes installing the packages with pacman we face some errors. Following are the mainly occurred errors with pacman:</p>
+<ul>
+<li><p><strong>Conflicting file error</strong>: This error occurs due to some conflict packages present in the repository. To solve this error we can manually rename the file or force the overwrite function. We can use the following command to overwrite the function: </p>
+<ul>
+<li><code>pacman -S --overwrite glob package</code></li>
+</ul>
+</li>
+<li><p><strong>Invalid package</strong>: This error can occur due to the partial installation of the packages. We can solve this error by deleting .part files in <code>/var/cache/pacman/pkg/</code>.</p>
+</li>
+<li><p><strong>Locking database</strong>: This error can occur when pacman is interrupted while updating the database. To solve this error, delete the file <code>/var/lib/pacman/db.lck</code> and update the database. Use the following command to delete the file:</p>
+</li>
+</ul>
+<h1 id="Garuda"><a href="#Garuda" class="headerlink" title="Garuda"></a>Garuda</h1><p> Garuda also brings a useful command <code>update</code> that abstracts all this interactions to keep your rolling system updated, still very important to understand the command line utilities to manage the packages and check the official man page for further details as this is always evolving.</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.geeksforgeeks.org/pacman-command-in-arch-linux/">https://www.geeksforgeeks.org/pacman-command-in-arch-linux/</a></li>
+<li><a target="_blank" rel="noopener" href="https://archlinux.org/pacman/pacman.8.html">https://archlinux.org/pacman/pacman.8.html</a></li>
 </ul>
 
       

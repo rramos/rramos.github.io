@@ -77,160 +77,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2024-01-27T10:53:22.782Z"><a href="/2024/01/27/pacman/">2024-01-27</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2024/01/27/pacman/">Pacman Command in Arch Linux</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>I’ve recently started using a Arch Linux distribution <a target="_blank" rel="noopener" href="https://garudalinux.org/">Garuda Linux</a> and the package management tool is <strong>pacman</strong> this article summarizes the most common actions with based on the following article from <a target="_blank" rel="noopener" href="https://www.geeksforgeeks.org/pacman-command-in-arch-linux/">GeeksforGeeks</a>.</p>
-<h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><blockquote>
-<p>Pacman is a package manager for the arch Linux and arch-based Linux distributions. If you have used Debian-based OS like ubuntu, then the  Pacman is similar to the apt command of Debian-based operating systems. Pacman contains the compressed files as a package format and maintains a text-based package database. Pacman keeps the system up to date by synchronizing package lists with the master server. Pacman can install the packages from the official repositories or your own build packages.</p>
-</blockquote>
-<h1 id="Installing-Packages-using-the-Pacman"><a href="#Installing-Packages-using-the-Pacman" class="headerlink" title="Installing Packages using the Pacman"></a>Installing Packages using the Pacman</h1><p>When we install any new operating system on our machine, the first task we do is to install the software packages on the system. Now, to install the packages on Arch Linux, use the command Pacman with -S option and mention the package name. The -S option tells the Pacman to synchronize and to continue. Here is one example </p>
-<p><code>sudo pacman -S cmatrix</code></p>
-<p>We can mention the many package names after the -S option, separated by space.</p>
-<p><code>sudo pacman -S package1 package2 package3</code></p>
-<p>Then Pacman will show the download and install size of the package and ask for to proceed, then simply press the Y key. Pacman categorizes the installed packages into two categories.</p>
-<ul>
-<li><strong>Implicitly Installed</strong>: The package that was installed using the -S or -U option.</li>
-<li><strong>Dependencies</strong>: The package is installed because it is required by another package.</li>
-</ul>
-<h1 id="Removing-packages-using-the-Pacman"><a href="#Removing-packages-using-the-Pacman" class="headerlink" title="Removing packages using the Pacman"></a>Removing packages using the Pacman</h1><p>When we don’t need the package anymore, then we should remove the package from the system. To remove the package with all its dependencies which are not required by other packages, use the following command:</p>
-<p><code>sudo pacman -Rs &lt;package_name&gt;</code></p>
-<p>To remove the package without removing its dependency use the following command:</p>
-<p><code>sudo pacman -R &lt;package_name&gt;</code></p>
-<p>To remove the dependencies which are not required anymore, use the following command:</p>
-<p><code>pacman -Qdtq |  pacman -Rs -</code></p>
-<h1 id="Upgrading-packages"><a href="#Upgrading-packages" class="headerlink" title="Upgrading packages"></a>Upgrading packages</h1><p>In arch Linux, we can upgrade the full system by only one command using the Pacman. Use the following command to update the system:</p>
-<p><code>sudo pacman -Suy</code></p>
-<p>Let’s understand the meaning, S tell the pacman to synchronize the local database with the main database. u tells the pacman to upgrade the packages and y update the local catch on the system. Basically, this command synchronizes the local pacman database with the main repository database and then updates the system.</p>
-<h1 id="Searching-for-a-Package"><a href="#Searching-for-a-Package" class="headerlink" title="Searching for a Package"></a>Searching for a Package</h1><p>Now let’s see how we can search the package into the database of pacman. To search query in the name and description  of the package in the database use the following command:</p>
-<p><code>sudo pacman -Ss   &lt;query1&gt;  &lt;query2&gt;</code></p>
-<p>To search into already installed packages on the system, use the following command:</p>
-<p><code>sudo pacman -Qs query1&gt;  &lt;query2&gt;</code></p>
-<p>To search the query into the local database use the following command:</p>
-<p><code>sudo pacman -F query1&gt;  &lt;query2&gt;</code></p>
-<h1 id="Cleaning-the-Package-Cache"><a href="#Cleaning-the-Package-Cache" class="headerlink" title="Cleaning the Package Cache"></a>Cleaning the Package Cache</h1><p>When pacman downloads the packages it stores the packages into the <code>/var/cache/pacman/pkg/</code> and while uninstalling the package pacman does not delete these files. Pacman uses these files to downgrade the package or install the package. But it can take a lot of space to store these packages. So to delete the stored packages, use the following command:</p>
-<p><code>sudo pacman -Sc</code></p>
-<p>To remove all stored packages and cache, use the following command:</p>
-<p><code>sudp pacman -Scc</code></p>
-<h1 id="Installing-local-packages"><a href="#Installing-local-packages" class="headerlink" title="Installing local packages"></a>Installing local packages</h1><p>By using pacman we can install packages other than the main repository of Arch Linux. Use the following command to install the packages</p>
-<p>For local:</p>
-<p><code>sudo pacman -U path_to_file.pkg.tar.xz</code></p>
-<p>For remote package:</p>
-<p><code>sudo pacman -U http://www.example.com/repo/example.pkg.tar.xz</code></p>
-<h1 id="Troubleshooting"><a href="#Troubleshooting" class="headerlink" title="Troubleshooting"></a>Troubleshooting</h1><p>Sometimes installing the packages with pacman we face some errors. Following are the mainly occurred errors with pacman:</p>
-<ul>
-<li><p><strong>Conflicting file error</strong>: This error occurs due to some conflict packages present in the repository. To solve this error we can manually rename the file or force the overwrite function. We can use the following command to overwrite the function: </p>
-<ul>
-<li><code>pacman -S --overwrite glob package</code></li>
-</ul>
-</li>
-<li><p><strong>Invalid package</strong>: This error can occur due to the partial installation of the packages. We can solve this error by deleting .part files in <code>/var/cache/pacman/pkg/</code>.</p>
-</li>
-<li><p><strong>Locking database</strong>: This error can occur when pacman is interrupted while updating the database. To solve this error, delete the file <code>/var/lib/pacman/db.lck</code> and update the database. Use the following command to delete the file:</p>
-</li>
-</ul>
-<h1 id="Garuda"><a href="#Garuda" class="headerlink" title="Garuda"></a>Garuda</h1><p> Garuda also brings a useful command <code>update</code> that abstracts all this interactions to keep your rolling system updated, still very important to understand the command line utilities to manage the packages and check the official man page for further details as this is always evolving.</p>
-<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://www.geeksforgeeks.org/pacman-command-in-arch-linux/">https://www.geeksforgeeks.org/pacman-command-in-arch-linux/</a></li>
-<li><a target="_blank" rel="noopener" href="https://archlinux.org/pacman/pacman.8.html">https://archlinux.org/pacman/pacman.8.html</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2024-01-27T10:53:22.778Z"><a href="/2024/01/27/koboreader/">2024-01-27</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2024/01/27/koboreader/">How to Bypass Kobo Wizard in Linux</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>This article is a copy from <strong>Curtis Gedak</strong> in the following <a target="_blank" rel="noopener" href="https://gedakc.users.sourceforge.net/display-doc.php%3Fname%3Dkobo-desktop-ereader-setup">reference</a>. </p>
-<blockquote>
-<p>Kobo eReaders can no longer be set up using the Kobo Desktop on GNU&#x2F;Linux (see warning below). Fortunately there is a work around to get your Kobo eReader working without a Kobo Account.</p>
-</blockquote>
-<p>If you have a kobo reader stuck in the setup wizard as it happen to me (wifi got broken) there is a quick setup you can do to bypass the initial setup wizard.</p>
-<p><strong>Notice:</strong> This procedure was done in a old Kobo ebook reader, and is not guarantee that it will work on newer versions, use at your own risk</p>
-<h1 id="Issue"><a href="#Issue" class="headerlink" title="Issue"></a>Issue</h1><p>Kobo ebook reader stuck on the initial setup phase. Wifi doesn’t work and plugging to a computer requires the windows software installed, which for linux users doesn’t not work.</p>
-<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><p>Create a dummy user on the device to bypass the initial setup</p>
-<h1 id="Pre-Requisites"><a href="#Pre-Requisites" class="headerlink" title="Pre-Requisites"></a>Pre-Requisites</h1><p>You need to install sqlitebrowser</p>
-<p>Using the following code for Arch there should be a similar option Ubuntu or Fedora distributions</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">sudo pacman -S sqlitebrowser</span><br></pre></td></tr></table></figure>
-<h1 id="Procedure"><a href="#Procedure" class="headerlink" title="Procedure"></a>Procedure</h1><ol>
-<li><p>Plug you ebook reader via usb </p>
-<ul>
-<li>You can check the mount points you should see a <code>/media/your-user-name/KOBOeReader</code> device . Assuming this path as reference</li>
-</ul>
-</li>
-<li><p>Connect with SLQliteBrowser</p>
-  <figure class="highlight console"><table><tr><td class="code"><pre><span class="line">sqlitebrowser /media/your-user-name/KOBOeReader/.kobo/KoboReader.sqlite</span><br></pre></td></tr></table></figure></li>
-<li><p>Click on the Execute SQL tab and in the SQL string: section enter the following statement</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">USER</span></span><br><span class="line">  (UserID, UserKey, UserDisplayName, UserEmail, ___DeviceID)</span><br><span class="line"><span class="keyword">values</span></span><br><span class="line">  (&quot;foo&quot;, &quot;foo&quot;, &quot;foo&quot;, &quot;foo&quot;,&quot;foo&quot;);</span><br></pre></td></tr></table></figure></li>
-<li><p>Save the changes</p>
-<ul>
-<li>Save these changes by selecting the menu option: File -&gt; Save Database or File -&gt; Write Changes.</li>
-</ul>
-</li>
-<li><p>Close the sqlitebrowser by selecting the menu option: File -&gt; Exit.</p>
-</li>
-<li><p>Safely unmount your Kobo eReader.</p>
-</li>
-</ol>
-<p>And voilá, your eReader should now boot up and display the QUICK TOUR screen</p>
-<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://gedakc.users.sourceforge.net/display-doc.php%3Fname%3Dkobo-desktop-ereader-setup">https://gedakc.users.sourceforge.net/display-doc.php%3Fname%3Dkobo-desktop-ereader-setup</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2024-01-27T10:53:22.774Z"><a href="/2024/01/27/chatgpt-prompts/">2024-01-27</a></time>
+        <time datetime="2024-01-27T11:23:44.851Z"><a href="/2024/01/27/chatgpt-prompts/">2024-01-27</a></time>
       
       
   
@@ -547,6 +394,138 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>For instance D365 in the past allowed the client to export data from that system to a Datalake with internal feature of the Product and now it relies on Fabric only, if this strategy is going to be followed for the rest of MS portfolio, example DataFactory, although increased stability or support. I found the lack of flexibility concerning, by forcing clients to use this solution.</p>
 <h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/microsoft-fabric">https://www.microsoft.com/en-us/microsoft-fabric</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2024-01-04T20:00:00.000Z"><a href="/2024/01/04/p3scontroller/">2024-01-04</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2024/01/04/p3scontroller/">PS3 Controller in Arch</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="Configuration-for-PS3-Controller-in-Arch-Linux"><a href="#Configuration-for-PS3-Controller-in-Arch-Linux" class="headerlink" title="Configuration for PS3 Controller in Arch Linux"></a>Configuration for PS3 Controller in Arch Linux</h2><p>This quick guide explains how to setup your PS3 controller in Arch Linux making sure the Bluetooth connection works</p>
+<h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><p>Make sure to install the bluetooth packages and have a working usb device.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo pacman -S bluez bluez-utils bluez-plugins</span><br></pre></td></tr></table></figure>
+
+<p>Create the following file <code>/etc/bluetooth/main.conf</code> with the content:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[General]</span><br><span class="line">ClassicBondedOnly=false</span><br></pre></td></tr></table></figure>
+
+<p>And just restart you computer.</p>
+<p>Press the Middle <strong>PS</strong> button until leds start blinking, then connect the usb cable from the controller to the PC and you should se a warning to authorize the device.</p>
+<p>After that you can unplug the controller and manage via you bluetooth manager.</p>
+<blockquote>
+<p><strong>NOTE:</strong> Take into account that the ClassicalBondedOnly Option is a solution that regresses you security configuration for bluetooth pairing, more details <a target="_blank" rel="noopener" href="https://github.com/bluez/bluez/issues/673#issuecomment-1858431729">here</a> use at you own risk</p>
+</blockquote>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Gamepad">https://wiki.archlinux.org/title/Gamepad</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2024-01-02T10:00:00.000Z"><a href="/2024/01/02/scalavariance/">2024-01-02</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2024/01/02/scalavariance/">Scala Variance</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>Variance lets you control how type parameters behave with regards to subtyping. Scala supports variance annotations of type parameters of generic classes, to allow them to be covariant, contravariant, or invariant if no annotations are used. The use of variance in the type system allows us to make intuitive connections between complex types.</p>
+<blockquote>
+<p>Variance: If B Extends A, Should List[B] extend List[A] ?</p>
+</blockquote>
+<h3 id="Invariance"><a href="#Invariance" class="headerlink" title="Invariance"></a>Invariance</h3><p>By <strong>default</strong>, type parameters in Scala are invariant: subtyping relationships between the type parameters aren’t reflected in the parameterized type.</p>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">trait</span> <span class="title">List</span>[<span class="type">A</span>]</span></span><br></pre></td></tr></table></figure>
+
+<p>Example</p>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Box</span>[<span class="type">A</span>](<span class="params">var content: <span class="type">A</span></span>)</span></span><br></pre></td></tr></table></figure>
+
+<p>We’re going to be putting values of type <code>Animal</code> in it. This type is defined as follows:</p>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">name</span></span>: <span class="type">String</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">case</span> <span class="class"><span class="keyword">class</span> <span class="title">Cat</span>(<span class="params">name: <span class="type">String</span></span>) <span class="keyword">extends</span> <span class="title">Animal</span></span></span><br><span class="line"><span class="keyword">case</span> <span class="class"><span class="keyword">class</span> <span class="title">Dog</span>(<span class="params">name: <span class="type">String</span></span>) <span class="keyword">extends</span> <span class="title">Animal</span></span></span><br></pre></td></tr></table></figure>
+
+<p>We can say that <code>Cat</code> is a subtype of <code>Animal</code>, and that <code>Dog</code> is also a subtype of <code>Animal</code>. That means that the following is well-typed:</p>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> myAnimal: <span class="type">Animal</span> = <span class="type">Cat</span>(<span class="string">&quot;Felix&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>What about boxes? Is <code>Box[Cat]</code> a subtype of <code>Box[Animal]</code>, like <code>Cat</code> is a subtype of <code>Animal</code>? </p>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> myCatBox: <span class="type">Box</span>[<span class="type">Cat</span>] = <span class="keyword">new</span> <span class="type">Box</span>[<span class="type">Cat</span>](<span class="type">Cat</span>(<span class="string">&quot;Felix&quot;</span>))</span><br><span class="line"><span class="keyword">val</span> myAnimalBox: <span class="type">Box</span>[<span class="type">Animal</span>] = myCatBox <span class="comment">// this doesn&#x27;t compile</span></span><br></pre></td></tr></table></figure>
+
+<p>Although this is valid</p>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> myAnimal: <span class="type">Animal</span> = myAnimalBox.content</span><br><span class="line">myAnimalBox.content = <span class="type">Dog</span>(<span class="string">&quot;Fido&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>From this, we have to conclude that <code>Box[Cat]</code> and <code>Box[Animal]</code> can’t have a subtyping relationship, even though <code>Cat</code> and <code>Animal</code> do.</p>
+<h3 id="Covarience"><a href="#Covarience" class="headerlink" title="Covarience"></a>Covarience</h3><p>The The problem we ran in to above, is that because we could put a Dog in an Animal Box, a Cat Box can’t be an Animal Box.</p>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">trait</span> <span class="title">List</span>[+<span class="type">A</span>]</span></span><br></pre></td></tr></table></figure>
+
+<p>Example:</p>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ImmutableBox</span>[+<span class="type">A</span>](<span class="params">val content: <span class="type">A</span></span>)</span></span><br><span class="line"><span class="keyword">val</span> catbox: <span class="type">ImmutableBox</span>[<span class="type">Cat</span>] = <span class="keyword">new</span> <span class="type">ImmutableBox</span>[<span class="type">Cat</span>](<span class="type">Cat</span>(<span class="string">&quot;Felix&quot;</span>))</span><br><span class="line"><span class="keyword">val</span> animalBox: <span class="type">ImmutableBox</span>[<span class="type">Animal</span>] = catbox <span class="comment">// now this compiles</span></span><br></pre></td></tr></table></figure>
+
+<p>We say that ImmutableBox is <strong>covariant</strong> in <code>A</code>, and this is indicated by the <code>+</code> before the <code>A</code>.</p>
+<h3 id="Contravarience"><a href="#Contravarience" class="headerlink" title="Contravarience"></a>Contravarience</h3><p>We’ve seen we can accomplish covariance by making sure that we can’t put something in the covariant type, but only get something out. What if we had the opposite, something you can put something in, but can’t take out?</p>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">trait</span> <span class="title">List</span>[-<span class="type">A</span>]</span></span><br></pre></td></tr></table></figure>
+
+<p>Example:</p>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Serializer</span>[-<span class="type">A</span>] </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">serialize</span></span>(a: <span class="type">A</span>): <span class="type">String</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> animalSerializer: <span class="type">Serializer</span>[<span class="type">Animal</span>] = <span class="keyword">new</span> <span class="type">Serializer</span>[<span class="type">Animal</span>] &#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">serialize</span></span>(animal: <span class="type">Animal</span>): <span class="type">String</span> = <span class="string">s&quot;&quot;</span><span class="string">&quot;&#123; &quot;</span><span class="string">name&quot;: &quot;</span>$&#123;animal.name&#125;<span class="string">&quot; &#125;&quot;</span><span class="string">&quot;&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">val</span> catSerializer: <span class="type">Serializer</span>[<span class="type">Cat</span>] = animalSerializer</span><br><span class="line">catSerializer.serialize(<span class="type">Cat</span>(<span class="string">&quot;Felix&quot;</span>))</span><br></pre></td></tr></table></figure>
+
+<p>We say that <code>Serializer</code> is contravariant in <code>A</code>, and this is indicated by the <code>-</code> before the <code>A</code>. A more general serializer is a subtype of a more specific serializer.</p>
+<p>More formally, that gives us the reverse relationship: given some class <code>Contra[-T]</code>, then if <code>A</code> is a subtype of <code>B</code>, <code>Contra[B]</code> is a subtype of <code>Contra[A]</code>.</p>
+<h2 id="Bounded-Types"><a href="#Bounded-Types" class="headerlink" title="Bounded Types"></a>Bounded Types</h2><p>The type of Variance would lead to have members defined with upper or lower bounded types like the following example.</p>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SuperCar</span> <span class="keyword">extends</span> <span class="title">Car</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Garage</span>[<span class="type">T</span> &lt;: <span class="type">Car</span>&gt;](<span class="params">car: <span class="type">T</span></span>)</span></span><br></pre></td></tr></table></figure>
+
+<p>More deatils on bounded values on the following articles:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.scala-lang.org/tour/upper-type-bounds.html">https://docs.scala-lang.org/tour/upper-type-bounds.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.scala-lang.org/tour/lower-type-bounds.html">https://docs.scala-lang.org/tour/lower-type-bounds.html</a></li>
+</ul>
+<h2 id="Immutability-and-Variance"><a href="#Immutability-and-Variance" class="headerlink" title="Immutability and Variance"></a>Immutability and Variance</h2><p>Immutability constitutes an important part of the design decision behind using variance. For example, Scala’s collections systematically distinguish between mutable and immutable collections. The main issue is that a covariant mutable collection can break type safety. This is why List is a covariant collection, while scala.collection.mutable.ListBuffer is an invariant collection.</p>
+<h2 id="Comparison-With-Other-Languages"><a href="#Comparison-With-Other-Languages" class="headerlink" title="Comparison With Other Languages"></a>Comparison With Other Languages</h2><p>Variance is supported in different ways by some languages that are similar to Scala. Scala’s tendency towards immutable types makes it that covariant and contravariant types are more common than in other languages, since a mutable generic type must be invariant.</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.scala-lang.org/tour/variances.html">https://docs.scala-lang.org/tour/variances.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.scala-lang.org/tour/upper-type-bounds.html">https://docs.scala-lang.org/tour/upper-type-bounds.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.scala-lang.org/tour/lower-type-bounds.html">https://docs.scala-lang.org/tour/lower-type-bounds.html</a></li>
 </ul>
 
       
