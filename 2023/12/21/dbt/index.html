@@ -38,7 +38,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -87,7 +87,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="entry">
       
         <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>In this article I will describe a step-by-step guide on how to setup a local DBT enviroment and some basic ground rules to use it.</p>
-<h1 id="What-is-DBT"><a href="#What-is-DBT" class="headerlink" title="What is DBT"></a>What is DBT</h1><p>dbt™ is a SQL-first transformation workflow that lets teams quickly and collaboratively deploy analytics code following software engineering best practices like modularity, portability, CI/CD, and documentation</p>
+<h1 id="What-is-DBT"><a href="#What-is-DBT" class="headerlink" title="What is DBT"></a>What is DBT</h1><p>dbt™ is a SQL-first transformation workflow that lets teams quickly and collaboratively deploy analytics code following software engineering best practices like modularity, portability, CI&#x2F;CD, and documentation</p>
 <h1 id="Pre-Requirements"><a href="#Pre-Requirements" class="headerlink" title="Pre Requirements"></a>Pre Requirements</h1><p>In order to use dbt™ one must have the python requirements installed, they may differe based on the enviroment your are using. Will provide an example for a Linux based system</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get install git libpq-dev python-dev python3-pip</span><br><span class="line">pip install dbt-core</span><br><span class="line">pip install dbt-postgres</span><br></pre></td></tr></table></figure>
 
@@ -96,7 +96,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li><a target="_blank" rel="noopener" href="https://github.com/rramos/dockers/tree/master/docker-postgres">https://github.com/rramos/dockers/tree/master/docker-postgres</a></li>
 </ul>
 <blockquote>
-<p><strong>NOTE:</strong> If you will use a different source make sure to install with pip the appropriate connector eg. `pip install dbt-bigquery``</p>
+<p><strong>NOTE:</strong> If you will use a different source make sure to install with pip the appropriate connector eg. &#96;pip install dbt-bigquery&#96;&#96;</p>
 </blockquote>
 <h1 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h1><p>Lets initialize the environment</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dbt init</span><br></pre></td></tr></table></figure>
@@ -110,7 +110,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>pass (dev password): </li>
 <li>dbname (default database that dbt will build objects in): test_db</li>
 <li>schema (default schema that dbt will build objects in): dbt</li>
-<li>threads (1 or more) [1]: </li>
+<li>threads (1 or more) [1]:</li>
 </ol>
 </li>
 </ol>
@@ -144,7 +144,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h2 id="macros"><a href="#macros" class="headerlink" title="macros"></a>macros</h2><p>Macros act like small snippets of jinja code that you can than refeer on the models. They are very usefull for reusability and colaborative effort.</p>
 <p>One can call the macro using something similar: <code>&#123;% macro macro_name(params) %&#125;</code></p>
 <h2 id="models"><a href="#models" class="headerlink" title="models"></a>models</h2><p>This section is where most of the work is going to be done. Here one can define the SQL associated with each model using jinja syntax</p>
-<p><strong>Example:</strong> raw/raw_customer.sql</p>
+<p><strong>Example:</strong> raw&#x2F;raw_customer.sql</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;&#123;</span><br><span class="line">    config(</span><br><span class="line">        materialized=&#x27;table&#x27;</span><br><span class="line">    )</span><br><span class="line">&#125;&#125;</span><br><span class="line"></span><br><span class="line">select * </span><br><span class="line">FROM </span><br><span class="line">&#123;&#123; source(&#x27;bigquery&#x27;, &#x27;customers&#x27;) &#125;&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="seeds"><a href="#seeds" class="headerlink" title="seeds"></a>seeds</h2><p>Useful for temporary data that incorporated and used as <strong>__ref</strong> . The data should exist as CSV</p>
@@ -176,7 +176,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li><a target="_blank" rel="noopener" href="https://www.getdbt.com/product/dbt-cloud">https://www.getdbt.com/product/dbt-cloud</a></li>
 </ul>
 <h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>In this article it was presented a high-level overview on dbt™ how it can be setup and provided some references for best practises and how to take most advantage of the product.</p>
-<p>My personal view on this product is that it brings better control for data assets with embeded lineage also documentation generation and testing features all integraded in a common stack allowing the CI/CD process to be a “walk-in-the-park”</p>
+<p>My personal view on this product is that it brings better control for data assets with embeded lineage also documentation generation and testing features all integraded in a common stack allowing the CI&#x2F;CD process to be a “walk-in-the-park”</p>
 <p>The community is very large which is a plus (<a target="_blank" rel="noopener" href="https://www.getdbt.com/community">https://www.getdbt.com/community</a> ). DBTCloud provides an Entreprise level solution that would speed up Data Engineering work via UI, I didn’t go deeper on the costs to understand if it pays-off.</p>
 <p>Only having the dbt-core option seems to be quite limited compared with the Entreprise solution, but the community supports several features which should be consider if you don’t want to go in that path (like the integration with Airflow).</p>
 <p>I’m not a big fan of jinja option as the main syntax for the Product, but that is more of a personal flavor.</p>
@@ -520,7 +520,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
   &copy; 2024 Rui Ramos
   
-  <a class="disclaimer" href=/disclaimer> Disclaimer</a>
 </div>
 <div class="clearfix"></div></footer>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>

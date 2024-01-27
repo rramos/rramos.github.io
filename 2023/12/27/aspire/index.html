@@ -38,7 +38,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -128,12 +128,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">dotnet run --project AspireSample/AspireSample.AppHost</span><br></pre></td></tr></table></figure>
 
 <p>You will get a similar output</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">Building...</span><br><span class="line">info: Aspire.Dashboard.DashboardWebApplication[0]</span><br><span class="line">      Now listening on: http://localhost:15214</span><br><span class="line">info: Aspire.Dashboard.DashboardWebApplication[0]</span><br><span class="line">      OTLP server running at: http://localhost:16176</span><br><span class="line">warn: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[35]</span><br><span class="line">      No XML encryptor configured. Key &#123;13491cb7-f7b7-4ace-9ab5-0a6b77bf559f&#125; may be persisted to storage <span class="keyword">in</span> unencrypted form.</span><br><span class="line">info: Microsoft.Hosting.Lifetime[0]</span><br><span class="line">      Application started. Press Ctrl+C to shut down.</span><br><span class="line">info: Microsoft.Hosting.Lifetime[0]</span><br><span class="line">      Hosting environment: Development</span><br><span class="line">info: Microsoft.Hosting.Lifetime[0]</span><br><span class="line">      Content root path: /home/rui.ramos/Development/<span class="built_in">local</span>/aspire-test/AspireSample/AspireSample.AppHost</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">Building...</span><br><span class="line">info: Aspire.Dashboard.DashboardWebApplication[0]</span><br><span class="line">      Now listening on: http://localhost:15214</span><br><span class="line">info: Aspire.Dashboard.DashboardWebApplication[0]</span><br><span class="line">      OTLP server running at: http://localhost:16176</span><br><span class="line">warn: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[35]</span><br><span class="line">      No XML encryptor configured. Key &#123;13491cb7-f7b7-4ace-9ab5-0a6b77bf559f&#125; may be persisted to storage <span class="keyword">in</span> unencrypted form.</span><br><span class="line">info: Microsoft.Hosting.Lifetime[0]</span><br><span class="line">      Application started. Press Ctrl+C to shut down.</span><br><span class="line">info: Microsoft.Hosting.Lifetime[0]</span><br><span class="line">      Hosting environment: Development</span><br><span class="line">info: Microsoft.Hosting.Lifetime[0]</span><br><span class="line">      Content root path: /home/rui.ramos/Development/local/aspire-test/AspireSample/AspireSample.AppHost</span><br></pre></td></tr></table></figure>
 
 <p>Checkout on your browser the Aspire Dashboard at <a target="_blank" rel="noopener" href="http://localhost:15214/">http://localhost:15214</a></p>
 <p>And the webfront application <a target="_blank" rel="noopener" href="http://localhost:5119/">http://localhost:5119</a></p>
 <h2 id="AspireSample-AppHost"><a href="#AspireSample-AppHost" class="headerlink" title="AspireSample.AppHost"></a>AspireSample.AppHost</h2><p>Checking the Program.cs we can see relevant information</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var builder = DistributedApplication.CreateBuilder(args);</span><br><span class="line"></span><br><span class="line">var cache = builder.AddRedisContainer(&quot;cache&quot;);</span><br><span class="line"></span><br><span class="line">var apiservice = builder.AddProject&lt;Projects.AspireSample_ApiService&gt;(&quot;apiservice&quot;);</span><br><span class="line"></span><br><span class="line">builder.AddProject&lt;Projects.AspireSample_Web&gt;(&quot;webfrontend&quot;)</span><br><span class="line">    .WithReference(cache)</span><br><span class="line">    .WithReference(apiservice);</span><br><span class="line"></span><br><span class="line">builder.Build().Run();</span><br></pre></td></tr></table></figure>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> builder = DistributedApplication.CreateBuilder(args);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> cache = builder.AddRedisContainer(<span class="string">&quot;cache&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> apiservice = builder.AddProject&lt;Projects.AspireSample_ApiService&gt;(<span class="string">&quot;apiservice&quot;</span>);</span><br><span class="line"></span><br><span class="line">builder.AddProject&lt;Projects.AspireSample_Web&gt;(<span class="string">&quot;webfrontend&quot;</span>)</span><br><span class="line">    .WithReference(cache)</span><br><span class="line">    .WithReference(apiservice);</span><br><span class="line"></span><br><span class="line">builder.Build().Run();</span><br></pre></td></tr></table></figure>
 
 <p>The preceding code creates a <strong>DistributedApplication</strong> builder adding a Redis Container the APIService and the Sample Web Application</p>
 <h2 id="Why-NET-Aspire"><a href="#Why-NET-Aspire" class="headerlink" title="Why .NET Aspire?"></a>Why .NET Aspire?</h2><p>.NET Aspire is designed to improve the experience of building .NET cloud-native apps. It provides a consistent, opinionated set of tools and patterns that help you build and run distributed apps. .NET Aspire is designed to help you with:</p>
@@ -477,7 +477,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
   &copy; 2024 Rui Ramos
   
-  <a class="disclaimer" href=/disclaimer> Disclaimer</a>
 </div>
 <div class="clearfix"></div></footer>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>

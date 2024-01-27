@@ -38,7 +38,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -76,7 +76,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2017-10-13T01:09:00.000Z"><a href="/2017/10/13/drelephat/">2017-10-13</a></time>
+        <time datetime="2017-10-13T02:09:00.000Z"><a href="/2017/10/13/drelephat/">2017-10-13</a></time>
       
       
   
@@ -92,7 +92,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <h1 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h1><ul>
 <li><p>Install mysql-server and create a BD for dr-elephant</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get install mysql-server </span><br></pre></td></tr></table></figure></li>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get install mysql-server </span><br></pre></td></tr></table></figure>
+</li>
 <li><p>MySQl preparation</p>
 </li>
 </ul>
@@ -100,9 +101,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul>
 <li><p>Install zip command</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get install zip</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get install zip</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>Install sbt</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb https://dl.bintray.com/sbt/debian /&quot;</span> | sudo tee -a /etc/apt/sources.list.d/sbt.list</span><br><span class="line">sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2EE0EA64E40A89B84B2DF73499E82A75642AC823</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install sbt</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb https://dl.bintray.com/sbt/debian /&quot;</span> | sudo <span class="built_in">tee</span> -a /etc/apt/sources.list.d/sbt.list</span><br><span class="line">sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2EE0EA64E40A89B84B2DF73499E82A75642AC823</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install sbt</span><br></pre></td></tr></table></figure></li>
 </ul>
 <h1 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h1><ul>
 <li>Clone the repo</li>
@@ -112,7 +114,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <ul>
 <li>Compile</li>
 </ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sbt package</span><br><span class="line">sbt dist</span><br><span class="line">cp ./target/universal/dr-elephant-2.0.3-SNAPSHOT.zip .</span><br><span class="line">./compile.sh</span><br><span class="line"><span class="built_in">cd</span> dist</span><br><span class="line">unzip dr-elephant-2.0.3-SNAPSHOT.zip</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sbt package</span><br><span class="line">sbt dist</span><br><span class="line"><span class="built_in">cp</span> ./target/universal/dr-elephant-2.0.3-SNAPSHOT.zip .</span><br><span class="line">./compile.sh</span><br><span class="line"><span class="built_in">cd</span> dist</span><br><span class="line">unzip dr-elephant-2.0.3-SNAPSHOT.zip</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>Starting the service</li>
@@ -463,7 +465,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
   &copy; 2024 Rui Ramos
   
-  <a class="disclaimer" href=/disclaimer> Disclaimer</a>
 </div>
 <div class="clearfix"></div></footer>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>

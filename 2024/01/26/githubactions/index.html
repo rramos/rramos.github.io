@@ -38,7 +38,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -87,12 +87,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="entry">
       
         <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>In this article I will go through the steps to setup github actions to deploy hexo pages upon push requests into <a target="_blank" rel="noopener" href="https://pages.github.com/">Github pages</a></p>
-<h2 id="Github-Actions"><a href="#Github-Actions" class="headerlink" title="Github Actions"></a>Github Actions</h2><p>GitHub Actions makes it easy to automate all your software workflows, now with world-class CI/CD. Build, test, and deploy your code right from GitHub. Make code reviews, branch management, and issue triaging work the way you want.</p>
+<h2 id="Github-Actions"><a href="#Github-Actions" class="headerlink" title="Github Actions"></a>Github Actions</h2><p>GitHub Actions makes it easy to automate all your software workflows, now with world-class CI&#x2F;CD. Build, test, and deploy your code right from GitHub. Make code reviews, branch management, and issue triaging work the way you want.</p>
 <p>Check the available <a target="_blank" rel="noopener" href="https://docs.github.com/en/actions">documentation</a> as there are several interesting examples</p>
 <h2 id="Hexo-Setup"><a href="#Hexo-Setup" class="headerlink" title="Hexo Setup"></a>Hexo Setup</h2><p>This tech notes site is maintained by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> a markdown blob framework.</p>
 <p>The framework generates html static content based on Markdown articles an one needs carry the following steps to update content</p>
 <ul>
-<li>Create/Update Markdown content</li>
+<li>Create&#x2F;Update Markdown content</li>
 <li>Execute <code>hexo generate</code> to generte content</li>
 <li>Validate the pages with <code>hexo serve</code></li>
 <li>Deploy to your hosting service <code>hexo deploy</code></li>
@@ -113,7 +113,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p><strong>NOTE:</strong> This assumes the hexo source repository was already configured for the destination github pages account.</p>
 <h2 id="Multi-repos"><a href="#Multi-repos" class="headerlink" title="Multi repos"></a>Multi repos</h2><p>It is important to notice that you cannot assign the same deployment key for several repositories.</p>
 <p>That is why I used a personal token, but there should be better alternatives.</p>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Github Actions is a really powerfull CI/CD tool and for this type of static generation content works rather well.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Github Actions is a really powerfull CI&#x2F;CD tool and for this type of static generation content works rather well.</p>
 <p>I had several issues regarding github submodules where the authetication was not passing. If you use the same approach for themes, you may endup on the same situation and using a token approach would be preferable</p>
 <p>Also the ssh-keys being bounded by repo caused some initial confusion and there should be a better way to setup the autentication but I didn’t explore it in detail.</p>
 <p>Also <code>package-lock.json</code> are required for this to work and is advisable to have your source repo as private.</p>
@@ -452,7 +452,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
   &copy; 2024 Rui Ramos
   
-  <a class="disclaimer" href=/disclaimer> Disclaimer</a>
 </div>
 <div class="clearfix"></div></footer>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>

@@ -38,7 +38,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -76,7 +76,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2017-09-09T00:06:00.000Z"><a href="/2017/09/09/PolybaseCDH/">2017-09-09</a></time>
+        <time datetime="2017-09-09T01:06:00.000Z"><a href="/2017/09/09/PolybaseCDH/">2017-09-09</a></time>
       
       
   
@@ -89,7 +89,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p>In this article i’ll try to describe the required configuration steps to setup Polybase in SQLServer 2016 for <a target="_blank" rel="noopener" href="https://www.cloudera.com/">Cloudera</a> CDH5. </p>
 <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>Before starting the the configuration steps, let’s just try to understand why this is being done.</p>
 <h2 id="Sqoop"><a href="#Sqoop" class="headerlink" title="Sqoop"></a>Sqoop</h2><p>Sqoop is one of the most used tools to transfer data from the Relational World to BigData infrastructures. It relies on JDBC connectors to transfer data between SQLServer and HDFS.</p>
-<h2 id="Performance"><a href="#Performance" class="headerlink" title="Performance"></a>Performance</h2><p>The transfer process to SQLServer via sqoop is taking quite a lot, so the objective of this PoC is to verify if PolyBase alternative for dumping data in/out the cluster and understand if there is a improvement on existing processes.</p>
+<h2 id="Performance"><a href="#Performance" class="headerlink" title="Performance"></a>Performance</h2><p>The transfer process to SQLServer via sqoop is taking quite a lot, so the objective of this PoC is to verify if PolyBase alternative for dumping data in&#x2F;out the cluster and understand if there is a improvement on existing processes.</p>
 <h1 id="Setup-Process"><a href="#Setup-Process" class="headerlink" title="Setup Process"></a>Setup Process</h1><h2 id="Obtain-the-cluster-configuration-files"><a href="#Obtain-the-cluster-configuration-files" class="headerlink" title="Obtain the cluster configuration files"></a>Obtain the cluster configuration files</h2><p>In order to configure Polybase for you Cloudera cluster one should first gather from CM the client configurations for HDFS and YARN.</p>
 <p>After downloading the configs you need to update the following files:</p>
 <ul>
@@ -109,7 +109,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>Oracle Java SE RunTime Environment (JRE) version 7.51 or higher (64-bit) </li>
 <li>Minimum memory: 4GB</li>
 <li>Minimum hard disk space: 2GB</li>
-<li>TCP/IP must be enabled for Polybase to function correctly. </li>
+<li>TCP&#x2F;IP must be enabled for Polybase to function correctly.</li>
 </ul>
 <p>Follow Microsoft guide to activate the feature <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/sql/relational-databases/polybase/polybase-installation">PolyBase Install Guide</a></p>
 <p>One could test if Polybase is correctly installed by running the following command</p>
@@ -479,7 +479,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
   &copy; 2024 Rui Ramos
   
-  <a class="disclaimer" href=/disclaimer> Disclaimer</a>
 </div>
 <div class="clearfix"></div></footer>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>

@@ -38,7 +38,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -77,7 +77,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2017-09-19T21:06:00.000Z"><a href="/2017/09/19/quickzeppelin/">2017-09-19</a></time>
+        <time datetime="2017-09-19T22:06:00.000Z"><a href="/2017/09/19/quickzeppelin/">2017-09-19</a></time>
       
       
   
@@ -96,12 +96,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><ol>
 <li>Create a folder named zeepelin</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir docker-zeepelin</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> docker-zeepelin</span><br></pre></td></tr></table></figure>
 
 <ol start="2">
 <li>Create a <code>data</code> where you could put some data to analyse.</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir -p docker-zeepelin/data</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p docker-zeepelin/data</span><br></pre></td></tr></table></figure>
 
 <ol start="3">
 <li>Create the following <code>docker-compose.yml</code> file in dir <code>docker-zeepelin</code> :</li>
@@ -114,10 +114,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo docker-compose up -d</span><br></pre></td></tr></table></figure>
 
 <ol start="5">
-<li>That’s it you should now be able to access <a target="_blank" rel="noopener" href="http://localhost:8080/">http://localhost:8080</a> </li>
+<li>That’s it you should now be able to access <a target="_blank" rel="noopener" href="http://localhost:8080/">http://localhost:8080</a></li>
 </ol>
 <h2 id="Test-it"><a href="#Test-it" class="headerlink" title="Test it"></a>Test it</h2><ol>
-<li>Lets download a demo file to our <code>data</code> dir. </li>
+<li>Lets download a demo file to our <code>data</code> dir.</li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -s https://api.opendota.com/api/publicMatches -o ./data/OpenDotaPublic.json</span><br></pre></td></tr></table></figure>
 
@@ -170,7 +170,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2017-09-19T07:37:00.000Z"><a href="/2017/09/19/dockerclean/">2017-09-19</a></time>
+        <time datetime="2017-09-19T08:37:00.000Z"><a href="/2017/09/19/dockerclean/">2017-09-19</a></time>
       
       
   
@@ -187,11 +187,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>Install btrfs </li>
 <li>Make sure you have a volume formated as btrfs (not part of the article)</li>
 </ul>
-<h2 id="Clean-all-dockers-and-images"><a href="#Clean-all-dockers-and-images" class="headerlink" title="Clean all dockers and images"></a>Clean all dockers and images</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Delete all containers</span></span><br><span class="line">sudo docker rm $(sudo docker ps -a -q)</span><br><span class="line"><span class="comment"># Delete all images</span></span><br><span class="line">sudo docker rmi $(sudo docker images -q)</span><br></pre></td></tr></table></figure>
+<h2 id="Clean-all-dockers-and-images"><a href="#Clean-all-dockers-and-images" class="headerlink" title="Clean all dockers and images"></a>Clean all dockers and images</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Delete all containers</span></span><br><span class="line">sudo docker <span class="built_in">rm</span> $(sudo docker ps -a -q)</span><br><span class="line"><span class="comment"># Delete all images</span></span><br><span class="line">sudo docker rmi $(sudo docker images -q)</span><br></pre></td></tr></table></figure>
 
 
 <h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><p>Make sure you have btrfs on your system</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo cat /proc/filesystems | grep btrfs</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo <span class="built_in">cat</span> /proc/filesystems | grep btrfs</span><br></pre></td></tr></table></figure>
 
 <ol>
 <li>Stop docker</li>
@@ -201,7 +201,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <ol start="2">
 <li>Create a backup of you docker settings</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo mv /var/lib/docker/ /var/lib/docker.bak</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo <span class="built_in">mv</span> /var/lib/docker/ /var/lib/docker.bak</span><br></pre></td></tr></table></figure>
 
 <ol start="3">
 <li>create a subvolume from an existing btrfs FS</li>
@@ -212,17 +212,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <ol start="4">
 <li>Create the symlink</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ln -s /archive/dockers /var/lib/docker</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">ln</span> -s /archive/dockers /var/lib/docker</span><br></pre></td></tr></table></figure>
 
 <ol start="5">
 <li>Copy the backup data to the new location</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cp -rp /var/lib/docker.bak/* /var/lib/docker/</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> -rp /var/lib/docker.bak/* /var/lib/docker/</span><br></pre></td></tr></table></figure>
 
 <ol start="6">
 <li>Configure Docker to use the btrfs storage driver. This is required even though <code>/var/lib/docker/</code> is now using a Btrfs filesystem. Edit or create the file <code>/etc/docker/daemon.json</code>.</li>
 </ol>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;storage-driver&quot;</span>: <span class="string">&quot;btrfs&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;storage-driver&quot;</span><span class="punctuation">:</span> <span class="string">&quot;btrfs&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
 
 <ol start="7">
 <li>Start docker service</li>
@@ -263,7 +263,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2017-09-13T22:13:00.000Z"><a href="/2017/09/13/ssh-config/">2017-09-13</a></time>
+        <time datetime="2017-09-13T23:13:00.000Z"><a href="/2017/09/13/ssh-config/">2017-09-13</a></time>
       
       
   
@@ -334,7 +334,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2017-09-13T21:18:00.000Z"><a href="/2017/09/13/ChromeProxy/">2017-09-13</a></time>
+        <time datetime="2017-09-13T22:18:00.000Z"><a href="/2017/09/13/ChromeProxy/">2017-09-13</a></time>
       
       
   
@@ -398,7 +398,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2017-09-09T00:06:00.000Z"><a href="/2017/09/09/PolybaseCDH/">2017-09-09</a></time>
+        <time datetime="2017-09-09T01:06:00.000Z"><a href="/2017/09/09/PolybaseCDH/">2017-09-09</a></time>
       
       
   
@@ -411,7 +411,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p>In this article i’ll try to describe the required configuration steps to setup Polybase in SQLServer 2016 for <a target="_blank" rel="noopener" href="https://www.cloudera.com/">Cloudera</a> CDH5. </p>
 <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>Before starting the the configuration steps, let’s just try to understand why this is being done.</p>
 <h2 id="Sqoop"><a href="#Sqoop" class="headerlink" title="Sqoop"></a>Sqoop</h2><p>Sqoop is one of the most used tools to transfer data from the Relational World to BigData infrastructures. It relies on JDBC connectors to transfer data between SQLServer and HDFS.</p>
-<h2 id="Performance"><a href="#Performance" class="headerlink" title="Performance"></a>Performance</h2><p>The transfer process to SQLServer via sqoop is taking quite a lot, so the objective of this PoC is to verify if PolyBase alternative for dumping data in/out the cluster and understand if there is a improvement on existing processes.</p>
+<h2 id="Performance"><a href="#Performance" class="headerlink" title="Performance"></a>Performance</h2><p>The transfer process to SQLServer via sqoop is taking quite a lot, so the objective of this PoC is to verify if PolyBase alternative for dumping data in&#x2F;out the cluster and understand if there is a improvement on existing processes.</p>
 <h1 id="Setup-Process"><a href="#Setup-Process" class="headerlink" title="Setup Process"></a>Setup Process</h1><h2 id="Obtain-the-cluster-configuration-files"><a href="#Obtain-the-cluster-configuration-files" class="headerlink" title="Obtain the cluster configuration files"></a>Obtain the cluster configuration files</h2><p>In order to configure Polybase for you Cloudera cluster one should first gather from CM the client configurations for HDFS and YARN.</p>
 <p>After downloading the configs you need to update the following files:</p>
 <ul>
@@ -431,7 +431,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>Oracle Java SE RunTime Environment (JRE) version 7.51 or higher (64-bit) </li>
 <li>Minimum memory: 4GB</li>
 <li>Minimum hard disk space: 2GB</li>
-<li>TCP/IP must be enabled for Polybase to function correctly. </li>
+<li>TCP&#x2F;IP must be enabled for Polybase to function correctly.</li>
 </ul>
 <p>Follow Microsoft guide to activate the feature <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/sql/relational-databases/polybase/polybase-installation">PolyBase Install Guide</a></p>
 <p>One could test if Polybase is correctly installed by running the following command</p>
@@ -772,7 +772,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
   &copy; 2024 Rui Ramos
   
-  <a class="disclaimer" href=/disclaimer> Disclaimer</a>
 </div>
 <div class="clearfix"></div></footer>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>

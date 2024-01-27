@@ -38,7 +38,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -76,7 +76,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2023-08-27T22:00:00.000Z"><a href="/2023/08/27/aur/">2023-08-27</a></time>
+        <time datetime="2023-08-27T23:00:00.000Z"><a href="/2023/08/27/aur/">2023-08-27</a></time>
       
       
   
@@ -90,9 +90,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h1 id="Arch-Packages"><a href="#Arch-Packages" class="headerlink" title="Arch Packages"></a>Arch Packages</h1><p>The Arch User Repository (AUR) is a community-driven repository for Arch users. It contains package descriptions (PKGBUILDs) that allow you to compile a package from source with makepkg and then install it via pacman. The AUR was created to organize and share new packages from the community and to help expedite popular packages’ inclusion into the extra repository. </p>
 <h1 id="Getting-Started"><a href="#Getting-Started" class="headerlink" title="Getting Started"></a>Getting Started</h1><ol>
 <li>Ensure <strong>base-devel</strong> is installed.</li>
-<li>Adjust /etc/makepkg.conf</li>
+<li>Adjust &#x2F;etc&#x2F;makepkg.conf</li>
 </ol>
-<h2 id="etc-makepkg-conf"><a href="#etc-makepkg-conf" class="headerlink" title="/etc/makepkg.conf"></a>/etc/makepkg.conf</h2><p>You may wish to adjust <code>/etc/makepkg.conf</code> to optimize the build process to your system prior to building packages from the AUR. A significant improvement in package build times can be realized on systems with multi-core processors by adjusting the MAKEFLAGS variable, by using multiple cores for compression, or by using different compression algorithm. Users can also enable hardware-specific compiler optimizations via the CFLAGS variable.</p>
+<h2 id="etc-makepkg-conf"><a href="#etc-makepkg-conf" class="headerlink" title="&#x2F;etc&#x2F;makepkg.conf"></a>&#x2F;etc&#x2F;makepkg.conf</h2><p>You may wish to adjust <code>/etc/makepkg.conf</code> to optimize the build process to your system prior to building packages from the AUR. A significant improvement in package build times can be realized on systems with multi-core processors by adjusting the MAKEFLAGS variable, by using multiple cores for compression, or by using different compression algorithm. Users can also enable hardware-specific compiler optimizations via the CFLAGS variable.</p>
 <p>I will just adjust the parallelism for compilation to use the 8-cores I have </p>
 <figure class="highlight console"><table><tr><td class="code"><pre><span class="line">MAKEFLAGS=&quot;-j8&quot;</span><br></pre></td></tr></table></figure>
 
@@ -110,7 +110,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <h2 id="Acquire-a-PGP-public-key-if-needed"><a href="#Acquire-a-PGP-public-key-if-needed" class="headerlink" title="Acquire a PGP public key if needed"></a>Acquire a PGP public key if needed</h2><p>Check if a signature file in the form of .sig or .asc is part of the PKGBUILD source array. If that is the case, then acquire one of the public keys listed in the PKGBUILD <a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/PKGBUILD#validpgpkeys">validpgpkeys</a> array</p>
 <h2 id="Build-the-package"><a href="#Build-the-package" class="headerlink" title="Build the package"></a>Build the package</h2><p>Change directories to the directory containing the package’s <strong>PKGBUILD</strong>.</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> package_name</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> makepkg -si</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight console"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> package_name</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">makepkg -si</span></span><br></pre></td></tr></table></figure>
 <h2 id="Install-the-package"><a href="#Install-the-package" class="headerlink" title="Install the package"></a>Install the package</h2><p>The package can now be installed with pacman:</p>
 <figure class="highlight console"><table><tr><td class="code"><pre><span class="line">pacman -U package_name-version-architecture.pkg.tar.zst</span><br></pre></td></tr></table></figure>
 
@@ -119,14 +119,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <figure class="highlight console"><table><tr><td class="code"><pre><span class="line">paru -Qua</span><br></pre></td></tr></table></figure>
 
 <h1 id="PKGBUILD"><a href="#PKGBUILD" class="headerlink" title="PKGBUILD"></a>PKGBUILD</h1><p>The following manpage <a target="_blank" rel="noopener" href="https://man.archlinux.org/man/PKGBUILD.5">PKGBUILD(5)</a> provides more in-depth information regarding the <strong>PKBUILD</strong> package description file.</p>
-<h2 id="Creating-Packages"><a href="#Creating-Packages" class="headerlink" title="Creating Packages"></a>Creating Packages</h2><h3 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h3><p>Packages in Arch Linux are built using the <code>makepkg</code> utility and the information stored in a <code>PKGBUILD</code> file. When makepkg runs, it searches for a PKGBUILD in the current directory and follows the instructions in it to acquire the required files and/or compile them to be packed within a package file (<code>pkgname.pkg.tar.zst</code>). The resulting package contains binary files and installation instructions ready to be installed by pacman.</p>
+<h2 id="Creating-Packages"><a href="#Creating-Packages" class="headerlink" title="Creating Packages"></a>Creating Packages</h2><h3 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h3><p>Packages in Arch Linux are built using the <code>makepkg</code> utility and the information stored in a <code>PKGBUILD</code> file. When makepkg runs, it searches for a PKGBUILD in the current directory and follows the instructions in it to acquire the required files and&#x2F;or compile them to be packed within a package file (<code>pkgname.pkg.tar.zst</code>). The resulting package contains binary files and installation instructions ready to be installed by pacman.</p>
 <p>An Arch package is no more than a tar archive, or ‘tarball’, compressed using <a target="_blank" rel="noopener" href="https://man.archlinux.org/man/zstd.1">zstd(1)</a>, which contains the following files generated by makepkg:</p>
 <ul>
 <li>The binary files to install.</li>
 <li><code>.PKGINFO</code>: contains all the metadata needed by pacman to deal with packages, dependencies, etc.</li>
 <li><code>.BUILDINFO</code>: contains information needed for reproducible builds. This file is present only if a package is built with pacman 5.1 or newer. See BUILDINFO(5).</li>
 <li><code>.MTREE</code>: contains hashes and timestamps of the files, which are included in the local database so that pacman can verify the integrity of the package.</li>
-<li><code>.INSTALL</code>: an optional file used to execute commands after the install/upgrade/remove stage. (This file is present only if specified in the PKGBUILD.)</li>
+<li><code>.INSTALL</code>: an optional file used to execute commands after the install&#x2F;upgrade&#x2F;remove stage. (This file is present only if specified in the PKGBUILD.)</li>
 <li><code>.Changelog</code>: an optional file kept by the package maintainer documenting the changes of the package. (It is not present in all packages.)</li>
 </ul>
 <h3 id="Preparation"><a href="#Preparation" class="headerlink" title="Preparation"></a>Preparation</h3><p>First, ensure that the necessary tools are installed: the meta package base-devel should be sufficient; it pulls in make and additional tools needed for compiling from source.</p>
@@ -141,7 +141,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li><strong>Compresses the fakeroot environment into a package file.</strong></li>
 <li><strong>Stores the package file in the configured destination directory, which is the current working directory by default.</strong></li>
 </ol>
-<p>Download the source tarball of the software you want to package, extract it, and follow the author’s steps to install the program. Make a note of all commands and/or steps needed to compile and install it. You will be repeating those same commands in the <strong>PKGBUILD</strong> file.</p>
+<p>Download the source tarball of the software you want to package, extract it, and follow the author’s steps to install the program. Make a note of all commands and&#x2F;or steps needed to compile and install it. You will be repeating those same commands in the <strong>PKGBUILD</strong> file.</p>
 <p>Most software authors stick to the 3-step build cycle:</p>
 <figure class="highlight console"><table><tr><td class="code"><pre><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
 
@@ -156,13 +156,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <ul>
 <li><p><strong>prepare()</strong>: With this function, commands that are used to prepare sources for building are run, such as patching. This function runs right after package extraction, before <code>pkgver()</code> and the build function. If extraction is skipped (<code>makepkg --noextract</code>), then <code>prepare()</code> is not run</p>
 </li>
-<li><p><strong>pkgver()</strong>: pkgver() runs after the sources are fetched, extracted and prepare() executed. So you can update the pkgver variable during a makepkg stage. This is particularly useful if you are making git/svn/hg/etc. packages, where the build process may remain the same, but the source could be updated every day, even every hour.</p>
+<li><p><strong>pkgver()</strong>: pkgver() runs after the sources are fetched, extracted and prepare() executed. So you can update the pkgver variable during a makepkg stage. This is particularly useful if you are making git&#x2F;svn&#x2F;hg&#x2F;etc. packages, where the build process may remain the same, but the source could be updated every day, even every hour.</p>
 </li>
 <li><p><strong>build()</strong>: Now, you need to implement the build() function in the PKGBUILD file. This function uses common shell commands in Bash syntax to automatically compile software and create a directory called pkg to install the software to. This allows makepkg to package files without having to sift through your file system.</p>
 </li>
 <li><p><strong>check()</strong>: Place for calls to make check and similar testing routines. It is highly recommended to have check() as it helps to make sure software has been built correctly and works fine with its dependencies.</p>
 </li>
-<li><p><strong>package()</strong>: The final step is to put the compiled files in a directory where makepkg can retrieve them to create a package. This by default is the pkg directory—a simple fakeroot environment. The pkg directory replicates the hierarchy of the root file system of the software’s installation paths. If you have to manually place files under the root of your filesystem, you should install them in the pkg directory under the same directory structure. For example, if you want to install a file to /usr/bin, it should instead be placed under <code>$pkgdir/usr/bin</code>. Very few install procedures require the user to copy dozens of files manually. Instead, for most software, calling make install will do so.</p>
+<li><p><strong>package()</strong>: The final step is to put the compiled files in a directory where makepkg can retrieve them to create a package. This by default is the pkg directory—a simple fakeroot environment. The pkg directory replicates the hierarchy of the root file system of the software’s installation paths. If you have to manually place files under the root of your filesystem, you should install them in the pkg directory under the same directory structure. For example, if you want to install a file to &#x2F;usr&#x2F;bin, it should instead be placed under <code>$pkgdir/usr/bin</code>. Very few install procedures require the user to copy dozens of files manually. Instead, for most software, calling make install will do so.</p>
 </li>
 </ul>
 <h1 id="Lets-create-our-package"><a href="#Lets-create-our-package" class="headerlink" title="Lets create our package"></a>Lets create our package</h1><p>For testing purposes lets create a hello world application in rust and package it as a new AUR</p>
@@ -179,14 +179,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <figure class="highlight console"><table><tr><td class="code"><pre><span class="line">cargo install cargo-aur</span><br></pre></td></tr></table></figure>
 
 <p>Let’s add some Metadata required for generating the AUR on <strong>Cargo.toml</strong> file</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">[package]</span><br><span class="line">name = &quot;myhello&quot;</span><br><span class="line">version = &quot;0.1.0&quot;</span><br><span class="line">edition = &quot;2021&quot;</span><br><span class="line"></span><br><span class="line">authors = [&quot;Rui Ramos&quot;, &quot;Rui Ramos &lt;no-reply@rust-lang.org&gt;&quot;]</span><br><span class="line">description = &quot;A HelloWorld Application for AUR testing purposes&quot;</span><br><span class="line">homepage=&quot;https://rramos.github.io&quot;</span><br><span class="line">repository = &quot;https://github.com/rramos/rust-helloworld.git&quot;  </span><br><span class="line">license = &quot;MIT&quot;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html</span></span><br><span class="line"></span><br><span class="line">[dependencies]</span><br></pre></td></tr></table></figure>
+<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">[package]</span><br><span class="line">name = &quot;myhello&quot;</span><br><span class="line">version = &quot;0.1.0&quot;</span><br><span class="line">edition = &quot;2021&quot;</span><br><span class="line"></span><br><span class="line">authors = [&quot;Rui Ramos&quot;, &quot;Rui Ramos &lt;no-reply@rust-lang.org&gt;&quot;]</span><br><span class="line">description = &quot;A HelloWorld Application for AUR testing purposes&quot;</span><br><span class="line">homepage=&quot;https://rramos.github.io&quot;</span><br><span class="line">repository = &quot;https://github.com/rramos/rust-helloworld.git&quot;  </span><br><span class="line">license = &quot;MIT&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html</span></span><br><span class="line"></span><br><span class="line">[dependencies]</span><br></pre></td></tr></table></figure>
 
 <p>For a complete list please check the <a target="_blank" rel="noopener" href="https://doc.rust-lang.org/cargo/reference/manifest.html">Cargo Manifest</a> page.</p>
 <p>Now run the following command</p>
 <figure class="highlight console"><table><tr><td class="code"><pre><span class="line">cargo aur</span><br></pre></td></tr></table></figure>
 
 <p>We now have a <strong>PKGBUILD</strong> package generated for this application with something similar</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Maintainer: Rui Ramos</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Maintainer: Rui Ramos &lt;no-reply@rust-lang.org&gt;</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment"># This PKGBUILD was generated by `cargo aur`: https://crates.io/crates/cargo-aur</span></span></span><br><span class="line"></span><br><span class="line">pkgname=myhello-bin</span><br><span class="line">pkgver=0.1.0</span><br><span class="line">pkgrel=1</span><br><span class="line">pkgdesc=&quot;A HelloWorld Application for AUR testing purposes&quot;</span><br><span class="line">url=&quot;https://rramos.github.io&quot;</span><br><span class="line">license=(&quot;MIT&quot;)</span><br><span class="line">arch=(&quot;x86_64&quot;)</span><br><span class="line">provides=(&quot;myhello&quot;)</span><br><span class="line">conflicts=(&quot;myhello&quot;)</span><br><span class="line">source=(&quot;https://github.com/rramos/rust-helloworld.git/releases/download/v$pkgver/myhello-$pkgver-x86_64.tar.gz&quot;)</span><br><span class="line">sha256sums=(&quot;ef8ce03c73185ef872116c17971c21f6f8f2c8f67d42a5c0b4ca876d164191b2&quot;)</span><br><span class="line"></span><br><span class="line">package() &#123;</span><br><span class="line">    install -Dm755 myhello -t &quot;$pkgdir/usr/bin&quot;</span><br><span class="line">    install -Dm644 LICENSE &quot;$pkgdir/usr/share/licenses/$pkgname/LICENSE&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight console"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Maintainer: Rui Ramos</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Maintainer: Rui Ramos &lt;no-reply@rust-lang.org&gt;</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># This PKGBUILD was generated by `cargo aur`: https://crates.io/crates/cargo-aur</span></span></span><br><span class="line"></span><br><span class="line">pkgname=myhello-bin</span><br><span class="line">pkgver=0.1.0</span><br><span class="line">pkgrel=1</span><br><span class="line">pkgdesc=&quot;A HelloWorld Application for AUR testing purposes&quot;</span><br><span class="line">url=&quot;https://rramos.github.io&quot;</span><br><span class="line">license=(&quot;MIT&quot;)</span><br><span class="line">arch=(&quot;x86_64&quot;)</span><br><span class="line">provides=(&quot;myhello&quot;)</span><br><span class="line">conflicts=(&quot;myhello&quot;)</span><br><span class="line">source=(&quot;https://github.com/rramos/rust-helloworld.git/releases/download/v$pkgver/myhello-$pkgver-x86_64.tar.gz&quot;)</span><br><span class="line">sha256sums=(&quot;ef8ce03c73185ef872116c17971c21f6f8f2c8f67d42a5c0b4ca876d164191b2&quot;)</span><br><span class="line"></span><br><span class="line">package() &#123;</span><br><span class="line">    install -Dm755 myhello -t &quot;$pkgdir/usr/bin&quot;</span><br><span class="line">    install -Dm644 LICENSE &quot;$pkgdir/usr/share/licenses/$pkgname/LICENSE&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>It also generated a tarball for the application <strong>myhello-0.1.0-x86_64.tar.gz</strong> .</p>
 <p>Now lets use pacman to build and install the package</p>
 <figure class="highlight console"><table><tr><td class="code"><pre><span class="line">makepkg -si</span><br></pre></td></tr></table></figure>
@@ -196,13 +196,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <figure class="highlight console"><table><tr><td class="code"><pre><span class="line">sudo pacman -R myhello-bin</span><br></pre></td></tr></table></figure>
 
 <h1 id="Checking-package-sanity"><a href="#Checking-package-sanity" class="headerlink" title="Checking package sanity"></a>Checking package sanity</h1><p>After testing package functionality, check it for errors using <a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Namcap">namcap</a></p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> namcap PKGBUILD</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> namcap &lt;package file name&gt;.pkg.tar.zst</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight console"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">namcap PKGBUILD</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">namcap &lt;package file name&gt;.pkg.tar.zst</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="Submitting-packages-to-the-AUR"><a href="#Submitting-packages-to-the-AUR" class="headerlink" title="Submitting packages to the AUR"></a>Submitting packages to the AUR</h1><p>In order to contribute to the community one can submit the AUR package. For that read <a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/AUR_submission_guidelines">AUR submission guidelines</a> for a detailed description of the submission process.</p>
 <p>You would need one ssh account and key.</p>
 <p>If you are developing in Rust I would advise following the <a target="_blank" rel="noopener" href="https://manojkarthick.com/posts/2021/03/rust-aur/">guide</a> from Manoj Karthick</p>
 <h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>AUR packages seem quite similar to debian or rpm packages in a sense that you need to specify a set of instructions for compiling and installing, and those functions would be called by the packaging system. I liked the simplified structure of it and <strong>cargo-aur</strong> package is amazing for rust developers who want to quickly prepare and package their applications.</p>
-<p>On the article I didn’t deep dive on more complex preparation/compilation options that some applications have or dependencies. Also is important to check the <a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Arch_package_guidelines">Arch guidelines</a> if you intend to release your application for the community and also follow good practices not only for the package build but also files organization.</p>
+<p>On the article I didn’t deep dive on more complex preparation&#x2F;compilation options that some applications have or dependencies. Also is important to check the <a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Arch_package_guidelines">Arch guidelines</a> if you intend to release your application for the community and also follow good practices not only for the package build but also files organization.</p>
 <p>In general as a past RedHat, Debian and Gentoo Linux user, I’m really becoming a fan of this packaging system.</p>
 <p>Hope this helps, the following References section contains the source of information used to consolidate this article.</p>
 <h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
@@ -548,7 +548,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
   &copy; 2024 Rui Ramos
   
-  <a class="disclaimer" href=/disclaimer> Disclaimer</a>
 </div>
 <div class="clearfix"></div></footer>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>

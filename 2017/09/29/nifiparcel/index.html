@@ -38,7 +38,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -76,7 +76,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2017-09-29T01:01:00.000Z"><a href="/2017/09/29/nifiparcel/">2017-09-29</a></time>
+        <time datetime="2017-09-29T02:01:00.000Z"><a href="/2017/09/29/nifiparcel/">2017-09-29</a></time>
       
       
   
@@ -95,7 +95,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </ul>
 <p>So i’ll be using my own forks that have this changes allready, but will be following the author (prateek) instructions.</p>
 <h1 id="Instructions"><a href="#Instructions" class="headerlink" title="Instructions"></a>Instructions</h1><h2 id="Install-Requirements"><a href="#Install-Requirements" class="headerlink" title="Install Requirements"></a>Install Requirements</h2><ul>
-<li>cloudera/cm_ext</li>
+<li>cloudera&#x2F;cm_ext</li>
 </ul>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /tmp</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/cloudera/cm_ext</span><br><span class="line"><span class="built_in">cd</span> cm_ext/validator</span><br><span class="line">mvn install</span><br></pre></td></tr></table></figure>
 
@@ -108,7 +108,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <ul>
 <li>First start your cloudera quickstart VM and copy the folders:<ul>
 <li><code>build-csd</code> </li>
-<li><code>build-parcel</code> </li>
+<li><code>build-parcel</code></li>
 </ul>
 </li>
 </ul>
@@ -134,7 +134,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <ul>
 <li>Copy NIFI home</li>
 </ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">cp -r /tmp/build-parcel/NIFI-0.0.5.nifi.p0.5 /opt/cloudera/parcels/NIFI/</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> -r /tmp/build-parcel/NIFI-0.0.5.nifi.p0.5 /opt/cloudera/parcels/NIFI/</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>Correct java path in file <code>/opt/cloudera/parcels/NIFI/bin/nifi-env.sh</code></li>
@@ -142,9 +142,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># The java implementation to use.</span></span><br><span class="line"><span class="built_in">export</span> JAVA_HOME=/usr/lib/jvm/jre-1.8.0</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>Copy the csd jars </li>
+<li>Copy the csd jars</li>
 </ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">cp /tmp/build-csd/NIFI-1.2.0.jar /opt/cloudera/csd/</span><br><span class="line">mkdir /opt/cloudera/csd/NIFI-1.2.0</span><br><span class="line">cp /tmp/build-csd/NIFI-1.2.0.jar /opt/cloudera/csd/NIFI-1.2.0/</span><br><span class="line"><span class="built_in">cd</span> /opt/cloudera/csd/NIFI-1.2.0/</span><br><span class="line">jar xvf NIFI-1.2.0.jar</span><br><span class="line">rm -f NIFI-1.2.0.jar</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> /tmp/build-csd/NIFI-1.2.0.jar /opt/cloudera/csd/</span><br><span class="line"><span class="built_in">mkdir</span> /opt/cloudera/csd/NIFI-1.2.0</span><br><span class="line"><span class="built_in">cp</span> /tmp/build-csd/NIFI-1.2.0.jar /opt/cloudera/csd/NIFI-1.2.0/</span><br><span class="line"><span class="built_in">cd</span> /opt/cloudera/csd/NIFI-1.2.0/</span><br><span class="line">jar xvf NIFI-1.2.0.jar</span><br><span class="line"><span class="built_in">rm</span> -f NIFI-1.2.0.jar</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>Correct ownership</li>
@@ -167,7 +167,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>After terminating the wizard you should have access to Nifi Interface</p>
 <img src="/2017/09/29/nifiparcel/parcel03.png" class="" title="[Nifi Web UI]">
 
-<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>I must say that prateek repo with only that commit worked pretty well and the instructions where also clear. There where some minor adjustments because of the java version, but we can start/stop the service via Cloudera Manager.</p>
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>I must say that prateek repo with only that commit worked pretty well and the instructions where also clear. There where some minor adjustments because of the java version, but we can start&#x2F;stop the service via Cloudera Manager.</p>
 <p>There are some pending items refered in his github page:</p>
 <ul>
 <li>Currently <code>NiFi</code> runs under the <code>root</code> user</li>
@@ -513,7 +513,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
   &copy; 2024 Rui Ramos
   
-  <a class="disclaimer" href=/disclaimer> Disclaimer</a>
 </div>
 <div class="clearfix"></div></footer>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>

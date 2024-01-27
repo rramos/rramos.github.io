@@ -38,7 +38,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -77,6 +77,375 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
+        <time datetime="2024-01-27T10:53:22.782Z"><a href="/2024/01/27/pacman/">2024-01-27</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2024/01/27/pacman/">Pacman Command in Arch Linux</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>I’ve recently started using a Arch Linux distribution <a target="_blank" rel="noopener" href="https://garudalinux.org/">Garuda Linux</a> and the package management tool is <strong>pacman</strong> this article summarizes the most common actions with based on the following article from <a target="_blank" rel="noopener" href="https://www.geeksforgeeks.org/pacman-command-in-arch-linux/">GeeksforGeeks</a>.</p>
+<h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><blockquote>
+<p>Pacman is a package manager for the arch Linux and arch-based Linux distributions. If you have used Debian-based OS like ubuntu, then the  Pacman is similar to the apt command of Debian-based operating systems. Pacman contains the compressed files as a package format and maintains a text-based package database. Pacman keeps the system up to date by synchronizing package lists with the master server. Pacman can install the packages from the official repositories or your own build packages.</p>
+</blockquote>
+<h1 id="Installing-Packages-using-the-Pacman"><a href="#Installing-Packages-using-the-Pacman" class="headerlink" title="Installing Packages using the Pacman"></a>Installing Packages using the Pacman</h1><p>When we install any new operating system on our machine, the first task we do is to install the software packages on the system. Now, to install the packages on Arch Linux, use the command Pacman with -S option and mention the package name. The -S option tells the Pacman to synchronize and to continue. Here is one example </p>
+<p><code>sudo pacman -S cmatrix</code></p>
+<p>We can mention the many package names after the -S option, separated by space.</p>
+<p><code>sudo pacman -S package1 package2 package3</code></p>
+<p>Then Pacman will show the download and install size of the package and ask for to proceed, then simply press the Y key. Pacman categorizes the installed packages into two categories.</p>
+<ul>
+<li><strong>Implicitly Installed</strong>: The package that was installed using the -S or -U option.</li>
+<li><strong>Dependencies</strong>: The package is installed because it is required by another package.</li>
+</ul>
+<h1 id="Removing-packages-using-the-Pacman"><a href="#Removing-packages-using-the-Pacman" class="headerlink" title="Removing packages using the Pacman"></a>Removing packages using the Pacman</h1><p>When we don’t need the package anymore, then we should remove the package from the system. To remove the package with all its dependencies which are not required by other packages, use the following command:</p>
+<p><code>sudo pacman -Rs &lt;package_name&gt;</code></p>
+<p>To remove the package without removing its dependency use the following command:</p>
+<p><code>sudo pacman -R &lt;package_name&gt;</code></p>
+<p>To remove the dependencies which are not required anymore, use the following command:</p>
+<p><code>pacman -Qdtq |  pacman -Rs -</code></p>
+<h1 id="Upgrading-packages"><a href="#Upgrading-packages" class="headerlink" title="Upgrading packages"></a>Upgrading packages</h1><p>In arch Linux, we can upgrade the full system by only one command using the Pacman. Use the following command to update the system:</p>
+<p><code>sudo pacman -Suy</code></p>
+<p>Let’s understand the meaning, S tell the pacman to synchronize the local database with the main database. u tells the pacman to upgrade the packages and y update the local catch on the system. Basically, this command synchronizes the local pacman database with the main repository database and then updates the system.</p>
+<h1 id="Searching-for-a-Package"><a href="#Searching-for-a-Package" class="headerlink" title="Searching for a Package"></a>Searching for a Package</h1><p>Now let’s see how we can search the package into the database of pacman. To search query in the name and description  of the package in the database use the following command:</p>
+<p><code>sudo pacman -Ss   &lt;query1&gt;  &lt;query2&gt;</code></p>
+<p>To search into already installed packages on the system, use the following command:</p>
+<p><code>sudo pacman -Qs query1&gt;  &lt;query2&gt;</code></p>
+<p>To search the query into the local database use the following command:</p>
+<p><code>sudo pacman -F query1&gt;  &lt;query2&gt;</code></p>
+<h1 id="Cleaning-the-Package-Cache"><a href="#Cleaning-the-Package-Cache" class="headerlink" title="Cleaning the Package Cache"></a>Cleaning the Package Cache</h1><p>When pacman downloads the packages it stores the packages into the <code>/var/cache/pacman/pkg/</code> and while uninstalling the package pacman does not delete these files. Pacman uses these files to downgrade the package or install the package. But it can take a lot of space to store these packages. So to delete the stored packages, use the following command:</p>
+<p><code>sudo pacman -Sc</code></p>
+<p>To remove all stored packages and cache, use the following command:</p>
+<p><code>sudp pacman -Scc</code></p>
+<h1 id="Installing-local-packages"><a href="#Installing-local-packages" class="headerlink" title="Installing local packages"></a>Installing local packages</h1><p>By using pacman we can install packages other than the main repository of Arch Linux. Use the following command to install the packages</p>
+<p>For local:</p>
+<p><code>sudo pacman -U path_to_file.pkg.tar.xz</code></p>
+<p>For remote package:</p>
+<p><code>sudo pacman -U http://www.example.com/repo/example.pkg.tar.xz</code></p>
+<h1 id="Troubleshooting"><a href="#Troubleshooting" class="headerlink" title="Troubleshooting"></a>Troubleshooting</h1><p>Sometimes installing the packages with pacman we face some errors. Following are the mainly occurred errors with pacman:</p>
+<ul>
+<li><p><strong>Conflicting file error</strong>: This error occurs due to some conflict packages present in the repository. To solve this error we can manually rename the file or force the overwrite function. We can use the following command to overwrite the function: </p>
+<ul>
+<li><code>pacman -S --overwrite glob package</code></li>
+</ul>
+</li>
+<li><p><strong>Invalid package</strong>: This error can occur due to the partial installation of the packages. We can solve this error by deleting .part files in <code>/var/cache/pacman/pkg/</code>.</p>
+</li>
+<li><p><strong>Locking database</strong>: This error can occur when pacman is interrupted while updating the database. To solve this error, delete the file <code>/var/lib/pacman/db.lck</code> and update the database. Use the following command to delete the file:</p>
+</li>
+</ul>
+<h1 id="Garuda"><a href="#Garuda" class="headerlink" title="Garuda"></a>Garuda</h1><p> Garuda also brings a useful command <code>update</code> that abstracts all this interactions to keep your rolling system updated, still very important to understand the command line utilities to manage the packages and check the official man page for further details as this is always evolving.</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.geeksforgeeks.org/pacman-command-in-arch-linux/">https://www.geeksforgeeks.org/pacman-command-in-arch-linux/</a></li>
+<li><a target="_blank" rel="noopener" href="https://archlinux.org/pacman/pacman.8.html">https://archlinux.org/pacman/pacman.8.html</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2024-01-27T10:53:22.778Z"><a href="/2024/01/27/koboreader/">2024-01-27</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2024/01/27/koboreader/">How to Bypass Kobo Wizard in Linux</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>This article is a copy from <strong>Curtis Gedak</strong> in the following <a target="_blank" rel="noopener" href="https://gedakc.users.sourceforge.net/display-doc.php%3Fname%3Dkobo-desktop-ereader-setup">reference</a>. </p>
+<blockquote>
+<p>Kobo eReaders can no longer be set up using the Kobo Desktop on GNU&#x2F;Linux (see warning below). Fortunately there is a work around to get your Kobo eReader working without a Kobo Account.</p>
+</blockquote>
+<p>If you have a kobo reader stuck in the setup wizard as it happen to me (wifi got broken) there is a quick setup you can do to bypass the initial setup wizard.</p>
+<p><strong>Notice:</strong> This procedure was done in a old Kobo ebook reader, and is not guarantee that it will work on newer versions, use at your own risk</p>
+<h1 id="Issue"><a href="#Issue" class="headerlink" title="Issue"></a>Issue</h1><p>Kobo ebook reader stuck on the initial setup phase. Wifi doesn’t work and plugging to a computer requires the windows software installed, which for linux users doesn’t not work.</p>
+<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><p>Create a dummy user on the device to bypass the initial setup</p>
+<h1 id="Pre-Requisites"><a href="#Pre-Requisites" class="headerlink" title="Pre-Requisites"></a>Pre-Requisites</h1><p>You need to install sqlitebrowser</p>
+<p>Using the following code for Arch there should be a similar option Ubuntu or Fedora distributions</p>
+<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">sudo pacman -S sqlitebrowser</span><br></pre></td></tr></table></figure>
+<h1 id="Procedure"><a href="#Procedure" class="headerlink" title="Procedure"></a>Procedure</h1><ol>
+<li><p>Plug you ebook reader via usb </p>
+<ul>
+<li>You can check the mount points you should see a <code>/media/your-user-name/KOBOeReader</code> device . Assuming this path as reference</li>
+</ul>
+</li>
+<li><p>Connect with SLQliteBrowser</p>
+  <figure class="highlight console"><table><tr><td class="code"><pre><span class="line">sqlitebrowser /media/your-user-name/KOBOeReader/.kobo/KoboReader.sqlite</span><br></pre></td></tr></table></figure></li>
+<li><p>Click on the Execute SQL tab and in the SQL string: section enter the following statement</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">USER</span></span><br><span class="line">  (UserID, UserKey, UserDisplayName, UserEmail, ___DeviceID)</span><br><span class="line"><span class="keyword">values</span></span><br><span class="line">  (&quot;foo&quot;, &quot;foo&quot;, &quot;foo&quot;, &quot;foo&quot;,&quot;foo&quot;);</span><br></pre></td></tr></table></figure></li>
+<li><p>Save the changes</p>
+<ul>
+<li>Save these changes by selecting the menu option: File -&gt; Save Database or File -&gt; Write Changes.</li>
+</ul>
+</li>
+<li><p>Close the sqlitebrowser by selecting the menu option: File -&gt; Exit.</p>
+</li>
+<li><p>Safely unmount your Kobo eReader.</p>
+</li>
+</ol>
+<p>And voilá, your eReader should now boot up and display the QUICK TOUR screen</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://gedakc.users.sourceforge.net/display-doc.php%3Fname%3Dkobo-desktop-ereader-setup">https://gedakc.users.sourceforge.net/display-doc.php%3Fname%3Dkobo-desktop-ereader-setup</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2024-01-27T10:53:22.774Z"><a href="/2024/01/27/chatgpt-prompts/">2024-01-27</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2024/01/27/chatgpt-prompts/">Chat-GPT Data Science Prompts</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>This article is a resume of Travis Tang Medium article reference on the Reference section. According to Travis Chat GPT performs well in explaining things and providing boilerplate code, however falters when comes to debuging or creating complex snippets.</p>
+<p>I totally agree with Travis mention</p>
+<blockquote>
+<p>Will ChatGPT replace data scientists? No, I don’t think so. At least not yet. However someone using ChatGPT might.</p>
+<p>I hope these prompts are helpful for you! It certainly helped me.</p>
+</blockquote>
+<p>Check him in <a target="_blank" rel="noopener" href="https://medium.com/@travis-tang">https://medium.com/@travis-tang</a></p>
+<h1 id="Write-Python"><a href="#Write-Python" class="headerlink" title="Write Python"></a>Write Python</h1><h2 id="Train-Classification-Model"><a href="#Train-Classification-Model" class="headerlink" title="Train Classification Model"></a>Train Classification Model</h2><blockquote>
+<p>Prompt: I want you to act as a data scientist and code for me. I have a dataset of [describe dataset]. Please build a machine learning model that predict [target variable].</p>
+</blockquote>
+<h2 id="Automatic-Machine-Learning"><a href="#Automatic-Machine-Learning" class="headerlink" title="Automatic Machine Learning"></a>Automatic Machine Learning</h2><blockquote>
+<p>Prompt: I want you to act as an automatic machine learning (AutoML) bot using TPOT for me. I am working on a model that predicts […]. Please write python code to find the best classification model with the highest AUC score on the test set.</p>
+</blockquote>
+<h2 id="Tune-Hyperparameter"><a href="#Tune-Hyperparameter" class="headerlink" title="Tune Hyperparameter"></a>Tune Hyperparameter</h2><blockquote>
+<p>Prompt: I want you to act as a data scientist and code for me. I have trained a [model name]. Please write the code to tune the hyper parameters.</p>
+</blockquote>
+<h2 id="Explore-Data"><a href="#Explore-Data" class="headerlink" title="Explore Data"></a>Explore Data</h2><blockquote>
+<p>Prompt: I want you to act as a data scientist and code for me. I have a dataset of [describe dataset]. Please write code for data visualisation and exploration.</p>
+</blockquote>
+<h2 id="Generate-Data"><a href="#Generate-Data" class="headerlink" title="Generate Data"></a>Generate Data</h2><blockquote>
+<p>Prompt: I want you to act as a fake data generator. I need a dataset that has x rows and y columns: [insert column names]</p>
+</blockquote>
+<h2 id="Get-Feature-Importance"><a href="#Get-Feature-Importance" class="headerlink" title="Get Feature Importance"></a>Get Feature Importance</h2><blockquote>
+<p>Prompt: I want you to act as a data scientist and explain the model’s results. I have trained a decision tree model and I would like to find the most important features. Please write the code.</p>
+</blockquote>
+<h2 id="Visualize-Data-with-Matplotlib"><a href="#Visualize-Data-with-Matplotlib" class="headerlink" title="Visualize Data with Matplotlib"></a>Visualize Data with Matplotlib</h2><blockquote>
+<p>Prompt: I want you to act as a coder in python. I have a dataset [name] with columns [name]. [Describe graph requirements]</p>
+</blockquote>
+<h2 id="Visualize-Image-Grid-Matplotlib"><a href="#Visualize-Image-Grid-Matplotlib" class="headerlink" title="Visualize Image Grid Matplotlib"></a>Visualize Image Grid Matplotlib</h2><blockquote>
+<p>Prompt: I want you to act as a coder. I have a folder of images. [Describe how files are organised in directory] [Describe how you want images to be printed]</p>
+</blockquote>
+<h2 id="Explain-Model-with-Lime"><a href="#Explain-Model-with-Lime" class="headerlink" title="Explain Model with Lime"></a>Explain Model with Lime</h2><blockquote>
+<p>Prompt: I want you to act as a data scientist and explain the model’s results. I have trained a [library name] model and I would like to explain the output using LIME. Please write the code.</p>
+</blockquote>
+<h2 id="Explain-Model-with-Shap"><a href="#Explain-Model-with-Shap" class="headerlink" title="Explain Model with Shap"></a>Explain Model with Shap</h2><blockquote>
+<p>Prompt: I want you to act as a data scientist and explain the model’s results. I have trained a scikit-learn XGBoost model and I would like to explain the output using a series of plots with Shap. Please write the code.</p>
+</blockquote>
+<h2 id="Write-Multithreaded-Functions"><a href="#Write-Multithreaded-Functions" class="headerlink" title="Write Multithreaded Functions"></a>Write Multithreaded Functions</h2><blockquote>
+<p>Prompt: I want you to act as a coder. Can you help me parallelize this code across threads in python?</p>
+</blockquote>
+<h2 id="Compare-Function-Speeds"><a href="#Compare-Function-Speeds" class="headerlink" title="Compare Function Speeds"></a>Compare Function Speeds</h2><blockquote>
+<p>Prompt: I want you to act as a software developer. I would like to compare the efficiency of two algorithms that performs the same thing in python. Please write code that helps me run an experiment that can be repeated for 5 times. Please output the runtime and other summary statistics of the experiment. [Insert functions]</p>
+</blockquote>
+<h2 id="Create-NumPy-Array"><a href="#Create-NumPy-Array" class="headerlink" title="Create NumPy Array"></a>Create NumPy Array</h2><blockquote>
+<p>Prompt: I want you to act as a data scientist. I need to create a numpy array. This numpy array should have the shape of (x,y,z). Please initialize the numpy array with random values.</p>
+</blockquote>
+<h1 id="Test-Code"><a href="#Test-Code" class="headerlink" title="Test Code"></a>Test Code</h1><h2 id="Write-Unit-Test"><a href="#Write-Unit-Test" class="headerlink" title="Write Unit Test"></a>Write Unit Test</h2><blockquote>
+<p>Prompt: I want you to act as a software developer. Please write unit tests for the function [Insert function]. The test cases are: [Insert test cases]</p>
+</blockquote>
+<h2 id="Validate-Column"><a href="#Validate-Column" class="headerlink" title="Validate Column"></a>Validate Column</h2><blockquote>
+<p>Prompt: I want you to act as a data scientist. Please write code to test if that my pandas Dataframe [insert requirements here]</p>
+</blockquote>
+<h1 id="Explain-Code"><a href="#Explain-Code" class="headerlink" title="Explain Code"></a>Explain Code</h1><h2 id="Explain-Python"><a href="#Explain-Python" class="headerlink" title="Explain Python"></a>Explain Python</h2><blockquote>
+<p>Prompt: I want you to act as a code explainer. What is this code doing? [Insert code]</p>
+</blockquote>
+<h2 id="Explain-SQL"><a href="#Explain-SQL" class="headerlink" title="Explain SQL"></a>Explain SQL</h2><blockquote>
+<p>Prompt: I want you to act as a data science instructor. Can you please explain to me what this SQL code is doing? [Insert SQL code]</p>
+</blockquote>
+<h2 id="Explain-Google-Sheets-Formula"><a href="#Explain-Google-Sheets-Formula" class="headerlink" title="Explain Google Sheets Formula"></a>Explain Google Sheets Formula</h2><blockquote>
+<p>Prompt: I want you to act as a Google Sheets formula explainer. Explain the following Google Sheets command. [Insert formula]</p>
+</blockquote>
+<h1 id="Optimize-Code"><a href="#Optimize-Code" class="headerlink" title="Optimize Code"></a>Optimize Code</h1><blockquote>
+<p>Prompt: I want you to act as a software developer. Please help me improve the time complexity of the code below. [Insert code]</p>
+</blockquote>
+<h1 id="Improve-Code-Speed"><a href="#Improve-Code-Speed" class="headerlink" title="Improve Code Speed"></a>Improve Code Speed</h1><blockquote>
+<p>Prompt: I want you to act as a code optimizer. Can you point out what’s wrong with the following Pandas code and optimize it? [Insert code here]</p>
+</blockquote>
+<h2 id="Optimize-Pandas"><a href="#Optimize-Pandas" class="headerlink" title="Optimize Pandas"></a>Optimize Pandas</h2><blockquote>
+<p>Prompt: I want you to act as a code optimizer. Can you point out what’s wrong with the following Pandas code and optimize it? [Insert code here]</p>
+</blockquote>
+<h2 id="Optimize-Pandas-Again"><a href="#Optimize-Pandas-Again" class="headerlink" title="Optimize Pandas Again"></a>Optimize Pandas Again</h2><blockquote>
+<p>Prompt: I want you to act as a code optimizer. Can you point out what’s wrong with the following Pandas code and optimize it? [Insert code here]</p>
+</blockquote>
+<h2 id="Optimize-Python"><a href="#Optimize-Python" class="headerlink" title="Optimize Python"></a>Optimize Python</h2><blockquote>
+<p>Prompt: I want you to act as a code optimizer. The code is poorly written. How do I correct it? [Insert code here]</p>
+</blockquote>
+<h1 id="Optimize-SQL"><a href="#Optimize-SQL" class="headerlink" title="Optimize SQL"></a>Optimize SQL</h1><blockquote>
+<p>Prompt: I want you to act as an SQL code optimizer. The following code is slow. Can you help me speed it up? [Insert SQL]</p>
+</blockquote>
+<h1 id="Format-code"><a href="#Format-code" class="headerlink" title="Format code"></a>Format code</h1><h2 id="Simplify-Python"><a href="#Simplify-Python" class="headerlink" title="Simplify Python"></a>Simplify Python</h2><blockquote>
+<p>Prompt: I want you to act as a code simplifier. Can you simplify the following code?</p>
+</blockquote>
+<h2 id="Write-Documentation"><a href="#Write-Documentation" class="headerlink" title="Write Documentation"></a>Write Documentation</h2><blockquote>
+<p>Prompt: I want you to act as a software developer. Please provide documentation for func1 below. [Insert function]</p>
+</blockquote>
+<h2 id="Improve-Readability"><a href="#Improve-Readability" class="headerlink" title="Improve Readability"></a>Improve Readability</h2><blockquote>
+<p>Prompt: I want you to act as a code analyzer. Can you improve the following code for readability and maintainability? [Insert code]</p>
+</blockquote>
+<h2 id="Format-SQL"><a href="#Format-SQL" class="headerlink" title="Format SQL"></a>Format SQL</h2><blockquote>
+<p>Prompt: I want you to act as a SQL formatter. Please format the following SQL code. Please convert all reserved keywords to uppercase [Insert requirements]. [Insert Code]</p>
+</blockquote>
+<h1 id="Translate-Code"><a href="#Translate-Code" class="headerlink" title="Translate Code"></a>Translate Code</h1><h2 id="Translate-Between-DBMS"><a href="#Translate-Between-DBMS" class="headerlink" title="Translate Between DBMS"></a>Translate Between DBMS</h2><blockquote>
+<p>Prompt: I want you to act as a coder and write SQL code for MySQL. What is the equivalent of PostgreSQL’s DATE_TRUNC for MySQL?</p>
+</blockquote>
+<h2 id="Translate-Python-to-R"><a href="#Translate-Python-to-R" class="headerlink" title="Translate Python to R"></a>Translate Python to R</h2><blockquote>
+<p>Prompt: I want you to act as a code translator. Can you please convert the following code from python to R? [Insert code]</p>
+</blockquote>
+<h2 id="Translate-R-to-Python"><a href="#Translate-R-to-Python" class="headerlink" title="Translate R to Python"></a>Translate R to Python</h2><blockquote>
+<p>Prompt: I want you to act as a code translator. Can you please convert the following code from R to python? [Insert code]</p>
+</blockquote>
+<h1 id="Explain-concepts"><a href="#Explain-concepts" class="headerlink" title="Explain concepts"></a>Explain concepts</h1><h2 id="Explain-to-Five-Year-Old"><a href="#Explain-to-Five-Year-Old" class="headerlink" title="Explain to Five-Year-Old"></a>Explain to Five-Year-Old</h2><blockquote>
+<p>Prompt: I want you to act as a data science instructor. Explain [concept] to a five-year-old.</p>
+</blockquote>
+<h2 id="Explain-to-Undergraduate"><a href="#Explain-to-Undergraduate" class="headerlink" title="Explain to Undergraduate"></a>Explain to Undergraduate</h2><blockquote>
+<p>Prompt: I want you to act as a data science instructor. Explain [concept] to an undergraduate.</p>
+</blockquote>
+<h2 id="Explain-to-Professor"><a href="#Explain-to-Professor" class="headerlink" title="Explain to Professor"></a>Explain to Professor</h2><blockquote>
+<p>Prompt: I want you to act as a data science instructor. Explain [concept] to a professor.</p>
+</blockquote>
+<h2 id="Explain-to-Business-Stakeholder"><a href="#Explain-to-Business-Stakeholder" class="headerlink" title="Explain to Business Stakeholder"></a>Explain to Business Stakeholder</h2><blockquote>
+<p>Prompt: I want you to act as a data science instructor. Explain [concept] to a business stakeholder.</p>
+</blockquote>
+<h2 id="Explain-Like-Stackoverflow"><a href="#Explain-Like-Stackoverflow" class="headerlink" title="Explain Like Stackoverflow"></a>Explain Like Stackoverflow</h2><blockquote>
+<p>Prompt: I want you to act as an answerer on StackOverflow. You can provide code snippets, sample tables and outputs to support your answer. [Insert technical question]</p>
+</blockquote>
+<h1 id="Suggest-ideas"><a href="#Suggest-ideas" class="headerlink" title="Suggest ideas"></a>Suggest ideas</h1><h2 id="Suggest-Edge-Cases"><a href="#Suggest-Edge-Cases" class="headerlink" title="Suggest Edge Cases"></a>Suggest Edge Cases</h2><blockquote>
+<p>Prompt: I want you to act as a software developer. Please help me catch edge cases for this function [insert function]</p>
+</blockquote>
+<h2 id="Suggest-Dataset"><a href="#Suggest-Dataset" class="headerlink" title="Suggest Dataset"></a>Suggest Dataset</h2><blockquote>
+<p>Prompt: I want you to act as a data science career coach. I want to build a predictive model for […]. At the same time, I would like to showcase my knowledge in […]. Can you please suggest the five most relevant datasets for my use case?</p>
+</blockquote>
+<h2 id="Suggest-Portfolio-Ideas"><a href="#Suggest-Portfolio-Ideas" class="headerlink" title="Suggest Portfolio Ideas"></a>Suggest Portfolio Ideas</h2><blockquote>
+<p>Prompt: I want you to act as a data science coach. My background is in […] and I would like to [career goal]. I need to build a portfolio of data science projects that will help me land a role in […] as a […]. Can you suggest five specific portfolio projects that will showcase my expertise in […] and are of relevance to [company]?</p>
+</blockquote>
+<h2 id="Suggest-Resources"><a href="#Suggest-Resources" class="headerlink" title="Suggest Resources"></a>Suggest Resources</h2><blockquote>
+<p>Prompt: I want you to act as a data science coach. I would like to learn about [topic]. Please suggest 3 best specific resources. You can include [specify resource type]</p>
+</blockquote>
+<h2 id="Suggest-Time-Complexity"><a href="#Suggest-Time-Complexity" class="headerlink" title="Suggest Time Complexity"></a>Suggest Time Complexity</h2><blockquote>
+<p>Prompt: I want you to act as a software developer. Please compare the time complexity of the two algorithms below. [Insert two functions]</p>
+</blockquote>
+<h2 id="Suggest-Feature-Engineering"><a href="#Suggest-Feature-Engineering" class="headerlink" title="Suggest Feature Engineering"></a>Suggest Feature Engineering</h2><blockquote>
+<p>Prompt: I want you to act as a data scientist and perform feature engineering. I am working on a model that predicts [insert feature name]. There are columns: [Describe columns]. Can you suggest features that we can engineer for this machine learning problem?</p>
+</blockquote>
+<h2 id="Suggest-A-B-Testing-Steps"><a href="#Suggest-A-B-Testing-Steps" class="headerlink" title="Suggest A&#x2F;B Testing Steps"></a>Suggest A&#x2F;B Testing Steps</h2><blockquote>
+<p>Prompt: I want you to act as a statistician. [Describe context] Please design an A&#x2F;B test for this purpose. Please include the concrete steps on which statistical test I should run.</p>
+</blockquote>
+<h2 id="Career-Coaching"><a href="#Career-Coaching" class="headerlink" title="Career Coaching"></a>Career Coaching</h2><blockquote>
+<p>Prompt: I want you to act as a career advisor. I am looking for a role as a [role name]. My background is […]. How do I land the role and with what resources exactly in 6 months?</p>
+</blockquote>
+<h1 id="Troubleshoot-problem"><a href="#Troubleshoot-problem" class="headerlink" title="Troubleshoot problem"></a>Troubleshoot problem</h1><h2 id="Correct-ChatGPT-Code"><a href="#Correct-ChatGPT-Code" class="headerlink" title="Correct ChatGPT Code"></a>Correct ChatGPT Code</h2><blockquote>
+<p>Prompt: Your above code is wrong. [Point out what is wrong]. Can you try again?</p>
+</blockquote>
+<h2 id="Correct-Python-Code"><a href="#Correct-Python-Code" class="headerlink" title="Correct Python Code"></a>Correct Python Code</h2><blockquote>
+<p>Prompt: I want you to act as a software developer. This code is supposed to [expected function]. Please help me debug this python code that cannot be run. [Insert function]</p>
+</blockquote>
+<h2 id="Correct-SQL-Code"><a href="#Correct-SQL-Code" class="headerlink" title="Correct SQL Code"></a>Correct SQL Code</h2><blockquote>
+<p>Prompt: I want you to act as a SQL code corrector. This code does not run in [your DBMS, e.g. PostgreSQL]. Can you correct it for me? [SQL code here]</p>
+</blockquote>
+<h1 id="Troubleshoot-PowerBI-Model"><a href="#Troubleshoot-PowerBI-Model" class="headerlink" title="Troubleshoot PowerBI Model"></a>Troubleshoot PowerBI Model</h1><blockquote>
+<p>Prompt: I want you to act as a PowerBl modeler. Here is the details of my current project. [Insert details]. Do you see any problems with the table?</p>
+</blockquote>
+<h1 id="Write-SQL"><a href="#Write-SQL" class="headerlink" title="Write SQL"></a>Write SQL</h1><h2 id="Create-Running-Average"><a href="#Create-Running-Average" class="headerlink" title="Create Running Average"></a>Create Running Average</h2><blockquote>
+<p>Prompt: I want you to act as a data scientist and write SQL code for me. I have a table with two columns [Insert column names]. I would like to calculate a running average for [which value]. What is the SQL code that works for PostgreSQL 14?</p>
+</blockquote>
+<h2 id="Solve-Leetcode-Question"><a href="#Solve-Leetcode-Question" class="headerlink" title="Solve Leetcode Question"></a>Solve Leetcode Question</h2><blockquote>
+<p>Prompt: Assume you are given the tables… with the columns… Output the following…Prompt: Assume you are given the tables… with the columns… Output the following…</p>
+</blockquote>
+<h1 id="Write-other-Code"><a href="#Write-other-Code" class="headerlink" title="Write other Code"></a>Write other Code</h1><h2 id="Write-Google-Sheets-Formula"><a href="#Write-Google-Sheets-Formula" class="headerlink" title="Write Google Sheets Formula"></a>Write Google Sheets Formula</h2><blockquote>
+<p>Prompt: I want you to act as a bot that generates Google Sheets formula. Please generate a formula that [describe requirements]</p>
+</blockquote>
+<h2 id="Write-R"><a href="#Write-R" class="headerlink" title="Write R"></a>Write R</h2><blockquote>
+<p>Prompt: I want you to act as a data scientist using R. Can you write an R script that [Insert requirement here]</p>
+</blockquote>
+<h2 id="Write-Shell"><a href="#Write-Shell" class="headerlink" title="Write Shell"></a>Write Shell</h2><blockquote>
+<p>Prompt: I want you to act as a Linux terminal expert. Please write the code to [describe requirements]</p>
+</blockquote>
+<h2 id="Write-VBA"><a href="#Write-VBA" class="headerlink" title="Write VBA"></a>Write VBA</h2><blockquote>
+<p>Prompt: I want you to act as an Excel VBA developer. Can you write a VBA that [Insert function here]?</p>
+</blockquote>
+<h1 id="Miscellaneous"><a href="#Miscellaneous" class="headerlink" title="Miscellaneous"></a>Miscellaneous</h1><h2 id="Format-Tables"><a href="#Format-Tables" class="headerlink" title="Format Tables"></a>Format Tables</h2><blockquote>
+<p>Prompt: I want you to act as a document formatter. Please format the following into a nice table for me to place in Google Docs? [insert text table here]</p>
+</blockquote>
+<h1 id="Summarize-Book"><a href="#Summarize-Book" class="headerlink" title="Summarize Book"></a>Summarize Book</h1><blockquote>
+<p>Prompt: I want you to act as a technical book summarizer. Can you please summarize the book [name] with 5 main points?</p>
+</blockquote>
+<h2 id="Summarize-Paper"><a href="#Summarize-Paper" class="headerlink" title="Summarize Paper"></a>Summarize Paper</h2><blockquote>
+<p>Prompt: I want you to act as an academic. Please summarise the paper […] in simple terms in one paragraph.</p>
+</blockquote>
+<h2 id="Provide-Emotional-Support"><a href="#Provide-Emotional-Support" class="headerlink" title="Provide Emotional Support"></a>Provide Emotional Support</h2><blockquote>
+<p>Prompt: I want you to provide emotional support to me. [Explain problem here.]</p>
+</blockquote>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://medium.datadriveninvestor.com/60-chatgpt-prompts-for-data-science-tried-tested-and-rated-4994c7e6adb2">https://medium.datadriveninvestor.com/60-chatgpt-prompts-for-data-science-tried-tested-and-rated-4994c7e6adb2</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2024-01-26T18:00:00.000Z"><a href="/2024/01/26/githubactions/">2024-01-26</a></time>
       
       
@@ -88,12 +457,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="entry">
       
         <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>In this article I will go through the steps to setup github actions to deploy hexo pages upon push requests into <a target="_blank" rel="noopener" href="https://pages.github.com/">Github pages</a></p>
-<h2 id="Github-Actions"><a href="#Github-Actions" class="headerlink" title="Github Actions"></a>Github Actions</h2><p>GitHub Actions makes it easy to automate all your software workflows, now with world-class CI/CD. Build, test, and deploy your code right from GitHub. Make code reviews, branch management, and issue triaging work the way you want.</p>
+<h2 id="Github-Actions"><a href="#Github-Actions" class="headerlink" title="Github Actions"></a>Github Actions</h2><p>GitHub Actions makes it easy to automate all your software workflows, now with world-class CI&#x2F;CD. Build, test, and deploy your code right from GitHub. Make code reviews, branch management, and issue triaging work the way you want.</p>
 <p>Check the available <a target="_blank" rel="noopener" href="https://docs.github.com/en/actions">documentation</a> as there are several interesting examples</p>
 <h2 id="Hexo-Setup"><a href="#Hexo-Setup" class="headerlink" title="Hexo Setup"></a>Hexo Setup</h2><p>This tech notes site is maintained by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> a markdown blob framework.</p>
 <p>The framework generates html static content based on Markdown articles an one needs carry the following steps to update content</p>
 <ul>
-<li>Create/Update Markdown content</li>
+<li>Create&#x2F;Update Markdown content</li>
 <li>Execute <code>hexo generate</code> to generte content</li>
 <li>Validate the pages with <code>hexo serve</code></li>
 <li>Deploy to your hosting service <code>hexo deploy</code></li>
@@ -114,7 +483,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p><strong>NOTE:</strong> This assumes the hexo source repository was already configured for the destination github pages account.</p>
 <h2 id="Multi-repos"><a href="#Multi-repos" class="headerlink" title="Multi repos"></a>Multi repos</h2><p>It is important to notice that you cannot assign the same deployment key for several repositories.</p>
 <p>That is why I used a personal token, but there should be better alternatives.</p>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Github Actions is a really powerfull CI/CD tool and for this type of static generation content works rather well.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Github Actions is a really powerfull CI&#x2F;CD tool and for this type of static generation content works rather well.</p>
 <p>I had several issues regarding github submodules where the authetication was not passing. If you use the same approach for themes, you may endup on the same situation and using a token approach would be preferable</p>
 <p>Also the ssh-keys being bounded by repo caused some initial confusion and there should be a better way to setup the autentication but I didn’t explore it in detail.</p>
 <p>Also <code>package-lock.json</code> are required for this to work and is advisable to have your source repo as private.</p>
@@ -178,232 +547,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>For instance D365 in the past allowed the client to export data from that system to a Datalake with internal feature of the Product and now it relies on Fabric only, if this strategy is going to be followed for the rest of MS portfolio, example DataFactory, although increased stability or support. I found the lack of flexibility concerning, by forcing clients to use this solution.</p>
 <h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/microsoft-fabric">https://www.microsoft.com/en-us/microsoft-fabric</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2024-01-04T20:00:00.000Z"><a href="/2024/01/04/p3scontroller/">2024-01-04</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2024/01/04/p3scontroller/">PS3 Controller in Arch</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h2 id="Configuration-for-PS3-Controller-in-Arch-Linux"><a href="#Configuration-for-PS3-Controller-in-Arch-Linux" class="headerlink" title="Configuration for PS3 Controller in Arch Linux"></a>Configuration for PS3 Controller in Arch Linux</h2><p>This quick guide explains how to setup your PS3 controller in Arch Linux making sure the Bluetooth connection works</p>
-<h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><p>Make sure to install the bluetooth packages and have a working usb device.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo pacman -S bluez bluez-utils bluez-plugins</span><br></pre></td></tr></table></figure>
-
-<p>Create the following file <code>/etc/bluetooth/main.conf</code> with the content:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[General]</span><br><span class="line">ClassicBondedOnly=false</span><br></pre></td></tr></table></figure>
-
-<p>And just restart you computer.</p>
-<p>Press the Middle <strong>PS</strong> button until leds start blinking, then connect the usb cable from the controller to the PC and you should se a warning to authorize the device.</p>
-<p>After that you can unplug the controller and manage via you bluetooth manager.</p>
-<blockquote>
-<p><strong>NOTE:</strong> Take into account that the ClassicalBondedOnly Option is a solution that regresses you security configuration for bluetooth pairing, more details <a target="_blank" rel="noopener" href="https://github.com/bluez/bluez/issues/673#issuecomment-1858431729">here</a> use at you own risk</p>
-</blockquote>
-<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Gamepad">https://wiki.archlinux.org/title/Gamepad</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2024-01-02T10:00:00.000Z"><a href="/2024/01/02/scalavariance/">2024-01-02</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2024/01/02/scalavariance/">Scala Variance</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>Variance lets you control how type parameters behave with regards to subtyping. Scala supports variance annotations of type parameters of generic classes, to allow them to be covariant, contravariant, or invariant if no annotations are used. The use of variance in the type system allows us to make intuitive connections between complex types.</p>
-<blockquote>
-<p>Variance: If B Extends A, Should List[B] extend List[A] ?</p>
-</blockquote>
-<h3 id="Invariance"><a href="#Invariance" class="headerlink" title="Invariance"></a>Invariance</h3><p>By <strong>default</strong>, type parameters in Scala are invariant: subtyping relationships between the type parameters aren’t reflected in the parameterized type.</p>
-<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">trait</span> <span class="title">List</span>[<span class="type">A</span>]</span></span><br></pre></td></tr></table></figure>
-
-<p>Example</p>
-<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Box</span>[<span class="type">A</span>](<span class="params">var content: <span class="type">A</span></span>)</span></span><br></pre></td></tr></table></figure>
-
-<p>We’re going to be putting values of type <code>Animal</code> in it. This type is defined as follows:</p>
-<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">name</span></span>: <span class="type">String</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">case</span> <span class="class"><span class="keyword">class</span> <span class="title">Cat</span>(<span class="params">name: <span class="type">String</span></span>) <span class="keyword">extends</span> <span class="title">Animal</span></span></span><br><span class="line"><span class="keyword">case</span> <span class="class"><span class="keyword">class</span> <span class="title">Dog</span>(<span class="params">name: <span class="type">String</span></span>) <span class="keyword">extends</span> <span class="title">Animal</span></span></span><br></pre></td></tr></table></figure>
-
-<p>We can say that <code>Cat</code> is a subtype of <code>Animal</code>, and that <code>Dog</code> is also a subtype of <code>Animal</code>. That means that the following is well-typed:</p>
-<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> myAnimal: <span class="type">Animal</span> = <span class="type">Cat</span>(<span class="string">&quot;Felix&quot;</span>)</span><br></pre></td></tr></table></figure>
-<p>What about boxes? Is <code>Box[Cat]</code> a subtype of <code>Box[Animal]</code>, like <code>Cat</code> is a subtype of <code>Animal</code>? </p>
-<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> myCatBox: <span class="type">Box</span>[<span class="type">Cat</span>] = <span class="keyword">new</span> <span class="type">Box</span>[<span class="type">Cat</span>](<span class="type">Cat</span>(<span class="string">&quot;Felix&quot;</span>))</span><br><span class="line"><span class="keyword">val</span> myAnimalBox: <span class="type">Box</span>[<span class="type">Animal</span>] = myCatBox <span class="comment">// this doesn&#x27;t compile</span></span><br></pre></td></tr></table></figure>
-
-<p>Although this is valid</p>
-<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> myAnimal: <span class="type">Animal</span> = myAnimalBox.content</span><br><span class="line">myAnimalBox.content = <span class="type">Dog</span>(<span class="string">&quot;Fido&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>From this, we have to conclude that <code>Box[Cat]</code> and <code>Box[Animal]</code> can’t have a subtyping relationship, even though <code>Cat</code> and <code>Animal</code> do.</p>
-<h3 id="Covarience"><a href="#Covarience" class="headerlink" title="Covarience"></a>Covarience</h3><p>The The problem we ran in to above, is that because we could put a Dog in an Animal Box, a Cat Box can’t be an Animal Box.</p>
-<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">trait</span> <span class="title">List</span>[+<span class="type">A</span>]</span></span><br></pre></td></tr></table></figure>
-
-<p>Example:</p>
-<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ImmutableBox</span>[+<span class="type">A</span>](<span class="params">val content: <span class="type">A</span></span>)</span></span><br><span class="line"><span class="keyword">val</span> catbox: <span class="type">ImmutableBox</span>[<span class="type">Cat</span>] = <span class="keyword">new</span> <span class="type">ImmutableBox</span>[<span class="type">Cat</span>](<span class="type">Cat</span>(<span class="string">&quot;Felix&quot;</span>))</span><br><span class="line"><span class="keyword">val</span> animalBox: <span class="type">ImmutableBox</span>[<span class="type">Animal</span>] = catbox <span class="comment">// now this compiles</span></span><br></pre></td></tr></table></figure>
-
-<p>We say that ImmutableBox is <strong>covariant</strong> in <code>A</code>, and this is indicated by the <code>+</code> before the <code>A</code>.</p>
-<h3 id="Contravarience"><a href="#Contravarience" class="headerlink" title="Contravarience"></a>Contravarience</h3><p>We’ve seen we can accomplish covariance by making sure that we can’t put something in the covariant type, but only get something out. What if we had the opposite, something you can put something in, but can’t take out?</p>
-<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">trait</span> <span class="title">List</span>[-<span class="type">A</span>]</span></span><br></pre></td></tr></table></figure>
-
-<p>Example:</p>
-<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Serializer</span>[-<span class="type">A</span>] </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">serialize</span></span>(a: <span class="type">A</span>): <span class="type">String</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> animalSerializer: <span class="type">Serializer</span>[<span class="type">Animal</span>] = <span class="keyword">new</span> <span class="type">Serializer</span>[<span class="type">Animal</span>] &#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">serialize</span></span>(animal: <span class="type">Animal</span>): <span class="type">String</span> = <span class="string">s&quot;&quot;</span><span class="string">&quot;&#123; &quot;</span><span class="string">name&quot;: &quot;</span>$&#123;animal.name&#125;<span class="string">&quot; &#125;&quot;</span><span class="string">&quot;&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">val</span> catSerializer: <span class="type">Serializer</span>[<span class="type">Cat</span>] = animalSerializer</span><br><span class="line">catSerializer.serialize(<span class="type">Cat</span>(<span class="string">&quot;Felix&quot;</span>))</span><br></pre></td></tr></table></figure>
-
-<p>We say that <code>Serializer</code> is contravariant in <code>A</code>, and this is indicated by the <code>-</code> before the <code>A</code>. A more general serializer is a subtype of a more specific serializer.</p>
-<p>More formally, that gives us the reverse relationship: given some class <code>Contra[-T]</code>, then if <code>A</code> is a subtype of <code>B</code>, <code>Contra[B]</code> is a subtype of <code>Contra[A]</code>.</p>
-<h2 id="Bounded-Types"><a href="#Bounded-Types" class="headerlink" title="Bounded Types"></a>Bounded Types</h2><p>The type of Variance would lead to have members defined with upper or lower bounded types like the following example.</p>
-<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SuperCar</span> <span class="keyword">extends</span> <span class="title">Car</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Garage</span>[<span class="type">T</span> &lt;: <span class="type">Car</span>&gt;](<span class="params">car: <span class="type">T</span></span>)</span></span><br></pre></td></tr></table></figure>
-
-<p>More deatils on bounded values on the following articles:</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://docs.scala-lang.org/tour/upper-type-bounds.html">https://docs.scala-lang.org/tour/upper-type-bounds.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://docs.scala-lang.org/tour/lower-type-bounds.html">https://docs.scala-lang.org/tour/lower-type-bounds.html</a></li>
-</ul>
-<h2 id="Immutability-and-Variance"><a href="#Immutability-and-Variance" class="headerlink" title="Immutability and Variance"></a>Immutability and Variance</h2><p>Immutability constitutes an important part of the design decision behind using variance. For example, Scala’s collections systematically distinguish between mutable and immutable collections. The main issue is that a covariant mutable collection can break type safety. This is why List is a covariant collection, while scala.collection.mutable.ListBuffer is an invariant collection.</p>
-<h2 id="Comparison-With-Other-Languages"><a href="#Comparison-With-Other-Languages" class="headerlink" title="Comparison With Other Languages"></a>Comparison With Other Languages</h2><p>Variance is supported in different ways by some languages that are similar to Scala. Scala’s tendency towards immutable types makes it that covariant and contravariant types are more common than in other languages, since a mutable generic type must be invariant.</p>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://docs.scala-lang.org/tour/variances.html">https://docs.scala-lang.org/tour/variances.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://docs.scala-lang.org/tour/upper-type-bounds.html">https://docs.scala-lang.org/tour/upper-type-bounds.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://docs.scala-lang.org/tour/lower-type-bounds.html">https://docs.scala-lang.org/tour/lower-type-bounds.html</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2023-12-27T10:00:00.000Z"><a href="/2023/12/27/aspire/">2023-12-27</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2023/12/27/aspire/">.NET Aspire Sample Application</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>In this article I will go through the setup process to setup a .NET 8.0 Aspire application in Linux from MS Offical Guide</p>
-<h2 id="About"><a href="#About" class="headerlink" title="About"></a>About</h2><p>Cloud-native apps often require connections to various services such as databases, storage and caching solutions, messaging providers, or other web services. .NET Aspire is designed to streamline connections and configurations between these types of services.</p>
-<h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><p>In order to use .NET Aspire one needs to have .NET 8.0. As I’m using Ubuntu for this article I’ve followed this steps to prepare the enviroment</p>
-<h2 id="Install-NET-SDK-and-Runtime"><a href="#Install-NET-SDK-and-Runtime" class="headerlink" title="Install .NET SDK and Runtime"></a>Install .NET SDK and Runtime</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get update &amp;&amp;   sudo apt-get install -y dotnet-sdk-8.0</span><br><span class="line">sudo apt-get update &amp;&amp;   sudo apt-get install -y aspnetcore-runtime-8.0</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><strong>NOTE:</strong> For some reason in Ubuntu 22.04 there seems exit conflicts between donet-sdk-8 and dotnet-sdk-6, as such I had to remove the older versions. Take that into account if you have other projects to maintain with those versions as you may need more work</p>
-</blockquote>
-<h3 id="Check-existing-versions"><a href="#Check-existing-versions" class="headerlink" title="Check existing versions"></a>Check existing versions</h3><p>Execute the following command to validate you have 8.0 available</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">dotnet --list-runtimes</span><br></pre></td></tr></table></figure>
-
-<p>You should have something similar for the runtimes</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">Microsoft.AspNetCore.App 8.0.0 [/usr/share/dotnet/shared/Microsoft.AspNetCore.App]</span><br><span class="line">Microsoft.NETCore.App 8.0.0 [/usr/share/dotnet/shared/Microsoft.NETCore.App]</span><br></pre></td></tr></table></figure>
-
-<p>And now the SDK</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">dotnet --list-sdks</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">8.0.100 [/usr/share/dotnet/sdk]</span><br></pre></td></tr></table></figure>
-
-<p>Check the templates to make sure we have the aspire</p>
-<h2 id="Update-Workloads"><a href="#Update-Workloads" class="headerlink" title="Update Workloads"></a>Update Workloads</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo dotnet workload update</span><br><span class="line">sudo dotnet workload install aspire</span><br></pre></td></tr></table></figure>
-
-<h2 id="Check-existing-Templates"><a href="#Check-existing-Templates" class="headerlink" title="Check existing Templates"></a>Check existing Templates</h2><p>Run the following to make sure you have the required templates</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">dotnet new --list | grep aspire</span><br></pre></td></tr></table></figure>
-
-<p>You should get something like:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.NET Aspire Application                       aspire                      [C#]        Common/.NET Aspire/Cloud/Web/Web API/API/Service       </span><br><span class="line">.NET Aspire Starter Application               aspire-starter              [C#]        Common/.NET Aspire/Blazor/Web/Web API/API/Service/Cloud</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="Generate-the-Application"><a href="#Generate-the-Application" class="headerlink" title="Generate the Application"></a>Generate the Application</h2><p>To generate the application run the following command:</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">dotnet new aspire-starter --use-redis-cache --output AspireSample</span><br></pre></td></tr></table></figure>
-
-<h2 id="About-the-Application"><a href="#About-the-Application" class="headerlink" title="About the Application"></a>About the Application</h2><p>The solution consists of the following projects:</p>
-<ul>
-<li><strong>AspireSample.ApiService</strong>: An ASP.NET Core Minimal API project is used to provide data to the front end. This project depends on the shared AspireSample.ServiceDefaults project.</li>
-<li><strong>AspireSample.AppHost</strong>: An orchestrator project designed to connect and configure the different projects and services of your app. The orchestrator should be set as the <em>Startup project</em>, and it depends on the AspireSample.ApiService and AspireSample.Web projects.</li>
-<li><strong>AspireSample.ServiceDefaults</strong>: A .NET Aspire shared project to manage configurations that are reused across the projects in your solution related to resilience, service discovery, and telemetry.</li>
-<li><strong>AspireSample.Web</strong>: An ASP.NET Core Blazor App project with default .NET Aspire service configurations, this project depends on the AspireSample.ServiceDefaults project. For more information, see .NET Aspire service defaults.</li>
-</ul>
-<h2 id="Run-the-Application"><a href="#Run-the-Application" class="headerlink" title="Run the Application"></a>Run the Application</h2><p>To run the application execute</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">dotnet run --project AspireSample/AspireSample.AppHost</span><br></pre></td></tr></table></figure>
-
-<p>You will get a similar output</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">Building...</span><br><span class="line">info: Aspire.Dashboard.DashboardWebApplication[0]</span><br><span class="line">      Now listening on: http://localhost:15214</span><br><span class="line">info: Aspire.Dashboard.DashboardWebApplication[0]</span><br><span class="line">      OTLP server running at: http://localhost:16176</span><br><span class="line">warn: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[35]</span><br><span class="line">      No XML encryptor configured. Key &#123;13491cb7-f7b7-4ace-9ab5-0a6b77bf559f&#125; may be persisted to storage <span class="keyword">in</span> unencrypted form.</span><br><span class="line">info: Microsoft.Hosting.Lifetime[0]</span><br><span class="line">      Application started. Press Ctrl+C to shut down.</span><br><span class="line">info: Microsoft.Hosting.Lifetime[0]</span><br><span class="line">      Hosting environment: Development</span><br><span class="line">info: Microsoft.Hosting.Lifetime[0]</span><br><span class="line">      Content root path: /home/rui.ramos/Development/<span class="built_in">local</span>/aspire-test/AspireSample/AspireSample.AppHost</span><br></pre></td></tr></table></figure>
-
-<p>Checkout on your browser the Aspire Dashboard at <a target="_blank" rel="noopener" href="http://localhost:15214/">http://localhost:15214</a></p>
-<p>And the webfront application <a target="_blank" rel="noopener" href="http://localhost:5119/">http://localhost:5119</a></p>
-<h2 id="AspireSample-AppHost"><a href="#AspireSample-AppHost" class="headerlink" title="AspireSample.AppHost"></a>AspireSample.AppHost</h2><p>Checking the Program.cs we can see relevant information</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var builder = DistributedApplication.CreateBuilder(args);</span><br><span class="line"></span><br><span class="line">var cache = builder.AddRedisContainer(&quot;cache&quot;);</span><br><span class="line"></span><br><span class="line">var apiservice = builder.AddProject&lt;Projects.AspireSample_ApiService&gt;(&quot;apiservice&quot;);</span><br><span class="line"></span><br><span class="line">builder.AddProject&lt;Projects.AspireSample_Web&gt;(&quot;webfrontend&quot;)</span><br><span class="line">    .WithReference(cache)</span><br><span class="line">    .WithReference(apiservice);</span><br><span class="line"></span><br><span class="line">builder.Build().Run();</span><br></pre></td></tr></table></figure>
-
-<p>The preceding code creates a <strong>DistributedApplication</strong> builder adding a Redis Container the APIService and the Sample Web Application</p>
-<h2 id="Why-NET-Aspire"><a href="#Why-NET-Aspire" class="headerlink" title="Why .NET Aspire?"></a>Why .NET Aspire?</h2><p>.NET Aspire is designed to improve the experience of building .NET cloud-native apps. It provides a consistent, opinionated set of tools and patterns that help you build and run distributed apps. .NET Aspire is designed to help you with:</p>
-<ul>
-<li><strong>Orchestration</strong>: .NET Aspire provides features for running and connecting multi-project applications and their dependencies.</li>
-<li><strong>Components</strong>: .NET Aspire components are NuGet packages for commonly used services, such as Redis or Postgres, with standardized interfaces ensuring they connect consistently and seamlessly with your app.</li>
-<li><strong>Tooling</strong>: .NET Aspire comes with project templates and tooling experiences for Visual Studio and the dotnet CLI help you create and interact with .NET Aspire apps.</li>
-</ul>
-<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/dotnet/aspire/get-started/build-your-first-aspire-app?tabs=dotnet-cli">Aspire Get Started</a></li>
-<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/dotnet/aspire/">Aspire Official Docs</a></li>
-<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/dashboard">Dashboard Fundamentals</a></li>
-<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/components-overview?tabs=dotnet-cli#available-components">Aspire Components</a></li>
 </ul>
 
       
@@ -703,7 +846,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
   &copy; 2024 Rui Ramos
   
-  <a class="disclaimer" href=/disclaimer> Disclaimer</a>
 </div>
 <div class="clearfix"></div></footer>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>

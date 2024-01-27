@@ -38,7 +38,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -76,7 +76,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2017-10-09T19:54:00.000Z"><a href="/2017/10/09/rddstransformations/">2017-10-09</a></time>
+        <time datetime="2017-10-09T20:54:00.000Z"><a href="/2017/10/09/rddstransformations/">2017-10-09</a></time>
       
       
   
@@ -100,17 +100,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </thead>
 <tbody><tr>
 <td>map()</td>
-<td>rdd.map(x =&gt; x +1)</td>
+<td>rdd.map(x &#x3D;&gt; x +1)</td>
 <td>{2,3,4,4}</td>
 </tr>
 <tr>
 <td>flatmap()</td>
-<td>rdd.flatMap(x =&gt; x.to(3))</td>
+<td>rdd.flatMap(x &#x3D;&gt; x.to(3))</td>
 <td>{1,2,3,2,3,3,3}</td>
 </tr>
 <tr>
 <td>filter()</td>
-<td>rdd.filter(x =&gt; x != 1 )</td>
+<td>rdd.filter(x &#x3D;&gt; x !&#x3D; 1 )</td>
 <td>{2,3,3}</td>
 </tr>
 <tr>
@@ -204,12 +204,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </tr>
 <tr>
 <td>reduce()</td>
-<td>rdd.reduce((x,y) =&gt; x + y )</td>
+<td>rdd.reduce((x,y) &#x3D;&gt; x + y )</td>
 <td>9</td>
 </tr>
 <tr>
 <td>fold()</td>
-<td>rdd.fold(0)((x,y) =&gt; x + y)</td>
+<td>rdd.fold(0)((x,y) &#x3D;&gt; x + y)</td>
 <td>9</td>
 </tr>
 <tr>
@@ -547,7 +547,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
   &copy; 2024 Rui Ramos
   
-  <a class="disclaimer" href=/disclaimer> Disclaimer</a>
 </div>
 <div class="clearfix"></div></footer>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>

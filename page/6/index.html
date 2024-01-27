@@ -38,7 +38,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -77,6 +77,77 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
+        <time datetime="2022-12-23T18:30:00.000Z"><a href="/2022/12/23/fish/">2022-12-23</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2022/12/23/fish/">Fish Configs</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="About-fish"><a href="#About-fish" class="headerlink" title="About fish"></a>About fish</h1><h1 id="Configurations"><a href="#Configurations" class="headerlink" title="Configurations"></a>Configurations</h1><p>To disable the greeting in fish edit the file <code>.config/fish/config.fish</code> and put an empty greeting.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">set fish_greeting &quot;&quot;</span><br></pre></td></tr></table></figure>
+
+<p>Now re-open the terminal.</p>
+<h1 id="Remove-neofetch"><a href="#Remove-neofetch" class="headerlink" title="Remove neofetch"></a>Remove neofetch</h1><p>If you don’t want the fancy computer stats everything you open a terminal comment out the last 4 lines on the conf file <code>./config/fish/config.fish</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">## Run paleofetch if session is interactive</span><br><span class="line">#if status --is-interactive</span><br><span class="line">#   neofetch</span><br><span class="line">#end</span><br></pre></td></tr></table></figure>
+
+<p>Now re-open the terminal.</p>
+<h1 id="Oh-My-Fish"><a href="#Oh-My-Fish" class="headerlink" title="Oh My Fish"></a>Oh My Fish</h1><p>Install the package oh-my-fish which would allow to customize you fish configurations running the following command</p>
+<p><code>curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish</code></p>
+<p>After this install the theme agnoster</p>
+<p><code>omf install agnoster</code></p>
+<p>Apply and reload</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">omf theme agnoster</span><br><span class="line">omf reload</span><br></pre></td></tr></table></figure>
+
+<h1 id="Disable-starship"><a href="#Disable-starship" class="headerlink" title="Disable starship"></a>Disable starship</h1><p>Comment the following block on the file <code>./config/fish/config.fish</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">## Starship prompt</span><br><span class="line">#if status --is-interactive</span><br><span class="line">#   source (&quot;/usr/bin/starship&quot; init fish --print-full-init | psub)</span><br><span class="line">#end</span><br></pre></td></tr></table></figure>
+
+<h1 id="Setup-the-Nord-colors-in-Alacritty"><a href="#Setup-the-Nord-colors-in-Alacritty" class="headerlink" title="Setup the Nord colors in Alacritty"></a>Setup the Nord colors in Alacritty</h1><p>Change the default color schem for Nord colors</p>
+<p>replacing on the following file <code>.config/alacritty/alacritty.yml</code> for the coloscheme available on the following <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/arcticicestudio/nord-alacritty/develop/src/nord.yml">repo</a>.</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">colors:</span></span><br><span class="line">  <span class="attr">primary:</span></span><br><span class="line">    <span class="attr">background:</span> <span class="string">&#x27;#2e3440&#x27;</span></span><br><span class="line">    <span class="attr">foreground:</span> <span class="string">&#x27;#d8dee9&#x27;</span></span><br><span class="line">    <span class="attr">dim_foreground:</span> <span class="string">&#x27;#a5abb6&#x27;</span></span><br><span class="line">  <span class="attr">cursor:</span></span><br><span class="line">    <span class="attr">text:</span> <span class="string">&#x27;#2e3440&#x27;</span></span><br><span class="line">    <span class="attr">cursor:</span> <span class="string">&#x27;#d8dee9&#x27;</span></span><br><span class="line">  <span class="attr">vi_mode_cursor:</span></span><br><span class="line">    <span class="attr">text:</span> <span class="string">&#x27;#2e3440&#x27;</span></span><br><span class="line">    <span class="attr">cursor:</span> <span class="string">&#x27;#d8dee9&#x27;</span></span><br><span class="line">  <span class="attr">selection:</span></span><br><span class="line">    <span class="attr">text:</span> <span class="string">CellForeground</span></span><br><span class="line">    <span class="attr">background:</span> <span class="string">&#x27;#4c566a&#x27;</span></span><br><span class="line">  <span class="attr">search:</span></span><br><span class="line">    <span class="attr">matches:</span></span><br><span class="line">      <span class="attr">foreground:</span> <span class="string">CellBackground</span></span><br><span class="line">      <span class="attr">background:</span> <span class="string">&#x27;#88c0d0&#x27;</span></span><br><span class="line">    <span class="attr">bar:</span></span><br><span class="line">      <span class="attr">background:</span> <span class="string">&#x27;#434c5e&#x27;</span></span><br><span class="line">      <span class="attr">foreground:</span> <span class="string">&#x27;#d8dee9&#x27;</span></span><br><span class="line">  <span class="attr">normal:</span></span><br><span class="line">    <span class="attr">black:</span> <span class="string">&#x27;#3b4252&#x27;</span></span><br><span class="line">    <span class="attr">red:</span> <span class="string">&#x27;#bf616a&#x27;</span></span><br><span class="line">    <span class="attr">green:</span> <span class="string">&#x27;#a3be8c&#x27;</span></span><br><span class="line">    <span class="attr">yellow:</span> <span class="string">&#x27;#ebcb8b&#x27;</span></span><br><span class="line">    <span class="attr">blue:</span> <span class="string">&#x27;#81a1c1&#x27;</span></span><br><span class="line">    <span class="attr">magenta:</span> <span class="string">&#x27;#b48ead&#x27;</span></span><br><span class="line">    <span class="attr">cyan:</span> <span class="string">&#x27;#88c0d0&#x27;</span></span><br><span class="line">    <span class="attr">white:</span> <span class="string">&#x27;#e5e9f0&#x27;</span></span><br><span class="line">  <span class="attr">bright:</span></span><br><span class="line">    <span class="attr">black:</span> <span class="string">&#x27;#4c566a&#x27;</span></span><br><span class="line">    <span class="attr">red:</span> <span class="string">&#x27;#bf616a&#x27;</span></span><br><span class="line">    <span class="attr">green:</span> <span class="string">&#x27;#a3be8c&#x27;</span></span><br><span class="line">    <span class="attr">yellow:</span> <span class="string">&#x27;#ebcb8b&#x27;</span></span><br><span class="line">    <span class="attr">blue:</span> <span class="string">&#x27;#81a1c1&#x27;</span></span><br><span class="line">    <span class="attr">magenta:</span> <span class="string">&#x27;#b48ead&#x27;</span></span><br><span class="line">    <span class="attr">cyan:</span> <span class="string">&#x27;#8fbcbb&#x27;</span></span><br><span class="line">    <span class="attr">white:</span> <span class="string">&#x27;#eceff4&#x27;</span></span><br><span class="line">  <span class="attr">dim:</span></span><br><span class="line">    <span class="attr">black:</span> <span class="string">&#x27;#373e4d&#x27;</span></span><br><span class="line">    <span class="attr">red:</span> <span class="string">&#x27;#94545d&#x27;</span></span><br><span class="line">    <span class="attr">green:</span> <span class="string">&#x27;#809575&#x27;</span></span><br><span class="line">    <span class="attr">yellow:</span> <span class="string">&#x27;#b29e75&#x27;</span></span><br><span class="line">    <span class="attr">blue:</span> <span class="string">&#x27;#68809a&#x27;</span></span><br><span class="line">    <span class="attr">magenta:</span> <span class="string">&#x27;#8c738c&#x27;</span></span><br><span class="line">    <span class="attr">cyan:</span> <span class="string">&#x27;#6d96a5&#x27;</span></span><br><span class="line">    <span class="attr">white:</span> <span class="string">&#x27;#aeb3bb&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+<h1 id="Themes"><a href="#Themes" class="headerlink" title="Themes"></a>Themes</h1><p>If you don’ t like the color scheme check other options using the command.</p>
+<p><code>fish_config</code></p>
+<h1 id="donet-autocomplete"><a href="#donet-autocomplete" class="headerlink" title="donet autocomplete"></a>donet autocomplete</h1><p>In case you want dotnet command autocomplete to get something like this.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"> ╭─rramos@buldozer <span class="keyword">in</span> ~ via  v17.2.0</span><br><span class="line"> ╰─λ dotnet</span><br><span class="line">add               (Add a package/reference)  publish  (Publish a .NET project <span class="keyword">for</span> deployment)</span><br><span class="line">build                (Build a .NET project)  remove              (Remove a package/reference)</span><br><span class="line">build-server  (Interact with build servers)  restore                   (Restore dependencies)</span><br><span class="line">clean                 (Clean build outputs)  run            (Run the application from <span class="built_in">source</span>)</span><br><span class="line">…and 6 more rows</span><br></pre></td></tr></table></figure>
+
+<p>You should have the following on your <code>config.fish</code> file.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">complete -f -c dotnet -a &quot;(dotnet complete)&quot;</span><br></pre></td></tr></table></figure>
+<p>For Garuda this setup seems to be present out-of-the box.</p>
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>Although Garuda brings a lot of customizations for fish if one wants to go deeper and adjust for it’s own taste can take some time. I certainly toke some time to understand where configurations where being override. I probably include some of this configurations in git to prevent future time waist on customizations.</p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/fish">https://wiki.archlinux.org/title/fish</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/dotnet/core/tools/enable-tab-autocomplete#zsh">https://docs.microsoft.com/en-us/dotnet/core/tools/enable-tab-autocomplete#zsh</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/oh-my-fish/oh-my-fish">https://github.com/oh-my-fish/oh-my-fish</a></li>
+<li><a target="_blank" rel="noopener" href="https://techviewleo.com/configure-fish-shell-with-oh-my-fish/">https://techviewleo.com/configure-fish-shell-with-oh-my-fish/</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/arcticicestudio/nord-alacritty">https://github.com/arcticicestudio/nord-alacritty</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2022-12-23T18:00:00.000Z"><a href="/2022/12/23/NamingVariables/">2022-12-23</a></time>
       
       
@@ -97,17 +168,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* Good */</span></span><br><span class="line"><span class="keyword">const</span> postsCount = <span class="number">5</span></span><br><span class="line"><span class="keyword">const</span> hasPagination = (postsCount &gt; <span class="number">10</span>)</span><br><span class="line"><span class="keyword">const</span> shouldDisplayPagination = (postsCount &gt; <span class="number">10</span>) <span class="comment">// alternatively</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="Avoid-Contraction"><a href="#Avoid-Contraction" class="headerlink" title="Avoid Contraction"></a>Avoid Contraction</h2><p>Do not use contractions. They contribute to nothing but decreased readability of the code. Finding a short, descriptive name may be hard, but contraction is not an excuse for not doing so. For instance</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* Bad */</span></span><br><span class="line"><span class="keyword">const</span> onItmClk = <span class="function">() =&gt;</span> &#123;&#125;</span><br><span class="line"><span class="comment">/* Good */</span></span><br><span class="line"><span class="keyword">const</span> onItemClick = <span class="function">() =&gt;</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* Bad */</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">onItmClk</span> = (<span class="params"></span>) =&gt; &#123;&#125;</span><br><span class="line"><span class="comment">/* Good */</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">onItemClick</span> = (<span class="params"></span>) =&gt; &#123;&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="Avoid-Context-Duplication"><a href="#Avoid-Context-Duplication" class="headerlink" title="Avoid Context Duplication"></a>Avoid Context Duplication</h2><p>Always remove the context from a name if that doesn’t decrease its readability.</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MenuItem</span> </span>&#123;</span><br><span class="line">  <span class="comment">/* Method name duplicates the context (which is &quot;MenuItem&quot;) */</span></span><br><span class="line">  handleMenuItemClick = <span class="function">(<span class="params">event</span>) =&gt;</span> &#123; ... &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">/* Reads nicely as `MenuItem.handleClick()` */</span></span><br><span class="line">  handleClick = <span class="function">(<span class="params">event</span>) =&gt;</span> &#123; ... &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MenuItem</span> &#123;</span><br><span class="line">  <span class="comment">/* Method name duplicates the context (which is &quot;MenuItem&quot;) */</span></span><br><span class="line">  handleMenuItemClick = <span class="function">(<span class="params">event</span>) =&gt;</span> &#123; ... &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">/* Reads nicely as `MenuItem.handleClick()` */</span></span><br><span class="line">  handleClick = <span class="function">(<span class="params">event</span>) =&gt;</span> &#123; ... &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="Should-Reflect-expected-result"><a href="#Should-Reflect-expected-result" class="headerlink" title="Should Reflect expected result"></a>Should Reflect expected result</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* Bad */</span></span><br><span class="line"><span class="keyword">const</span> isEnabled = (itemsCount &gt; <span class="number">3</span>)</span><br><span class="line"><span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">Button</span> <span class="attr">disabled</span>=<span class="string">&#123;!isEnabled&#125;</span> /&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Good */</span></span><br><span class="line"><span class="keyword">const</span> isDisabled = (itemsCount &lt;= <span class="number">3</span>)</span><br><span class="line"><span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">Button</span> <span class="attr">disabled</span>=<span class="string">&#123;isDisabled&#125;</span> /&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="Should-Reflect-expected-result"><a href="#Should-Reflect-expected-result" class="headerlink" title="Should Reflect expected result"></a>Should Reflect expected result</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* Bad */</span></span><br><span class="line"><span class="keyword">const</span> isEnabled = (itemsCount &gt; <span class="number">3</span>)</span><br><span class="line"><span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">Button</span> <span class="attr">disabled</span>=<span class="string">&#123;!isEnabled&#125;</span> /&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Good */</span></span><br><span class="line"><span class="keyword">const</span> isDisabled = (itemsCount &lt;= <span class="number">3</span>)</span><br><span class="line"><span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">Button</span> <span class="attr">disabled</span>=<span class="string">&#123;isDisabled&#125;</span> /&gt;</span></span></span><br></pre></td></tr></table></figure>
 
-<h2 id="Consider-Singular-Plurals"><a href="#Consider-Singular-Plurals" class="headerlink" title="Consider Singular/Plurals"></a>Consider Singular/Plurals</h2><p>Like a prefix, variable names can be made singular or plural depending on whether they hold a single value or multiple values.</p>
+<h2 id="Consider-Singular-Plurals"><a href="#Consider-Singular-Plurals" class="headerlink" title="Consider Singular&#x2F;Plurals"></a>Consider Singular&#x2F;Plurals</h2><p>Like a prefix, variable names can be made singular or plural depending on whether they hold a single value or multiple values.</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* Bad */</span></span><br><span class="line"><span class="keyword">const</span> friends = <span class="string">&#x27;Bob&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> friend = [<span class="string">&#x27;Bob&#x27;</span>, <span class="string">&#x27;Tony&#x27;</span>, <span class="string">&#x27;Tanya&#x27;</span>];</span><br><span class="line"><span class="comment">/* Good */</span></span><br><span class="line"><span class="keyword">const</span> friend = <span class="string">&#x27;Bob&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> friends = [<span class="string">&#x27;Bob&#x27;</span>, <span class="string">&#x27;Tony&#x27;</span>, <span class="string">&#x27;Tanya&#x27;</span>];</span><br></pre></td></tr></table></figure>
 
-<h2 id="Use-meaningful-and-pronounceable-variable-names"><a href="#Use-meaningful-and-pronounceable-variable-names" class="headerlink" title="Use meaningful and pronounceable variable names"></a>Use meaningful and pronounceable variable names</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> yyyymmdstr = moment().format(<span class="string">&quot;YYYY/MM/DD&quot;</span>);  <span class="comment">// simply awful</span></span><br><span class="line"><span class="comment">// Instead</span></span><br><span class="line"><span class="keyword">const</span> currentDate = moment().format(<span class="string">&quot;YYYY/MM/DD&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="Use-meaningful-and-pronounceable-variable-names"><a href="#Use-meaningful-and-pronounceable-variable-names" class="headerlink" title="Use meaningful and pronounceable variable names"></a>Use meaningful and pronounceable variable names</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> yyyymmdstr = <span class="title function_">moment</span>().<span class="title function_">format</span>(<span class="string">&quot;YYYY/MM/DD&quot;</span>);  <span class="comment">// simply awful</span></span><br><span class="line"><span class="comment">// Instead</span></span><br><span class="line"><span class="keyword">const</span> currentDate = <span class="title function_">moment</span>().<span class="title function_">format</span>(<span class="string">&quot;YYYY/MM/DD&quot;</span>);</span><br></pre></td></tr></table></figure>
 
 <p>The <a target="_blank" rel="noopener" href="https://betterprogramming.pub/a-useful-framework-for-naming-your-classes-functions-and-variables-e7d186e3189f">original article</a> is more complete and has other suggestion regarding naming good practices would suggest you check it.</p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
@@ -151,92 +222,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>I still think that the english layout is the best option to follow. In regards to size a 85% seems a better options specially if you need to deal with spreadsheets.</p>
 <h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
 <li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Dead_key">https://en.wikipedia.org/wiki/Dead_key</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2022-12-23T14:03:56.360Z"><a href="/2022/12/23/pacman/">2022-12-23</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2022/12/23/pacman/">Pacman Command in Arch Linux</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>I’ve recently started using a Arch Linux distribution <a target="_blank" rel="noopener" href="https://garudalinux.org/">Garuda Linux</a> and the package management tool is <strong>pacman</strong> this article summarizes the most common actions with based on the following article from <a target="_blank" rel="noopener" href="https://www.geeksforgeeks.org/pacman-command-in-arch-linux/">GeeksforGeeks</a>.</p>
-<h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><blockquote>
-<p>Pacman is a package manager for the arch Linux and arch-based Linux distributions. If you have used Debian-based OS like ubuntu, then the  Pacman is similar to the apt command of Debian-based operating systems. Pacman contains the compressed files as a package format and maintains a text-based package database. Pacman keeps the system up to date by synchronizing package lists with the master server. Pacman can install the packages from the official repositories or your own build packages.</p>
-</blockquote>
-<h1 id="Installing-Packages-using-the-Pacman"><a href="#Installing-Packages-using-the-Pacman" class="headerlink" title="Installing Packages using the Pacman"></a>Installing Packages using the Pacman</h1><p>When we install any new operating system on our machine, the first task we do is to install the software packages on the system. Now, to install the packages on Arch Linux, use the command Pacman with -S option and mention the package name. The -S option tells the Pacman to synchronize and to continue. Here is one example </p>
-<p><code>sudo pacman -S cmatrix</code></p>
-<p>We can mention the many package names after the -S option, separated by space.</p>
-<p><code>sudo pacman -S package1 package2 package3</code></p>
-<p>Then Pacman will show the download and install size of the package and ask for to proceed, then simply press the Y key. Pacman categorizes the installed packages into two categories.</p>
-<ul>
-<li><strong>Implicitly Installed</strong>: The package that was installed using the -S or -U option.</li>
-<li><strong>Dependencies</strong>: The package is installed because it is required by another package.</li>
-</ul>
-<h1 id="Removing-packages-using-the-Pacman"><a href="#Removing-packages-using-the-Pacman" class="headerlink" title="Removing packages using the Pacman"></a>Removing packages using the Pacman</h1><p>When we don’t need the package anymore, then we should remove the package from the system. To remove the package with all its dependencies which are not required by other packages, use the following command:</p>
-<p><code>sudo pacman -Rs &lt;package_name&gt;</code></p>
-<p>To remove the package without removing its dependency use the following command:</p>
-<p><code>sudo pacman -R &lt;package_name&gt;</code></p>
-<p>To remove the dependencies which are not required anymore, use the following command:</p>
-<p><code>pacman -Qdtq |  pacman -Rs -</code></p>
-<h1 id="Upgrading-packages"><a href="#Upgrading-packages" class="headerlink" title="Upgrading packages"></a>Upgrading packages</h1><p>In arch Linux, we can upgrade the full system by only one command using the Pacman. Use the following command to update the system:</p>
-<p><code>sudo pacman -Suy</code></p>
-<p>Let’s understand the meaning, S tell the pacman to synchronize the local database with the main database. u tells the pacman to upgrade the packages and y update the local catch on the system. Basically, this command synchronizes the local pacman database with the main repository database and then updates the system.</p>
-<h1 id="Searching-for-a-Package"><a href="#Searching-for-a-Package" class="headerlink" title="Searching for a Package"></a>Searching for a Package</h1><p>Now let’s see how we can search the package into the database of pacman. To search query in the name and description  of the package in the database use the following command:</p>
-<p><code>sudo pacman -Ss   &lt;query1&gt;  &lt;query2&gt;</code></p>
-<p>To search into already installed packages on the system, use the following command:</p>
-<p><code>sudo pacman -Qs query1&gt;  &lt;query2&gt;</code></p>
-<p>To search the query into the local database use the following command:</p>
-<p><code>sudo pacman -F query1&gt;  &lt;query2&gt;</code></p>
-<h1 id="Cleaning-the-Package-Cache"><a href="#Cleaning-the-Package-Cache" class="headerlink" title="Cleaning the Package Cache"></a>Cleaning the Package Cache</h1><p>When pacman downloads the packages it stores the packages into the <code>/var/cache/pacman/pkg/</code> and while uninstalling the package pacman does not delete these files. Pacman uses these files to downgrade the package or install the package. But it can take a lot of space to store these packages. So to delete the stored packages, use the following command:</p>
-<p><code>sudo pacman -Sc</code></p>
-<p>To remove all stored packages and cache, use the following command:</p>
-<p><code>sudp pacman -Scc</code></p>
-<h1 id="Installing-local-packages"><a href="#Installing-local-packages" class="headerlink" title="Installing local packages"></a>Installing local packages</h1><p>By using pacman we can install packages other than the main repository of Arch Linux. Use the following command to install the packages</p>
-<p>For local:</p>
-<p><code>sudo pacman -U path_to_file.pkg.tar.xz</code></p>
-<p>For remote package:</p>
-<p><code>sudo pacman -U http://www.example.com/repo/example.pkg.tar.xz</code></p>
-<h1 id="Troubleshooting"><a href="#Troubleshooting" class="headerlink" title="Troubleshooting"></a>Troubleshooting</h1><p>Sometimes installing the packages with pacman we face some errors. Following are the mainly occurred errors with pacman:</p>
-<ul>
-<li><p><strong>Conflicting file error</strong>: This error occurs due to some conflict packages present in the repository. To solve this error we can manually rename the file or force the overwrite function. We can use the following command to overwrite the function: </p>
-<ul>
-<li> <code>pacman -S --overwrite glob package</code></li>
-</ul>
-</li>
-<li><p><strong>Invalid package</strong>: This error can occur due to the partial installation of the packages. We can solve this error by deleting .part files in <code>/var/cache/pacman/pkg/</code>.</p>
-</li>
-<li><p><strong>Locking database</strong>: This error can occur when pacman is interrupted while updating the database. To solve this error, delete the file <code>/var/lib/pacman/db.lck</code> and update the database. Use the following command to delete the file:</p>
-</li>
-</ul>
-<h1 id="Garuda"><a href="#Garuda" class="headerlink" title="Garuda"></a>Garuda</h1><p> Garuda also brings a useful command <code>update</code> that abstracts all this interactions to keep your rolling system updated, still very important to understand the command line utilities to manage the packages and check the official man page for further details as this is always evolving.</p>
-<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://www.geeksforgeeks.org/pacman-command-in-arch-linux/">https://www.geeksforgeeks.org/pacman-command-in-arch-linux/</a></li>
-<li><a target="_blank" rel="noopener" href="https://archlinux.org/pacman/pacman.8.html">https://archlinux.org/pacman/pacman.8.html</a></li>
 </ul>
 
       
@@ -649,7 +634,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
   &copy; 2024 Rui Ramos
   
-  <a class="disclaimer" href=/disclaimer> Disclaimer</a>
 </div>
 <div class="clearfix"></div></footer>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>

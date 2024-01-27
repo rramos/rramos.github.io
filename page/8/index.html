@@ -38,7 +38,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -90,17 +90,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h1 id="VisualCode-Hexo-extension"><a href="#VisualCode-Hexo-extension" class="headerlink" title="VisualCode Hexo extension"></a>VisualCode Hexo extension</h1><p>This article explain how to activte the visualcode hexo extension which would boost your productivity if you use Hexo for your articles such has i’m doing on this blob page.</p>
 <h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><p>Install VisualCode:</p>
 <ul>
-<li> <a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/setup/setup-overview">https://code.visualstudio.com/docs/setup/setup-overview</a></li>
+<li><a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/setup/setup-overview">https://code.visualstudio.com/docs/setup/setup-overview</a></li>
 </ul>
 <p>Activate the following extension by executing the following command</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ext install fantasy.vscode-hexo-utils</span><br></pre></td></tr></table></figure>
 
 <p>Make sure you open the folder where your Hexo base code is.</p>
 <p>That’s it.</p>
-<p>The extension allows you to directly manage your posts/tags/categories. It is also very suefull if you side lane the articles and preview the Markdowns with <strong>[Ctrl] + [Shift] + [V]</strong></p>
+<p>The extension allows you to directly manage your posts&#x2F;tags&#x2F;categories. It is also very suefull if you side lane the articles and preview the Markdowns with <strong>[Ctrl] + [Shift] + [V]</strong></p>
 <p>The extension repo is available on the following github repo: </p>
 <ul>
-<li> <a target="_blank" rel="noopener" href="https://github.com/cwxyz007/vscode-hexo-utils">https://github.com/cwxyz007/vscode-hexo-utils</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/cwxyz007/vscode-hexo-utils">https://github.com/cwxyz007/vscode-hexo-utils</a></li>
 </ul>
 <p>Kudos for the <a target="_blank" rel="noopener" href="https://github.com/cwxyz007/vscode-hexo-utils/graphs/contributors">contributors</a></p>
 <p>Cheers,<br>RR</p>
@@ -172,7 +172,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2017-10-18T00:26:00.000Z"><a href="/2017/10/18/dockers/">2017-10-18</a></time>
+        <time datetime="2017-10-18T01:26:00.000Z"><a href="/2017/10/18/dockers/">2017-10-18</a></time>
       
       
   
@@ -206,7 +206,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>docker-jenkins  </li>
 <li>docker-moodle  </li>
 <li>docker-openproject  </li>
-<li>docker-rundeck </li>
+<li>docker-rundeck</li>
 </ul>
 <p>This is the available list at the moment of this article, i will add up more as i’m using and testing new stuff.</p>
 <p><strong>NOTE:</strong> Use this containers at your own risk </p>
@@ -233,7 +233,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2017-10-13T01:09:00.000Z"><a href="/2017/10/13/drelephat/">2017-10-13</a></time>
+        <time datetime="2017-10-13T02:09:00.000Z"><a href="/2017/10/13/drelephat/">2017-10-13</a></time>
       
       
   
@@ -249,7 +249,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <h1 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h1><ul>
 <li><p>Install mysql-server and create a BD for dr-elephant</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get install mysql-server </span><br></pre></td></tr></table></figure></li>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get install mysql-server </span><br></pre></td></tr></table></figure>
+</li>
 <li><p>MySQl preparation</p>
 </li>
 </ul>
@@ -257,9 +258,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul>
 <li><p>Install zip command</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get install zip</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get install zip</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>Install sbt</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb https://dl.bintray.com/sbt/debian /&quot;</span> | sudo tee -a /etc/apt/sources.list.d/sbt.list</span><br><span class="line">sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2EE0EA64E40A89B84B2DF73499E82A75642AC823</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install sbt</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb https://dl.bintray.com/sbt/debian /&quot;</span> | sudo <span class="built_in">tee</span> -a /etc/apt/sources.list.d/sbt.list</span><br><span class="line">sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2EE0EA64E40A89B84B2DF73499E82A75642AC823</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install sbt</span><br></pre></td></tr></table></figure></li>
 </ul>
 <h1 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h1><ul>
 <li>Clone the repo</li>
@@ -269,7 +271,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <ul>
 <li>Compile</li>
 </ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sbt package</span><br><span class="line">sbt dist</span><br><span class="line">cp ./target/universal/dr-elephant-2.0.3-SNAPSHOT.zip .</span><br><span class="line">./compile.sh</span><br><span class="line"><span class="built_in">cd</span> dist</span><br><span class="line">unzip dr-elephant-2.0.3-SNAPSHOT.zip</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sbt package</span><br><span class="line">sbt dist</span><br><span class="line"><span class="built_in">cp</span> ./target/universal/dr-elephant-2.0.3-SNAPSHOT.zip .</span><br><span class="line">./compile.sh</span><br><span class="line"><span class="built_in">cd</span> dist</span><br><span class="line">unzip dr-elephant-2.0.3-SNAPSHOT.zip</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>Starting the service</li>
@@ -313,7 +315,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2017-10-09T21:17:00.000Z"><a href="/2017/10/09/ansible-cmdb/">2017-10-09</a></time>
+        <time datetime="2017-10-09T22:17:00.000Z"><a href="/2017/10/09/ansible-cmdb/">2017-10-09</a></time>
       
       
   
@@ -328,7 +330,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>It supports multiple types of output (html, csv, sql, etc) and extending information gathered by Ansible with custom data. For each host it also shows the groups, host variables, custom variables and machine-local facts.</p>
 <footer><strong>Offical Website Definition</strong></footer></blockquote>
 
-<h1 id="Supported-output-formats-templates"><a href="#Supported-output-formats-templates" class="headerlink" title="Supported output formats / templates:"></a>Supported output formats / templates:</h1><ul>
+<h1 id="Supported-output-formats-templates"><a href="#Supported-output-formats-templates" class="headerlink" title="Supported output formats &#x2F; templates:"></a>Supported output formats &#x2F; templates:</h1><ul>
 <li>Fancy HTML (–template html_fancy), as seen in the screenshots above.</li>
 <li>Fancy HTML Split (–template html_fancy_split), with each host’s details in a separate file (for large number of hosts).</li>
 <li>CSV (–template csv), the trustworthy and flexible comma-separated format.</li>
@@ -656,7 +658,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
   &copy; 2024 Rui Ramos
   
-  <a class="disclaimer" href=/disclaimer> Disclaimer</a>
 </div>
 <div class="clearfix"></div></footer>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>

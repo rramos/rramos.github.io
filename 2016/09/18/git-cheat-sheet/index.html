@@ -38,7 +38,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -76,7 +76,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2016-09-18T12:31:00.000Z"><a href="/2016/09/18/git-cheat-sheet/">2016-09-18</a></time>
+        <time datetime="2016-09-18T13:31:00.000Z"><a href="/2016/09/18/git-cheat-sheet/">2016-09-18</a></time>
       
       
   
@@ -114,7 +114,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>Change the last commit (Don’t amend publish commits)</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit --amend</span><br></pre></td></tr></table></figure>
 
-<h2 id="Branches-amp-Tags"><a href="#Branches-amp-Tags" class="headerlink" title="Branches &amp; Tags"></a>Branches &amp; Tags</h2><p>List all existing branches</p>
+<h2 id="Branches-Tags"><a href="#Branches-Tags" class="headerlink" title="Branches &amp; Tags"></a>Branches &amp; Tags</h2><p>List all existing branches</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch -av</span><br></pre></td></tr></table></figure>
 
 <p>Switch HEAD branch</p>
@@ -132,7 +132,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>Mark the current commit with a tag</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git tag &lt;tag-name&gt;</span><br></pre></td></tr></table></figure>
 
-<h2 id="Update-amp-Publish"><a href="#Update-amp-Publish" class="headerlink" title="Update &amp; Publish"></a>Update &amp; Publish</h2><p>List all currently configured remotes</p>
+<h2 id="Update-Publish"><a href="#Update-Publish" class="headerlink" title="Update &amp; Publish"></a>Update &amp; Publish</h2><p>List all currently configured remotes</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
 
 <p>Show information about a remote</p>
@@ -144,7 +144,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>Download all changes from <remote>, but don’t integrate into HEAD</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git fetch &lt;remote&gt;</span><br></pre></td></tr></table></figure>
 
-<p>Download changes and directly merge/integrate into HEAD</p>
+<p>Download changes and directly merge&#x2F;integrate into HEAD</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git pull &lt;remote&gt; &lt;branch&gt;</span><br></pre></td></tr></table></figure>
 
 <p>Publish local changes on a remote</p>
@@ -156,7 +156,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>Publish your tags</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push --tags</span><br></pre></td></tr></table></figure>
 
-<h2 id="Merge-amp-Rebase"><a href="#Merge-amp-Rebase" class="headerlink" title="Merge &amp; Rebase"></a>Merge &amp; Rebase</h2><p>Merge <branch> into your current HEAD, without fast-forward</p>
+<h2 id="Merge-Rebase"><a href="#Merge-Rebase" class="headerlink" title="Merge &amp; Rebase"></a>Merge &amp; Rebase</h2><p>Merge <branch> into your current HEAD, without fast-forward</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git merge --no-ff &lt;branch&gt;</span><br></pre></td></tr></table></figure>
 
 <p>Rebase your current HEAD onto <branch></p>
@@ -172,7 +172,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git mergetool</span><br></pre></td></tr></table></figure>
 
 <p>Use your editor to manually solve conflicts and (after resolving) mark file as resolved</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add &lt;resolved-file&gt;</span><br><span class="line">git rm &lt;resolved-file&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add &lt;resolved-file&gt;</span><br><span class="line">git <span class="built_in">rm</span> &lt;resolved-file&gt;</span><br></pre></td></tr></table></figure>
 
 <h2 id="Undo"><a href="#Undo" class="headerlink" title="Undo"></a>Undo</h2><p>Discard all local changes in your working directory</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git reset --hard HEAD</span><br></pre></td></tr></table></figure>
@@ -539,7 +539,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
   &copy; 2024 Rui Ramos
   
-  <a class="disclaimer" href=/disclaimer> Disclaimer</a>
 </div>
 <div class="clearfix"></div></footer>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>

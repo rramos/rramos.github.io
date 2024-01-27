@@ -38,7 +38,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -77,6 +77,292 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
+        <time datetime="2023-12-26T16:00:00.000Z"><a href="/2023/12/26/evidence/">2023-12-26</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2023/12/26/evidence/">Evidence</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>In this article I will go through <a target="_blank" rel="noopener" href="https://docs.evidence.dev/">Evidence</a></p>
+<h1 id="What-is-Evidence"><a href="#What-is-Evidence" class="headerlink" title="What is Evidence"></a>What is Evidence</h1><p>Evidence is an open source, code-based alternative to drag-and-drop business intelligence tools.</p>
+<p>Evidence reports are written in <a target="_blank" rel="noopener" href="https://docs.evidence.dev/markdown">Evidence-flavored Markdown</a> - an extension of markdown that includes SQL queries, data viz components, and programmatic features.</p>
+<h2 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h2><p>Code fences in Evidence markdown files run inline queries and return data. These code fences run the DuckDB SQL dialect.</p>
+<figure class="highlight sql"><figcaption><span>orders_by_month</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span></span><br><span class="line">    date_trunc(<span class="string">&#x27;month&#x27;</span>, order_datetime) <span class="keyword">as</span> order_month,</span><br><span class="line">    <span class="built_in">count</span>(<span class="operator">*</span>) <span class="keyword">as</span> number_of_orders,</span><br><span class="line">    <span class="built_in">sum</span>(sales) <span class="keyword">as</span> sales_usd</span><br><span class="line"><span class="keyword">from</span> needful_things.orders</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> <span class="number">1</span>, <span class="keyword">order</span> <span class="keyword">by</span> <span class="number">1</span> <span class="keyword">desc</span></span><br></pre></td></tr></table></figure>
+<p>More information on queries available at <a target="_blank" rel="noopener" href="https://docs.evidence.dev/core-concepts/queries">Queries Section</a></p>
+<h2 id="Components"><a href="#Components" class="headerlink" title="Components"></a>Components</h2><p>Evidence has a built in component library to create charts and other visual elements. More on Components.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;LineChart </span><br><span class="line">    data = &#123;orders_by_month&#125;    </span><br><span class="line">    y = sales_usd </span><br><span class="line">    title = &#x27;Sales by Month, USD&#x27; </span><br><span class="line">/&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Check the <a target="_blank" rel="noopener" href="https://docs.evidence.dev/components/all-components">Component Library</a> for more information.</p>
+<p>One can also use, Loops, If&#x2F;Then Statements, Partials, Page Variables, and also sorts of customizations checkout the <a target="_blank" rel="noopener" href="https://docs.evidence.dev/core-concepts/syntax/#">Core Components</a> page for more details.</p>
+<p>In production, Evidence is a static site generator. This means it doesn’t run queries when someone visits your site, but pre-builds all possible pages as HTML beforehand.</p>
+<p>You can host your Evidence project using Evidence Cloud, cloud services like Netlify or Vercel, or your own infrastructure. Evidence does not currently support Github Pages.</p>
+<h2 id="Build-Process"><a href="#Build-Process" class="headerlink" title="Build Process"></a>Build Process</h2><p>Evidence doesn’t run new queries each time someone visits one of your reports.</p>
+<p>Instead, Evidence runs your queries once, at build time, and statically generates all of the pages in your project. This includes all possible permutations of any paramaterized pages.</p>
+<p>You can schedule (or trigger) regular builds of your site to keep it up-to-date with your data warehouse.</p>
+<p>This has two benefits for you and your users:</p>
+<p>If something goes wrong with your SQL, Evidence just stops building your project, and continues to serve older results.<br>Your site will be exceptionally fast. Under most conditions, pages will load in milliseconds.</p>
+<h1 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h1><table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Min Version</th>
+<th>Max Version</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Node.js</td>
+<td>16.14</td>
+<td>20.10</td>
+</tr>
+<tr>
+<td>NPM</td>
+<td>7</td>
+<td>10.1</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>NOTE:</strong> This requirements may change based on the evolution of the Product. At the time of this writing was 3.0.2</p>
+</blockquote>
+<h1 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h1><p>There are several ways to install Evidence, for this article following the traditional one with npx, but there is an option using <a target="_blank" rel="noopener" href="https://github.com/evidence-dev/docker-devenv">docker</a> if you prefeer that option</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npx degit evidence-dev/template evidence-test</span><br><span class="line">cd evidence-test</span><br><span class="line">npm install</span><br><span class="line">npm run sources</span><br><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
+
+<p>I would suggest however to setup the <a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=Evidence.evidence-vscode">VSCode Plugin</a> if you use that IDE, as it do all this work underneat :D</p>
+<h1 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h1><p>Now let’s generate Some Random data using <a href="https://rramos.github.io/2023/12/21/jafgen/">jafgen</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd evidence-test/sources</span><br><span class="line">jafgen --years 1</span><br><span class="line">mv jaffgen-data jaffgendata</span><br></pre></td></tr></table></figure>
+<p>Create the following file <code>jaffledata/connection.yaml</code> with the content:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># This file was automatically generated</span><br><span class="line">name: jaffledata</span><br><span class="line">type: csv</span><br><span class="line">options: &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Then run </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm run sources</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>NOTE:</strong> A better way to configure sources would be by accessing the following URL: <a target="_blank" rel="noopener" href="http://localhost:3000/settings/">http://localhost:3000/settings/</a></p>
+</blockquote>
+<h1 id="Create-a-sample-report"><a href="#Create-a-sample-report" class="headerlink" title="Create a sample report"></a>Create a sample report</h1><p>Create the following page <code>pages/jaffle.md</code> with the content</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Jaffle Example Report</span><br><span class="line"></span><br><span class="line">This example is based on mock data from jaffle. </span><br><span class="line"></span><br><span class="line">Let&#x27;s check the data</span><br><span class="line"></span><br><span class="line">## Orders</span><br><span class="line">```sql orders</span><br><span class="line">select * from raw_orders</span><br><span class="line">```</span><br><span class="line"></span><br><span class="line">## Customers</span><br><span class="line">```sql customers</span><br><span class="line">select * from raw_customers</span><br><span class="line">```</span><br><span class="line"></span><br><span class="line"># Orders by Customer</span><br><span class="line">```sql orders_by_customer</span><br><span class="line">select</span><br><span class="line">     count(o.id) as orders,</span><br><span class="line">     c.column0 as customerid</span><br><span class="line">from raw_orders as o</span><br><span class="line">left join raw_customers as c</span><br><span class="line">on o.customer = c.column0</span><br><span class="line">group by c.column0</span><br><span class="line">order by orders desc</span><br><span class="line">```</span><br><span class="line"></span><br><span class="line">&lt;BarChart</span><br><span class="line">    data=&quot;&#123;orders_by_customer&#125;&quot;</span><br><span class="line">    x=&quot;customerid&quot;</span><br><span class="line">    y=&quot;orders&quot;</span><br><span class="line">    series=&quot;customerid&quot;</span><br><span class="line">    title=&quot;Orders by Customer&quot;</span><br><span class="line">/&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>You can test the report through the URL:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://localhost:3000/jaffle">http://localhost:3000/jaffle</a></li>
+</ul>
+<p>And that’s it :)</p>
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>This article provided a quick intro on how to setup evidence to quickly generate analytical visualization based on Markdown documents. The sample data used was CSV mocked data. In general seems a very useful tools for generating quick reports the renderization in the interface is quite fast.</p>
+<p>Points that I found some issues. Loading directly from CSV doesn’t seem a good approach as there seems to be a lack of configuration, and CSV by nature tend to need some work in terms of data treatment, a rather convert the data to duckdb to mitigate this.</p>
+<p>Also take into account the pages are static so the refresh rate of our sources is up to you. The good news is that it seems to fit well with some CI&#x2F;CD process. Github pages not supported at the momment, but there are other options.</p>
+<p>Guess I will try this option further in future. I Strongly recommend to check the Official documentation on the Components and Syntax.</p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.evidence.dev/getting-started/install-evidence">https://docs.evidence.dev/getting-started/install-evidence</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/evidence-dev/docker-devenv">https://github.com/evidence-dev/docker-devenv</a></li>
+<li><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=Evidence.evidence-vscode">https://marketplace.visualstudio.com/items?itemName=Evidence.evidence-vscode</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.evidence.dev/markdown">https://docs.evidence.dev/markdown</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2023-12-25T10:00:00.000Z"><a href="/2023/12/25/TheOnething/">2023-12-25</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2023/12/25/TheOnething/">The One Thing</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>One of the references that I most enjoyed on the book:</p>
+<ul>
+<li><strong>The One Thing</strong>, by <em>Gary Keller, Jay Papasan</em></li>
+</ul>
+<p>Passion for something leads to disproportionate time practicing or working at it. That time spent eventually translates to skill, and when skill improves, results improve. Better results generally lead to more enjoyment, and more passion and more time is invested. It can be a virtuous cycle all the way to extraordinary results</p>
+<blockquote>
+<p>Find something you love, put your energy on it and good things will come out of it</p>
+</blockquote>
+<p>Many people struggle to achieve their goals because they lack clear direction and focus. Our One Thing Approach provides a clear path to success.</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://the1thing.com/book">https://the1thing.com/book</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2023-12-21T15:00:00.000Z"><a href="/2023/12/21/dbt/">2023-12-21</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2023/12/21/dbt/">DBT Quick WalkThrough</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>In this article I will describe a step-by-step guide on how to setup a local DBT enviroment and some basic ground rules to use it.</p>
+<h1 id="What-is-DBT"><a href="#What-is-DBT" class="headerlink" title="What is DBT"></a>What is DBT</h1><p>dbt™ is a SQL-first transformation workflow that lets teams quickly and collaboratively deploy analytics code following software engineering best practices like modularity, portability, CI&#x2F;CD, and documentation</p>
+<h1 id="Pre-Requirements"><a href="#Pre-Requirements" class="headerlink" title="Pre Requirements"></a>Pre Requirements</h1><p>In order to use dbt™ one must have the python requirements installed, they may differe based on the enviroment your are using. Will provide an example for a Linux based system</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get install git libpq-dev python-dev python3-pip</span><br><span class="line">pip install dbt-core</span><br><span class="line">pip install dbt-postgres</span><br></pre></td></tr></table></figure>
+
+<h2 id="Setup-a-PostgreSQL-Enviroment"><a href="#Setup-a-PostgreSQL-Enviroment" class="headerlink" title="Setup a PostgreSQL Enviroment"></a>Setup a PostgreSQL Enviroment</h2><p>One can use different sources such as Snowflake, BigQuery, etc. For the testing purposes lets run a docker image with  postgres. The following reop has some options for that</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/rramos/dockers/tree/master/docker-postgres">https://github.com/rramos/dockers/tree/master/docker-postgres</a></li>
+</ul>
+<blockquote>
+<p><strong>NOTE:</strong> If you will use a different source make sure to install with pip the appropriate connector eg. &#96;pip install dbt-bigquery&#96;&#96;</p>
+</blockquote>
+<h1 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h1><p>Lets initialize the environment</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dbt init</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>Provide a name for the project</li>
+<li>Include the connection details for the postgresql example<ol>
+<li>host (hostname for the instance): localhost</li>
+<li>port [5432]: </li>
+<li>user (dev username): admin</li>
+<li>pass (dev password): </li>
+<li>dbname (default database that dbt will build objects in): test_db</li>
+<li>schema (default schema that dbt will build objects in): dbt</li>
+<li>threads (1 or more) [1]:</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dbt deps</span><br></pre></td></tr></table></figure>
+
+<p>This will make sure it is installed all the required deps for the project</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dbt run</span><br></pre></td></tr></table></figure>
+
+<p>If you get an output similiar to the following it means you have everything ready to start using dbt</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">13:20:25  Running with dbt=1.7.4</span><br><span class="line">13:20:25  Registered adapter: postgres=1.7.4</span><br><span class="line">13:20:25  Found 2 models, 4 tests, 0 sources, 0 exposures, 0 metrics, 401 macros, 0 groups, 0 semantic models</span><br><span class="line">13:20:25  </span><br><span class="line">13:20:25  Concurrency: 1 threads (target=&#x27;dev&#x27;)</span><br><span class="line">13:20:25  </span><br><span class="line">13:20:25  1 of 2 START sql table model dbt.my_first_dbt_model ............................ [RUN]</span><br><span class="line">13:20:25  1 of 2 OK created sql table model dbt.my_first_dbt_model ....................... [SELECT 2 in 0.11s]</span><br><span class="line">13:20:25  2 of 2 START sql view model dbt.my_second_dbt_model ............................ [RUN]</span><br><span class="line">13:20:25  2 of 2 OK created sql view model dbt.my_second_dbt_model ....................... [CREATE VIEW in 0.06s]</span><br><span class="line">13:20:25  </span><br><span class="line">13:20:25  Finished running 1 table model, 1 view model in 0 hours 0 minutes and 0.27 seconds (0.27s).</span><br><span class="line">13:20:25  </span><br><span class="line">13:20:25  Completed successfully</span><br><span class="line">13:20:25  </span><br><span class="line">13:20:25  Done. PASS=2 WARN=0 ERROR=0 SKIP=0 TOTAL=2</span><br></pre></td></tr></table></figure>
+
+<p>You can access the web browser to validate the created table and view based on default init: <a target="_blank" rel="noopener" href="http://localhost:5050/browser/">http://localhost:5050/browser/</a></p>
+<ul>
+<li>table: my_first_dbt_model</li>
+<li>view: my_second_dbt_model</li>
+</ul>
+<h1 id="dbt™-Structure"><a href="#dbt™-Structure" class="headerlink" title="dbt™ Structure"></a>dbt™ Structure</h1><p>After you initialize the dbt™ environment you should endup with a structure similar to the following </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">test</span><br><span class="line">├── analyses</span><br><span class="line">├── dbt_packages</span><br><span class="line">├── dbt_project.yml</span><br><span class="line">├── logs</span><br><span class="line">│   └── dbt.log</span><br><span class="line">├── macros</span><br><span class="line">├── models</span><br><span class="line">│   └── example</span><br><span class="line">│       ├── my_first_dbt_model.sql</span><br><span class="line">│       ├── my_second_dbt_model.sql</span><br><span class="line">│       └── schema.yml</span><br><span class="line">├── README.md</span><br><span class="line">├── seeds</span><br><span class="line">├── snapshots</span><br><span class="line">├── target</span><br><span class="line">│   ├── compiled</span><br><span class="line">│   │   └── test</span><br><span class="line">│   │       └── models</span><br><span class="line">│   │           └── example</span><br><span class="line">│   │               ├── my_first_dbt_model.sql</span><br><span class="line">│   │               ├── my_second_dbt_model.sql</span><br><span class="line">│   │               └── schema.yml</span><br><span class="line">│   │                   ├── not_null_my_first_dbt_model_id.sql</span><br><span class="line">│   │                   ├── not_null_my_second_dbt_model_id.sql</span><br><span class="line">│   │                   ├── unique_my_first_dbt_model_id.sql</span><br><span class="line">│   │                   └── unique_my_second_dbt_model_id.sql</span><br><span class="line">│   ├── graph.gpickle</span><br><span class="line">│   ├── graph_summary.json</span><br><span class="line">│   ├── manifest.json</span><br><span class="line">│   ├── partial_parse.msgpack</span><br><span class="line">│   ├── run</span><br><span class="line">│   │   └── test</span><br><span class="line">│   │       └── models</span><br><span class="line">│   │           └── example</span><br><span class="line">│   │               ├── my_first_dbt_model.sql</span><br><span class="line">│   │               ├── my_second_dbt_model.sql</span><br><span class="line">│   │               └── schema.yml</span><br><span class="line">│   │                   ├── not_null_my_first_dbt_model_id.sql</span><br><span class="line">│   │                   ├── not_null_my_second_dbt_model_id.sql</span><br><span class="line">│   │                   ├── unique_my_first_dbt_model_id.sql</span><br><span class="line">│   │                   └── unique_my_second_dbt_model_id.sql</span><br><span class="line">│   ├── run_results.json</span><br><span class="line">│   └── semantic_manifest.json</span><br><span class="line">└── tests</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>Lets check the 1st level directories and what you migth find there:</p>
+<blockquote>
+<p><strong>NOTE:</strong> The structure may change based on the version and new  features that would be included. For this article the dbt version was 1.7.4</p>
+</blockquote>
+<h2 id="analyses"><a href="#analyses" class="headerlink" title="analyses"></a>analyses</h2><p>Not tested.</p>
+<h2 id="dbt-packages"><a href="#dbt-packages" class="headerlink" title="dbt_packages"></a>dbt_packages</h2><p>Installed packages from the packages HUB will lend on this location. You should not need to change here directly unless you are implementing your own packages.</p>
+<p>One example to include dbt_utils package is by creating the file <code>packages.yml</code> on the root directory of the project and then one can run <code>dbt deps</code> to fetch the dependencies </p>
+<p>Example:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">packages:</span><br><span class="line">  - package: dbt-labs/dbt_utils</span><br><span class="line">    version: 1.1.1</span><br></pre></td></tr></table></figure>
+
+<h2 id="logs"><a href="#logs" class="headerlink" title="logs"></a>logs</h2><p>Log directory for dbt™ executions</p>
+<h2 id="macros"><a href="#macros" class="headerlink" title="macros"></a>macros</h2><p>Macros act like small snippets of jinja code that you can than refeer on the models. They are very usefull for reusability and colaborative effort.</p>
+<p>One can call the macro using something similar: <code>&#123;% macro macro_name(params) %&#125;</code></p>
+<h2 id="models"><a href="#models" class="headerlink" title="models"></a>models</h2><p>This section is where most of the work is going to be done. Here one can define the SQL associated with each model using jinja syntax</p>
+<p><strong>Example:</strong> raw&#x2F;raw_customer.sql</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;&#123;</span><br><span class="line">    config(</span><br><span class="line">        materialized=&#x27;table&#x27;</span><br><span class="line">    )</span><br><span class="line">&#125;&#125;</span><br><span class="line"></span><br><span class="line">select * </span><br><span class="line">FROM </span><br><span class="line">&#123;&#123; source(&#x27;bigquery&#x27;, &#x27;customers&#x27;) &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="seeds"><a href="#seeds" class="headerlink" title="seeds"></a>seeds</h2><p>Useful for temporary data that incorporated and used as <strong>__ref</strong> . The data should exist as CSV</p>
+<p>ex:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shipmode,delivery_team</span><br><span class="line">First Class, RHL_Couriers</span><br><span class="line">Second Class, RHL_Couriers</span><br><span class="line">Standard Class, RHL_Couriers</span><br><span class="line">Same Day, Globalmart</span><br></pre></td></tr></table></figure>
+
+<h2 id="snapshots"><a href="#snapshots" class="headerlink" title="snapshots"></a>snapshots</h2><p>Not tested</p>
+<h2 id="target"><a href="#target" class="headerlink" title="target"></a>target</h2><p>This directory will hold compile sql bsed on your jinja spec and also other outcomes such as the graphs for the documentation.</p>
+<h2 id="tests"><a href="#tests" class="headerlink" title="tests"></a>tests</h2><p>Tests for your model were you can defined rules such as nullability, dictionary of terms, etc.</p>
+<p>One can use the  <code>dbt test</code> command to check if the there is something failing.</p>
+<blockquote>
+<p><strong>NOTE:</strong> Please check the <a target="_blank" rel="noopener" href="https://docs.getdbt.com/best-practices">Best Practises Guide</a> as it should provide more insigthful information. You can also check the following example repo <a target="_blank" rel="noopener" href="https://github.com/rramos/dbt-training">https://github.com/rramos/dbt-training</a> which holds some test data </p>
+</blockquote>
+<h1 id="Loading-Example-Data"><a href="#Loading-Example-Data" class="headerlink" title="Loading Example Data"></a>Loading Example Data</h1><p>The example data is based on the udemy bootcamp from Vantage Point, check the references section with the link for the course as it is very insigthful.</p>
+<p>The following repo already has most of the things done and could be useful as a starting point:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/rramos/dbt-training">https://github.com/rramos/dbt-training</a></li>
+</ul>
+<h2 id="Data-Information"><a href="#Data-Information" class="headerlink" title="Data Information"></a>Data Information</h2><ul>
+<li>Data is composed of 3 CSV files: customers, orders and product data</li>
+<li>Following a traditional <a target="_blank" rel="noopener" href="https://www.databricks.com/glossary/medallion-architecture">Medallions Architecture</a> (AKA bronze, silver gold)</li>
+<li>Implement a (raw) layer based on the source data</li>
+<li>Implement a (staging) where we hold aggregation logic</li>
+<li>Implement Gold layer (reporting) with materialization data for reporting purposes</li>
+</ul>
+<h1 id="dbt™-Cloud"><a href="#dbt™-Cloud" class="headerlink" title="dbt™ Cloud"></a>dbt™ Cloud</h1><p>dbtLabs is the company behind dbt™. Although one can use the community version of dbt-core packages the company sells a solution that helps their clients using a friendly graphical interface to take advantage of dbt™ in a Enterprise way.</p>
+<p>You can check out their website to understand better the features associated to it:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.getdbt.com/product/dbt-cloud">https://www.getdbt.com/product/dbt-cloud</a></li>
+</ul>
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>In this article it was presented a high-level overview on dbt™ how it can be setup and provided some references for best practises and how to take most advantage of the product.</p>
+<p>My personal view on this product is that it brings better control for data assets with embeded lineage also documentation generation and testing features all integraded in a common stack allowing the CI&#x2F;CD process to be a “walk-in-the-park”</p>
+<p>The community is very large which is a plus (<a target="_blank" rel="noopener" href="https://www.getdbt.com/community">https://www.getdbt.com/community</a> ). DBTCloud provides an Entreprise level solution that would speed up Data Engineering work via UI, I didn’t go deeper on the costs to understand if it pays-off.</p>
+<p>Only having the dbt-core option seems to be quite limited compared with the Entreprise solution, but the community supports several features which should be consider if you don’t want to go in that path (like the integration with Airflow).</p>
+<p>I’m not a big fan of jinja option as the main syntax for the Product, but that is more of a personal flavor.</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.udemy.com/course/the-dbt-bootcamp-transform-your-data-using-data-build-tool/">The Data Bootcamp: Transform your Data using dbt™</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.databricks.com/glossary/medallion-architecture">https://www.databricks.com/glossary/medallion-architecture</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/rramos/dockers">https://github.com/rramos/dockers</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.getdbt.com/">https://docs.getdbt.com/</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.getdbt.com/guides/codespace?step=1">https://docs.getdbt.com/guides/codespace?step=1</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.getdbt.com/guides/airflow-and-dbt-cloud?step=1">https://docs.getdbt.com/guides/airflow-and-dbt-cloud?step=1</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.getdbt.com/best-practices">https://docs.getdbt.com/best-practices</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.getdbt.com/best-practices/how-we-structure/1-guide-overview">https://docs.getdbt.com/best-practices/how-we-structure/1-guide-overview</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/rramos/dbt-training">https://github.com/rramos/dbt-training</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2023-12-21T14:32:00.000Z"><a href="/2023/12/21/jafgen/">2023-12-21</a></time>
       
       
@@ -99,9 +385,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">jaffle-data/</span><br><span class="line">├── raw_customers.csv</span><br><span class="line">├── raw_items.csv</span><br><span class="line">├── raw_orders.csv</span><br><span class="line">├── raw_products.csv</span><br><span class="line">├── raw_stores.csv</span><br><span class="line">└── raw_supplies.csv</span><br></pre></td></tr></table></figure>
 
 <p>Example output</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">==&gt; raw_customers.csv &lt;==</span><br><span class="line">id,name</span><br><span class="line">f32ab6bb-4912-4319-af20-cf681b797868,Julia Henderson</span><br><span class="line">c07e5161-e8c4-419f-bdeb-3a2271691c75,James Gutierrez</span><br><span class="line">63c021e4-4d59-4958-aa35-ca5f72b1cad9,Janet Robles</span><br><span class="line"></span><br><span class="line">==&gt; raw_items.csv &lt;==</span><br><span class="line">id,order_id,sku</span><br><span class="line">f0a084b2-e702-41c9-b748-64e0688dabbf,6190ef46-3be2-4dfe-bbd5-519fc85a36b2,BEV-003</span><br><span class="line">946a7047-f074-444a-9d57-6f9e4df587c7,4e9745e8-2244-42aa-8337-8342adeda83c,BEV-005</span><br><span class="line">dd08b68d-448a-4e2d-9961-9226dacefba5,558f3180-3d98-415f-8197-5cd21b16cb83,BEV-003</span><br><span class="line"></span><br><span class="line">==&gt; raw_orders.csv &lt;==</span><br><span class="line">id,customer,ordered_at,store_id,subtotal,tax_paid,order_total</span><br><span class="line">6190ef46-3be2-4dfe-bbd5-519fc85a36b2,f32ab6bb-4912-4319-af20-cf681b797868,2016-09-01T08:20:00,c1d21879-9db8-410a-af61-c0a2c91881d3,600,36,636</span><br><span class="line">4e9745e8-2244-42aa-8337-8342adeda83c,c07e5161-e8c4-419f-bdeb-3a2271691c75,2016-09-01T07:53:00,c1d21879-9db8-410a-af61-c0a2c91881d3,400,24,424</span><br><span class="line">558f3180-3d98-415f-8197-5cd21b16cb83,63c021e4-4d59-4958-aa35-ca5f72b1cad9,2016-09-01T07:26:00,c1d21879-9db8-410a-af61-c0a2c91881d3,600,36,636</span><br><span class="line"></span><br><span class="line">==&gt; raw_products.csv &lt;==</span><br><span class="line">sku,name,type,price,description</span><br><span class="line">JAF-001,nutellaphone who dis?,jaffle,1100,nutella and banana jaffle</span><br><span class="line">JAF-002,doctor stew,jaffle,1100,house-made beef stew jaffle</span><br><span class="line">JAF-003,the krautback,jaffle,1200,lamb and pork bratwurst with house-pickled cabbage sauerkraut and mustard</span><br><span class="line"></span><br><span class="line">==&gt; raw_stores.csv &lt;==</span><br><span class="line">id,name,opened_at,tax_rate</span><br><span class="line">c1d21879-9db8-410a-af61-c0a2c91881d3,Philadelphia,2016-09-01T00:00:00,0.06</span><br><span class="line">e03fe3a7-86cb-4e58-b4b0-462bff6abdfd,Brooklyn,2017-03-12T00:00:00,0.04</span><br><span class="line">a86be955-8d22-4440-960d-6fd0ac7522a6,Chicago,2018-04-29T00:00:00,0.0625</span><br><span class="line"></span><br><span class="line">==&gt; raw_supplies.csv &lt;==</span><br><span class="line">id,name,cost,perishable,sku</span><br><span class="line">SUP-001,compostable cutlery - knife,7,False,JAF-001</span><br><span class="line">SUP-002,cutlery - fork,7,False,JAF-001</span><br><span class="line">SUP-003,serving boat,11,False,JAF-001</span><br></pre></td></tr></table></figure>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">==&gt; raw_customers.csv &lt;==</span><br><span class="line">id,name</span><br><span class="line">f32ab6bb-4912-4319-af20-cf681b797868,Julia Henderson</span><br><span class="line">c07e5161-e8c4-419f-bdeb-3a2271691c75,James Gutierrez</span><br><span class="line">63c021e4-4d59-4958-aa35-ca5f72b1cad9,Janet Robles</span><br><span class="line"></span><br><span class="line">==&gt; raw_items.csv &lt;==</span><br><span class="line">id,order_id,sku</span><br><span class="line">f0a084b2-e702-41c9-b748-64e0688dabbf,6190ef46-3be2-4dfe-bbd5-519fc85a36b2,BEV-003</span><br><span class="line">946a7047-f074-444a-9d57-6f9e4df587c7,4e9745e8-2244-42aa-8337-8342adeda83c,BEV-005</span><br><span class="line">dd08b68d-448a-4e2d-9961-9226dacefba5,558f3180-3d98-415f-8197-5cd21b16cb83,BEV-003</span><br><span class="line"></span><br><span class="line">==&gt; raw_orders.csv &lt;==</span><br><span class="line">id,customer,ordered_at,store_id,subtotal,tax_paid,order_total</span><br><span class="line">6190ef46-3be2-4dfe-bbd5-519fc85a36b2,f32ab6bb-4912-4319-af20-cf681b797868,2016-09-01T08:20:00,c1d21879-9db8-410a-af61-c0a2c91881d3,600,36,636</span><br><span class="line">4e9745e8-2244-42aa-8337-8342adeda83c,c07e5161-e8c4-419f-bdeb-3a2271691c75,2016-09-01T07:53:00,c1d21879-9db8-410a-af61-c0a2c91881d3,400,24,424</span><br><span class="line">558f3180-3d98-415f-8197-5cd21b16cb83,63c021e4-4d59-4958-aa35-ca5f72b1cad9,2016-09-01T07:26:00,c1d21879-9db8-410a-af61-c0a2c91881d3,600,36,636</span><br><span class="line"></span><br><span class="line">==&gt; raw_products.csv &lt;==</span><br><span class="line">sku,name,type,price,description</span><br><span class="line">JAF-001,nutellaphone who dis?,jaffle,1100,nutella and banana jaffle</span><br><span class="line">JAF-002,doctor stew,jaffle,1100,house-made beef stew jaffle</span><br><span class="line">JAF-003,the krautback,jaffle,1200,lamb and pork bratwurst with house-pickled cabbage sauerkraut and mustard</span><br><span class="line"></span><br><span class="line">==&gt; raw_stores.csv &lt;==</span><br><span class="line">id,name,opened_at,tax_rate</span><br><span class="line">c1d21879-9db8-410a-af61-c0a2c91881d3,Philadelphia,2016-09-01T00:00:00,0.06</span><br><span class="line">e03fe3a7-86cb-4e58-b4b0-462bff6abdfd,Brooklyn,2017-03-12T00:00:00,0.04</span><br><span class="line">a86be955-8d22-4440-960d-6fd0ac7522a6,Chicago,2018-04-29T00:00:00,0.0625</span><br><span class="line"></span><br><span class="line">==&gt; raw_supplies.csv &lt;==</span><br><span class="line">id,name,cost,perishable,sku</span><br><span class="line">SUP-001,compostable cutlery - knife,7,False,JAF-001</span><br><span class="line">SUP-002,cutlery - fork,7,False,JAF-001</span><br><span class="line">SUP-003,serving boat,11,False,JAF-001</span><br></pre></td></tr></table></figure>
 
-<p>This files can than be imported to your SQL Engine for development/demonstration purposes</p>
+<p>This files can than be imported to your SQL Engine for development&#x2F;demonstration purposes</p>
 <h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
 <li><a target="_blank" rel="noopener" href="https://pypi.org/project/jafgen/">https://pypi.org/project/jafgen/</a></li>
 </ul>
@@ -127,7 +413,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2023-10-17T09:00:00.000Z"><a href="/2023/10/17/interviewquestions/">2023-10-17</a></time>
+        <time datetime="2023-10-17T10:00:00.000Z"><a href="/2023/10/17/interviewquestions/">2023-10-17</a></time>
       
       
   
@@ -149,295 +435,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>What are the current goals of the Company ?</li>
 <li>How would you describe the company’s values ?</li>
 <li>How have the company’s values evolved in the time you’ ve worked there ?</li>
-<li>What is the company’s approach to professional development and growth ? </li>
+<li>What is the company’s approach to professional development and growth ?</li>
 </ul>
 <h2 id="About-the-Culture"><a href="#About-the-Culture" class="headerlink" title="About the Culture"></a>About the Culture</h2><ul>
 <li>How does this company invest in employee well-being ?</li>
 <li>Are there any efforts or initiatives in place to ensure diversity and inclusion in this company ?</li>
 <li>What is the general sentiment of culture in the company, according to current employees ?</li>
 <li>How does management react in situations that may result in low company morale ?</li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2023-08-29T20:00:00.000Z"><a href="/2023/08/29/apiarchitectures/">2023-08-29</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2023/08/29/apiarchitectures/">API Architectures</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>This article resumes the video by Alex Xu and Sahn Lam regarding 6 types of API Architectures and there usecases. Checkout there youtube channel as it has very interesting content</p>
-<img src="/2023/08/29/apiarchitectures/6-API-Archs.jpeg" class="" title="apiarchitectures">
-
-<h1 id="SOAP"><a href="#SOAP" class="headerlink" title="SOAP"></a>SOAP</h1><p>XML-based for enterprise application where security and reliability are key, but it could be overkill if you are developing a webapp for instance due to fact that it is complex.</p>
-<h1 id="RESTful"><a href="#RESTful" class="headerlink" title="RESTful"></a>RESTful</h1><p>Resource-based for webservers, implemented on top of HTTP methods very popular in web development. It may not be the best option if you need real time data or operate with a higly connected data model may not be the best choice</p>
-<h1 id="GraphQL"><a href="#GraphQL" class="headerlink" title="GraphQL"></a>GraphQL</h1><p>query language reduce network load. allow the client to ask for the specific data that it needs, more faster responses as you don’t need to over fetch data you don’t require. Good choice for applications with complex data requirements</p>
-<h1 id="gRPC"><a href="#gRPC" class="headerlink" title="gRPC"></a>gRPC</h1><p>High performance for microservices, used protocol buffers by default. Good choice for micro-services architecture for inter-service communications but if dealing with browser client there are some limitations</p>
-<h1 id="WebSocket"><a href="#WebSocket" class="headerlink" title="WebSocket"></a>WebSocket</h1><p>Bi-directional for low-latency data exchange. Perfect for real chat applications and real time gaming where low latency exchange is crucial</p>
-<h1 id="Webhook"><a href="#Webhook" class="headerlink" title="Webhook"></a>Webhook</h1><p>Asynchronous for event-driven application. Very usefull if you don’ t need immediate response and latency is not an issue</p>
-<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=4vLxWqE94l4&amp;ab_channel=ByteByteGo">https://www.youtube.com/watch?v=4vLxWqE94l4&amp;ab_channel=ByteByteGo</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2023-08-27T22:00:00.000Z"><a href="/2023/08/27/aur/">2023-08-27</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2023/08/27/aur/">AUR Packages</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>In this article i will review how AUR packages are defined. I used to create rpm and debian packages, but switched recently to use Arch Linux. As such makes sense to review how to create a aur package and how does it works the ecosystem.</p>
-<h1 id="Arch-Packages"><a href="#Arch-Packages" class="headerlink" title="Arch Packages"></a>Arch Packages</h1><p>The Arch User Repository (AUR) is a community-driven repository for Arch users. It contains package descriptions (PKGBUILDs) that allow you to compile a package from source with makepkg and then install it via pacman. The AUR was created to organize and share new packages from the community and to help expedite popular packages’ inclusion into the extra repository. </p>
-<h1 id="Getting-Started"><a href="#Getting-Started" class="headerlink" title="Getting Started"></a>Getting Started</h1><ol>
-<li>Ensure <strong>base-devel</strong> is installed.</li>
-<li>Adjust /etc/makepkg.conf</li>
-</ol>
-<h2 id="etc-makepkg-conf"><a href="#etc-makepkg-conf" class="headerlink" title="/etc/makepkg.conf"></a>/etc/makepkg.conf</h2><p>You may wish to adjust <code>/etc/makepkg.conf</code> to optimize the build process to your system prior to building packages from the AUR. A significant improvement in package build times can be realized on systems with multi-core processors by adjusting the MAKEFLAGS variable, by using multiple cores for compression, or by using different compression algorithm. Users can also enable hardware-specific compiler optimizations via the CFLAGS variable.</p>
-<p>I will just adjust the parallelism for compilation to use the 8-cores I have </p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">MAKEFLAGS=&quot;-j8&quot;</span><br></pre></td></tr></table></figure>
-
-<p>The overall flags seem to be very optimized already, checkout the <a target="_blank" rel="noopener" href="https://wiki.gentoo.org/wiki/GCC_optimization/en#What_are_CFLAGS_and_CXXFLAGS.3F">article</a> if you want to go into that rabbit hole</p>
-<h2 id="Installing-and-upgrading-packages"><a href="#Installing-and-upgrading-packages" class="headerlink" title="Installing and upgrading packages"></a>Installing and upgrading packages</h2><p>Installing packages from the AUR is a relatively simple process. Essentially:</p>
-<ol>
-<li>Acquire the build files, including the <strong>PKGBUILD</strong> and possibly other required files, like systemd units and patches (often not the actual code).</li>
-<li>Verify that the <strong>PKGBUILD</strong> and accompanying files are not malicious or untrustworthy.</li>
-<li>Run <code>makepkg</code> in the directory where the files are saved. This will download the code, compile it, and package it.</li>
-<li>Run <code>pacman -U package_file</code> to install the package onto your system.</li>
-</ol>
-<h2 id="Acquire-build-files"><a href="#Acquire-build-files" class="headerlink" title="Acquire build files"></a>Acquire build files</h2><p>Locate the package in the AUR. This is done using the search field at the top of the <a target="_blank" rel="noopener" href="https://aur.archlinux.org/">AUR home page</a>. Clicking the application’s name in the search list brings up an information page on the package. Read through the description to confirm that this is the desired package, note when the package was last updated, and read any comments.</p>
-<p>Clone git the repository for the package</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">git clone https://aur.archlinux.org/package_name.git</span><br></pre></td></tr></table></figure>
-
-<h2 id="Acquire-a-PGP-public-key-if-needed"><a href="#Acquire-a-PGP-public-key-if-needed" class="headerlink" title="Acquire a PGP public key if needed"></a>Acquire a PGP public key if needed</h2><p>Check if a signature file in the form of .sig or .asc is part of the PKGBUILD source array. If that is the case, then acquire one of the public keys listed in the PKGBUILD <a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/PKGBUILD#validpgpkeys">validpgpkeys</a> array</p>
-<h2 id="Build-the-package"><a href="#Build-the-package" class="headerlink" title="Build the package"></a>Build the package</h2><p>Change directories to the directory containing the package’s <strong>PKGBUILD</strong>.</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> package_name</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> makepkg -si</span></span><br></pre></td></tr></table></figure>
-<h2 id="Install-the-package"><a href="#Install-the-package" class="headerlink" title="Install the package"></a>Install the package</h2><p>The package can now be installed with pacman:</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">pacman -U package_name-version-architecture.pkg.tar.zst</span><br></pre></td></tr></table></figure>
-
-<h2 id="Lets-test-…"><a href="#Lets-test-…" class="headerlink" title="Lets test …"></a>Lets test …</h2><p>Using one example package <strong>paru</strong>. one can use the following commands</p>
-<p>Let’s check available updates with paru</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">paru -Qua</span><br></pre></td></tr></table></figure>
-
-<h1 id="PKGBUILD"><a href="#PKGBUILD" class="headerlink" title="PKGBUILD"></a>PKGBUILD</h1><p>The following manpage <a target="_blank" rel="noopener" href="https://man.archlinux.org/man/PKGBUILD.5">PKGBUILD(5)</a> provides more in-depth information regarding the <strong>PKBUILD</strong> package description file.</p>
-<h2 id="Creating-Packages"><a href="#Creating-Packages" class="headerlink" title="Creating Packages"></a>Creating Packages</h2><h3 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h3><p>Packages in Arch Linux are built using the <code>makepkg</code> utility and the information stored in a <code>PKGBUILD</code> file. When makepkg runs, it searches for a PKGBUILD in the current directory and follows the instructions in it to acquire the required files and/or compile them to be packed within a package file (<code>pkgname.pkg.tar.zst</code>). The resulting package contains binary files and installation instructions ready to be installed by pacman.</p>
-<p>An Arch package is no more than a tar archive, or ‘tarball’, compressed using <a target="_blank" rel="noopener" href="https://man.archlinux.org/man/zstd.1">zstd(1)</a>, which contains the following files generated by makepkg:</p>
-<ul>
-<li>The binary files to install.</li>
-<li><code>.PKGINFO</code>: contains all the metadata needed by pacman to deal with packages, dependencies, etc.</li>
-<li><code>.BUILDINFO</code>: contains information needed for reproducible builds. This file is present only if a package is built with pacman 5.1 or newer. See BUILDINFO(5).</li>
-<li><code>.MTREE</code>: contains hashes and timestamps of the files, which are included in the local database so that pacman can verify the integrity of the package.</li>
-<li><code>.INSTALL</code>: an optional file used to execute commands after the install/upgrade/remove stage. (This file is present only if specified in the PKGBUILD.)</li>
-<li><code>.Changelog</code>: an optional file kept by the package maintainer documenting the changes of the package. (It is not present in all packages.)</li>
-</ul>
-<h3 id="Preparation"><a href="#Preparation" class="headerlink" title="Preparation"></a>Preparation</h3><p>First, ensure that the necessary tools are installed: the meta package base-devel should be sufficient; it pulls in make and additional tools needed for compiling from source.</p>
-<p>The key tool for building packages is <strong>makepkg</strong> (provided by <strong>pacman</strong>), which does the following:</p>
-<ol>
-<li><strong>Checks if package dependencies are installed.</strong></li>
-<li><strong>Downloads the source file(s) from the specified server(s).</strong></li>
-<li><strong>Unpacks the source file(s).</strong></li>
-<li><strong>Compiles the software and installs it under a fakeroot environment.</strong></li>
-<li><strong>Strips symbols from binaries and libraries.</strong></li>
-<li><strong>Generates the package meta file which is included with each package.</strong></li>
-<li><strong>Compresses the fakeroot environment into a package file.</strong></li>
-<li><strong>Stores the package file in the configured destination directory, which is the current working directory by default.</strong></li>
-</ol>
-<p>Download the source tarball of the software you want to package, extract it, and follow the author’s steps to install the program. Make a note of all commands and/or steps needed to compile and install it. You will be repeating those same commands in the <strong>PKGBUILD</strong> file.</p>
-<p>Most software authors stick to the 3-step build cycle:</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
-
-<h3 id="Creating-a-PKGBUILD"><a href="#Creating-a-PKGBUILD" class="headerlink" title="Creating a PKGBUILD"></a>Creating a PKGBUILD</h3><p>To start building a new package, first create a new directory for the package and change current directory into this one. Then, a <strong>PKGBUILD</strong> file needs to be created: a prototype PKGBUILD found in <code>/usr/share/pacman/</code> can be used or you can start from a <strong>PKGBUILD</strong> from another package. The latter may be a good choice if a similar package already exists.</p>
-<p>makepkg defines two variables that you should use as part of the build and install process:</p>
-<ul>
-<li><strong>srcdir</strong>: This points to the directory where makepkg extracts or symlinks all files in the source array.</li>
-<li><strong>pkgdir</strong>: This points to the directory where makepkg bundles the installed package, which becomes the root directory of your built package.</li>
-</ul>
-<p><strong>PKGBUILD functions</strong></p>
-<p>When building a package, <strong>makepkg</strong> will invoke the following five functions if they have been defined in the PKGBUILD. Function <code>package()</code> is required in every <strong>PKGBUILD</strong> and will always be invoked. If any of the other functions is not defined, makepkg will simply skip the invocation of that function.</p>
-<ul>
-<li><p><strong>prepare()</strong>: With this function, commands that are used to prepare sources for building are run, such as patching. This function runs right after package extraction, before <code>pkgver()</code> and the build function. If extraction is skipped (<code>makepkg --noextract</code>), then <code>prepare()</code> is not run</p>
-</li>
-<li><p><strong>pkgver()</strong>: pkgver() runs after the sources are fetched, extracted and prepare() executed. So you can update the pkgver variable during a makepkg stage. This is particularly useful if you are making git/svn/hg/etc. packages, where the build process may remain the same, but the source could be updated every day, even every hour.</p>
-</li>
-<li><p><strong>build()</strong>: Now, you need to implement the build() function in the PKGBUILD file. This function uses common shell commands in Bash syntax to automatically compile software and create a directory called pkg to install the software to. This allows makepkg to package files without having to sift through your file system.</p>
-</li>
-<li><p><strong>check()</strong>: Place for calls to make check and similar testing routines. It is highly recommended to have check() as it helps to make sure software has been built correctly and works fine with its dependencies.</p>
-</li>
-<li><p><strong>package()</strong>: The final step is to put the compiled files in a directory where makepkg can retrieve them to create a package. This by default is the pkg directory—a simple fakeroot environment. The pkg directory replicates the hierarchy of the root file system of the software’s installation paths. If you have to manually place files under the root of your filesystem, you should install them in the pkg directory under the same directory structure. For example, if you want to install a file to /usr/bin, it should instead be placed under <code>$pkgdir/usr/bin</code>. Very few install procedures require the user to copy dozens of files manually. Instead, for most software, calling make install will do so.</p>
-</li>
-</ul>
-<h1 id="Lets-create-our-package"><a href="#Lets-create-our-package" class="headerlink" title="Lets create our package"></a>Lets create our package</h1><p>For testing purposes lets create a hello world application in rust and package it as a new AUR</p>
-<p>Create a new directory for this app (make sure you have rust installed)</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">cargo new myhello</span><br><span class="line">cd myhello</span><br><span class="line">cargo run</span><br></pre></td></tr></table></figure>
-<p>Great we have a Hello World App</p>
-<p>Let’s clean up</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">cargo clean</span><br></pre></td></tr></table></figure>
-
-<p>You should have this structure</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line">├── Cargo.lock</span><br><span class="line">├── Cargo.toml</span><br><span class="line">└── src</span><br><span class="line">    └── main.rs</span><br></pre></td></tr></table></figure>
-
-<p>Lets add a cargo module to generate our PKGBUILD file</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">cargo install cargo-aur</span><br></pre></td></tr></table></figure>
-
-<p>Let’s add some Metadata required for generating the AUR on <strong>Cargo.toml</strong> file</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">[package]</span><br><span class="line">name = &quot;myhello&quot;</span><br><span class="line">version = &quot;0.1.0&quot;</span><br><span class="line">edition = &quot;2021&quot;</span><br><span class="line"></span><br><span class="line">authors = [&quot;Rui Ramos&quot;, &quot;Rui Ramos &lt;no-reply@rust-lang.org&gt;&quot;]</span><br><span class="line">description = &quot;A HelloWorld Application for AUR testing purposes&quot;</span><br><span class="line">homepage=&quot;https://rramos.github.io&quot;</span><br><span class="line">repository = &quot;https://github.com/rramos/rust-helloworld.git&quot;  </span><br><span class="line">license = &quot;MIT&quot;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html</span></span><br><span class="line"></span><br><span class="line">[dependencies]</span><br></pre></td></tr></table></figure>
-
-<p>For a complete list please check the <a target="_blank" rel="noopener" href="https://doc.rust-lang.org/cargo/reference/manifest.html">Cargo Manifest</a> page.</p>
-<p>Now run the following command</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">cargo aur</span><br></pre></td></tr></table></figure>
-
-<p>We now have a <strong>PKGBUILD</strong> package generated for this application with something similar</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Maintainer: Rui Ramos</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Maintainer: Rui Ramos &lt;no-reply@rust-lang.org&gt;</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment"># This PKGBUILD was generated by `cargo aur`: https://crates.io/crates/cargo-aur</span></span></span><br><span class="line"></span><br><span class="line">pkgname=myhello-bin</span><br><span class="line">pkgver=0.1.0</span><br><span class="line">pkgrel=1</span><br><span class="line">pkgdesc=&quot;A HelloWorld Application for AUR testing purposes&quot;</span><br><span class="line">url=&quot;https://rramos.github.io&quot;</span><br><span class="line">license=(&quot;MIT&quot;)</span><br><span class="line">arch=(&quot;x86_64&quot;)</span><br><span class="line">provides=(&quot;myhello&quot;)</span><br><span class="line">conflicts=(&quot;myhello&quot;)</span><br><span class="line">source=(&quot;https://github.com/rramos/rust-helloworld.git/releases/download/v$pkgver/myhello-$pkgver-x86_64.tar.gz&quot;)</span><br><span class="line">sha256sums=(&quot;ef8ce03c73185ef872116c17971c21f6f8f2c8f67d42a5c0b4ca876d164191b2&quot;)</span><br><span class="line"></span><br><span class="line">package() &#123;</span><br><span class="line">    install -Dm755 myhello -t &quot;$pkgdir/usr/bin&quot;</span><br><span class="line">    install -Dm644 LICENSE &quot;$pkgdir/usr/share/licenses/$pkgname/LICENSE&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>It also generated a tarball for the application <strong>myhello-0.1.0-x86_64.tar.gz</strong> .</p>
-<p>Now lets use pacman to build and install the package</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">makepkg -si</span><br></pre></td></tr></table></figure>
-
-<p>You should now have a executable <strong>myhello</strong> application congrats.</p>
-<h1 id="Clean-Up"><a href="#Clean-Up" class="headerlink" title="Clean Up"></a>Clean Up</h1><p>Let’s remove our application using the command</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">sudo pacman -R myhello-bin</span><br></pre></td></tr></table></figure>
-
-<h1 id="Checking-package-sanity"><a href="#Checking-package-sanity" class="headerlink" title="Checking package sanity"></a>Checking package sanity</h1><p>After testing package functionality, check it for errors using <a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Namcap">namcap</a></p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> namcap PKGBUILD</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> namcap &lt;package file name&gt;.pkg.tar.zst</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="Submitting-packages-to-the-AUR"><a href="#Submitting-packages-to-the-AUR" class="headerlink" title="Submitting packages to the AUR"></a>Submitting packages to the AUR</h1><p>In order to contribute to the community one can submit the AUR package. For that read <a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/AUR_submission_guidelines">AUR submission guidelines</a> for a detailed description of the submission process.</p>
-<p>You would need one ssh account and key.</p>
-<p>If you are developing in Rust I would advise following the <a target="_blank" rel="noopener" href="https://manojkarthick.com/posts/2021/03/rust-aur/">guide</a> from Manoj Karthick</p>
-<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>AUR packages seem quite similar to debian or rpm packages in a sense that you need to specify a set of instructions for compiling and installing, and those functions would be called by the packaging system. I liked the simplified structure of it and <strong>cargo-aur</strong> package is amazing for rust developers who want to quickly prepare and package their applications.</p>
-<p>On the article I didn’t deep dive on more complex preparation/compilation options that some applications have or dependencies. Also is important to check the <a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Arch_package_guidelines">Arch guidelines</a> if you intend to release your application for the community and also follow good practices not only for the package build but also files organization.</p>
-<p>In general as a past RedHat, Debian and Gentoo Linux user, I’m really becoming a fan of this packaging system.</p>
-<p>Hope this helps, the following References section contains the source of information used to consolidate this article.</p>
-<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://aur.archlinux.org/">https://aur.archlinux.org/</a></li>
-<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/pacman">https://wiki.archlinux.org/title/pacman</a></li>
-<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/official_repositories">https://wiki.archlinux.org/title/official_repositories</a></li>
-<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Arch_package_guidelines">https://wiki.archlinux.org/title/Arch_package_guidelines</a></li>
-<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/general_recommendations">https://wiki.archlinux.org/title/general_recommendations</a></li>
-<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Arch_User_Repository">https://wiki.archlinux.org/title/Arch_User_Repository</a></li>
-<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Arch_User_Repository#Frequently_asked_questions">https://wiki.archlinux.org/title/Arch_User_Repository#Frequently_asked_questions</a></li>
-<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/PKGBUILD#validpgpkeys">https://wiki.archlinux.org/title/PKGBUILD#validpgpkeys</a></li>
-<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Creating_packages">https://wiki.archlinux.org/title/Creating_packages</a></li>
-<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/AUR_submission_guidelines">https://wiki.archlinux.org/title/AUR_submission_guidelines</a></li>
-<li><a target="_blank" rel="noopener" href="https://manojkarthick.com/posts/2021/03/rust-aur/">https://manojkarthick.com/posts/2021/03/rust-aur/</a></li>
-<li><a target="_blank" rel="noopener" href="https://doc.rust-lang.org/cargo/reference/manifest.html">https://doc.rust-lang.org/cargo/reference/manifest.html</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2023-08-26T20:00:00.000Z"><a href="/2023/08/26/minikube/">2023-08-26</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2023/08/26/minikube/">Local Kubernetes for Testing/Developing</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p><strong>minikube</strong> is local Kubernetes, focusing on making it easy to learn and develop for Kubernetes.</p>
-<p>Lets start by installing the minikube package.</p>
-<p><strong>NOTE:</strong> This example is targeting a Arch distribution, if you use a different linux flavor check the <a target="_blank" rel="noopener" href="https://minikube.sigs.k8s.io/docs/start/">Official Docs</a> for other install options</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">sudo pacman -S minikube</span><br></pre></td></tr></table></figure>
-
-<p>The following command will setup a docker environment with a kubernetes environment that you can use for development/testing purposes</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">minikube start</span><br></pre></td></tr></table></figure>
-<p>In order to interact with Kubernetes one can use the provided kubectl command upon starting this enviroment with the following command</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">minikube kubectl -- get pods -A</span><br></pre></td></tr></table></figure>
-
-<p>One should get something like this</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">NAMESPACE     NAME                               READY   STATUS    RESTARTS      AGE</span><br><span class="line">kube-system   coredns-787d4945fb-zv72d           1/1     Running   0             10m</span><br><span class="line">kube-system   etcd-minikube                      1/1     Running   0             10m</span><br><span class="line">kube-system   kube-apiserver-minikube            1/1     Running   0             10m</span><br><span class="line">kube-system   kube-controller-manager-minikube   1/1     Running   0             10m</span><br><span class="line">kube-system   kube-proxy-7p9qw                   1/1     Running   0             10m</span><br><span class="line">kube-system   kube-scheduler-minikube            1/1     Running   0             10m</span><br><span class="line">kube-system   storage-provisioner                1/1     Running   1 (10m ago)   10m</span><br></pre></td></tr></table></figure>
-
-<p>I will install kubectl package however to allow interaction with other clusters if required.</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">sudo pacman -S kubectl</span><br></pre></td></tr></table></figure>
-
-<p>We should get the same output by executing</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">kubectl get po -A</span><br></pre></td></tr></table></figure>
-
-<p>One can check the cluster details with following command</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">kubectl cluster-info</span><br></pre></td></tr></table></figure>
-
-<p>You should get something similar </p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">Kubernetes control plane is running at https://192.168.49.2:8443</span><br><span class="line">CoreDNS is running at https://192.168.49.2:8443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy</span><br><span class="line"></span><br><span class="line">To further debug and diagnose cluster problems, use &#x27;kubectl cluster-info dump&#x27;.</span><br></pre></td></tr></table></figure>
-
-<p>Minikube is also bundled with Kubernetes Dashboard which you can launch with the following command</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">minikube dashboard</span><br></pre></td></tr></table></figure>
-
-<p>You would get something similar to the following image:</p>
-<img src="/2023/08/26/minikube/minikube.png" class="" title="minikube">
-
-<p>Great now we have a Kubernetes cluster running in docker and kubectl command available. </p>
-<p>For a more extensive guideline on how to manage Minikube please checkout the <a target="_blank" rel="noopener" href="https://minikube.sigs.k8s.io/docs/handbook/">handbook</a></p>
-<p>Next steps would containerize some application and deploy it.</p>
-<p>But that would be for another article…</p>
-<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://minikube.sigs.k8s.io/docs/start/">https://minikube.sigs.k8s.io/docs/start/</a></li>
-<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Minikube">https://wiki.archlinux.org/title/Minikube</a></li>
-<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Kubernetes">https://wiki.archlinux.org/title/Kubernetes</a></li>
-<li><a target="_blank" rel="noopener" href="https://minikube.sigs.k8s.io/docs/handbook/">https://minikube.sigs.k8s.io/docs/handbook/</a></li>
 </ul>
 
       
@@ -739,7 +743,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
   &copy; 2024 Rui Ramos
   
-  <a class="disclaimer" href=/disclaimer> Disclaimer</a>
 </div>
 <div class="clearfix"></div></footer>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>

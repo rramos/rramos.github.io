@@ -38,7 +38,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -77,50 +77,192 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2023-08-16T10:56:05.565Z"><a href="/2023/08/16/koboreader/">2023-08-16</a></time>
+        <time datetime="2023-08-29T21:00:00.000Z"><a href="/2023/08/29/apiarchitectures/">2023-08-29</a></time>
       
       
   
-    <h1 class="title"><a href="/2023/08/16/koboreader/">How to Bypass Kobo Wizard in Linux</a></h1>
+    <h1 class="title"><a href="/2023/08/29/apiarchitectures/">API Architectures</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <p>This article is a copy from <strong>Curtis Gedak</strong> in the following <a target="_blank" rel="noopener" href="https://gedakc.users.sourceforge.net/display-doc.php%3Fname%3Dkobo-desktop-ereader-setup">reference</a>. </p>
-<blockquote>
-<p>Kobo eReaders can no longer be set up using the Kobo Desktop on GNU/Linux (see warning below). Fortunately there is a work around to get your Kobo eReader working without a Kobo Account.</p>
-</blockquote>
-<p>If you have a kobo reader stuck in the setup wizard as it happen to me (wifi got broken) there is a quick setup you can do to bypass the initial setup wizard.</p>
-<p><strong>Notice:</strong> This procedure was done in a old Kobo ebook reader, and is not guarantee that it will work on newer versions, use at your own risk</p>
-<h1 id="Issue"><a href="#Issue" class="headerlink" title="Issue"></a>Issue</h1><p>Kobo ebook reader stuck on the initial setup phase. Wifi doesn’t work and plugging to a computer requires the windows software installed, which for linux users doesn’t not work.</p>
-<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><p>Create a dummy user on the device to bypass the initial setup</p>
-<h1 id="Pre-Requisites"><a href="#Pre-Requisites" class="headerlink" title="Pre-Requisites"></a>Pre-Requisites</h1><p>You need to install sqlitebrowser</p>
-<p>Using the following code for Arch there should be a similar option Ubuntu or Fedora distributions</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">sudo pacman -S sqlitebrowser</span><br></pre></td></tr></table></figure>
-<h1 id="Procedure"><a href="#Procedure" class="headerlink" title="Procedure"></a>Procedure</h1><ol>
-<li><p>Plug you ebook reader via usb </p>
-<ul>
-<li>You can check the mount points you should see a <code>/media/your-user-name/KOBOeReader</code> device . Assuming this path as reference</li>
+        <p>This article resumes the video by Alex Xu and Sahn Lam regarding 6 types of API Architectures and there usecases. Checkout there youtube channel as it has very interesting content</p>
+<img src="/2023/08/29/apiarchitectures/6-API-Archs.jpeg" class="" title="apiarchitectures">
+
+<h1 id="SOAP"><a href="#SOAP" class="headerlink" title="SOAP"></a>SOAP</h1><p>XML-based for enterprise application where security and reliability are key, but it could be overkill if you are developing a webapp for instance due to fact that it is complex.</p>
+<h1 id="RESTful"><a href="#RESTful" class="headerlink" title="RESTful"></a>RESTful</h1><p>Resource-based for webservers, implemented on top of HTTP methods very popular in web development. It may not be the best option if you need real time data or operate with a higly connected data model may not be the best choice</p>
+<h1 id="GraphQL"><a href="#GraphQL" class="headerlink" title="GraphQL"></a>GraphQL</h1><p>query language reduce network load. allow the client to ask for the specific data that it needs, more faster responses as you don’t need to over fetch data you don’t require. Good choice for applications with complex data requirements</p>
+<h1 id="gRPC"><a href="#gRPC" class="headerlink" title="gRPC"></a>gRPC</h1><p>High performance for microservices, used protocol buffers by default. Good choice for micro-services architecture for inter-service communications but if dealing with browser client there are some limitations</p>
+<h1 id="WebSocket"><a href="#WebSocket" class="headerlink" title="WebSocket"></a>WebSocket</h1><p>Bi-directional for low-latency data exchange. Perfect for real chat applications and real time gaming where low latency exchange is crucial</p>
+<h1 id="Webhook"><a href="#Webhook" class="headerlink" title="Webhook"></a>Webhook</h1><p>Asynchronous for event-driven application. Very usefull if you don’ t need immediate response and latency is not an issue</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=4vLxWqE94l4&ab_channel=ByteByteGo">https://www.youtube.com/watch?v=4vLxWqE94l4&amp;ab_channel=ByteByteGo</a></li>
 </ul>
-</li>
-<li><p>Connect with SLQliteBrowser</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">sqlitebrowser /media/your-user-name/KOBOeReader/.kobo/KoboReader.sqlite</span><br></pre></td></tr></table></figure></li>
-<li><p>Click on the Execute SQL tab and in the SQL string: section enter the following statement</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">USER</span></span><br><span class="line">  (UserID, UserKey, UserDisplayName, UserEmail, ___DeviceID)</span><br><span class="line"><span class="keyword">values</span></span><br><span class="line">  (&quot;foo&quot;, &quot;foo&quot;, &quot;foo&quot;, &quot;foo&quot;,&quot;foo&quot;);</span><br></pre></td></tr></table></figure></li>
-<li><p>Save the changes</p>
-<ul>
-<li>Save these changes by selecting the menu option: File -&gt; Save Database or File -&gt; Write Changes.</li>
-</ul>
-</li>
-<li><p>Close the sqlitebrowser by selecting the menu option: File -&gt; Exit.</p>
-</li>
-<li><p>Safely unmount your Kobo eReader.</p>
-</li>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2023-08-27T23:00:00.000Z"><a href="/2023/08/27/aur/">2023-08-27</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2023/08/27/aur/">AUR Packages</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>In this article i will review how AUR packages are defined. I used to create rpm and debian packages, but switched recently to use Arch Linux. As such makes sense to review how to create a aur package and how does it works the ecosystem.</p>
+<h1 id="Arch-Packages"><a href="#Arch-Packages" class="headerlink" title="Arch Packages"></a>Arch Packages</h1><p>The Arch User Repository (AUR) is a community-driven repository for Arch users. It contains package descriptions (PKGBUILDs) that allow you to compile a package from source with makepkg and then install it via pacman. The AUR was created to organize and share new packages from the community and to help expedite popular packages’ inclusion into the extra repository. </p>
+<h1 id="Getting-Started"><a href="#Getting-Started" class="headerlink" title="Getting Started"></a>Getting Started</h1><ol>
+<li>Ensure <strong>base-devel</strong> is installed.</li>
+<li>Adjust &#x2F;etc&#x2F;makepkg.conf</li>
 </ol>
-<p>And voilá, your eReader should now boot up and display the QUICK TOUR screen</p>
-<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://gedakc.users.sourceforge.net/display-doc.php%3Fname%3Dkobo-desktop-ereader-setup">https://gedakc.users.sourceforge.net/display-doc.php%3Fname%3Dkobo-desktop-ereader-setup</a></li>
+<h2 id="etc-makepkg-conf"><a href="#etc-makepkg-conf" class="headerlink" title="&#x2F;etc&#x2F;makepkg.conf"></a>&#x2F;etc&#x2F;makepkg.conf</h2><p>You may wish to adjust <code>/etc/makepkg.conf</code> to optimize the build process to your system prior to building packages from the AUR. A significant improvement in package build times can be realized on systems with multi-core processors by adjusting the MAKEFLAGS variable, by using multiple cores for compression, or by using different compression algorithm. Users can also enable hardware-specific compiler optimizations via the CFLAGS variable.</p>
+<p>I will just adjust the parallelism for compilation to use the 8-cores I have </p>
+<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">MAKEFLAGS=&quot;-j8&quot;</span><br></pre></td></tr></table></figure>
+
+<p>The overall flags seem to be very optimized already, checkout the <a target="_blank" rel="noopener" href="https://wiki.gentoo.org/wiki/GCC_optimization/en#What_are_CFLAGS_and_CXXFLAGS.3F">article</a> if you want to go into that rabbit hole</p>
+<h2 id="Installing-and-upgrading-packages"><a href="#Installing-and-upgrading-packages" class="headerlink" title="Installing and upgrading packages"></a>Installing and upgrading packages</h2><p>Installing packages from the AUR is a relatively simple process. Essentially:</p>
+<ol>
+<li>Acquire the build files, including the <strong>PKGBUILD</strong> and possibly other required files, like systemd units and patches (often not the actual code).</li>
+<li>Verify that the <strong>PKGBUILD</strong> and accompanying files are not malicious or untrustworthy.</li>
+<li>Run <code>makepkg</code> in the directory where the files are saved. This will download the code, compile it, and package it.</li>
+<li>Run <code>pacman -U package_file</code> to install the package onto your system.</li>
+</ol>
+<h2 id="Acquire-build-files"><a href="#Acquire-build-files" class="headerlink" title="Acquire build files"></a>Acquire build files</h2><p>Locate the package in the AUR. This is done using the search field at the top of the <a target="_blank" rel="noopener" href="https://aur.archlinux.org/">AUR home page</a>. Clicking the application’s name in the search list brings up an information page on the package. Read through the description to confirm that this is the desired package, note when the package was last updated, and read any comments.</p>
+<p>Clone git the repository for the package</p>
+<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">git clone https://aur.archlinux.org/package_name.git</span><br></pre></td></tr></table></figure>
+
+<h2 id="Acquire-a-PGP-public-key-if-needed"><a href="#Acquire-a-PGP-public-key-if-needed" class="headerlink" title="Acquire a PGP public key if needed"></a>Acquire a PGP public key if needed</h2><p>Check if a signature file in the form of .sig or .asc is part of the PKGBUILD source array. If that is the case, then acquire one of the public keys listed in the PKGBUILD <a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/PKGBUILD#validpgpkeys">validpgpkeys</a> array</p>
+<h2 id="Build-the-package"><a href="#Build-the-package" class="headerlink" title="Build the package"></a>Build the package</h2><p>Change directories to the directory containing the package’s <strong>PKGBUILD</strong>.</p>
+<figure class="highlight console"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> package_name</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">makepkg -si</span></span><br></pre></td></tr></table></figure>
+<h2 id="Install-the-package"><a href="#Install-the-package" class="headerlink" title="Install the package"></a>Install the package</h2><p>The package can now be installed with pacman:</p>
+<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">pacman -U package_name-version-architecture.pkg.tar.zst</span><br></pre></td></tr></table></figure>
+
+<h2 id="Lets-test-…"><a href="#Lets-test-…" class="headerlink" title="Lets test …"></a>Lets test …</h2><p>Using one example package <strong>paru</strong>. one can use the following commands</p>
+<p>Let’s check available updates with paru</p>
+<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">paru -Qua</span><br></pre></td></tr></table></figure>
+
+<h1 id="PKGBUILD"><a href="#PKGBUILD" class="headerlink" title="PKGBUILD"></a>PKGBUILD</h1><p>The following manpage <a target="_blank" rel="noopener" href="https://man.archlinux.org/man/PKGBUILD.5">PKGBUILD(5)</a> provides more in-depth information regarding the <strong>PKBUILD</strong> package description file.</p>
+<h2 id="Creating-Packages"><a href="#Creating-Packages" class="headerlink" title="Creating Packages"></a>Creating Packages</h2><h3 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h3><p>Packages in Arch Linux are built using the <code>makepkg</code> utility and the information stored in a <code>PKGBUILD</code> file. When makepkg runs, it searches for a PKGBUILD in the current directory and follows the instructions in it to acquire the required files and&#x2F;or compile them to be packed within a package file (<code>pkgname.pkg.tar.zst</code>). The resulting package contains binary files and installation instructions ready to be installed by pacman.</p>
+<p>An Arch package is no more than a tar archive, or ‘tarball’, compressed using <a target="_blank" rel="noopener" href="https://man.archlinux.org/man/zstd.1">zstd(1)</a>, which contains the following files generated by makepkg:</p>
+<ul>
+<li>The binary files to install.</li>
+<li><code>.PKGINFO</code>: contains all the metadata needed by pacman to deal with packages, dependencies, etc.</li>
+<li><code>.BUILDINFO</code>: contains information needed for reproducible builds. This file is present only if a package is built with pacman 5.1 or newer. See BUILDINFO(5).</li>
+<li><code>.MTREE</code>: contains hashes and timestamps of the files, which are included in the local database so that pacman can verify the integrity of the package.</li>
+<li><code>.INSTALL</code>: an optional file used to execute commands after the install&#x2F;upgrade&#x2F;remove stage. (This file is present only if specified in the PKGBUILD.)</li>
+<li><code>.Changelog</code>: an optional file kept by the package maintainer documenting the changes of the package. (It is not present in all packages.)</li>
+</ul>
+<h3 id="Preparation"><a href="#Preparation" class="headerlink" title="Preparation"></a>Preparation</h3><p>First, ensure that the necessary tools are installed: the meta package base-devel should be sufficient; it pulls in make and additional tools needed for compiling from source.</p>
+<p>The key tool for building packages is <strong>makepkg</strong> (provided by <strong>pacman</strong>), which does the following:</p>
+<ol>
+<li><strong>Checks if package dependencies are installed.</strong></li>
+<li><strong>Downloads the source file(s) from the specified server(s).</strong></li>
+<li><strong>Unpacks the source file(s).</strong></li>
+<li><strong>Compiles the software and installs it under a fakeroot environment.</strong></li>
+<li><strong>Strips symbols from binaries and libraries.</strong></li>
+<li><strong>Generates the package meta file which is included with each package.</strong></li>
+<li><strong>Compresses the fakeroot environment into a package file.</strong></li>
+<li><strong>Stores the package file in the configured destination directory, which is the current working directory by default.</strong></li>
+</ol>
+<p>Download the source tarball of the software you want to package, extract it, and follow the author’s steps to install the program. Make a note of all commands and&#x2F;or steps needed to compile and install it. You will be repeating those same commands in the <strong>PKGBUILD</strong> file.</p>
+<p>Most software authors stick to the 3-step build cycle:</p>
+<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+
+<h3 id="Creating-a-PKGBUILD"><a href="#Creating-a-PKGBUILD" class="headerlink" title="Creating a PKGBUILD"></a>Creating a PKGBUILD</h3><p>To start building a new package, first create a new directory for the package and change current directory into this one. Then, a <strong>PKGBUILD</strong> file needs to be created: a prototype PKGBUILD found in <code>/usr/share/pacman/</code> can be used or you can start from a <strong>PKGBUILD</strong> from another package. The latter may be a good choice if a similar package already exists.</p>
+<p>makepkg defines two variables that you should use as part of the build and install process:</p>
+<ul>
+<li><strong>srcdir</strong>: This points to the directory where makepkg extracts or symlinks all files in the source array.</li>
+<li><strong>pkgdir</strong>: This points to the directory where makepkg bundles the installed package, which becomes the root directory of your built package.</li>
+</ul>
+<p><strong>PKGBUILD functions</strong></p>
+<p>When building a package, <strong>makepkg</strong> will invoke the following five functions if they have been defined in the PKGBUILD. Function <code>package()</code> is required in every <strong>PKGBUILD</strong> and will always be invoked. If any of the other functions is not defined, makepkg will simply skip the invocation of that function.</p>
+<ul>
+<li><p><strong>prepare()</strong>: With this function, commands that are used to prepare sources for building are run, such as patching. This function runs right after package extraction, before <code>pkgver()</code> and the build function. If extraction is skipped (<code>makepkg --noextract</code>), then <code>prepare()</code> is not run</p>
+</li>
+<li><p><strong>pkgver()</strong>: pkgver() runs after the sources are fetched, extracted and prepare() executed. So you can update the pkgver variable during a makepkg stage. This is particularly useful if you are making git&#x2F;svn&#x2F;hg&#x2F;etc. packages, where the build process may remain the same, but the source could be updated every day, even every hour.</p>
+</li>
+<li><p><strong>build()</strong>: Now, you need to implement the build() function in the PKGBUILD file. This function uses common shell commands in Bash syntax to automatically compile software and create a directory called pkg to install the software to. This allows makepkg to package files without having to sift through your file system.</p>
+</li>
+<li><p><strong>check()</strong>: Place for calls to make check and similar testing routines. It is highly recommended to have check() as it helps to make sure software has been built correctly and works fine with its dependencies.</p>
+</li>
+<li><p><strong>package()</strong>: The final step is to put the compiled files in a directory where makepkg can retrieve them to create a package. This by default is the pkg directory—a simple fakeroot environment. The pkg directory replicates the hierarchy of the root file system of the software’s installation paths. If you have to manually place files under the root of your filesystem, you should install them in the pkg directory under the same directory structure. For example, if you want to install a file to &#x2F;usr&#x2F;bin, it should instead be placed under <code>$pkgdir/usr/bin</code>. Very few install procedures require the user to copy dozens of files manually. Instead, for most software, calling make install will do so.</p>
+</li>
+</ul>
+<h1 id="Lets-create-our-package"><a href="#Lets-create-our-package" class="headerlink" title="Lets create our package"></a>Lets create our package</h1><p>For testing purposes lets create a hello world application in rust and package it as a new AUR</p>
+<p>Create a new directory for this app (make sure you have rust installed)</p>
+<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">cargo new myhello</span><br><span class="line">cd myhello</span><br><span class="line">cargo run</span><br></pre></td></tr></table></figure>
+<p>Great we have a Hello World App</p>
+<p>Let’s clean up</p>
+<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">cargo clean</span><br></pre></td></tr></table></figure>
+
+<p>You should have this structure</p>
+<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line">├── Cargo.lock</span><br><span class="line">├── Cargo.toml</span><br><span class="line">└── src</span><br><span class="line">    └── main.rs</span><br></pre></td></tr></table></figure>
+
+<p>Lets add a cargo module to generate our PKGBUILD file</p>
+<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">cargo install cargo-aur</span><br></pre></td></tr></table></figure>
+
+<p>Let’s add some Metadata required for generating the AUR on <strong>Cargo.toml</strong> file</p>
+<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">[package]</span><br><span class="line">name = &quot;myhello&quot;</span><br><span class="line">version = &quot;0.1.0&quot;</span><br><span class="line">edition = &quot;2021&quot;</span><br><span class="line"></span><br><span class="line">authors = [&quot;Rui Ramos&quot;, &quot;Rui Ramos &lt;no-reply@rust-lang.org&gt;&quot;]</span><br><span class="line">description = &quot;A HelloWorld Application for AUR testing purposes&quot;</span><br><span class="line">homepage=&quot;https://rramos.github.io&quot;</span><br><span class="line">repository = &quot;https://github.com/rramos/rust-helloworld.git&quot;  </span><br><span class="line">license = &quot;MIT&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html</span></span><br><span class="line"></span><br><span class="line">[dependencies]</span><br></pre></td></tr></table></figure>
+
+<p>For a complete list please check the <a target="_blank" rel="noopener" href="https://doc.rust-lang.org/cargo/reference/manifest.html">Cargo Manifest</a> page.</p>
+<p>Now run the following command</p>
+<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">cargo aur</span><br></pre></td></tr></table></figure>
+
+<p>We now have a <strong>PKGBUILD</strong> package generated for this application with something similar</p>
+<figure class="highlight console"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Maintainer: Rui Ramos</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Maintainer: Rui Ramos &lt;no-reply@rust-lang.org&gt;</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># This PKGBUILD was generated by `cargo aur`: https://crates.io/crates/cargo-aur</span></span></span><br><span class="line"></span><br><span class="line">pkgname=myhello-bin</span><br><span class="line">pkgver=0.1.0</span><br><span class="line">pkgrel=1</span><br><span class="line">pkgdesc=&quot;A HelloWorld Application for AUR testing purposes&quot;</span><br><span class="line">url=&quot;https://rramos.github.io&quot;</span><br><span class="line">license=(&quot;MIT&quot;)</span><br><span class="line">arch=(&quot;x86_64&quot;)</span><br><span class="line">provides=(&quot;myhello&quot;)</span><br><span class="line">conflicts=(&quot;myhello&quot;)</span><br><span class="line">source=(&quot;https://github.com/rramos/rust-helloworld.git/releases/download/v$pkgver/myhello-$pkgver-x86_64.tar.gz&quot;)</span><br><span class="line">sha256sums=(&quot;ef8ce03c73185ef872116c17971c21f6f8f2c8f67d42a5c0b4ca876d164191b2&quot;)</span><br><span class="line"></span><br><span class="line">package() &#123;</span><br><span class="line">    install -Dm755 myhello -t &quot;$pkgdir/usr/bin&quot;</span><br><span class="line">    install -Dm644 LICENSE &quot;$pkgdir/usr/share/licenses/$pkgname/LICENSE&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>It also generated a tarball for the application <strong>myhello-0.1.0-x86_64.tar.gz</strong> .</p>
+<p>Now lets use pacman to build and install the package</p>
+<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">makepkg -si</span><br></pre></td></tr></table></figure>
+
+<p>You should now have a executable <strong>myhello</strong> application congrats.</p>
+<h1 id="Clean-Up"><a href="#Clean-Up" class="headerlink" title="Clean Up"></a>Clean Up</h1><p>Let’s remove our application using the command</p>
+<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">sudo pacman -R myhello-bin</span><br></pre></td></tr></table></figure>
+
+<h1 id="Checking-package-sanity"><a href="#Checking-package-sanity" class="headerlink" title="Checking package sanity"></a>Checking package sanity</h1><p>After testing package functionality, check it for errors using <a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Namcap">namcap</a></p>
+<figure class="highlight console"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">namcap PKGBUILD</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">namcap &lt;package file name&gt;.pkg.tar.zst</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Submitting-packages-to-the-AUR"><a href="#Submitting-packages-to-the-AUR" class="headerlink" title="Submitting packages to the AUR"></a>Submitting packages to the AUR</h1><p>In order to contribute to the community one can submit the AUR package. For that read <a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/AUR_submission_guidelines">AUR submission guidelines</a> for a detailed description of the submission process.</p>
+<p>You would need one ssh account and key.</p>
+<p>If you are developing in Rust I would advise following the <a target="_blank" rel="noopener" href="https://manojkarthick.com/posts/2021/03/rust-aur/">guide</a> from Manoj Karthick</p>
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>AUR packages seem quite similar to debian or rpm packages in a sense that you need to specify a set of instructions for compiling and installing, and those functions would be called by the packaging system. I liked the simplified structure of it and <strong>cargo-aur</strong> package is amazing for rust developers who want to quickly prepare and package their applications.</p>
+<p>On the article I didn’t deep dive on more complex preparation&#x2F;compilation options that some applications have or dependencies. Also is important to check the <a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Arch_package_guidelines">Arch guidelines</a> if you intend to release your application for the community and also follow good practices not only for the package build but also files organization.</p>
+<p>In general as a past RedHat, Debian and Gentoo Linux user, I’m really becoming a fan of this packaging system.</p>
+<p>Hope this helps, the following References section contains the source of information used to consolidate this article.</p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://aur.archlinux.org/">https://aur.archlinux.org/</a></li>
+<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/pacman">https://wiki.archlinux.org/title/pacman</a></li>
+<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/official_repositories">https://wiki.archlinux.org/title/official_repositories</a></li>
+<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Arch_package_guidelines">https://wiki.archlinux.org/title/Arch_package_guidelines</a></li>
+<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/general_recommendations">https://wiki.archlinux.org/title/general_recommendations</a></li>
+<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Arch_User_Repository">https://wiki.archlinux.org/title/Arch_User_Repository</a></li>
+<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Arch_User_Repository#Frequently_asked_questions">https://wiki.archlinux.org/title/Arch_User_Repository#Frequently_asked_questions</a></li>
+<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/PKGBUILD#validpgpkeys">https://wiki.archlinux.org/title/PKGBUILD#validpgpkeys</a></li>
+<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Creating_packages">https://wiki.archlinux.org/title/Creating_packages</a></li>
+<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/AUR_submission_guidelines">https://wiki.archlinux.org/title/AUR_submission_guidelines</a></li>
+<li><a target="_blank" rel="noopener" href="https://manojkarthick.com/posts/2021/03/rust-aur/">https://manojkarthick.com/posts/2021/03/rust-aur/</a></li>
+<li><a target="_blank" rel="noopener" href="https://doc.rust-lang.org/cargo/reference/manifest.html">https://doc.rust-lang.org/cargo/reference/manifest.html</a></li>
 </ul>
 
       
@@ -144,199 +286,56 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2023-07-25T22:19:25.900Z"><a href="/2023/07/25/chatgpt-prompts/">2023-07-25</a></time>
+        <time datetime="2023-08-26T21:00:00.000Z"><a href="/2023/08/26/minikube/">2023-08-26</a></time>
       
       
   
-    <h1 class="title"><a href="/2023/07/25/chatgpt-prompts/">Chat-GPT Data Science Prompts</a></h1>
+    <h1 class="title"><a href="/2023/08/26/minikube/">Local Kubernetes for Testing/Developing</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>This article is a resume of Travis Tang Medium article reference on the Reference section. According to Travis Chat GPT performs well in explaining things and providing boilerplate code, however falters when comes to debuging or creating complex snippets.</p>
-<p>I totally agree with Travis mention</p>
-<blockquote>
-<p>Will ChatGPT replace data scientists? No, I don’t think so. At least not yet. However someone using ChatGPT might.</p>
-<p>I hope these prompts are helpful for you! It certainly helped me.</p>
-</blockquote>
-<p>Check him in <a target="_blank" rel="noopener" href="https://medium.com/@travis-tang">https://medium.com/@travis-tang</a></p>
-<h1 id="Write-Python"><a href="#Write-Python" class="headerlink" title="Write Python"></a>Write Python</h1><h2 id="Train-Classification-Model"><a href="#Train-Classification-Model" class="headerlink" title="Train Classification Model"></a>Train Classification Model</h2><blockquote>
-<p>Prompt: I want you to act as a data scientist and code for me. I have a dataset of [describe dataset]. Please build a machine learning model that predict [target variable].</p>
-</blockquote>
-<h2 id="Automatic-Machine-Learning"><a href="#Automatic-Machine-Learning" class="headerlink" title="Automatic Machine Learning"></a>Automatic Machine Learning</h2><blockquote>
-<p>Prompt: I want you to act as an automatic machine learning (AutoML) bot using TPOT for me. I am working on a model that predicts […]. Please write python code to find the best classification model with the highest AUC score on the test set.</p>
-</blockquote>
-<h2 id="Tune-Hyperparameter"><a href="#Tune-Hyperparameter" class="headerlink" title="Tune Hyperparameter"></a>Tune Hyperparameter</h2><blockquote>
-<p>Prompt: I want you to act as a data scientist and code for me. I have trained a [model name]. Please write the code to tune the hyper parameters.</p>
-</blockquote>
-<h2 id="Explore-Data"><a href="#Explore-Data" class="headerlink" title="Explore Data"></a>Explore Data</h2><blockquote>
-<p>Prompt: I want you to act as a data scientist and code for me. I have a dataset of [describe dataset]. Please write code for data visualisation and exploration.</p>
-</blockquote>
-<h2 id="Generate-Data"><a href="#Generate-Data" class="headerlink" title="Generate Data"></a>Generate Data</h2><blockquote>
-<p>Prompt: I want you to act as a fake data generator. I need a dataset that has x rows and y columns: [insert column names]</p>
-</blockquote>
-<h2 id="Get-Feature-Importance"><a href="#Get-Feature-Importance" class="headerlink" title="Get Feature Importance"></a>Get Feature Importance</h2><blockquote>
-<p>Prompt: I want you to act as a data scientist and explain the model’s results. I have trained a decision tree model and I would like to find the most important features. Please write the code.</p>
-</blockquote>
-<h2 id="Visualize-Data-with-Matplotlib"><a href="#Visualize-Data-with-Matplotlib" class="headerlink" title="Visualize Data with Matplotlib"></a>Visualize Data with Matplotlib</h2><blockquote>
-<p>Prompt: I want you to act as a coder in python. I have a dataset [name] with columns [name]. [Describe graph requirements]</p>
-</blockquote>
-<h2 id="Visualize-Image-Grid-Matplotlib"><a href="#Visualize-Image-Grid-Matplotlib" class="headerlink" title="Visualize Image Grid Matplotlib"></a>Visualize Image Grid Matplotlib</h2><blockquote>
-<p>Prompt: I want you to act as a coder. I have a folder of images. [Describe how files are organised in directory] [Describe how you want images to be printed]</p>
-</blockquote>
-<h2 id="Explain-Model-with-Lime"><a href="#Explain-Model-with-Lime" class="headerlink" title="Explain Model with Lime"></a>Explain Model with Lime</h2><blockquote>
-<p>Prompt: I want you to act as a data scientist and explain the model’s results. I have trained a [library name] model and I would like to explain the output using LIME. Please write the code.</p>
-</blockquote>
-<h2 id="Explain-Model-with-Shap"><a href="#Explain-Model-with-Shap" class="headerlink" title="Explain Model with Shap"></a>Explain Model with Shap</h2><blockquote>
-<p>Prompt: I want you to act as a data scientist and explain the model’s results. I have trained a scikit-learn XGBoost model and I would like to explain the output using a series of plots with Shap. Please write the code.</p>
-</blockquote>
-<h2 id="Write-Multithreaded-Functions"><a href="#Write-Multithreaded-Functions" class="headerlink" title="Write Multithreaded Functions"></a>Write Multithreaded Functions</h2><blockquote>
-<p>Prompt: I want you to act as a coder. Can you help me parallelize this code across threads in python?</p>
-</blockquote>
-<h2 id="Compare-Function-Speeds"><a href="#Compare-Function-Speeds" class="headerlink" title="Compare Function Speeds"></a>Compare Function Speeds</h2><blockquote>
-<p>Prompt: I want you to act as a software developer. I would like to compare the efficiency of two algorithms that performs the same thing in python. Please write code that helps me run an experiment that can be repeated for 5 times. Please output the runtime and other summary statistics of the experiment. [Insert functions]</p>
-</blockquote>
-<h2 id="Create-NumPy-Array"><a href="#Create-NumPy-Array" class="headerlink" title="Create NumPy Array"></a>Create NumPy Array</h2><blockquote>
-<p>Prompt: I want you to act as a data scientist. I need to create a numpy array. This numpy array should have the shape of (x,y,z). Please initialize the numpy array with random values.</p>
-</blockquote>
-<h1 id="Test-Code"><a href="#Test-Code" class="headerlink" title="Test Code"></a>Test Code</h1><h2 id="Write-Unit-Test"><a href="#Write-Unit-Test" class="headerlink" title="Write Unit Test"></a>Write Unit Test</h2><blockquote>
-<p>Prompt: I want you to act as a software developer. Please write unit tests for the function [Insert function]. The test cases are: [Insert test cases]</p>
-</blockquote>
-<h2 id="Validate-Column"><a href="#Validate-Column" class="headerlink" title="Validate Column"></a>Validate Column</h2><blockquote>
-<p>Prompt: I want you to act as a data scientist. Please write code to test if that my pandas Dataframe [insert requirements here]</p>
-</blockquote>
-<h1 id="Explain-Code"><a href="#Explain-Code" class="headerlink" title="Explain Code"></a>Explain Code</h1><h2 id="Explain-Python"><a href="#Explain-Python" class="headerlink" title="Explain Python"></a>Explain Python</h2><blockquote>
-<p>Prompt: I want you to act as a code explainer. What is this code doing? [Insert code]</p>
-</blockquote>
-<h2 id="Explain-SQL"><a href="#Explain-SQL" class="headerlink" title="Explain SQL"></a>Explain SQL</h2><blockquote>
-<p>Prompt: I want you to act as a data science instructor. Can you please explain to me what this SQL code is doing? [Insert SQL code]</p>
-</blockquote>
-<h2 id="Explain-Google-Sheets-Formula"><a href="#Explain-Google-Sheets-Formula" class="headerlink" title="Explain Google Sheets Formula"></a>Explain Google Sheets Formula</h2><blockquote>
-<p>Prompt: I want you to act as a Google Sheets formula explainer. Explain the following Google Sheets command. [Insert formula]</p>
-</blockquote>
-<h1 id="Optimize-Code"><a href="#Optimize-Code" class="headerlink" title="Optimize Code"></a>Optimize Code</h1><blockquote>
-<p>Prompt: I want you to act as a software developer. Please help me improve the time complexity of the code below. [Insert code]</p>
-</blockquote>
-<h1 id="Improve-Code-Speed"><a href="#Improve-Code-Speed" class="headerlink" title="Improve Code Speed"></a>Improve Code Speed</h1><blockquote>
-<p>Prompt: I want you to act as a code optimizer. Can you point out what’s wrong with the following Pandas code and optimize it? [Insert code here]</p>
-</blockquote>
-<h2 id="Optimize-Pandas"><a href="#Optimize-Pandas" class="headerlink" title="Optimize Pandas"></a>Optimize Pandas</h2><blockquote>
-<p>Prompt: I want you to act as a code optimizer. Can you point out what’s wrong with the following Pandas code and optimize it? [Insert code here]</p>
-</blockquote>
-<h2 id="Optimize-Pandas-Again"><a href="#Optimize-Pandas-Again" class="headerlink" title="Optimize Pandas Again"></a>Optimize Pandas Again</h2><blockquote>
-<p>Prompt: I want you to act as a code optimizer. Can you point out what’s wrong with the following Pandas code and optimize it? [Insert code here]</p>
-</blockquote>
-<h2 id="Optimize-Python"><a href="#Optimize-Python" class="headerlink" title="Optimize Python"></a>Optimize Python</h2><blockquote>
-<p>Prompt: I want you to act as a code optimizer. The code is poorly written. How do I correct it? [Insert code here]</p>
-</blockquote>
-<h1 id="Optimize-SQL"><a href="#Optimize-SQL" class="headerlink" title="Optimize SQL"></a>Optimize SQL</h1><blockquote>
-<p>Prompt: I want you to act as an SQL code optimizer. The following code is slow. Can you help me speed it up? [Insert SQL]</p>
-</blockquote>
-<h1 id="Format-code"><a href="#Format-code" class="headerlink" title="Format code"></a>Format code</h1><h2 id="Simplify-Python"><a href="#Simplify-Python" class="headerlink" title="Simplify Python"></a>Simplify Python</h2><blockquote>
-<p>Prompt: I want you to act as a code simplifier. Can you simplify the following code?</p>
-</blockquote>
-<h2 id="Write-Documentation"><a href="#Write-Documentation" class="headerlink" title="Write Documentation"></a>Write Documentation</h2><blockquote>
-<p>Prompt: I want you to act as a software developer. Please provide documentation for func1 below. [Insert function]</p>
-</blockquote>
-<h2 id="Improve-Readability"><a href="#Improve-Readability" class="headerlink" title="Improve Readability"></a>Improve Readability</h2><blockquote>
-<p>Prompt: I want you to act as a code analyzer. Can you improve the following code for readability and maintainability? [Insert code]</p>
-</blockquote>
-<h2 id="Format-SQL"><a href="#Format-SQL" class="headerlink" title="Format SQL"></a>Format SQL</h2><blockquote>
-<p>Prompt: I want you to act as a SQL formatter. Please format the following SQL code. Please convert all reserved keywords to uppercase [Insert requirements]. [Insert Code]</p>
-</blockquote>
-<h1 id="Translate-Code"><a href="#Translate-Code" class="headerlink" title="Translate Code"></a>Translate Code</h1><h2 id="Translate-Between-DBMS"><a href="#Translate-Between-DBMS" class="headerlink" title="Translate Between DBMS"></a>Translate Between DBMS</h2><blockquote>
-<p>Prompt: I want you to act as a coder and write SQL code for MySQL. What is the equivalent of PostgreSQL’s DATE_TRUNC for MySQL?</p>
-</blockquote>
-<h2 id="Translate-Python-to-R"><a href="#Translate-Python-to-R" class="headerlink" title="Translate Python to R"></a>Translate Python to R</h2><blockquote>
-<p>Prompt: I want you to act as a code translator. Can you please convert the following code from python to R? [Insert code]</p>
-</blockquote>
-<h2 id="Translate-R-to-Python"><a href="#Translate-R-to-Python" class="headerlink" title="Translate R to Python"></a>Translate R to Python</h2><blockquote>
-<p>Prompt: I want you to act as a code translator. Can you please convert the following code from R to python? [Insert code]</p>
-</blockquote>
-<h1 id="Explain-concepts"><a href="#Explain-concepts" class="headerlink" title="Explain concepts"></a>Explain concepts</h1><h2 id="Explain-to-Five-Year-Old"><a href="#Explain-to-Five-Year-Old" class="headerlink" title="Explain to Five-Year-Old"></a>Explain to Five-Year-Old</h2><blockquote>
-<p>Prompt: I want you to act as a data science instructor. Explain [concept] to a five-year-old.</p>
-</blockquote>
-<h2 id="Explain-to-Undergraduate"><a href="#Explain-to-Undergraduate" class="headerlink" title="Explain to Undergraduate"></a>Explain to Undergraduate</h2><blockquote>
-<p>Prompt: I want you to act as a data science instructor. Explain [concept] to an undergraduate.</p>
-</blockquote>
-<h2 id="Explain-to-Professor"><a href="#Explain-to-Professor" class="headerlink" title="Explain to Professor"></a>Explain to Professor</h2><blockquote>
-<p>Prompt: I want you to act as a data science instructor. Explain [concept] to a professor.</p>
-</blockquote>
-<h2 id="Explain-to-Business-Stakeholder"><a href="#Explain-to-Business-Stakeholder" class="headerlink" title="Explain to Business Stakeholder"></a>Explain to Business Stakeholder</h2><blockquote>
-<p>Prompt: I want you to act as a data science instructor. Explain [concept] to a business stakeholder.</p>
-</blockquote>
-<h2 id="Explain-Like-Stackoverflow"><a href="#Explain-Like-Stackoverflow" class="headerlink" title="Explain Like Stackoverflow"></a>Explain Like Stackoverflow</h2><blockquote>
-<p>Prompt: I want you to act as an answerer on StackOverflow. You can provide code snippets, sample tables and outputs to support your answer. [Insert technical question]</p>
-</blockquote>
-<h1 id="Suggest-ideas"><a href="#Suggest-ideas" class="headerlink" title="Suggest ideas"></a>Suggest ideas</h1><h2 id="Suggest-Edge-Cases"><a href="#Suggest-Edge-Cases" class="headerlink" title="Suggest Edge Cases"></a>Suggest Edge Cases</h2><blockquote>
-<p>Prompt: I want you to act as a software developer. Please help me catch edge cases for this function [insert function]</p>
-</blockquote>
-<h2 id="Suggest-Dataset"><a href="#Suggest-Dataset" class="headerlink" title="Suggest Dataset"></a>Suggest Dataset</h2><blockquote>
-<p>Prompt: I want you to act as a data science career coach. I want to build a predictive model for […]. At the same time, I would like to showcase my knowledge in […]. Can you please suggest the five most relevant datasets for my use case?</p>
-</blockquote>
-<h2 id="Suggest-Portfolio-Ideas"><a href="#Suggest-Portfolio-Ideas" class="headerlink" title="Suggest Portfolio Ideas"></a>Suggest Portfolio Ideas</h2><blockquote>
-<p>Prompt: I want you to act as a data science coach. My background is in […] and I would like to [career goal]. I need to build a portfolio of data science projects that will help me land a role in […] as a […]. Can you suggest five specific portfolio projects that will showcase my expertise in […] and are of relevance to [company]?</p>
-</blockquote>
-<h2 id="Suggest-Resources"><a href="#Suggest-Resources" class="headerlink" title="Suggest Resources"></a>Suggest Resources</h2><blockquote>
-<p>Prompt: I want you to act as a data science coach. I would like to learn about [topic]. Please suggest 3 best specific resources. You can include [specify resource type]</p>
-</blockquote>
-<h2 id="Suggest-Time-Complexity"><a href="#Suggest-Time-Complexity" class="headerlink" title="Suggest Time Complexity"></a>Suggest Time Complexity</h2><blockquote>
-<p>Prompt: I want you to act as a software developer. Please compare the time complexity of the two algorithms below. [Insert two functions]</p>
-</blockquote>
-<h2 id="Suggest-Feature-Engineering"><a href="#Suggest-Feature-Engineering" class="headerlink" title="Suggest Feature Engineering"></a>Suggest Feature Engineering</h2><blockquote>
-<p>Prompt: I want you to act as a data scientist and perform feature engineering. I am working on a model that predicts [insert feature name]. There are columns: [Describe columns]. Can you suggest features that we can engineer for this machine learning problem?</p>
-</blockquote>
-<h2 id="Suggest-A-B-Testing-Steps"><a href="#Suggest-A-B-Testing-Steps" class="headerlink" title="Suggest A/B Testing Steps"></a>Suggest A/B Testing Steps</h2><blockquote>
-<p>Prompt: I want you to act as a statistician. [Describe context] Please design an A/B test for this purpose. Please include the concrete steps on which statistical test I should run.</p>
-</blockquote>
-<h2 id="Career-Coaching"><a href="#Career-Coaching" class="headerlink" title="Career Coaching"></a>Career Coaching</h2><blockquote>
-<p>Prompt: I want you to act as a career advisor. I am looking for a role as a [role name]. My background is […]. How do I land the role and with what resources exactly in 6 months?</p>
-</blockquote>
-<h1 id="Troubleshoot-problem"><a href="#Troubleshoot-problem" class="headerlink" title="Troubleshoot problem"></a>Troubleshoot problem</h1><h2 id="Correct-ChatGPT-Code"><a href="#Correct-ChatGPT-Code" class="headerlink" title="Correct ChatGPT Code"></a>Correct ChatGPT Code</h2><blockquote>
-<p>Prompt: Your above code is wrong. [Point out what is wrong]. Can you try again?</p>
-</blockquote>
-<h2 id="Correct-Python-Code"><a href="#Correct-Python-Code" class="headerlink" title="Correct Python Code"></a>Correct Python Code</h2><blockquote>
-<p>Prompt: I want you to act as a software developer. This code is supposed to [expected function]. Please help me debug this python code that cannot be run. [Insert function]</p>
-</blockquote>
-<h2 id="Correct-SQL-Code"><a href="#Correct-SQL-Code" class="headerlink" title="Correct SQL Code"></a>Correct SQL Code</h2><blockquote>
-<p>Prompt: I want you to act as a SQL code corrector. This code does not run in [your DBMS, e.g. PostgreSQL]. Can you correct it for me? [SQL code here]</p>
-</blockquote>
-<h1 id="Troubleshoot-PowerBI-Model"><a href="#Troubleshoot-PowerBI-Model" class="headerlink" title="Troubleshoot PowerBI Model"></a>Troubleshoot PowerBI Model</h1><blockquote>
-<p>Prompt: I want you to act as a PowerBl modeler. Here is the details of my current project. [Insert details]. Do you see any problems with the table?</p>
-</blockquote>
-<h1 id="Write-SQL"><a href="#Write-SQL" class="headerlink" title="Write SQL"></a>Write SQL</h1><h2 id="Create-Running-Average"><a href="#Create-Running-Average" class="headerlink" title="Create Running Average"></a>Create Running Average</h2><blockquote>
-<p>Prompt: I want you to act as a data scientist and write SQL code for me. I have a table with two columns [Insert column names]. I would like to calculate a running average for [which value]. What is the SQL code that works for PostgreSQL 14?</p>
-</blockquote>
-<h2 id="Solve-Leetcode-Question"><a href="#Solve-Leetcode-Question" class="headerlink" title="Solve Leetcode Question"></a>Solve Leetcode Question</h2><blockquote>
-<p>Prompt: Assume you are given the tables… with the columns… Output the following…Prompt: Assume you are given the tables… with the columns… Output the following…</p>
-</blockquote>
-<h1 id="Write-other-Code"><a href="#Write-other-Code" class="headerlink" title="Write other Code"></a>Write other Code</h1><h2 id="Write-Google-Sheets-Formula"><a href="#Write-Google-Sheets-Formula" class="headerlink" title="Write Google Sheets Formula"></a>Write Google Sheets Formula</h2><blockquote>
-<p>Prompt: I want you to act as a bot that generates Google Sheets formula. Please generate a formula that [describe requirements]</p>
-</blockquote>
-<h2 id="Write-R"><a href="#Write-R" class="headerlink" title="Write R"></a>Write R</h2><blockquote>
-<p>Prompt: I want you to act as a data scientist using R. Can you write an R script that [Insert requirement here]</p>
-</blockquote>
-<h2 id="Write-Shell"><a href="#Write-Shell" class="headerlink" title="Write Shell"></a>Write Shell</h2><blockquote>
-<p>Prompt: I want you to act as a Linux terminal expert. Please write the code to [describe requirements]</p>
-</blockquote>
-<h2 id="Write-VBA"><a href="#Write-VBA" class="headerlink" title="Write VBA"></a>Write VBA</h2><blockquote>
-<p>Prompt: I want you to act as an Excel VBA developer. Can you write a VBA that [Insert function here]?</p>
-</blockquote>
-<h1 id="Miscellaneous"><a href="#Miscellaneous" class="headerlink" title="Miscellaneous"></a>Miscellaneous</h1><h2 id="Format-Tables"><a href="#Format-Tables" class="headerlink" title="Format Tables"></a>Format Tables</h2><blockquote>
-<p>Prompt: I want you to act as a document formatter. Please format the following into a nice table for me to place in Google Docs? [insert text table here]</p>
-</blockquote>
-<h1 id="Summarize-Book"><a href="#Summarize-Book" class="headerlink" title="Summarize Book"></a>Summarize Book</h1><blockquote>
-<p>Prompt: I want you to act as a technical book summarizer. Can you please summarize the book [name] with 5 main points?</p>
-</blockquote>
-<h2 id="Summarize-Paper"><a href="#Summarize-Paper" class="headerlink" title="Summarize Paper"></a>Summarize Paper</h2><blockquote>
-<p>Prompt: I want you to act as an academic. Please summarise the paper […] in simple terms in one paragraph.</p>
-</blockquote>
-<h2 id="Provide-Emotional-Support"><a href="#Provide-Emotional-Support" class="headerlink" title="Provide Emotional Support"></a>Provide Emotional Support</h2><blockquote>
-<p>Prompt: I want you to provide emotional support to me. [Explain problem here.]</p>
-</blockquote>
-<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://medium.datadriveninvestor.com/60-chatgpt-prompts-for-data-science-tried-tested-and-rated-4994c7e6adb2">https://medium.datadriveninvestor.com/60-chatgpt-prompts-for-data-science-tried-tested-and-rated-4994c7e6adb2</a></li>
+        <p><strong>minikube</strong> is local Kubernetes, focusing on making it easy to learn and develop for Kubernetes.</p>
+<p>Lets start by installing the minikube package.</p>
+<p><strong>NOTE:</strong> This example is targeting a Arch distribution, if you use a different linux flavor check the <a target="_blank" rel="noopener" href="https://minikube.sigs.k8s.io/docs/start/">Official Docs</a> for other install options</p>
+<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">sudo pacman -S minikube</span><br></pre></td></tr></table></figure>
+
+<p>The following command will setup a docker environment with a kubernetes environment that you can use for development&#x2F;testing purposes</p>
+<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">minikube start</span><br></pre></td></tr></table></figure>
+<p>In order to interact with Kubernetes one can use the provided kubectl command upon starting this enviroment with the following command</p>
+<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">minikube kubectl -- get pods -A</span><br></pre></td></tr></table></figure>
+
+<p>One should get something like this</p>
+<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">NAMESPACE     NAME                               READY   STATUS    RESTARTS      AGE</span><br><span class="line">kube-system   coredns-787d4945fb-zv72d           1/1     Running   0             10m</span><br><span class="line">kube-system   etcd-minikube                      1/1     Running   0             10m</span><br><span class="line">kube-system   kube-apiserver-minikube            1/1     Running   0             10m</span><br><span class="line">kube-system   kube-controller-manager-minikube   1/1     Running   0             10m</span><br><span class="line">kube-system   kube-proxy-7p9qw                   1/1     Running   0             10m</span><br><span class="line">kube-system   kube-scheduler-minikube            1/1     Running   0             10m</span><br><span class="line">kube-system   storage-provisioner                1/1     Running   1 (10m ago)   10m</span><br></pre></td></tr></table></figure>
+
+<p>I will install kubectl package however to allow interaction with other clusters if required.</p>
+<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">sudo pacman -S kubectl</span><br></pre></td></tr></table></figure>
+
+<p>We should get the same output by executing</p>
+<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">kubectl get po -A</span><br></pre></td></tr></table></figure>
+
+<p>One can check the cluster details with following command</p>
+<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">kubectl cluster-info</span><br></pre></td></tr></table></figure>
+
+<p>You should get something similar </p>
+<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">Kubernetes control plane is running at https://192.168.49.2:8443</span><br><span class="line">CoreDNS is running at https://192.168.49.2:8443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy</span><br><span class="line"></span><br><span class="line">To further debug and diagnose cluster problems, use &#x27;kubectl cluster-info dump&#x27;.</span><br></pre></td></tr></table></figure>
+
+<p>Minikube is also bundled with Kubernetes Dashboard which you can launch with the following command</p>
+<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">minikube dashboard</span><br></pre></td></tr></table></figure>
+
+<p>You would get something similar to the following image:</p>
+<img src="/2023/08/26/minikube/minikube.png" class="" title="minikube">
+
+<p>Great now we have a Kubernetes cluster running in docker and kubectl command available. </p>
+<p>For a more extensive guideline on how to manage Minikube please checkout the <a target="_blank" rel="noopener" href="https://minikube.sigs.k8s.io/docs/handbook/">handbook</a></p>
+<p>Next steps would containerize some application and deploy it.</p>
+<p>But that would be for another article…</p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://minikube.sigs.k8s.io/docs/start/">https://minikube.sigs.k8s.io/docs/start/</a></li>
+<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Minikube">https://wiki.archlinux.org/title/Minikube</a></li>
+<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Kubernetes">https://wiki.archlinux.org/title/Kubernetes</a></li>
+<li><a target="_blank" rel="noopener" href="https://minikube.sigs.k8s.io/docs/handbook/">https://minikube.sigs.k8s.io/docs/handbook/</a></li>
 </ul>
 
       
@@ -360,7 +359,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2023-07-25T15:00:00.000Z"><a href="/2023/07/25/softwareprincipals/">2023-07-25</a></time>
+        <time datetime="2023-07-25T16:00:00.000Z"><a href="/2023/07/25/softwareprincipals/">2023-07-25</a></time>
       
       
   
@@ -382,13 +381,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </li>
 <li><p><strong>Single Responsibility Principle</strong>: Ensure that each module or component has only one responsibility, so that changes to one aspect of the software do not affect unrelated parts.</p>
 </li>
-<li><p><strong>Open/Closed Principle</strong>: Design modules and components so that they are open for extension (i.e., new functionality can be added) but closed for modification (i.e., existing functionality does not need to be changed).</p>
+<li><p><strong>Open&#x2F;Closed Principle</strong>: Design modules and components so that they are open for extension (i.e., new functionality can be added) but closed for modification (i.e., existing functionality does not need to be changed).</p>
 </li>
 <li><p><strong>Don’t Repeat Yourself (DRY)</strong>: Eliminate duplication of code or logic within a software system, to improve maintainability and reduce the risk of errors.</p>
 </li>
 <li><p><strong>Test-Driven Development</strong>: Write automated tests before writing code, to ensure that the code is correct and to improve maintainability.</p>
 </li>
-<li><p><strong>Continuous Integration and Continuous Deployment (CI/CD)</strong>: Automate the process of building, testing, and deploying software, to reduce the risk of errors and to improve efficiency.</p>
+<li><p><strong>Continuous Integration and Continuous Deployment (CI&#x2F;CD)</strong>: Automate the process of building, testing, and deploying software, to reduce the risk of errors and to improve efficiency.</p>
 </li>
 <li><p><strong>Code Reviews</strong>: Have other developers review code changes before they are merged into the main codebase, to catch errors and improve maintainability.</p>
 </li>
@@ -416,7 +415,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2023-07-25T09:10:00.000Z"><a href="/2023/07/25/EfectiveDelegation/">2023-07-25</a></time>
+        <time datetime="2023-07-25T10:10:00.000Z"><a href="/2023/07/25/EfectiveDelegation/">2023-07-25</a></time>
       
       
   
@@ -431,8 +430,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li><strong>Specify Outcome</strong> - Be clear and specific with the desired result, begin with end in mind and describe goals not actions. Also ask how they have understood the desired result. Set a clear timeline and include deadlines.</li>
 <li><strong>Guidelines</strong> - Establish controls and limits to the work, identify boundaries and constraints. Organizational or financial limitations. What responsabilities and authories should the person take into account.</li>
 <li><strong>Resources</strong> - What support can the person expect from you or other people. Provide sufficient support but resist upward delegation. Request for recommended solutions. Also share availbe resources such as courses, books, machines or software to acomplish the task.</li>
-<li><strong>Evaluation / Monitoring</strong> - Aggre on a schedule of checkpoints, keep up to date with progress. Focus on results not procedures</li>
-<li><strong>Feedback / Recognition</strong> - When the work is done, give recognition where it is deserved. Very important point for future motivation and productive behavior</li>
+<li><strong>Evaluation &#x2F; Monitoring</strong> - Aggre on a schedule of checkpoints, keep up to date with progress. Focus on results not procedures</li>
+<li><strong>Feedback &#x2F; Recognition</strong> - When the work is done, give recognition where it is deserved. Very important point for future motivation and productive behavior</li>
 </ol>
 <p>There isn’t a one style fits all, and the it should be chose based on the competence level of the person for that specific task.</p>
 <h1 id="Delegation-Styles"><a href="#Delegation-Styles" class="headerlink" title="Delegation Styles"></a>Delegation Styles</h1><p>Delegation styles vary depending on the manager’s approach and the situation.</p>
@@ -472,7 +471,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li><strong>TELL</strong> them how to do it</li>
 <li><strong>SHOW</strong> them how to do it</li>
 <li>Let them <strong>TRY</strong> to do it</li>
-<li>Let them <strong>DO</strong> it by themselves  </li>
+<li>Let them <strong>DO</strong> it by themselves</li>
 </ul>
 </li>
 </ul>
@@ -481,86 +480,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
 <li>These tips are available on Markus Amanto Leadership Training in Udemy, very insigthfull content recommended</li>
 </ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2022-12-23T22:00:00.000Z"><a href="/2022/12/23/Software Engineering Laws/">2022-12-23</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2022/12/23/Software Engineering Laws/">Software Engineering Laws</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>Latest week a college shared the following <a target="_blank" rel="noopener" href="https://www.netmeister.org/blog/software-engineering-laws.html">article</a> at work that i found very interesting aggregating the info here in order not to forget.</p>
-<h2 id="Conway’s-Law"><a href="#Conway’s-Law" class="headerlink" title="Conway’s Law"></a>Conway’s Law</h2><p>Also known as: “You will ship your org chart.”</p>
-<blockquote>
-<p>“Any organization that designs a system will produce a design whose structure is a copy of the organization’s communication structure.”</p>
-</blockquote>
-<p>You may think you can avoid it via cross-functional standup meetings and stakeholder updates and decision matrices, but eventually and inevitably conflicting or diverging priorities will lead to equally conflicting or divergent processes and outcomes.</p>
-<h2 id="Brooks’s-Law"><a href="#Brooks’s-Law" class="headerlink" title="Brooks’s Law"></a>Brooks’s Law</h2><p>From The <strong>Mythical Man-Month</strong> Book:</p>
-<blockquote>
-<p>“Adding manpower to a late software project makes it later.”</p>
-</blockquote>
-<p>When you realize you’re not making the progress you thought you would and your management tries to reallocate resources from another part of the org, you’ll end up not only delaying the project, but you’ll likely ship a more brittle, more complex product</p>
-<h2 id="Zawinski’s-Law"><a href="#Zawinski’s-Law" class="headerlink" title="Zawinski’s Law"></a>Zawinski’s Law</h2><blockquote>
-<p>“Every program attempts to expand until it includes a web server. Those programs which cannot so expand are replaced by ones which can.”</p>
-</blockquote>
-<p>For web services, it’s “…until it requires a user account and collects all users’ data”; for physical devices, it’s “…until it includes an insecure wifi access point with a default password you can’t change. And a web server”.</p>
-<h2 id="Parkinson’s-Law"><a href="#Parkinson’s-Law" class="headerlink" title="Parkinson’s Law"></a>Parkinson’s Law</h2><blockquote>
-<p>“Work expands so as to fill the time available for its completion.”</p>
-</blockquote>
-<p>The primary project management lessons here is that if you don’t set a deadline, then the project will never be completed. This is why iterating on a minimum viable product within fixed timelines is important.</p>
-<p>And, of course, we can and should adjust this law for data, processing power, RAM, …:</p>
-<blockquote>
-<p>“Data/CPU/memory usage expands to use up all available storage space/bandwidth/cycles/RAM.”</p>
-</blockquote>
-<h2 id="Pareto’s-Fallacy"><a href="#Pareto’s-Fallacy" class="headerlink" title="Pareto’s Fallacy"></a>Pareto’s Fallacy</h2><p>The <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Pareto_principle">Pareto Principle</a> is easy to misinterpret, especially by management. This often leads to Pareto’s Fallacy:</p>
-<blockquote>
-<p>“When you’re 80% done, you think you only have 20% left.”</p>
-</blockquote>
-<p>The critical part that’s overlooked here is that those 20% will require 80% of your time.</p>
-<h2 id="Sturgeon’s-Revelation"><a href="#Sturgeon’s-Revelation" class="headerlink" title="Sturgeon’s Revelation"></a>Sturgeon’s Revelation</h2><blockquote>
-<p>“90% of everything is crud.”</p>
-</blockquote>
-<p>Yes, that includes your products.</p>
-<h2 id="The-Peter-Principle"><a href="#The-Peter-Principle" class="headerlink" title="The Peter Principle"></a>The Peter Principle</h2><blockquote>
-<p>“In a hierarchy, every employee tends to rise to their level of incompetence. Thus, in time, every post tends to be occupied by an employee who is incompetent to carry out its duties.”</p>
-</blockquote>
-<p>Dunning and Kruger send their regards…(<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Peter_Principle">ref</a>)</p>
-<h2 id="Eagleson’s-Law"><a href="#Eagleson’s-Law" class="headerlink" title="Eagleson’s Law"></a>Eagleson’s Law</h2><blockquote>
-<p>“Any code of your own that you haven’t looked at for six or more months might as well have been written by someone else.”</p>
-</blockquote>
-<p>6 months is rather optimistic.</p>
-<h2 id="Greenspun’s-10th-Rule-of-Programming"><a href="#Greenspun’s-10th-Rule-of-Programming" class="headerlink" title="Greenspun’s 10th Rule of Programming"></a>Greenspun’s 10th Rule of Programming</h2><p>This can be generalized to the Universal NIH-Rule: “any custom developed system contains an ad hoc, informally-specified, bug-ridden, slow implementation of half of the industry standard you refused to adopt”.</p>
-<h2 id="The-Iceberg-Fallacy"><a href="#The-Iceberg-Fallacy" class="headerlink" title="The Iceberg Fallacy"></a>The Iceberg Fallacy</h2><blockquote>
-<p>“The cost of development of a new software product is the only ~25% of the total cost of ownership management sees and budgets for.”</p>
-</blockquote>
-<h2 id="The-LGTM-Dilemma"><a href="#The-LGTM-Dilemma" class="headerlink" title="The LGTM Dilemma"></a>The LGTM Dilemma</h2><blockquote>
-<p>“If you want to quickly ship a 10 line code change, hide it in a 1500 line pull request.”</p>
-</blockquote>
-<p>Also known as The Bikeshedders’ Blind Spot.</p>
 
       
     </div>
@@ -861,7 +780,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
   &copy; 2024 Rui Ramos
   
-  <a class="disclaimer" href=/disclaimer> Disclaimer</a>
 </div>
 <div class="clearfix"></div></footer>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>

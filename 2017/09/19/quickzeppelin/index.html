@@ -38,7 +38,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -76,7 +76,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2017-09-19T21:06:00.000Z"><a href="/2017/09/19/quickzeppelin/">2017-09-19</a></time>
+        <time datetime="2017-09-19T22:06:00.000Z"><a href="/2017/09/19/quickzeppelin/">2017-09-19</a></time>
       
       
   
@@ -95,12 +95,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><ol>
 <li>Create a folder named zeepelin</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir docker-zeepelin</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> docker-zeepelin</span><br></pre></td></tr></table></figure>
 
 <ol start="2">
 <li>Create a <code>data</code> where you could put some data to analyse.</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir -p docker-zeepelin/data</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p docker-zeepelin/data</span><br></pre></td></tr></table></figure>
 
 <ol start="3">
 <li>Create the following <code>docker-compose.yml</code> file in dir <code>docker-zeepelin</code> :</li>
@@ -113,10 +113,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo docker-compose up -d</span><br></pre></td></tr></table></figure>
 
 <ol start="5">
-<li>That’s it you should now be able to access <a target="_blank" rel="noopener" href="http://localhost:8080/">http://localhost:8080</a> </li>
+<li>That’s it you should now be able to access <a target="_blank" rel="noopener" href="http://localhost:8080/">http://localhost:8080</a></li>
 </ol>
 <h2 id="Test-it"><a href="#Test-it" class="headerlink" title="Test it"></a>Test it</h2><ol>
-<li>Lets download a demo file to our <code>data</code> dir. </li>
+<li>Lets download a demo file to our <code>data</code> dir.</li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -s https://api.opendota.com/api/publicMatches -o ./data/OpenDotaPublic.json</span><br></pre></td></tr></table></figure>
 
@@ -476,7 +476,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
   &copy; 2024 Rui Ramos
   
-  <a class="disclaimer" href=/disclaimer> Disclaimer</a>
 </div>
 <div class="clearfix"></div></footer>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
