@@ -77,199 +77,101 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2024-01-27T14:16:17.911Z"><a href="/2024/01/27/chatgpt-prompts/">2024-01-27</a></time>
+        <time datetime="2024-01-28T10:00:00.000Z"><a href="/2024/01/28/clickhouse/">2024-01-28</a></time>
       
       
   
-    <h1 class="title"><a href="/2024/01/27/chatgpt-prompts/">Chat-GPT Data Science Prompts</a></h1>
+    <h1 class="title"><a href="/2024/01/28/clickhouse/">ClickHouse</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>This article is a resume of Travis Tang Medium article reference on the Reference section. According to Travis Chat GPT performs well in explaining things and providing boilerplate code, however falters when comes to debuging or creating complex snippets.</p>
-<p>I totally agree with Travis mention</p>
-<blockquote>
-<p>Will ChatGPT replace data scientists? No, I don’t think so. At least not yet. However someone using ChatGPT might.</p>
-<p>I hope these prompts are helpful for you! It certainly helped me.</p>
-</blockquote>
-<p>Check him in <a target="_blank" rel="noopener" href="https://medium.com/@travis-tang">https://medium.com/@travis-tang</a></p>
-<h1 id="Write-Python"><a href="#Write-Python" class="headerlink" title="Write Python"></a>Write Python</h1><h2 id="Train-Classification-Model"><a href="#Train-Classification-Model" class="headerlink" title="Train Classification Model"></a>Train Classification Model</h2><blockquote>
-<p>Prompt: I want you to act as a data scientist and code for me. I have a dataset of [describe dataset]. Please build a machine learning model that predict [target variable].</p>
-</blockquote>
-<h2 id="Automatic-Machine-Learning"><a href="#Automatic-Machine-Learning" class="headerlink" title="Automatic Machine Learning"></a>Automatic Machine Learning</h2><blockquote>
-<p>Prompt: I want you to act as an automatic machine learning (AutoML) bot using TPOT for me. I am working on a model that predicts […]. Please write python code to find the best classification model with the highest AUC score on the test set.</p>
-</blockquote>
-<h2 id="Tune-Hyperparameter"><a href="#Tune-Hyperparameter" class="headerlink" title="Tune Hyperparameter"></a>Tune Hyperparameter</h2><blockquote>
-<p>Prompt: I want you to act as a data scientist and code for me. I have trained a [model name]. Please write the code to tune the hyper parameters.</p>
-</blockquote>
-<h2 id="Explore-Data"><a href="#Explore-Data" class="headerlink" title="Explore Data"></a>Explore Data</h2><blockquote>
-<p>Prompt: I want you to act as a data scientist and code for me. I have a dataset of [describe dataset]. Please write code for data visualisation and exploration.</p>
-</blockquote>
-<h2 id="Generate-Data"><a href="#Generate-Data" class="headerlink" title="Generate Data"></a>Generate Data</h2><blockquote>
-<p>Prompt: I want you to act as a fake data generator. I need a dataset that has x rows and y columns: [insert column names]</p>
-</blockquote>
-<h2 id="Get-Feature-Importance"><a href="#Get-Feature-Importance" class="headerlink" title="Get Feature Importance"></a>Get Feature Importance</h2><blockquote>
-<p>Prompt: I want you to act as a data scientist and explain the model’s results. I have trained a decision tree model and I would like to find the most important features. Please write the code.</p>
-</blockquote>
-<h2 id="Visualize-Data-with-Matplotlib"><a href="#Visualize-Data-with-Matplotlib" class="headerlink" title="Visualize Data with Matplotlib"></a>Visualize Data with Matplotlib</h2><blockquote>
-<p>Prompt: I want you to act as a coder in python. I have a dataset [name] with columns [name]. [Describe graph requirements]</p>
-</blockquote>
-<h2 id="Visualize-Image-Grid-Matplotlib"><a href="#Visualize-Image-Grid-Matplotlib" class="headerlink" title="Visualize Image Grid Matplotlib"></a>Visualize Image Grid Matplotlib</h2><blockquote>
-<p>Prompt: I want you to act as a coder. I have a folder of images. [Describe how files are organised in directory] [Describe how you want images to be printed]</p>
-</blockquote>
-<h2 id="Explain-Model-with-Lime"><a href="#Explain-Model-with-Lime" class="headerlink" title="Explain Model with Lime"></a>Explain Model with Lime</h2><blockquote>
-<p>Prompt: I want you to act as a data scientist and explain the model’s results. I have trained a [library name] model and I would like to explain the output using LIME. Please write the code.</p>
-</blockquote>
-<h2 id="Explain-Model-with-Shap"><a href="#Explain-Model-with-Shap" class="headerlink" title="Explain Model with Shap"></a>Explain Model with Shap</h2><blockquote>
-<p>Prompt: I want you to act as a data scientist and explain the model’s results. I have trained a scikit-learn XGBoost model and I would like to explain the output using a series of plots with Shap. Please write the code.</p>
-</blockquote>
-<h2 id="Write-Multithreaded-Functions"><a href="#Write-Multithreaded-Functions" class="headerlink" title="Write Multithreaded Functions"></a>Write Multithreaded Functions</h2><blockquote>
-<p>Prompt: I want you to act as a coder. Can you help me parallelize this code across threads in python?</p>
-</blockquote>
-<h2 id="Compare-Function-Speeds"><a href="#Compare-Function-Speeds" class="headerlink" title="Compare Function Speeds"></a>Compare Function Speeds</h2><blockquote>
-<p>Prompt: I want you to act as a software developer. I would like to compare the efficiency of two algorithms that performs the same thing in python. Please write code that helps me run an experiment that can be repeated for 5 times. Please output the runtime and other summary statistics of the experiment. [Insert functions]</p>
-</blockquote>
-<h2 id="Create-NumPy-Array"><a href="#Create-NumPy-Array" class="headerlink" title="Create NumPy Array"></a>Create NumPy Array</h2><blockquote>
-<p>Prompt: I want you to act as a data scientist. I need to create a numpy array. This numpy array should have the shape of (x,y,z). Please initialize the numpy array with random values.</p>
-</blockquote>
-<h1 id="Test-Code"><a href="#Test-Code" class="headerlink" title="Test Code"></a>Test Code</h1><h2 id="Write-Unit-Test"><a href="#Write-Unit-Test" class="headerlink" title="Write Unit Test"></a>Write Unit Test</h2><blockquote>
-<p>Prompt: I want you to act as a software developer. Please write unit tests for the function [Insert function]. The test cases are: [Insert test cases]</p>
-</blockquote>
-<h2 id="Validate-Column"><a href="#Validate-Column" class="headerlink" title="Validate Column"></a>Validate Column</h2><blockquote>
-<p>Prompt: I want you to act as a data scientist. Please write code to test if that my pandas Dataframe [insert requirements here]</p>
-</blockquote>
-<h1 id="Explain-Code"><a href="#Explain-Code" class="headerlink" title="Explain Code"></a>Explain Code</h1><h2 id="Explain-Python"><a href="#Explain-Python" class="headerlink" title="Explain Python"></a>Explain Python</h2><blockquote>
-<p>Prompt: I want you to act as a code explainer. What is this code doing? [Insert code]</p>
-</blockquote>
-<h2 id="Explain-SQL"><a href="#Explain-SQL" class="headerlink" title="Explain SQL"></a>Explain SQL</h2><blockquote>
-<p>Prompt: I want you to act as a data science instructor. Can you please explain to me what this SQL code is doing? [Insert SQL code]</p>
-</blockquote>
-<h2 id="Explain-Google-Sheets-Formula"><a href="#Explain-Google-Sheets-Formula" class="headerlink" title="Explain Google Sheets Formula"></a>Explain Google Sheets Formula</h2><blockquote>
-<p>Prompt: I want you to act as a Google Sheets formula explainer. Explain the following Google Sheets command. [Insert formula]</p>
-</blockquote>
-<h1 id="Optimize-Code"><a href="#Optimize-Code" class="headerlink" title="Optimize Code"></a>Optimize Code</h1><blockquote>
-<p>Prompt: I want you to act as a software developer. Please help me improve the time complexity of the code below. [Insert code]</p>
-</blockquote>
-<h1 id="Improve-Code-Speed"><a href="#Improve-Code-Speed" class="headerlink" title="Improve Code Speed"></a>Improve Code Speed</h1><blockquote>
-<p>Prompt: I want you to act as a code optimizer. Can you point out what’s wrong with the following Pandas code and optimize it? [Insert code here]</p>
-</blockquote>
-<h2 id="Optimize-Pandas"><a href="#Optimize-Pandas" class="headerlink" title="Optimize Pandas"></a>Optimize Pandas</h2><blockquote>
-<p>Prompt: I want you to act as a code optimizer. Can you point out what’s wrong with the following Pandas code and optimize it? [Insert code here]</p>
-</blockquote>
-<h2 id="Optimize-Pandas-Again"><a href="#Optimize-Pandas-Again" class="headerlink" title="Optimize Pandas Again"></a>Optimize Pandas Again</h2><blockquote>
-<p>Prompt: I want you to act as a code optimizer. Can you point out what’s wrong with the following Pandas code and optimize it? [Insert code here]</p>
-</blockquote>
-<h2 id="Optimize-Python"><a href="#Optimize-Python" class="headerlink" title="Optimize Python"></a>Optimize Python</h2><blockquote>
-<p>Prompt: I want you to act as a code optimizer. The code is poorly written. How do I correct it? [Insert code here]</p>
-</blockquote>
-<h1 id="Optimize-SQL"><a href="#Optimize-SQL" class="headerlink" title="Optimize SQL"></a>Optimize SQL</h1><blockquote>
-<p>Prompt: I want you to act as an SQL code optimizer. The following code is slow. Can you help me speed it up? [Insert SQL]</p>
-</blockquote>
-<h1 id="Format-code"><a href="#Format-code" class="headerlink" title="Format code"></a>Format code</h1><h2 id="Simplify-Python"><a href="#Simplify-Python" class="headerlink" title="Simplify Python"></a>Simplify Python</h2><blockquote>
-<p>Prompt: I want you to act as a code simplifier. Can you simplify the following code?</p>
-</blockquote>
-<h2 id="Write-Documentation"><a href="#Write-Documentation" class="headerlink" title="Write Documentation"></a>Write Documentation</h2><blockquote>
-<p>Prompt: I want you to act as a software developer. Please provide documentation for func1 below. [Insert function]</p>
-</blockquote>
-<h2 id="Improve-Readability"><a href="#Improve-Readability" class="headerlink" title="Improve Readability"></a>Improve Readability</h2><blockquote>
-<p>Prompt: I want you to act as a code analyzer. Can you improve the following code for readability and maintainability? [Insert code]</p>
-</blockquote>
-<h2 id="Format-SQL"><a href="#Format-SQL" class="headerlink" title="Format SQL"></a>Format SQL</h2><blockquote>
-<p>Prompt: I want you to act as a SQL formatter. Please format the following SQL code. Please convert all reserved keywords to uppercase [Insert requirements]. [Insert Code]</p>
-</blockquote>
-<h1 id="Translate-Code"><a href="#Translate-Code" class="headerlink" title="Translate Code"></a>Translate Code</h1><h2 id="Translate-Between-DBMS"><a href="#Translate-Between-DBMS" class="headerlink" title="Translate Between DBMS"></a>Translate Between DBMS</h2><blockquote>
-<p>Prompt: I want you to act as a coder and write SQL code for MySQL. What is the equivalent of PostgreSQL’s DATE_TRUNC for MySQL?</p>
-</blockquote>
-<h2 id="Translate-Python-to-R"><a href="#Translate-Python-to-R" class="headerlink" title="Translate Python to R"></a>Translate Python to R</h2><blockquote>
-<p>Prompt: I want you to act as a code translator. Can you please convert the following code from python to R? [Insert code]</p>
-</blockquote>
-<h2 id="Translate-R-to-Python"><a href="#Translate-R-to-Python" class="headerlink" title="Translate R to Python"></a>Translate R to Python</h2><blockquote>
-<p>Prompt: I want you to act as a code translator. Can you please convert the following code from R to python? [Insert code]</p>
-</blockquote>
-<h1 id="Explain-concepts"><a href="#Explain-concepts" class="headerlink" title="Explain concepts"></a>Explain concepts</h1><h2 id="Explain-to-Five-Year-Old"><a href="#Explain-to-Five-Year-Old" class="headerlink" title="Explain to Five-Year-Old"></a>Explain to Five-Year-Old</h2><blockquote>
-<p>Prompt: I want you to act as a data science instructor. Explain [concept] to a five-year-old.</p>
-</blockquote>
-<h2 id="Explain-to-Undergraduate"><a href="#Explain-to-Undergraduate" class="headerlink" title="Explain to Undergraduate"></a>Explain to Undergraduate</h2><blockquote>
-<p>Prompt: I want you to act as a data science instructor. Explain [concept] to an undergraduate.</p>
-</blockquote>
-<h2 id="Explain-to-Professor"><a href="#Explain-to-Professor" class="headerlink" title="Explain to Professor"></a>Explain to Professor</h2><blockquote>
-<p>Prompt: I want you to act as a data science instructor. Explain [concept] to a professor.</p>
-</blockquote>
-<h2 id="Explain-to-Business-Stakeholder"><a href="#Explain-to-Business-Stakeholder" class="headerlink" title="Explain to Business Stakeholder"></a>Explain to Business Stakeholder</h2><blockquote>
-<p>Prompt: I want you to act as a data science instructor. Explain [concept] to a business stakeholder.</p>
-</blockquote>
-<h2 id="Explain-Like-Stackoverflow"><a href="#Explain-Like-Stackoverflow" class="headerlink" title="Explain Like Stackoverflow"></a>Explain Like Stackoverflow</h2><blockquote>
-<p>Prompt: I want you to act as an answerer on StackOverflow. You can provide code snippets, sample tables and outputs to support your answer. [Insert technical question]</p>
-</blockquote>
-<h1 id="Suggest-ideas"><a href="#Suggest-ideas" class="headerlink" title="Suggest ideas"></a>Suggest ideas</h1><h2 id="Suggest-Edge-Cases"><a href="#Suggest-Edge-Cases" class="headerlink" title="Suggest Edge Cases"></a>Suggest Edge Cases</h2><blockquote>
-<p>Prompt: I want you to act as a software developer. Please help me catch edge cases for this function [insert function]</p>
-</blockquote>
-<h2 id="Suggest-Dataset"><a href="#Suggest-Dataset" class="headerlink" title="Suggest Dataset"></a>Suggest Dataset</h2><blockquote>
-<p>Prompt: I want you to act as a data science career coach. I want to build a predictive model for […]. At the same time, I would like to showcase my knowledge in […]. Can you please suggest the five most relevant datasets for my use case?</p>
-</blockquote>
-<h2 id="Suggest-Portfolio-Ideas"><a href="#Suggest-Portfolio-Ideas" class="headerlink" title="Suggest Portfolio Ideas"></a>Suggest Portfolio Ideas</h2><blockquote>
-<p>Prompt: I want you to act as a data science coach. My background is in […] and I would like to [career goal]. I need to build a portfolio of data science projects that will help me land a role in […] as a […]. Can you suggest five specific portfolio projects that will showcase my expertise in […] and are of relevance to [company]?</p>
-</blockquote>
-<h2 id="Suggest-Resources"><a href="#Suggest-Resources" class="headerlink" title="Suggest Resources"></a>Suggest Resources</h2><blockquote>
-<p>Prompt: I want you to act as a data science coach. I would like to learn about [topic]. Please suggest 3 best specific resources. You can include [specify resource type]</p>
-</blockquote>
-<h2 id="Suggest-Time-Complexity"><a href="#Suggest-Time-Complexity" class="headerlink" title="Suggest Time Complexity"></a>Suggest Time Complexity</h2><blockquote>
-<p>Prompt: I want you to act as a software developer. Please compare the time complexity of the two algorithms below. [Insert two functions]</p>
-</blockquote>
-<h2 id="Suggest-Feature-Engineering"><a href="#Suggest-Feature-Engineering" class="headerlink" title="Suggest Feature Engineering"></a>Suggest Feature Engineering</h2><blockquote>
-<p>Prompt: I want you to act as a data scientist and perform feature engineering. I am working on a model that predicts [insert feature name]. There are columns: [Describe columns]. Can you suggest features that we can engineer for this machine learning problem?</p>
-</blockquote>
-<h2 id="Suggest-A-B-Testing-Steps"><a href="#Suggest-A-B-Testing-Steps" class="headerlink" title="Suggest A&#x2F;B Testing Steps"></a>Suggest A&#x2F;B Testing Steps</h2><blockquote>
-<p>Prompt: I want you to act as a statistician. [Describe context] Please design an A&#x2F;B test for this purpose. Please include the concrete steps on which statistical test I should run.</p>
-</blockquote>
-<h2 id="Career-Coaching"><a href="#Career-Coaching" class="headerlink" title="Career Coaching"></a>Career Coaching</h2><blockquote>
-<p>Prompt: I want you to act as a career advisor. I am looking for a role as a [role name]. My background is […]. How do I land the role and with what resources exactly in 6 months?</p>
-</blockquote>
-<h1 id="Troubleshoot-problem"><a href="#Troubleshoot-problem" class="headerlink" title="Troubleshoot problem"></a>Troubleshoot problem</h1><h2 id="Correct-ChatGPT-Code"><a href="#Correct-ChatGPT-Code" class="headerlink" title="Correct ChatGPT Code"></a>Correct ChatGPT Code</h2><blockquote>
-<p>Prompt: Your above code is wrong. [Point out what is wrong]. Can you try again?</p>
-</blockquote>
-<h2 id="Correct-Python-Code"><a href="#Correct-Python-Code" class="headerlink" title="Correct Python Code"></a>Correct Python Code</h2><blockquote>
-<p>Prompt: I want you to act as a software developer. This code is supposed to [expected function]. Please help me debug this python code that cannot be run. [Insert function]</p>
-</blockquote>
-<h2 id="Correct-SQL-Code"><a href="#Correct-SQL-Code" class="headerlink" title="Correct SQL Code"></a>Correct SQL Code</h2><blockquote>
-<p>Prompt: I want you to act as a SQL code corrector. This code does not run in [your DBMS, e.g. PostgreSQL]. Can you correct it for me? [SQL code here]</p>
-</blockquote>
-<h1 id="Troubleshoot-PowerBI-Model"><a href="#Troubleshoot-PowerBI-Model" class="headerlink" title="Troubleshoot PowerBI Model"></a>Troubleshoot PowerBI Model</h1><blockquote>
-<p>Prompt: I want you to act as a PowerBl modeler. Here is the details of my current project. [Insert details]. Do you see any problems with the table?</p>
-</blockquote>
-<h1 id="Write-SQL"><a href="#Write-SQL" class="headerlink" title="Write SQL"></a>Write SQL</h1><h2 id="Create-Running-Average"><a href="#Create-Running-Average" class="headerlink" title="Create Running Average"></a>Create Running Average</h2><blockquote>
-<p>Prompt: I want you to act as a data scientist and write SQL code for me. I have a table with two columns [Insert column names]. I would like to calculate a running average for [which value]. What is the SQL code that works for PostgreSQL 14?</p>
-</blockquote>
-<h2 id="Solve-Leetcode-Question"><a href="#Solve-Leetcode-Question" class="headerlink" title="Solve Leetcode Question"></a>Solve Leetcode Question</h2><blockquote>
-<p>Prompt: Assume you are given the tables… with the columns… Output the following…Prompt: Assume you are given the tables… with the columns… Output the following…</p>
-</blockquote>
-<h1 id="Write-other-Code"><a href="#Write-other-Code" class="headerlink" title="Write other Code"></a>Write other Code</h1><h2 id="Write-Google-Sheets-Formula"><a href="#Write-Google-Sheets-Formula" class="headerlink" title="Write Google Sheets Formula"></a>Write Google Sheets Formula</h2><blockquote>
-<p>Prompt: I want you to act as a bot that generates Google Sheets formula. Please generate a formula that [describe requirements]</p>
-</blockquote>
-<h2 id="Write-R"><a href="#Write-R" class="headerlink" title="Write R"></a>Write R</h2><blockquote>
-<p>Prompt: I want you to act as a data scientist using R. Can you write an R script that [Insert requirement here]</p>
-</blockquote>
-<h2 id="Write-Shell"><a href="#Write-Shell" class="headerlink" title="Write Shell"></a>Write Shell</h2><blockquote>
-<p>Prompt: I want you to act as a Linux terminal expert. Please write the code to [describe requirements]</p>
-</blockquote>
-<h2 id="Write-VBA"><a href="#Write-VBA" class="headerlink" title="Write VBA"></a>Write VBA</h2><blockquote>
-<p>Prompt: I want you to act as an Excel VBA developer. Can you write a VBA that [Insert function here]?</p>
-</blockquote>
-<h1 id="Miscellaneous"><a href="#Miscellaneous" class="headerlink" title="Miscellaneous"></a>Miscellaneous</h1><h2 id="Format-Tables"><a href="#Format-Tables" class="headerlink" title="Format Tables"></a>Format Tables</h2><blockquote>
-<p>Prompt: I want you to act as a document formatter. Please format the following into a nice table for me to place in Google Docs? [insert text table here]</p>
-</blockquote>
-<h1 id="Summarize-Book"><a href="#Summarize-Book" class="headerlink" title="Summarize Book"></a>Summarize Book</h1><blockquote>
-<p>Prompt: I want you to act as a technical book summarizer. Can you please summarize the book [name] with 5 main points?</p>
-</blockquote>
-<h2 id="Summarize-Paper"><a href="#Summarize-Paper" class="headerlink" title="Summarize Paper"></a>Summarize Paper</h2><blockquote>
-<p>Prompt: I want you to act as an academic. Please summarise the paper […] in simple terms in one paragraph.</p>
-</blockquote>
-<h2 id="Provide-Emotional-Support"><a href="#Provide-Emotional-Support" class="headerlink" title="Provide Emotional Support"></a>Provide Emotional Support</h2><blockquote>
-<p>Prompt: I want you to provide emotional support to me. [Explain problem here.]</p>
-</blockquote>
-<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://medium.datadriveninvestor.com/60-chatgpt-prompts-for-data-science-tried-tested-and-rated-4994c7e6adb2">https://medium.datadriveninvestor.com/60-chatgpt-prompts-for-data-science-tried-tested-and-rated-4994c7e6adb2</a></li>
+        <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>ClickHouse is a true column-oriented DBMS. Data is stored by columns, and during the execution of arrays (vectors or chunks of columns). Whenever possible, operations are dispatched on arrays, rather than on individual values. It is called “vectorized query execution” and it helps lower the cost of actual data processing.</p>
+<h2 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h2><p>ClickHouse was initially built as a prototype to do just a single task well: to filter and aggregate data as fast as possible. That’s what needs to be done to build a typical analytical report, and that’s what a typical GROUP BY query does. The ClickHouse team has made several high-level decisions that, when combined, made achieving this task possible:</p>
+<p><strong>Column-oriented storage</strong>: Source data often contain hundreds or even thousands of columns, while a report can use just a few of them. The system needs to avoid reading unnecessary columns to avoid expensive disk read operations.</p>
+<p><strong>Indexes</strong>: Memory resident ClickHouse data structures allow the reading of only the necessary columns, and only the necessary row ranges of those columns.</p>
+<p><strong>Data compression</strong>: Storing different values of the same column together often leads to better compression ratios (compared to row-oriented systems) because in real data a column often has the same, or not so many different, values for neighboring rows. In addition to general-purpose compression, ClickHouse supports specialized codecs that can make data even more compact.</p>
+<p><strong>Vectorized query execution</strong>: ClickHouse not only stores data in columns but also processes data in columns. This leads to better CPU cache utilization and allows for SIMD CPU instructions usage.</p>
+<p><strong>Scalability</strong>: ClickHouse can leverage all available CPU cores and disks to execute even a single query. Not only on a single server but all CPU cores and disks of a cluster as well.</p>
+<h3 id="Attention-to-Low-Level-Details"><a href="#Attention-to-Low-Level-Details" class="headerlink" title="Attention to Low-Level Details"></a>Attention to Low-Level Details</h3><p>But many other database management systems use similar techniques. What really makes ClickHouse stand out is attention to low-level details. Most programming languages provide implementations for most common algorithms and data structures, but they tend to be too generic to be effective.</p>
+<h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><p>In order to install run the following script</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl https://clickhouse.com/ | sh</span><br></pre></td></tr></table></figure>
+
+<p>One can start the server with the following command</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./clickhouse server</span><br></pre></td></tr></table></figure>
+
+<p>With a different terminal lets start a client with</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./clickhouse client</span><br></pre></td></tr></table></figure>
+
+<h2 id="Tests"><a href="#Tests" class="headerlink" title="Tests"></a>Tests</h2><p>Lets start by creating a table from sample data </p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> my_first_table</span><br><span class="line">(</span><br><span class="line">    user_id UInt32,</span><br><span class="line">    message String,</span><br><span class="line">    <span class="type">timestamp</span> DateTime,</span><br><span class="line">    metric Float32</span><br><span class="line">)</span><br><span class="line">ENGINE <span class="operator">=</span> MergeTree</span><br><span class="line"><span class="keyword">PRIMARY</span> KEY (user_id, <span class="type">timestamp</span>)</span><br></pre></td></tr></table></figure>
+
+<p>The statement uses traditional SQL DDL, with one extend information regarding the execution engine. The MergeTree option provides improved performance for managed tables but there are also options to integrate with external systems such as BigQuery, S3, Kafka, PostgreSQL, …</p>
+<p><strong>Insert some data</strong></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> my_first_table (user_id, message, <span class="type">timestamp</span>, metric) <span class="keyword">VALUES</span></span><br><span class="line">    (<span class="number">101</span>, <span class="string">&#x27;Hello, ClickHouse!&#x27;</span>,                                 now(),       <span class="number">-1.0</span>    ),</span><br><span class="line">    (<span class="number">102</span>, <span class="string">&#x27;Insert a lot of rows per batch&#x27;</span>,                     yesterday(), <span class="number">1.41421</span> ),</span><br><span class="line">    (<span class="number">102</span>, <span class="string">&#x27;Sort your data based on your commonly-used queries&#x27;</span>, today(),     <span class="number">2.718</span>   ),</span><br><span class="line">    (<span class="number">101</span>, <span class="string">&#x27;Granules are the smallest chunks of data read&#x27;</span>,      now() <span class="operator">+</span> <span class="number">5</span>,   <span class="number">3.14159</span> )</span><br></pre></td></tr></table></figure>
+
+<p><strong>query</strong></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> my_first_table</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="type">timestamp</span></span><br></pre></td></tr></table></figure>
+
+<p>Now lets create a table from external data in S3 and a materialized table using the <strong>MergeTree</strong> engine from it.</p>
+<h3 id="Create-data-from-S3-sources"><a href="#Create-data-from-S3-sources" class="headerlink" title="Create data from S3 sources"></a>Create data from S3 sources</h3><p>First create our managed table</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> trips</span><br><span class="line">(</span><br><span class="line">    `trip_id` UInt32,</span><br><span class="line">    `vendor_id` Enum8(<span class="string">&#x27;1&#x27;</span> <span class="operator">=</span> <span class="number">1</span>, <span class="string">&#x27;2&#x27;</span> <span class="operator">=</span> <span class="number">2</span>, <span class="string">&#x27;3&#x27;</span> <span class="operator">=</span> <span class="number">3</span>, <span class="string">&#x27;4&#x27;</span> <span class="operator">=</span> <span class="number">4</span>, <span class="string">&#x27;CMT&#x27;</span> <span class="operator">=</span> <span class="number">5</span>, <span class="string">&#x27;VTS&#x27;</span> <span class="operator">=</span> <span class="number">6</span>, <span class="string">&#x27;DDS&#x27;</span> <span class="operator">=</span> <span class="number">7</span>, <span class="string">&#x27;B02512&#x27;</span> <span class="operator">=</span> <span class="number">10</span>, <span class="string">&#x27;B02598&#x27;</span> <span class="operator">=</span> <span class="number">11</span>, <span class="string">&#x27;B02617&#x27;</span> <span class="operator">=</span> <span class="number">12</span>, <span class="string">&#x27;B02682&#x27;</span> <span class="operator">=</span> <span class="number">13</span>, <span class="string">&#x27;B02764&#x27;</span> <span class="operator">=</span> <span class="number">14</span>, <span class="string">&#x27;&#x27;</span> <span class="operator">=</span> <span class="number">15</span>),</span><br><span class="line">    `pickup_date` <span class="type">Date</span>,</span><br><span class="line">    `pickup_datetime` DateTime,</span><br><span class="line">    `dropoff_date` <span class="type">Date</span>,</span><br><span class="line">    `dropoff_datetime` DateTime,</span><br><span class="line">    `store_and_fwd_flag` UInt8,</span><br><span class="line">    `rate_code_id` UInt8,</span><br><span class="line">    `pickup_longitude` Float64,</span><br><span class="line">    `pickup_latitude` Float64,</span><br><span class="line">    `dropoff_longitude` Float64,</span><br><span class="line">    `dropoff_latitude` Float64,</span><br><span class="line">    `passenger_count` UInt8,</span><br><span class="line">    `trip_distance` Float64,</span><br><span class="line">    `fare_amount` Float32,</span><br><span class="line">    `extra` Float32,</span><br><span class="line">    `mta_tax` Float32,</span><br><span class="line">    `tip_amount` Float32,</span><br><span class="line">    `tolls_amount` Float32,</span><br><span class="line">    `ehail_fee` Float32,</span><br><span class="line">    `improvement_surcharge` Float32,</span><br><span class="line">    `total_amount` Float32,</span><br><span class="line">    `payment_type` Enum8(<span class="string">&#x27;UNK&#x27;</span> <span class="operator">=</span> <span class="number">0</span>, <span class="string">&#x27;CSH&#x27;</span> <span class="operator">=</span> <span class="number">1</span>, <span class="string">&#x27;CRE&#x27;</span> <span class="operator">=</span> <span class="number">2</span>, <span class="string">&#x27;NOC&#x27;</span> <span class="operator">=</span> <span class="number">3</span>, <span class="string">&#x27;DIS&#x27;</span> <span class="operator">=</span> <span class="number">4</span>),</span><br><span class="line">    `trip_type` UInt8,</span><br><span class="line">    `pickup` FixedString(<span class="number">25</span>),</span><br><span class="line">    `dropoff` FixedString(<span class="number">25</span>),</span><br><span class="line">    `cab_type` Enum8(<span class="string">&#x27;yellow&#x27;</span> <span class="operator">=</span> <span class="number">1</span>, <span class="string">&#x27;green&#x27;</span> <span class="operator">=</span> <span class="number">2</span>, <span class="string">&#x27;uber&#x27;</span> <span class="operator">=</span> <span class="number">3</span>),</span><br><span class="line">    `pickup_nyct2010_gid` Int8,</span><br><span class="line">    `pickup_ctlabel` Float32,</span><br><span class="line">    `pickup_borocode` Int8,</span><br><span class="line">    `pickup_ct2010` String,</span><br><span class="line">    `pickup_boroct2010` String,</span><br><span class="line">    `pickup_cdeligibil` String,</span><br><span class="line">    `pickup_ntacode` FixedString(<span class="number">4</span>),</span><br><span class="line">    `pickup_ntaname` String,</span><br><span class="line">    `pickup_puma` UInt16,</span><br><span class="line">    `dropoff_nyct2010_gid` UInt8,</span><br><span class="line">    `dropoff_ctlabel` Float32,</span><br><span class="line">    `dropoff_borocode` UInt8,</span><br><span class="line">    `dropoff_ct2010` String,</span><br><span class="line">    `dropoff_boroct2010` String,</span><br><span class="line">    `dropoff_cdeligibil` String,</span><br><span class="line">    `dropoff_ntacode` FixedString(<span class="number">4</span>),</span><br><span class="line">    `dropoff_ntaname` String,</span><br><span class="line">    `dropoff_puma` UInt16</span><br><span class="line">)</span><br><span class="line">ENGINE <span class="operator">=</span> MergeTree</span><br><span class="line"><span class="keyword">PARTITION</span> <span class="keyword">BY</span> toYYYYMM(pickup_date)</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> pickup_datetime</span><br><span class="line">SETTINGS index_granularity <span class="operator">=</span> <span class="number">8192</span></span><br></pre></td></tr></table></figure>
+
+<p>Now let’s create our raw table. Take into account the ENGINE being used.</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> trips_raw</span><br><span class="line">(</span><br><span class="line">   `trip_id`               UInt32,</span><br><span class="line">   `vendor_id`             Enum8(<span class="string">&#x27;1&#x27;</span> <span class="operator">=</span> <span class="number">1</span>, <span class="string">&#x27;2&#x27;</span> <span class="operator">=</span> <span class="number">2</span>, <span class="string">&#x27;3&#x27;</span> <span class="operator">=</span> <span class="number">3</span>, <span class="string">&#x27;4&#x27;</span> <span class="operator">=</span> <span class="number">4</span>, <span class="string">&#x27;CMT&#x27;</span> <span class="operator">=</span> <span class="number">5</span>, <span class="string">&#x27;VTS&#x27;</span> <span class="operator">=</span> <span class="number">6</span>, <span class="string">&#x27;DDS&#x27;</span> <span class="operator">=</span> <span class="number">7</span>, <span class="string">&#x27;B02512&#x27;</span> <span class="operator">=</span> <span class="number">10</span>, <span class="string">&#x27;B02598&#x27;</span> <span class="operator">=</span> <span class="number">11</span>, <span class="string">&#x27;B02617&#x27;</span> <span class="operator">=</span> <span class="number">12</span>, <span class="string">&#x27;B02682&#x27;</span> <span class="operator">=</span> <span class="number">13</span>, <span class="string">&#x27;B02764&#x27;</span> <span class="operator">=</span> <span class="number">14</span>, <span class="string">&#x27;&#x27;</span> <span class="operator">=</span> <span class="number">15</span>),</span><br><span class="line">   `pickup_date`           <span class="type">Date</span>,</span><br><span class="line">   `pickup_datetime`       DateTime,</span><br><span class="line">   `dropoff_date`          <span class="type">Date</span>,</span><br><span class="line">   `dropoff_datetime`      DateTime,</span><br><span class="line">   `store_and_fwd_flag`    UInt8,</span><br><span class="line">   `rate_code_id`          UInt8,</span><br><span class="line">   `pickup_longitude`      Float64,</span><br><span class="line">   `pickup_latitude`       Float64,</span><br><span class="line">   `dropoff_longitude`     Float64,</span><br><span class="line">   `dropoff_latitude`      Float64,</span><br><span class="line">   `passenger_count`       UInt8,</span><br><span class="line">   `trip_distance`         Float64,</span><br><span class="line">   `fare_amount`           Float32,</span><br><span class="line">   `extra`                 Float32,</span><br><span class="line">   `mta_tax`               Float32,</span><br><span class="line">   `tip_amount`            Float32,</span><br><span class="line">   `tolls_amount`          Float32,</span><br><span class="line">   `ehail_fee`             Float32,</span><br><span class="line">   `improvement_surcharge` Float32,</span><br><span class="line">   `total_amount`          Float32,</span><br><span class="line">   `payment_type_`         Enum8(<span class="string">&#x27;UNK&#x27;</span> <span class="operator">=</span> <span class="number">0</span>, <span class="string">&#x27;CSH&#x27;</span> <span class="operator">=</span> <span class="number">1</span>, <span class="string">&#x27;CRE&#x27;</span> <span class="operator">=</span> <span class="number">2</span>, <span class="string">&#x27;NOC&#x27;</span> <span class="operator">=</span> <span class="number">3</span>, <span class="string">&#x27;DIS&#x27;</span> <span class="operator">=</span> <span class="number">4</span>),</span><br><span class="line">   `trip_type`             UInt8,</span><br><span class="line">   `pickup`                FixedString(<span class="number">25</span>),</span><br><span class="line">   `dropoff`               FixedString(<span class="number">25</span>),</span><br><span class="line">   `cab_type`              Enum8(<span class="string">&#x27;yellow&#x27;</span> <span class="operator">=</span> <span class="number">1</span>, <span class="string">&#x27;green&#x27;</span> <span class="operator">=</span> <span class="number">2</span>, <span class="string">&#x27;uber&#x27;</span> <span class="operator">=</span> <span class="number">3</span>),</span><br><span class="line">   `pickup_nyct2010_gid`   Int8,</span><br><span class="line">   `pickup_ctlabel`        Float32,</span><br><span class="line">   `pickup_borocode`       Int8,</span><br><span class="line">   `pickup_ct2010`         String,</span><br><span class="line">   `pickup_boroct2010`     FixedString(<span class="number">7</span>),</span><br><span class="line">   `pickup_cdeligibil`     String,</span><br><span class="line">   `pickup_ntacode`        FixedString(<span class="number">4</span>),</span><br><span class="line">   `pickup_ntaname`        String,</span><br><span class="line">   `pickup_puma`           UInt16,</span><br><span class="line">   `dropoff_nyct2010_gid`  UInt8,</span><br><span class="line">   `dropoff_ctlabel`       Float32,</span><br><span class="line">   `dropoff_borocode`      UInt8,</span><br><span class="line">   `dropoff_ct2010`        String,</span><br><span class="line">   `dropoff_boroct2010`    FixedString(<span class="number">7</span>),</span><br><span class="line">   `dropoff_cdeligibil`    String,</span><br><span class="line">   `dropoff_ntacode`       FixedString(<span class="number">4</span>),</span><br><span class="line">   `dropoff_ntaname`       String,</span><br><span class="line">   `dropoff_puma`          UInt16</span><br><span class="line">) ENGINE <span class="operator">=</span> S3(<span class="string">&#x27;https://datasets-documentation.s3.eu-west-3.amazonaws.com/nyc-taxi/trips_&#123;0..9&#125;.gz&#x27;</span>, <span class="string">&#x27;TabSeparatedWithNames&#x27;</span>, <span class="string">&#x27;gzip&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>Let’s select from our raw table</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span>(pickup_ntaname)</span><br><span class="line"><span class="keyword">FROM</span> trips_raw</span><br><span class="line">LIMIT <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+
+<p>The S3 table engine supports parallel reads. Writes are only supported if the table definition does not contain glob patterns</p>
+<p>You will need to configure access credentials on the <strong>config.xml</strong> if you are using private data or you need to write data. You can also define individual configuration filed on the conf.d directory like the following example.</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">clickhouse</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">s3</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">endpoint-name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">endpoint</span>&gt;</span>https://dalem-files.s3.amazonaws.com/test/<span class="tag">&lt;/<span class="name">endpoint</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">access_key_id</span>&gt;</span>key<span class="tag">&lt;/<span class="name">access_key_id</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">secret_access_key</span>&gt;</span>secret<span class="tag">&lt;/<span class="name">secret_access_key</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- &lt;use_environment_credentials&gt;false&lt;/use_environment_credentials&gt; --&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- &lt;header&gt;Authorization: Bearer SOME-TOKEN&lt;/header&gt; --&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">endpoint-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">s3</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">clickhouse</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>But we are not going to do this and just load the public data locally.</p>
+<p>Let’s just load data from our raw table for the materialized one.</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> trips <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> trips_raw</span><br></pre></td></tr></table></figure>
+
+<p>This will take some time and you cant check the progress bar on the console</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">0 rows in set. Elapsed: 109.103 sec. Processed 10.00 million rows, 815.59 MB (91.66 thousand rows/s., 7.48 MB/s.)</span><br><span class="line">Peak memory usage: 1.21 GiB.</span><br></pre></td></tr></table></figure>
+
+<p>Lets validate we have the data</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">buldozer :) <span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(<span class="number">1</span>) <span class="keyword">FROM</span> trips</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(<span class="number">1</span>)</span><br><span class="line"><span class="keyword">FROM</span> trips</span><br><span class="line"></span><br><span class="line">Query id: <span class="number">8956</span>eff9<span class="operator">-</span>d76e<span class="number">-4</span>a1e<span class="operator">-</span>a766<span class="number">-9</span>bcc5dd1f6cd</span><br><span class="line"></span><br><span class="line">┌──<span class="built_in">count</span>()─┐</span><br><span class="line">│ <span class="number">10000840</span> │</span><br><span class="line">└──────────┘</span><br><span class="line"></span><br><span class="line"><span class="number">1</span> <span class="type">row</span> <span class="keyword">in</span> set. Elapsed: <span class="number">0.002</span> sec. </span><br></pre></td></tr></table></figure>
+
+<p>Let’s execute a DISTINCT query to force a heavier execution plan.</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span>(<span class="operator">*</span>) <span class="keyword">FROM</span> trips</span><br></pre></td></tr></table></figure>
+
+<p>This execution was done in a single server with a AMD processor</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">10000840 rows in set. Elapsed: 18.121 sec. Processed 10.00 million rows, 3.07 GB (551.89 thousand rows/s., 169.19 MB/s.)</span><br><span class="line">Peak memory usage: 631.59 MiB.</span><br></pre></td></tr></table></figure>
+
+<p>Still it scanned 10M registers in 18s, not bad :D</p>
+<h2 id="Clickhouse-Local"><a href="#Clickhouse-Local" class="headerlink" title="Clickhouse Local"></a>Clickhouse Local</h2><p><a target="_blank" rel="noopener" href="https://clickhouse.com/docs/en/operations/utilities/clickhouse-local">Clickhouse local</a> is very usefull if you want to query data directly ontop of files without having to install a server.</p>
+<p>This option is also very interesting to incorporate in a deployment pipeline</p>
+<h3 id="Query-CSV"><a href="#Query-CSV" class="headerlink" title="Query CSV"></a>Query CSV</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./clickhouse <span class="built_in">local</span> -q <span class="string">&quot;SELECT * FROM &#x27;review_?.csv&#x27;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Query-Parquet"><a href="#Query-Parquet" class="headerlink" title="Query Parquet"></a>Query Parquet</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./clickhouse <span class="built_in">local</span> -q <span class="string">&quot;</span></span><br><span class="line"><span class="string">SELECT count()</span></span><br><span class="line"><span class="string">FROM s3(&#x27;https://datasets-documentation.s3.eu-west-3.amazonaws.com/house_parquet/house_0.parquet&#x27;)&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Integrations"><a href="#Integrations" class="headerlink" title="Integrations"></a>Integrations</h2><p>Clickhouse as many <a target="_blank" rel="noopener" href="https://clickhouse.com/docs/en/integrations">integrations</a> available:</p>
+<ul>
+<li><strong>Core integrations</strong>: built or maintained by ClickHouse, they are supported by ClickHouse and live in the ClickHouse GitHub organization</li>
+<li><strong>Partner integrations</strong>: built or maintained, and supported by, third-party software vendors</li>
+<li><strong>Community integrations</strong>: built or maintained and supported by community members. No direct support is available besides the public GitHub repositories and community Slack channels</li>
+</ul>
+<p>Also the available documentation seems well prepared.</p>
+<h2 id="Production"><a href="#Production" class="headerlink" title="Production"></a>Production</h2><p>This article only touches the surface on the available options to setup Clickhouse one should read the <a target="_blank" rel="noopener" href="https://clickhouse.com/docs/en/architecture/horizontal-scaling">Scale Out</a> section to understand best to deploy in Production</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>In this article we followed the quick-start guide in order to setup a Clickhouse server loaded data from S3 a public dataset with 10M records and performed a select distinct query on that table.</p>
+<p>Clickhouse presents as a very interesting OLTP solution. If you are considering a solution for Analytical Reporting this is something to have on your radar.</p>
+<p>I also liked the fact you can start small having you service full deployment and maintained by you, but still having the capability to scaling horizontally or moving to Cloud Offering which would granting the support characteristics that most of the times are missing in open-source source software.</p>
+<p>The fact there is a huge list of <a target="_blank" rel="noopener" href="https://clickhouse.com/docs/en/about-us/adopters">Adopters</a> and a Company providing support and defining a roadmap for the product also brings reassurance to use this Product.</p>
+<p>The documentation provide several integrations patterns that are worth checking.</p>
+<p>This is definetly one that I will keep an eye on.</p>
+<p>Well done Clickhouse ;)</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://clickhouse.com/">https://clickhouse.com/</a></li>
+<li><a target="_blank" rel="noopener" href="https://clickhouse.com/docs/en/tutorial">https://clickhouse.com/docs/en/tutorial</a></li>
+<li><a target="_blank" rel="noopener" href="https://clickhouse.com/docs/en/about-us/cloud">https://clickhouse.com/docs/en/about-us/cloud</a></li>
+<li><a target="_blank" rel="noopener" href="https://clickhouse.com/docs/en/about-us/adopters">https://clickhouse.com/docs/en/about-us/adopters</a></li>
+<li><a target="_blank" rel="noopener" href="https://clickhouse.com/docs/en/operations/utilities">https://clickhouse.com/docs/en/operations/utilities</a></li>
 </ul>
 
       
@@ -729,6 +631,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Nuget/">Nuget</a><small>1</small></li>
   
+    <li><a href="/tags/OLTP/">OLTP</a><small>1</small></li>
+  
     <li><a href="/tags/OpenAI/">OpenAI</a><small>1</small></li>
   
     <li><a href="/tags/OpenAPI/">OpenAPI</a><small>1</small></li>
@@ -765,7 +669,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Rust/">Rust</a><small>1</small></li>
   
-    <li><a href="/tags/SQL/">SQL</a><small>1</small></li>
+    <li><a href="/tags/SQL/">SQL</a><small>2</small></li>
   
     <li><a href="/tags/SQLServer/">SQLServer</a><small>1</small></li>
   

@@ -77,6 +77,92 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
+        <time datetime="2023-01-27T10:00:00.000Z"><a href="/2023/01/27/pacman/">2023-01-27</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2023/01/27/pacman/">Pacman Command in Arch Linux</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>I’ve recently started using a Arch Linux distribution <a target="_blank" rel="noopener" href="https://garudalinux.org/">Garuda Linux</a> and the package management tool is <strong>pacman</strong> this article summarizes the most common actions with based on the following article from <a target="_blank" rel="noopener" href="https://www.geeksforgeeks.org/pacman-command-in-arch-linux/">GeeksforGeeks</a>.</p>
+<h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><blockquote>
+<p>Pacman is a package manager for the arch Linux and arch-based Linux distributions. If you have used Debian-based OS like ubuntu, then the  Pacman is similar to the apt command of Debian-based operating systems. Pacman contains the compressed files as a package format and maintains a text-based package database. Pacman keeps the system up to date by synchronizing package lists with the master server. Pacman can install the packages from the official repositories or your own build packages.</p>
+</blockquote>
+<h1 id="Installing-Packages-using-the-Pacman"><a href="#Installing-Packages-using-the-Pacman" class="headerlink" title="Installing Packages using the Pacman"></a>Installing Packages using the Pacman</h1><p>When we install any new operating system on our machine, the first task we do is to install the software packages on the system. Now, to install the packages on Arch Linux, use the command Pacman with -S option and mention the package name. The -S option tells the Pacman to synchronize and to continue. Here is one example </p>
+<p><code>sudo pacman -S cmatrix</code></p>
+<p>We can mention the many package names after the -S option, separated by space.</p>
+<p><code>sudo pacman -S package1 package2 package3</code></p>
+<p>Then Pacman will show the download and install size of the package and ask for to proceed, then simply press the Y key. Pacman categorizes the installed packages into two categories.</p>
+<ul>
+<li><strong>Implicitly Installed</strong>: The package that was installed using the -S or -U option.</li>
+<li><strong>Dependencies</strong>: The package is installed because it is required by another package.</li>
+</ul>
+<h1 id="Removing-packages-using-the-Pacman"><a href="#Removing-packages-using-the-Pacman" class="headerlink" title="Removing packages using the Pacman"></a>Removing packages using the Pacman</h1><p>When we don’t need the package anymore, then we should remove the package from the system. To remove the package with all its dependencies which are not required by other packages, use the following command:</p>
+<p><code>sudo pacman -Rs &lt;package_name&gt;</code></p>
+<p>To remove the package without removing its dependency use the following command:</p>
+<p><code>sudo pacman -R &lt;package_name&gt;</code></p>
+<p>To remove the dependencies which are not required anymore, use the following command:</p>
+<p><code>pacman -Qdtq |  pacman -Rs -</code></p>
+<h1 id="Upgrading-packages"><a href="#Upgrading-packages" class="headerlink" title="Upgrading packages"></a>Upgrading packages</h1><p>In arch Linux, we can upgrade the full system by only one command using the Pacman. Use the following command to update the system:</p>
+<p><code>sudo pacman -Suy</code></p>
+<p>Let’s understand the meaning, S tell the pacman to synchronize the local database with the main database. u tells the pacman to upgrade the packages and y update the local catch on the system. Basically, this command synchronizes the local pacman database with the main repository database and then updates the system.</p>
+<h1 id="Searching-for-a-Package"><a href="#Searching-for-a-Package" class="headerlink" title="Searching for a Package"></a>Searching for a Package</h1><p>Now let’s see how we can search the package into the database of pacman. To search query in the name and description  of the package in the database use the following command:</p>
+<p><code>sudo pacman -Ss   &lt;query1&gt;  &lt;query2&gt;</code></p>
+<p>To search into already installed packages on the system, use the following command:</p>
+<p><code>sudo pacman -Qs query1&gt;  &lt;query2&gt;</code></p>
+<p>To search the query into the local database use the following command:</p>
+<p><code>sudo pacman -F query1&gt;  &lt;query2&gt;</code></p>
+<h1 id="Cleaning-the-Package-Cache"><a href="#Cleaning-the-Package-Cache" class="headerlink" title="Cleaning the Package Cache"></a>Cleaning the Package Cache</h1><p>When pacman downloads the packages it stores the packages into the <code>/var/cache/pacman/pkg/</code> and while uninstalling the package pacman does not delete these files. Pacman uses these files to downgrade the package or install the package. But it can take a lot of space to store these packages. So to delete the stored packages, use the following command:</p>
+<p><code>sudo pacman -Sc</code></p>
+<p>To remove all stored packages and cache, use the following command:</p>
+<p><code>sudp pacman -Scc</code></p>
+<h1 id="Installing-local-packages"><a href="#Installing-local-packages" class="headerlink" title="Installing local packages"></a>Installing local packages</h1><p>By using pacman we can install packages other than the main repository of Arch Linux. Use the following command to install the packages</p>
+<p>For local:</p>
+<p><code>sudo pacman -U path_to_file.pkg.tar.xz</code></p>
+<p>For remote package:</p>
+<p><code>sudo pacman -U http://www.example.com/repo/example.pkg.tar.xz</code></p>
+<h1 id="Troubleshooting"><a href="#Troubleshooting" class="headerlink" title="Troubleshooting"></a>Troubleshooting</h1><p>Sometimes installing the packages with pacman we face some errors. Following are the mainly occurred errors with pacman:</p>
+<ul>
+<li><p><strong>Conflicting file error</strong>: This error occurs due to some conflict packages present in the repository. To solve this error we can manually rename the file or force the overwrite function. We can use the following command to overwrite the function: </p>
+<ul>
+<li><code>pacman -S --overwrite glob package</code></li>
+</ul>
+</li>
+<li><p><strong>Invalid package</strong>: This error can occur due to the partial installation of the packages. We can solve this error by deleting .part files in <code>/var/cache/pacman/pkg/</code>.</p>
+</li>
+<li><p><strong>Locking database</strong>: This error can occur when pacman is interrupted while updating the database. To solve this error, delete the file <code>/var/lib/pacman/db.lck</code> and update the database. Use the following command to delete the file:</p>
+</li>
+</ul>
+<h1 id="Garuda"><a href="#Garuda" class="headerlink" title="Garuda"></a>Garuda</h1><p> Garuda also brings a useful command <code>update</code> that abstracts all this interactions to keep your rolling system updated, still very important to understand the command line utilities to manage the packages and check the official man page for further details as this is always evolving.</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.geeksforgeeks.org/pacman-command-in-arch-linux/">https://www.geeksforgeeks.org/pacman-command-in-arch-linux/</a></li>
+<li><a target="_blank" rel="noopener" href="https://archlinux.org/pacman/pacman.8.html">https://archlinux.org/pacman/pacman.8.html</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2022-12-23T22:00:00.000Z"><a href="/2022/12/23/Software Engineering Laws/">2022-12-23</a></time>
       
       
@@ -442,104 +528,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2022-12-23T19:00:00.000Z"><a href="/2022/12/23/SODA/">2022-12-23</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2022/12/23/SODA/">SODA</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>Bernard Denys kindly share with me the availability of their product for the Open Source Community in <a target="_blank" rel="noopener" href="https://github.com/sodadata/soda-sql#readme">Github</a>. <a target="_blank" rel="noopener" href="https://www.soda.io/">SODA</a> provide a Data Monitoring Platform. In this article i will take some time to explore a quick setup on how to use it and final comments around it.</p>
-<h2 id="What-does-Soda-SQL-do"><a href="#What-does-Soda-SQL-do" class="headerlink" title="What does Soda SQL do?"></a>What does Soda SQL do?</h2><p>Soda SQL allows you to</p>
-<p>Stop your pipeline when bad data is detected<br>Extract metrics and column profiles through super efficient SQL<br>Full control over metrics and queries through declarative config files</p>
-<h2 id="5m-tutorial"><a href="#5m-tutorial" class="headerlink" title="5m tutorial"></a>5m tutorial</h2><p>There is a <a target="_blank" rel="noopener" href="https://docs.soda.io/soda-sql/getting-started/5_min_tutorial.html">5m tutorial</a> available on their official page let’s have a go…</p>
-<h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><p>I’m using Linux and i’m lazy so i’ve just installed the required pip</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip3 install soda-sql</span><br></pre></td></tr></table></figure>
-
-<p>Let’s check if it is working</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ soda </span><br><span class="line">Usage: soda [OPTIONS] COMMAND [ARGS]...</span><br><span class="line"></span><br><span class="line">  Soda CLI version 2.0.0b15</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">  --<span class="built_in">help</span>  Show this message and <span class="built_in">exit</span>.</span><br><span class="line"></span><br><span class="line">Commands:</span><br><span class="line">  analyze  Analyzes tables <span class="keyword">in</span> the warehouse and creates scan YAML files...</span><br><span class="line">  create   Creates a new warehouse.yml file and prepares credentials <span class="keyword">in</span></span><br><span class="line">           your...</span><br><span class="line"></span><br><span class="line">  init     Renamed to `soda analyze`</span><br><span class="line">  scan     Computes all measurements and runs all tests on one table.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>Great now let’s create some a dummy warehouse and do some tests:</p>
-<h2 id="Create-dummy-Datawarehouse"><a href="#Create-dummy-Datawarehouse" class="headerlink" title="Create dummy Datawarehouse"></a>Create dummy Datawarehouse</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run --name soda_sql_tutorial_db --<span class="built_in">rm</span> -d \</span><br><span class="line">    -p 5432:5432 \</span><br><span class="line">    -v soda_sql_tutorial_postgres:/var/lib/postgresql/data:rw \</span><br><span class="line">    -e POSTGRES_USER=sodasql \</span><br><span class="line">    -e POSTGRES_DB=sodasql \</span><br><span class="line">    -e POSTGRES_HOST_AUTH_METHOD=trust \</span><br><span class="line">    postgres:9.6.17-alpine</span><br></pre></td></tr></table></figure>
-
-<p>And load it with data with the following command</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> soda_sql_tutorial_db \</span><br><span class="line">  sh -c <span class="string">&quot;wget -qO - https://raw.githubusercontent.com/sodadata/soda-sql/main/tests/demo/demodata.sql | psql -U sodasql -d sodasql&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>According to the tutorial one can remove the created container and volume with the following command :</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker stop soda_sql_tutorial_db</span><br><span class="line">docker volume <span class="built_in">rm</span> soda_sql_tutorial_postgres</span><br></pre></td></tr></table></figure>
-
-<h2 id="Create-warehouse-directory"><a href="#Create-warehouse-directory" class="headerlink" title="Create warehouse directory"></a>Create warehouse directory</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> soda_sql_tutorial</span><br><span class="line"><span class="built_in">cd</span> soda_sql_tutorial/</span><br><span class="line">soda create -d sodasql -u sodasql -w soda_sql_tutorial postgres</span><br></pre></td></tr></table></figure>
-
-<p>This created the <code>warehouse.yml</code> with connection settings which are stored on your homedir <code>~/.soda/env_vars.yml</code> </p>
-<h2 id="Analyse-table-scan-YAML-files"><a href="#Analyse-table-scan-YAML-files" class="headerlink" title="Analyse table scan YAML files"></a>Analyse table scan YAML files</h2><p>The following command will analyze the exiting tables and fill the <code>./tables/</code> directory with large data warehouse it can be inputted manually.</p>
-<p>Well, i only have 5m so let’s give it a go.</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">soda analyze</span><br></pre></td></tr></table></figure>
-
-<p>Hum! interesting, queries the information schema and generates a file which i will assume per table with several metrics for validation.</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">table_name:</span> <span class="string">demodata</span></span><br><span class="line"><span class="attr">metrics:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">row_count</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">missing_count</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">missing_percentage</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">values_count</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">values_percentage</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">valid_count</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">valid_percentage</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">invalid_count</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">invalid_percentage</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">min_length</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">max_length</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">avg_length</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">min</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">max</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">avg</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">sum</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">variance</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">stddev</span></span><br><span class="line"><span class="attr">tests:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">row_count</span> <span class="string">&gt;</span> <span class="number">0</span></span><br><span class="line"><span class="attr">columns:</span></span><br><span class="line">  <span class="attr">id:</span></span><br><span class="line">    <span class="attr">valid_format:</span> <span class="string">uuid</span></span><br><span class="line">    <span class="attr">tests:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">invalid_percentage</span> <span class="string">==</span> <span class="number">0</span></span><br><span class="line">  <span class="attr">feepct:</span></span><br><span class="line">    <span class="attr">valid_format:</span> <span class="string">number_percentage</span></span><br><span class="line">    <span class="attr">tests:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">invalid_percentage</span> <span class="string">==</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Run-a-scan"><a href="#Run-a-scan" class="headerlink" title="Run a scan"></a>Run a scan</h2><p>Each scan requires a warehouse YAML and a scan YAML as input. The scan command will collect the configured metrics and run the defined tests against them.</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">soda scan warehouse.yml tables/demodata.yml</span><br></pre></td></tr></table></figure>
-
-<p>And that’s it for the tutorial</p>
-<p>One can then integrate this with a orchestration tool such as <a target="_blank" rel="noopener" href="https://docs.soda.io/soda-sql/documentation/orchestrate_scans.html">Airflow</a></p>
-<p>It is recommend to <code>PythonVirtualenvOperator</code> to prevent any dependency conflicts.</p>
-<p>Example dag:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> airflow <span class="keyword">import</span> DAG</span><br><span class="line"><span class="keyword">from</span> airflow.models.variable <span class="keyword">import</span> Variable</span><br><span class="line"><span class="keyword">from</span> airflow.operators.python <span class="keyword">import</span> PythonVirtualenvOperator</span><br><span class="line"><span class="keyword">from</span> airflow.operators.dummy <span class="keyword">import</span> DummyOperator</span><br><span class="line"><span class="keyword">from</span> airflow.utils.dates <span class="keyword">import</span> days_ago</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> timedelta</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Make sure that this variable is set in your Airflow</span></span><br><span class="line">warehouse_yml = Variable.get(<span class="string">&#x27;soda_sql_warehouse_yml_path&#x27;</span>)</span><br><span class="line">scan_yml = Variable.get(<span class="string">&#x27;soda_sql_scan_yml_path&#x27;</span>)</span><br><span class="line"></span><br><span class="line">default_args = &#123;</span><br><span class="line">    <span class="string">&#x27;owner&#x27;</span>: <span class="string">&#x27;soda_sql&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;retries&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="string">&#x27;retry_delay&#x27;</span>: timedelta(minutes=<span class="number">5</span>),</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">run_soda_scan</span>(<span class="params">warehouse_yml_file, scan_yml_file</span>):</span><br><span class="line">    <span class="keyword">from</span> sodasql.scan.scan_builder <span class="keyword">import</span> ScanBuilder</span><br><span class="line">    scan_builder = ScanBuilder()</span><br><span class="line">    <span class="comment"># Optionally you can directly build the Warehouse dict from Airflow secrets/variables</span></span><br><span class="line">    <span class="comment"># and set scan_builder.warehouse_dict with values.</span></span><br><span class="line">    scan_builder.warehouse_yml_file = warehouse_yml_file</span><br><span class="line">    scan_builder.scan_yml_file = scan_yml_file</span><br><span class="line">    scan = scan_builder.build()</span><br><span class="line">    scan_result = scan.execute()</span><br><span class="line">    <span class="keyword">if</span> scan_result.has_failures():</span><br><span class="line">        failures = scan_result.failures_count()</span><br><span class="line">        <span class="keyword">raise</span> ValueError(<span class="string">f&quot;Soda Scan found <span class="subst">&#123;failures&#125;</span> errors in your data!&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">dag = DAG(</span><br><span class="line">    <span class="string">&#x27;soda_sql_python_venv_op&#x27;</span>,</span><br><span class="line">    default_args=default_args,</span><br><span class="line">    description=<span class="string">&#x27;A simple Soda SQL scan DAG&#x27;</span>,</span><br><span class="line">    schedule_interval=timedelta(days=<span class="number">1</span>),</span><br><span class="line">    start_date=days_ago(<span class="number">1</span>),</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">ingest_data_op = DummyOperator(</span><br><span class="line">    task_id=<span class="string">&#x27;ingest_data&#x27;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">soda_sql_scan_op = PythonVirtualenvOperator(</span><br><span class="line">    task_id=<span class="string">&#x27;soda_sql_scan_demodata&#x27;</span>,</span><br><span class="line">    python_callable=run_soda_scan,</span><br><span class="line">    requirements=[<span class="string">&quot;soda-sql==2.0.0b10&quot;</span>],</span><br><span class="line">    system_site_packages=<span class="literal">False</span>,</span><br><span class="line">    op_kwargs=&#123;<span class="string">&#x27;warehouse_yml_file&#x27;</span>: warehouse_yml,</span><br><span class="line">               <span class="string">&#x27;scan_yml_file&#x27;</span>: scan_yml&#125;,</span><br><span class="line">    dag=dag</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">publish_data_op = DummyOperator(</span><br><span class="line">    task_id=<span class="string">&#x27;publish_data&#x27;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">ingest_data_op &gt;&gt; soda_sql_scan_op &gt;&gt; publish_data_op</span><br></pre></td></tr></table></figure>
-
-<p>There is also some work being done to support a SodaScanOperator for Airflow.</p>
-<h2 id="Warehouse-types"><a href="#Warehouse-types" class="headerlink" title="Warehouse types"></a>Warehouse types</h2><p>At the moment SODA is supporting the following techs:</p>
-<ul>
-<li>Snowflake</li>
-<li>AWS Athena</li>
-<li>GCP BigQuery</li>
-<li>PostgreSQL</li>
-<li>Redshift</li>
-<li>Spark SQL -&gt; (Coming Soon)</li>
-</ul>
-<h2 id="Conclusions"><a href="#Conclusions" class="headerlink" title="Conclusions"></a>Conclusions</h2><p>This quick tutorial make’s it easy to test the tool. But i would like to extended the tests on a larger solution to check how it behaves. Also i would like to see the SparkSQL as a warehouse option as most of my teams work are centered on that technology.</p>
-<p>Topics to do extended testing with:</p>
-<ul>
-<li>Schema evolution impact on the quality test setup</li>
-<li>Not using a Warehouse solution but a Datalake<ul>
-<li>Providing schemas from a Datalake and using a processing engine on top of it (ex: spark.schemas and Parquet files)</li>
-</ul>
-</li>
-<li>Testing with Delta tables</li>
-<li>Define levels of data-quality analysis</li>
-<li>Understanding better how the scans works</li>
-</ul>
-<p>The tool seems to have good potential and seems very simple which would speed the adoption. Also by sharing this to the open source community seems to be as a good choice to increase user quorum and still offer enterprise services solution.</p>
-<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/sodadata/soda-sql#readme">https://github.com/sodadata/soda-sql#readme</a></li>
-<li><a target="_blank" rel="noopener" href="https://docs.soda.io/soda-sql/getting-started/5_min_tutorial.html">https://docs.soda.io/soda-sql/getting-started/5_min_tutorial.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://docs.soda.io/soda-sql/documentation/orchestrate_scans.html">https://docs.soda.io/soda-sql/documentation/orchestrate_scans.html</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -728,6 +716,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Nuget/">Nuget</a><small>1</small></li>
   
+    <li><a href="/tags/OLTP/">OLTP</a><small>1</small></li>
+  
     <li><a href="/tags/OpenAI/">OpenAI</a><small>1</small></li>
   
     <li><a href="/tags/OpenAPI/">OpenAPI</a><small>1</small></li>
@@ -764,7 +754,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Rust/">Rust</a><small>1</small></li>
   
-    <li><a href="/tags/SQL/">SQL</a><small>1</small></li>
+    <li><a href="/tags/SQL/">SQL</a><small>2</small></li>
   
     <li><a href="/tags/SQLServer/">SQLServer</a><small>1</small></li>
   
