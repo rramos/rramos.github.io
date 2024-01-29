@@ -77,6 +77,76 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
+        <time datetime="2024-01-29T02:00:00.000Z"><a href="/2024/01/29/dbt-clickhouse/">2024-01-29</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2024/01/29/dbt-clickhouse/">Dbt-Clickhouse</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="Integrating-dbt-and-ClickHouse"><a href="#Integrating-dbt-and-ClickHouse" class="headerlink" title="Integrating dbt and ClickHouse"></a>Integrating dbt and ClickHouse</h2><p>In this article will be following the integration steps to use dbt and clickouse with sample IMDB data.</p>
+<h2 id="Setup-DBT"><a href="#Setup-DBT" class="headerlink" title="Setup DBT"></a>Setup DBT</h2><p>Starting by setting up DBT environment</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install dbt-core</span><br><span class="line">pip install dbt-clickhouse</span><br></pre></td></tr></table></figure>
+
+<p>Init the dbt project</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dbt init imdb</span><br></pre></td></tr></table></figure>
+
+<p>Update the file <code>dbt_project.yml</code> and make sure to add the actors</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">models:</span><br><span class="line">  imdb:</span><br><span class="line">    # Config indicated by + and applies to all files under models/example/</span><br><span class="line">    actors:</span><br><span class="line">      +materialized: view</span><br></pre></td></tr></table></figure>
+
+<p>Create the following file <code>models/actors/schema.yml</code> with the following content</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="attr">sources:</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">imdb</span></span><br><span class="line">  <span class="attr">tables:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">directors</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">actors</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">roles</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">movies</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">genres</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">movie_directors</span></span><br></pre></td></tr></table></figure>
+
+<p>Create the following file <code>models/actors/actor_summary.sql</code> with the content</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">&#123;&#123; config(order_by<span class="operator">=</span><span class="string">&#x27;(updated_at, id, name)&#x27;</span>, engine<span class="operator">=</span><span class="string">&#x27;MergeTree()&#x27;</span>, materialized<span class="operator">=</span><span class="string">&#x27;table&#x27;</span>) &#125;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> actor_summary <span class="keyword">as</span> (</span><br><span class="line"><span class="keyword">SELECT</span> id,</span><br><span class="line">    <span class="keyword">any</span>(actor_name) <span class="keyword">as</span> name,</span><br><span class="line">    uniqExact(movie_id)    <span class="keyword">as</span> num_movies,</span><br><span class="line">    <span class="built_in">avg</span>(rank)                <span class="keyword">as</span> avg_rank,</span><br><span class="line">    uniqExact(genre)         <span class="keyword">as</span> genres,</span><br><span class="line">    uniqExact(director_name) <span class="keyword">as</span> directors,</span><br><span class="line">    <span class="built_in">max</span>(created_at) <span class="keyword">as</span> updated_at</span><br><span class="line"><span class="keyword">FROM</span> (</span><br><span class="line">        <span class="keyword">SELECT</span> &#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;actors&#x27;</span>) &#125;&#125;.id <span class="keyword">as</span> id,</span><br><span class="line">                concat(&#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;actors&#x27;</span>) &#125;&#125;.first_name, <span class="string">&#x27; &#x27;</span>, &#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;actors&#x27;</span>) &#125;&#125;.last_name) <span class="keyword">as</span> actor_name,</span><br><span class="line">                &#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;movies&#x27;</span>) &#125;&#125;.id <span class="keyword">as</span> movie_id,</span><br><span class="line">                &#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;movies&#x27;</span>) &#125;&#125;.rank <span class="keyword">as</span> rank,</span><br><span class="line">                genre,</span><br><span class="line">                concat(&#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;directors&#x27;</span>) &#125;&#125;.first_name, <span class="string">&#x27; &#x27;</span>, &#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;directors&#x27;</span>) &#125;&#125;.last_name) <span class="keyword">as</span> director_name,</span><br><span class="line">                created_at</span><br><span class="line">        <span class="keyword">FROM</span> &#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;actors&#x27;</span>) &#125;&#125;</span><br><span class="line">                    <span class="keyword">JOIN</span> &#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;roles&#x27;</span>) &#125;&#125; <span class="keyword">ON</span> &#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;roles&#x27;</span>) &#125;&#125;.actor_id <span class="operator">=</span> &#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;actors&#x27;</span>) &#125;&#125;.id</span><br><span class="line">                    <span class="keyword">LEFT</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span> &#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;movies&#x27;</span>) &#125;&#125; <span class="keyword">ON</span> &#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;movies&#x27;</span>) &#125;&#125;.id <span class="operator">=</span> &#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;roles&#x27;</span>) &#125;&#125;.movie_id</span><br><span class="line">                    <span class="keyword">LEFT</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span> &#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;genres&#x27;</span>) &#125;&#125; <span class="keyword">ON</span> &#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;genres&#x27;</span>) &#125;&#125;.movie_id <span class="operator">=</span> &#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;movies&#x27;</span>) &#125;&#125;.id</span><br><span class="line">                    <span class="keyword">LEFT</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span> &#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;movie_directors&#x27;</span>) &#125;&#125; <span class="keyword">ON</span> &#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;movie_directors&#x27;</span>) &#125;&#125;.movie_id <span class="operator">=</span> &#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;movies&#x27;</span>) &#125;&#125;.id</span><br><span class="line">                    <span class="keyword">LEFT</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span> &#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;directors&#x27;</span>) &#125;&#125; <span class="keyword">ON</span> &#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;directors&#x27;</span>) &#125;&#125;.id <span class="operator">=</span> &#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;movie_directors&#x27;</span>) &#125;&#125;.director_id</span><br><span class="line">        )</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> id</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">from</span> actor_summary</span><br></pre></td></tr></table></figure>
+
+<p>Configure the clickstream connection on the following file <code>~/.dbt/profiles.yml</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">imdb:</span></span><br><span class="line">  <span class="attr">target:</span> <span class="string">dev</span></span><br><span class="line">  <span class="attr">outputs:</span></span><br><span class="line">    <span class="attr">dev:</span></span><br><span class="line">      <span class="attr">type:</span> <span class="string">clickhouse</span></span><br><span class="line">      <span class="attr">schema:</span> <span class="string">imdb_dbt</span></span><br><span class="line">      <span class="attr">host:</span> <span class="string">localhost</span></span><br><span class="line">      <span class="attr">port:</span> <span class="number">8123</span></span><br><span class="line">      <span class="attr">user:</span> <span class="string">default</span></span><br><span class="line">      <span class="attr">password:</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line">      <span class="attr">secure:</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>
+
+<p>After this updates run the <code>dbt debug</code> command.<br>To make sure the connection is working properly</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">dbt debug</span><br><span class="line">00:31:58  Running with dbt=1.7.6</span><br><span class="line">00:31:58  dbt version: 1.7.6</span><br><span class="line">00:31:58  python version: 3.11.6</span><br><span class="line">00:31:58  python path: /home/rramos/Development/local/dbt/bin/python</span><br><span class="line">00:31:58  os info: Linux-6.6.10-zen1-1-zen-x86_64-with-glibc2.38</span><br><span class="line">00:31:58  Using profiles dir at /home/rramos/.dbt</span><br><span class="line">00:31:58  Using profiles.yml file at /home/rramos/.dbt/profiles.yml</span><br><span class="line">00:31:58  Using dbt_project.yml file at /home/rramos/Development/local/dbt/imdb/dbt_project.yml</span><br><span class="line">00:31:58  adapter type: clickhouse</span><br><span class="line">00:31:58  adapter version: 1.7.1</span><br><span class="line">00:31:58  Configuration:</span><br><span class="line">00:31:58    profiles.yml file [OK found and valid]</span><br><span class="line">00:31:58    dbt_project.yml file [OK found and valid]</span><br><span class="line">00:31:58  Required dependencies:</span><br><span class="line">00:31:58   - git [OK found]</span><br><span class="line">...</span><br><span class="line">00:31:58  Registered adapter: clickhouse=1.7.1</span><br><span class="line">00:31:58    Connection test: [OK connection ok]</span><br></pre></td></tr></table></figure>
+
+<p>If the connection test passed properly, one just need to create the model via dbt.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dbt run</span><br></pre></td></tr></table></figure>
+
+<p>And you should have a similar output</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">dbt run</span><br><span class="line">00:38:13  Running with dbt=1.7.6</span><br><span class="line">00:38:13  Registered adapter: clickhouse=1.7.1</span><br><span class="line">00:38:13  Unable to do partial parsing because a project config has changed</span><br><span class="line">00:38:15  Found 1 model, 6 sources, 0 exposures, 0 metrics, 421 macros, 0 groups, 0 semantic models</span><br><span class="line">00:38:15  </span><br><span class="line">00:38:15  Concurrency: 1 threads (target=&#x27;dev&#x27;)</span><br><span class="line">00:38:15  </span><br><span class="line">00:38:15  1 of 1 START sql view model `imdb`.`actor_summary` ............................. [RUN]</span><br><span class="line">00:38:15  1 of 1 OK created sql view model `imdb`.`actor_summary` ........................ [OK in 0.17s]</span><br><span class="line">00:38:15  </span><br><span class="line">00:38:15  Finished running 1 view model in 0 hours 0 minutes and 0.27 seconds (0.27s).</span><br><span class="line">00:38:15  </span><br><span class="line">00:38:15  Completed successfully</span><br><span class="line">00:38:15  </span><br><span class="line">00:38:15  Done. PASS=1 WARN=0 ERROR=0 SKIP=0 TOTAL=1</span><br></pre></td></tr></table></figure>
+
+<p>Test query the model</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> imdb_dbt.actor_summary</span><br><span class="line"><span class="keyword">WHERE</span> num_movies <span class="operator">&gt;</span> <span class="number">5</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> avg_rank <span class="keyword">DESC</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>In this article I’ve went trough the process of setup a Clickhouse database and setup dbt to setup the models with IMDB test data for actors, directors, movies, etc.</p>
+<p>This two systems work like a charm together.<br>Clickstream shows great performance for analytical queries, and dbt compiles and runs your analytics code against your data platform, enabling you and your team to collaborate on a single source of truth for metrics, insights, and business definitions.</p>
+<p>Would like to extend this exercise by incorporating github actions related with dbt test actions before promoting to production.</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://clickhouse.com/docs/en/integrations/dbt">https://clickhouse.com/docs/en/integrations/dbt</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.getdbt.com/guides">https://docs.getdbt.com/guides</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2024-01-28T10:00:00.000Z"><a href="/2024/01/28/clickhouse/">2024-01-28</a></time>
       
       
@@ -361,90 +431,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2024-01-02T10:00:00.000Z"><a href="/2024/01/02/scalavariance/">2024-01-02</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2024/01/02/scalavariance/">Scala Variance</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>Variance lets you control how type parameters behave with regards to subtyping. Scala supports variance annotations of type parameters of generic classes, to allow them to be covariant, contravariant, or invariant if no annotations are used. The use of variance in the type system allows us to make intuitive connections between complex types.</p>
-<blockquote>
-<p>Variance: If B Extends A, Should List[B] extend List[A] ?</p>
-</blockquote>
-<h3 id="Invariance"><a href="#Invariance" class="headerlink" title="Invariance"></a>Invariance</h3><p>By <strong>default</strong>, type parameters in Scala are invariant: subtyping relationships between the type parameters aren’t reflected in the parameterized type.</p>
-<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">trait</span> <span class="title">List</span>[<span class="type">A</span>]</span></span><br></pre></td></tr></table></figure>
-
-<p>Example</p>
-<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Box</span>[<span class="type">A</span>](<span class="params">var content: <span class="type">A</span></span>)</span></span><br></pre></td></tr></table></figure>
-
-<p>We’re going to be putting values of type <code>Animal</code> in it. This type is defined as follows:</p>
-<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">name</span></span>: <span class="type">String</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">case</span> <span class="class"><span class="keyword">class</span> <span class="title">Cat</span>(<span class="params">name: <span class="type">String</span></span>) <span class="keyword">extends</span> <span class="title">Animal</span></span></span><br><span class="line"><span class="keyword">case</span> <span class="class"><span class="keyword">class</span> <span class="title">Dog</span>(<span class="params">name: <span class="type">String</span></span>) <span class="keyword">extends</span> <span class="title">Animal</span></span></span><br></pre></td></tr></table></figure>
-
-<p>We can say that <code>Cat</code> is a subtype of <code>Animal</code>, and that <code>Dog</code> is also a subtype of <code>Animal</code>. That means that the following is well-typed:</p>
-<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> myAnimal: <span class="type">Animal</span> = <span class="type">Cat</span>(<span class="string">&quot;Felix&quot;</span>)</span><br></pre></td></tr></table></figure>
-<p>What about boxes? Is <code>Box[Cat]</code> a subtype of <code>Box[Animal]</code>, like <code>Cat</code> is a subtype of <code>Animal</code>? </p>
-<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> myCatBox: <span class="type">Box</span>[<span class="type">Cat</span>] = <span class="keyword">new</span> <span class="type">Box</span>[<span class="type">Cat</span>](<span class="type">Cat</span>(<span class="string">&quot;Felix&quot;</span>))</span><br><span class="line"><span class="keyword">val</span> myAnimalBox: <span class="type">Box</span>[<span class="type">Animal</span>] = myCatBox <span class="comment">// this doesn&#x27;t compile</span></span><br></pre></td></tr></table></figure>
-
-<p>Although this is valid</p>
-<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> myAnimal: <span class="type">Animal</span> = myAnimalBox.content</span><br><span class="line">myAnimalBox.content = <span class="type">Dog</span>(<span class="string">&quot;Fido&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>From this, we have to conclude that <code>Box[Cat]</code> and <code>Box[Animal]</code> can’t have a subtyping relationship, even though <code>Cat</code> and <code>Animal</code> do.</p>
-<h3 id="Covarience"><a href="#Covarience" class="headerlink" title="Covarience"></a>Covarience</h3><p>The The problem we ran in to above, is that because we could put a Dog in an Animal Box, a Cat Box can’t be an Animal Box.</p>
-<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">trait</span> <span class="title">List</span>[+<span class="type">A</span>]</span></span><br></pre></td></tr></table></figure>
-
-<p>Example:</p>
-<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ImmutableBox</span>[+<span class="type">A</span>](<span class="params">val content: <span class="type">A</span></span>)</span></span><br><span class="line"><span class="keyword">val</span> catbox: <span class="type">ImmutableBox</span>[<span class="type">Cat</span>] = <span class="keyword">new</span> <span class="type">ImmutableBox</span>[<span class="type">Cat</span>](<span class="type">Cat</span>(<span class="string">&quot;Felix&quot;</span>))</span><br><span class="line"><span class="keyword">val</span> animalBox: <span class="type">ImmutableBox</span>[<span class="type">Animal</span>] = catbox <span class="comment">// now this compiles</span></span><br></pre></td></tr></table></figure>
-
-<p>We say that ImmutableBox is <strong>covariant</strong> in <code>A</code>, and this is indicated by the <code>+</code> before the <code>A</code>.</p>
-<h3 id="Contravarience"><a href="#Contravarience" class="headerlink" title="Contravarience"></a>Contravarience</h3><p>We’ve seen we can accomplish covariance by making sure that we can’t put something in the covariant type, but only get something out. What if we had the opposite, something you can put something in, but can’t take out?</p>
-<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">trait</span> <span class="title">List</span>[-<span class="type">A</span>]</span></span><br></pre></td></tr></table></figure>
-
-<p>Example:</p>
-<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Serializer</span>[-<span class="type">A</span>] </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">serialize</span></span>(a: <span class="type">A</span>): <span class="type">String</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> animalSerializer: <span class="type">Serializer</span>[<span class="type">Animal</span>] = <span class="keyword">new</span> <span class="type">Serializer</span>[<span class="type">Animal</span>] &#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">serialize</span></span>(animal: <span class="type">Animal</span>): <span class="type">String</span> = <span class="string">s&quot;&quot;</span><span class="string">&quot;&#123; &quot;</span><span class="string">name&quot;: &quot;</span>$&#123;animal.name&#125;<span class="string">&quot; &#125;&quot;</span><span class="string">&quot;&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">val</span> catSerializer: <span class="type">Serializer</span>[<span class="type">Cat</span>] = animalSerializer</span><br><span class="line">catSerializer.serialize(<span class="type">Cat</span>(<span class="string">&quot;Felix&quot;</span>))</span><br></pre></td></tr></table></figure>
-
-<p>We say that <code>Serializer</code> is contravariant in <code>A</code>, and this is indicated by the <code>-</code> before the <code>A</code>. A more general serializer is a subtype of a more specific serializer.</p>
-<p>More formally, that gives us the reverse relationship: given some class <code>Contra[-T]</code>, then if <code>A</code> is a subtype of <code>B</code>, <code>Contra[B]</code> is a subtype of <code>Contra[A]</code>.</p>
-<h2 id="Bounded-Types"><a href="#Bounded-Types" class="headerlink" title="Bounded Types"></a>Bounded Types</h2><p>The type of Variance would lead to have members defined with upper or lower bounded types like the following example.</p>
-<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SuperCar</span> <span class="keyword">extends</span> <span class="title">Car</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Garage</span>[<span class="type">T</span> &lt;: <span class="type">Car</span>&gt;](<span class="params">car: <span class="type">T</span></span>)</span></span><br></pre></td></tr></table></figure>
-
-<p>More deatils on bounded values on the following articles:</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://docs.scala-lang.org/tour/upper-type-bounds.html">https://docs.scala-lang.org/tour/upper-type-bounds.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://docs.scala-lang.org/tour/lower-type-bounds.html">https://docs.scala-lang.org/tour/lower-type-bounds.html</a></li>
-</ul>
-<h2 id="Immutability-and-Variance"><a href="#Immutability-and-Variance" class="headerlink" title="Immutability and Variance"></a>Immutability and Variance</h2><p>Immutability constitutes an important part of the design decision behind using variance. For example, Scala’s collections systematically distinguish between mutable and immutable collections. The main issue is that a covariant mutable collection can break type safety. This is why List is a covariant collection, while scala.collection.mutable.ListBuffer is an invariant collection.</p>
-<h2 id="Comparison-With-Other-Languages"><a href="#Comparison-With-Other-Languages" class="headerlink" title="Comparison With Other Languages"></a>Comparison With Other Languages</h2><p>Variance is supported in different ways by some languages that are similar to Scala. Scala’s tendency towards immutable types makes it that covariant and contravariant types are more common than in other languages, since a mutable generic type must be invariant.</p>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://docs.scala-lang.org/tour/variances.html">https://docs.scala-lang.org/tour/variances.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://docs.scala-lang.org/tour/upper-type-bounds.html">https://docs.scala-lang.org/tour/upper-type-bounds.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://docs.scala-lang.org/tour/lower-type-bounds.html">https://docs.scala-lang.org/tour/lower-type-bounds.html</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -509,6 +495,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/CheatSheet/">CheatSheet</a><small>1</small></li>
   
+    <li><a href="/tags/Clickhouse/">Clickhouse</a><small>1</small></li>
+  
     <li><a href="/tags/Cloudera/">Cloudera</a><small>3</small></li>
   
     <li><a href="/tags/Code/">Code</a><small>1</small></li>
@@ -523,7 +511,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Customization/">Customization</a><small>2</small></li>
   
-    <li><a href="/tags/DBT/">DBT</a><small>1</small></li>
+    <li><a href="/tags/DBT/">DBT</a><small>2</small></li>
   
     <li><a href="/tags/Data-Engineering/">Data Engineering</a><small>4</small></li>
   

@@ -77,6 +77,90 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
+        <time datetime="2024-01-02T10:00:00.000Z"><a href="/2024/01/02/scalavariance/">2024-01-02</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2024/01/02/scalavariance/">Scala Variance</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>Variance lets you control how type parameters behave with regards to subtyping. Scala supports variance annotations of type parameters of generic classes, to allow them to be covariant, contravariant, or invariant if no annotations are used. The use of variance in the type system allows us to make intuitive connections between complex types.</p>
+<blockquote>
+<p>Variance: If B Extends A, Should List[B] extend List[A] ?</p>
+</blockquote>
+<h3 id="Invariance"><a href="#Invariance" class="headerlink" title="Invariance"></a>Invariance</h3><p>By <strong>default</strong>, type parameters in Scala are invariant: subtyping relationships between the type parameters aren’t reflected in the parameterized type.</p>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">trait</span> <span class="title">List</span>[<span class="type">A</span>]</span></span><br></pre></td></tr></table></figure>
+
+<p>Example</p>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Box</span>[<span class="type">A</span>](<span class="params">var content: <span class="type">A</span></span>)</span></span><br></pre></td></tr></table></figure>
+
+<p>We’re going to be putting values of type <code>Animal</code> in it. This type is defined as follows:</p>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">name</span></span>: <span class="type">String</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">case</span> <span class="class"><span class="keyword">class</span> <span class="title">Cat</span>(<span class="params">name: <span class="type">String</span></span>) <span class="keyword">extends</span> <span class="title">Animal</span></span></span><br><span class="line"><span class="keyword">case</span> <span class="class"><span class="keyword">class</span> <span class="title">Dog</span>(<span class="params">name: <span class="type">String</span></span>) <span class="keyword">extends</span> <span class="title">Animal</span></span></span><br></pre></td></tr></table></figure>
+
+<p>We can say that <code>Cat</code> is a subtype of <code>Animal</code>, and that <code>Dog</code> is also a subtype of <code>Animal</code>. That means that the following is well-typed:</p>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> myAnimal: <span class="type">Animal</span> = <span class="type">Cat</span>(<span class="string">&quot;Felix&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>What about boxes? Is <code>Box[Cat]</code> a subtype of <code>Box[Animal]</code>, like <code>Cat</code> is a subtype of <code>Animal</code>? </p>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> myCatBox: <span class="type">Box</span>[<span class="type">Cat</span>] = <span class="keyword">new</span> <span class="type">Box</span>[<span class="type">Cat</span>](<span class="type">Cat</span>(<span class="string">&quot;Felix&quot;</span>))</span><br><span class="line"><span class="keyword">val</span> myAnimalBox: <span class="type">Box</span>[<span class="type">Animal</span>] = myCatBox <span class="comment">// this doesn&#x27;t compile</span></span><br></pre></td></tr></table></figure>
+
+<p>Although this is valid</p>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> myAnimal: <span class="type">Animal</span> = myAnimalBox.content</span><br><span class="line">myAnimalBox.content = <span class="type">Dog</span>(<span class="string">&quot;Fido&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>From this, we have to conclude that <code>Box[Cat]</code> and <code>Box[Animal]</code> can’t have a subtyping relationship, even though <code>Cat</code> and <code>Animal</code> do.</p>
+<h3 id="Covarience"><a href="#Covarience" class="headerlink" title="Covarience"></a>Covarience</h3><p>The The problem we ran in to above, is that because we could put a Dog in an Animal Box, a Cat Box can’t be an Animal Box.</p>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">trait</span> <span class="title">List</span>[+<span class="type">A</span>]</span></span><br></pre></td></tr></table></figure>
+
+<p>Example:</p>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ImmutableBox</span>[+<span class="type">A</span>](<span class="params">val content: <span class="type">A</span></span>)</span></span><br><span class="line"><span class="keyword">val</span> catbox: <span class="type">ImmutableBox</span>[<span class="type">Cat</span>] = <span class="keyword">new</span> <span class="type">ImmutableBox</span>[<span class="type">Cat</span>](<span class="type">Cat</span>(<span class="string">&quot;Felix&quot;</span>))</span><br><span class="line"><span class="keyword">val</span> animalBox: <span class="type">ImmutableBox</span>[<span class="type">Animal</span>] = catbox <span class="comment">// now this compiles</span></span><br></pre></td></tr></table></figure>
+
+<p>We say that ImmutableBox is <strong>covariant</strong> in <code>A</code>, and this is indicated by the <code>+</code> before the <code>A</code>.</p>
+<h3 id="Contravarience"><a href="#Contravarience" class="headerlink" title="Contravarience"></a>Contravarience</h3><p>We’ve seen we can accomplish covariance by making sure that we can’t put something in the covariant type, but only get something out. What if we had the opposite, something you can put something in, but can’t take out?</p>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">trait</span> <span class="title">List</span>[-<span class="type">A</span>]</span></span><br></pre></td></tr></table></figure>
+
+<p>Example:</p>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Serializer</span>[-<span class="type">A</span>] </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">serialize</span></span>(a: <span class="type">A</span>): <span class="type">String</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> animalSerializer: <span class="type">Serializer</span>[<span class="type">Animal</span>] = <span class="keyword">new</span> <span class="type">Serializer</span>[<span class="type">Animal</span>] &#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">serialize</span></span>(animal: <span class="type">Animal</span>): <span class="type">String</span> = <span class="string">s&quot;&quot;</span><span class="string">&quot;&#123; &quot;</span><span class="string">name&quot;: &quot;</span>$&#123;animal.name&#125;<span class="string">&quot; &#125;&quot;</span><span class="string">&quot;&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">val</span> catSerializer: <span class="type">Serializer</span>[<span class="type">Cat</span>] = animalSerializer</span><br><span class="line">catSerializer.serialize(<span class="type">Cat</span>(<span class="string">&quot;Felix&quot;</span>))</span><br></pre></td></tr></table></figure>
+
+<p>We say that <code>Serializer</code> is contravariant in <code>A</code>, and this is indicated by the <code>-</code> before the <code>A</code>. A more general serializer is a subtype of a more specific serializer.</p>
+<p>More formally, that gives us the reverse relationship: given some class <code>Contra[-T]</code>, then if <code>A</code> is a subtype of <code>B</code>, <code>Contra[B]</code> is a subtype of <code>Contra[A]</code>.</p>
+<h2 id="Bounded-Types"><a href="#Bounded-Types" class="headerlink" title="Bounded Types"></a>Bounded Types</h2><p>The type of Variance would lead to have members defined with upper or lower bounded types like the following example.</p>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SuperCar</span> <span class="keyword">extends</span> <span class="title">Car</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Garage</span>[<span class="type">T</span> &lt;: <span class="type">Car</span>&gt;](<span class="params">car: <span class="type">T</span></span>)</span></span><br></pre></td></tr></table></figure>
+
+<p>More deatils on bounded values on the following articles:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.scala-lang.org/tour/upper-type-bounds.html">https://docs.scala-lang.org/tour/upper-type-bounds.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.scala-lang.org/tour/lower-type-bounds.html">https://docs.scala-lang.org/tour/lower-type-bounds.html</a></li>
+</ul>
+<h2 id="Immutability-and-Variance"><a href="#Immutability-and-Variance" class="headerlink" title="Immutability and Variance"></a>Immutability and Variance</h2><p>Immutability constitutes an important part of the design decision behind using variance. For example, Scala’s collections systematically distinguish between mutable and immutable collections. The main issue is that a covariant mutable collection can break type safety. This is why List is a covariant collection, while scala.collection.mutable.ListBuffer is an invariant collection.</p>
+<h2 id="Comparison-With-Other-Languages"><a href="#Comparison-With-Other-Languages" class="headerlink" title="Comparison With Other Languages"></a>Comparison With Other Languages</h2><p>Variance is supported in different ways by some languages that are similar to Scala. Scala’s tendency towards immutable types makes it that covariant and contravariant types are more common than in other languages, since a mutable generic type must be invariant.</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.scala-lang.org/tour/variances.html">https://docs.scala-lang.org/tour/variances.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.scala-lang.org/tour/upper-type-bounds.html">https://docs.scala-lang.org/tour/upper-type-bounds.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.scala-lang.org/tour/lower-type-bounds.html">https://docs.scala-lang.org/tour/lower-type-bounds.html</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2023-12-27T10:00:00.000Z"><a href="/2023/12/27/aspire/">2023-12-27</a></time>
       
       
@@ -420,50 +504,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2023-12-25T10:00:00.000Z"><a href="/2023/12/25/TheOnething/">2023-12-25</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2023/12/25/TheOnething/">The One Thing</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>One of the references that I most enjoyed on the book:</p>
-<ul>
-<li><strong>The One Thing</strong>, by <em>Gary Keller, Jay Papasan</em></li>
-</ul>
-<p>Passion for something leads to disproportionate time practicing or working at it. That time spent eventually translates to skill, and when skill improves, results improve. Better results generally lead to more enjoyment, and more passion and more time is invested. It can be a virtuous cycle all the way to extraordinary results</p>
-<blockquote>
-<p>Find something you love, put your energy on it and good things will come out of it</p>
-</blockquote>
-<p>Many people struggle to achieve their goals because they lack clear direction and focus. Our One Thing Approach provides a clear path to success.</p>
-<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://the1thing.com/book">https://the1thing.com/book</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -530,6 +570,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/CheatSheet/">CheatSheet</a><small>1</small></li>
   
+    <li><a href="/tags/Clickhouse/">Clickhouse</a><small>1</small></li>
+  
     <li><a href="/tags/Cloudera/">Cloudera</a><small>3</small></li>
   
     <li><a href="/tags/Code/">Code</a><small>1</small></li>
@@ -544,7 +586,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Customization/">Customization</a><small>2</small></li>
   
-    <li><a href="/tags/DBT/">DBT</a><small>1</small></li>
+    <li><a href="/tags/DBT/">DBT</a><small>2</small></li>
   
     <li><a href="/tags/Data-Engineering/">Data Engineering</a><small>4</small></li>
   
