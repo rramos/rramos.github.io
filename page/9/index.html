@@ -77,6 +77,67 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
+        <time datetime="2017-10-18T01:26:00.000Z"><a href="/2017/10/18/dockers/">2017-10-18</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/10/18/dockers/">Dockers</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>This article is just to share a list of usefull dockers, in case one wants to speed test some feature and required some of this software to be up and running.</p>
+<h1 id="Why"><a href="#Why" class="headerlink" title="Why ?"></a>Why ?</h1><p>The main ideia is that i can fireup quickly without having to worry on the ports that are allready mapped on my local machine, so the several dockers should have colision ports taken care of.</p>
+<p>One should just need to execute <code>docker-compose up</code> and that’s it.</p>
+<p>You could also use other repo, but i’ll try to make my local configurations in a way that i could interuse several dockers.</p>
+<h1 id="Dockers-repo"><a href="#Dockers-repo" class="headerlink" title="Dockers repo"></a>Dockers repo</h1><p>You just need to clone the repo <a target="_blank" rel="noopener" href="https://github.com/rramos/dockers">https://github.com/rramos/dockers</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/rramos/dockers.git</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h1><p>Make sure you have docker and docker compose properly configured</p>
+<h1 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h1><p>Just fire-up <code>docker-compose</code> and that’s it </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> docker-portainer</span><br><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+<p>Each docker has it’s own README file with more instructions.</p>
+<h1 id="Docker-List"><a href="#Docker-List" class="headerlink" title="Docker List"></a>Docker List</h1><ul>
+<li>docker-grafana  </li>
+<li>docker-hdp      </li>
+<li>docker-ksql    </li>
+<li>docker-nifi         </li>
+<li>docker-portainer  </li>
+<li>docker-zeppelin  </li>
+<li>docker-hbase    </li>
+<li>docker-jenkins  </li>
+<li>docker-moodle  </li>
+<li>docker-openproject  </li>
+<li>docker-rundeck</li>
+</ul>
+<p>This is the available list at the moment of this article, i will add up more as i’m using and testing new stuff.</p>
+<p><strong>NOTE:</strong> Use this containers at your own risk </p>
+<p>Cheers,<br>RR</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2017-10-13T02:09:00.000Z"><a href="/2017/10/13/drelephat/">2017-10-13</a></time>
       
       
@@ -461,91 +522,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-10-02T22:32:00.000Z"><a href="/2017/10/02/vdi2qemu/">2017-10-02</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/10/02/vdi2qemu/">Convert VirtualBox Images to KVM</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>In this article i will explain a quick way to convert <a target="_blank" rel="noopener" href="https://www.virtualbox.org/">VirtualBox</a> images (vdi) into qcow2 and load them in <a target="_blank" rel="noopener" href="https://www.linux-kvm.org/">KVM</a>.</p>
-<h1 id="Why"><a href="#Why" class="headerlink" title="Why ?"></a>Why ?</h1><p>This is something i normally do, because i get better performance running Linux VM’s on KVM and saves me some space with qcow2 volume format.</p>
-<h2 id="qcow2-Features"><a href="#qcow2-Features" class="headerlink" title="qcow2 Features"></a>qcow2 Features</h2><p>One of the main characteristics of qcow disk images is that files with this format can grow as data is added. This allows for smaller file sizes than raw disk images, which allocate the whole image space to a file, even if parts of it are empty</p>
-<h1 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h1><ul>
-<li>You should have KVM configured correctly</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install qemu-kvm</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Install qemu-utils</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install qemu-utils</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Let’s get an example image. <ul>
-<li>I’m fetching one from <a target="_blank" rel="noopener" href="http://www.osboxes.org/ubuntu">http://www.osboxes.org/ubuntu</a>. (ex: Ubuntu 17.10 10th-August build (64bit).vdi)</li>
-</ul>
-</li>
-</ul>
-<p><strong>NOTE:</strong> Procedure executed with qemu-img version 2.5.0</p>
-<h1 id="Converting"><a href="#Converting" class="headerlink" title="Converting"></a>Converting</h1><ul>
-<li>Convert the image</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">qemu-img convert -f vdi -O qcow2 Ubuntu_17.10.vdi Ubuntu_17.10.qcow2</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>You can check the image details by executing <code>qemu-img info Ubuntu_17.10.qcow2</code> .</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">qemu-img info Ubuntu_17.10.qcow2</span><br><span class="line">image: Ubuntu_17.10.qcow2</span><br><span class="line">file format: qcow2</span><br><span class="line">virtual size: 100G (107374182400 bytes)</span><br><span class="line">disk size: 4.1G</span><br><span class="line">cluster_size: 65536</span><br><span class="line">Format specific information:</span><br><span class="line">    compat: 1.1</span><br><span class="line">    lazy refcounts: <span class="literal">false</span></span><br><span class="line">    refcount bits: 16</span><br><span class="line">    corrupt: <span class="literal">false</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Now lets Upload this image to our KVM pool and create a new VM from it:</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo virsh vol-create-as default ubuntu-17.10 100G --format qcow2</span><br><span class="line">sudo virsh vol-upload --pool default ubuntu-17.10 Ubuntu_17.10.qcow2 </span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>Start <a target="_blank" rel="noopener" href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Virtualization_Host_Configuration_and_Guest_Installation_Guide/chap-Virtualization_Host_Configuration_and_Guest_Installation_Guide-Guest_Installation_Virt_Manager-Creating_guests_with_virt_manager.html">virt-manager</a> and select <strong>Import existing Disk Image</strong></p>
-</li>
-<li><p>The default password for this images are <code>osboxes.org</code> . You should have something like the following in the console.</p>
-</li>
-</ul>
-<img src="/2017/10/02/vdi2qemu/virt-manager.png" class="" title="virt-manager">
-
-<ul>
-<li>If you want to create brand new images you could use <a target="_blank" rel="noopener" href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Virtualization_Host_Configuration_and_Guest_Installation_Guide/sect-Virtualization_Host_Configuration_and_Guest_Installation_Guide-Guest_Installation-Creating_guests_with_virt_install.html">virt-install</a>, but that one would go to another article.</li>
-</ul>
-<p>Cheers,<br>RR</p>
-<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://www.virtualbox.org/wiki/Downloads">https://www.virtualbox.org/wiki/Downloads</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.linux-kvm.org/page/Main_Page">https://www.linux-kvm.org/page/Main_Page</a></li>
-<li><a target="_blank" rel="noopener" href="http://www.osboxes.org/ubuntu">http://www.osboxes.org/ubuntu</a></li>
-<li><a target="_blank" rel="noopener" href="https://docs.openstack.org/image-guide/convert-images.html">https://docs.openstack.org/image-guide/convert-images.html</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -597,6 +573,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/Avro/">Avro</a><small>1</small></li>
   
     <li><a href="/tags/BTRFS/">BTRFS</a><small>1</small></li>
+  
+    <li><a href="/tags/Backend/">Backend</a><small>1</small></li>
   
     <li><a href="/tags/Beeline/">Beeline</a><small>1</small></li>
   
@@ -663,6 +641,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/Events/">Events</a><small>1</small></li>
   
     <li><a href="/tags/Fish/">Fish</a><small>1</small></li>
+  
+    <li><a href="/tags/Frontend/">Frontend</a><small>1</small></li>
   
     <li><a href="/tags/GCS/">GCS</a><small>1</small></li>
   
@@ -769,6 +749,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/QEMU/">QEMU</a><small>2</small></li>
   
     <li><a href="/tags/RDD/">RDD</a><small>1</small></li>
+  
+    <li><a href="/tags/React/">React</a><small>1</small></li>
   
     <li><a href="/tags/Reserve-Proxy/">Reserve Proxy</a><small>1</small></li>
   

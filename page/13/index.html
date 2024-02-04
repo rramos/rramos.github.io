@@ -77,6 +77,59 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
+        <time datetime="2017-09-07T02:00:00.000Z"><a href="/2017/09/07/mkv/">2017-09-07</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/09/07/mkv/">Terminal Markdown Viewer and MarkDown SpellChecker</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>It’s been a while that i’ve updated this posts. So let me start for something i’ve found out the other day.</p>
+<h2 id="Terminal-Markdown-Viewer"><a href="#Terminal-Markdown-Viewer" class="headerlink" title="Terminal Markdown Viewer"></a>Terminal Markdown Viewer</h2><p>I though it would be cool to have some tool that could parse me Markdown files and present them nicely formatted, like <code>cat</code> command.</p>
+<p>And it seems i’m not the only one :)</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/axiros/terminal_markdown_viewer">https://github.com/axiros/terminal_markdown_viewer</a></p>
+<p>In order to install just follow the instruction on the site. Pip worked well for me:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pip install mdv</span><br></pre></td></tr></table></figure>
+
+<p>I’ve updated my PATH environment var on <code>.bashrc</code> with:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">export PYTHONPATH=&quot;$&#123;PYTHONPATH&#125;:/$&#123;HOME&#125;/.local/lib/python2.7/site-packages&quot;</span><br><span class="line">export PATH=&quot;$PATH:~/.local/bin&quot;</span><br></pre></td></tr></table></figure>
+
+<p>I can now execute <code>mdv</code> command try it out it some .md files :D</p>
+<h2 id="A-Markdown-spell-checking-tool"><a href="#A-Markdown-spell-checking-tool" class="headerlink" title="A Markdown spell checking tool."></a>A Markdown spell checking tool.</h2><p>The other thing is regarding spell-check, as you can probably notice i really do a lot of errors, but i don’t wont to use a high resource editor just because of this how about a MD spell checking tool ?</p>
+<p>Well i’m trying this one ad i’m using [hexo][<a href="http://hexo.io]">http://hexo.io]</a> for the page generation and it uses already npm modules just added a new one </p>
+<h3 id="install"><a href="#install" class="headerlink" title="install"></a>install</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm i markdown-spellcheck -g</span><br></pre></td></tr></table></figure>
+
+<p>One can run interactive like</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mdspell &quot;**/*.md&quot;</span><br></pre></td></tr></table></figure>
+
+<p>It’s a bit slow but the database would grow in terms, i’m giving a try to it.</p>
+<p>I also add to add <code>.spelling</code> no to keep the dictionary database on git. I probably would add it later.</p>
+<p>Cheers,<br>RR</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2016-11-03T22:09:00.000Z"><a href="/2016/11/03/SparkSummit2016/">2016-11-03</a></time>
       
       
@@ -367,51 +420,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-09-18T01:17:00.000Z"><a href="/2016/09/18/keybase-io/">2016-09-18</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/09/18/keybase-io/">keybase.io</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="Keybase"><a href="#Keybase" class="headerlink" title="Keybase"></a>Keybase</h1><p>Some time back i used to have my PGP key registered on MIT pgp server <a target="_blank" rel="noopener" href="http://pgp.mit.edu/">http://pgp.mit.edu/</a>. It’s one of the largest public directory for PGP keys, but it’s kind of old fashnioned and attracts mostly the academic world.</p>
-<p>I’m not entirely sure how i come to find <a target="_blank" rel="noopener" href="http://keybase.io/">http://keybase.io</a> but it seems a new interesting way to get PGP to the general audience.</p>
-<p>It allows, as the slogan say:</p>
-<blockquote>
-<p>Keybase maps your identity to your public keys, and vice versa.</p>
-</blockquote>
-<p>In order to be a trully trusted PKI the registration is done by invitation only which seems interesting in order to maintain some sort of quality assurance, but will make the evolution a lot slower.</p>
-<p>So basically this allows you to associate your domain, twitter account, github account,etc with you keys.</p>
-<p>It also has it’s own distributed filesystem KBFS.</p>
-<p><a target="_blank" rel="noopener" href="https://keybase.io/docs/kbfs/understanding_kbfs">https://keybase.io/docs/kbfs/understanding_kbfs</a></p>
-<p>Now this, seems to me, like the most important factor on this solution. Because you can quickly access other people keys, trust them, and follow you know friends.</p>
-<p>I still have some invites left, in case you are interested drop me an email :)</p>
-<p>Cheers,<br>RR@keybase<br><a target="_blank" rel="noopener" href="https://keybase.io/ruimsramos">https://keybase.io/ruimsramos</a></p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -463,6 +471,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/Avro/">Avro</a><small>1</small></li>
   
     <li><a href="/tags/BTRFS/">BTRFS</a><small>1</small></li>
+  
+    <li><a href="/tags/Backend/">Backend</a><small>1</small></li>
   
     <li><a href="/tags/Beeline/">Beeline</a><small>1</small></li>
   
@@ -529,6 +539,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/Events/">Events</a><small>1</small></li>
   
     <li><a href="/tags/Fish/">Fish</a><small>1</small></li>
+  
+    <li><a href="/tags/Frontend/">Frontend</a><small>1</small></li>
   
     <li><a href="/tags/GCS/">GCS</a><small>1</small></li>
   
@@ -635,6 +647,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/QEMU/">QEMU</a><small>2</small></li>
   
     <li><a href="/tags/RDD/">RDD</a><small>1</small></li>
+  
+    <li><a href="/tags/React/">React</a><small>1</small></li>
   
     <li><a href="/tags/Reserve-Proxy/">Reserve Proxy</a><small>1</small></li>
   
