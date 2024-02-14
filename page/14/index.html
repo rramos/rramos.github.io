@@ -77,6 +77,162 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
+        <time datetime="2016-09-18T13:31:00.000Z"><a href="/2016/09/18/git-cheat-sheet/">2016-09-18</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/09/18/git-cheat-sheet/">Git Cheat Sheet</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>As i’m allways forgetting how to reset my local changes from origin HEAD. This cheat sheet might help.</p>
+<h2 id="Create"><a href="#Create" class="headerlink" title="Create"></a>Create</h2><p>Clone an existing repository</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> ssh://user@domain.com/repo.git</span><br></pre></td></tr></table></figure>
+
+<p>Create a new local repository</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+
+<h2 id="Local-Changes"><a href="#Local-Changes" class="headerlink" title="Local Changes"></a>Local Changes</h2><p>Changed files in your working directory</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
+
+<p>Changes to tracked files</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git diff</span><br></pre></td></tr></table></figure>
+
+<p>Add all current changes to the next commit</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure>
+
+<p>Add some changes in <file> to the next commit</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add -p &lt;file&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Commit all local changes in tracked files</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit -a</span><br></pre></td></tr></table></figure>
+
+<p>Commit previously staged changes</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commmit</span><br></pre></td></tr></table></figure>
+
+<p>Change the last commit (Don’t amend publish commits)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit --amend</span><br></pre></td></tr></table></figure>
+
+<h2 id="Branches-Tags"><a href="#Branches-Tags" class="headerlink" title="Branches &amp; Tags"></a>Branches &amp; Tags</h2><p>List all existing branches</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch -av</span><br></pre></td></tr></table></figure>
+
+<p>Switch HEAD branch</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout &lt;branch&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Create new banch based on your current HEAD</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch &lt;new-branch&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Create new tracking branch based on a remote branch</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout --track &lt;remote/branch&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Delete a local branch</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch -d &lt;branch&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Mark the current commit with a tag</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git tag &lt;tag-name&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Update-Publish"><a href="#Update-Publish" class="headerlink" title="Update &amp; Publish"></a>Update &amp; Publish</h2><p>List all currently configured remotes</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
+
+<p>Show information about a remote</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git remote show &lt;remote&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Add new remote repository, named <remote></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git remote add &lt;shortname&gt; &lt;url&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Download all changes from <remote>, but don’t integrate into HEAD</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git fetch &lt;remote&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Download changes and directly merge&#x2F;integrate into HEAD</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git pull &lt;remote&gt; &lt;branch&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Publish local changes on a remote</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push &lt;remote&gt; &lt;branch&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Delete a branch on the remote</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git branch -dr &lt;remote/branch&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Publish your tags</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push --tags</span><br></pre></td></tr></table></figure>
+
+<h2 id="Merge-Rebase"><a href="#Merge-Rebase" class="headerlink" title="Merge &amp; Rebase"></a>Merge &amp; Rebase</h2><p>Merge <branch> into your current HEAD, without fast-forward</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git merge --no-ff &lt;branch&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Rebase your current HEAD onto <branch></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git rebase &lt;branch&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Abort a rebase</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git rebase --abort</span><br></pre></td></tr></table></figure>
+
+<p>Continue a rebase after resolving conflicts</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git rebase --<span class="built_in">continue</span></span><br></pre></td></tr></table></figure>
+
+<p>Use your configured merge tool to solve conflicts</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git mergetool</span><br></pre></td></tr></table></figure>
+
+<p>Use your editor to manually solve conflicts and (after resolving) mark file as resolved</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add &lt;resolved-file&gt;</span><br><span class="line">git <span class="built_in">rm</span> &lt;resolved-file&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Undo"><a href="#Undo" class="headerlink" title="Undo"></a>Undo</h2><p>Discard all local changes in your working directory</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git reset --hard HEAD</span><br></pre></td></tr></table></figure>
+
+<p>Discard local changes in a specific file</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout HEAD &lt;file&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Revert a commit (by producing a new commit with contrary changes)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git revert &lt;commit&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Reset your HEAD pointer to a previous commit, and discard all changes since then</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git reset --hard &lt;commit&gt;</span><br></pre></td></tr></table></figure>
+
+<p>…and preserve all changes as unstaged changes</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git reset &lt;commit&gt;</span><br></pre></td></tr></table></figure>
+
+<p>…and preserve uncommitted local changes</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git reset --keep &lt;commit&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Commit-History"><a href="#Commit-History" class="headerlink" title="Commit History"></a>Commit History</h2><p>Show all commits, starting with newest</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+
+<p>Show changes over time for a specific file</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">log</span> -p &lt;file&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Who changed what and when in <file></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git blame &lt;file&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Git-plugins"><a href="#Git-plugins" class="headerlink" title="Git plugins"></a>Git plugins</h2><p>Store credential in manager</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config credential.helper <span class="string">&#x27;store&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>Activate gpg signature</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config commit.gpgsign <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.git-tower.com/blog/git-cheat-sheet/">https://www.git-tower.com/blog/git-cheat-sheet/</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2016-09-18T01:17:00.000Z"><a href="/2016/09/18/keybase-io/">2016-09-18</a></time>
       
       
@@ -460,7 +616,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Sqoop/">Sqoop</a><small>1</small></li>
   
-    <li><a href="/tags/Streaming/">Streaming</a><small>2</small></li>
+    <li><a href="/tags/Streaming/">Streaming</a><small>3</small></li>
   
     <li><a href="/tags/Teams/">Teams</a><small>1</small></li>
   

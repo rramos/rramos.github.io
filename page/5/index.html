@@ -77,6 +77,62 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
+        <time datetime="2023-07-25T16:00:00.000Z"><a href="/2023/07/25/softwareprincipals/">2023-07-25</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2023/07/25/softwareprincipals/">Software Engineering Principals</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>When developing software it is important not to forget some important principals</p>
+<ul>
+<li><p><strong>Modularity</strong>: Break complex software into smaller, more manageable pieces that can be developed, tested, and maintained independently.</p>
+</li>
+<li><p><strong>Abstraction</strong>: Hide the implementation details of a module or component behind an interface or API, so that users of that component only need to know how to interact with it, not how it works.</p>
+</li>
+<li><p><strong>Separation of Concerns</strong>: Organize software into separate layers, modules, or components, each with a specific responsibility or concern, to minimize dependencies and improve maintainability.</p>
+</li>
+<li><p><strong>Encapsulation</strong>: Limit the visibility of data and functions to only the parts of the software that need to interact with them, to prevent unintended interference and improve maintainability.</p>
+</li>
+<li><p><strong>Single Responsibility Principle</strong>: Ensure that each module or component has only one responsibility, so that changes to one aspect of the software do not affect unrelated parts.</p>
+</li>
+<li><p><strong>Open&#x2F;Closed Principle</strong>: Design modules and components so that they are open for extension (i.e., new functionality can be added) but closed for modification (i.e., existing functionality does not need to be changed).</p>
+</li>
+<li><p><strong>Don’t Repeat Yourself (DRY)</strong>: Eliminate duplication of code or logic within a software system, to improve maintainability and reduce the risk of errors.</p>
+</li>
+<li><p><strong>Test-Driven Development</strong>: Write automated tests before writing code, to ensure that the code is correct and to improve maintainability.</p>
+</li>
+<li><p><strong>Continuous Integration and Continuous Deployment (CI&#x2F;CD)</strong>: Automate the process of building, testing, and deploying software, to reduce the risk of errors and to improve efficiency.</p>
+</li>
+<li><p><strong>Code Reviews</strong>: Have other developers review code changes before they are merged into the main codebase, to catch errors and improve maintainability.</p>
+</li>
+</ul>
+<p>Think on ways to incorporate this principals not only on the design phase but also on your daily development activities.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2023-07-25T11:00:00.000Z"><a href="/2023/07/25/chatgpt-prompts/">2023-07-25</a></time>
       
       
@@ -540,103 +596,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2022-12-23T22:00:00.000Z"><a href="/2022/12/23/artifactory/">2022-12-23</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2022/12/23/artifactory/">Artifactory Setup</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>In this article i will describe how to setup a docker enviroment to have a JFrog Artifactory local solution. </p>
-<h1 id="Objective"><a href="#Objective" class="headerlink" title="Objective"></a>Objective</h1><p>The main objective of this walkthrough is to have a local repository to manage packages such as Nugets, jars, rpms, etc.</p>
-<p>Could be usefull to test CI&#x2F;CD pipelines also.</p>
-<h1 id="Versions"><a href="#Versions" class="headerlink" title="Versions"></a>Versions</h1><p>Artifactory has several versions. It is recommend to use a Professional edition for productivity workloads. For this article we consider the OSS version </p>
-<h1 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h1><p>For this setup one should have:</p>
-<ul>
-<li>docker</li>
-<li>docker-compose</li>
-</ul>
-<h1 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h1><p>Obtain the docker-compose image</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://releases.jfrog.io/artifactory/bintray-artifactory/org/artifactory/oss/docker/jfrog-artifactory-oss/7.12.10/jfrog-artifactory-oss-7.12.10-compose.tar.gz</span><br></pre></td></tr></table></figure>
-<p><strong>NOTE:</strong> Check the latest version on the official <a target="_blank" rel="noopener" href="https://jfrog.com/download-jfrog-platform/">website</a>.</p>
-<p>Extract the tarball</p>
-<p>Run the <code>config.sh</code> with privileges to setup your folder with the proper permissions.</p>
-<p>In my case i also installed the PostgreSQL service.</p>
-<p>One should have an output similar to this one</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">Beginning JFrog Artifactory setup</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Validating System requirements</span><br><span class="line"></span><br><span class="line">Installation Directory (Default: /root/.jfrog/artifactory): /home/rramos/Development/github/dockers/docker-artifactory/data</span><br><span class="line"></span><br><span class="line">Running system diagnostics checks, logs can be found at [/home/rramos/Development/github/dockers/docker-artifactory/artifactory-oss-7.12.10/systemDiagnostics.log]</span><br><span class="line"></span><br><span class="line">Triggering migration script. This will migrate if needed and may take some time.</span><br><span class="line"></span><br><span class="line">Migration logs will be available at [/home/rramos/Development/github/dockers/docker-artifactory/artifactory-oss-7.12.10/bin/migration.log]. The file will be archived at [/home/rramos/Development/github/dockers/docker-artifactory/data/var/log] after installation</span><br><span class="line"></span><br><span class="line">For IPv6 address, enclose value within square brackets as follows : [&lt;ipv6_address&gt;]</span><br><span class="line">Please specify the IP address of this machine (Default: 127.0.1.1):</span><br><span class="line"></span><br><span class="line">Are you adding an additional node to an existing product cluster? [y/N]: N</span><br><span class="line"></span><br><span class="line">The installer can install a PostgreSQL database, or you can connect to an existing compatible PostgreSQL database</span><br><span class="line">(https://service.jfrog.org/installer/System+Requirements#SystemRequirements-RequirementsMatrix)</span><br><span class="line">If you are upgrading from an existing installation, select N if you have externalized PostgreSQL, select Y if not.</span><br><span class="line">Do you want to install PostgreSQL? [Y/n]: Y</span><br><span class="line"></span><br><span class="line">To setup PostgreSQL, please enter a password</span><br><span class="line">database password:</span><br><span class="line"></span><br><span class="line">confirm database password:</span><br><span class="line"></span><br><span class="line">Creating third party directories (if necessary)</span><br><span class="line"></span><br><span class="line">Attempting to seed PostgreSQL. This may take some time.</span><br><span class="line"></span><br><span class="line">Successfully seeded PostgreSQL</span><br><span class="line"></span><br><span class="line">Docker setup complete</span><br><span class="line"></span><br><span class="line">Installation directory: [/home/rramos/Development/github/dockers/docker-artifactory/data] contains data and configurations.</span><br><span class="line"></span><br><span class="line">Use docker-compose commands to start the application. Once the application has started, it can be accessed at [http://127.0.1.1:8082]</span><br><span class="line"></span><br><span class="line">Examples:</span><br><span class="line">cd /home/rramos/Development/github/dockers/docker-artifactory/artifactory-oss-7.12.10</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">start postgresql:    docker-compose -p rt-postgres -f docker-compose-postgres.yaml up -d</span><br><span class="line">start:               docker-compose -p rt up -d</span><br><span class="line">stop:                docker-compose -p rt down</span><br><span class="line"></span><br><span class="line">NOTE: The compose file uses several environment variables from the .env file. Remember to run from within the [/home/rramos/Development/github/dockers/docker-artifactory/artifactory-oss-7.12.10] folder</span><br><span class="line"></span><br><span class="line">Done</span><br></pre></td></tr></table></figure>
-
-<p>At the end of the process the postgres container is still up. I would suggest killing it as we are going to setup the docker-compose setup for it.</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># docker ps</span></span><br><span class="line">CONTAINER ID   IMAGE                                    COMMAND                  CREATED              STATUS              PORTS                                       NAMES</span><br><span class="line">77bbf3150642   docker.bintray.io/postgres:12.5-alpine   <span class="string">&quot;docker-entrypoint.s…&quot;</span>   About a minute ago   Up About a minute   0.0.0.0:5432-&gt;5432/tcp, :::5432-&gt;5432/tcp   postgresql</span><br></pre></td></tr></table></figure>
-
-<p>Killing the containers</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">kill</span> 77bbf3150642</span><br><span class="line">docker container prune</span><br></pre></td></tr></table></figure>
-<p><strong>NOTE:</strong> Attention don’t run the prune command if you want to keep other containers running.</p>
-<h1 id="Post-Install"><a href="#Post-Install" class="headerlink" title="Post Install"></a>Post Install</h1><p>During the setup I’ve selected the following path </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/home/rramos/Development/github/dockers/docker-artifactory/data</span><br></pre></td></tr></table></figure>
-<p>However there are some adjustments required for the services to reach the containers which will be on the same network and need to be adjusted.</p>
-<p>Following this setup you should now have on your current dir <code>data</code> and <code>artifactory-oss-7.12.10</code> folder. </p>
-<p>Create the following file template docker file that starts all the components</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> artifactory-oss-7.12.10/templates/docker-compose-all.yaml  docker-compose.yaml</span><br></pre></td></tr></table></figure>
-
-<p>And replace the line</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">POSTGRES_PASSWORD=$&#123;PG_PASS&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Let’s include that var on the env file.</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> artifactory-oss-7.12.10/.env .</span><br></pre></td></tr></table></figure>
-
-<p>Add the password you defined for postgres on <code>.env</code> file.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">PG_PASS=V3ry$$scurePasssW0rd</span><br></pre></td></tr></table></figure>
-
-<p>Let’s spin up the application</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
-
-<p>If you start getting some issues regarding DB connection issues there is a final step.</p>
-<p>Stop all the containers </p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker-compose down</span><br></pre></td></tr></table></figure>
-
-<p>Edit the file <code>./data/var/data/nginx/conf.d/artifactory.conf</code> and replace <code>localhost</code> references with <code>artifactory</code></p>
-<p><strong>NOTE:</strong> You may need sudo permission to change those files</p>
-<p>Also edit the file <code>./data/var/etc/system.yaml</code> </p>
-<p>Making sure the DB <code>url</code> is like:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">url: jdbc:postgresql://postgres:5432/artifactory</span><br></pre></td></tr></table></figure>
-
-<p>Now let’s restart the containers</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
-
-<p>And access on the following url: <code>http://localhost:8081/artifactory/</code></p>
-<p>The default user&#x2F;password is <code>admin</code>&#x2F;<code>password</code></p>
-<p>Now it’s time to explore …</p>
-<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>There are several ways to setup Artictory depending on your enviroment. If you want to use for local developments it may not payoff due to the limitation of the oss version. One cannot manage Nuget packages for instance and require an pro version. As that was may principal objective i didn’t explore more the tool.</p>
-<p>Also include the docker-compose setting on my dockers <a target="_blank" rel="noopener" href="https://github.com/rramos/dockers">repo</a></p>
-<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://www.jfrog.com/confluence/display/JFROG/Installing+Artifactory">https://www.jfrog.com/confluence/display/JFROG/Installing+Artifactory</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.jfrog.com/confluence/display/JFROG/NuGet+Repositories">https://www.jfrog.com/confluence/display/JFROG/NuGet+Repositories</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -893,7 +852,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Sqoop/">Sqoop</a><small>1</small></li>
   
-    <li><a href="/tags/Streaming/">Streaming</a><small>2</small></li>
+    <li><a href="/tags/Streaming/">Streaming</a><small>3</small></li>
   
     <li><a href="/tags/Teams/">Teams</a><small>1</small></li>
   

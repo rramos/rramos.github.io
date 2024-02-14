@@ -77,11 +77,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
-        <time datetime="2024-02-12T17:35:59.380Z"><a href="/2024/02/12/strapi/">2024-02-12</a></time>
+        <time datetime="2024-02-14T14:29:31.880Z"><a href="/2024/02/14/strapi/">2024-02-14</a></time>
       
       
   
-    <h1 class="title"><a href="/2024/02/12/strapi/">Strapi and React TODO Application</a></h1>
+    <h1 class="title"><a href="/2024/02/14/strapi/">Strapi and React TODO Application</a></h1>
   
 
     </header>
@@ -174,6 +174,89 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li><a target="_blank" rel="noopener" href="https://docs.strapi.io/">https://docs.strapi.io/</a></li>
 <li><a target="_blank" rel="noopener" href="https://strapi.io/blog/how-to-build-a-to-do-list-application-with-strapi-and-react-js">https://strapi.io/blog/how-to-build-a-to-do-list-application-with-strapi-and-react-js</a></li>
 <li><a target="_blank" rel="noopener" href="https://bun.sh/">https://bun.sh</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2024-02-14T12:00:00.000Z"><a href="/2024/02/14/redpanda/">2024-02-14</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2024/02/14/redpanda/">Redpanda</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>In this article I’ll go through the Redpanda quickstart guide.<br>Spinning up a Redpanda cluster in Docker to evaluate in Linux</p>
+<h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><p>Make sure you have <code>docker</code> and <code>docker-compose</code></p>
+<h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><p>For lightweight testing, we are going to start a single Redpanda broker.</p>
+<p>Create the following <code>docker-compose.yml</code> file with the content:</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&quot;3.7&quot;</span></span><br><span class="line"><span class="attr">name:</span> <span class="string">redpanda-quickstart</span></span><br><span class="line"><span class="attr">networks:</span></span><br><span class="line">  <span class="attr">redpanda_network:</span></span><br><span class="line">    <span class="attr">driver:</span> <span class="string">bridge</span></span><br><span class="line"><span class="attr">volumes:</span></span><br><span class="line">  <span class="attr">redpanda-0:</span> <span class="literal">null</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">redpanda-0:</span></span><br><span class="line">    <span class="attr">command:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">redpanda</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">start</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">--kafka-addr</span> <span class="string">internal://0.0.0.0:9092,external://0.0.0.0:19092</span></span><br><span class="line">      <span class="comment"># Address the broker advertises to clients that connect to the Kafka API.</span></span><br><span class="line">      <span class="comment"># Use the internal addresses to connect to the Redpanda brokers&#x27;</span></span><br><span class="line">      <span class="comment"># from inside the same Docker network.</span></span><br><span class="line">      <span class="comment"># Use the external addresses to connect to the Redpanda brokers&#x27;</span></span><br><span class="line">      <span class="comment"># from outside the Docker network.</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">--advertise-kafka-addr</span> <span class="string">internal://redpanda-0:9092,external://localhost:19092</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">--pandaproxy-addr</span> <span class="string">internal://0.0.0.0:8082,external://0.0.0.0:18082</span></span><br><span class="line">      <span class="comment"># Address the broker advertises to clients that connect to the HTTP Proxy.</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">--advertise-pandaproxy-addr</span> <span class="string">internal://redpanda-0:8082,external://localhost:18082</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">--schema-registry-addr</span> <span class="string">internal://0.0.0.0:8081,external://0.0.0.0:18081</span></span><br><span class="line">      <span class="comment"># Redpanda brokers use the RPC API to communicate with each other internally.</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">--rpc-addr</span> <span class="string">redpanda-0:33145</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">--advertise-rpc-addr</span> <span class="string">redpanda-0:33145</span></span><br><span class="line">      <span class="comment"># Tells Seastar (the framework Redpanda uses under the hood) to use 1 core on the system.</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">--smp</span> <span class="number">1</span></span><br><span class="line">      <span class="comment"># The amount of memory to make available to Redpanda.</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">--memory</span> <span class="string">1G</span></span><br><span class="line">      <span class="comment"># Mode dev-container uses well-known configuration properties for development in containers.</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">--mode</span> <span class="string">dev-container</span></span><br><span class="line">      <span class="comment"># enable logs for debugging.</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">--default-log-level=debug</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">docker.redpanda.com/redpandadata/redpanda:v23.3.5</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">redpanda-0</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">redpanda-0:/var/lib/redpanda/data</span></span><br><span class="line">    <span class="attr">networks:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">redpanda_network</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">18081</span><span class="string">:18081</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">18082</span><span class="string">:18082</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">19092</span><span class="string">:19092</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">19644</span><span class="string">:9644</span></span><br><span class="line">  <span class="attr">console:</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">redpanda-console</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">docker.redpanda.com/redpandadata/console:v2.4.3</span></span><br><span class="line">    <span class="attr">networks:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">redpanda_network</span></span><br><span class="line">    <span class="attr">entrypoint:</span> <span class="string">/bin/sh</span></span><br><span class="line">    <span class="attr">command:</span> <span class="string">-c</span> <span class="string">&#x27;echo &quot;$$CONSOLE_CONFIG_FILE&quot; &gt; /tmp/config.yml; /app/console&#x27;</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">CONFIG_FILEPATH:</span> <span class="string">/tmp/config.yml</span></span><br><span class="line">      <span class="attr">CONSOLE_CONFIG_FILE:</span> <span class="string">|</span></span><br><span class="line"><span class="string">        kafka:</span></span><br><span class="line"><span class="string">          brokers: [&quot;redpanda-0:9092&quot;]</span></span><br><span class="line"><span class="string">          schemaRegistry:</span></span><br><span class="line"><span class="string">            enabled: true</span></span><br><span class="line"><span class="string">            urls: [&quot;http://redpanda-0:8081&quot;]</span></span><br><span class="line"><span class="string">        redpanda:</span></span><br><span class="line"><span class="string">          adminApi:</span></span><br><span class="line"><span class="string">            enabled: true</span></span><br><span class="line"><span class="string">            urls: [&quot;http://redpanda-0:9644&quot;]</span></span><br><span class="line"><span class="string"></span>    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">8080</span><span class="string">:8080</span></span><br><span class="line">    <span class="attr">depends_on:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">redpanda-0</span></span><br></pre></td></tr></table></figure>
+
+<p>And start the execution with <code>docker-compose up -d</code></p>
+<h3 id="Start-Streaming"><a href="#Start-Streaming" class="headerlink" title="Start Streaming"></a>Start Streaming</h3><p>Let’s use the <code>rpk</code> command-line tool to create a topic, produce messages to it, and consume messages.</p>
+<p>Get information about the cluster with the command</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it redpanda-0 rpk cluster info</span><br></pre></td></tr></table></figure>
+
+<p>Now lets create a topic called <strong>chat-room</strong>:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it redpanda-0 rpk topic create chat-room</span><br></pre></td></tr></table></figure>
+
+<p>Producing messages for that topic</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it redpanda-0 rpk topic produce chat-room</span><br></pre></td></tr></table></figure>
+
+<p>Consuming one message from the topic</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it redpanda-0 rpk topic consume chat-room --num 1</span><br></pre></td></tr></table></figure>
+
+<p>You can install <code>rpk</code> on your system directly and connect with the broker</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -LO https://github.com/redpanda-data/redpanda/releases/latest/download/rpk-linux-amd64.zip</span><br></pre></td></tr></table></figure>
+
+<p>Then unzip the file and put the rpk binary on bin path ex: <code>unzip rpk-linux-amd64.zip -d ~/.local/bin/</code></p>
+<p>You can test the connection to your broker with:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rpk cluster info -X brokers=127.0.0.1:19092</span><br></pre></td></tr></table></figure>
+
+<h3 id="Generating-Mock-Data"><a href="#Generating-Mock-Data" class="headerlink" title="Generating Mock Data"></a>Generating Mock Data</h3><p>Let’s use the following command from our references to product mock data.</p>
+<p>Leave one terminal open with the following command</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rpk topic consume Products -X brokers=127.0.0.1:19092</span><br></pre></td></tr></table></figure>
+
+<p>On a diferent terminal create the following file <code>schema.avsc</code></p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;record&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Products&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;namespace&quot;</span><span class="punctuation">:</span> <span class="string">&quot;exp.products.v1&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;fields&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span> <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;id&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;string&quot;</span> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span> <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;productId&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;null&quot;</span><span class="punctuation">,</span> <span class="string">&quot;string&quot;</span><span class="punctuation">]</span> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span> <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;title&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;string&quot;</span> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span> <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;price&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;int&quot;</span> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span> <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;isLimited&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;boolean&quot;</span> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span> <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;sizes&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;null&quot;</span><span class="punctuation">,</span> <span class="string">&quot;string&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span> <span class="attr">&quot;default&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span> <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;ownerIds&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;array&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;items&quot;</span><span class="punctuation">:</span> <span class="string">&quot;string&quot;</span> <span class="punctuation">&#125;</span> <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line"></span><br><span class="line">Make sure to install datagen</span><br><span class="line"></span><br><span class="line">```bash</span><br><span class="line">npm install -g @materializeinc/datagen</span><br></pre></td></tr></table></figure>
+
+<p>Create the following <code>.env</code> file</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Kafka Brokers</span></span><br><span class="line">KAFKA_BROKERS=localhost:19092</span><br><span class="line"></span><br><span class="line"><span class="comment"># For Kafka SASL Authentication:</span></span><br><span class="line">SASL_USERNAME=</span><br><span class="line">SASL_PASSWORD=</span><br><span class="line">SASL_MECHANISM=</span><br><span class="line"></span><br><span class="line"><span class="comment"># For Kafka SSL Authentication:</span></span><br><span class="line">SSL_CA_LOCATION=</span><br><span class="line">SSL_CERT_LOCATION=</span><br><span class="line">SSL_KEY_LOCATION=</span><br><span class="line"></span><br><span class="line"><span class="comment"># Connect to Schema Registry if using &#x27;--format avro&#x27;</span></span><br><span class="line">SCHEMA_REGISTRY_URL=</span><br><span class="line">SCHEMA_REGISTRY_USERNAME=</span><br><span class="line">SCHEMA_REGISTRY_PASSWORD=</span><br></pre></td></tr></table></figure>
+
+<p>Then execute the following command</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">datagen -s schema.avsc -n 10</span><br></pre></td></tr></table></figure>
+
+<p>And you just generated mock data based on the provided json file.<br>Take a look on the following repo for more details on datagen.</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/MaterializeInc/datagen.git">https://github.com/MaterializeInc/datagen.git</a></li>
+</ul>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Redpanda provides a very quick alternative to have a quick kafka enviroment, which is especially good for developers. This article didn’t go deep on performance evalutions of Kafka vs Redpanda but their benchmarks worth assessing if that means reducing your kafka footprint.</p>
+<p>Probably would let that for another article. Also I would like to test the SASL options and schema register option.</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://redpanda.com/">https://redpanda.com/</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.redpanda.com/current/get-started/quick-start/">https://docs.redpanda.com/current/get-started/quick-start/</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/MaterializeInc/datagen.git">https://github.com/MaterializeInc/datagen.git</a></li>
 </ul>
 
       
@@ -455,61 +538,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2024-01-25T10:00:00.000Z"><a href="/2024/01/25/fabric/">2024-01-25</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2024/01/25/fabric/">Microsoft Fabric</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>Fabric is a centralized product implemented by Microsoft in a SaaS way, that combines several services such as DataLake, Orchestration Processing Vizualization and AI.</p>
-<p>Billing is defined by the amount of processing used and the ammount of storage used.</p>
-<p>OneLake is the solution for storage where all the Data is automatically indexed for discovery, lineage and Governance are configured with support of Pureview.</p>
-<p>Data can be virtualized with external storage locations from different cloud providers, no data duplication is needed similar to pointers.</p>
-<p>Also data is stored in Delta guaranteeing ACID compliant characteristics.</p>
-<p>Integration with PowerBI for reporting using the familiar look</p>
-<p>Data Activator is the realtime processing component wich triggers actions based on rules, like automated reports or procedures.</p>
-<p>The Product also brings CoPilot features for PowerBI, DS Notebooks and DataFactory cleaning processes.</p>
-<h2 id="Components"><a href="#Components" class="headerlink" title="Components"></a>Components</h2><ul>
-<li>OneLake</li>
-<li>Data Factory</li>
-<li>Synapse</li>
-<li>Data Activator</li>
-<li>PowerBI</li>
-</ul>
-<h2 id="Integrations"><a href="#Integrations" class="headerlink" title="Integrations"></a>Integrations</h2><p>Databricks integration through Delta Uniform, also Unity Catalog integrates with OneSecurity</p>
-<h2 id="Copilot"><a href="#Copilot" class="headerlink" title="Copilot"></a>Copilot</h2><p>Several integrations of Copilot, but the one with PowerBI is really interesting to produce quick visualizations from natual languange prompts</p>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Not much to conclued here as the Product needs to be deeply tested from my part. I have some concerns on vender lock-in, but the fact that it sits on top a DataLake and supports openformats brings some reassurance.</p>
-<p>One thing that also troubles me, is that if one client just want to use a partial feature would need to aquire the full solution.</p>
-<p>For instance D365 in the past allowed the client to export data from that system to a Datalake with internal feature of the Product and now it relies on Fabric only, if this strategy is going to be followed for the rest of MS portfolio, example DataFactory, although increased stability or support. I found the lack of flexibility concerning, by forcing clients to use this solution.</p>
-<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/microsoft-fabric">https://www.microsoft.com/en-us/microsoft-fabric</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -764,7 +792,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Sqoop/">Sqoop</a><small>1</small></li>
   
-    <li><a href="/tags/Streaming/">Streaming</a><small>2</small></li>
+    <li><a href="/tags/Streaming/">Streaming</a><small>3</small></li>
   
     <li><a href="/tags/Teams/">Teams</a><small>1</small></li>
   

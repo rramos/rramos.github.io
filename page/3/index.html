@@ -77,6 +77,86 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
+        <time datetime="2023-12-26T18:00:00.000Z"><a href="/2023/12/26/duckdb/">2023-12-26</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2023/12/26/duckdb/">DuckDB Mock Environment</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>In this article I will go through DuckDB an in-process SQL OLAP database management system and setup some mock data to do some tests</p>
+<h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><p>In order to setup duckdb client install the following pip packages.</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">pip install -U duckcli</span><br><span class="line">pip install duckdb==0.9.2</span><br></pre></td></tr></table></figure>
+
+<p>The duckcli allow autocompletion on the terminal</p>
+<blockquote>
+<p><strong>NOTE:</strong> There is other client options like ODBC or Node checkout the offical page for those cases.</p>
+</blockquote>
+<h2 id="Generate-Mock-Data"><a href="#Generate-Mock-Data" class="headerlink" title="Generate Mock Data"></a>Generate Mock Data</h2><p>DuckDB reads data directly from files, and support CSV, Parquet, JSON, Excel and more.</p>
+<p>Now lets <a href="https://rramos.github.io/2023/12/21/jafgen/">generate some data</a> and import to our SQL Engine.</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">jafgen --years 1</span><br></pre></td></tr></table></figure>
+
+<p>This will generate 6 CSV files with mock data</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">jaffle-data/</span><br><span class="line">├── raw_customers.csv</span><br><span class="line">├── raw_items.csv</span><br><span class="line">├── raw_orders.csv</span><br><span class="line">├── raw_products.csv</span><br><span class="line">├── raw_stores.csv</span><br><span class="line">└── raw_supplies.csv</span><br></pre></td></tr></table></figure>
+
+<p>lets start the client and create managed tables for each</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">duckcli mydatabase.db</span><br></pre></td></tr></table></figure>
+
+<p>The CSVs have a header line so lets create the following tables using the commands</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> raw_items <span class="keyword">AS</span> <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> read_csv_auto(<span class="string">&#x27;jaffle-data/raw_items.csv&#x27;</span>,header <span class="operator">=</span> <span class="literal">true</span>);</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> raw_orders <span class="keyword">AS</span> <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> read_csv_auto(<span class="string">&#x27;jaffle-data/raw_orders.csv&#x27;</span>,header <span class="operator">=</span> <span class="literal">true</span>);</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> raw_products <span class="keyword">AS</span> <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> read_csv_auto(<span class="string">&#x27;jaffle-data/raw_products.csv&#x27;</span>,header <span class="operator">=</span> <span class="literal">true</span>);</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> raw_stores <span class="keyword">AS</span> <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> read_csv_auto(<span class="string">&#x27;jaffle-data/raw_stores.csv&#x27;</span>,header <span class="operator">=</span> <span class="literal">true</span>);</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> raw_supplies <span class="keyword">AS</span> <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> read_csv_auto(<span class="string">&#x27;jaffle-data/raw_supplies.csv&#x27;</span>,header <span class="operator">=</span> <span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
+
+<p>There are other options like definie a diferent delimiter or specifying the columns. Check the official page for more details on <a target="_blank" rel="noopener" href="https://duckdb.org/docs/data/csv/overview">CSV Import</a>.</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">mydatabase.db<span class="operator">&gt;</span> <span class="keyword">show</span> tables;</span><br><span class="line"><span class="operator">+</span><span class="comment">--------------+</span></span><br><span class="line"><span class="operator">|</span> name         <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------------+</span></span><br><span class="line"><span class="operator">|</span> raw_items    <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> raw_orders   <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> raw_products <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> raw_stores   <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> raw_supplies <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------------+</span></span><br><span class="line"><span class="number">5</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span></span><br><span class="line"><span class="type">Time</span>: <span class="number">0.030</span>s</span><br></pre></td></tr></table></figure>
+
+<h2 id="Disclaimer"><a href="#Disclaimer" class="headerlink" title="Disclaimer"></a>Disclaimer</h2><p>DuckDB seems to be blazing fast it also has the option to run in-memmory. It is important however to identify in which usecases this backend could present benefits or not.</p>
+<h2 id="When-or-Not-to-use"><a href="#When-or-Not-to-use" class="headerlink" title="When or Not to use"></a>When or Not to use</h2><p>DuckDB aims to automatically achieve high performance by using well-chosen default configurations and having a forgiving architecture. Of course, there are still opportunities for tuning the system for specific workloads. The Performance Guide’s page contain guidelines and tips for achieving good performance when loading and processing data with DuckDB.</p>
+<h3 id="When-to-use-DuckDB"><a href="#When-to-use-DuckDB" class="headerlink" title="When to use DuckDB"></a>When to use DuckDB</h3><ul>
+<li>Processing and storing tabular datasets, e.g., from CSV or Parquet files</li>
+<li>Interactive data analysis, e.g., join &amp; aggregate multiple large tables</li>
+<li>Concurrent large changes, to multiple large tables, e.g., appending rows, adding&#x2F;removing&#x2F;updating columns</li>
+<li>Large result set transfer to client</li>
+</ul>
+<h3 id="When-to-not-use-DuckDB"><a href="#When-to-not-use-DuckDB" class="headerlink" title="When to not use DuckDB"></a>When to not use DuckDB</h3><ul>
+<li>High-volume transactional use cases (e.g., tracking orders in a webshop)</li>
+<li>Large client&#x2F;server installations for centralized enterprise data warehousing</li>
+<li>Writing to a single database from multiple concurrent processes</li>
+<li>Multiple concurrent processes reading from a single writable database</li>
+</ul>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>In this article I went through the process to setup duckdb in a local environment and load some data into it. This database has some interesting bechmark values, I would suggest you try this one out especially if your usecase doesn’t involve transactional data or multiple concurrent processes reading from a single writable databse there for staging processes, development enviroments or single threaded CDC process seems very interesting.</p>
+<p>I will certainly use this more in the future. Also very poisitive feedback regarding the documentation you can find on the <a target="_blank" rel="noopener" href="https://duckdb.org/docs/">Offical website</a>.</p>
+<p>I haven´t found direct support for Delta yet, although it supports Parquet.</p>
+<p>If you wan’t to understand better why to choose DuckDB please check this article <a target="_blank" rel="noopener" href="https://duckdb.org/why_duckdb">Why DuckDB</a></p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/dbcli/duckcli">https://github.com/dbcli/duckcli</a></li>
+<li><a target="_blank" rel="noopener" href="https://duckdb.org/">https://duckdb.org</a></li>
+<li><a target="_blank" rel="noopener" href="https://duckdb.org/docs/guides/performance/benchmarks">https://duckdb.org/docs/guides/performance/benchmarks</a></li>
+<li><a target="_blank" rel="noopener" href="https://duckdb.org/docs/data/csv/overview">https://duckdb.org/docs/data/csv/overview</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2023-12-26T16:00:00.000Z"><a href="/2023/12/26/evidence/">2023-12-26</a></time>
       
       
@@ -407,58 +487,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2023-10-17T10:00:00.000Z"><a href="/2023/10/17/interviewquestions/">2023-10-17</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2023/10/17/interviewquestions/">General Interview Questions</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>I saw this article with a very interesting consolidation of questions a candidate should ask when trying to find it’s ideal job.</p>
-<p>This list is very useful independently on the side of the chair you are on:</p>
-<h2 id="About-the-Job"><a href="#About-the-Job" class="headerlink" title="About the Job"></a>About the Job</h2><ul>
-<li>What are the biggest challenges I might face in this position ?</li>
-<li>Why did the current person in this position leave ?</li>
-<li>How do you expect my responsabilities to envolve as tiome goes on ?</li>
-<li>How will I be measured for success ?</li>
-</ul>
-<h2 id="About-the-Company"><a href="#About-the-Company" class="headerlink" title="About the Company"></a>About the Company</h2><ul>
-<li>What are the current goals of the Company ?</li>
-<li>How would you describe the company’s values ?</li>
-<li>How have the company’s values evolved in the time you’ ve worked there ?</li>
-<li>What is the company’s approach to professional development and growth ?</li>
-</ul>
-<h2 id="About-the-Culture"><a href="#About-the-Culture" class="headerlink" title="About the Culture"></a>About the Culture</h2><ul>
-<li>How does this company invest in employee well-being ?</li>
-<li>Are there any efforts or initiatives in place to ensure diversity and inclusion in this company ?</li>
-<li>What is the general sentiment of culture in the company, according to current employees ?</li>
-<li>How does management react in situations that may result in low company morale ?</li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -715,7 +743,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Sqoop/">Sqoop</a><small>1</small></li>
   
-    <li><a href="/tags/Streaming/">Streaming</a><small>2</small></li>
+    <li><a href="/tags/Streaming/">Streaming</a><small>3</small></li>
   
     <li><a href="/tags/Teams/">Teams</a><small>1</small></li>
   
