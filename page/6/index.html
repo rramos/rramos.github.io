@@ -77,6 +77,86 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
+        <time datetime="2022-12-23T22:00:00.000Z"><a href="/2022/12/23/Software Engineering Laws/">2022-12-23</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2022/12/23/Software Engineering Laws/">Software Engineering Laws</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Latest week a college shared the following <a target="_blank" rel="noopener" href="https://www.netmeister.org/blog/software-engineering-laws.html">article</a> at work that i found very interesting aggregating the info here in order not to forget.</p>
+<h2 id="Conway’s-Law"><a href="#Conway’s-Law" class="headerlink" title="Conway’s Law"></a>Conway’s Law</h2><p>Also known as: “You will ship your org chart.”</p>
+<blockquote>
+<p>“Any organization that designs a system will produce a design whose structure is a copy of the organization’s communication structure.”</p>
+</blockquote>
+<p>You may think you can avoid it via cross-functional standup meetings and stakeholder updates and decision matrices, but eventually and inevitably conflicting or diverging priorities will lead to equally conflicting or divergent processes and outcomes.</p>
+<h2 id="Brooks’s-Law"><a href="#Brooks’s-Law" class="headerlink" title="Brooks’s Law"></a>Brooks’s Law</h2><p>From The <strong>Mythical Man-Month</strong> Book:</p>
+<blockquote>
+<p>“Adding manpower to a late software project makes it later.”</p>
+</blockquote>
+<p>When you realize you’re not making the progress you thought you would and your management tries to reallocate resources from another part of the org, you’ll end up not only delaying the project, but you’ll likely ship a more brittle, more complex product</p>
+<h2 id="Zawinski’s-Law"><a href="#Zawinski’s-Law" class="headerlink" title="Zawinski’s Law"></a>Zawinski’s Law</h2><blockquote>
+<p>“Every program attempts to expand until it includes a web server. Those programs which cannot so expand are replaced by ones which can.”</p>
+</blockquote>
+<p>For web services, it’s “…until it requires a user account and collects all users’ data”; for physical devices, it’s “…until it includes an insecure wifi access point with a default password you can’t change. And a web server”.</p>
+<h2 id="Parkinson’s-Law"><a href="#Parkinson’s-Law" class="headerlink" title="Parkinson’s Law"></a>Parkinson’s Law</h2><blockquote>
+<p>“Work expands so as to fill the time available for its completion.”</p>
+</blockquote>
+<p>The primary project management lessons here is that if you don’t set a deadline, then the project will never be completed. This is why iterating on a minimum viable product within fixed timelines is important.</p>
+<p>And, of course, we can and should adjust this law for data, processing power, RAM, …:</p>
+<blockquote>
+<p>“Data&#x2F;CPU&#x2F;memory usage expands to use up all available storage space&#x2F;bandwidth&#x2F;cycles&#x2F;RAM.”</p>
+</blockquote>
+<h2 id="Pareto’s-Fallacy"><a href="#Pareto’s-Fallacy" class="headerlink" title="Pareto’s Fallacy"></a>Pareto’s Fallacy</h2><p>The <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Pareto_principle">Pareto Principle</a> is easy to misinterpret, especially by management. This often leads to Pareto’s Fallacy:</p>
+<blockquote>
+<p>“When you’re 80% done, you think you only have 20% left.”</p>
+</blockquote>
+<p>The critical part that’s overlooked here is that those 20% will require 80% of your time.</p>
+<h2 id="Sturgeon’s-Revelation"><a href="#Sturgeon’s-Revelation" class="headerlink" title="Sturgeon’s Revelation"></a>Sturgeon’s Revelation</h2><blockquote>
+<p>“90% of everything is crud.”</p>
+</blockquote>
+<p>Yes, that includes your products.</p>
+<h2 id="The-Peter-Principle"><a href="#The-Peter-Principle" class="headerlink" title="The Peter Principle"></a>The Peter Principle</h2><blockquote>
+<p>“In a hierarchy, every employee tends to rise to their level of incompetence. Thus, in time, every post tends to be occupied by an employee who is incompetent to carry out its duties.”</p>
+</blockquote>
+<p>Dunning and Kruger send their regards…(<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Peter_Principle">ref</a>)</p>
+<h2 id="Eagleson’s-Law"><a href="#Eagleson’s-Law" class="headerlink" title="Eagleson’s Law"></a>Eagleson’s Law</h2><blockquote>
+<p>“Any code of your own that you haven’t looked at for six or more months might as well have been written by someone else.”</p>
+</blockquote>
+<p>6 months is rather optimistic.</p>
+<h2 id="Greenspun’s-10th-Rule-of-Programming"><a href="#Greenspun’s-10th-Rule-of-Programming" class="headerlink" title="Greenspun’s 10th Rule of Programming"></a>Greenspun’s 10th Rule of Programming</h2><p>This can be generalized to the Universal NIH-Rule: “any custom developed system contains an ad hoc, informally-specified, bug-ridden, slow implementation of half of the industry standard you refused to adopt”.</p>
+<h2 id="The-Iceberg-Fallacy"><a href="#The-Iceberg-Fallacy" class="headerlink" title="The Iceberg Fallacy"></a>The Iceberg Fallacy</h2><blockquote>
+<p>“The cost of development of a new software product is the only ~25% of the total cost of ownership management sees and budgets for.”</p>
+</blockquote>
+<h2 id="The-LGTM-Dilemma"><a href="#The-LGTM-Dilemma" class="headerlink" title="The LGTM Dilemma"></a>The LGTM Dilemma</h2><blockquote>
+<p>“If you want to quickly ship a 10 line code change, hide it in a 1500 line pull request.”</p>
+</blockquote>
+<p>Also known as The Bikeshedders’ Blind Spot.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2022-12-23T22:00:00.000Z"><a href="/2022/12/23/artifactory/">2022-12-23</a></time>
       
       
@@ -460,77 +540,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2022-12-23T18:30:00.000Z"><a href="/2022/12/23/fish/">2022-12-23</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2022/12/23/fish/">Fish Configs</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="About-fish"><a href="#About-fish" class="headerlink" title="About fish"></a>About fish</h1><h1 id="Configurations"><a href="#Configurations" class="headerlink" title="Configurations"></a>Configurations</h1><p>To disable the greeting in fish edit the file <code>.config/fish/config.fish</code> and put an empty greeting.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">set fish_greeting &quot;&quot;</span><br></pre></td></tr></table></figure>
-
-<p>Now re-open the terminal.</p>
-<h1 id="Remove-neofetch"><a href="#Remove-neofetch" class="headerlink" title="Remove neofetch"></a>Remove neofetch</h1><p>If you don’t want the fancy computer stats everything you open a terminal comment out the last 4 lines on the conf file <code>./config/fish/config.fish</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">## Run paleofetch if session is interactive</span><br><span class="line">#if status --is-interactive</span><br><span class="line">#   neofetch</span><br><span class="line">#end</span><br></pre></td></tr></table></figure>
-
-<p>Now re-open the terminal.</p>
-<h1 id="Oh-My-Fish"><a href="#Oh-My-Fish" class="headerlink" title="Oh My Fish"></a>Oh My Fish</h1><p>Install the package oh-my-fish which would allow to customize you fish configurations running the following command</p>
-<p><code>curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish</code></p>
-<p>After this install the theme agnoster</p>
-<p><code>omf install agnoster</code></p>
-<p>Apply and reload</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">omf theme agnoster</span><br><span class="line">omf reload</span><br></pre></td></tr></table></figure>
-
-<h1 id="Disable-starship"><a href="#Disable-starship" class="headerlink" title="Disable starship"></a>Disable starship</h1><p>Comment the following block on the file <code>./config/fish/config.fish</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">## Starship prompt</span><br><span class="line">#if status --is-interactive</span><br><span class="line">#   source (&quot;/usr/bin/starship&quot; init fish --print-full-init | psub)</span><br><span class="line">#end</span><br></pre></td></tr></table></figure>
-
-<h1 id="Setup-the-Nord-colors-in-Alacritty"><a href="#Setup-the-Nord-colors-in-Alacritty" class="headerlink" title="Setup the Nord colors in Alacritty"></a>Setup the Nord colors in Alacritty</h1><p>Change the default color schem for Nord colors</p>
-<p>replacing on the following file <code>.config/alacritty/alacritty.yml</code> for the coloscheme available on the following <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/arcticicestudio/nord-alacritty/develop/src/nord.yml">repo</a>.</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">colors:</span></span><br><span class="line">  <span class="attr">primary:</span></span><br><span class="line">    <span class="attr">background:</span> <span class="string">&#x27;#2e3440&#x27;</span></span><br><span class="line">    <span class="attr">foreground:</span> <span class="string">&#x27;#d8dee9&#x27;</span></span><br><span class="line">    <span class="attr">dim_foreground:</span> <span class="string">&#x27;#a5abb6&#x27;</span></span><br><span class="line">  <span class="attr">cursor:</span></span><br><span class="line">    <span class="attr">text:</span> <span class="string">&#x27;#2e3440&#x27;</span></span><br><span class="line">    <span class="attr">cursor:</span> <span class="string">&#x27;#d8dee9&#x27;</span></span><br><span class="line">  <span class="attr">vi_mode_cursor:</span></span><br><span class="line">    <span class="attr">text:</span> <span class="string">&#x27;#2e3440&#x27;</span></span><br><span class="line">    <span class="attr">cursor:</span> <span class="string">&#x27;#d8dee9&#x27;</span></span><br><span class="line">  <span class="attr">selection:</span></span><br><span class="line">    <span class="attr">text:</span> <span class="string">CellForeground</span></span><br><span class="line">    <span class="attr">background:</span> <span class="string">&#x27;#4c566a&#x27;</span></span><br><span class="line">  <span class="attr">search:</span></span><br><span class="line">    <span class="attr">matches:</span></span><br><span class="line">      <span class="attr">foreground:</span> <span class="string">CellBackground</span></span><br><span class="line">      <span class="attr">background:</span> <span class="string">&#x27;#88c0d0&#x27;</span></span><br><span class="line">    <span class="attr">bar:</span></span><br><span class="line">      <span class="attr">background:</span> <span class="string">&#x27;#434c5e&#x27;</span></span><br><span class="line">      <span class="attr">foreground:</span> <span class="string">&#x27;#d8dee9&#x27;</span></span><br><span class="line">  <span class="attr">normal:</span></span><br><span class="line">    <span class="attr">black:</span> <span class="string">&#x27;#3b4252&#x27;</span></span><br><span class="line">    <span class="attr">red:</span> <span class="string">&#x27;#bf616a&#x27;</span></span><br><span class="line">    <span class="attr">green:</span> <span class="string">&#x27;#a3be8c&#x27;</span></span><br><span class="line">    <span class="attr">yellow:</span> <span class="string">&#x27;#ebcb8b&#x27;</span></span><br><span class="line">    <span class="attr">blue:</span> <span class="string">&#x27;#81a1c1&#x27;</span></span><br><span class="line">    <span class="attr">magenta:</span> <span class="string">&#x27;#b48ead&#x27;</span></span><br><span class="line">    <span class="attr">cyan:</span> <span class="string">&#x27;#88c0d0&#x27;</span></span><br><span class="line">    <span class="attr">white:</span> <span class="string">&#x27;#e5e9f0&#x27;</span></span><br><span class="line">  <span class="attr">bright:</span></span><br><span class="line">    <span class="attr">black:</span> <span class="string">&#x27;#4c566a&#x27;</span></span><br><span class="line">    <span class="attr">red:</span> <span class="string">&#x27;#bf616a&#x27;</span></span><br><span class="line">    <span class="attr">green:</span> <span class="string">&#x27;#a3be8c&#x27;</span></span><br><span class="line">    <span class="attr">yellow:</span> <span class="string">&#x27;#ebcb8b&#x27;</span></span><br><span class="line">    <span class="attr">blue:</span> <span class="string">&#x27;#81a1c1&#x27;</span></span><br><span class="line">    <span class="attr">magenta:</span> <span class="string">&#x27;#b48ead&#x27;</span></span><br><span class="line">    <span class="attr">cyan:</span> <span class="string">&#x27;#8fbcbb&#x27;</span></span><br><span class="line">    <span class="attr">white:</span> <span class="string">&#x27;#eceff4&#x27;</span></span><br><span class="line">  <span class="attr">dim:</span></span><br><span class="line">    <span class="attr">black:</span> <span class="string">&#x27;#373e4d&#x27;</span></span><br><span class="line">    <span class="attr">red:</span> <span class="string">&#x27;#94545d&#x27;</span></span><br><span class="line">    <span class="attr">green:</span> <span class="string">&#x27;#809575&#x27;</span></span><br><span class="line">    <span class="attr">yellow:</span> <span class="string">&#x27;#b29e75&#x27;</span></span><br><span class="line">    <span class="attr">blue:</span> <span class="string">&#x27;#68809a&#x27;</span></span><br><span class="line">    <span class="attr">magenta:</span> <span class="string">&#x27;#8c738c&#x27;</span></span><br><span class="line">    <span class="attr">cyan:</span> <span class="string">&#x27;#6d96a5&#x27;</span></span><br><span class="line">    <span class="attr">white:</span> <span class="string">&#x27;#aeb3bb&#x27;</span></span><br></pre></td></tr></table></figure>
-
-
-<h1 id="Themes"><a href="#Themes" class="headerlink" title="Themes"></a>Themes</h1><p>If you don’ t like the color scheme check other options using the command.</p>
-<p><code>fish_config</code></p>
-<h1 id="donet-autocomplete"><a href="#donet-autocomplete" class="headerlink" title="donet autocomplete"></a>donet autocomplete</h1><p>In case you want dotnet command autocomplete to get something like this.</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"> ╭─rramos@buldozer <span class="keyword">in</span> ~ via  v17.2.0</span><br><span class="line"> ╰─λ dotnet</span><br><span class="line">add               (Add a package/reference)  publish  (Publish a .NET project <span class="keyword">for</span> deployment)</span><br><span class="line">build                (Build a .NET project)  remove              (Remove a package/reference)</span><br><span class="line">build-server  (Interact with build servers)  restore                   (Restore dependencies)</span><br><span class="line">clean                 (Clean build outputs)  run            (Run the application from <span class="built_in">source</span>)</span><br><span class="line">…and 6 more rows</span><br></pre></td></tr></table></figure>
-
-<p>You should have the following on your <code>config.fish</code> file.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">complete -f -c dotnet -a &quot;(dotnet complete)&quot;</span><br></pre></td></tr></table></figure>
-<p>For Garuda this setup seems to be present out-of-the box.</p>
-<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>Although Garuda brings a lot of customizations for fish if one wants to go deeper and adjust for it’s own taste can take some time. I certainly toke some time to understand where configurations where being override. I probably include some of this configurations in git to prevent future time waist on customizations.</p>
-<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/fish">https://wiki.archlinux.org/title/fish</a></li>
-<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/dotnet/core/tools/enable-tab-autocomplete#zsh">https://docs.microsoft.com/en-us/dotnet/core/tools/enable-tab-autocomplete#zsh</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/oh-my-fish/oh-my-fish">https://github.com/oh-my-fish/oh-my-fish</a></li>
-<li><a target="_blank" rel="noopener" href="https://techviewleo.com/configure-fish-shell-with-oh-my-fish/">https://techviewleo.com/configure-fish-shell-with-oh-my-fish/</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/arcticicestudio/nord-alacritty">https://github.com/arcticicestudio/nord-alacritty</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -707,6 +716,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Linux/">Linux</a><small>12</small></li>
   
+    <li><a href="/tags/Mail/">Mail</a><small>1</small></li>
+  
     <li><a href="/tags/Management/">Management</a><small>2</small></li>
   
     <li><a href="/tags/Markdown/">Markdown</a><small>3</small></li>
@@ -808,6 +819,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/Vagrant/">Vagrant</a><small>1</small></li>
   
     <li><a href="/tags/VirtualBox/">VirtualBox</a><small>1</small></li>
+  
+    <li><a href="/tags/Web-Hosting/">Web Hosting</a><small>1</small></li>
   
     <li><a href="/tags/Windows/">Windows</a><small>1</small></li>
   

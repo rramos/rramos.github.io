@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archive: 2024/4 | rramos.github.io</title>
+  <title>Sendmail Relay Configuration | rramos.github.io</title>
   <meta name="author" content="Rui Ramos">
   
   <meta name="description" content="A simple Blog related with Infrastructure Architecture and Data">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
+  <meta property="og:title" content="Sendmail Relay Configuration"/>
   <meta property="og:site_name" content="rramos.github.io"/>
 
   
@@ -70,26 +70,151 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="clearfix"></div>
 </header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
-<h2 class="archive-title">2024/4</h2>
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2024-02-18T12:00:00.000Z"><a href="/2024/02/18/sendmail/">2024-02-18</a></time>
+      
+      
+  
+    <h1 class="title">Sendmail Relay Configuration</h1>
+  
 
+    </header>
+    <div class="entry">
+      
+        <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>In this article I will go through the process of setting up Sendmail to relay email to MailJet service.</p>
+<p>There are several options to setup relaying on your web hosting service, and also several providers that you can consider.</p>
+<p>Incorporating the SMTP relay service with Mailjet allows to take advantage of other services provided such and Campaign management.</p>
+<h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><ul>
+<li>For this setup you will need to have access to your server and permissions to install software.</li>
+<li>Create one account on MailJet service</li>
+<li>Have permissions to change your domain DNS records</li>
+</ul>
+<h2 id="MailJet"><a href="#MailJet" class="headerlink" title="MailJet"></a>MailJet</h2><p>For this setup we are considering MailJet service but you can use a different one.<br>Depending on the tier level, you will have different limitations.</p>
+<p>The Free tier allows:</p>
+<ul>
+<li>200 emails per day</li>
+<li>1500 contacts</li>
+<li>6000 emails p&#x2F;month</li>
+</ul>
+<p>It is a good point to start and later increase if it makes sense.</p>
+<h3 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h3><p>SPF &amp; DKIM are authentication systems that tell Internet Service Providers (ISPs), like Gmail and Yahoo, that incoming mail has been sent from an authorized system, and that it is not spam or email spoofing. To set Mailjet as an authorized sender and improve your deliverability, you need to modify your DNS records to include DKIM signature and SPF.</p>
+<p>This <a target="_blank" rel="noopener" href="https://documentation.mailjet.com/hc/en-us/articles/360042412734-Authenticating-Domains-with-SPF-DKIM">document</a> provides more detailed information</p>
+<p>But basically you will need to include 2 TXT records</p>
+<ul>
+<li><strong>type</strong>: TXT , <strong>host</strong>: @ , <strong>value</strong>: “v&#x3D;spf1 include:spf.mailjet.com ~all”</li>
+</ul>
+<p>If you run a DNS query on your domain for TXT you need to see that info</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dig -t TXT yourdomain.com</span><br></pre></td></tr></table></figure>
 
-  <div class="archive">
-    
-      <article class="post">
-        <div class="post-content-archive">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2024-04-02T15:00:00.000Z"><a href="/2024/04/02/strapi/">2024-04-02</a></time>
-            
-              <h1 class="title-archive"><a href="/2024/04/02/strapi/">Strapi and React TODO Application</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
+<p>You also need to include the DKIM record follow the instructions provided</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://app.mailjet.com/account/sender?type=auth">https://app.mailjet.com/account/sender?type=auth</a></li>
+</ul>
+<p>There is one option to validate if the configuration is working properly</p>
+<h3 id="Add-Domains"><a href="#Add-Domains" class="headerlink" title="Add Domains"></a>Add Domains</h3><p>You will also need to configure the allowed domains that will be allowed and validate senders. </p>
+<p>In the following URL you can make those:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://app.mailjet.com/account/sender?type=domain">https://app.mailjet.com/account/sender?type=domain</a></li>
+</ul>
+<h3 id="API-Keys"><a href="#API-Keys" class="headerlink" title="API Keys"></a>API Keys</h3><p>The last step would be to create an API key for your service.</p>
+<p>Go to following URL and create a new key, note it down as it will be required later.</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://app.mailjet.com/account/apikeys">https://app.mailjet.com/account/apikeys</a></li>
+</ul>
+<p>Ok, now let’s configure our MTA</p>
+<h2 id="Configure-Sendmail"><a href="#Configure-Sendmail" class="headerlink" title="Configure Sendmail"></a>Configure Sendmail</h2><p>For this setup you will need access to your hosting service and capable of installing software.</p>
+<p>The following instructions are for a Ubuntu base distribution.</p>
+<h3 id="Install-packages"><a href="#Install-packages" class="headerlink" title="Install packages"></a>Install packages</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install sendmail</span><br></pre></td></tr></table></figure>
+
+<h2 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h2><p>In this setup we will configure to relay via SMTP all email using auth provided by the service</p>
+<p>Start by editing the following file <code>/etc/mail/sendmail.mc</code> and add the following content at the end</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">dnl # Default Mailer setup</span><br><span class="line">MAILER_DEFINITIONS</span><br><span class="line">define(`SMART_HOST&#x27;, `in-v3.mailjet.com&#x27;)dnl</span><br><span class="line">define(`RELAY_MAILER_ARGS&#x27;, `TCP $h 587&#x27;)dnl</span><br><span class="line">define(`ESMTP_MAILER_ARGS&#x27;, `TCP $h 587&#x27;)dnl</span><br><span class="line">define(`confAUTH_OPTIONS&#x27;, `A p&#x27;)dnl</span><br><span class="line">TRUST_AUTH_MECH(`EXTERNAL DIGEST-MD5 CRAM-MD5 LOGIN PLAIN&#x27;)dnl</span><br><span class="line">define(`confAUTH_MECHANISMS&#x27;, `EXTERNAL GSSAPI DIGEST-MD5 CRAM-MD5 LOGIN PLAIN&#x27;)dnl</span><br><span class="line">FEATURE(`authinfo&#x27;,`hash -o /etc/mail/authinfo/smtp-auth.db&#x27;)dnl</span><br><span class="line">MAILER(`local&#x27;)dnl</span><br><span class="line">MAILER(`smtp&#x27;)dnl</span><br></pre></td></tr></table></figure>
+
+<p>We need to setup authentication, remember the previous API key that you created you will need to include the information associaded to API_KEY and API_SECRET on the following file <code>/etc/mail/authinfo/smtp-auth</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">AuthInfo: <span class="string">&quot;U:root&quot;</span> <span class="string">&quot;I:API_KEY&quot;</span> <span class="string">&quot;P:API_SECRET&quot;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo mkdir /etc/mail/authinfo</span><br><span class="line">sudo nano /etc/mail/authinfo/smtp-auth</span><br></pre></td></tr></table></figure>
+
+<p>Example:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">AuthInfo: <span class="string">&quot;U:root&quot;</span> <span class="string">&quot;I:1233450786523741256e&quot;</span> <span class="string">&quot;P:ety555qtfgdghsd88wrfer&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>After this you need to run the following command to update the service configuration<br>files</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">make -C /etc/mail</span><br></pre></td></tr></table></figure>
+
+<p>And restart sendmail service</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl restart sendmail</span><br></pre></td></tr></table></figure>
+
+<h2 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h2><p>In order to test you can execute the following command</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Test Email&quot;</span> | mail -s <span class="string">&quot;Subject Here&quot;</span> recipient@example.com </span><br></pre></td></tr></table></figure>
+
+<p>You can now check in MailJet <a target="_blank" rel="noopener" href="https://app.mailjet.com/stats">Stats</a> session if your mail pass there.</p>
+<h2 id="Troubleshooting"><a href="#Troubleshooting" class="headerlink" title="Troubleshooting"></a>Troubleshooting</h2><p>You can check with the <code>mailq</code> command to understand if there is mail being block and the logs in <code>/var/log/mail.log</code> to understand if there is some issue.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>In this article we went though the configuration of Sendmail service to relay emails through the Mailjet service. It covers the necessary configurations in both DNS and the Mailjet service to ensure seamless email delivery from your web hosting server.</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Sendmail">https://en.wikipedia.org/wiki/Sendmail</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.mailjet.com/">https://www.mailjet.com</a></li>
+<li><a target="_blank" rel="noopener" href="https://dev.mailjet.com/smtp-relay/overview/">https://dev.mailjet.com/smtp-relay/overview/</a></li>
+<li><a target="_blank" rel="noopener" href="https://gist.github.com/josectheone/a86b58eb71f25dcfe4b54ae590994cc7">https://gist.github.com/josectheone/a86b58eb71f25dcfe4b54ae590994cc7</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/Web-Hosting/">Web Hosting</a>, <a href="/tags/Mail/">Mail</a>
   </div>
 
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_linkedin_counter" li:counter="none"></a>
+    
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+
+
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Coments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=524446951221420";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://rramos.github.io/2024/02/18/sendmail/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
 
 </div></div>
     <aside id="sidebar" class="alignright">
@@ -257,6 +382,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Linux/">Linux</a><small>12</small></li>
   
+    <li><a href="/tags/Mail/">Mail</a><small>1</small></li>
+  
     <li><a href="/tags/Management/">Management</a><small>2</small></li>
   
     <li><a href="/tags/Markdown/">Markdown</a><small>3</small></li>
@@ -358,6 +485,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/Vagrant/">Vagrant</a><small>1</small></li>
   
     <li><a href="/tags/VirtualBox/">VirtualBox</a><small>1</small></li>
+  
+    <li><a href="/tags/Web-Hosting/">Web Hosting</a><small>1</small></li>
   
     <li><a href="/tags/Windows/">Windows</a><small>1</small></li>
   

@@ -77,6 +77,76 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
+        <time datetime="2023-12-26T20:20:00.000Z"><a href="/2023/12/26/ngrok/">2023-12-26</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2023/12/26/ngrok/">Ngrok</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>In this article I configure a local endpoint using ngrok for testing purposes.</p>
+<h2 id="What-is-ngrok"><a href="#What-is-ngrok" class="headerlink" title="What is ngrok ?"></a>What is ngrok ?</h2><p>ngrok is a globally distributed reverse proxy that secures, protects and accelerates your applications and network services, no matter where you run them. You can think of ngrok as the front door to your applications</p>
+<h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><p>For this guide I will use snap. Checkout the <a target="_blank" rel="noopener" href="https://ngrok.com/docs/getting-started/">Official guide</a> for other alternatives.</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">snap install ngrok</span><br></pre></td></tr></table></figure>
+
+<h2 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h2><p>Next step create an account with the Free tier at <a target="_blank" rel="noopener" href="https://ngrok.com/">https://ngrok.com</a>.</p>
+<blockquote>
+<p><strong>NOTE:</strong> This option is intended only for testing purposes for Production workloads you should consider a different option based on your network usage. Use this instructions at your own risk</p>
+</blockquote>
+<p>When you access the service you can get your token run the folloing command to add it to your local configuration</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ngrok config add-authtoken &lt;TOKEN&gt;</span><br></pre></td></tr></table></figure>
+
+<p>you can run the following command to make sure your configuration checks out</p>
+<h2 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h2><p>Open two terminals.<br>On the first let’s start a listener using netcat</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">nc -l -p 9393</span><br></pre></td></tr></table></figure>
+
+<p>On the second one let’s spin up ngrok</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ngrok tcp localhost:9393</span><br></pre></td></tr></table></figure>
+
+<p>You will be presented with a forward URL ( check Forwarding option on the output )</p>
+<p>For my example it was: <code>tcp://0.tcp.eu.ngrok.io:15537</code></p>
+<p>If you go through a browser and choose <code>http://0.tcp.eu.ngrok.io:15537/</code></p>
+<p>You should see the http GET request on the terminal for the listener</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">GET / HTTP/1.1</span><br><span class="line">Host: 0.tcp.eu.ngrok.io:15537</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line">User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Accept-Language: en-US,en;q=0.9,pt-PT;q=0.8,pt;q=0.7</span><br></pre></td></tr></table></figure>
+
+<p>You could use a much more interesting example like <a target="_blank" rel="noopener" href="https://mockingbird.tinybird.co/">MockingBird</a> or some other mocking data service, but for reference this will do.</p>
+<p>Another point to take into consideration is the security part.<br>When you create the enpoint you can define a differente security mechanism (advisible) like Oauth.</p>
+<p>You could run something like the following to use Google OAuth:</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ngrok http http://localhost:8080 --oauth=google --oauth-allow-email=&lt;YOUR_EMAIL&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Take into account that IP control will require that you upgrade your plan</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>ngrok seems to be very easy to setup. Although I didn’t go in depth on the CI&#x2F;CD configuration their Offical documentation has more information on that one (example for <a target="_blank" rel="noopener" href="https://ngrok.com/docs/integrations/github/webhooks/">Github integration</a>). Check there documentation regarding <a target="_blank" rel="noopener" href="https://ngrok.com/use-cases">Production usecases</a>.</p>
+<p>For me personally I think is quite interesting if you want to speed up development and provide a local endpoint quickly to a client to assess in a secure and reliable way. Or quicky provide a webhook for testing something.</p>
+<p>Let me know if you know similar alternatives that I should look into.</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://ngrok.com/">https://ngrok.com</a></li>
+<li><a target="_blank" rel="noopener" href="https://ngrok.com/docs/">https://ngrok.com/docs/</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2023-12-26T18:00:00.000Z"><a href="/2023/12/26/duckdb/">2023-12-26</a></time>
       
       
@@ -437,56 +507,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2023-12-21T14:32:00.000Z"><a href="/2023/12/21/jafgen/">2023-12-21</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2023/12/21/jafgen/">Data Generation With Jafgen</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>In this article I will provide a quick guide to generate mock data based on Jafgen, which you can use for your local projects</p>
-<h1 id="What-is-JafGen"><a href="#What-is-JafGen" class="headerlink" title="What is JafGen"></a>What is JafGen</h1><p>The Jaffle Shop Generator or jafgen is a python package with a simple command line tool for generating a synthetic data set suitable for analytics engineering practice or demonstrations.</p>
-<h1 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h1><p>Install via pip</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install jafgen</span><br></pre></td></tr></table></figure>
-
-<h1 id="Generate-data"><a href="#Generate-data" class="headerlink" title="Generate data"></a>Generate data</h1><p>Generate data</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">jafgen --years 1</span><br></pre></td></tr></table></figure>
-
-<p>The output of this command is store on the following folder <code>jaffle-data</code>:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">jaffle-data/</span><br><span class="line">├── raw_customers.csv</span><br><span class="line">├── raw_items.csv</span><br><span class="line">├── raw_orders.csv</span><br><span class="line">├── raw_products.csv</span><br><span class="line">├── raw_stores.csv</span><br><span class="line">└── raw_supplies.csv</span><br></pre></td></tr></table></figure>
-
-<p>Example output</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">==&gt; raw_customers.csv &lt;==</span><br><span class="line">id,name</span><br><span class="line">f32ab6bb-4912-4319-af20-cf681b797868,Julia Henderson</span><br><span class="line">c07e5161-e8c4-419f-bdeb-3a2271691c75,James Gutierrez</span><br><span class="line">63c021e4-4d59-4958-aa35-ca5f72b1cad9,Janet Robles</span><br><span class="line"></span><br><span class="line">==&gt; raw_items.csv &lt;==</span><br><span class="line">id,order_id,sku</span><br><span class="line">f0a084b2-e702-41c9-b748-64e0688dabbf,6190ef46-3be2-4dfe-bbd5-519fc85a36b2,BEV-003</span><br><span class="line">946a7047-f074-444a-9d57-6f9e4df587c7,4e9745e8-2244-42aa-8337-8342adeda83c,BEV-005</span><br><span class="line">dd08b68d-448a-4e2d-9961-9226dacefba5,558f3180-3d98-415f-8197-5cd21b16cb83,BEV-003</span><br><span class="line"></span><br><span class="line">==&gt; raw_orders.csv &lt;==</span><br><span class="line">id,customer,ordered_at,store_id,subtotal,tax_paid,order_total</span><br><span class="line">6190ef46-3be2-4dfe-bbd5-519fc85a36b2,f32ab6bb-4912-4319-af20-cf681b797868,2016-09-01T08:20:00,c1d21879-9db8-410a-af61-c0a2c91881d3,600,36,636</span><br><span class="line">4e9745e8-2244-42aa-8337-8342adeda83c,c07e5161-e8c4-419f-bdeb-3a2271691c75,2016-09-01T07:53:00,c1d21879-9db8-410a-af61-c0a2c91881d3,400,24,424</span><br><span class="line">558f3180-3d98-415f-8197-5cd21b16cb83,63c021e4-4d59-4958-aa35-ca5f72b1cad9,2016-09-01T07:26:00,c1d21879-9db8-410a-af61-c0a2c91881d3,600,36,636</span><br><span class="line"></span><br><span class="line">==&gt; raw_products.csv &lt;==</span><br><span class="line">sku,name,type,price,description</span><br><span class="line">JAF-001,nutellaphone who dis?,jaffle,1100,nutella and banana jaffle</span><br><span class="line">JAF-002,doctor stew,jaffle,1100,house-made beef stew jaffle</span><br><span class="line">JAF-003,the krautback,jaffle,1200,lamb and pork bratwurst with house-pickled cabbage sauerkraut and mustard</span><br><span class="line"></span><br><span class="line">==&gt; raw_stores.csv &lt;==</span><br><span class="line">id,name,opened_at,tax_rate</span><br><span class="line">c1d21879-9db8-410a-af61-c0a2c91881d3,Philadelphia,2016-09-01T00:00:00,0.06</span><br><span class="line">e03fe3a7-86cb-4e58-b4b0-462bff6abdfd,Brooklyn,2017-03-12T00:00:00,0.04</span><br><span class="line">a86be955-8d22-4440-960d-6fd0ac7522a6,Chicago,2018-04-29T00:00:00,0.0625</span><br><span class="line"></span><br><span class="line">==&gt; raw_supplies.csv &lt;==</span><br><span class="line">id,name,cost,perishable,sku</span><br><span class="line">SUP-001,compostable cutlery - knife,7,False,JAF-001</span><br><span class="line">SUP-002,cutlery - fork,7,False,JAF-001</span><br><span class="line">SUP-003,serving boat,11,False,JAF-001</span><br></pre></td></tr></table></figure>
-
-<p>This files can than be imported to your SQL Engine for development&#x2F;demonstration purposes</p>
-<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://pypi.org/project/jafgen/">https://pypi.org/project/jafgen/</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -663,6 +683,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Linux/">Linux</a><small>12</small></li>
   
+    <li><a href="/tags/Mail/">Mail</a><small>1</small></li>
+  
     <li><a href="/tags/Management/">Management</a><small>2</small></li>
   
     <li><a href="/tags/Markdown/">Markdown</a><small>3</small></li>
@@ -764,6 +786,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/Vagrant/">Vagrant</a><small>1</small></li>
   
     <li><a href="/tags/VirtualBox/">VirtualBox</a><small>1</small></li>
+  
+    <li><a href="/tags/Web-Hosting/">Web Hosting</a><small>1</small></li>
   
     <li><a href="/tags/Windows/">Windows</a><small>1</small></li>
   

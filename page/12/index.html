@@ -77,6 +77,99 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
+        <time datetime="2017-09-19T22:06:00.000Z"><a href="/2017/09/19/quickzeppelin/">2017-09-19</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/09/19/quickzeppelin/">Quick Setup Zeppelin Notebook</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>In this article i describe a quick way to have zeepelin running so that you could quickly testing some Spark application.</p>
+<p><strong>NOTE:</strong> This procedure shouldn’t be used in production environments has you should setup the Notebook with auth and connected to your local infrastructure.</p>
+<h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><ul>
+<li>One should have a docker environment setup. Check my previous <a href="/2017/09/19/dockerclean/" title="article">article</a> if you need some help with that</li>
+<li><a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-14-04">Docker-compose</a></li>
+</ul>
+<h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><ol>
+<li>Create a folder named zeepelin</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> docker-zeepelin</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>Create a <code>data</code> where you could put some data to analyse.</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p docker-zeepelin/data</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>Create the following <code>docker-compose.yml</code> file in dir <code>docker-zeepelin</code> :</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&#x27;2&#x27;</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">zeppelin:</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">     <span class="bullet">-</span> <span class="string">&quot;8080:8080&quot;</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">     <span class="bullet">-</span> <span class="string">./data:/opt/data</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">&quot;dylanmei/zeppelin&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>Launch docker-compose</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>That’s it you should now be able to access <a target="_blank" rel="noopener" href="http://localhost:8080/">http://localhost:8080</a></li>
+</ol>
+<h2 id="Test-it"><a href="#Test-it" class="headerlink" title="Test it"></a>Test it</h2><ol>
+<li>Lets download a demo file to our <code>data</code> dir.</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -s https://api.opendota.com/api/publicMatches -o ./data/OpenDotaPublic.json</span><br></pre></td></tr></table></figure>
+
+<p>Yeah! I kinda like Dota so this makes sense :D</p>
+<ol start="2">
+<li>Create a new NoteBook in the web Interface and use the following code</li>
+</ol>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line">%spark</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> df = sqlContext.read.json(<span class="string">&quot;file:///opt/data/OpenDotaPublic.json&quot;</span>)</span><br><span class="line">df.show</span><br></pre></td></tr></table></figure>
+
+<p>Hit: <strong>Shift-Enter</strong></p>
+<ol start="3">
+<li>Let’s register this dataframe as temp table and create some visuals</li>
+</ol>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line">%spark</span><br><span class="line">df.registerTempTable(<span class="string">&quot;publicmatches&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>Create the following to generate visualizations<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">%sql</span><br><span class="line">select radiant_win,match_id</span><br><span class="line"> from publicmatches</span><br></pre></td></tr></table></figure></li>
+</ol>
+<img src="/2017/09/19/quickzeppelin/radiant_win.png" class="" title="[PieChart]">
+
+<p>Guess i need to start playing on Radiant side :D</p>
+<p>Well and that’s it.</p>
+<p>Cheers,<br>RR</p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://zeppelin.apache.org/docs/0.5.5-incubating/tutorial/tutorial.html">https://zeppelin.apache.org/docs/0.5.5-incubating/tutorial/tutorial.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://hortonworks.com/tutorial/getting-started-with-apache-zeppelin/">https://hortonworks.com/tutorial/getting-started-with-apache-zeppelin/</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-16-04">https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-16-04</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.docker.com/compose">https://docs.docker.com/compose</a></li>
+<li><a target="_blank" rel="noopener" href="https://zeppelin.apache.org/">https://zeppelin.apache.org/</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2017-09-19T08:37:00.000Z"><a href="/2017/09/19/dockerclean/">2017-09-19</a></time>
       
       
@@ -395,58 +488,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-09-07T20:37:00.000Z"><a href="/2017/09/07/GA-CustomDimension/">2017-09-07</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/09/07/GA-CustomDimension/">How to Create a Google Analytics Custom Dimension</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>In order to add a custom dimension in Google Analytics follow this steps:</p>
-<ol>
-<li>Click <strong>admin</strong> and navigate to the property you which to add a custom dimension</li>
-</ol>
-<img src="/2017/09/07/GA-CustomDimension/Custom_Dimension.png" class="" title="Custom Dimension (step 1)">
-
-<ol start="2">
-<li><p>Click new <strong>Custom Dimension</strong></p>
-</li>
-<li><p>Give it a <strong>Name</strong> and a <strong>Scope</strong> and you’l get the javascript to add on your website</p>
-</li>
-</ol>
-<img src="/2017/09/07/GA-CustomDimension/GA_CustomDimension_js.png" class="" title="Custom Dimension (step 2)">
-
-<ol start="4">
-<li>After you should modify your tracking code adding for example</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title function_">ga</span>(<span class="string">&#x27;send&#x27;</span>, <span class="string">&#x27;pageview&#x27;</span>, &#123;</span><br><span class="line">  <span class="string">&#x27;dimension1&#x27;</span>:  <span class="string">&#x27;My Custom Dimension&#x27;</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h2 id="When-we-should-use-this"><a href="#When-we-should-use-this" class="headerlink" title="When we should use this ?"></a>When we should use this ?</h2><p>Let’s say your website does some sort of user classification, you can create a CustomDimension ex: <code>UserCategory</code> and send enrich the data you track.</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -623,6 +664,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Linux/">Linux</a><small>12</small></li>
   
+    <li><a href="/tags/Mail/">Mail</a><small>1</small></li>
+  
     <li><a href="/tags/Management/">Management</a><small>2</small></li>
   
     <li><a href="/tags/Markdown/">Markdown</a><small>3</small></li>
@@ -724,6 +767,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/Vagrant/">Vagrant</a><small>1</small></li>
   
     <li><a href="/tags/VirtualBox/">VirtualBox</a><small>1</small></li>
+  
+    <li><a href="/tags/Web-Hosting/">Web Hosting</a><small>1</small></li>
   
     <li><a href="/tags/Windows/">Windows</a><small>1</small></li>
   

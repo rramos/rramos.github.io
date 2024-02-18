@@ -77,6 +77,56 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
+        <time datetime="2023-12-21T14:32:00.000Z"><a href="/2023/12/21/jafgen/">2023-12-21</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2023/12/21/jafgen/">Data Generation With Jafgen</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>In this article I will provide a quick guide to generate mock data based on Jafgen, which you can use for your local projects</p>
+<h1 id="What-is-JafGen"><a href="#What-is-JafGen" class="headerlink" title="What is JafGen"></a>What is JafGen</h1><p>The Jaffle Shop Generator or jafgen is a python package with a simple command line tool for generating a synthetic data set suitable for analytics engineering practice or demonstrations.</p>
+<h1 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h1><p>Install via pip</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install jafgen</span><br></pre></td></tr></table></figure>
+
+<h1 id="Generate-data"><a href="#Generate-data" class="headerlink" title="Generate data"></a>Generate data</h1><p>Generate data</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">jafgen --years 1</span><br></pre></td></tr></table></figure>
+
+<p>The output of this command is store on the following folder <code>jaffle-data</code>:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">jaffle-data/</span><br><span class="line">├── raw_customers.csv</span><br><span class="line">├── raw_items.csv</span><br><span class="line">├── raw_orders.csv</span><br><span class="line">├── raw_products.csv</span><br><span class="line">├── raw_stores.csv</span><br><span class="line">└── raw_supplies.csv</span><br></pre></td></tr></table></figure>
+
+<p>Example output</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">==&gt; raw_customers.csv &lt;==</span><br><span class="line">id,name</span><br><span class="line">f32ab6bb-4912-4319-af20-cf681b797868,Julia Henderson</span><br><span class="line">c07e5161-e8c4-419f-bdeb-3a2271691c75,James Gutierrez</span><br><span class="line">63c021e4-4d59-4958-aa35-ca5f72b1cad9,Janet Robles</span><br><span class="line"></span><br><span class="line">==&gt; raw_items.csv &lt;==</span><br><span class="line">id,order_id,sku</span><br><span class="line">f0a084b2-e702-41c9-b748-64e0688dabbf,6190ef46-3be2-4dfe-bbd5-519fc85a36b2,BEV-003</span><br><span class="line">946a7047-f074-444a-9d57-6f9e4df587c7,4e9745e8-2244-42aa-8337-8342adeda83c,BEV-005</span><br><span class="line">dd08b68d-448a-4e2d-9961-9226dacefba5,558f3180-3d98-415f-8197-5cd21b16cb83,BEV-003</span><br><span class="line"></span><br><span class="line">==&gt; raw_orders.csv &lt;==</span><br><span class="line">id,customer,ordered_at,store_id,subtotal,tax_paid,order_total</span><br><span class="line">6190ef46-3be2-4dfe-bbd5-519fc85a36b2,f32ab6bb-4912-4319-af20-cf681b797868,2016-09-01T08:20:00,c1d21879-9db8-410a-af61-c0a2c91881d3,600,36,636</span><br><span class="line">4e9745e8-2244-42aa-8337-8342adeda83c,c07e5161-e8c4-419f-bdeb-3a2271691c75,2016-09-01T07:53:00,c1d21879-9db8-410a-af61-c0a2c91881d3,400,24,424</span><br><span class="line">558f3180-3d98-415f-8197-5cd21b16cb83,63c021e4-4d59-4958-aa35-ca5f72b1cad9,2016-09-01T07:26:00,c1d21879-9db8-410a-af61-c0a2c91881d3,600,36,636</span><br><span class="line"></span><br><span class="line">==&gt; raw_products.csv &lt;==</span><br><span class="line">sku,name,type,price,description</span><br><span class="line">JAF-001,nutellaphone who dis?,jaffle,1100,nutella and banana jaffle</span><br><span class="line">JAF-002,doctor stew,jaffle,1100,house-made beef stew jaffle</span><br><span class="line">JAF-003,the krautback,jaffle,1200,lamb and pork bratwurst with house-pickled cabbage sauerkraut and mustard</span><br><span class="line"></span><br><span class="line">==&gt; raw_stores.csv &lt;==</span><br><span class="line">id,name,opened_at,tax_rate</span><br><span class="line">c1d21879-9db8-410a-af61-c0a2c91881d3,Philadelphia,2016-09-01T00:00:00,0.06</span><br><span class="line">e03fe3a7-86cb-4e58-b4b0-462bff6abdfd,Brooklyn,2017-03-12T00:00:00,0.04</span><br><span class="line">a86be955-8d22-4440-960d-6fd0ac7522a6,Chicago,2018-04-29T00:00:00,0.0625</span><br><span class="line"></span><br><span class="line">==&gt; raw_supplies.csv &lt;==</span><br><span class="line">id,name,cost,perishable,sku</span><br><span class="line">SUP-001,compostable cutlery - knife,7,False,JAF-001</span><br><span class="line">SUP-002,cutlery - fork,7,False,JAF-001</span><br><span class="line">SUP-003,serving boat,11,False,JAF-001</span><br></pre></td></tr></table></figure>
+
+<p>This files can than be imported to your SQL Engine for development&#x2F;demonstration purposes</p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://pypi.org/project/jafgen/">https://pypi.org/project/jafgen/</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2023-10-17T10:00:00.000Z"><a href="/2023/10/17/interviewquestions/">2023-10-17</a></time>
       
       
@@ -405,73 +455,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2023-08-21T22:00:00.000Z"><a href="/2023/08/21/koboreader/">2023-08-21</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2023/08/21/koboreader/">How to Bypass Kobo Wizard in Linux</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>This article is a copy from <strong>Curtis Gedak</strong> in the following <a target="_blank" rel="noopener" href="https://gedakc.users.sourceforge.net/display-doc.php%3Fname%3Dkobo-desktop-ereader-setup">reference</a>. </p>
-<blockquote>
-<p>Kobo eReaders can no longer be set up using the Kobo Desktop on GNU&#x2F;Linux (see warning below). Fortunately there is a work around to get your Kobo eReader working without a Kobo Account.</p>
-</blockquote>
-<p>If you have a kobo reader stuck in the setup wizard as it happen to me (wifi got broken) there is a quick setup you can do to bypass the initial setup wizard.</p>
-<p><strong>Notice:</strong> This procedure was done in a old Kobo ebook reader, and is not guarantee that it will work on newer versions, use at your own risk</p>
-<h1 id="Issue"><a href="#Issue" class="headerlink" title="Issue"></a>Issue</h1><p>Kobo ebook reader stuck on the initial setup phase. Wifi doesn’t work and plugging to a computer requires the windows software installed, which for linux users doesn’t not work.</p>
-<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><p>Create a dummy user on the device to bypass the initial setup</p>
-<h1 id="Pre-Requisites"><a href="#Pre-Requisites" class="headerlink" title="Pre-Requisites"></a>Pre-Requisites</h1><p>You need to install sqlitebrowser</p>
-<p>Using the following code for Arch there should be a similar option Ubuntu or Fedora distributions</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">sudo pacman -S sqlitebrowser</span><br></pre></td></tr></table></figure>
-<h1 id="Procedure"><a href="#Procedure" class="headerlink" title="Procedure"></a>Procedure</h1><ol>
-<li><p>Plug you ebook reader via usb </p>
-<ul>
-<li>You can check the mount points you should see a <code>/media/your-user-name/KOBOeReader</code> device . Assuming this path as reference</li>
-</ul>
-</li>
-<li><p>Connect with SLQliteBrowser</p>
-  <figure class="highlight console"><table><tr><td class="code"><pre><span class="line">sqlitebrowser /media/your-user-name/KOBOeReader/.kobo/KoboReader.sqlite</span><br></pre></td></tr></table></figure></li>
-<li><p>Click on the Execute SQL tab and in the SQL string: section enter the following statement</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">USER</span></span><br><span class="line">  (UserID, UserKey, UserDisplayName, UserEmail, ___DeviceID)</span><br><span class="line"><span class="keyword">values</span></span><br><span class="line">  (&quot;foo&quot;, &quot;foo&quot;, &quot;foo&quot;, &quot;foo&quot;,&quot;foo&quot;);</span><br></pre></td></tr></table></figure></li>
-<li><p>Save the changes</p>
-<ul>
-<li>Save these changes by selecting the menu option: File -&gt; Save Database or File -&gt; Write Changes.</li>
-</ul>
-</li>
-<li><p>Close the sqlitebrowser by selecting the menu option: File -&gt; Exit.</p>
-</li>
-<li><p>Safely unmount your Kobo eReader.</p>
-</li>
-</ol>
-<p>And voilá, your eReader should now boot up and display the QUICK TOUR screen</p>
-<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://gedakc.users.sourceforge.net/display-doc.php%3Fname%3Dkobo-desktop-ereader-setup">https://gedakc.users.sourceforge.net/display-doc.php%3Fname%3Dkobo-desktop-ereader-setup</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -648,6 +631,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/Linux/">Linux</a><small>12</small></li>
   
+    <li><a href="/tags/Mail/">Mail</a><small>1</small></li>
+  
     <li><a href="/tags/Management/">Management</a><small>2</small></li>
   
     <li><a href="/tags/Markdown/">Markdown</a><small>3</small></li>
@@ -749,6 +734,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/Vagrant/">Vagrant</a><small>1</small></li>
   
     <li><a href="/tags/VirtualBox/">VirtualBox</a><small>1</small></li>
+  
+    <li><a href="/tags/Web-Hosting/">Web Hosting</a><small>1</small></li>
   
     <li><a href="/tags/Windows/">Windows</a><small>1</small></li>
   
