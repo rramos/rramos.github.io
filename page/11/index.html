@@ -77,6 +77,92 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
+        <time datetime="2017-09-27T21:16:00.000Z"><a href="/2017/09/27/hive-udfs/">2017-09-27</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/09/27/hive-udfs/">Hive UDFS Functions</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Today i was going to use a simple sha256 funtion in <a target="_blank" rel="noopener" href="https://hive.apache.org/">Hive</a> in order to mask a colunm and aparently in the latest <a target="_blank" rel="noopener" href="https://www.cloudera.com/">Cloudera</a> distribution the Shipped hive version doesn’t have that native function.</p>
+<p>This article will explain how you can build a sha256 or other udfs function and add it in Hive.</p>
+<h1 id="Checking-Cloudera-Packages-Version"><a href="#Checking-Cloudera-Packages-Version" class="headerlink" title="Checking Cloudera Packages Version"></a>Checking Cloudera Packages Version</h1><p>Check the following <a target="_blank" rel="noopener" href="https://www.cloudera.com/documentation/enterprise/release-notes/topics/cdh_vd_cdh_package_tarball.html">URL</a> in order to see the latest shipped package versions in Cloudera.</p>
+<blockquote>
+<p>CDH 5.12 -&gt; hive-1.1.0+cdh5.12.1+1197</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Return Type</th>
+<th>Name(Signature)</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>string</td>
+<td>sha2(string&#x2F;binary, int)</td>
+<td>Calculates the SHA-2 family of hash functions (SHA-224, SHA-256, SHA-384, and SHA-512) (as of Hive 1.3.0). The first argument is the string or binary to be hashed. The second argument indicates the desired bit length of the result, which must have a value of 224, 256, 384, 512, or 0 (which is equivalent to 256). SHA-224 is supported starting from Java 8. If either argument is NULL or the hash length is not one of the permitted values, the return value is NULL. Example: sha2(‘ABC’, 256) &#x3D; ‘b5d4045c3f466fa91fe2cc6abe79232a1a57cdf104f7a26e716e0a1e2789df78’.</td>
+</tr>
+</tbody></table>
+<p><a target="_blank" rel="noopener" href="https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF">Full Version</a></p>
+<h1 id="Implement-UDFS"><a href="#Implement-UDFS" class="headerlink" title="Implement UDFS"></a>Implement UDFS</h1><p>this will server more as an exercise, one could create a more complex udf funtion. For the time being let’s create a GenericUDFSha2 based on existing hive 1.3.0 version</p>
+<p>You code clone my repo with some udfs-utils <a href="git@github.com:rramos/udfs-utils.git">here</a></p>
+<p>The original code for hive version 1.3.0 is available in the repo</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFSha2.java">https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFSha2.java</a></p>
+<p>Let’s create the building structure</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p GenericUDFSha2/org/apache/hadoop/hive/ql/udf/generic</span><br><span class="line"><span class="built_in">cd</span> GenericUDFSha2</span><br></pre></td></tr></table></figure>
+
+<p>Let’s create a <code>pom.xml</code> file</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span> <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.rramos.bigdata.utils<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>GenericUDFSha2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>GenericUDFSha2<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.apache.org<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- properties --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line">     </span><br><span class="line">  <span class="comment">&lt;!-- prerequisitesprerequisites --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">prerequisites</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">maven</span>&gt;</span>3.0<span class="tag">&lt;/<span class="name">maven</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">prerequisites</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">&lt;!-- Dependencies --&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.12<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.hive<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hive-exec<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>joda-time<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>joda-time<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- Build options --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-jar-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.6<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">archive</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">manifest</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">addClasspath</span>&gt;</span>true<span class="tag">&lt;/<span class="name">addClasspath</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">mainClass</span>&gt;</span>com.rramos.bigdata.utils.GenericUDFSha2<span class="tag">&lt;/<span class="name">mainClass</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">manifest</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">archive</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-assembly-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">archive</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">manifest</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">mainClass</span>&gt;</span></span><br><span class="line">                            com.rramos.bigdata.utils.GenericUDFSha2</span><br><span class="line">                        <span class="tag">&lt;/<span class="name">mainClass</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">manifest</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">archive</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">descriptorRefs</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">descriptorRef</span>&gt;</span>jar-with-dependencies<span class="tag">&lt;/<span class="name">descriptorRef</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">descriptorRefs</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>You should obviously change for you packaging namespace, i’m just using <code>com.rramos.bigdata.utils</code> to be simpler.</p>
+<p>Next, let’s create the following file</p>
+<p><code>org/apache/hadoop/hive/ql/udf/generic/GenericUDFSha2.java</code></p>
+<p>with the content</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.rramos.bigdata.utils;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorUtils.PrimitiveGrouping.BINARY_GROUP;</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorUtils.PrimitiveGrouping.NUMERIC_GROUP;</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorUtils.PrimitiveGrouping.STRING_GROUP;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.security.MessageDigest;</span><br><span class="line"><span class="keyword">import</span> java.security.NoSuchAlgorithmException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.commons.codec.binary.Hex;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hive.ql.exec.Description;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hive.ql.exec.UDFArgumentException;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hive.ql.exec.UDFArgumentTypeException;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hive.ql.metadata.HiveException;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hive.serde2.objectinspector.ConstantObjectInspector;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hive.serde2.objectinspector.ObjectInspector;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hive.serde2.objectinspector.ObjectInspectorConverters.Converter;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hive.serde2.objectinspector.PrimitiveObjectInspector.PrimitiveCategory;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorFactory;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorUtils;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.io.BytesWritable;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.io.Text;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * GenericUDFSha2.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Description(name = &quot;sha2&quot;, value = &quot;_FUNC_(string/binary, len) - Calculates the SHA-2 family of hash functions &quot;</span></span><br><span class="line"><span class="meta">    + &quot;(SHA-224, SHA-256, SHA-384, and SHA-512).&quot;,</span></span><br><span class="line"><span class="meta">    extended = &quot;The first argument is the string or binary to be hashed. &quot;</span></span><br><span class="line"><span class="meta">    + &quot;The second argument indicates the desired bit length of the result, &quot;</span></span><br><span class="line"><span class="meta">    + &quot;which must have a value of 224, 256, 384, 512, or 0 (which is equivalent to 256). &quot;</span></span><br><span class="line"><span class="meta">    + &quot;SHA-224 is supported starting from Java 8. &quot;</span></span><br><span class="line"><span class="meta">    + &quot;If either argument is NULL or the hash length is not one of the permitted values, the return value is NULL.\n&quot;</span></span><br><span class="line"><span class="meta">    + &quot;Example: &gt; SELECT _FUNC_(&#x27;ABC&#x27;, 256);\n &#x27;b5d4045c3f466fa91fe2cc6abe79232a1a57cdf104f7a26e716e0a1e2789df78&#x27;&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">GenericUDFSha2</span> <span class="keyword">extends</span> <span class="title class_">GenericUDF</span> &#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">transient</span> Converter[] converters = <span class="keyword">new</span> <span class="title class_">Converter</span>[<span class="number">2</span>];</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">transient</span> PrimitiveCategory[] inputTypes = <span class="keyword">new</span> <span class="title class_">PrimitiveCategory</span>[<span class="number">2</span>];</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">final</span> <span class="type">Text</span> <span class="variable">output</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Text</span>();</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">transient</span> <span class="type">boolean</span> isStr;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">transient</span> MessageDigest digest;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="keyword">public</span> ObjectInspector <span class="title function_">initialize</span><span class="params">(ObjectInspector[] arguments)</span> <span class="keyword">throws</span> UDFArgumentException &#123;</span><br><span class="line">    checkArgsSize(arguments, <span class="number">2</span>, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    checkArgPrimitive(arguments, <span class="number">0</span>);</span><br><span class="line">    checkArgPrimitive(arguments, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// the function should support both string and binary input types</span></span><br><span class="line">    checkArgGroups(arguments, <span class="number">0</span>, inputTypes, STRING_GROUP, BINARY_GROUP);</span><br><span class="line">    checkArgGroups(arguments, <span class="number">1</span>, inputTypes, NUMERIC_GROUP);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (PrimitiveObjectInspectorUtils.getPrimitiveGrouping(inputTypes[<span class="number">0</span>]) == STRING_GROUP) &#123;</span><br><span class="line">      obtainStringConverter(arguments, <span class="number">0</span>, inputTypes, converters);</span><br><span class="line">      isStr = <span class="literal">true</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      GenericUDFParamUtils.obtainBinaryConverter(arguments, <span class="number">0</span>, inputTypes, converters);</span><br><span class="line">      isStr = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (arguments[<span class="number">1</span>] <span class="keyword">instanceof</span> ConstantObjectInspector) &#123;</span><br><span class="line">      <span class="type">Integer</span> <span class="variable">lenObj</span> <span class="operator">=</span> getConstantIntValue(arguments, <span class="number">1</span>);</span><br><span class="line">      <span class="keyword">if</span> (lenObj != <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> lenObj.intValue();</span><br><span class="line">        <span class="keyword">if</span> (len == <span class="number">0</span>) &#123;</span><br><span class="line">          len = <span class="number">256</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">          digest = MessageDigest.getInstance(<span class="string">&quot;SHA-&quot;</span> + len);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (NoSuchAlgorithmException e) &#123;</span><br><span class="line">          <span class="comment">// ignore</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">UDFArgumentTypeException</span>(<span class="number">1</span>, getFuncName() + <span class="string">&quot; only takes constant as &quot;</span></span><br><span class="line">          + getArgOrder(<span class="number">1</span>) + <span class="string">&quot; argument&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="type">ObjectInspector</span> <span class="variable">outputOI</span> <span class="operator">=</span> PrimitiveObjectInspectorFactory.writableStringObjectInspector;</span><br><span class="line">    <span class="keyword">return</span> outputOI;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="keyword">public</span> Object <span class="title function_">evaluate</span><span class="params">(DeferredObject[] arguments)</span> <span class="keyword">throws</span> HiveException &#123;</span><br><span class="line">    <span class="keyword">if</span> (digest == <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    digest.reset();</span><br><span class="line">    <span class="keyword">if</span> (isStr) &#123;</span><br><span class="line">      <span class="type">Text</span> <span class="variable">n</span> <span class="operator">=</span> GenericUDFParamUtils.getTextValue(arguments, <span class="number">0</span>, converters);</span><br><span class="line">      <span class="keyword">if</span> (n == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      digest.update(n.getBytes(), <span class="number">0</span>, n.getLength());</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="type">BytesWritable</span> <span class="variable">bWr</span> <span class="operator">=</span> GenericUDFParamUtils.getBinaryValue(arguments, <span class="number">0</span>, converters);</span><br><span class="line">      <span class="keyword">if</span> (bWr == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      digest.update(bWr.getBytes(), <span class="number">0</span>, bWr.getLength());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">byte</span>[] resBin = digest.digest();</span><br><span class="line">    <span class="type">String</span> <span class="variable">resStr</span> <span class="operator">=</span> Hex.encodeHexString(resBin);</span><br><span class="line"></span><br><span class="line">    output.set(resStr);</span><br><span class="line">    <span class="keyword">return</span> output;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="keyword">public</span> String <span class="title function_">getDisplayString</span><span class="params">(String[] children)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> getStandardDisplayString(getFuncName(), children);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="keyword">protected</span> String <span class="title function_">getFuncName</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;sha2&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>And build the package.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mvn package</span><br></pre></td></tr></table></figure>
+
+<p>After compile you find in <code>target</code> dir the require jar (<code>GenericUDFSha2-1.0-SNAPSHOT.jar</code>) you need to add in Hive.</p>
+<p>You should use your Hadoop Distribution instructions for deploying new jars.</p>
+<p>Here are <a target="_blank" rel="noopener" href="https://www.cloudera.com/documentation/enterprise/5-6-x/topics/cm_mc_hive_udf.html">Cloudera Instructions</a>.</p>
+<p>Next on your Hive session you need to <code>ADD JAR</code> and create a <code>FUNCTION</code> or <code>TEMPORARY FUNCTION</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ADD JAR ./target/GenericUDFSha2-1.0-SNAPSHOT.jar</span><br><span class="line">CREATE TEMPORARY FUNCTION sha2 AS <span class="string">&#x27;com.rramos.bigdata.utils.GenericUDFSha2&#x27;</span>;</span><br><span class="line">SELECT sha2(foo) from bar LIMIT1; </span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://blog.matthewrathbone.com/2013/08/10/guide-to-writing-hive-udfs.html">Matthew Rathbone</a> Blog has some great tutorial on Hive Funtions. Take a look if you want to go deep with it.</p>
+<p>Cheers,<br>RR</p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.cloudera.com/documentation/enterprise/release-notes/topics/rg_cdh_vd.html">https://www.cloudera.com/documentation/enterprise/release-notes/topics/rg_cdh_vd.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cloudera.com/documentation/enterprise/5-6-x/topics/cm_mc_hive_udf.html">https://www.cloudera.com/documentation/enterprise/5-6-x/topics/cm_mc_hive_udf.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.matthewrathbone.com/2013/08/10/guide-to-writing-hive-udfs.html">https://blog.matthewrathbone.com/2013/08/10/guide-to-writing-hive-udfs.html</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2017-09-26T23:43:00.000Z"><a href="/2017/09/26/vagrant-qemu/">2017-09-26</a></time>
       
       
@@ -453,173 +539,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-09-19T22:59:00.000Z"><a href="/2017/09/19/CreateAvroTablesForBigQuery/">2017-09-19</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/09/19/CreateAvroTablesForBigQuery/">Create Avro Tables for Google BigQuery</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>This article describes one way to create tables in BigQuery From HDFS parquet Data.</p>
-<h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><p>For this article assumes the following requisites are meet:</p>
-<ul>
-<li>You have a Google Cloud Platform account</li>
-<li>You have created a Google Cloud Storage bucket</li>
-<li>You have HDFS configured</li>
-<li>You have Parquet data that you could materialize in Hive</li>
-<li>Must have <a target="_blank" rel="noopener" href="https://cloud.google.com/sdk/docs/">bq</a> util install</li>
-</ul>
-<h2 id="Definitions"><a href="#Definitions" class="headerlink" title="Definitions"></a>Definitions</h2><ul>
-<li><strong>Hive Parquet Table:</strong> parquet_table</li>
-<li><strong>HDFS Parquet Location:</strong> <code>/user/hive/warehouse/test.db/parquet_table</code></li>
-<li><strong>Hive Avro Table Name:</strong> avro_table</li>
-<li><strong>HDFS Avro Location:</strong> <code>/user/hive/warehouse/test.db/avro_table</code></li>
-</ul>
-<h2 id="Process"><a href="#Process" class="headerlink" title="Process"></a>Process</h2><ol>
-<li>Create a avro table from parquet data</li>
-<li>Copy avro files to GCS</li>
-<li>Create Bigquery Table from avro in gs bucket</li>
-</ol>
-<h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><h3 id="Create-the-Avro-Table"><a href="#Create-the-Avro-Table" class="headerlink" title="Create the Avro Table"></a>Create the Avro Table</h3><p>Let’s start by creating the new table based on the existing parquet data</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">SET hive.exec.compress.output=<span class="literal">true</span>;</span><br><span class="line">SET avro.output.codec=snappy;</span><br><span class="line"></span><br><span class="line">CREATE TABLE avro_table STORED AS AVRO</span><br><span class="line">  AS (SELECT * FROM parquet_table);</span><br></pre></td></tr></table></figure>
-
-<p>One could specify in the <code>SELECT</code> statement the columns we would like that could be obtain using <code>parquet-tools</code> command  ex:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">parquet-tools meta &lt;parquet_file&gt;</span><br></pre></td></tr></table></figure>
-
-<p>You would still need to get the parquet file to obtain that.</p>
-<h3 id="Why-Avro-File-and-that-format"><a href="#Why-Avro-File-and-that-format" class="headerlink" title="Why Avro File and that format ?"></a>Why Avro File and that format ?</h3><p>You could update data to BigQuery by streaming or from Google Cloud Storage as a batch process. A bulk import from HDFS seems logical to use a batch process so why avro ?<br>Acording to the latest info on the google BigQuery Site it’s possible to:</p>
-<ul>
-<li>Load from Google Cloud Storage, including CSV, JSON (newline-delimited), and Avro files, as well as Google Cloud Datastore backups.</li>
-<li>Load directly from a readable data source.</li>
-<li>Insert individual records using streaming inserts.</li>
-</ul>
-<blockquote>
-<p>Compressed Avro files are not supported, but compressed data blocks are. BigQuery supports the DEFLATE and Snappy codecs.</p>
-</blockquote>
-<p>Also there is the following Avro mapping that could be usefull</p>
-<table>
-<thead>
-<tr>
-<th>Avro data type</th>
-<th>BigQuery data type</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>null</td>
-<td>- ignored -</td>
-</tr>
-<tr>
-<td>boolean</td>
-<td>BOOLEAN</td>
-</tr>
-<tr>
-<td>int</td>
-<td>INTEGER</td>
-</tr>
-<tr>
-<td>long</td>
-<td>INTEGER</td>
-</tr>
-<tr>
-<td>float</td>
-<td>FLOAT</td>
-</tr>
-<tr>
-<td>double</td>
-<td>FLOAT</td>
-</tr>
-<tr>
-<td>bytes</td>
-<td>BYTES</td>
-</tr>
-<tr>
-<td>string</td>
-<td>STRING</td>
-</tr>
-<tr>
-<td>record</td>
-<td>RECORD</td>
-</tr>
-<tr>
-<td>enum</td>
-<td>STRING</td>
-</tr>
-<tr>
-<td>array</td>
-<td>- repeated fields -</td>
-</tr>
-<tr>
-<td>map<T></td>
-<td>RECORD</td>
-</tr>
-<tr>
-<td>union</td>
-<td>RECORD</td>
-</tr>
-<tr>
-<td>fixed</td>
-<td>BYTES</td>
-</tr>
-</tbody></table>
-<p>Check the full spec on GCP <a target="_blank" rel="noopener" href="https://cloud.google.com/bigquery/data-formats#avro_format">Page</a></p>
-<p>The other advantage of using avro is that BigQuery infers the schema so you don’t have to describe the columns of you table.</p>
-<h3 id="Copy-Avro-file-from-HDFS-to-GCS"><a href="#Copy-Avro-file-from-HDFS-to-GCS" class="headerlink" title="Copy Avro file from HDFS to GCS"></a>Copy Avro file from HDFS to GCS</h3><p>The best approach for this is to add the GCS connector to your HDFS config</p>
-<p>Follow the instructions in the following <a target="_blank" rel="noopener" href="https://github.com/GoogleCloudPlatform/bigdata-interop/tree/master/gcs">link</a> or download the jar for Hadoop 2.x <a target="_blank" rel="noopener" href="https://storage.googleapis.com/hadoop-lib/gcs/gcs-connector-latest-hadoop2.jar">here</a></p>
-<ol>
-<li>Add that jar on a valid location for you cluster <code>HADOOP_CLASSPATH</code></li>
-<li>Generate a <code>service account</code> in the GCP console and get JSON key (<a target="_blank" rel="noopener" href="https://cloud.google.com/storage/docs/authentication#service_accounts">follow this instructions</a>)</li>
-<li>Copy that JSON file to a location in your cluster</li>
-<li>Add the following properties to your cluster <code>core-site.xml</code></li>
-</ol>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>fs.gs.project.id<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>your-project-name<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">description</span>&gt;</span></span><br><span class="line">    Required. Google Cloud Project ID with access to configured GCS buckets.</span><br><span class="line">  <span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>google.cloud.auth.service.account.json.keyfile<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>/path/to/your/JSON-keyfile<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">description</span>&gt;</span></span><br><span class="line">  The JSON key file of the service account used for GCS</span><br><span class="line">  access when google.cloud.auth.service.account.enable is true.</span><br><span class="line"><span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>fs.gs.working.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>/<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">description</span>&gt;</span></span><br><span class="line">    The directory relative gs: uris resolve in inside of the default bucket.</span><br><span class="line">  <span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>Extended options are available in <a target="_blank" rel="noopener" href="https://github.com/GoogleCloudPlatform/bigdata-interop/blob/master/gcs/conf/gcs-core-default.xml">gcs-core-default</a> example</p>
-<ol start="5">
-<li>Create a new bucket on GCP and make sure you can access to with via <code>hdfs</code> command.</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hdfs dfs -<span class="built_in">ls</span> gs://my-bucket-name/</span><br></pre></td></tr></table></figure>
-
-<p>If that works, you can now execute a distcp to sync the avro files directly to GCS.</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hdfs <span class="built_in">mkdir</span> gs://my-bucket-name/my_table</span><br><span class="line">hdfs distcp /user/hive/warehouse/test.db/avro_table/* gs://my-bucket-name/my_table/</span><br></pre></td></tr></table></figure>
-
-<h3 id="Load-GCS-avro-data-to-a-BigQuery-table"><a href="#Load-GCS-avro-data-to-a-BigQuery-table" class="headerlink" title="Load GCS avro data to a BigQuery table"></a>Load GCS avro data to a BigQuery table</h3><p>Execute</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">bq load ds.table gs://my-bucket-name/my_table/* --autodetect</span><br></pre></td></tr></table></figure>
-
-<p>And that’s it you now have a table with data in BigQuery.</p>
-<p>It is recommended to have this process managed by some type of orchestrator. There are several solutions for this. The next article i’ll be writting  about one of those <a target="_blank" rel="noopener" href="https://airflow.incubator.apache.org/">Airflow</a></p>
-<p>Cheers,<br>RR</p>
-<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://www.cloudera.com/documentation/enterprise/5-4-x/topics/cdh_ig_hive.html">https://www.cloudera.com/documentation/enterprise/5-4-x/topics/cdh_ig_hive.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/apache/parquet-mr/tree/master/parquet-tools">https://github.com/apache/parquet-mr/tree/master/parquet-tools</a></li>
-<li><a target="_blank" rel="noopener" href="https://cloud.google.com/bigquery/loading-data">https://cloud.google.com/bigquery/loading-data</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/GoogleCloudPlatform/bigdata-interop/blob/master/gcs/INSTALL.md">https://github.com/GoogleCloudPlatform/bigdata-interop/blob/master/gcs/INSTALL.md</a></li>
-<li><a target="_blank" rel="noopener" href="https://cloud.google.com/bigquery/docs/loading-data-cloud-storage">https://cloud.google.com/bigquery/docs/loading-data-cloud-storage</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -706,7 +625,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/DBT/">DBT</a><small>2</small></li>
   
-    <li><a href="/tags/Data-Engineering/">Data Engineering</a><small>4</small></li>
+    <li><a href="/tags/Data-Engineering/">Data Engineering</a><small>5</small></li>
   
     <li><a href="/tags/Data-Generation/">Data Generation</a><small>1</small></li>
   
@@ -719,6 +638,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/Data-Science/">Data Science</a><small>1</small></li>
   
     <li><a href="/tags/Data-Visualization/">Data Visualization</a><small>2</small></li>
+  
+    <li><a href="/tags/DataLake/">DataLake</a><small>1</small></li>
   
     <li><a href="/tags/Delegation/">Delegation</a><small>1</small></li>
   

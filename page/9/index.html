@@ -77,6 +77,70 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
+        <time datetime="2022-08-30T10:00:00.000Z"><a href="/2022/08/30/nato_alphabet/">2022-08-30</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2022/08/30/nato_alphabet/">NATO Phonetic Alphabet</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <blockquote>
+<p>The (International) Radiotelephony Spelling Alphabet, commonly known as the NATO phonetic alphabet, is the most widely used set of clear code words for communicating the letters of the Roman alphabet, technically a radiotelephonic</p>
+</blockquote>
+<p>A spelling alphabet is used to spell parts of a message containing letters and numbers to avoid confusion, because many letters sound similar, for instance “n” and “m” or “f” and “s”; the potential for confusion increases if static or other interference is present.</p>
+<ul>
+<li><strong>A</strong>lfa</li>
+<li><strong>B</strong>ravo</li>
+<li><strong>C</strong>harlie</li>
+<li><strong>D</strong>elta</li>
+<li><strong>E</strong>cho</li>
+<li><strong>F</strong>oxtrot</li>
+<li><strong>G</strong>olf</li>
+<li><strong>H</strong>otel</li>
+<li><strong>I</strong>ndia</li>
+<li><strong>J</strong>uliett</li>
+<li><strong>K</strong>ilo</li>
+<li><strong>L</strong>ima</li>
+<li><strong>M</strong>ike</li>
+<li><strong>N</strong>ovember</li>
+<li><strong>O</strong>scar</li>
+<li><strong>P</strong>apa</li>
+<li><strong>Q</strong>uebec</li>
+<li><strong>R</strong>omeo</li>
+<li><strong>S</strong>ierra</li>
+<li><strong>T</strong>ango</li>
+<li><strong>U</strong>niform</li>
+<li><strong>V</strong>ictor</li>
+<li><strong>W</strong>hiskey</li>
+<li><strong>X</strong>-ray</li>
+<li><strong>Y</strong>ankee</li>
+<li><strong>Z</strong>ulu</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2021-02-21T11:25:00.000Z"><a href="/2021/02/21/VisualCode Hexo addon/">2021-02-21</a></time>
       
       
@@ -309,71 +373,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-10-09T22:17:00.000Z"><a href="/2017/10/09/ansible-cmdb/">2017-10-09</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/10/09/ansible-cmdb/">Ansible-Cmdb</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>This article is about <a target="_blank" rel="noopener" href="https://github.com/fboender/ansible-cmdb">ansible-cmdb</a> a very nice solution for gathering your ansible facts into a visual format.</p>
-<blockquote><p>Ansible-cmdb takes the output of Ansible’s fact gathering and converts it into a static HTML overview page (and other things) containing system configuration information.</p>
-<p>It supports multiple types of output (html, csv, sql, etc) and extending information gathered by Ansible with custom data. For each host it also shows the groups, host variables, custom variables and machine-local facts.</p>
-<footer><strong>Offical Website Definition</strong></footer></blockquote>
-
-<h1 id="Supported-output-formats-templates"><a href="#Supported-output-formats-templates" class="headerlink" title="Supported output formats &#x2F; templates:"></a>Supported output formats &#x2F; templates:</h1><ul>
-<li>Fancy HTML (–template html_fancy), as seen in the screenshots above.</li>
-<li>Fancy HTML Split (–template html_fancy_split), with each host’s details in a separate file (for large number of hosts).</li>
-<li>CSV (–template csv), the trustworthy and flexible comma-separated format.</li>
-<li>JSON (–template json), a dump of all facts in JSON format.</li>
-<li>Markdown (–template markdown), useful for copy-pasting into Wiki’s and such.</li>
-<li>Markdown Split (‘–template markdown_split’), with each host’s details in a seperate file (for large number of hosts).</li>
-<li>SQL (–template sql), for importing host facts into a (My)SQL database.<br>Plain Text table (–template txt_table), for the console gurus.<br>and of course, any custom template you’re willing to make.</li>
-</ul>
-<h1 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h1><p>And it’s so simple to setup :D</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pip install ansible-cmdb</span><br></pre></td></tr></table></figure>
-
-<p><strong>Note:</strong> You could also use your distribution prefeered method. check the offical site.</p>
-<h1 id="Creating-Reports"><a href="#Creating-Reports" class="headerlink" title="Creating Reports"></a>Creating Reports</h1><p>Simple console generation</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ansible-cmdb -t txt_table --columns name,os,ip,mem,cpus out</span><br></pre></td></tr></table></figure>
-
-<p>The HTML Fancy one</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ansible-cmdb --template txt_table out  --template html_fancy</span><br></pre></td></tr></table></figure>
-
-<p>Official Screenshoot</p>
-<img src="/2017/10/09/ansible-cmdb/screenshot-overview.png" class="">
-
-
-<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>I found this software quite simple and very usefull. I found that <code>--template txt_table</code> is quite handy to use on Documentation for small enviroments. For bigger projects the CSV could be a better choice. Also the fancy HTML templates are very usefull on playbook development phases where you can confirm your facts very easily. Ansible-cmdb started as a short Python script, but many people made contributions so far.</p>
-<p>Cheers,<br>RR</p>
-<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/fboender/ansible-cmdb">https://github.com/fboender/ansible-cmdb</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -460,7 +459,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/DBT/">DBT</a><small>2</small></li>
   
-    <li><a href="/tags/Data-Engineering/">Data Engineering</a><small>4</small></li>
+    <li><a href="/tags/Data-Engineering/">Data Engineering</a><small>5</small></li>
   
     <li><a href="/tags/Data-Generation/">Data Generation</a><small>1</small></li>
   
@@ -473,6 +472,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/Data-Science/">Data Science</a><small>1</small></li>
   
     <li><a href="/tags/Data-Visualization/">Data Visualization</a><small>2</small></li>
+  
+    <li><a href="/tags/DataLake/">DataLake</a><small>1</small></li>
   
     <li><a href="/tags/Delegation/">Delegation</a><small>1</small></li>
   

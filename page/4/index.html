@@ -77,6 +77,143 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
+        <time datetime="2023-12-21T15:00:00.000Z"><a href="/2023/12/21/dbt/">2023-12-21</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2023/12/21/dbt/">DBT Quick WalkThrough</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>In this article I will describe a step-by-step guide on how to setup a local DBT enviroment and some basic ground rules to use it.</p>
+<h1 id="What-is-DBT"><a href="#What-is-DBT" class="headerlink" title="What is DBT"></a>What is DBT</h1><p>dbt™ is a SQL-first transformation workflow that lets teams quickly and collaboratively deploy analytics code following software engineering best practices like modularity, portability, CI&#x2F;CD, and documentation</p>
+<h1 id="Pre-Requirements"><a href="#Pre-Requirements" class="headerlink" title="Pre Requirements"></a>Pre Requirements</h1><p>In order to use dbt™ one must have the python requirements installed, they may differe based on the enviroment your are using. Will provide an example for a Linux based system</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get install git libpq-dev python-dev python3-pip</span><br><span class="line">pip install dbt-core</span><br><span class="line">pip install dbt-postgres</span><br></pre></td></tr></table></figure>
+
+<h2 id="Setup-a-PostgreSQL-Enviroment"><a href="#Setup-a-PostgreSQL-Enviroment" class="headerlink" title="Setup a PostgreSQL Enviroment"></a>Setup a PostgreSQL Enviroment</h2><p>One can use different sources such as Snowflake, BigQuery, etc. For the testing purposes lets run a docker image with  postgres. The following reop has some options for that</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/rramos/dockers/tree/master/docker-postgres">https://github.com/rramos/dockers/tree/master/docker-postgres</a></li>
+</ul>
+<blockquote>
+<p><strong>NOTE:</strong> If you will use a different source make sure to install with pip the appropriate connector eg. &#96;pip install dbt-bigquery&#96;&#96;</p>
+</blockquote>
+<h1 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h1><p>Lets initialize the environment</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dbt init</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>Provide a name for the project</li>
+<li>Include the connection details for the postgresql example<ol>
+<li>host (hostname for the instance): localhost</li>
+<li>port [5432]: </li>
+<li>user (dev username): admin</li>
+<li>pass (dev password): </li>
+<li>dbname (default database that dbt will build objects in): test_db</li>
+<li>schema (default schema that dbt will build objects in): dbt</li>
+<li>threads (1 or more) [1]:</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dbt deps</span><br></pre></td></tr></table></figure>
+
+<p>This will make sure it is installed all the required deps for the project</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dbt run</span><br></pre></td></tr></table></figure>
+
+<p>If you get an output similiar to the following it means you have everything ready to start using dbt</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">13:20:25  Running with dbt=1.7.4</span><br><span class="line">13:20:25  Registered adapter: postgres=1.7.4</span><br><span class="line">13:20:25  Found 2 models, 4 tests, 0 sources, 0 exposures, 0 metrics, 401 macros, 0 groups, 0 semantic models</span><br><span class="line">13:20:25  </span><br><span class="line">13:20:25  Concurrency: 1 threads (target=&#x27;dev&#x27;)</span><br><span class="line">13:20:25  </span><br><span class="line">13:20:25  1 of 2 START sql table model dbt.my_first_dbt_model ............................ [RUN]</span><br><span class="line">13:20:25  1 of 2 OK created sql table model dbt.my_first_dbt_model ....................... [SELECT 2 in 0.11s]</span><br><span class="line">13:20:25  2 of 2 START sql view model dbt.my_second_dbt_model ............................ [RUN]</span><br><span class="line">13:20:25  2 of 2 OK created sql view model dbt.my_second_dbt_model ....................... [CREATE VIEW in 0.06s]</span><br><span class="line">13:20:25  </span><br><span class="line">13:20:25  Finished running 1 table model, 1 view model in 0 hours 0 minutes and 0.27 seconds (0.27s).</span><br><span class="line">13:20:25  </span><br><span class="line">13:20:25  Completed successfully</span><br><span class="line">13:20:25  </span><br><span class="line">13:20:25  Done. PASS=2 WARN=0 ERROR=0 SKIP=0 TOTAL=2</span><br></pre></td></tr></table></figure>
+
+<p>You can access the web browser to validate the created table and view based on default init: <a target="_blank" rel="noopener" href="http://localhost:5050/browser/">http://localhost:5050/browser/</a></p>
+<ul>
+<li>table: my_first_dbt_model</li>
+<li>view: my_second_dbt_model</li>
+</ul>
+<h1 id="dbt™-Structure"><a href="#dbt™-Structure" class="headerlink" title="dbt™ Structure"></a>dbt™ Structure</h1><p>After you initialize the dbt™ environment you should endup with a structure similar to the following </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">test</span><br><span class="line">├── analyses</span><br><span class="line">├── dbt_packages</span><br><span class="line">├── dbt_project.yml</span><br><span class="line">├── logs</span><br><span class="line">│   └── dbt.log</span><br><span class="line">├── macros</span><br><span class="line">├── models</span><br><span class="line">│   └── example</span><br><span class="line">│       ├── my_first_dbt_model.sql</span><br><span class="line">│       ├── my_second_dbt_model.sql</span><br><span class="line">│       └── schema.yml</span><br><span class="line">├── README.md</span><br><span class="line">├── seeds</span><br><span class="line">├── snapshots</span><br><span class="line">├── target</span><br><span class="line">│   ├── compiled</span><br><span class="line">│   │   └── test</span><br><span class="line">│   │       └── models</span><br><span class="line">│   │           └── example</span><br><span class="line">│   │               ├── my_first_dbt_model.sql</span><br><span class="line">│   │               ├── my_second_dbt_model.sql</span><br><span class="line">│   │               └── schema.yml</span><br><span class="line">│   │                   ├── not_null_my_first_dbt_model_id.sql</span><br><span class="line">│   │                   ├── not_null_my_second_dbt_model_id.sql</span><br><span class="line">│   │                   ├── unique_my_first_dbt_model_id.sql</span><br><span class="line">│   │                   └── unique_my_second_dbt_model_id.sql</span><br><span class="line">│   ├── graph.gpickle</span><br><span class="line">│   ├── graph_summary.json</span><br><span class="line">│   ├── manifest.json</span><br><span class="line">│   ├── partial_parse.msgpack</span><br><span class="line">│   ├── run</span><br><span class="line">│   │   └── test</span><br><span class="line">│   │       └── models</span><br><span class="line">│   │           └── example</span><br><span class="line">│   │               ├── my_first_dbt_model.sql</span><br><span class="line">│   │               ├── my_second_dbt_model.sql</span><br><span class="line">│   │               └── schema.yml</span><br><span class="line">│   │                   ├── not_null_my_first_dbt_model_id.sql</span><br><span class="line">│   │                   ├── not_null_my_second_dbt_model_id.sql</span><br><span class="line">│   │                   ├── unique_my_first_dbt_model_id.sql</span><br><span class="line">│   │                   └── unique_my_second_dbt_model_id.sql</span><br><span class="line">│   ├── run_results.json</span><br><span class="line">│   └── semantic_manifest.json</span><br><span class="line">└── tests</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>Lets check the 1st level directories and what you migth find there:</p>
+<blockquote>
+<p><strong>NOTE:</strong> The structure may change based on the version and new  features that would be included. For this article the dbt version was 1.7.4</p>
+</blockquote>
+<h2 id="analyses"><a href="#analyses" class="headerlink" title="analyses"></a>analyses</h2><p>Not tested.</p>
+<h2 id="dbt-packages"><a href="#dbt-packages" class="headerlink" title="dbt_packages"></a>dbt_packages</h2><p>Installed packages from the packages HUB will lend on this location. You should not need to change here directly unless you are implementing your own packages.</p>
+<p>One example to include dbt_utils package is by creating the file <code>packages.yml</code> on the root directory of the project and then one can run <code>dbt deps</code> to fetch the dependencies </p>
+<p>Example:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">packages:</span><br><span class="line">  - package: dbt-labs/dbt_utils</span><br><span class="line">    version: 1.1.1</span><br></pre></td></tr></table></figure>
+
+<h2 id="logs"><a href="#logs" class="headerlink" title="logs"></a>logs</h2><p>Log directory for dbt™ executions</p>
+<h2 id="macros"><a href="#macros" class="headerlink" title="macros"></a>macros</h2><p>Macros act like small snippets of jinja code that you can than refeer on the models. They are very usefull for reusability and colaborative effort.</p>
+<p>One can call the macro using something similar: <code>&#123;% macro macro_name(params) %&#125;</code></p>
+<h2 id="models"><a href="#models" class="headerlink" title="models"></a>models</h2><p>This section is where most of the work is going to be done. Here one can define the SQL associated with each model using jinja syntax</p>
+<p><strong>Example:</strong> raw&#x2F;raw_customer.sql</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;&#123;</span><br><span class="line">    config(</span><br><span class="line">        materialized=&#x27;table&#x27;</span><br><span class="line">    )</span><br><span class="line">&#125;&#125;</span><br><span class="line"></span><br><span class="line">select * </span><br><span class="line">FROM </span><br><span class="line">&#123;&#123; source(&#x27;bigquery&#x27;, &#x27;customers&#x27;) &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="seeds"><a href="#seeds" class="headerlink" title="seeds"></a>seeds</h2><p>Useful for temporary data that incorporated and used as <strong>__ref</strong> . The data should exist as CSV</p>
+<p>ex:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shipmode,delivery_team</span><br><span class="line">First Class, RHL_Couriers</span><br><span class="line">Second Class, RHL_Couriers</span><br><span class="line">Standard Class, RHL_Couriers</span><br><span class="line">Same Day, Globalmart</span><br></pre></td></tr></table></figure>
+
+<h2 id="snapshots"><a href="#snapshots" class="headerlink" title="snapshots"></a>snapshots</h2><p>Not tested</p>
+<h2 id="target"><a href="#target" class="headerlink" title="target"></a>target</h2><p>This directory will hold compile sql bsed on your jinja spec and also other outcomes such as the graphs for the documentation.</p>
+<h2 id="tests"><a href="#tests" class="headerlink" title="tests"></a>tests</h2><p>Tests for your model were you can defined rules such as nullability, dictionary of terms, etc.</p>
+<p>One can use the  <code>dbt test</code> command to check if the there is something failing.</p>
+<blockquote>
+<p><strong>NOTE:</strong> Please check the <a target="_blank" rel="noopener" href="https://docs.getdbt.com/best-practices">Best Practises Guide</a> as it should provide more insigthful information. You can also check the following example repo <a target="_blank" rel="noopener" href="https://github.com/rramos/dbt-training">https://github.com/rramos/dbt-training</a> which holds some test data </p>
+</blockquote>
+<h1 id="Loading-Example-Data"><a href="#Loading-Example-Data" class="headerlink" title="Loading Example Data"></a>Loading Example Data</h1><p>The example data is based on the udemy bootcamp from Vantage Point, check the references section with the link for the course as it is very insigthful.</p>
+<p>The following repo already has most of the things done and could be useful as a starting point:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/rramos/dbt-training">https://github.com/rramos/dbt-training</a></li>
+</ul>
+<h2 id="Data-Information"><a href="#Data-Information" class="headerlink" title="Data Information"></a>Data Information</h2><ul>
+<li>Data is composed of 3 CSV files: customers, orders and product data</li>
+<li>Following a traditional <a target="_blank" rel="noopener" href="https://www.databricks.com/glossary/medallion-architecture">Medallions Architecture</a> (AKA bronze, silver gold)</li>
+<li>Implement a (raw) layer based on the source data</li>
+<li>Implement a (staging) where we hold aggregation logic</li>
+<li>Implement Gold layer (reporting) with materialization data for reporting purposes</li>
+</ul>
+<h1 id="dbt™-Cloud"><a href="#dbt™-Cloud" class="headerlink" title="dbt™ Cloud"></a>dbt™ Cloud</h1><p>dbtLabs is the company behind dbt™. Although one can use the community version of dbt-core packages the company sells a solution that helps their clients using a friendly graphical interface to take advantage of dbt™ in a Enterprise way.</p>
+<p>You can check out their website to understand better the features associated to it:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.getdbt.com/product/dbt-cloud">https://www.getdbt.com/product/dbt-cloud</a></li>
+</ul>
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>In this article it was presented a high-level overview on dbt™ how it can be setup and provided some references for best practises and how to take most advantage of the product.</p>
+<p>My personal view on this product is that it brings better control for data assets with embeded lineage also documentation generation and testing features all integraded in a common stack allowing the CI&#x2F;CD process to be a “walk-in-the-park”</p>
+<p>The community is very large which is a plus (<a target="_blank" rel="noopener" href="https://www.getdbt.com/community">https://www.getdbt.com/community</a> ). DBTCloud provides an Entreprise level solution that would speed up Data Engineering work via UI, I didn’t go deeper on the costs to understand if it pays-off.</p>
+<p>Only having the dbt-core option seems to be quite limited compared with the Entreprise solution, but the community supports several features which should be consider if you don’t want to go in that path (like the integration with Airflow).</p>
+<p>I’m not a big fan of jinja option as the main syntax for the Product, but that is more of a personal flavor.</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.udemy.com/course/the-dbt-bootcamp-transform-your-data-using-data-build-tool/">The Data Bootcamp: Transform your Data using dbt™</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.databricks.com/glossary/medallion-architecture">https://www.databricks.com/glossary/medallion-architecture</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/rramos/dockers">https://github.com/rramos/dockers</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.getdbt.com/">https://docs.getdbt.com/</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.getdbt.com/guides/codespace?step=1">https://docs.getdbt.com/guides/codespace?step=1</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.getdbt.com/guides/airflow-and-dbt-cloud?step=1">https://docs.getdbt.com/guides/airflow-and-dbt-cloud?step=1</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.getdbt.com/best-practices">https://docs.getdbt.com/best-practices</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.getdbt.com/best-practices/how-we-structure/1-guide-overview">https://docs.getdbt.com/best-practices/how-we-structure/1-guide-overview</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/rramos/dbt-training">https://github.com/rramos/dbt-training</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2023-12-21T14:32:00.000Z"><a href="/2023/12/21/jafgen/">2023-12-21</a></time>
       
       
@@ -382,79 +519,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2023-08-26T21:00:00.000Z"><a href="/2023/08/26/minikube/">2023-08-26</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2023/08/26/minikube/">Local Kubernetes for Testing/Developing</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p><strong>minikube</strong> is local Kubernetes, focusing on making it easy to learn and develop for Kubernetes.</p>
-<p>Lets start by installing the minikube package.</p>
-<p><strong>NOTE:</strong> This example is targeting a Arch distribution, if you use a different linux flavor check the <a target="_blank" rel="noopener" href="https://minikube.sigs.k8s.io/docs/start/">Official Docs</a> for other install options</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">sudo pacman -S minikube</span><br></pre></td></tr></table></figure>
-
-<p>The following command will setup a docker environment with a kubernetes environment that you can use for development&#x2F;testing purposes</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">minikube start</span><br></pre></td></tr></table></figure>
-<p>In order to interact with Kubernetes one can use the provided kubectl command upon starting this enviroment with the following command</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">minikube kubectl -- get pods -A</span><br></pre></td></tr></table></figure>
-
-<p>One should get something like this</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">NAMESPACE     NAME                               READY   STATUS    RESTARTS      AGE</span><br><span class="line">kube-system   coredns-787d4945fb-zv72d           1/1     Running   0             10m</span><br><span class="line">kube-system   etcd-minikube                      1/1     Running   0             10m</span><br><span class="line">kube-system   kube-apiserver-minikube            1/1     Running   0             10m</span><br><span class="line">kube-system   kube-controller-manager-minikube   1/1     Running   0             10m</span><br><span class="line">kube-system   kube-proxy-7p9qw                   1/1     Running   0             10m</span><br><span class="line">kube-system   kube-scheduler-minikube            1/1     Running   0             10m</span><br><span class="line">kube-system   storage-provisioner                1/1     Running   1 (10m ago)   10m</span><br></pre></td></tr></table></figure>
-
-<p>I will install kubectl package however to allow interaction with other clusters if required.</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">sudo pacman -S kubectl</span><br></pre></td></tr></table></figure>
-
-<p>We should get the same output by executing</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">kubectl get po -A</span><br></pre></td></tr></table></figure>
-
-<p>One can check the cluster details with following command</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">kubectl cluster-info</span><br></pre></td></tr></table></figure>
-
-<p>You should get something similar </p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">Kubernetes control plane is running at https://192.168.49.2:8443</span><br><span class="line">CoreDNS is running at https://192.168.49.2:8443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy</span><br><span class="line"></span><br><span class="line">To further debug and diagnose cluster problems, use &#x27;kubectl cluster-info dump&#x27;.</span><br></pre></td></tr></table></figure>
-
-<p>Minikube is also bundled with Kubernetes Dashboard which you can launch with the following command</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">minikube dashboard</span><br></pre></td></tr></table></figure>
-
-<p>You would get something similar to the following image:</p>
-<img src="/2023/08/26/minikube/minikube.png" class="" title="minikube">
-
-<p>Great now we have a Kubernetes cluster running in docker and kubectl command available. </p>
-<p>For a more extensive guideline on how to manage Minikube please checkout the <a target="_blank" rel="noopener" href="https://minikube.sigs.k8s.io/docs/handbook/">handbook</a></p>
-<p>Next steps would containerize some application and deploy it.</p>
-<p>But that would be for another article…</p>
-<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://minikube.sigs.k8s.io/docs/start/">https://minikube.sigs.k8s.io/docs/start/</a></li>
-<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Minikube">https://wiki.archlinux.org/title/Minikube</a></li>
-<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Kubernetes">https://wiki.archlinux.org/title/Kubernetes</a></li>
-<li><a target="_blank" rel="noopener" href="https://minikube.sigs.k8s.io/docs/handbook/">https://minikube.sigs.k8s.io/docs/handbook/</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -541,7 +605,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/DBT/">DBT</a><small>2</small></li>
   
-    <li><a href="/tags/Data-Engineering/">Data Engineering</a><small>4</small></li>
+    <li><a href="/tags/Data-Engineering/">Data Engineering</a><small>5</small></li>
   
     <li><a href="/tags/Data-Generation/">Data Generation</a><small>1</small></li>
   
@@ -554,6 +618,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/Data-Science/">Data Science</a><small>1</small></li>
   
     <li><a href="/tags/Data-Visualization/">Data Visualization</a><small>2</small></li>
+  
+    <li><a href="/tags/DataLake/">DataLake</a><small>1</small></li>
   
     <li><a href="/tags/Delegation/">Delegation</a><small>1</small></li>
   

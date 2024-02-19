@@ -77,6 +77,49 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
+        <time datetime="2016-10-19T00:05:00.000Z"><a href="/2016/10/19/hiveGC-md/">2016-10-19</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/10/19/hiveGC-md/">Hive Queries Crash When Inserting GC Exception</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>When running some queries with hive sometimes we get a very nice java exception of overhead limit</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Exception <span class="keyword">in</span> thread <span class="string">&quot;main&quot;</span> java.lang.OutOfMemoryError: GC overhead <span class="built_in">limit</span> exceeded</span><br></pre></td></tr></table></figure>
+
+<p>I didn’t know but it turns out you can supply directly on the jdbc connection of beeline the parameters to increase this values.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">jdbc:hive2://localhost:10000/default?mapreduce.map.memory.mb=3809;mapreduce.map.java.opts=-Xmx3428m;mapreduce.reduce.memory.mb=2560;mapreduce.reduce.java.opts=-Xmx2304m;</span><br></pre></td></tr></table></figure>
+
+<p>It is important to understand the size of the containers in your cluster and this is usefull for some adhoc procedures.</p>
+<p>The best way is to configure the containers memory size in hadoop, but this kind of quick solutions are usefull, expecially for testing parameters of new workflows.</p>
+<p>There is some good info regarding this configuration in altiscale documentation:</p>
+<p><a target="_blank" rel="noopener" href="https://documentation.altiscale.com/heapsize-for-mappers-and-reducers">https://documentation.altiscale.com/heapsize-for-mappers-and-reducers</a></p>
+<p>Cheers,<br>RR</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2016-09-23T22:40:00.000Z"><a href="/2016/09/23/portotechhub-com/">2016-09-23</a></time>
       
       
@@ -486,7 +529,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     <li><a href="/tags/DBT/">DBT</a><small>2</small></li>
   
-    <li><a href="/tags/Data-Engineering/">Data Engineering</a><small>4</small></li>
+    <li><a href="/tags/Data-Engineering/">Data Engineering</a><small>5</small></li>
   
     <li><a href="/tags/Data-Generation/">Data Generation</a><small>1</small></li>
   
@@ -499,6 +542,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/Data-Science/">Data Science</a><small>1</small></li>
   
     <li><a href="/tags/Data-Visualization/">Data Visualization</a><small>2</small></li>
+  
+    <li><a href="/tags/DataLake/">DataLake</a><small>1</small></li>
   
     <li><a href="/tags/Delegation/">Delegation</a><small>1</small></li>
   
