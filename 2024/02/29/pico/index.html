@@ -1,0 +1,496 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>pico.sh | rramos.github.io</title>
+  <meta name="author" content="Rui Ramos">
+  
+  <meta name="description" content="A simple Blog related with Infrastructure Architecture and Data">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="pico.sh"/>
+  <meta property="og:site_name" content="rramos.github.io"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+  
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MXRC4DK');</script>
+<!-- End Google Tag Manager -->
+
+
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MXRC4DK"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">rramos.github.io</a></h1>
+  <h2><a href="/">Tech Notes for Infrastructure and Data</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2024-02-29T14:21:29.850Z"><a href="/2024/02/29/pico/">2024-02-29</a></time>
+      
+      
+  
+    <h1 class="title">pico.sh</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><blockquote>
+<p>We think of pico.sh as a hacker lab where we can experiment with new ways to interact with the web.</p>
+</blockquote>
+<h2 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h2><p>Pico supports the following services:</p>
+<ul>
+<li>prose.sh - A blog platform for hackers</li>
+<li>pastes.sh - A pastebin for hackers</li>
+<li>feeds.sh - An rss email notification service</li>
+</ul>
+<p>The payed version called pico+ brings more service</p>
+<h2 id="pico"><a href="#pico" class="headerlink" title="pico+"></a>pico+</h2><p>Payed version of pico which brings extra services:</p>
+<ul>
+<li>pgs.sh - 10GB asset storage</li>
+<li>tuns.sh - Full access</li>
+<li>imgs.sh - 2GB image registry storage</li>
+<li>prose.sh - 1GB image storage</li>
+<li>Beta access</li>
+</ul>
+<h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><h3 id="Prose"><a href="#Prose" class="headerlink" title="Prose"></a>Prose</h3><p><strong>Prose.sh</strong> - This service allows you to upload Github flavor markdown and it will generate the HTML content to display you just need to sync the data.</p>
+<p>Create a post eg. <code>~/blog/hello-world.md</code></p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># hello world!</span></span><br><span class="line"></span><br><span class="line">This is my first blog post.</span><br><span class="line"></span><br><span class="line">Check out some resources:</span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> [<span class="string">pico.sh</span>](<span class="link">https://pico.sh</span>)</span><br><span class="line"><span class="bullet">-</span> [<span class="string">antoniomika</span>](<span class="link">https://antoniomika.me</span>)</span><br><span class="line"><span class="bullet">-</span> [<span class="string">bower.sh</span>](<span class="link">https://bower.sh</span>)</span><br><span class="line"></span><br><span class="line">Cya!</span><br></pre></td></tr></table></figure>
+
+<p>And just publish with rsync</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rsync ~/blog/* prose.sh:/</span><br></pre></td></tr></table></figure>
+
+<p>There are some special files you can setup to customize the css or add a footer</p>
+<ul>
+<li>_styles.css</li>
+<li>_footer.md</li>
+</ul>
+<p>But that’s pretty much it</p>
+<p>Check the following doc for more information</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://pico.sh/prose">https://pico.sh/prose</a></li>
+</ul>
+<h3 id="Pastes"><a href="#Pastes" class="headerlink" title="Pastes"></a>Pastes</h3><p>You can also use the pastebin service</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;foobar&quot;</span> | ssh pastes.sh</span><br></pre></td></tr></table></figure>
+
+<p>You can define a expiration</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;foobar&quot;</span> | ssh pastes.sh FILENAME expires=2023-12-12</span><br></pre></td></tr></table></figure>
+
+<p>It will generate a url for your paste<br>eg: <a target="_blank" rel="noopener" href="https://ruimsramos.pastes.sh/1709216080780412798">https://ruimsramos.pastes.sh/1709216080780412798</a></p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>This article was about pico a hacker labs service as they advertise it.</p>
+<p>It is extermely fast if you want to use a pastbin option to share some data or quickly upload in prose some markdown notes, when you don’t need to worry on setting up something fancing just to publish them and focus on the writing.</p>
+<p>The pro service like tuns.hs and imgs.sh seem to be also powerfull. The later one if you ant to integrate with github actions for instance, but I didn’t evaluate that version</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://pico.sh/getting-started">https://pico.sh/getting-started</a></li>
+<li><a target="_blank" rel="noopener" href="https://pico.sh/prose">https://pico.sh/prose</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/Hosting/">Hosting</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_linkedin_counter" li:counter="none"></a>
+    
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+
+
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Coments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=524446951221420";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://rramos.github.io/2024/02/29/pico/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:rramos.github.io">
+  </form>
+</div>
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/NET/">.NET</a><small>2</small></li>
+  
+    <li><a href="/tags/API/">API</a><small>2</small></li>
+  
+    <li><a href="/tags/AUR/">AUR</a><small>1</small></li>
+  
+    <li><a href="/tags/Agile/">Agile</a><small>1</small></li>
+  
+    <li><a href="/tags/Airflow/">Airflow</a><small>1</small></li>
+  
+    <li><a href="/tags/Alacritty/">Alacritty</a><small>1</small></li>
+  
+    <li><a href="/tags/Analytics/">Analytics</a><small>1</small></li>
+  
+    <li><a href="/tags/Ansible/">Ansible</a><small>2</small></li>
+  
+    <li><a href="/tags/Arch/">Arch</a><small>3</small></li>
+  
+    <li><a href="/tags/Architecture/">Architecture</a><small>2</small></li>
+  
+    <li><a href="/tags/Artifactory/">Artifactory</a><small>1</small></li>
+  
+    <li><a href="/tags/Avro/">Avro</a><small>1</small></li>
+  
+    <li><a href="/tags/BTRFS/">BTRFS</a><small>1</small></li>
+  
+    <li><a href="/tags/Backend/">Backend</a><small>1</small></li>
+  
+    <li><a href="/tags/Beeline/">Beeline</a><small>1</small></li>
+  
+    <li><a href="/tags/Big-Data/">Big Data</a><small>2</small></li>
+  
+    <li><a href="/tags/BigQuery/">BigQuery</a><small>1</small></li>
+  
+    <li><a href="/tags/Books/">Books</a><small>2</small></li>
+  
+    <li><a href="/tags/CI-CD/">CI/CD</a><small>1</small></li>
+  
+    <li><a href="/tags/ChatGPT/">ChatGPT</a><small>1</small></li>
+  
+    <li><a href="/tags/CheatSheet/">CheatSheet</a><small>1</small></li>
+  
+    <li><a href="/tags/Clickhouse/">Clickhouse</a><small>1</small></li>
+  
+    <li><a href="/tags/Cloudera/">Cloudera</a><small>3</small></li>
+  
+    <li><a href="/tags/Code/">Code</a><small>1</small></li>
+  
+    <li><a href="/tags/Communication/">Communication</a><small>1</small></li>
+  
+    <li><a href="/tags/Conferences/">Conferences</a><small>2</small></li>
+  
+    <li><a href="/tags/Contracts/">Contracts</a><small>1</small></li>
+  
+    <li><a href="/tags/Crypto/">Crypto</a><small>1</small></li>
+  
+    <li><a href="/tags/Customization/">Customization</a><small>2</small></li>
+  
+    <li><a href="/tags/DBT/">DBT</a><small>2</small></li>
+  
+    <li><a href="/tags/Data-Engineering/">Data Engineering</a><small>5</small></li>
+  
+    <li><a href="/tags/Data-Generation/">Data Generation</a><small>1</small></li>
+  
+    <li><a href="/tags/Data-Ingestion/">Data Ingestion</a><small>1</small></li>
+  
+    <li><a href="/tags/Data-Modeling/">Data Modeling</a><small>2</small></li>
+  
+    <li><a href="/tags/Data-Quality/">Data Quality</a><small>1</small></li>
+  
+    <li><a href="/tags/Data-Science/">Data Science</a><small>1</small></li>
+  
+    <li><a href="/tags/Data-Visualization/">Data Visualization</a><small>2</small></li>
+  
+    <li><a href="/tags/DataLake/">DataLake</a><small>1</small></li>
+  
+    <li><a href="/tags/Delegation/">Delegation</a><small>1</small></li>
+  
+    <li><a href="/tags/DevOps/">DevOps</a><small>1</small></li>
+  
+    <li><a href="/tags/Development/">Development</a><small>5</small></li>
+  
+    <li><a href="/tags/Dimensions/">Dimensions</a><small>1</small></li>
+  
+    <li><a href="/tags/Docker/">Docker</a><small>7</small></li>
+  
+    <li><a href="/tags/Dr-Elephant/">Dr-Elephant</a><small>1</small></li>
+  
+    <li><a href="/tags/DuckDB/">DuckDB</a><small>1</small></li>
+  
+    <li><a href="/tags/Encryption/">Encryption</a><small>1</small></li>
+  
+    <li><a href="/tags/Events/">Events</a><small>1</small></li>
+  
+    <li><a href="/tags/Fish/">Fish</a><small>1</small></li>
+  
+    <li><a href="/tags/Frontend/">Frontend</a><small>1</small></li>
+  
+    <li><a href="/tags/GCS/">GCS</a><small>1</small></li>
+  
+    <li><a href="/tags/Git/">Git</a><small>5</small></li>
+  
+    <li><a href="/tags/GitHub/">GitHub</a><small>3</small></li>
+  
+    <li><a href="/tags/Google-Analytics/">Google Analytics</a><small>3</small></li>
+  
+    <li><a href="/tags/Google-Tag-Manager/">Google Tag Manager</a><small>1</small></li>
+  
+    <li><a href="/tags/GoogleChrome/">GoogleChrome</a><small>1</small></li>
+  
+    <li><a href="/tags/Guideline/">Guideline</a><small>1</small></li>
+  
+    <li><a href="/tags/HDFS/">HDFS</a><small>3</small></li>
+  
+    <li><a href="/tags/Hadoop/">Hadoop</a><small>5</small></li>
+  
+    <li><a href="/tags/Hexo/">Hexo</a><small>2</small></li>
+  
+    <li><a href="/tags/Hiring/">Hiring</a><small>1</small></li>
+  
+    <li><a href="/tags/Hive/">Hive</a><small>4</small></li>
+  
+    <li><a href="/tags/Hosting/">Hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/IDE/">IDE</a><small>2</small></li>
+  
+    <li><a href="/tags/Infrastructure/">Infrastructure</a><small>1</small></li>
+  
+    <li><a href="/tags/Inspiration/">Inspiration</a><small>1</small></li>
+  
+    <li><a href="/tags/Internet/">Internet</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/KSQL/">KSQL</a><small>1</small></li>
+  
+    <li><a href="/tags/KVM/">KVM</a><small>2</small></li>
+  
+    <li><a href="/tags/Kafka/">Kafka</a><small>2</small></li>
+  
+    <li><a href="/tags/Keybase/">Keybase</a><small>1</small></li>
+  
+    <li><a href="/tags/Keyboards/">Keyboards</a><small>1</small></li>
+  
+    <li><a href="/tags/Kobo/">Kobo</a><small>1</small></li>
+  
+    <li><a href="/tags/Kubernetes/">Kubernetes</a><small>1</small></li>
+  
+    <li><a href="/tags/Laws/">Laws</a><small>1</small></li>
+  
+    <li><a href="/tags/Leadership/">Leadership</a><small>2</small></li>
+  
+    <li><a href="/tags/Linux/">Linux</a><small>12</small></li>
+  
+    <li><a href="/tags/Mail/">Mail</a><small>1</small></li>
+  
+    <li><a href="/tags/Management/">Management</a><small>2</small></li>
+  
+    <li><a href="/tags/Markdown/">Markdown</a><small>3</small></li>
+  
+    <li><a href="/tags/Mesos/">Mesos</a><small>1</small></li>
+  
+    <li><a href="/tags/Metrics/">Metrics</a><small>1</small></li>
+  
+    <li><a href="/tags/Microsoft-Fabric/">Microsoft Fabric</a><small>1</small></li>
+  
+    <li><a href="/tags/Monitoring/">Monitoring</a><small>1</small></li>
+  
+    <li><a href="/tags/Nifi/">Nifi</a><small>1</small></li>
+  
+    <li><a href="/tags/Nord/">Nord</a><small>1</small></li>
+  
+    <li><a href="/tags/Nuget/">Nuget</a><small>1</small></li>
+  
+    <li><a href="/tags/OLTP/">OLTP</a><small>1</small></li>
+  
+    <li><a href="/tags/OpenAI/">OpenAI</a><small>1</small></li>
+  
+    <li><a href="/tags/OpenAPI/">OpenAPI</a><small>1</small></li>
+  
+    <li><a href="/tags/Optimization/">Optimization</a><small>1</small></li>
+  
+    <li><a href="/tags/PGP/">PGP</a><small>1</small></li>
+  
+    <li><a href="/tags/PKI/">PKI</a><small>1</small></li>
+  
+    <li><a href="/tags/Packages/">Packages</a><small>1</small></li>
+  
+    <li><a href="/tags/Parquet/">Parquet</a><small>1</small></li>
+  
+    <li><a href="/tags/Performance/">Performance</a><small>1</small></li>
+  
+    <li><a href="/tags/Polybase/">Polybase</a><small>1</small></li>
+  
+    <li><a href="/tags/Portainer/">Portainer</a><small>1</small></li>
+  
+    <li><a href="/tags/Porto/">Porto</a><small>1</small></li>
+  
+    <li><a href="/tags/PowerShell/">PowerShell</a><small>1</small></li>
+  
+    <li><a href="/tags/Prompt-Engineering/">Prompt Engineering</a><small>1</small></li>
+  
+    <li><a href="/tags/Proxy/">Proxy</a><small>1</small></li>
+  
+    <li><a href="/tags/QEMU/">QEMU</a><small>2</small></li>
+  
+    <li><a href="/tags/RDD/">RDD</a><small>1</small></li>
+  
+    <li><a href="/tags/React/">React</a><small>1</small></li>
+  
+    <li><a href="/tags/Reserve-Proxy/">Reserve Proxy</a><small>1</small></li>
+  
+    <li><a href="/tags/Rust/">Rust</a><small>1</small></li>
+  
+    <li><a href="/tags/SQL/">SQL</a><small>2</small></li>
+  
+    <li><a href="/tags/SQLServer/">SQLServer</a><small>1</small></li>
+  
+    <li><a href="/tags/SSH/">SSH</a><small>2</small></li>
+  
+    <li><a href="/tags/Scala/">Scala</a><small>2</small></li>
+  
+    <li><a href="/tags/Scrum/">Scrum</a><small>1</small></li>
+  
+    <li><a href="/tags/Sheetlist/">Sheetlist</a><small>1</small></li>
+  
+    <li><a href="/tags/Software/">Software</a><small>3</small></li>
+  
+    <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
+  
+    <li><a href="/tags/Software-Engineering/">Software Engineering</a><small>2</small></li>
+  
+    <li><a href="/tags/Spark/">Spark</a><small>4</small></li>
+  
+    <li><a href="/tags/Sqoop/">Sqoop</a><small>1</small></li>
+  
+    <li><a href="/tags/Streaming/">Streaming</a><small>3</small></li>
+  
+    <li><a href="/tags/Teams/">Teams</a><small>1</small></li>
+  
+    <li><a href="/tags/Tech/">Tech</a><small>1</small></li>
+  
+    <li><a href="/tags/Tools/">Tools</a><small>1</small></li>
+  
+    <li><a href="/tags/Troubleshooting/">Troubleshooting</a><small>2</small></li>
+  
+    <li><a href="/tags/Tunning/">Tunning</a><small>1</small></li>
+  
+    <li><a href="/tags/UDFS/">UDFS</a><small>1</small></li>
+  
+    <li><a href="/tags/Utils/">Utils</a><small>7</small></li>
+  
+    <li><a href="/tags/VDI/">VDI</a><small>1</small></li>
+  
+    <li><a href="/tags/Vagrant/">Vagrant</a><small>1</small></li>
+  
+    <li><a href="/tags/VirtualBox/">VirtualBox</a><small>1</small></li>
+  
+    <li><a href="/tags/Web-Hosting/">Web Hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/Windows/">Windows</a><small>1</small></li>
+  
+    <li><a href="/tags/Zeepelin/">Zeepelin</a><small>1</small></li>
+  
+    <li><a href="/tags/libvirt/">libvirt</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2024 Rui Ramos
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<!-- Go to www.addthis.com/dashboard to customize your tools --> <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-59c7d222fcd19d69"></script>
+</body>
+</html>

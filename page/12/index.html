@@ -77,6 +77,43 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
+        <time datetime="2017-09-23T09:18:00.000Z"><a href="/2017/09/23/sublimeinstall/">2017-09-23</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/09/23/sublimeinstall/">Sublime Install Guide</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>For me <a target="_blank" rel="noopener" href="https://www.sublimetext.com/">Sublime</a>, this is one of the best smart editors in Linux. Here are the quick instructions to install for Ubuntu.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb https://download.sublimetext.com/ apt/stable/&quot;</span> | sudo <span class="built_in">tee</span> /etc/apt/sources.list.d/sublime-text.list</span><br><span class="line">sudo apt-get install apt-transport-https</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install sublime-text</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>That’s it<br>RR</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2017-09-19T22:59:00.000Z"><a href="/2017/09/19/CreateAvroTablesForBigQuery/">2017-09-19</a></time>
       
       
@@ -495,70 +532,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-09-13T22:18:00.000Z"><a href="/2017/09/13/ChromeProxy/">2017-09-13</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/09/13/ChromeProxy/">Setting Up Proxy Environments With Chrome</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>Something that keeps bugging me is the need to access different environments in the browser through proxy tunnels, due to security restrictions or lack of routing between your local network and the environment you are working. Very common on Cloud environments or if you are working has a consultant for several clients at the same time.</p>
-<p>So this guide is intended to help on the setup of Google Chrome to use your configured tunnels.</p>
-<h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><h3 id="Configure-your-local-tunnel"><a href="#Configure-your-local-tunnel" class="headerlink" title="Configure your local tunnel"></a>Configure your local tunnel</h3><p>You require a tunnel configuration setup. For Linux i recommend setting this up in your <code>.ssh/config</code> file. I’ll give some examples, if you have interest on expanding you <code>./ssh/config</code> check the next article ill go in depth with it. There are also other tools such as <a target="_blank" rel="noopener" href="https://sourceforge.net/projects/gstm/">gSTM</a> tool.</p>
-<p>So let’s begin to create our reverse tunnel</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh -R 19999:localhost:22 sourceuser@remoteip</span><br></pre></td></tr></table></figure>
-
-<p>You could use any other available localport</p>
-<h3 id="Install-plugin-in-Google-Chrome"><a href="#Install-plugin-in-Google-Chrome" class="headerlink" title="Install plugin in Google Chrome"></a>Install plugin in Google Chrome</h3><p>Go into your google chrome settings and search for <strong>Extensions</strong> .<br>I’m using <strong>Proxy SwitchySharp</strong> But you could use any other.</p>
-<p>Go to your Extension Options and let’s create a profile</p>
-<ul>
-<li><strong>Name:</strong> mylocaldomain.dev</li>
-<li><strong>SOCKS HOST:</strong> localhost</li>
-<li><strong>Port:</strong> 19999</li>
-<li><strong>SOCKS v5:</strong> (enable)</li>
-</ul>
-<p>Now let’s create a rule for our local domain in <strong>Switch Rules</strong></p>
-<p>Add the rule for our domain: </p>
-<ul>
-<li><strong>Rule Name:</strong> MyLocalDomain</li>
-<li><strong>URL Pattern:</strong> *.mylocaldomain.dev</li>
-<li><strong>Pattern Type:</strong> Wildcard</li>
-<li><strong>ProxyProfile:</strong> mylocaldomain.dev</li>
-</ul>
-<p><strong>NOTE:</strong> Don’t forget to active the option <strong>Enable Switch Rules</strong></p>
-<p>Also don’t forget to activate the <strong>Auto Switch Mode</strong> in the extension.</p>
-<p>And that’s it now when you access the browser to domain <a target="_blank" rel="noopener" href="http://something.mylocaldomain.dev/">http://something.mylocaldomain.dev</a> you be using your defined ssh tunnel for it.</p>
-<h2 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h2><p>Lets do a quick test :)</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo sh -c <span class="string">&#x27;echo &quot;127.0.0.1  test.mylocaldomain.dev&quot;  &gt;&gt; /etc/hosts&#x27;</span></span><br><span class="line">ssh -R 19999:localhost:22 localhost</span><br><span class="line">python -m SimpleHTTPServer 8000</span><br></pre></td></tr></table></figure>
-
-<p>Now access on the browser to <a target="_blank" rel="noopener" href="http://test.mylocaldomain.dev:8000/">http://test.mylocaldomain.dev:8000</a></p>
-<p>You could now have different profiles configured and autoswitch will do the job for you of choosing the appropriate tunnel.</p>
-<p>Cheers,<br>RR </p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -706,6 +679,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/Hiring/">Hiring</a><small>1</small></li>
   
     <li><a href="/tags/Hive/">Hive</a><small>4</small></li>
+  
+    <li><a href="/tags/Hosting/">Hosting</a><small>1</small></li>
   
     <li><a href="/tags/IDE/">IDE</a><small>2</small></li>
   

@@ -77,6 +77,124 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
+        <time datetime="2022-12-23T20:00:00.000Z"><a href="/2022/12/23/OpenAPIArch/">2022-12-23</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2022/12/23/OpenAPIArch/">OpenAPI Development in Arch Linux</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>It as been a while since i’ve engaged with C#. In this article I’ll describe a step-by-step on how to setup your Arch Linux to implement a .netcore application implementation of OpenAPI.</p>
+<h1 id="Instalation"><a href="#Instalation" class="headerlink" title="Instalation"></a>Instalation</h1><p>Let’s start by making sure we have the SDK and runtime packages available on the system.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -S dotnet-runtime dotnet-sdk</span><br></pre></td></tr></table></figure>
+
+<p>We can validate the existing enviroments with the command</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dotnet --list-sdks</span><br></pre></td></tr></table></figure>
+
+<p>At the time of this writing</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">6.0.100 [/usr/share/dotnet/sdk]</span><br></pre></td></tr></table></figure>
+
+<p>Microsoft recommends using Visual Studio Code i will skip that part but here is the <a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Visual_Studio_Code">url</a> in case of need.</p>
+<h1 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h1><p>Now let’s do a quick 5m Hello world just to make sure everything is working properly.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dotnet new console -o MyApp</span><br></pre></td></tr></table></figure>
+<p>One should have a similar output</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">The template <span class="string">&quot;Console App&quot;</span> was created successfully.</span><br><span class="line"></span><br><span class="line">Processing post-creation actions...</span><br><span class="line">Running <span class="string">&#x27;dotnet restore&#x27;</span> on /home/rramos/Development/hello/MyApp/MyApp.csproj...</span><br><span class="line">  Determining projects to restore...</span><br><span class="line">  Restored /home/rramos/Development/hello/MyApp/MyApp.csproj (<span class="keyword">in</span> 2.82 sec).</span><br><span class="line">Restore succeeded.</span><br></pre></td></tr></table></figure>
+
+<p>Now let’s run this amazing helloworld</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> MyApp</span><br><span class="line">dotnet run</span><br></pre></td></tr></table></figure>
+
+<p>One should get the desirable outcome</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Hello, World!</span><br></pre></td></tr></table></figure>
+
+<p>Congratulations, you’ve built and run your .NET app. Let’s clean the space now</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ..</span><br><span class="line"><span class="built_in">rm</span>  -rf MyApp</span><br></pre></td></tr></table></figure>
+
+<h1 id="OpenAPI"><a href="#OpenAPI" class="headerlink" title="OpenAPI"></a>OpenAPI</h1><p>Now let’s create our webAPI</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dotnet new webapi -o WebApi1</span><br></pre></td></tr></table></figure>
+
+<p>Next lets add the Swashbuckle.AspNetCore package</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dotnet add package Swashbuckle.AspNetCore</span><br></pre></td></tr></table></figure>
+
+<p>At this stage if you try to build it works  but fails on the execution with the following error:</p>
+<p>That is because Arch linux ships ASPNet in a different package. To Solve one should install the extra package using pacman.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -Sy aspnet-runtime</span><br></pre></td></tr></table></figure>
+
+<p>After the installation if we check the exiting runtimes</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dotnet --list-runtimes</span><br></pre></td></tr></table></figure>
+
+<p>One should have the following</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Microsoft.AspNetCore.App 6.0.0 [/usr/share/dotnet/shared/Microsoft.AspNetCore.App]</span><br><span class="line">Microsoft.NETCore.App 6.0.0 [/usr/share/dotnet/shared/Microsoft.NETCore.App]</span><br></pre></td></tr></table></figure>
+
+<p>Lets try to run it now</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dotnet run</span><br></pre></td></tr></table></figure>
+<p>You should have a similar output</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Building...</span><br><span class="line">info: Microsoft.Hosting.Lifetime[14]</span><br><span class="line">      Now listening on: https://localhost:7177</span><br><span class="line">info: Microsoft.Hosting.Lifetime[14]</span><br><span class="line">      Now listening on: http://localhost:5169</span><br><span class="line">info: Microsoft.Hosting.Lifetime[0]</span><br><span class="line">      Application started. Press Ctrl+C to shut down.</span><br><span class="line">info: Microsoft.Hosting.Lifetime[0]</span><br><span class="line">      Hosting environment: Development</span><br><span class="line">info: Microsoft.Hosting.Lifetime[0]</span><br><span class="line">      Content root path: /home/rramos/Development/WebApi1/</span><br></pre></td></tr></table></figure>
+
+<p>Now that looks promissing let’s test the the endpoint by using the browser on</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">https://localhost:7177/swagger/index.html</span><br></pre></td></tr></table></figure>
+
+<p>One should see a WeatherForecast service which is the baseline service when created the project.</p>
+<p>Leave this runnig for now and open a new terminal to create a client.</p>
+<h1 id="Client"><a href="#Client" class="headerlink" title="Client"></a>Client</h1><p>Now that we have our service running let’c create a client by retrieving the OpenAPI description.</p>
+<p>For that we will be using the <code>NSwag.ApiDescription.Client</code> package.</p>
+<p>Let’s start by creating a new client project and retrieving the OpenAPI description file from swagger.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ..</span><br><span class="line">dotnet new console -o console</span><br><span class="line"><span class="built_in">cd</span> console</span><br><span class="line"><span class="built_in">mkdir</span> openapi</span><br><span class="line">wget --no-check-certificate https://localhost:7177/swagger/v1/swagger.json -O openapi/weather.json</span><br></pre></td></tr></table></figure>
+
+<p>Now lets add the required package</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dotnet add package NSwag.ApiDescription.Client --version 13.15.5</span><br></pre></td></tr></table></figure>
+
+<p>If one checks the <code>console.csproj</code> file we can see the package was added. Although i have added a specific version is not relevant.</p>
+<p>We are also going to need the following package</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dotnet add package Newtonsoft.Json</span><br></pre></td></tr></table></figure>
+
+<p>Add the following block on the <code>console.csproj</code> file</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ItemGroup</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">OpenApiReference</span> <span class="attr">Include</span>=<span class="string">&quot;openapi/weather.json&quot;</span> <span class="attr">Namespace</span>=<span class="string">&quot;WeatherService&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ClassName</span>&gt;</span>WeatherClient<span class="tag">&lt;/<span class="name">ClassName</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">OutputPath</span>&gt;</span>WeatherClient.cs<span class="tag">&lt;/<span class="name">OutputPath</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">OpenApiReference</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ItemGroup</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Now execute the build command to generate the WeatherService classes</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dotnet build</span><br></pre></td></tr></table></figure>
+
+<p>You should have a similar output</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Microsoft (R) Build Engine version 17.0.0+c9eb9dd64 <span class="keyword">for</span> .NET</span><br><span class="line">Copyright (C) Microsoft Corporation. All rights reserved.</span><br><span class="line"></span><br><span class="line">  Determining projects to restore...</span><br><span class="line">  All projects are up-to-date <span class="keyword">for</span> restore.</span><br><span class="line"></span><br><span class="line">  GenerateNSwagCSharp:</span><br><span class="line">    dotnet --roll-forward-on-no-candidate-fx 2 <span class="string">&quot;/home/rramos/.nuget/packages/nswag.msbuild/13.14.5/build/../tools/Net60//dotnet-nswag.dll&quot;</span> openapi2csclient /className:WeatherClient /namespace:WeatherService /input:<span class="string">&quot;/home/rramos/Development/console/openapi/weather.json&quot;</span> /output:<span class="string">&quot;obj/WeatherClient.cs&quot;</span></span><br><span class="line">  NSwag <span class="built_in">command</span> line tool <span class="keyword">for</span> .NET Core Net60, toolchain v13.14.5.0 (NJsonSchema v10.5.2.0 (Newtonsoft.Json v13.0.0.0))</span><br><span class="line">  Visit http://NSwag.org <span class="keyword">for</span> more information.</span><br><span class="line">  NSwag bin directory: /home/rramos/.nuget/packages/nswag.msbuild/13.14.5/tools/Net60</span><br><span class="line">  Code has been successfully written to file.</span><br><span class="line"></span><br><span class="line">  Duration: 00:00:00.6921924</span><br><span class="line">  console -&gt; /home/rramos/Development/console/bin/Debug/net6.0/console.dll</span><br><span class="line"></span><br><span class="line">Build succeeded.</span><br><span class="line">    0 Warning(s)</span><br><span class="line">    0 Error(s)</span><br><span class="line"></span><br><span class="line">Time Elapsed 00:00:04.17</span><br></pre></td></tr></table></figure>
+
+<p>And a brand new WeatherClient Class is now available to use on your main Program so let’s use the following on <code>Program.cs</code></p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Configure HttpClientHandler to ignore certificate validation errors.</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">var</span> httpClientHandler = <span class="keyword">new</span> HttpClientHandler();</span><br><span class="line">httpClientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) =&gt; &#123; <span class="keyword">return</span> <span class="literal">true</span>; &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Create WeatherClient.</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">var</span> httpClient = <span class="keyword">new</span> HttpClient(httpClientHandler);</span><br><span class="line"><span class="keyword">var</span> weatherClient = <span class="keyword">new</span> WeatherService.WeatherClient(<span class="string">&quot;https://localhost:7177&quot;</span>, httpClient);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Call WeatherForecast API.</span></span><br><span class="line"><span class="keyword">var</span> forecast = <span class="keyword">await</span> weatherClient.GetWeatherForecastAsync();</span><br><span class="line"><span class="keyword">foreach</span> (<span class="keyword">var</span> item <span class="keyword">in</span> forecast)</span><br><span class="line">&#123;</span><br><span class="line">  Console.WriteLine(<span class="string">$&quot;<span class="subst">&#123;item.Date&#125;</span> - <span class="subst">&#123;item.Summary&#125;</span>&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>If one runs the client now with <code>dotnet run</code> the following output is expected.</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">12/20/2021 10:34:23 PM +00:00 - Freezing</span><br><span class="line">12/21/2021 10:34:23 PM +00:00 - Cool</span><br><span class="line">12/22/2021 10:34:23 PM +00:00 - Hot</span><br><span class="line">12/23/2021 10:34:23 PM +00:00 - Scorching</span><br><span class="line">12/24/2021 10:34:23 PM +00:00 - Scorching</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>Hurray our client receives the API data and both client and server seems to be working<br>Archnt to run the service and setup a CI&#x2F;CD process for it. Also to extend the service or create something more appealing.</p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/.NET">https://wiki.archlinux.org/title/.NET</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/aspnet/core/tutorials/web-api-help-pages-using-swagger">https://docs.microsoft.com/en-us/aspnet/core/tutorials/web-api-help-pages-using-swagger</a></li>
+<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Visual_Studio_Code">https://wiki.archlinux.org/title/Visual_Studio_Code</a></li>
+<li><a target="_blank" rel="noopener" href="https://dotnet.microsoft.com/en-us/learn/dotnet/hello-world-tutorial/create">https://dotnet.microsoft.com/en-us/learn/dotnet/hello-world-tutorial/create</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/domaindrivendev/Swashbuckle.AspNetCore">https://github.com/domaindrivendev/Swashbuckle.AspNetCore</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/RicoSuter/NSwag">https://github.com/RicoSuter/NSwag</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2022-12-23T19:00:00.000Z"><a href="/2022/12/23/SODA/">2022-12-23</a></time>
       
       
@@ -337,55 +455,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2022-12-23T14:00:00.000Z"><a href="/2022/12/23/Github ssh keys/">2022-12-23</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2022/12/23/Github ssh keys/">Github Ssh Keys</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>When using github one of the most recommend ways to get in sync with your repo is by using ssh keys. If you don’t use it check the following article from github docs where they explain in detail how to do the setup</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://docs.github.com/en/github/authenticating-to-github/about-ssh">https://docs.github.com/en/github/authenticating-to-github/about-ssh</a></li>
-</ul>
-<p>On your <strong>Profile</strong> you can manage your SSH and GPG keys.</p>
-<p>But take into account the following if you have more than one account the ssh-keys are unique on the system. </p>
-<p>So if you have for example:</p>
-<ol>
-<li>coporate account ruiramosff</li>
-<li>personal account rramos</li>
-</ol>
-<p>You need to have distinct ssh-keys per profile.</p>
-<p>I would recommend for this cases to have distinct ssh keys and to a proper setup on your repo configurations adding for example</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[user]</span><br><span class="line">        name = Rui Ramos</span><br><span class="line">        email = rui.ms.ramos@gmail.com</span><br></pre></td></tr></table></figure>
-
-<p>You can also do this globaly on your <code>~./gitconfig</code> but if you are going to work on the same machine but want to use different profiles, pay attention to have the git configuration adapted to it.</p>
-<p>Cheers,<br>RR</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -533,6 +602,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/Hiring/">Hiring</a><small>1</small></li>
   
     <li><a href="/tags/Hive/">Hive</a><small>4</small></li>
+  
+    <li><a href="/tags/Hosting/">Hosting</a><small>1</small></li>
   
     <li><a href="/tags/IDE/">IDE</a><small>2</small></li>
   

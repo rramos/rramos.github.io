@@ -77,6 +77,87 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
       
         <div class="icon"></div>
+        <time datetime="2024-02-29T14:21:29.850Z"><a href="/2024/02/29/pico/">2024-02-29</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2024/02/29/pico/">pico.sh</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><blockquote>
+<p>We think of pico.sh as a hacker lab where we can experiment with new ways to interact with the web.</p>
+</blockquote>
+<h2 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h2><p>Pico supports the following services:</p>
+<ul>
+<li>prose.sh - A blog platform for hackers</li>
+<li>pastes.sh - A pastebin for hackers</li>
+<li>feeds.sh - An rss email notification service</li>
+</ul>
+<p>The payed version called pico+ brings more service</p>
+<h2 id="pico"><a href="#pico" class="headerlink" title="pico+"></a>pico+</h2><p>Payed version of pico which brings extra services:</p>
+<ul>
+<li>pgs.sh - 10GB asset storage</li>
+<li>tuns.sh - Full access</li>
+<li>imgs.sh - 2GB image registry storage</li>
+<li>prose.sh - 1GB image storage</li>
+<li>Beta access</li>
+</ul>
+<h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><h3 id="Prose"><a href="#Prose" class="headerlink" title="Prose"></a>Prose</h3><p><strong>Prose.sh</strong> - This service allows you to upload Github flavor markdown and it will generate the HTML content to display you just need to sync the data.</p>
+<p>Create a post eg. <code>~/blog/hello-world.md</code></p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># hello world!</span></span><br><span class="line"></span><br><span class="line">This is my first blog post.</span><br><span class="line"></span><br><span class="line">Check out some resources:</span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> [<span class="string">pico.sh</span>](<span class="link">https://pico.sh</span>)</span><br><span class="line"><span class="bullet">-</span> [<span class="string">antoniomika</span>](<span class="link">https://antoniomika.me</span>)</span><br><span class="line"><span class="bullet">-</span> [<span class="string">bower.sh</span>](<span class="link">https://bower.sh</span>)</span><br><span class="line"></span><br><span class="line">Cya!</span><br></pre></td></tr></table></figure>
+
+<p>And just publish with rsync</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rsync ~/blog/* prose.sh:/</span><br></pre></td></tr></table></figure>
+
+<p>There are some special files you can setup to customize the css or add a footer</p>
+<ul>
+<li>_styles.css</li>
+<li>_footer.md</li>
+</ul>
+<p>But that’s pretty much it</p>
+<p>Check the following doc for more information</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://pico.sh/prose">https://pico.sh/prose</a></li>
+</ul>
+<h3 id="Pastes"><a href="#Pastes" class="headerlink" title="Pastes"></a>Pastes</h3><p>You can also use the pastebin service</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;foobar&quot;</span> | ssh pastes.sh</span><br></pre></td></tr></table></figure>
+
+<p>You can define a expiration</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;foobar&quot;</span> | ssh pastes.sh FILENAME expires=2023-12-12</span><br></pre></td></tr></table></figure>
+
+<p>It will generate a url for your paste<br>eg: <a target="_blank" rel="noopener" href="https://ruimsramos.pastes.sh/1709216080780412798">https://ruimsramos.pastes.sh/1709216080780412798</a></p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>This article was about pico a hacker labs service as they advertise it.</p>
+<p>It is extermely fast if you want to use a pastbin option to share some data or quickly upload in prose some markdown notes, when you don’t need to worry on setting up something fancing just to publish them and focus on the writing.</p>
+<p>The pro service like tuns.hs and imgs.sh seem to be also powerfull. The later one if you ant to integrate with github actions for instance, but I didn’t evaluate that version</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://pico.sh/getting-started">https://pico.sh/getting-started</a></li>
+<li><a target="_blank" rel="noopener" href="https://pico.sh/prose">https://pico.sh/prose</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2024-02-19T22:00:00.000Z"><a href="/2024/02/19/parquet_compression/">2024-02-19</a></time>
       
       
@@ -437,83 +518,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2024-01-29T02:00:00.000Z"><a href="/2024/01/29/dbt-clickhouse/">2024-01-29</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2024/01/29/dbt-clickhouse/">Dbt-Clickhouse</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h2 id="Integrating-dbt-and-ClickHouse"><a href="#Integrating-dbt-and-ClickHouse" class="headerlink" title="Integrating dbt and ClickHouse"></a>Integrating dbt and ClickHouse</h2><p>In this we will be following the integration steps to use dbt and clickouse with sample IMDB data.</p>
-<h2 id="Configure-ClickHouse-sources"><a href="#Configure-ClickHouse-sources" class="headerlink" title="Configure ClickHouse sources"></a>Configure ClickHouse sources</h2><p>Setup clickhouse check my previous <a href="https://rramos.github.io/2024/01/28/clickhouse/">article</a> if you would like more information on this product.</p>
-<p>Then connect with a client and run the following DDL scripts</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> DATABASE imdb;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> imdb.actors</span><br><span class="line">(</span><br><span class="line">    id         UInt32,</span><br><span class="line">    first_name String,</span><br><span class="line">    last_name  String,</span><br><span class="line">    gender     FixedString(<span class="number">1</span>)</span><br><span class="line">) ENGINE <span class="operator">=</span> MergeTree <span class="keyword">ORDER</span> <span class="keyword">BY</span> (id, first_name, last_name, gender);</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> imdb.directors</span><br><span class="line">(</span><br><span class="line">    id         UInt32,</span><br><span class="line">    first_name String,</span><br><span class="line">    last_name  String</span><br><span class="line">) ENGINE <span class="operator">=</span> MergeTree <span class="keyword">ORDER</span> <span class="keyword">BY</span> (id, first_name, last_name);</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> imdb.genres</span><br><span class="line">(</span><br><span class="line">    movie_id UInt32,</span><br><span class="line">    genre    String</span><br><span class="line">) ENGINE <span class="operator">=</span> MergeTree <span class="keyword">ORDER</span> <span class="keyword">BY</span> (movie_id, genre);</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> imdb.movie_directors</span><br><span class="line">(</span><br><span class="line">    director_id UInt32,</span><br><span class="line">    movie_id    UInt64</span><br><span class="line">) ENGINE <span class="operator">=</span> MergeTree <span class="keyword">ORDER</span> <span class="keyword">BY</span> (director_id, movie_id);</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> imdb.movies</span><br><span class="line">(</span><br><span class="line">    id   UInt32,</span><br><span class="line">    name String,</span><br><span class="line">    <span class="keyword">year</span> UInt32,</span><br><span class="line">    rank Float32 <span class="keyword">DEFAULT</span> <span class="number">0</span></span><br><span class="line">) ENGINE <span class="operator">=</span> MergeTree <span class="keyword">ORDER</span> <span class="keyword">BY</span> (id, name, <span class="keyword">year</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> imdb.roles</span><br><span class="line">(</span><br><span class="line">    actor_id   UInt32,</span><br><span class="line">    movie_id   UInt32,</span><br><span class="line">    role       String,</span><br><span class="line">    created_at DateTime <span class="keyword">DEFAULT</span> now()</span><br><span class="line">) ENGINE <span class="operator">=</span> MergeTree <span class="keyword">ORDER</span> <span class="keyword">BY</span> (actor_id, movie_id);</span><br></pre></td></tr></table></figure>
-
-<p>After creating the source tables lets fill them with data from AWS, running the following code.</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> imdb.actors</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> s3(<span class="string">&#x27;https://datasets-documentation.s3.eu-west-3.amazonaws.com/imdb/imdb_ijs_actors.tsv.gz&#x27;</span>,</span><br><span class="line"><span class="string">&#x27;TSVWithNames&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> imdb.directors</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> s3(<span class="string">&#x27;https://datasets-documentation.s3.eu-west-3.amazonaws.com/imdb/imdb_ijs_directors.tsv.gz&#x27;</span>,</span><br><span class="line"><span class="string">&#x27;TSVWithNames&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> imdb.genres</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> s3(<span class="string">&#x27;https://datasets-documentation.s3.eu-west-3.amazonaws.com/imdb/imdb_ijs_movies_genres.tsv.gz&#x27;</span>,</span><br><span class="line"><span class="string">&#x27;TSVWithNames&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> imdb.movie_directors</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> s3(<span class="string">&#x27;https://datasets-documentation.s3.eu-west-3.amazonaws.com/imdb/imdb_ijs_movies_directors.tsv.gz&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;TSVWithNames&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> imdb.movies</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> s3(<span class="string">&#x27;https://datasets-documentation.s3.eu-west-3.amazonaws.com/imdb/imdb_ijs_movies.tsv.gz&#x27;</span>,</span><br><span class="line"><span class="string">&#x27;TSVWithNames&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> imdb.roles(actor_id, movie_id, role)</span><br><span class="line"><span class="keyword">SELECT</span> actor_id, movie_id, role</span><br><span class="line"><span class="keyword">FROM</span> s3(<span class="string">&#x27;https://datasets-documentation.s3.eu-west-3.amazonaws.com/imdb/imdb_ijs_roles.tsv.gz&#x27;</span>,</span><br><span class="line"><span class="string">&#x27;TSVWithNames&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
-<h2 id="Setup-DBT"><a href="#Setup-DBT" class="headerlink" title="Setup DBT"></a>Setup DBT</h2><p>Starting by setting up DBT environment</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install dbt-core</span><br><span class="line">pip install dbt-clickhouse</span><br></pre></td></tr></table></figure>
-
-<p>Init the dbt project</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dbt init imdb</span><br></pre></td></tr></table></figure>
-
-<p>Update the file <code>dbt_project.yml</code> and make sure to add the actors</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">models:</span><br><span class="line">  imdb:</span><br><span class="line">    # Config indicated by + and applies to all files under models/example/</span><br><span class="line">    actors:</span><br><span class="line">      +materialized: view</span><br></pre></td></tr></table></figure>
-
-<p>Create the following file <code>models/actors/schema.yml</code> with the following content</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="attr">sources:</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">imdb</span></span><br><span class="line">  <span class="attr">tables:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">directors</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">actors</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">roles</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">movies</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">genres</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">movie_directors</span></span><br></pre></td></tr></table></figure>
-
-<p>Create the following file <code>models/actors/actor_summary.sql</code> with the content</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">&#123;&#123; config(order_by<span class="operator">=</span><span class="string">&#x27;(updated_at, id, name)&#x27;</span>, engine<span class="operator">=</span><span class="string">&#x27;MergeTree()&#x27;</span>, materialized<span class="operator">=</span><span class="string">&#x27;table&#x27;</span>) &#125;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> actor_summary <span class="keyword">as</span> (</span><br><span class="line"><span class="keyword">SELECT</span> id,</span><br><span class="line">    <span class="keyword">any</span>(actor_name) <span class="keyword">as</span> name,</span><br><span class="line">    uniqExact(movie_id)    <span class="keyword">as</span> num_movies,</span><br><span class="line">    <span class="built_in">avg</span>(rank)                <span class="keyword">as</span> avg_rank,</span><br><span class="line">    uniqExact(genre)         <span class="keyword">as</span> genres,</span><br><span class="line">    uniqExact(director_name) <span class="keyword">as</span> directors,</span><br><span class="line">    <span class="built_in">max</span>(created_at) <span class="keyword">as</span> updated_at</span><br><span class="line"><span class="keyword">FROM</span> (</span><br><span class="line">        <span class="keyword">SELECT</span> &#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;actors&#x27;</span>) &#125;&#125;.id <span class="keyword">as</span> id,</span><br><span class="line">                concat(&#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;actors&#x27;</span>) &#125;&#125;.first_name, <span class="string">&#x27; &#x27;</span>, &#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;actors&#x27;</span>) &#125;&#125;.last_name) <span class="keyword">as</span> actor_name,</span><br><span class="line">                &#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;movies&#x27;</span>) &#125;&#125;.id <span class="keyword">as</span> movie_id,</span><br><span class="line">                &#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;movies&#x27;</span>) &#125;&#125;.rank <span class="keyword">as</span> rank,</span><br><span class="line">                genre,</span><br><span class="line">                concat(&#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;directors&#x27;</span>) &#125;&#125;.first_name, <span class="string">&#x27; &#x27;</span>, &#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;directors&#x27;</span>) &#125;&#125;.last_name) <span class="keyword">as</span> director_name,</span><br><span class="line">                created_at</span><br><span class="line">        <span class="keyword">FROM</span> &#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;actors&#x27;</span>) &#125;&#125;</span><br><span class="line">                    <span class="keyword">JOIN</span> &#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;roles&#x27;</span>) &#125;&#125; <span class="keyword">ON</span> &#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;roles&#x27;</span>) &#125;&#125;.actor_id <span class="operator">=</span> &#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;actors&#x27;</span>) &#125;&#125;.id</span><br><span class="line">                    <span class="keyword">LEFT</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span> &#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;movies&#x27;</span>) &#125;&#125; <span class="keyword">ON</span> &#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;movies&#x27;</span>) &#125;&#125;.id <span class="operator">=</span> &#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;roles&#x27;</span>) &#125;&#125;.movie_id</span><br><span class="line">                    <span class="keyword">LEFT</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span> &#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;genres&#x27;</span>) &#125;&#125; <span class="keyword">ON</span> &#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;genres&#x27;</span>) &#125;&#125;.movie_id <span class="operator">=</span> &#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;movies&#x27;</span>) &#125;&#125;.id</span><br><span class="line">                    <span class="keyword">LEFT</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span> &#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;movie_directors&#x27;</span>) &#125;&#125; <span class="keyword">ON</span> &#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;movie_directors&#x27;</span>) &#125;&#125;.movie_id <span class="operator">=</span> &#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;movies&#x27;</span>) &#125;&#125;.id</span><br><span class="line">                    <span class="keyword">LEFT</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span> &#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;directors&#x27;</span>) &#125;&#125; <span class="keyword">ON</span> &#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;directors&#x27;</span>) &#125;&#125;.id <span class="operator">=</span> &#123;&#123; source(<span class="string">&#x27;imdb&#x27;</span>, <span class="string">&#x27;movie_directors&#x27;</span>) &#125;&#125;.director_id</span><br><span class="line">        )</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> id</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">from</span> actor_summary</span><br></pre></td></tr></table></figure>
-
-<p>Configure the clickstream connection on the following file <code>~/.dbt/profiles.yml</code></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">imdb:</span></span><br><span class="line">  <span class="attr">target:</span> <span class="string">dev</span></span><br><span class="line">  <span class="attr">outputs:</span></span><br><span class="line">    <span class="attr">dev:</span></span><br><span class="line">      <span class="attr">type:</span> <span class="string">clickhouse</span></span><br><span class="line">      <span class="attr">schema:</span> <span class="string">imdb_dbt</span></span><br><span class="line">      <span class="attr">host:</span> <span class="string">localhost</span></span><br><span class="line">      <span class="attr">port:</span> <span class="number">8123</span></span><br><span class="line">      <span class="attr">user:</span> <span class="string">default</span></span><br><span class="line">      <span class="attr">password:</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line">      <span class="attr">secure:</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>
-
-<p>After this updates run the <code>dbt debug</code> command.<br>To make sure the connection is working properly</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">dbt debug</span><br><span class="line">00:31:58  Running with dbt=1.7.6</span><br><span class="line">00:31:58  dbt version: 1.7.6</span><br><span class="line">00:31:58  python version: 3.11.6</span><br><span class="line">00:31:58  python path: /home/rramos/Development/local/dbt/bin/python</span><br><span class="line">00:31:58  os info: Linux-6.6.10-zen1-1-zen-x86_64-with-glibc2.38</span><br><span class="line">00:31:58  Using profiles dir at /home/rramos/.dbt</span><br><span class="line">00:31:58  Using profiles.yml file at /home/rramos/.dbt/profiles.yml</span><br><span class="line">00:31:58  Using dbt_project.yml file at /home/rramos/Development/local/dbt/imdb/dbt_project.yml</span><br><span class="line">00:31:58  adapter type: clickhouse</span><br><span class="line">00:31:58  adapter version: 1.7.1</span><br><span class="line">00:31:58  Configuration:</span><br><span class="line">00:31:58    profiles.yml file [OK found and valid]</span><br><span class="line">00:31:58    dbt_project.yml file [OK found and valid]</span><br><span class="line">00:31:58  Required dependencies:</span><br><span class="line">00:31:58   - git [OK found]</span><br><span class="line">...</span><br><span class="line">00:31:58  Registered adapter: clickhouse=1.7.1</span><br><span class="line">00:31:58    Connection test: [OK connection ok]</span><br></pre></td></tr></table></figure>
-
-<p>If the connection test passed properly, one just need to create the model via dbt.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dbt run</span><br></pre></td></tr></table></figure>
-
-<p>And you should have a similar output</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">dbt run</span><br><span class="line">00:38:13  Running with dbt=1.7.6</span><br><span class="line">00:38:13  Registered adapter: clickhouse=1.7.1</span><br><span class="line">00:38:13  Unable to do partial parsing because a project config has changed</span><br><span class="line">00:38:15  Found 1 model, 6 sources, 0 exposures, 0 metrics, 421 macros, 0 groups, 0 semantic models</span><br><span class="line">00:38:15  </span><br><span class="line">00:38:15  Concurrency: 1 threads (target=&#x27;dev&#x27;)</span><br><span class="line">00:38:15  </span><br><span class="line">00:38:15  1 of 1 START sql view model `imdb`.`actor_summary` ............................. [RUN]</span><br><span class="line">00:38:15  1 of 1 OK created sql view model `imdb`.`actor_summary` ........................ [OK in 0.17s]</span><br><span class="line">00:38:15  </span><br><span class="line">00:38:15  Finished running 1 view model in 0 hours 0 minutes and 0.27 seconds (0.27s).</span><br><span class="line">00:38:15  </span><br><span class="line">00:38:15  Completed successfully</span><br><span class="line">00:38:15  </span><br><span class="line">00:38:15  Done. PASS=1 WARN=0 ERROR=0 SKIP=0 TOTAL=1</span><br></pre></td></tr></table></figure>
-
-<p>Test query the model</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> imdb_dbt.actor_summary</span><br><span class="line"><span class="keyword">WHERE</span> num_movies <span class="operator">&gt;</span> <span class="number">5</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> avg_rank <span class="keyword">DESC</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>In this article I’ve went trough the process of setup a Clickhouse database and setup dbt to setup the models with IMDB test data for actors, directors, movies, etc.</p>
-<p>This two systems work like a charm together.<br>Clickstream shows great performance for analytical queries, and dbt compiles and runs your analytics code against your data platform, enabling you and your team to collaborate on a single source of truth for metrics, insights, and business definitions.</p>
-<p>Would like to extend this exercise by incorporating github actions related with dbt test actions before promoting to production.</p>
-<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://clickhouse.com/docs/en/integrations/dbt">https://clickhouse.com/docs/en/integrations/dbt</a></li>
-<li><a target="_blank" rel="noopener" href="https://docs.getdbt.com/guides">https://docs.getdbt.com/guides</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -659,6 +663,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/tags/Hiring/">Hiring</a><small>1</small></li>
   
     <li><a href="/tags/Hive/">Hive</a><small>4</small></li>
+  
+    <li><a href="/tags/Hosting/">Hosting</a><small>1</small></li>
   
     <li><a href="/tags/IDE/">IDE</a><small>2</small></li>
   
