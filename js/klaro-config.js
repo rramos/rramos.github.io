@@ -82,7 +82,7 @@ var klaroConfig = {
         },
         {
             // In GTM, you should define a custom event trigger named `klaro-webpusher-accepted` which should trigger the Google Analytics integration.
-            name: 'webpusher',
+            name: 'webpushr',
             required: false,
             purposes: ['marketing'],
             onAccept: `
