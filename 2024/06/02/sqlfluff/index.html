@@ -452,7 +452,7 @@
           
   <!-- hexo plugin: hexo-webpushr-notification -->
 
-  <script type="text/plain" data-type="text/javascript" async data-name="webpushr">
+  <script type="text/plain" data-type="text/javascript" data-name="webpushr">
     let manager = klaro.getManager();
     if (manager.getConsent('webpushr')){
       console.log("Webpushr consent granted. Continue appending html elements")
@@ -461,7 +461,7 @@
           if (typeof (w.webpushr) !== 'undefined') return;
           w.webpushr = w.webpushr || function () {
             (w.webpushr.q = w.webpushr.q || []).push(arguments)
-          }; var js, fjs = d.getElementsByTagName(s)[0]; js = d.createElement(s); js.id = id; js.async = 1; js.data-src = "https://cdn.webpushr.com/app.min.js";
+          }; var js, fjs = d.getElementsByTagName(s)[0]; js = d.createElement(s); js.id = id; js.async = 1; js.src = "https://cdn.webpushr.com/app.min.js";
           fjs.parentNode.appendChild(js);
         }( window, document, 'script', 'webpushr-jssdk' )
       );
