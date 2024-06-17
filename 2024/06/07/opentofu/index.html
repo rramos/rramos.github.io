@@ -516,23 +516,9 @@
           
           
   <!-- hexo plugin: hexo-webpushr-notification -->
-
-  <script type="text/plain" data-type="text/javascript" data-name="webpushr">
-    if (manager.getConsent('webpushr')){
-      (
-        function (w, d, s, id) {
-          if (typeof (w.webpushr) !== 'undefined') return;
-          w.webpushr = w.webpushr || function () {
-            (w.webpushr.q = w.webpushr.q || []).push(arguments)
-          }; var js, fjs = d.getElementsByTagName(s)[0]; js = d.createElement(s); js.id = id; js.async = 1; js.src = "https://cdn.webpushr.com/app.min.js";
-          fjs.parentNode.appendChild(js);
-        }( window, document, 'script', 'webpushr-jssdk' )
-      );
-      webpushr('setup', { 'key': 'BGON3evm0aCcG-ZpkVez8Q8GLrn4527R6YkL4nsU861337AfhJoOvnVU7eJ6ixjspxhic7ecVXvnhGgJz0cfDrE' });
-    }
-  </script>
+  <script type="text/plain" data-type="text/javascript" data-name="webpushr" data-src="https://rramos.github.io/js/webpushr.js"></script>
   <!-- end webpushr tracking code -->
-  
+
 
       </div> <!-- app -->
     </body>
