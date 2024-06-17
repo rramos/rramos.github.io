@@ -455,9 +455,7 @@
   <!-- hexo plugin: hexo-webpushr-notification -->
 
   <script type="text/plain" data-type="text/javascript" data-name="webpushr">
-    let manager = klaro.getManager();
     if (manager.getConsent('webpushr')){
-      console.log("Webpushr consent granted. Continue appending html elements")
       (
         function (w, d, s, id) {
           if (typeof (w.webpushr) !== 'undefined') return;
