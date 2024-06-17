@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="Rui Ramos" />
+  <meta name="description" content="A simple Blog related with Infrastructure Architecture and Data" />
+  
+  
+
+  <link rel="canonical" href="http://rramos.github.io/2017/09/09/polybasecdh/"/>
+
+  <title>
+    
+      Polybase Configuration With Cloudera 5 
+      
+      
+    
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto:400,400italic,600|Roboto+Mono" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+
+
+  
+
+  
+    
+<link rel="stylesheet" href="/css/post.css">
+
+  
+
+  <!-- Include klaro css for consent banner -->
+  
+     
+<link rel="stylesheet" href="/css/klaro.css">
+
+  
+
+  <!-- jquery3.3.1 -->
+  
+<script src="/js/jquery.min.js"></script>
+
+
+  <!-- fancybox -->
+  
+<script src="/js/jquery.fancybox.min,js.js"></script>
+
+
+  <!-- fancybox -->
+  
+<script src="/js/fancybox.js"></script>
+
+
+  <!-- Googlecrux ID -->
+
+    <!-- Google site verification -->
+    <meta name="google-site-verification" content='Em0OaYgLD4MC3tIHbwqDxAklIn7JzrtipNZd7z1kqFI'' />
+    
+  
+    <!-- Google Tag Manager -->
+    <script data-type="text/javascript" type="text/plain" data-name="google-tag-manager">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-MXRC4DK');</script>
+      <!-- End Google Tag Manager -->
+    
+
+  
+      
+  
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
+</head>
+
+    <body>
+      <!-- Klaro Consent Management -->
+      
+          
+<script src="/js/klaro-config.js"></script>
+
+          
+<script src="/js/klaro-no-css.js"></script>
+
+      
+
+      
+     <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MXRC4DK"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+    
+
+
+      
+
+<!-- Start -Microsoft Clarity -->
+<script type="text/plain" data-type="text/javascript" async data-name="microsoft-clarity">
+  let manager = klaro.getManager();
+  if (manager.getConsent('microsoft-clarity')){
+
+    if (!window.location.host.includes('localhost')) {
+      (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;
+        t.data-src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "ms0b2q35b6");
+    }
+  }
+</script>
+<!-- End - Microsoft Clarity -->
+    
+
+      <div id="app">
+        <div class="header">
+  <a href="/">rramos.github.io</a>
+</div>
+
+
+        <p class="links">
+  
+    <a title="archives" target="" href="/archives/">
+      <i class="iconfont icon-bookmark"></i>
+    </a>
+  
+    <a title="github" target="_blank" href="https://github.com/rramos">
+      <i class="iconfont icon-github"></i>
+    </a>
+  
+    <a title="email" target="" href="mailto:rui.ms.ramos@gmail.com">
+      <i class="iconfont icon-envelope"></i>
+    </a>
+  
+    <a title="twitter" target="" href="https://x.com/RuiMSRamos">
+      <i class="iconfont icon-twitter"></i>
+    </a>
+  
+    <a title="about" target="" href="/about">
+      <i class="iconfont icon-qq"></i>
+    </a>
+  
+    <a title="discord" target="" href="https://discord.gg/YfCmqpG53p">
+      <i class="iconfont icon-wechat"></i>
+    </a>
+  
+    <a title="rss" target="_blank" href="/atom.xml">
+      <i class="iconfont icon-rss"></i>
+    </a>
+  
+</p>
+
+        <div class="main">
+          <!-- Article details page, showing the specific content of the article, URL format: https://yoursite/article title/-->
+<!-- At the same time, it is the hosting page of "tag", "friend", "categories", and "about" page. The specific display depends on page.type -->
+ 
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<div class="post">
+  <h3 class="date">
+    09 Sep, 2017
+  </h3>
+  <h1>
+    Polybase Configuration With Cloudera 5
+  </h1>
+  <div class="content markdown-body">
+    <p>In this article i’ll try to describe the required configuration steps to setup Polybase in SQLServer 2016 for <a target="_blank" rel="noopener" href="https://www.cloudera.com/">Cloudera</a> CDH5.</p>
+<p>Before starting the the configuration steps, let’s just try to understand why this is being done.</p>
+<h2 id="Sqoop"><a href="#Sqoop" class="headerlink" title="Sqoop"></a>Sqoop</h2><p>Sqoop is one of the most used tools to transfer data from the Relational World to BigData infrastructures. It relies on JDBC connectors to transfer data between SQLServer and HDFS.</p>
+<h2 id="Performance"><a href="#Performance" class="headerlink" title="Performance"></a>Performance</h2><p>The transfer process to SQLServer via sqoop is taking quite a lot, so the objective of this PoC is to verify if PolyBase alternative for dumping data in&#x2F;out the cluster and understand if there is a improvement on existing processes.</p>
+<h3 id="Setup-Process"><a href="#Setup-Process" class="headerlink" title="Setup Process"></a>Setup Process</h3><h3 id="Obtain-the-cluster-configuration-files"><a href="#Obtain-the-cluster-configuration-files" class="headerlink" title="Obtain the cluster configuration files"></a>Obtain the cluster configuration files</h3><p>In order to configure Polybase for you Cloudera cluster one should first gather from CM the client configurations for HDFS and YARN.</p>
+<p>After downloading the configs you need to update the following files:</p>
+<ul>
+<li><code>yarn-site.xml</code></li>
+<li><code>mapred-site.xml</code></li>
+<li><code>hdfs-site.xml</code></li>
+</ul>
+<p>Copy this files to your SQLServer instance where Polybase will be installed.</p>
+<p>The usual path is <code>C:\Program Files\Microsoft SQL Server\MSSQL13.MSSQLSERVER\MSSQL\Binn\Polybase\Hadoop\conf</code>  </p>
+<p><strong>Note:</strong> Please note, that when PolyBase authenticates to a Kerberos secured cluster, we require the <code>hadoop.rpc.protection</code> setting to be set to authentication. This will leave the data communication between Hadoop nodes unencrypted.</p>
+<h3 id="Activate-the-required-Feature"><a href="#Activate-the-required-Feature" class="headerlink" title="Activate the required Feature"></a>Activate the required Feature</h3><p>On the SQLServer you are going to activate Polybase make sure you have the required pre-requisites</p>
+<ul>
+<li>64-bit SQL Server Evaluation edition</li>
+<li>Microsoft .NET Framework 4.5.</li>
+<li>Oracle Java SE RunTime Environment (JRE) version 7.51 or higher (64-bit)</li>
+<li>Minimum memory: 4GB</li>
+<li>Minimum hard disk space: 2GB</li>
+<li>TCP&#x2F;IP must be enabled for Polybase to function correctly.</li>
+</ul>
+<p>Follow Microsoft guide to activate the feature <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/sql/relational-databases/polybase/polybase-installation">PolyBase Install Guide</a></p>
+<p>One could test if Polybase is correctly installed by running the following command</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> SERVERPROPERTY (<span class="string">&#x27;IsPolybaseInstalled&#x27;</span>) <span class="keyword">AS</span> IsPolybaseInstalled;  </span><br></pre></td></tr></table></figure>
+
+<h3 id="Configure-External-data-source"><a href="#Configure-External-data-source" class="headerlink" title="Configure External data source"></a>Configure External data source</h3><p>Execute the following T-SQL to create Hadoop connectivity to CDH5</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- Values map to various external data sources.  </span></span><br><span class="line"><span class="comment">--  Option 6: Cloudera 5.1, 5.2, 5.3, 5.4, 5.5, 5.9, 5.10, 5.11, and 5.12 on Linux</span></span><br><span class="line">sp_configure <span class="variable">@configname</span> <span class="operator">=</span> <span class="string">&#x27;hadoop connectivity&#x27;</span>, <span class="variable">@configvalue</span> <span class="operator">=</span> <span class="number">6</span>;</span><br><span class="line">GO</span><br><span class="line"></span><br><span class="line">RECONFIGURE</span><br><span class="line">GO  </span><br></pre></td></tr></table></figure>
+
+<p>You could change the option in case you use a different Hadoop Cluster check the <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/polybase-connectivity-configuration-transact-sql">Option Mapping</a></p>
+<p><strong>Note:</strong> After running RECONFIGURE, you must stop and restart the SQL Server service.</p>
+<h3 id="Create-the-T-SQL-objects"><a href="#Create-the-T-SQL-objects" class="headerlink" title="Create the T-SQL objects"></a>Create the T-SQL objects</h3><p>Follow the example configuration described in <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/sql/relational-databases/polybase/get-started-with-polybase">Getting Started with Polybase</a></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 1: Create a database scoped credential.  </span></span><br><span class="line"><span class="comment">-- Create a master key on the database. This is required to encrypt the credential secret.  </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> MASTER KEY ENCRYPTION <span class="keyword">BY</span> PASSWORD <span class="operator">=</span> <span class="string">&#x27;S0me!nfo&#x27;</span>;  </span><br><span class="line"></span><br><span class="line"><span class="comment">-- 2: Create a database scoped credential  for Kerberos-secured Hadoop clusters.  </span></span><br><span class="line"><span class="comment">-- IDENTITY: the Kerberos user name.  </span></span><br><span class="line"><span class="comment">-- SECRET: the Kerberos password  </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> DATABASE SCOPED CREDENTIAL HadoopUser1</span><br><span class="line"><span class="keyword">WITH</span> <span class="keyword">IDENTITY</span> <span class="operator">=</span> <span class="string">&#x27;&lt;hadoop_user_name&gt;&#x27;</span>, Secret <span class="operator">=</span> <span class="string">&#x27;&lt;hadoop_password&gt;&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 3:  Create an external data source.  </span></span><br><span class="line"><span class="comment">-- LOCATION (Required) : Hadoop Name Node IP address and port.  </span></span><br><span class="line"><span class="comment">-- RESOURCE MANAGER LOCATION (Optional): Hadoop Resource Manager location to enable pushdown computation.  </span></span><br><span class="line"><span class="comment">-- CREDENTIAL (Optional):  the database scoped credential, created above.  </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">EXTERNAL</span> DATA SOURCE MyHadoopCluster <span class="keyword">WITH</span> (  </span><br><span class="line">        TYPE <span class="operator">=</span> HADOOP,</span><br><span class="line">        LOCATION <span class="operator">=</span><span class="string">&#x27;hdfs://10.xxx.xx.xxx:xxxx&#x27;</span>,</span><br><span class="line">        RESOURCE_MANAGER_LOCATION <span class="operator">=</span> <span class="string">&#x27;10.xxx.xx.xxx:xxxx&#x27;</span>,</span><br><span class="line">        CREDENTIAL <span class="operator">=</span> HadoopUser1</span><br><span class="line">);  </span><br><span class="line"></span><br><span class="line"><span class="comment">-- 4: Create an external file format.  </span></span><br><span class="line"><span class="comment">-- FORMAT TYPE: Type of format in Hadoop (DELIMITEDTEXT,  RCFILE, ORC, PARQUET).</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">EXTERNAL</span> FILE FORMAT TextFileFormat <span class="keyword">WITH</span> (  </span><br><span class="line">        FORMAT_TYPE <span class="operator">=</span> DELIMITEDTEXT,</span><br><span class="line">        FORMAT_OPTIONS (FIELD_TERMINATOR <span class="operator">=</span><span class="string">&#x27;|&#x27;</span>,</span><br><span class="line">                USE_TYPE_DEFAULT <span class="operator">=</span> <span class="literal">TRUE</span>)  </span><br><span class="line"></span><br><span class="line"><span class="comment">-- 5:  Create an external table pointing to data stored in Hadoop.  </span></span><br><span class="line"><span class="comment">-- LOCATION: path to file or directory that contains the data (relative to HDFS root).  </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">EXTERNAL</span> <span class="keyword">TABLE</span> [dbo].[CarSensor_Data] (  </span><br><span class="line">        [SensorKey] <span class="type">int</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">        [CustomerKey] <span class="type">int</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">        [GeographyKey] <span class="type">int</span> <span class="keyword">NULL</span>,</span><br><span class="line">        [Speed] <span class="type">float</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">        [YearMeasured] <span class="type">int</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>  </span><br><span class="line">)  </span><br><span class="line"><span class="keyword">WITH</span> (LOCATION<span class="operator">=</span><span class="string">&#x27;/Demo/&#x27;</span>,</span><br><span class="line">        DATA_SOURCE <span class="operator">=</span> MyHadoopCluster,  </span><br><span class="line">        FILE_FORMAT <span class="operator">=</span> TextFileFormat  </span><br><span class="line">);  </span><br><span class="line"></span><br><span class="line"><span class="comment">-- 6:  Create statistics on an external table.</span></span><br><span class="line"><span class="keyword">CREATE</span> STATISTICS StatsForSensors <span class="keyword">on</span> CarSensor_Data(CustomerKey, Speed)  </span><br></pre></td></tr></table></figure>
+
+<h3 id="Example-Queries"><a href="#Example-Queries" class="headerlink" title="Example Queries"></a>Example Queries</h3><ul>
+<li>Import external Data</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- PolyBase Scenario 2: Import external data into SQL Server.  </span></span><br><span class="line"><span class="comment">-- Import data for fast drivers into SQL Server to do more in-depth analysis and  </span></span><br><span class="line"><span class="comment">-- leverage Columnstore technology.  </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span></span><br><span class="line">        Insured_Customers.FirstName, Insured_Customers.LastName,</span><br><span class="line">        Insured_Customers.YearlyIncome, Insured_Customers.MaritalStatus  </span><br><span class="line"><span class="keyword">INTO</span> Fast_Customers <span class="keyword">from</span> Insured_Customers <span class="keyword">INNER</span> <span class="keyword">JOIN</span></span><br><span class="line">(  </span><br><span class="line">        <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> CarSensor_Data <span class="keyword">where</span> Speed <span class="operator">&gt;</span> <span class="number">35</span></span><br><span class="line">) <span class="keyword">AS</span> SensorD  </span><br><span class="line"><span class="keyword">ON</span> Insured_Customers.CustomerKey <span class="operator">=</span> SensorD.CustomerKey  </span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> YearlyIncome  </span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> CLUSTERED COLUMNSTORE INDEX CCI_FastCustomers <span class="keyword">ON</span> Fast_Customers;  </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Export External Data</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- PolyBase Scenario 3: Export data from SQL Server to Hadoop.  </span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- Enable INSERT into external table  </span></span><br><span class="line">sp_configure ‘allow polybase export’, <span class="number">1</span>;  </span><br><span class="line">reconfigure  </span><br><span class="line"></span><br><span class="line"><span class="comment">-- Create an external table.</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">EXTERNAL</span> <span class="keyword">TABLE</span> [dbo].[FastCustomers2009] (  </span><br><span class="line">        [FirstName] <span class="type">char</span>(<span class="number">25</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">        [LastName] <span class="type">char</span>(<span class="number">25</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">        [YearlyIncome] <span class="type">float</span> <span class="keyword">NULL</span>,</span><br><span class="line">        [MaritalStatus] <span class="type">char</span>(<span class="number">1</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>  </span><br><span class="line">)  </span><br><span class="line"><span class="keyword">WITH</span> (  </span><br><span class="line">        LOCATION<span class="operator">=</span><span class="string">&#x27;/old_data/2009/customerdata&#x27;</span>,  </span><br><span class="line">        DATA_SOURCE <span class="operator">=</span> HadoopHDP2,  </span><br><span class="line">        FILE_FORMAT <span class="operator">=</span> TextFileFormat,  </span><br><span class="line">        REJECT_TYPE <span class="operator">=</span> <span class="keyword">VALUE</span>,  </span><br><span class="line">        REJECT_VALUE <span class="operator">=</span> <span class="number">0</span>  </span><br><span class="line">);  </span><br><span class="line"></span><br><span class="line"><span class="comment">-- Export data: Move old data to Hadoop while keeping it query-able via an external table.  </span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> dbo.FastCustomer2009  </span><br><span class="line"><span class="keyword">SELECT</span> T.<span class="operator">*</span> <span class="keyword">FROM</span> Insured_Customers T1 <span class="keyword">JOIN</span> CarSensor_Data T2  </span><br><span class="line"><span class="keyword">ON</span> (T1.CustomerKey <span class="operator">=</span> T2.CustomerKey)  </span><br><span class="line"><span class="keyword">WHERE</span> T2.YearMeasured <span class="operator">=</span> <span class="number">2009</span> <span class="keyword">and</span> T2.Speed <span class="operator">&gt;</span> <span class="number">40</span>;  </span><br></pre></td></tr></table></figure>
+
+<h2 id="Tests"><a href="#Tests" class="headerlink" title="Tests"></a>Tests</h2><p>Initial tests are quite good actually, even with the identified issues. Polybase seems quite limited but for the objective in hands might present like a very viable solution.</p>
+<p>Some more tests would be required.</p>
+<h2 id="Issues"><a href="#Issues" class="headerlink" title="Issues"></a>Issues</h2><ul>
+<li>It seems one cannot truncate external tables so an extra process would be required if you plan to use this as part of an ETL process that should support re-runs</li>
+<li>It seems that <code>hadoop_user_name</code> is being ignored and polybase still uses <code>pwc_user</code> account in cluster.</li>
+<li>Take care on the compression levels you choose as they consume quite a lot CPU on your SQLServer</li>
+<li>The metadata of the tables is always stored on SQLServer. And when you choose parquet files has source format it stores in parquet meta the columns as <code>col-0,col-1,col-3,...</code> if you map those files to a Hive table would require a view with the respective column name mapping.</li>
+<li>Not sure if this can be change but the dumped files to HDFS are split in 8, for the initial tests, only bad for small tables.</li>
+</ul>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><ul>
+<li>Work in progress</li>
+</ul>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/sql/relational-databases/polybase/polybase-guide">https://docs.microsoft.com/en-us/sql/relational-databases/polybase/polybase-guide</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/sql/relational-databases/polybase/get-started-with-polybase">https://docs.microsoft.com/en-us/sql/relational-databases/polybase/get-started-with-polybase</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/sql/relational-databases/polybase/polybase-installation">https://docs.microsoft.com/en-us/sql/relational-databases/polybase/polybase-installation</a></li>
+</ul>
+
+  </div>
+  
+    
+      <a id="older" class="blog-nav" href="/2017/09/07/GA-CustomDimension/">OLDER&nbsp;&gt;</a>
+      
+        
+          <a id="newer" class="blog-nav" href="/2017/09/13/ChromeProxy/">&lt;&nbsp;NEWER</a>
+          
+            
+</div>
+          <div class="footer">
+  
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/rramos">Copyright © Rui Ramos 2024</a>
+        
+    </div>
+  
+</div>
+
+        </div> <!-- main -->
+          <div class="back-to-top hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+          
+  <div class="search-icon" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-box">
+        <div class="search-title">
+          <!-- <span class="search-icon-input">
+            <a href="javascript: void(0)">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </span> -->
+          
+            <input type="text" class="search-input" id="search-input" placeholder="Search ...">
+          
+          <span class="search-close-icon" id="search-close-icon">
+            <a href="javascript: void(0)">
+              <i class="iconfont icon-close"></i>
+            </a>
+          </span>
+        </div>
+        <div class="search-result" id="search-result"></div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    // inputArea.onclick = function() {
+    //   getSearchFile()
+    //   this.onclick = null
+    // }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        inputArea.focus()
+        getSearchFile()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'><span></ul>";
+      // $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'><h2>" + orig_data_title + "</h2></a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<h3 class=\"search-result-abstract\">" + match_content + "...</h3>"
+                }
+                str += "<hr></li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/leedom92/hexo-theme-leedom#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+          
+  
+  <div class="consent-icon" id="consent-icon">
+    <a class="button is-success" onclick="return klaro.show();">
+      <i class="iconfont icon-consent"></i>
+    </a>
+  </div>
+  
+
+
+          
+          
+  <!-- hexo plugin: hexo-webpushr-notification -->
+
+  <script type="text/plain" data-type="text/javascript" async data-name="webpushr">
+    let manager = klaro.getManager();
+    if (manager.getConsent('webpushr')){
+      (
+        function (w, d, s, id) {
+          if (typeof (w.webpushr) !== 'undefined') return;
+          w.webpushr = w.webpushr || function () {
+            (w.webpushr.q = w.webpushr.q || []).push(arguments)
+          }; var js, fjs = d.getElementsByTagName(s)[0]; js = d.createElement(s); js.id = id; js.async = 1; js.data-src = "https://cdn.webpushr.com/app.min.js";
+          fjs.parentNode.appendChild(js);
+        }( window, document, 'script', 'webpushr-jssdk' )
+      );
+      webpushr('setup', { 'key': 'BGON3evm0aCcG-ZpkVez8Q8GLrn4527R6YkL4nsU861337AfhJoOvnVU7eJ6ixjspxhic7ecVXvnhGgJz0cfDrE' });
+    }
+  </script>
+  <!-- end webpushr tracking code -->
+  
+
+      </div> <!-- app -->
+    <script>(function (w, d, s, id) {
+        if (typeof (w.webpushr) !== 'undefined') return;
+        w.webpushr = w.webpushr || function () { (w.webpushr.q = w.webpushr.q || []).push(arguments) };
+        var js, fjs = d.getElementsByTagName(s)[0];
+        js = d.createElement(s);
+        js.id = id;
+        js.async = 1;
+        js.src = "https://cdn.webpushr.com/app.min.js";
+        fjs.parentNode.appendChild(js);
+        }(window, document, 'script', 'webpushr-jssdk'));
+
+        webpushr('setup', {
+        'key': 'BGON3evm0aCcG-ZpkVez8Q8GLrn4527R6YkL4nsU861337AfhJoOvnVU7eJ6ixjspxhic7ecVXvnhGgJz0cfDrE',
+        'sw': undefined
+        });
+        </script></body>
+
+</html>

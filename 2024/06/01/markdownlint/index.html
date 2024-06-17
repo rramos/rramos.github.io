@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="Rui Ramos" />
+  <meta name="description" content="A simple Blog related with Infrastructure Architecture and Data" />
+  
+  
+
+  <link rel="canonical" href="http://rramos.github.io/2024/06/01/markdownlint/"/>
+
+  <title>
+    
+      Markdownlint 
+      
+      
+    
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto:400,400italic,600|Roboto+Mono" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+
+
+  
+
+  
+    
+<link rel="stylesheet" href="/css/post.css">
+
+  
+
+  <!-- Include klaro css for consent banner -->
+  
+     
+<link rel="stylesheet" href="/css/klaro.css">
+
+  
+
+  <!-- jquery3.3.1 -->
+  
+<script src="/js/jquery.min.js"></script>
+
+
+  <!-- fancybox -->
+  
+<script src="/js/jquery.fancybox.min,js.js"></script>
+
+
+  <!-- fancybox -->
+  
+<script src="/js/fancybox.js"></script>
+
+
+  <!-- Googlecrux ID -->
+
+    <!-- Google site verification -->
+    <meta name="google-site-verification" content='Em0OaYgLD4MC3tIHbwqDxAklIn7JzrtipNZd7z1kqFI'' />
+    
+  
+    <!-- Google Tag Manager -->
+    <script data-type="text/javascript" type="text/plain" data-name="google-tag-manager">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-MXRC4DK');</script>
+      <!-- End Google Tag Manager -->
+    
+
+  
+      
+  
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
+</head>
+
+    <body>
+      <!-- Klaro Consent Management -->
+      
+          
+<script src="/js/klaro-config.js"></script>
+
+          
+<script src="/js/klaro-no-css.js"></script>
+
+      
+
+      
+     <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MXRC4DK"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+    
+
+
+      
+
+<!-- Start -Microsoft Clarity -->
+<script type="text/plain" data-type="text/javascript" async data-name="microsoft-clarity">
+  let manager = klaro.getManager();
+  if (manager.getConsent('microsoft-clarity')){
+
+    if (!window.location.host.includes('localhost')) {
+      (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;
+        t.data-src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "ms0b2q35b6");
+    }
+  }
+</script>
+<!-- End - Microsoft Clarity -->
+    
+
+      <div id="app">
+        <div class="header">
+  <a href="/">rramos.github.io</a>
+</div>
+
+
+        <p class="links">
+  
+    <a title="archives" target="" href="/archives/">
+      <i class="iconfont icon-bookmark"></i>
+    </a>
+  
+    <a title="github" target="_blank" href="https://github.com/rramos">
+      <i class="iconfont icon-github"></i>
+    </a>
+  
+    <a title="email" target="" href="mailto:rui.ms.ramos@gmail.com">
+      <i class="iconfont icon-envelope"></i>
+    </a>
+  
+    <a title="twitter" target="" href="https://x.com/RuiMSRamos">
+      <i class="iconfont icon-twitter"></i>
+    </a>
+  
+    <a title="about" target="" href="/about">
+      <i class="iconfont icon-qq"></i>
+    </a>
+  
+    <a title="discord" target="" href="https://discord.gg/YfCmqpG53p">
+      <i class="iconfont icon-wechat"></i>
+    </a>
+  
+    <a title="rss" target="_blank" href="/atom.xml">
+      <i class="iconfont icon-rss"></i>
+    </a>
+  
+</p>
+
+        <div class="main">
+          <!-- Article details page, showing the specific content of the article, URL format: https://yoursite/article title/-->
+<!-- At the same time, it is the hosting page of "tag", "friend", "categories", and "about" page. The specific display depends on page.type -->
+ 
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<div class="post">
+  <h3 class="date">
+    01 Jun, 2024
+  </h3>
+  <h1>
+    Markdownlint
+  </h1>
+  <div class="content markdown-body">
+    <p>When producing the contents of this blog I’ m generating Markdown files and then letting the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> framework generate the html static files. However I’m very lazy and need to improve the both the grammar of the articles and the Markdown format.</p>
+<p>In this article I will explain how to setup a git pre-hook to validate the Markdown format, oh! and fix all the issues on pre existing articles.</p>
+<h2 id="What-is-Markdownlint"><a href="#What-is-Markdownlint" class="headerlink" title="What is Markdownlint"></a>What is Markdownlint</h2><p>A tool to check markdown files and flag style issues.</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/markdownlint/markdownlint">https://github.com/markdownlint/markdownlint</a></li>
+</ul>
+<h2 id="How-to-check-issues-locally"><a href="#How-to-check-issues-locally" class="headerlink" title="How to check issues locally"></a>How to check issues locally</h2><p>You can use a docker run on a given path like the following example</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker run --<span class="built_in">rm</span> -v <span class="variable">$&#123;PWD&#125;</span>:/data markdownlint/markdownlint <span class="built_in">source</span></span><br></pre></td></tr></table></figure>
+
+<p>or run directly the <code>mdl</code> command.</p>
+<p>You may check the available rules <a target="_blank" rel="noopener" href="https://github.com/markdownlint/markdownlint/blob/main/docs/RULES.md">here</a>.</p>
+<p>For Hexo in particular I add metadata which does not comply with some of the rules such as MD002,MD013 and MD032, the same applies for line length as the data will be converted to HTML, I would skip some of the tests and would run like:</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">mdl -r ~MD002,~MD013,~MD032,~MD005,~MD009 <span class="built_in">source</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="How-to-fix-the-issues"><a href="#How-to-fix-the-issues" class="headerlink" title="How to fix the issues"></a>How to fix the issues</h2><p>You can install markdownlint on your IDE eg for vscode <strong>markdownlint</strong> and fix based on the hints.</p>
+<h2 id="Configure-git-pre-hook"><a href="#Configure-git-pre-hook" class="headerlink" title="Configure git pre-hook"></a>Configure git pre-hook</h2><p>Now let’s configure a git pre-commit hook to validate Markdown lint before we commit.</p>
+<h3 id="pre-commit-install"><a href="#pre-commit-install" class="headerlink" title="pre-commit install"></a>pre-commit install</h3><p>In order to test this without committing there is a nice python tool that you can use</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -S python-pre-commit</span><br></pre></td></tr></table></figure>
+
+<p>If you are using a different distribution you might just need to :</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install pre-commit</span><br></pre></td></tr></table></figure>
+
+<p>Also make sure you have <code>markdownlint</code> installed unless you want to use the docker version.</p>
+<p><strong>NOTE:</strong> If that is the case you need to change the id to <code>id: markdownlint-docker</code> on the following file</p>
+<p>Create the following file <code>.pre-commit-config.yaml</code> with the content</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># See https://pre-commit.com for more information</span></span><br><span class="line"><span class="comment"># See https://pre-commit.com/hooks.html for more hooks</span></span><br><span class="line"><span class="attr">repos:</span></span><br><span class="line"><span class="bullet">-</span>   <span class="attr">repo:</span> <span class="string">https://github.com/igorshubovych/markdownlint-cli</span></span><br><span class="line">    <span class="attr">rev:</span> <span class="string">v0.41.0</span>    </span><br><span class="line">    <span class="attr">hooks:</span></span><br><span class="line">    <span class="bullet">-</span>   <span class="attr">id:</span> <span class="string">markdownlint</span></span><br><span class="line">        <span class="attr">args:</span> [ <span class="string">--disable=MD013</span>, <span class="string">--disable=MD002</span>,<span class="string">--disable=MD032</span>,<span class="string">--disable=MD005</span>,<span class="string">--disable=MD009</span> ]</span><br></pre></td></tr></table></figure>
+
+<p>Then execute the following command</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">pre-commit install</span><br></pre></td></tr></table></figure>
+
+<p>This will install the hook configuration. Check the <a target="_blank" rel="noopener" href="https://pre-commit.com/hooks">documentation page</a> as there are several hooks that might be useful.</p>
+<p>You can now test if the tests are passing before committing</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">pre-commit run --all-files</span><br></pre></td></tr></table></figure>
+
+<p>If you get something similar you are good to go.</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">$ pre-commit run --all-files</span><br><span class="line">markdownlint.............................................................Passed</span><br></pre></td></tr></table></figure>
+
+<h3 id="Exit-codes"><a href="#Exit-codes" class="headerlink" title="Exit codes"></a>Exit codes</h3><p>markdownlint-cli returns one of the following exit codes:</p>
+<p>0: Program ran successfully<br>1: Linting errors<br>2: Unable to write -o&#x2F;–output output file<br>3: Unable to load -r&#x2F;–rules custom rule<br>4: Unexpected error (e.g. malformed config)</p>
+<p>You are now ready to commit with a pre-hook that checks MD lint</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Pre-hooks are very valuable as they can automate, enhance your commit, crosscheck business rules, lint, grammar or formatting in order to guarantee that your commit will bring the best value as possible. There are lots of hooks available check them out. pre-commit command is useful as would allow you to test all those scripts before doing the changes on the repo.</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/markdownlint/markdownlint/tree/main">https://github.com/markdownlint/markdownlint/tree/main</a></li>
+<li><a target="_blank" rel="noopener" href="https://pre-commit.com/hooks">https://pre-commit.com/hooks</a></li>
+<li><a target="_blank" rel="noopener" href="https://pre-commit.com/">https://pre-commit.com/</a></li>
+</ul>
+
+  </div>
+  
+    
+      <a id="older" class="blog-nav" href="/2024/06/01/dataplex/">OLDER&nbsp;&gt;</a>
+      
+        
+          <a id="newer" class="blog-nav" href="/2024/06/02/sqlfluff/">&lt;&nbsp;NEWER</a>
+          
+            
+</div>
+          <div class="footer">
+  
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/rramos">Copyright © Rui Ramos 2024</a>
+        
+    </div>
+  
+</div>
+
+        </div> <!-- main -->
+          <div class="back-to-top hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+          
+  <div class="search-icon" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-box">
+        <div class="search-title">
+          <!-- <span class="search-icon-input">
+            <a href="javascript: void(0)">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </span> -->
+          
+            <input type="text" class="search-input" id="search-input" placeholder="Search ...">
+          
+          <span class="search-close-icon" id="search-close-icon">
+            <a href="javascript: void(0)">
+              <i class="iconfont icon-close"></i>
+            </a>
+          </span>
+        </div>
+        <div class="search-result" id="search-result"></div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    // inputArea.onclick = function() {
+    //   getSearchFile()
+    //   this.onclick = null
+    // }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        inputArea.focus()
+        getSearchFile()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'><span></ul>";
+      // $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'><h2>" + orig_data_title + "</h2></a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<h3 class=\"search-result-abstract\">" + match_content + "...</h3>"
+                }
+                str += "<hr></li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/leedom92/hexo-theme-leedom#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+          
+  
+  <div class="consent-icon" id="consent-icon">
+    <a class="button is-success" onclick="return klaro.show();">
+      <i class="iconfont icon-consent"></i>
+    </a>
+  </div>
+  
+
+
+          
+          
+  <!-- hexo plugin: hexo-webpushr-notification -->
+
+  <script type="text/plain" data-type="text/javascript" async data-name="webpushr">
+    let manager = klaro.getManager();
+    if (manager.getConsent('webpushr')){
+      (
+        function (w, d, s, id) {
+          if (typeof (w.webpushr) !== 'undefined') return;
+          w.webpushr = w.webpushr || function () {
+            (w.webpushr.q = w.webpushr.q || []).push(arguments)
+          }; var js, fjs = d.getElementsByTagName(s)[0]; js = d.createElement(s); js.id = id; js.async = 1; js.data-src = "https://cdn.webpushr.com/app.min.js";
+          fjs.parentNode.appendChild(js);
+        }( window, document, 'script', 'webpushr-jssdk' )
+      );
+      webpushr('setup', { 'key': 'BGON3evm0aCcG-ZpkVez8Q8GLrn4527R6YkL4nsU861337AfhJoOvnVU7eJ6ixjspxhic7ecVXvnhGgJz0cfDrE' });
+    }
+  </script>
+  <!-- end webpushr tracking code -->
+  
+
+      </div> <!-- app -->
+    <script>(function (w, d, s, id) {
+        if (typeof (w.webpushr) !== 'undefined') return;
+        w.webpushr = w.webpushr || function () { (w.webpushr.q = w.webpushr.q || []).push(arguments) };
+        var js, fjs = d.getElementsByTagName(s)[0];
+        js = d.createElement(s);
+        js.id = id;
+        js.async = 1;
+        js.src = "https://cdn.webpushr.com/app.min.js";
+        fjs.parentNode.appendChild(js);
+        }(window, document, 'script', 'webpushr-jssdk'));
+
+        webpushr('setup', {
+        'key': 'BGON3evm0aCcG-ZpkVez8Q8GLrn4527R6YkL4nsU861337AfhJoOvnVU7eJ6ixjspxhic7ecVXvnhGgJz0cfDrE',
+        'sw': undefined
+        });
+        </script></body>
+
+</html>

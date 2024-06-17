@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="Rui Ramos" />
+  <meta name="description" content="A simple Blog related with Infrastructure Architecture and Data" />
+  
+  
+
+  <link rel="canonical" href="http://rramos.github.io/2024/05/20/act/"/>
+
+  <title>
+    
+      Act 
+      
+      
+    
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto:400,400italic,600|Roboto+Mono" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+
+
+  
+
+  
+    
+<link rel="stylesheet" href="/css/post.css">
+
+  
+
+  <!-- Include klaro css for consent banner -->
+  
+     
+<link rel="stylesheet" href="/css/klaro.css">
+
+  
+
+  <!-- jquery3.3.1 -->
+  
+<script src="/js/jquery.min.js"></script>
+
+
+  <!-- fancybox -->
+  
+<script src="/js/jquery.fancybox.min,js.js"></script>
+
+
+  <!-- fancybox -->
+  
+<script src="/js/fancybox.js"></script>
+
+
+  <!-- Googlecrux ID -->
+
+    <!-- Google site verification -->
+    <meta name="google-site-verification" content='Em0OaYgLD4MC3tIHbwqDxAklIn7JzrtipNZd7z1kqFI'' />
+    
+  
+    <!-- Google Tag Manager -->
+    <script data-type="text/javascript" type="text/plain" data-name="google-tag-manager">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-MXRC4DK');</script>
+      <!-- End Google Tag Manager -->
+    
+
+  
+      
+  
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
+</head>
+
+    <body>
+      <!-- Klaro Consent Management -->
+      
+          
+<script src="/js/klaro-config.js"></script>
+
+          
+<script src="/js/klaro-no-css.js"></script>
+
+      
+
+      
+     <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MXRC4DK"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+    
+
+
+      
+
+<!-- Start -Microsoft Clarity -->
+<script type="text/plain" data-type="text/javascript" async data-name="microsoft-clarity">
+  let manager = klaro.getManager();
+  if (manager.getConsent('microsoft-clarity')){
+
+    if (!window.location.host.includes('localhost')) {
+      (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;
+        t.data-src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "ms0b2q35b6");
+    }
+  }
+</script>
+<!-- End - Microsoft Clarity -->
+    
+
+      <div id="app">
+        <div class="header">
+  <a href="/">rramos.github.io</a>
+</div>
+
+
+        <p class="links">
+  
+    <a title="archives" target="" href="/archives/">
+      <i class="iconfont icon-bookmark"></i>
+    </a>
+  
+    <a title="github" target="_blank" href="https://github.com/rramos">
+      <i class="iconfont icon-github"></i>
+    </a>
+  
+    <a title="email" target="" href="mailto:rui.ms.ramos@gmail.com">
+      <i class="iconfont icon-envelope"></i>
+    </a>
+  
+    <a title="twitter" target="" href="https://x.com/RuiMSRamos">
+      <i class="iconfont icon-twitter"></i>
+    </a>
+  
+    <a title="about" target="" href="/about">
+      <i class="iconfont icon-qq"></i>
+    </a>
+  
+    <a title="discord" target="" href="https://discord.gg/YfCmqpG53p">
+      <i class="iconfont icon-wechat"></i>
+    </a>
+  
+    <a title="rss" target="_blank" href="/atom.xml">
+      <i class="iconfont icon-rss"></i>
+    </a>
+  
+</p>
+
+        <div class="main">
+          <!-- Article details page, showing the specific content of the article, URL format: https://yoursite/article title/-->
+<!-- At the same time, it is the hosting page of "tag", "friend", "categories", and "about" page. The specific display depends on page.type -->
+ 
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<div class="post">
+  <h3 class="date">
+    20 May, 2024
+  </h3>
+  <h1>
+    Act
+  </h1>
+  <div class="content markdown-body">
+    <p>In this article I will go through act tool.</p>
+<h2 id="Context"><a href="#Context" class="headerlink" title="Context"></a>Context</h2><p>… So one of this days my github actions stopped working while deploying this hexo pages.</p>
+<p>(<em>It was related with one of my github actions module that required one update, but that is not relevant</em>).</p>
+<p>I start doing some dumb changes and quickly realize that I would need some way to test the execution environment and not just doing blind pushes to validate the changes.</p>
+<p>Obviously some smart fellows also passed through this and implemented a nice tool for doing exactly that called <strong>act</strong></p>
+<p>So I’m registering on this notes in case I need to use it again (probably will)</p>
+<h2 id="act"><a href="#act" class="headerlink" title="act"></a>act</h2><blockquote>
+<p>“Think globally, act locally”</p>
+</blockquote>
+<p>Run your GitHub Actions locally! Why would you want to do this? Two reasons:</p>
+<ul>
+<li><strong>Fast Feedback</strong> - Rather than having to commit&#x2F;push every time you want to test out the changes you are making to your .github&#x2F;workflows&#x2F; files (or for any changes to embedded GitHub actions), you can use act to run the actions locally. The environment variables and filesystem are all configured to match what GitHub provides.</li>
+<li><strong>Local Task Runner</strong> - I love make. However, I also hate repeating myself. With act, you can use the GitHub Actions defined in your .github&#x2F;workflows&#x2F; to replace your Makefile!</li>
+</ul>
+<h2 id="The-issue"><a href="#The-issue" class="headerlink" title="The issue"></a>The issue</h2><p>So I’ m using hexo to generate the html from my markdown pages and integrated with github actions using the following repo:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/sma11black/hexo-action">https://github.com/sma11black/hexo-action</a></li>
+</ul>
+<p>But it seems the repo lacks some attention in regards to updates.</p>
+<p>And according to github node12 actions support is deprecated and developers should change to node16.</p>
+<ul>
+<li><strong>Ref:</strong> <a target="_blank" rel="noopener" href="https://github.blog/changelog/2022-09-22-github-actions-all-actions-will-begin-running-on-node16-instead-of-node12/">https://github.blog/changelog/2022-09-22-github-actions-all-actions-will-begin-running-on-node16-instead-of-node12/</a></li>
+</ul>
+<p>Well the good thing of opensource is that you can fork the repo and fix the things on your own or search for some other alternative.</p>
+<h2 id="Forked"><a href="#Forked" class="headerlink" title="Forked"></a>Forked</h2><p>Probably not the best option as there are certainly some better developers than I, but I wanted to fix this quickly.</p>
+<p>After forking the repo to <a target="_blank" rel="noopener" href="https://github.com/rramos/hexo-action">https://github.com/rramos/hexo-action</a> I can start messing thing up, but I need a way to test this.</p>
+<p>This is where ACT comes in place</p>
+<h2 id="Download"><a href="#Download" class="headerlink" title="Download"></a>Download</h2><p>The instruction look pretty straight forward</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> git@github.com:nektos/act.git</span><br></pre></td></tr></table></figure>
+
+<p>There should be some package for your distribution but I didn’ t have time for that.</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> act</span><br><span class="line">make build</span><br></pre></td></tr></table></figure>
+
+<p>This generate a binary, good thing they implemented this in Golang :D</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/`<span class="built_in">pwd</span>`/dist/local</span><br><span class="line">act -h</span><br></pre></td></tr></table></figure>
+
+<p>The previous one is to make sure you have  the command available on that terminal if you want to install on the system for future use, run make install.</p>
+<p><strong>NOTE:</strong> I would advise however to check for any distribution package</p>
+<h2 id="Test-Github-Actions"><a href="#Test-Github-Actions" class="headerlink" title="Test Github Actions"></a>Test Github Actions</h2><p>Now lets head to our repository where our .github&#x2F;workflows directory exist and test this thing.</p>
+<p>I’m going to use the repo that which has the githuactions.<br>Check the following article <a href="https://rramos.github.io/2024/01/26/githubactions">https://rramos.github.io/2024/01/26/githubactions</a>, if you like to know more</p>
+<p>But will change the packages for deploy action to my fork</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">...</span><br><span class="line">    <span class="comment"># Deploy hexo blog website.</span></span><br><span class="line">    - name: Deploy</span><br><span class="line">      <span class="built_in">id</span>: deploy</span><br><span class="line">      uses: rramos/hexo-action@master</span><br><span class="line">      with:</span><br><span class="line">        deploy_key: <span class="variable">$&#123;&#123; secrets.HEXO_DEPLOY_KEY &#125;</span>&#125;</span><br><span class="line">        user_name: &lt;user&gt;  <span class="comment"># (or delete this input setting to use bot account)</span></span><br><span class="line">        user_email: &lt;email&gt;  <span class="comment"># (or delete this input setting to use bot account)</span></span><br><span class="line">        commit_msg: <span class="variable">$&#123;&#123; github.event.head_commit.message &#125;</span>&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>And run the command</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">act</span><br></pre></td></tr></table></figure>
+
+<p><strong>NOTE:</strong> The first run it will ask the type of resources that you would like to assign to docker</p>
+<p>And that’ s it you now can start messing with the actions images</p>
+<p>In my case i just switch the node image to node22, because I like violence and did a quick fix on the Spawn module which change location and seemed to fix for now.</p>
+<h2 id="Act-User-Guide"><a href="#Act-User-Guide" class="headerlink" title="Act User Guide"></a>Act User Guide</h2><p>I would recommend to check the Official <strong>act</strong> User Guide:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://nektosact.com/">https://nektosact.com</a></li>
+</ul>
+<h2 id="How-Does-It-Work"><a href="#How-Does-It-Work" class="headerlink" title="How Does It Work"></a>How Does It Work</h2><p>When you run act it reads in your GitHub Actions from <strong>.github&#x2F;workflows&#x2F;</strong> and determines the set of actions that need to be run. It uses the Docker API to either pull or build the necessary images, as defined in your workflow files and finally determines the execution path based on the dependencies that were defined. Once it has the execution path, it then uses the Docker API to run containers for each action based on the images prepared earlier. The environment variables and filesystem are all configured to match what GitHub provides.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p><strong>act</strong> is a very useful tool if you like to test&#x2F;change the actions for GitHub actions without polluting your branches with test attempts. It also speeds up you development process and allows you to make more interesting changes on existing images.</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/nektos/act">https://github.com/nektos/act</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/orgs/community/discussions/36493">https://github.com/orgs/community/discussions/36493</a></li>
+<li><a target="_blank" rel="noopener" href="https://nektosact.com/">https://nektosact.com/</a></li>
+<li><a target="_blank" rel="noopener" href="https://nektosact.com/installation/aur.html">https://nektosact.com/installation/aur.html</a></li>
+</ul>
+<p><strong>NOTE:</strong> <em>This article was written without AI support feel free to enhance it as you like. But remember John Connor is watching you</em></p>
+
+  </div>
+  
+    
+      <a id="older" class="blog-nav" href="/2024/05/20/ManagerPlaybook/">OLDER&nbsp;&gt;</a>
+      
+        
+          <a id="newer" class="blog-nav" href="/2024/05/21/scylladb/">&lt;&nbsp;NEWER</a>
+          
+            
+</div>
+          <div class="footer">
+  
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/rramos">Copyright © Rui Ramos 2024</a>
+        
+    </div>
+  
+</div>
+
+        </div> <!-- main -->
+          <div class="back-to-top hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+          
+  <div class="search-icon" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-box">
+        <div class="search-title">
+          <!-- <span class="search-icon-input">
+            <a href="javascript: void(0)">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </span> -->
+          
+            <input type="text" class="search-input" id="search-input" placeholder="Search ...">
+          
+          <span class="search-close-icon" id="search-close-icon">
+            <a href="javascript: void(0)">
+              <i class="iconfont icon-close"></i>
+            </a>
+          </span>
+        </div>
+        <div class="search-result" id="search-result"></div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    // inputArea.onclick = function() {
+    //   getSearchFile()
+    //   this.onclick = null
+    // }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        inputArea.focus()
+        getSearchFile()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'><span></ul>";
+      // $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'><h2>" + orig_data_title + "</h2></a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<h3 class=\"search-result-abstract\">" + match_content + "...</h3>"
+                }
+                str += "<hr></li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/leedom92/hexo-theme-leedom#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+          
+  
+  <div class="consent-icon" id="consent-icon">
+    <a class="button is-success" onclick="return klaro.show();">
+      <i class="iconfont icon-consent"></i>
+    </a>
+  </div>
+  
+
+
+          
+          
+  <!-- hexo plugin: hexo-webpushr-notification -->
+
+  <script type="text/plain" data-type="text/javascript" async data-name="webpushr">
+    let manager = klaro.getManager();
+    if (manager.getConsent('webpushr')){
+      (
+        function (w, d, s, id) {
+          if (typeof (w.webpushr) !== 'undefined') return;
+          w.webpushr = w.webpushr || function () {
+            (w.webpushr.q = w.webpushr.q || []).push(arguments)
+          }; var js, fjs = d.getElementsByTagName(s)[0]; js = d.createElement(s); js.id = id; js.async = 1; js.data-src = "https://cdn.webpushr.com/app.min.js";
+          fjs.parentNode.appendChild(js);
+        }( window, document, 'script', 'webpushr-jssdk' )
+      );
+      webpushr('setup', { 'key': 'BGON3evm0aCcG-ZpkVez8Q8GLrn4527R6YkL4nsU861337AfhJoOvnVU7eJ6ixjspxhic7ecVXvnhGgJz0cfDrE' });
+    }
+  </script>
+  <!-- end webpushr tracking code -->
+  
+
+      </div> <!-- app -->
+    <script>(function (w, d, s, id) {
+        if (typeof (w.webpushr) !== 'undefined') return;
+        w.webpushr = w.webpushr || function () { (w.webpushr.q = w.webpushr.q || []).push(arguments) };
+        var js, fjs = d.getElementsByTagName(s)[0];
+        js = d.createElement(s);
+        js.id = id;
+        js.async = 1;
+        js.src = "https://cdn.webpushr.com/app.min.js";
+        fjs.parentNode.appendChild(js);
+        }(window, document, 'script', 'webpushr-jssdk'));
+
+        webpushr('setup', {
+        'key': 'BGON3evm0aCcG-ZpkVez8Q8GLrn4527R6YkL4nsU861337AfhJoOvnVU7eJ6ixjspxhic7ecVXvnhGgJz0cfDrE',
+        'sw': undefined
+        });
+        </script></body>
+
+</html>

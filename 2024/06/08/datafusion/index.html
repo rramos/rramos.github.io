@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="Rui Ramos" />
+  <meta name="description" content="A simple Blog related with Infrastructure Architecture and Data" />
+  
+  
+
+  <link rel="canonical" href="http://rramos.github.io/2024/06/08/datafusion/"/>
+
+  <title>
+    
+      Datafusion 
+      
+      
+    
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto:400,400italic,600|Roboto+Mono" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+
+
+  
+
+  
+    
+<link rel="stylesheet" href="/css/post.css">
+
+  
+
+  <!-- Include klaro css for consent banner -->
+  
+     
+<link rel="stylesheet" href="/css/klaro.css">
+
+  
+
+  <!-- jquery3.3.1 -->
+  
+<script src="/js/jquery.min.js"></script>
+
+
+  <!-- fancybox -->
+  
+<script src="/js/jquery.fancybox.min,js.js"></script>
+
+
+  <!-- fancybox -->
+  
+<script src="/js/fancybox.js"></script>
+
+
+  <!-- Googlecrux ID -->
+
+    <!-- Google site verification -->
+    <meta name="google-site-verification" content='Em0OaYgLD4MC3tIHbwqDxAklIn7JzrtipNZd7z1kqFI'' />
+    
+  
+    <!-- Google Tag Manager -->
+    <script data-type="text/javascript" type="text/plain" data-name="google-tag-manager">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-MXRC4DK');</script>
+      <!-- End Google Tag Manager -->
+    
+
+  
+      
+  
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
+</head>
+
+    <body>
+      <!-- Klaro Consent Management -->
+      
+          
+<script src="/js/klaro-config.js"></script>
+
+          
+<script src="/js/klaro-no-css.js"></script>
+
+      
+
+      
+     <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MXRC4DK"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+    
+
+
+      
+
+<!-- Start -Microsoft Clarity -->
+<script type="text/plain" data-type="text/javascript" async data-name="microsoft-clarity">
+  let manager = klaro.getManager();
+  if (manager.getConsent('microsoft-clarity')){
+
+    if (!window.location.host.includes('localhost')) {
+      (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;
+        t.data-src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "ms0b2q35b6");
+    }
+  }
+</script>
+<!-- End - Microsoft Clarity -->
+    
+
+      <div id="app">
+        <div class="header">
+  <a href="/">rramos.github.io</a>
+</div>
+
+
+        <p class="links">
+  
+    <a title="archives" target="" href="/archives/">
+      <i class="iconfont icon-bookmark"></i>
+    </a>
+  
+    <a title="github" target="_blank" href="https://github.com/rramos">
+      <i class="iconfont icon-github"></i>
+    </a>
+  
+    <a title="email" target="" href="mailto:rui.ms.ramos@gmail.com">
+      <i class="iconfont icon-envelope"></i>
+    </a>
+  
+    <a title="twitter" target="" href="https://x.com/RuiMSRamos">
+      <i class="iconfont icon-twitter"></i>
+    </a>
+  
+    <a title="about" target="" href="/about">
+      <i class="iconfont icon-qq"></i>
+    </a>
+  
+    <a title="discord" target="" href="https://discord.gg/YfCmqpG53p">
+      <i class="iconfont icon-wechat"></i>
+    </a>
+  
+    <a title="rss" target="_blank" href="/atom.xml">
+      <i class="iconfont icon-rss"></i>
+    </a>
+  
+</p>
+
+        <div class="main">
+          <!-- Article details page, showing the specific content of the article, URL format: https://yoursite/article title/-->
+<!-- At the same time, it is the hosting page of "tag", "friend", "categories", and "about" page. The specific display depends on page.type -->
+ 
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<div class="post">
+  <h3 class="date">
+    08 Jun, 2024
+  </h3>
+  <h1>
+    Datafusion
+  </h1>
+  <div class="content markdown-body">
+    <p>DataFusion is a very fast, extensible query engine for building high-quality data-centric systems in Rust, using the Apache Arrow in-memory format. Python Bindings are also available. DataFusion offers SQL and Dataframe APIs, excellent performance, built-in support for CSV, Parquet, JSON, and Avro, extensive customization, and a great community.</p>
+<h2 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h2><ul>
+<li>Feature-rich SQL support and DataFrame API</li>
+<li>Blazingly fast, vectorized, multi-threaded, streaming execution engine.</li>
+<li>Native support for Parquet, CSV, JSON, and Avro file formats. Support for custom file formats and non file datasources via the TableProvider trait.</li>
+<li>Many extension points: user defined scalar&#x2F;aggregate&#x2F;window functions, DataSources, SQL, other query languages, custom plan and execution nodes, optimizer passes, and more.</li>
+<li>Streaming, asynchronous IO directly from popular object stores, including AWS S3, Azure Blob Storage, and Google Cloud Storage (Other storage systems are supported via the ObjectStore trait).</li>
+<li>Excellent Documentation and a welcoming community.</li>
+<li>A state of the art query optimizer with expression coercion and simplification, projection and filter pushdown, sort and distribution aware optimizations, automatic join reordering, and more.</li>
+<li>Permissive Apache 2.0 License, predictable and well understood Apache Software Foundation governance.</li>
+<li>Implementation in Rust, a modern system language with development productivity similar to Java or Golang, the performance of C++, and loved by programmers everywhere.</li>
+<li>Support for Substrait query plans, to easily pass plans across language and system boundaries.</li>
+</ul>
+<h2 id="Use-Cases"><a href="#Use-Cases" class="headerlink" title="Use Cases"></a>Use Cases</h2><p>DataFusion can be used without modification as an embedded SQL engine or can be customized and used as a foundation for building new systems.</p>
+<p>While most current usecases are “analytic” or (throughput) some components of DataFusion such as the plan representations, are suitable for “streaming” and “transaction” style systems (low latency).</p>
+<h2 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h2><p>To run the examples, use the <code>cargo run</code> command such as:</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/apache/datafusion</span><br><span class="line"><span class="built_in">cd</span> datafusion</span><br><span class="line"><span class="comment"># Download test data</span></span><br><span class="line">git submodule update --init</span><br><span class="line"></span><br><span class="line"><span class="comment"># Run the `csv_sql` example:</span></span><br><span class="line"><span class="comment"># ... use the equivalent for other examples</span></span><br><span class="line">cargo run --example csv_sql</span><br></pre></td></tr></table></figure>
+
+<h3 id="Use-DataFrame-API-to-process-data-stored-in-a-CSV"><a href="#Use-DataFrame-API-to-process-data-stored-in-a-CSV" class="headerlink" title="Use DataFrame API to process data stored in a CSV"></a>Use DataFrame API to process data stored in a CSV</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">use</span> datafusion::prelude::*;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[tokio::main]</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">fn</span> <span class="title function_">main</span>() <span class="punctuation">-&gt;</span> datafusion::error::<span class="type">Result</span>&lt;()&gt; &#123;</span><br><span class="line">  <span class="comment">// create the dataframe</span></span><br><span class="line">  <span class="keyword">let</span> <span class="variable">ctx</span> = SessionContext::<span class="title function_ invoke__">new</span>();</span><br><span class="line">  <span class="keyword">let</span> <span class="variable">df</span> = ctx.<span class="title function_ invoke__">read_csv</span>(<span class="string">&quot;tests/data/example.csv&quot;</span>, CsvReadOptions::<span class="title function_ invoke__">new</span>()).<span class="keyword">await</span>?;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> <span class="variable">df</span> = df.<span class="title function_ invoke__">filter</span>(<span class="title function_ invoke__">col</span>(<span class="string">&quot;a&quot;</span>).<span class="title function_ invoke__">lt_eq</span>(<span class="title function_ invoke__">col</span>(<span class="string">&quot;b&quot;</span>)))?</span><br><span class="line">           .<span class="title function_ invoke__">aggregate</span>(<span class="built_in">vec!</span>[<span class="title function_ invoke__">col</span>(<span class="string">&quot;a&quot;</span>)], <span class="built_in">vec!</span>[<span class="title function_ invoke__">min</span>(<span class="title function_ invoke__">col</span>(<span class="string">&quot;b&quot;</span>))])?</span><br><span class="line">           .<span class="title function_ invoke__">limit</span>(<span class="number">0</span>, <span class="title function_ invoke__">Some</span>(<span class="number">100</span>))?;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// execute and print results</span></span><br><span class="line">  df.<span class="title function_ invoke__">show</span>().<span class="keyword">await</span>?;</span><br><span class="line">  <span class="title function_ invoke__">Ok</span>(())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Output should be something like:</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+---+--------+</span><br><span class="line">| a | MIN(b) |</span><br><span class="line">+---+--------+</span><br><span class="line">| 1 | 2      |</span><br><span class="line">+---+--------+</span><br></pre></td></tr></table></figure>
+
+<p>Or you can run specifically this example</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> git@github.com:rramos/datafusion-test.git</span><br><span class="line"><span class="built_in">cd</span> datafusion-test</span><br><span class="line">cargo build</span><br><span class="line">cargo run</span><br></pre></td></tr></table></figure>
+
+<h2 id="datafusion-cli"><a href="#datafusion-cli" class="headerlink" title="datafusion-cli"></a>datafusion-cli</h2><p>DataFusion CLI (datafusion-cli) is an interactive command-line utility for executing SQL queries against any supported data files.</p>
+<p>While intended as an example of how to use DataFusion, datafusion-cli offers a full range of SQL and support reading and writing CSV, Parquet, JSON, Arrow and Avro, from local files, directories, or remote locations such as S3.</p>
+<h3 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">cargo install datafusion-cli</span><br></pre></td></tr></table></figure>
+
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><p>Here is an example of how to run a SQL query against a local file, <code>hits.parquet</code>:</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">$ datafusion-cli</span><br><span class="line">DataFusion CLI v37.0.0</span><br><span class="line">&gt; <span class="keyword">select</span> count(distinct <span class="string">&quot;URL&quot;</span>) from <span class="string">&#x27;hits.parquet&#x27;</span>;</span><br><span class="line">+----------------------------------+</span><br><span class="line">| COUNT(DISTINCT hits.parquet.URL) |</span><br><span class="line">+----------------------------------+</span><br><span class="line">| 18342019                         |</span><br><span class="line">+----------------------------------+</span><br><span class="line">1 row(s) fetched.</span><br><span class="line">Elapsed 1.969 seconds.</span><br></pre></td></tr></table></figure>
+
+<h2 id="Projects-using-datafusion"><a href="#Projects-using-datafusion" class="headerlink" title="Projects using datafusion"></a>Projects using datafusion</h2><p>Here are some active projects using DataFusion:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/ArroyoSystems/arroyo">Arroyo</a> Distributed stream processing engine in Rust</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/apache/datafusion-ballista">Ballista</a> Distributed SQL Query Engine</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/cnosdb/cnosdb">CnosDB</a> Open Source Distributed Time Series Database</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/apache/datafusion-comet">Comet</a> Apache Spark native query execution plugin</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/cube-js/cube.js/tree/master/rust">Cube Store</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/dask-contrib/dask-sql">Dask SQL</a> Distributed SQL query engine in Python</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/delta-io/delta-rs">delta-rs</a> Native Rust implementation of Delta Lake</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/wheretrue/exon">Exon</a> Analysis toolkit for life-science applications</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/GlareDB/glaredb">GlareDB</a> Fast SQL database for querying and analyzing distributed data.</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/GreptimeTeam/greptimedb">GreptimeDB</a> Open Source &amp; Cloud Native Distributed Time Series Database</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/apache/incubator-horaedb">HoraeDB</a> Distributed Time-Series Database</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/influxdata/influxdb">InfluxDB</a> Time Series Database</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/kamu-data/kamu-cli/">Kamu</a> Planet-scale streaming data pipeline</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/lakesoul-io/LakeSoul">LakeSoul</a> Open source LakeHouse framework with native IO in Rust.</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/lancedb/lance">Lance</a> Modern columnar data format for ML</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/paradedb/paradedb">ParadeDB</a> PostgreSQL for Search &amp; Analytics</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/parseablehq/parseable">Parseable</a> Log storage and observability platform</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/timvw/qv">qv</a> Quickly view your data</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/restatedev">Restate</a> Easily build resilient applications using distributed durable async&#x2F;await</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/roapi/roapi">ROAPI</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/splitgraph/seafowl">Seafowl</a> CDN-friendly analytical database</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/spiceai/spiceai">Spice.ai</a> Unified SQL query interface &amp; materialization engine</li>
+<li><a target="_blank" rel="noopener" href="https://synnada.ai/">Synnada</a> Streaming-first framework for data products</li>
+<li><a target="_blank" rel="noopener" href="https://vegafusion.io/">VegaFusion</a> Server-side acceleration for the <a target="_blank" rel="noopener" href="https://vega.github.io/">Vega</a><br>   visualization grammar</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/zinclabs/zincobserve">ZincObserve</a><br>   Distributed cloud native observability platform</li>
+</ul>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://crates.io/crates/datafusion">https://crates.io/crates/datafusion</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.rs/datafusion/latest/datafusion/">https://docs.rs/datafusion/latest/datafusion/</a></li>
+<li><a target="_blank" rel="noopener" href="https://arrow.apache.org/datafusion">https://arrow.apache.org/datafusion</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/apache/arrow-datafusion">https://github.com/apache/arrow-datafusion</a></li>
+<li><a target="_blank" rel="noopener" href="https://datafusion.apache.org/user-guide/example-usage.html">https://datafusion.apache.org/user-guide/example-usage.html</a></li>
+</ul>
+
+  </div>
+  
+    
+      <a id="older" class="blog-nav" href="/2024/06/07/aisoftenggoogle/">OLDER&nbsp;&gt;</a>
+      
+        
+          <a id="newer" class="blog-nav" href="/2024/06/08/bqtimetravel/">&lt;&nbsp;NEWER</a>
+          
+            
+</div>
+          <div class="footer">
+  
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/rramos">Copyright © Rui Ramos 2024</a>
+        
+    </div>
+  
+</div>
+
+        </div> <!-- main -->
+          <div class="back-to-top hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+          
+  <div class="search-icon" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-box">
+        <div class="search-title">
+          <!-- <span class="search-icon-input">
+            <a href="javascript: void(0)">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </span> -->
+          
+            <input type="text" class="search-input" id="search-input" placeholder="Search ...">
+          
+          <span class="search-close-icon" id="search-close-icon">
+            <a href="javascript: void(0)">
+              <i class="iconfont icon-close"></i>
+            </a>
+          </span>
+        </div>
+        <div class="search-result" id="search-result"></div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    // inputArea.onclick = function() {
+    //   getSearchFile()
+    //   this.onclick = null
+    // }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        inputArea.focus()
+        getSearchFile()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'><span></ul>";
+      // $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'><h2>" + orig_data_title + "</h2></a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<h3 class=\"search-result-abstract\">" + match_content + "...</h3>"
+                }
+                str += "<hr></li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/leedom92/hexo-theme-leedom#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+          
+  
+  <div class="consent-icon" id="consent-icon">
+    <a class="button is-success" onclick="return klaro.show();">
+      <i class="iconfont icon-consent"></i>
+    </a>
+  </div>
+  
+
+
+          
+          
+  <!-- hexo plugin: hexo-webpushr-notification -->
+
+  <script type="text/plain" data-type="text/javascript" async data-name="webpushr">
+    let manager = klaro.getManager();
+    if (manager.getConsent('webpushr')){
+      (
+        function (w, d, s, id) {
+          if (typeof (w.webpushr) !== 'undefined') return;
+          w.webpushr = w.webpushr || function () {
+            (w.webpushr.q = w.webpushr.q || []).push(arguments)
+          }; var js, fjs = d.getElementsByTagName(s)[0]; js = d.createElement(s); js.id = id; js.async = 1; js.data-src = "https://cdn.webpushr.com/app.min.js";
+          fjs.parentNode.appendChild(js);
+        }( window, document, 'script', 'webpushr-jssdk' )
+      );
+      webpushr('setup', { 'key': 'BGON3evm0aCcG-ZpkVez8Q8GLrn4527R6YkL4nsU861337AfhJoOvnVU7eJ6ixjspxhic7ecVXvnhGgJz0cfDrE' });
+    }
+  </script>
+  <!-- end webpushr tracking code -->
+  
+
+      </div> <!-- app -->
+    <script>(function (w, d, s, id) {
+        if (typeof (w.webpushr) !== 'undefined') return;
+        w.webpushr = w.webpushr || function () { (w.webpushr.q = w.webpushr.q || []).push(arguments) };
+        var js, fjs = d.getElementsByTagName(s)[0];
+        js = d.createElement(s);
+        js.id = id;
+        js.async = 1;
+        js.src = "https://cdn.webpushr.com/app.min.js";
+        fjs.parentNode.appendChild(js);
+        }(window, document, 'script', 'webpushr-jssdk'));
+
+        webpushr('setup', {
+        'key': 'BGON3evm0aCcG-ZpkVez8Q8GLrn4527R6YkL4nsU861337AfhJoOvnVU7eJ6ixjspxhic7ecVXvnhGgJz0cfDrE',
+        'sw': undefined
+        });
+        </script></body>
+
+</html>

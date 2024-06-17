@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="Rui Ramos" />
+  <meta name="description" content="A simple Blog related with Infrastructure Architecture and Data" />
+  
+  
+
+  <link rel="canonical" href="http://rramos.github.io/2023/12/21/dbt/"/>
+
+  <title>
+    
+      DBT Quick WalkThrough 
+      
+      
+    
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto:400,400italic,600|Roboto+Mono" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+
+
+  
+
+  
+    
+<link rel="stylesheet" href="/css/post.css">
+
+  
+
+  <!-- Include klaro css for consent banner -->
+  
+     
+<link rel="stylesheet" href="/css/klaro.css">
+
+  
+
+  <!-- jquery3.3.1 -->
+  
+<script src="/js/jquery.min.js"></script>
+
+
+  <!-- fancybox -->
+  
+<script src="/js/jquery.fancybox.min,js.js"></script>
+
+
+  <!-- fancybox -->
+  
+<script src="/js/fancybox.js"></script>
+
+
+  <!-- Googlecrux ID -->
+
+    <!-- Google site verification -->
+    <meta name="google-site-verification" content='Em0OaYgLD4MC3tIHbwqDxAklIn7JzrtipNZd7z1kqFI'' />
+    
+  
+    <!-- Google Tag Manager -->
+    <script data-type="text/javascript" type="text/plain" data-name="google-tag-manager">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-MXRC4DK');</script>
+      <!-- End Google Tag Manager -->
+    
+
+  
+      
+  
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
+</head>
+
+    <body>
+      <!-- Klaro Consent Management -->
+      
+          
+<script src="/js/klaro-config.js"></script>
+
+          
+<script src="/js/klaro-no-css.js"></script>
+
+      
+
+      
+     <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MXRC4DK"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+    
+
+
+      
+
+<!-- Start -Microsoft Clarity -->
+<script type="text/plain" data-type="text/javascript" async data-name="microsoft-clarity">
+  let manager = klaro.getManager();
+  if (manager.getConsent('microsoft-clarity')){
+
+    if (!window.location.host.includes('localhost')) {
+      (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;
+        t.data-src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "ms0b2q35b6");
+    }
+  }
+</script>
+<!-- End - Microsoft Clarity -->
+    
+
+      <div id="app">
+        <div class="header">
+  <a href="/">rramos.github.io</a>
+</div>
+
+
+        <p class="links">
+  
+    <a title="archives" target="" href="/archives/">
+      <i class="iconfont icon-bookmark"></i>
+    </a>
+  
+    <a title="github" target="_blank" href="https://github.com/rramos">
+      <i class="iconfont icon-github"></i>
+    </a>
+  
+    <a title="email" target="" href="mailto:rui.ms.ramos@gmail.com">
+      <i class="iconfont icon-envelope"></i>
+    </a>
+  
+    <a title="twitter" target="" href="https://x.com/RuiMSRamos">
+      <i class="iconfont icon-twitter"></i>
+    </a>
+  
+    <a title="about" target="" href="/about">
+      <i class="iconfont icon-qq"></i>
+    </a>
+  
+    <a title="discord" target="" href="https://discord.gg/YfCmqpG53p">
+      <i class="iconfont icon-wechat"></i>
+    </a>
+  
+    <a title="rss" target="_blank" href="/atom.xml">
+      <i class="iconfont icon-rss"></i>
+    </a>
+  
+</p>
+
+        <div class="main">
+          <!-- Article details page, showing the specific content of the article, URL format: https://yoursite/article title/-->
+<!-- At the same time, it is the hosting page of "tag", "friend", "categories", and "about" page. The specific display depends on page.type -->
+ 
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<div class="post">
+  <h3 class="date">
+    21 Dec, 2023
+  </h3>
+  <h1>
+    DBT Quick WalkThrough
+  </h1>
+  <div class="content markdown-body">
+    <p>In this article I will describe a step-by-step guide on how to setup a local DBT environment and some basic ground rules to use it.</p>
+<h2 id="What-is-DBT"><a href="#What-is-DBT" class="headerlink" title="What is DBT"></a>What is DBT</h2><p>dbt™ is a SQL-first transformation workflow that lets teams quickly and collaboratively deploy analytics code following software engineering best practices like modularity, portability, CI&#x2F;CD, and documentation</p>
+<h2 id="Pre-Requirements"><a href="#Pre-Requirements" class="headerlink" title="Pre Requirements"></a>Pre Requirements</h2><p>In order to use dbt™ one must have the python requirements installed, they may differe based on the environment your are using. Will provide an example for a Linux based system</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get install git libpq-dev python-dev python3-pip</span><br><span class="line">pip install dbt-core</span><br><span class="line">pip install dbt-postgres</span><br></pre></td></tr></table></figure>
+
+<h2 id="Setup-a-PostgreSQL-Environment"><a href="#Setup-a-PostgreSQL-Environment" class="headerlink" title="Setup a PostgreSQL Environment"></a>Setup a PostgreSQL Environment</h2><p>One can use different sources such as Snowflake, BigQuery, etc. For the testing purposes lets run a docker image with  postgres. The following reop has some options for that</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/rramos/dockers/tree/master/docker-postgres">https://github.com/rramos/dockers/tree/master/docker-postgres</a></li>
+</ul>
+<blockquote>
+<p><strong>NOTE:</strong> If you will use a different source make sure to install with pip the appropriate connector eg. &#96;pip install dbt-bigquery&#96;&#96;</p>
+</blockquote>
+<h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><p>Lets initialize the environment</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">dbt init</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>Provide a name for the project</li>
+<li>Include the connection details for the postgresql example<ol>
+<li>host (hostname for the instance): localhost</li>
+<li>port [5432]:</li>
+<li>user (dev username): admin</li>
+<li>pass (dev password):</li>
+<li>dbname (default database that dbt will build objects in): test_db</li>
+<li>schema (default schema that dbt will build objects in): dbt</li>
+<li>threads (1 or more) [1]:</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">dbt deps</span><br></pre></td></tr></table></figure>
+
+<p>This will make sure it is installed all the required deps for the project</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">dbt run</span><br></pre></td></tr></table></figure>
+
+<p>If you get an output similar to the following it means you have everything ready to start using dbt</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">13:20:25  Running with dbt=1.7.4</span><br><span class="line">13:20:25  Registered adapter: postgres=1.7.4</span><br><span class="line">13:20:25  Found 2 models, 4 tests, 0 sources, 0 exposures, 0 metrics, 401 macros, 0 groups, 0 semantic models</span><br><span class="line">13:20:25  </span><br><span class="line">13:20:25  Concurrency: 1 threads (target=&#x27;dev&#x27;)</span><br><span class="line">13:20:25  </span><br><span class="line">13:20:25  1 of 2 START sql table model dbt.my_first_dbt_model ............................ [RUN]</span><br><span class="line">13:20:25  1 of 2 OK created sql table model dbt.my_first_dbt_model ....................... [SELECT 2 in 0.11s]</span><br><span class="line">13:20:25  2 of 2 START sql view model dbt.my_second_dbt_model ............................ [RUN]</span><br><span class="line">13:20:25  2 of 2 OK created sql view model dbt.my_second_dbt_model ....................... [CREATE VIEW in 0.06s]</span><br><span class="line">13:20:25  </span><br><span class="line">13:20:25  Finished running 1 table model, 1 view model in 0 hours 0 minutes and 0.27 seconds (0.27s).</span><br><span class="line">13:20:25  </span><br><span class="line">13:20:25  Completed successfully</span><br><span class="line">13:20:25  </span><br><span class="line">13:20:25  Done. PASS=2 WARN=0 ERROR=0 SKIP=0 TOTAL=2</span><br></pre></td></tr></table></figure>
+
+<p>You can access the web browser to validate the created table and view based on default init: <a target="_blank" rel="noopener" href="http://localhost:5050/browser/">http://localhost:5050/browser/</a></p>
+<ul>
+<li>table: my_first_dbt_model</li>
+<li>view: my_second_dbt_model</li>
+</ul>
+<h2 id="dbt™-Structure"><a href="#dbt™-Structure" class="headerlink" title="dbt™ Structure"></a>dbt™ Structure</h2><p>After you initialize the dbt™ environment you should endup with a structure similar to the following</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">test</span></span><br><span class="line">├── analyses</span><br><span class="line">├── dbt_packages</span><br><span class="line">├── dbt_project.yml</span><br><span class="line">├── logs</span><br><span class="line">│   └── dbt.log</span><br><span class="line">├── macros</span><br><span class="line">├── models</span><br><span class="line">│   └── example</span><br><span class="line">│       ├── my_first_dbt_model.sql</span><br><span class="line">│       ├── my_second_dbt_model.sql</span><br><span class="line">│       └── schema.yml</span><br><span class="line">├── README.md</span><br><span class="line">├── seeds</span><br><span class="line">├── snapshots</span><br><span class="line">├── target</span><br><span class="line">│   ├── compiled</span><br><span class="line">│   │   └── <span class="built_in">test</span></span><br><span class="line">│   │       └── models</span><br><span class="line">│   │           └── example</span><br><span class="line">│   │               ├── my_first_dbt_model.sql</span><br><span class="line">│   │               ├── my_second_dbt_model.sql</span><br><span class="line">│   │               └── schema.yml</span><br><span class="line">│   │                   ├── not_null_my_first_dbt_model_id.sql</span><br><span class="line">│   │                   ├── not_null_my_second_dbt_model_id.sql</span><br><span class="line">│   │                   ├── unique_my_first_dbt_model_id.sql</span><br><span class="line">│   │                   └── unique_my_second_dbt_model_id.sql</span><br><span class="line">│   ├── graph.gpickle</span><br><span class="line">│   ├── graph_summary.json</span><br><span class="line">│   ├── manifest.json</span><br><span class="line">│   ├── partial_parse.msgpack</span><br><span class="line">│   ├── run</span><br><span class="line">│   │   └── <span class="built_in">test</span></span><br><span class="line">│   │       └── models</span><br><span class="line">│   │           └── example</span><br><span class="line">│   │               ├── my_first_dbt_model.sql</span><br><span class="line">│   │               ├── my_second_dbt_model.sql</span><br><span class="line">│   │               └── schema.yml</span><br><span class="line">│   │                   ├── not_null_my_first_dbt_model_id.sql</span><br><span class="line">│   │                   ├── not_null_my_second_dbt_model_id.sql</span><br><span class="line">│   │                   ├── unique_my_first_dbt_model_id.sql</span><br><span class="line">│   │                   └── unique_my_second_dbt_model_id.sql</span><br><span class="line">│   ├── run_results.json</span><br><span class="line">│   └── semantic_manifest.json</span><br><span class="line">└── tests</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>Lets check the 1st level directories and what you might find there:</p>
+<blockquote>
+<p><strong>NOTE:</strong> The structure may change based on the version and new  features that would be included. For this article the dbt version was 1.7.4</p>
+</blockquote>
+<h2 id="analyses"><a href="#analyses" class="headerlink" title="analyses"></a>analyses</h2><p>Not tested.</p>
+<h2 id="dbt-packages"><a href="#dbt-packages" class="headerlink" title="dbt_packages"></a>dbt_packages</h2><p>Installed packages from the packages HUB will lend on this location. You should not need to change here directly unless you are implementing your own packages.</p>
+<p>One example to include dbt_utils package is by creating the file <code>packages.yml</code> on the root directory of the project and then one can run <code>dbt deps</code> to fetch the dependencies</p>
+<p>Example:</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">packages:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">package:</span> <span class="string">dbt-labs/dbt_utils</span></span><br><span class="line">    <span class="attr">version:</span> <span class="number">1.1</span><span class="number">.1</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="logs"><a href="#logs" class="headerlink" title="logs"></a>logs</h2><p>Log directory for dbt™ executions</p>
+<h2 id="macros"><a href="#macros" class="headerlink" title="macros"></a>macros</h2><p>Macros act like small snippets of jinja code that you can than refeer on the models. They are very useful for reusability and colaborative effort.</p>
+<p>One can call the macro using something similar: <code>&#123;% macro macro_name(params) %&#125;</code></p>
+<h2 id="models"><a href="#models" class="headerlink" title="models"></a>models</h2><p>This section is where most of the work is going to be done. Here one can define the SQL associated with each model using jinja syntax</p>
+<p><strong>Example:</strong> raw&#x2F;raw_customer.sql</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">&#123;&#123;</span><br><span class="line">    config(</span><br><span class="line">        materialized<span class="operator">=</span><span class="string">&#x27;table&#x27;</span></span><br><span class="line">    )</span><br><span class="line">&#125;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> </span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">&#123;&#123; source(<span class="string">&#x27;bigquery&#x27;</span>, <span class="string">&#x27;customers&#x27;</span>) &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="seeds"><a href="#seeds" class="headerlink" title="seeds"></a>seeds</h2><p>Useful for temporary data that incorporated and used as <strong>__ref</strong> . The data should exist as CSV</p>
+<p>ex:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shipmode,delivery_team</span><br><span class="line">First Class, RHL_Couriers</span><br><span class="line">Second Class, RHL_Couriers</span><br><span class="line">Standard Class, RHL_Couriers</span><br><span class="line">Same Day, Globalmart</span><br></pre></td></tr></table></figure>
+
+<h2 id="snapshots"><a href="#snapshots" class="headerlink" title="snapshots"></a>snapshots</h2><p>Not tested</p>
+<h2 id="target"><a href="#target" class="headerlink" title="target"></a>target</h2><p>This directory will hold compile sql bsed on your jinja spec and also other outcomes such as the graphs for the documentation.</p>
+<h2 id="tests"><a href="#tests" class="headerlink" title="tests"></a>tests</h2><p>Tests for your model were you can defined rules such as nullability, dictionary of terms, etc.</p>
+<p>One can use the  <code>dbt test</code> command to check if the there is something failing.</p>
+<blockquote>
+<p><strong>NOTE:</strong> Please check the <a target="_blank" rel="noopener" href="https://docs.getdbt.com/best-practices">Best Practises Guide</a> as it should provide more insigthful information. You can also check the following example repo <a target="_blank" rel="noopener" href="https://github.com/rramos/dbt-training">https://github.com/rramos/dbt-training</a> which holds some test data</p>
+</blockquote>
+<h2 id="Loading-Example-Data"><a href="#Loading-Example-Data" class="headerlink" title="Loading Example Data"></a>Loading Example Data</h2><p>The example data is based on the udemy bootcamp from Vantage Point, check the references section with the link for the course as it is very insigthful.</p>
+<p>The following repo already has most of the things done and could be useful as a starting point:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/rramos/dbt-training">https://github.com/rramos/dbt-training</a></li>
+</ul>
+<h2 id="Data-Information"><a href="#Data-Information" class="headerlink" title="Data Information"></a>Data Information</h2><ul>
+<li>Data is composed of 3 CSV files: customers, orders and product data</li>
+<li>Following a traditional <a target="_blank" rel="noopener" href="https://www.databricks.com/glossary/medallion-architecture">Medallions Architecture</a> (AKA bronze, silver gold)</li>
+<li>Implement a (raw) layer based on the source data</li>
+<li>Implement a (staging) where we hold aggregation logic</li>
+<li>Implement Gold layer (reporting) with materialization data for reporting purposes</li>
+</ul>
+<h2 id="dbt™-Cloud"><a href="#dbt™-Cloud" class="headerlink" title="dbt™ Cloud"></a>dbt™ Cloud</h2><p>dbtLabs is the company behind dbt™. Although one can use the community version of dbt-core packages the company sells a solution that helps their clients using a friendly graphical interface to take advantage of dbt™ in a Enterprise way.</p>
+<p>You can check out their website to understand better the features associated to it:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.getdbt.com/product/dbt-cloud">https://www.getdbt.com/product/dbt-cloud</a></li>
+</ul>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>In this article it was presented a high-level overview on dbt™ how it can be setup and provided some references for best practises and how to take most advantage of the product.</p>
+<p>My personal view on this product is that it brings better control for data assets with embedded lineage also documentation generation and testing features all integrated in a common stack allowing the CI&#x2F;CD process to be a “walk-in-the-park”</p>
+<p>The community is very large which is a plus (<a target="_blank" rel="noopener" href="https://www.getdbt.com/community">https://www.getdbt.com/community</a> ). DBTCloud provides an Entreprise level solution that would speed up Data Engineering work via UI, I didn’t go deeper on the costs to understand if it pays-off.</p>
+<p>Only having the dbt-core option seems to be quite limited compared with the Entreprise solution, but the community supports several features which should be consider if you don’t want to go in that path (like the integration with Airflow).</p>
+<p>I’m not a big fan of jinja option as the main syntax for the Product, but that is more of a personal flavor.</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.udemy.com/course/the-dbt-bootcamp-transform-your-data-using-data-build-tool/">The Data Bootcamp: Transform your Data using dbt™</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.databricks.com/glossary/medallion-architecture">https://www.databricks.com/glossary/medallion-architecture</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/rramos/dockers">https://github.com/rramos/dockers</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.getdbt.com/">https://docs.getdbt.com/</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.getdbt.com/guides/codespace?step=1">https://docs.getdbt.com/guides/codespace?step=1</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.getdbt.com/guides/airflow-and-dbt-cloud?step=1">https://docs.getdbt.com/guides/airflow-and-dbt-cloud?step=1</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.getdbt.com/best-practices">https://docs.getdbt.com/best-practices</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.getdbt.com/best-practices/how-we-structure/1-guide-overview">https://docs.getdbt.com/best-practices/how-we-structure/1-guide-overview</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/rramos/dbt-training">https://github.com/rramos/dbt-training</a></li>
+</ul>
+
+  </div>
+  
+    
+      <a id="older" class="blog-nav" href="/2023/12/21/jafgen/">OLDER&nbsp;&gt;</a>
+      
+        
+          <a id="newer" class="blog-nav" href="/2023/12/25/TheOnething/">&lt;&nbsp;NEWER</a>
+          
+            
+</div>
+          <div class="footer">
+  
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/rramos">Copyright © Rui Ramos 2024</a>
+        
+    </div>
+  
+</div>
+
+        </div> <!-- main -->
+          <div class="back-to-top hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+          
+  <div class="search-icon" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-box">
+        <div class="search-title">
+          <!-- <span class="search-icon-input">
+            <a href="javascript: void(0)">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </span> -->
+          
+            <input type="text" class="search-input" id="search-input" placeholder="Search ...">
+          
+          <span class="search-close-icon" id="search-close-icon">
+            <a href="javascript: void(0)">
+              <i class="iconfont icon-close"></i>
+            </a>
+          </span>
+        </div>
+        <div class="search-result" id="search-result"></div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    // inputArea.onclick = function() {
+    //   getSearchFile()
+    //   this.onclick = null
+    // }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        inputArea.focus()
+        getSearchFile()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'><span></ul>";
+      // $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'><h2>" + orig_data_title + "</h2></a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<h3 class=\"search-result-abstract\">" + match_content + "...</h3>"
+                }
+                str += "<hr></li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/leedom92/hexo-theme-leedom#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+          
+  
+  <div class="consent-icon" id="consent-icon">
+    <a class="button is-success" onclick="return klaro.show();">
+      <i class="iconfont icon-consent"></i>
+    </a>
+  </div>
+  
+
+
+          
+          
+  <!-- hexo plugin: hexo-webpushr-notification -->
+
+  <script type="text/plain" data-type="text/javascript" async data-name="webpushr">
+    let manager = klaro.getManager();
+    if (manager.getConsent('webpushr')){
+      (
+        function (w, d, s, id) {
+          if (typeof (w.webpushr) !== 'undefined') return;
+          w.webpushr = w.webpushr || function () {
+            (w.webpushr.q = w.webpushr.q || []).push(arguments)
+          }; var js, fjs = d.getElementsByTagName(s)[0]; js = d.createElement(s); js.id = id; js.async = 1; js.data-src = "https://cdn.webpushr.com/app.min.js";
+          fjs.parentNode.appendChild(js);
+        }( window, document, 'script', 'webpushr-jssdk' )
+      );
+      webpushr('setup', { 'key': 'BGON3evm0aCcG-ZpkVez8Q8GLrn4527R6YkL4nsU861337AfhJoOvnVU7eJ6ixjspxhic7ecVXvnhGgJz0cfDrE' });
+    }
+  </script>
+  <!-- end webpushr tracking code -->
+  
+
+      </div> <!-- app -->
+    <script>(function (w, d, s, id) {
+        if (typeof (w.webpushr) !== 'undefined') return;
+        w.webpushr = w.webpushr || function () { (w.webpushr.q = w.webpushr.q || []).push(arguments) };
+        var js, fjs = d.getElementsByTagName(s)[0];
+        js = d.createElement(s);
+        js.id = id;
+        js.async = 1;
+        js.src = "https://cdn.webpushr.com/app.min.js";
+        fjs.parentNode.appendChild(js);
+        }(window, document, 'script', 'webpushr-jssdk'));
+
+        webpushr('setup', {
+        'key': 'BGON3evm0aCcG-ZpkVez8Q8GLrn4527R6YkL4nsU861337AfhJoOvnVU7eJ6ixjspxhic7ecVXvnhGgJz0cfDrE',
+        'sw': undefined
+        });
+        </script></body>
+
+</html>

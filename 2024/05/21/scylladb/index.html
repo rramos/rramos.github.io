@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="Rui Ramos" />
+  <meta name="description" content="A simple Blog related with Infrastructure Architecture and Data" />
+  
+  
+
+  <link rel="canonical" href="http://rramos.github.io/2024/05/21/scylladb/"/>
+
+  <title>
+    
+      Scylladb 
+      
+      
+    
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto:400,400italic,600|Roboto+Mono" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+
+
+  
+
+  
+    
+<link rel="stylesheet" href="/css/post.css">
+
+  
+
+  <!-- Include klaro css for consent banner -->
+  
+     
+<link rel="stylesheet" href="/css/klaro.css">
+
+  
+
+  <!-- jquery3.3.1 -->
+  
+<script src="/js/jquery.min.js"></script>
+
+
+  <!-- fancybox -->
+  
+<script src="/js/jquery.fancybox.min,js.js"></script>
+
+
+  <!-- fancybox -->
+  
+<script src="/js/fancybox.js"></script>
+
+
+  <!-- Googlecrux ID -->
+
+    <!-- Google site verification -->
+    <meta name="google-site-verification" content='Em0OaYgLD4MC3tIHbwqDxAklIn7JzrtipNZd7z1kqFI'' />
+    
+  
+    <!-- Google Tag Manager -->
+    <script data-type="text/javascript" type="text/plain" data-name="google-tag-manager">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-MXRC4DK');</script>
+      <!-- End Google Tag Manager -->
+    
+
+  
+      
+  
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
+</head>
+
+    <body>
+      <!-- Klaro Consent Management -->
+      
+          
+<script src="/js/klaro-config.js"></script>
+
+          
+<script src="/js/klaro-no-css.js"></script>
+
+      
+
+      
+     <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MXRC4DK"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+    
+
+
+      
+
+<!-- Start -Microsoft Clarity -->
+<script type="text/plain" data-type="text/javascript" async data-name="microsoft-clarity">
+  let manager = klaro.getManager();
+  if (manager.getConsent('microsoft-clarity')){
+
+    if (!window.location.host.includes('localhost')) {
+      (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;
+        t.data-src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "ms0b2q35b6");
+    }
+  }
+</script>
+<!-- End - Microsoft Clarity -->
+    
+
+      <div id="app">
+        <div class="header">
+  <a href="/">rramos.github.io</a>
+</div>
+
+
+        <p class="links">
+  
+    <a title="archives" target="" href="/archives/">
+      <i class="iconfont icon-bookmark"></i>
+    </a>
+  
+    <a title="github" target="_blank" href="https://github.com/rramos">
+      <i class="iconfont icon-github"></i>
+    </a>
+  
+    <a title="email" target="" href="mailto:rui.ms.ramos@gmail.com">
+      <i class="iconfont icon-envelope"></i>
+    </a>
+  
+    <a title="twitter" target="" href="https://x.com/RuiMSRamos">
+      <i class="iconfont icon-twitter"></i>
+    </a>
+  
+    <a title="about" target="" href="/about">
+      <i class="iconfont icon-qq"></i>
+    </a>
+  
+    <a title="discord" target="" href="https://discord.gg/YfCmqpG53p">
+      <i class="iconfont icon-wechat"></i>
+    </a>
+  
+    <a title="rss" target="_blank" href="/atom.xml">
+      <i class="iconfont icon-rss"></i>
+    </a>
+  
+</p>
+
+        <div class="main">
+          <!-- Article details page, showing the specific content of the article, URL format: https://yoursite/article title/-->
+<!-- At the same time, it is the hosting page of "tag", "friend", "categories", and "about" page. The specific display depends on page.type -->
+ 
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<div class="post">
+  <h3 class="date">
+    21 May, 2024
+  </h3>
+  <h1>
+    Scylladb
+  </h1>
+  <div class="content markdown-body">
+    <p>Scylla is the real-time big data database that is API-compatible with Apache Cassandra and Amazon DynamoDB. Scylla embraces a shared-nothing approach that increases throughput and storage capacity to realize order-of-magnitude performance improvements and reduce hardware costs.</p>
+<h2 id="Why-ScyllaDB"><a href="#Why-ScyllaDB" class="headerlink" title="Why ScyllaDB"></a>Why ScyllaDB</h2><p>ScyllaDB is favored for its exceptional capability to manage high data volumes and support rapid read&#x2F;write operations. It is particularly effective in environments demanding high throughput, low latency, and the ability to scale. The database is also known for its robustness and fault tolerance, ensuring data integrity and availability.</p>
+<h2 id="Develop-with-ScyllaDB"><a href="#Develop-with-ScyllaDB" class="headerlink" title="Develop with ScyllaDB"></a>Develop with ScyllaDB</h2><p>Developing with ScyllaDB involves setting up the database environment, choosing the appropriate drivers for your programming language, and integrating it with your application.</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.scylladb.com/stable/get-started/develop-with-scylladb/run-scylladb.html">Run ScyllaDB</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.scylladb.com/stable/get-started/develop-with-scylladb/install-drivers.html">Install a Driver</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.scylladb.com/stable/get-started/develop-with-scylladb/connect-apps.html">Connect an Application</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.scylladb.com/stable/get-started/develop-with-scylladb/tutorials-example-projects.html">Tutorials and Example Projects</a></li>
+</ul>
+<h2 id="Run-ScyllaDB"><a href="#Run-ScyllaDB" class="headerlink" title="Run ScyllaDB"></a>Run ScyllaDB</h2><p>ScyllaDB offers various deployment options, including Docker and ScyllaDB Cloud, making it flexible for different development scenarios.</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.scylladb.com/stable/get-started/develop-with-scylladb/run-scylladb.html#create-database-docker">Run ScyllaDB in Docker</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.scylladb.com/stable/get-started/develop-with-scylladb/run-scylladb.html#create-database-scylladb-cloud">Deploy with ScyllaDB Cloud (SaaS)</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.scylladb.com/stable/get-started/develop-with-scylladb/run-scylladb.html#create-database-self-deploy">Self-deploy in the Cloud or On-premise</a></li>
+</ul>
+<p>For the scope of this article will focus on a docker deployment running a single node.</p>
+<p>Run the following command to run scylla in detached mode</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run --name scylla -d scylladb/scylla</span><br></pre></td></tr></table></figure>
+
+<p>To check server logs you can run the following command:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker logs -f scylla</span><br></pre></td></tr></table></figure>
+
+<p>To verify the node status execute the following command:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it scylla nodetool status</span><br></pre></td></tr></table></figure>
+
+<p>You should have a similar output</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">Datacenter: datacenter1</span><br><span class="line">=======================</span><br><span class="line">Status=Up/Down</span><br><span class="line">|/ State=Normal/Leaving/Joining/Moving</span><br><span class="line">--  Address     Load       Tokens       Owns    Host ID                               Rack</span><br><span class="line">UN  172.17.0.2  181.09 KB  256          ?       de5cb62e-165f-4be0-b0b4-df04be16aac4  rack1</span><br><span class="line"></span><br><span class="line">Note: Non-system keyspaces don&#x27;t have the same replication settings, effective ownership information is meaningless</span><br></pre></td></tr></table></figure>
+
+<p>To connect to a node one can use the following command</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it scylla cqlsh</span><br></pre></td></tr></table></figure>
+
+<h3 id="Scylla-APIs-and-compatibility"><a href="#Scylla-APIs-and-compatibility" class="headerlink" title="Scylla APIs and compatibility"></a>Scylla APIs and compatibility</h3><p>By default, Scylla is compatible with Apache Cassandra and its APIs - CQL and Thrift. There is also support for the API of Amazon DynamoDB™, which needs to be enabled and configured in order to be used. For more information on how to enable the DynamoDB™ API in Scylla, and the current compatibility of this feature as well as Scylla-specific extensions, see <a target="_blank" rel="noopener" href="https://github.com/scylladb/scylladb/blob/master/docs/alternator/alternator.md">Alternator</a> and <a target="_blank" rel="noopener" href="https://github.com/scylladb/scylladb/blob/master/docs/alternator/getting-started.md">Getting started with Alternator</a>.</p>
+<h2 id="Next-steps"><a href="#Next-steps" class="headerlink" title="Next steps"></a>Next steps</h2><p>Next steps would be to create some client application. The following resources provide a good starting point, but that would be outside the scope of this article.</p>
+<h2 id="Additional-Resources"><a href="#Additional-Resources" class="headerlink" title="Additional Resources"></a>Additional Resources</h2><ul>
+<li>[<a target="_blank" rel="noopener" href="https://university.scylladb.com/courses/scylla-essentials-overview/]">https://university.scylladb.com/courses/scylla-essentials-overview/]</a>(Scyla Essentials course)</li>
+<li><a target="_blank" rel="noopener" href="https://university.scylladb.com/courses/data-modeling/">Data Modeling in Scylla</a></li>
+<li><a target="_blank" rel="noopener" href="https://university.scylladb.com/courses/data-modeling/">Data Modeling and Application Development</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.scylladb.com/">Scylla Documentation</a></li>
+<li><a target="_blank" rel="noopener" href="http://slack.scylladb.com/">slack channel</a></li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.scylladb.com/">https://www.scylladb.com/</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/scylladb/scylladb">https://github.com/scylladb/scylladb</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.scylladb.com/stable/">https://docs.scylladb.com/stable/</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.scylladb.com/stable/get-started/">https://docs.scylladb.com/stable/get-started/</a></li>
+<li><a target="_blank" rel="noopener" href="https://university.scylladb.com/courses/using-scylla-drivers/lessons/rust-and-scylla-2/">https://university.scylladb.com/courses/using-scylla-drivers/lessons/rust-and-scylla-2/</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/scylladb/scylla-cdc-rust">https://github.com/scylladb/scylla-cdc-rust</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/scylladb/video-streaming">https://github.com/scylladb/video-streaming</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/scylladb/gaming-leaderboard-demo">https://github.com/scylladb/gaming-leaderboard-demo</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/scylladb/scylla-cloud-getting-started/blob/main/docs/source/build-with-rust.md">https://github.com/scylladb/scylla-cloud-getting-started/blob/main/docs/source/build-with-rust.md</a></li>
+</ul>
+
+  </div>
+  
+    
+      <a id="older" class="blog-nav" href="/2024/05/20/act/">OLDER&nbsp;&gt;</a>
+      
+        
+          <a id="newer" class="blog-nav" href="/2024/05/21/newtheme/">&lt;&nbsp;NEWER</a>
+          
+            
+</div>
+          <div class="footer">
+  
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/rramos">Copyright © Rui Ramos 2024</a>
+        
+    </div>
+  
+</div>
+
+        </div> <!-- main -->
+          <div class="back-to-top hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+          
+  <div class="search-icon" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-box">
+        <div class="search-title">
+          <!-- <span class="search-icon-input">
+            <a href="javascript: void(0)">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </span> -->
+          
+            <input type="text" class="search-input" id="search-input" placeholder="Search ...">
+          
+          <span class="search-close-icon" id="search-close-icon">
+            <a href="javascript: void(0)">
+              <i class="iconfont icon-close"></i>
+            </a>
+          </span>
+        </div>
+        <div class="search-result" id="search-result"></div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    // inputArea.onclick = function() {
+    //   getSearchFile()
+    //   this.onclick = null
+    // }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        inputArea.focus()
+        getSearchFile()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'><span></ul>";
+      // $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'><h2>" + orig_data_title + "</h2></a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<h3 class=\"search-result-abstract\">" + match_content + "...</h3>"
+                }
+                str += "<hr></li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/leedom92/hexo-theme-leedom#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+          
+  
+  <div class="consent-icon" id="consent-icon">
+    <a class="button is-success" onclick="return klaro.show();">
+      <i class="iconfont icon-consent"></i>
+    </a>
+  </div>
+  
+
+
+          
+          
+  <!-- hexo plugin: hexo-webpushr-notification -->
+
+  <script type="text/plain" data-type="text/javascript" async data-name="webpushr">
+    let manager = klaro.getManager();
+    if (manager.getConsent('webpushr')){
+      (
+        function (w, d, s, id) {
+          if (typeof (w.webpushr) !== 'undefined') return;
+          w.webpushr = w.webpushr || function () {
+            (w.webpushr.q = w.webpushr.q || []).push(arguments)
+          }; var js, fjs = d.getElementsByTagName(s)[0]; js = d.createElement(s); js.id = id; js.async = 1; js.data-src = "https://cdn.webpushr.com/app.min.js";
+          fjs.parentNode.appendChild(js);
+        }( window, document, 'script', 'webpushr-jssdk' )
+      );
+      webpushr('setup', { 'key': 'BGON3evm0aCcG-ZpkVez8Q8GLrn4527R6YkL4nsU861337AfhJoOvnVU7eJ6ixjspxhic7ecVXvnhGgJz0cfDrE' });
+    }
+  </script>
+  <!-- end webpushr tracking code -->
+  
+
+      </div> <!-- app -->
+    <script>(function (w, d, s, id) {
+        if (typeof (w.webpushr) !== 'undefined') return;
+        w.webpushr = w.webpushr || function () { (w.webpushr.q = w.webpushr.q || []).push(arguments) };
+        var js, fjs = d.getElementsByTagName(s)[0];
+        js = d.createElement(s);
+        js.id = id;
+        js.async = 1;
+        js.src = "https://cdn.webpushr.com/app.min.js";
+        fjs.parentNode.appendChild(js);
+        }(window, document, 'script', 'webpushr-jssdk'));
+
+        webpushr('setup', {
+        'key': 'BGON3evm0aCcG-ZpkVez8Q8GLrn4527R6YkL4nsU861337AfhJoOvnVU7eJ6ixjspxhic7ecVXvnhGgJz0cfDrE',
+        'sw': undefined
+        });
+        </script></body>
+
+</html>

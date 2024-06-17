@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="Rui Ramos" />
+  <meta name="description" content="A simple Blog related with Infrastructure Architecture and Data" />
+  
+  
+
+  <link rel="canonical" href="http://rramos.github.io/2024/05/24/rocket/"/>
+
+  <title>
+    
+      Rocket.rs 
+      
+      
+    
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto:400,400italic,600|Roboto+Mono" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+
+
+  
+
+  
+    
+<link rel="stylesheet" href="/css/post.css">
+
+  
+
+  <!-- Include klaro css for consent banner -->
+  
+     
+<link rel="stylesheet" href="/css/klaro.css">
+
+  
+
+  <!-- jquery3.3.1 -->
+  
+<script src="/js/jquery.min.js"></script>
+
+
+  <!-- fancybox -->
+  
+<script src="/js/jquery.fancybox.min,js.js"></script>
+
+
+  <!-- fancybox -->
+  
+<script src="/js/fancybox.js"></script>
+
+
+  <!-- Googlecrux ID -->
+
+    <!-- Google site verification -->
+    <meta name="google-site-verification" content='Em0OaYgLD4MC3tIHbwqDxAklIn7JzrtipNZd7z1kqFI'' />
+    
+  
+    <!-- Google Tag Manager -->
+    <script data-type="text/javascript" type="text/plain" data-name="google-tag-manager">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-MXRC4DK');</script>
+      <!-- End Google Tag Manager -->
+    
+
+  
+      
+  
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
+</head>
+
+    <body>
+      <!-- Klaro Consent Management -->
+      
+          
+<script src="/js/klaro-config.js"></script>
+
+          
+<script src="/js/klaro-no-css.js"></script>
+
+      
+
+      
+     <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MXRC4DK"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+    
+
+
+      
+
+<!-- Start -Microsoft Clarity -->
+<script type="text/plain" data-type="text/javascript" async data-name="microsoft-clarity">
+  let manager = klaro.getManager();
+  if (manager.getConsent('microsoft-clarity')){
+
+    if (!window.location.host.includes('localhost')) {
+      (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;
+        t.data-src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "ms0b2q35b6");
+    }
+  }
+</script>
+<!-- End - Microsoft Clarity -->
+    
+
+      <div id="app">
+        <div class="header">
+  <a href="/">rramos.github.io</a>
+</div>
+
+
+        <p class="links">
+  
+    <a title="archives" target="" href="/archives/">
+      <i class="iconfont icon-bookmark"></i>
+    </a>
+  
+    <a title="github" target="_blank" href="https://github.com/rramos">
+      <i class="iconfont icon-github"></i>
+    </a>
+  
+    <a title="email" target="" href="mailto:rui.ms.ramos@gmail.com">
+      <i class="iconfont icon-envelope"></i>
+    </a>
+  
+    <a title="twitter" target="" href="https://x.com/RuiMSRamos">
+      <i class="iconfont icon-twitter"></i>
+    </a>
+  
+    <a title="about" target="" href="/about">
+      <i class="iconfont icon-qq"></i>
+    </a>
+  
+    <a title="discord" target="" href="https://discord.gg/YfCmqpG53p">
+      <i class="iconfont icon-wechat"></i>
+    </a>
+  
+    <a title="rss" target="_blank" href="/atom.xml">
+      <i class="iconfont icon-rss"></i>
+    </a>
+  
+</p>
+
+        <div class="main">
+          <!-- Article details page, showing the specific content of the article, URL format: https://yoursite/article title/-->
+<!-- At the same time, it is the hosting page of "tag", "friend", "categories", and "about" page. The specific display depends on page.type -->
+ 
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<div class="post">
+  <h3 class="date">
+    24 May, 2024
+  </h3>
+  <h1>
+    Rocket.rs
+  </h1>
+  <div class="content markdown-body">
+    <p>In this article going to explore Rocket.rs starting with the basics</p>
+<h2 id="What-is-Rocket-rs"><a href="#What-is-Rocket-rs" class="headerlink" title="What is Rocket.rs"></a>What is Rocket.rs</h2><p>A web framework for Rust gear Rust that makes it simple to write fast, type-safe, secure web applications with incredible usability, productivity and performance</p>
+<h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><p>Lets start by setting up rust</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rustup default stable</span><br></pre></td></tr></table></figure>
+
+<p>Lets create the new project</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cargo  new  hello-rocket  --bin</span><br><span class="line"><span class="built_in">cd</span> hello-rocket</span><br></pre></td></tr></table></figure>
+
+<p>Now, add Rocket as a dependency in your <code>Cargo.toml</code></p>
+<figure class="highlight toml"><table><tr><td class="code"><pre><span class="line"><span class="section">[dependencies]</span></span><br><span class="line"><span class="attr">rocket</span> = <span class="string">&quot;0.5.0&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>Change the <code>src/main.rs</code> file with the following code:</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="meta">#[macro_use]</span> <span class="keyword">extern</span> <span class="keyword">crate</span> rocket;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[get(<span class="string">&quot;/&quot;</span>)]</span></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">index</span>() <span class="punctuation">-&gt;</span> &amp;<span class="symbol">&#x27;static</span> <span class="type">str</span> &#123;</span><br><span class="line">    <span class="string">&quot;Hello, world!&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[launch]</span></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">rocket</span>() <span class="punctuation">-&gt;</span> _ &#123;</span><br><span class="line">    rocket::<span class="title function_ invoke__">build</span>().<span class="title function_ invoke__">mount</span>(<span class="string">&quot;/&quot;</span>, routes![index])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>One can execute the following command to compile and run the application</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cargo run</span><br></pre></td></tr></table></figure>
+
+<p>That’s it rocket is now running and you can access it through <a target="_blank" rel="noopener" href="http://127.0.0.1:8000/">http://127.0.0.1:8000</a></p>
+<p>And our Hello World is done.</p>
+<h2 id="Rust-CRUD-API"><a href="#Rust-CRUD-API" class="headerlink" title="Rust CRUD API"></a>Rust CRUD API</h2><p>Now that we done the Hello World application lets spike a bit and create a API based on the following <a target="_blank" rel="noopener" href="https://codevoweb.com/build-a-simple-api-with-rust-and-rocket">article</a></p>
+<p>This article will teach you how to build a simple CRUD API with Rust using the Rocket framework. We’ll create a RESTful API that runs on a Rocket HTTP server and persists data in an in-memory database. (Check the original article if you want to deep dive)</p>
+<h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><p>Lets start by instantiating a rust project to create our API</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> simple-api-rocket</span><br><span class="line"><span class="built_in">cd</span> simple-api-rocket</span><br><span class="line">cargo init</span><br></pre></td></tr></table></figure>
+
+<p>Let’s add required packages</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cargo add rocket@0.5.0-rc.2 --features json</span><br><span class="line">cargo add serde --features derive</span><br><span class="line">cargo add chrono --features serde</span><br><span class="line">cargo add uuid --features v4</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>rocket</strong> – A web framework for Rust (nightly).</li>
+<li><strong>serde</strong> – A generic serialization&#x2F;deserialization framework.</li>
+<li><strong>chrono</strong> – Date and time library for Rust.</li>
+<li><strong>uuid</strong> – A library to generate and parse UUIDs in Rust.</li>
+</ul>
+<p>Replace the src&#x2F;main.rs file with the following content:</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">use</span> rocket::&#123;get, http::Status, serde::json::Json&#125;;</span><br><span class="line"><span class="keyword">use</span> serde::Serialize;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[macro_use]</span></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">crate</span> rocket;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Serialize)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">GenericResponse</span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> status: <span class="type">String</span>,</span><br><span class="line">    <span class="keyword">pub</span> message: <span class="type">String</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[get(<span class="string">&quot;/healthchecker&quot;</span>)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">async</span> <span class="keyword">fn</span> <span class="title function_">health_checker_handler</span>() <span class="punctuation">-&gt;</span> <span class="type">Result</span>&lt;Json&lt;GenericResponse&gt;, Status&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> MESSAGE: &amp;<span class="type">str</span> = <span class="string">&quot;Build Simple CRUD API with Rust and Rocket&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">response_json</span> = GenericResponse &#123;</span><br><span class="line">        status: <span class="string">&quot;success&quot;</span>.<span class="title function_ invoke__">to_string</span>(),</span><br><span class="line">        message: MESSAGE.<span class="title function_ invoke__">to_string</span>(),</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="title function_ invoke__">Ok</span>(<span class="title function_ invoke__">Json</span>(response_json))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[launch]</span></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">rocket</span>() <span class="punctuation">-&gt;</span> _ &#123;</span><br><span class="line">    rocket::<span class="title function_ invoke__">build</span>().<span class="title function_ invoke__">mount</span>(<span class="string">&quot;/api&quot;</span>, routes![health_checker_handler,])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>One can execute the following command <code>cargon run</code> and access the following endpoint</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://127.0.0.1:8000/api/healthchecker">http://127.0.0.1:8000/api/healthchecker</a></li>
+</ul>
+<p>For this exercise we will use a in-memory database available to all the route handlers,<br>we’ll use Rust’s smart pointer called <a target="_blank" rel="noopener" href="https://doc.rust-lang.org/std/sync/struct.Arc.html">Arc</a> along with the <a target="_blank" rel="noopener" href="https://doc.rust-lang.org/std/sync/struct.Mutex.html">Mutex</a>.</p>
+<h3 id="Create-the-Model"><a href="#Create-the-Model" class="headerlink" title="Create the Model"></a>Create the Model</h3><p>Create the file <code>model.rs</code> file and add the following code:</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">use</span> chrono::prelude::*;</span><br><span class="line"><span class="keyword">use</span> serde::&#123;Deserialize, Serialize&#125;;</span><br><span class="line"><span class="keyword">use</span> std::sync::&#123;Arc, Mutex&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[allow(non_snake_case)]</span></span><br><span class="line"><span class="meta">#[derive(Debug, Deserialize, Serialize, Clone)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">Todo</span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> id: <span class="type">Option</span>&lt;<span class="type">String</span>&gt;,</span><br><span class="line">    <span class="keyword">pub</span> title: <span class="type">String</span>,</span><br><span class="line">    <span class="keyword">pub</span> content: <span class="type">String</span>,</span><br><span class="line">    <span class="keyword">pub</span> completed: <span class="type">Option</span>&lt;<span class="type">bool</span>&gt;,</span><br><span class="line">    <span class="keyword">pub</span> createdAt: <span class="type">Option</span>&lt;DateTime&lt;Utc&gt;&gt;,</span><br><span class="line">    <span class="keyword">pub</span> updatedAt: <span class="type">Option</span>&lt;DateTime&lt;Utc&gt;&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">AppState</span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> todo_db: Arc&lt;Mutex&lt;<span class="type">Vec</span>&lt;Todo&gt;&gt;&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">AppState</span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">init</span>() <span class="punctuation">-&gt;</span> AppState &#123;</span><br><span class="line">        AppState &#123;</span><br><span class="line">            todo_db: Arc::<span class="title function_ invoke__">new</span>(Mutex::<span class="title function_ invoke__">new</span>(<span class="type">Vec</span>::<span class="title function_ invoke__">new</span>())),</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[allow(non_snake_case)]</span></span><br><span class="line"><span class="meta">#[derive(Debug, Deserialize)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">UpdateTodoSchema</span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> title: <span class="type">Option</span>&lt;<span class="type">String</span>&gt;,</span><br><span class="line">    <span class="keyword">pub</span> content: <span class="type">Option</span>&lt;<span class="type">String</span>&gt;,</span><br><span class="line">    <span class="keyword">pub</span> completed: <span class="type">Option</span>&lt;<span class="type">bool</span>&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>This code created a Todo struct and added Serde’s macros on top of it.</p>
+<p>The <strong>Deserialize</strong> and <strong>Serialize</strong> macros will allow us to convert the struct to and from JSON</p>
+<h3 id="Create-the-API-Response-Structs"><a href="#Create-the-API-Response-Structs" class="headerlink" title="Create the API Response Structs"></a>Create the API Response Structs</h3><p>Here, let’s create structs that implement the [derive(Serialize)] macro to enable us to convert structs into JSON objects before returning them to the client.</p>
+<p>So, create a <code>response.rs</code> file in the src directory and add the following structs:</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">use</span> crate::model::Todo;</span><br><span class="line"><span class="keyword">use</span> serde::Serialize;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Serialize)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">GenericResponse</span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> status: <span class="type">String</span>,</span><br><span class="line">    <span class="keyword">pub</span> message: <span class="type">String</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Serialize, Debug)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">TodoData</span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> todo: Todo,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Serialize, Debug)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">SingleTodoResponse</span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> status: <span class="type">String</span>,</span><br><span class="line">    <span class="keyword">pub</span> data: TodoData,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Serialize, Debug)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">TodoListResponse</span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> status: <span class="type">String</span>,</span><br><span class="line">    <span class="keyword">pub</span> results: <span class="type">usize</span>,</span><br><span class="line">    <span class="keyword">pub</span> todos: <span class="type">Vec</span>&lt;Todo&gt;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Implement-the-CRUD-API"><a href="#Implement-the-CRUD-API" class="headerlink" title="Implement the CRUD API"></a>Implement the CRUD API</h3><ul>
+<li>[<code>get(&quot;/healthchecker&quot;)</code>] – This route will return a simple health checker JSON object.</li>
+<li>[<code>get(&quot;/todos?&lt;page&gt;&amp;&lt;limit&gt;&quot;)</code>] – This route will return a selected or paginated list of Todo items.</li>
+<li>[<code>post(&quot;/todos&quot;, data = &quot;&lt;body&gt;&quot;)</code>] – This route will add a new Todo item to the data store.</li>
+<li>[<code>get(&quot;/todos/&lt;id&gt;&quot;)</code>] – This route will retrieve a single Todo item from the in-memory database and return it to the client.</li>
+<li>[<code>patch(&quot;/todos/&lt;id&gt;&quot;, data = &quot;&lt;body&gt;&quot;)</code>] – This route will edit the fields of a Todo item in the data store.</li>
+<li>[<code>delete(&quot;/todos/&lt;id&gt;&quot;)</code>] – This route will delete a Todo item from the in-memory database.</li>
+</ul>
+<p>First things first, create a <code>handler.rs</code> file in the src folder and add the following crates and dependencies.</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">use</span> crate::&#123;</span><br><span class="line">    model::&#123;AppState, Todo, UpdateTodoSchema&#125;,</span><br><span class="line">    response::&#123;GenericResponse, SingleTodoResponse, TodoData, TodoListResponse&#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">use</span> chrono::prelude::*;</span><br><span class="line"><span class="keyword">use</span> rocket::&#123;</span><br><span class="line">    delete, get, http::Status, patch, post, response::status::Custom, serde::json::Json, State,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">use</span> uuid::Uuid;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[get(<span class="string">&quot;/healthchecker&quot;</span>)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">async</span> <span class="keyword">fn</span> <span class="title function_">health_checker_handler</span>() <span class="punctuation">-&gt;</span> <span class="type">Result</span>&lt;Json&lt;GenericResponse&gt;, Status&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> MESSAGE: &amp;<span class="type">str</span> = <span class="string">&quot;Build Simple CRUD API with Rust and Rocket&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">response_json</span> = GenericResponse &#123;</span><br><span class="line">        status: <span class="string">&quot;success&quot;</span>.<span class="title function_ invoke__">to_string</span>(),</span><br><span class="line">        message: MESSAGE.<span class="title function_ invoke__">to_string</span>(),</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="title function_ invoke__">Ok</span>(<span class="title function_ invoke__">Json</span>(response_json))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[get(<span class="string">&quot;/todos?&lt;page&gt;&amp;&lt;limit&gt;&quot;</span>)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">async</span> <span class="keyword">fn</span> <span class="title function_">todos_list_handler</span>(</span><br><span class="line">    page: <span class="type">Option</span>&lt;<span class="type">usize</span>&gt;,</span><br><span class="line">    limit: <span class="type">Option</span>&lt;<span class="type">usize</span>&gt;,</span><br><span class="line">    data: &amp;State&lt;AppState&gt;,</span><br><span class="line">) <span class="punctuation">-&gt;</span> <span class="type">Result</span>&lt;Json&lt;TodoListResponse&gt;, Status&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">vec</span> = data.todo_db.<span class="title function_ invoke__">lock</span>().<span class="title function_ invoke__">unwrap</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">limit</span> = limit.<span class="title function_ invoke__">unwrap_or</span>(<span class="number">10</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">offset</span> = (page.<span class="title function_ invoke__">unwrap_or</span>(<span class="number">1</span>) - <span class="number">1</span>) * limit;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">todos</span>: <span class="type">Vec</span>&lt;Todo&gt; = vec.<span class="title function_ invoke__">clone</span>().<span class="title function_ invoke__">into_iter</span>().<span class="title function_ invoke__">skip</span>(offset).<span class="title function_ invoke__">take</span>(limit).<span class="title function_ invoke__">collect</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">json_response</span> = TodoListResponse &#123;</span><br><span class="line">        status: <span class="string">&quot;success&quot;</span>.<span class="title function_ invoke__">to_string</span>(),</span><br><span class="line">        results: todos.<span class="title function_ invoke__">len</span>(),</span><br><span class="line">        todos,</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="title function_ invoke__">Ok</span>(<span class="title function_ invoke__">Json</span>(json_response))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[post(<span class="string">&quot;/todos&quot;</span>, data = <span class="string">&quot;&lt;body&gt;&quot;</span>)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">async</span> <span class="keyword">fn</span> <span class="title function_">create_todo_handler</span>(</span><br><span class="line">    <span class="keyword">mut</span> body: Json&lt;Todo&gt;,</span><br><span class="line">    data: &amp;State&lt;AppState&gt;,</span><br><span class="line">) <span class="punctuation">-&gt;</span> <span class="type">Result</span>&lt;Json&lt;SingleTodoResponse&gt;, Custom&lt;Json&lt;GenericResponse&gt;&gt;&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">vec</span> = data.todo_db.<span class="title function_ invoke__">lock</span>().<span class="title function_ invoke__">unwrap</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> <span class="variable">todo</span> <span class="keyword">in</span> vec.<span class="title function_ invoke__">iter</span>() &#123;</span><br><span class="line">        <span class="keyword">if</span> todo.title == body.title &#123;</span><br><span class="line">            <span class="keyword">let</span> <span class="variable">error_response</span> = GenericResponse &#123;</span><br><span class="line">                status: <span class="string">&quot;fail&quot;</span>.<span class="title function_ invoke__">to_string</span>(),</span><br><span class="line">                message: <span class="built_in">format!</span>(<span class="string">&quot;Todo with title: &#x27;&#123;&#125;&#x27; already exists&quot;</span>, todo.title),</span><br><span class="line">            &#125;;</span><br><span class="line">            <span class="keyword">return</span> <span class="title function_ invoke__">Err</span>(<span class="title function_ invoke__">Custom</span>(Status::Conflict, <span class="title function_ invoke__">Json</span>(error_response)));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">uuid_id</span> = Uuid::<span class="title function_ invoke__">new_v4</span>();</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">datetime</span> = Utc::<span class="title function_ invoke__">now</span>();</span><br><span class="line"></span><br><span class="line">    body.id = <span class="title function_ invoke__">Some</span>(uuid_id.<span class="title function_ invoke__">to_string</span>());</span><br><span class="line">    body.completed = <span class="title function_ invoke__">Some</span>(<span class="literal">false</span>);</span><br><span class="line">    body.createdAt = <span class="title function_ invoke__">Some</span>(datetime);</span><br><span class="line">    body.updatedAt = <span class="title function_ invoke__">Some</span>(datetime);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">todo</span> = body.<span class="title function_ invoke__">to_owned</span>();</span><br><span class="line"></span><br><span class="line">    vec.<span class="title function_ invoke__">push</span>(body.<span class="title function_ invoke__">into_inner</span>());</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">json_response</span> = SingleTodoResponse &#123;</span><br><span class="line">        status: <span class="string">&quot;success&quot;</span>.<span class="title function_ invoke__">to_string</span>(),</span><br><span class="line">        data: TodoData &#123;</span><br><span class="line">            todo: todo.<span class="title function_ invoke__">into_inner</span>(),</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="title function_ invoke__">Ok</span>(<span class="title function_ invoke__">Json</span>(json_response))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[get(<span class="string">&quot;/todos/&lt;id&gt;&quot;</span>)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">async</span> <span class="keyword">fn</span> <span class="title function_">get_todo_handler</span>(</span><br><span class="line">    id: <span class="type">String</span>,</span><br><span class="line">    data: &amp;State&lt;AppState&gt;,</span><br><span class="line">) <span class="punctuation">-&gt;</span> <span class="type">Result</span>&lt;Json&lt;SingleTodoResponse&gt;, Custom&lt;Json&lt;GenericResponse&gt;&gt;&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">vec</span> = data.todo_db.<span class="title function_ invoke__">lock</span>().<span class="title function_ invoke__">unwrap</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> <span class="variable">todo</span> <span class="keyword">in</span> vec.<span class="title function_ invoke__">iter</span>() &#123;</span><br><span class="line">        <span class="keyword">if</span> todo.id == <span class="title function_ invoke__">Some</span>(id.<span class="title function_ invoke__">to_owned</span>()) &#123;</span><br><span class="line">            <span class="keyword">let</span> <span class="variable">json_response</span> = SingleTodoResponse &#123;</span><br><span class="line">                status: <span class="string">&quot;success&quot;</span>.<span class="title function_ invoke__">to_string</span>(),</span><br><span class="line">                data: TodoData &#123; todo: todo.<span class="title function_ invoke__">clone</span>() &#125;,</span><br><span class="line">            &#125;;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> <span class="title function_ invoke__">Ok</span>(<span class="title function_ invoke__">Json</span>(json_response));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">error_response</span> = GenericResponse &#123;</span><br><span class="line">        status: <span class="string">&quot;fail&quot;</span>.<span class="title function_ invoke__">to_string</span>(),</span><br><span class="line">        message: <span class="built_in">format!</span>(<span class="string">&quot;Todo with ID: &#123;&#125; not found&quot;</span>, id),</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="title function_ invoke__">Err</span>(<span class="title function_ invoke__">Custom</span>(Status::NotFound, <span class="title function_ invoke__">Json</span>(error_response)))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[patch(<span class="string">&quot;/todos/&lt;id&gt;&quot;</span>, data = <span class="string">&quot;&lt;body&gt;&quot;</span>)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">async</span> <span class="keyword">fn</span> <span class="title function_">edit_todo_handler</span>(</span><br><span class="line">    id: <span class="type">String</span>,</span><br><span class="line">    body: Json&lt;UpdateTodoSchema&gt;,</span><br><span class="line">    data: &amp;State&lt;AppState&gt;,</span><br><span class="line">) <span class="punctuation">-&gt;</span> <span class="type">Result</span>&lt;Json&lt;SingleTodoResponse&gt;, Custom&lt;Json&lt;GenericResponse&gt;&gt;&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">vec</span> = data.todo_db.<span class="title function_ invoke__">lock</span>().<span class="title function_ invoke__">unwrap</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> <span class="variable">todo</span> <span class="keyword">in</span> vec.<span class="title function_ invoke__">iter_mut</span>() &#123;</span><br><span class="line">        <span class="keyword">if</span> todo.id == <span class="title function_ invoke__">Some</span>(id.<span class="title function_ invoke__">clone</span>()) &#123;</span><br><span class="line">            <span class="keyword">let</span> <span class="variable">datetime</span> = Utc::<span class="title function_ invoke__">now</span>();</span><br><span class="line">            <span class="keyword">let</span> <span class="variable">title</span> = body.title.<span class="title function_ invoke__">to_owned</span>().<span class="title function_ invoke__">unwrap_or</span>(todo.title.<span class="title function_ invoke__">to_owned</span>());</span><br><span class="line">            <span class="keyword">let</span> <span class="variable">content</span> = body.content.<span class="title function_ invoke__">to_owned</span>().<span class="title function_ invoke__">unwrap_or</span>(todo.content.<span class="title function_ invoke__">to_owned</span>());</span><br><span class="line">            <span class="keyword">let</span> <span class="variable">payload</span> = Todo &#123;</span><br><span class="line">                id: todo.id.<span class="title function_ invoke__">to_owned</span>(),</span><br><span class="line">                title: <span class="keyword">if</span> !title.<span class="title function_ invoke__">is_empty</span>() &#123;</span><br><span class="line">                    title</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    todo.title.<span class="title function_ invoke__">to_owned</span>()</span><br><span class="line">                &#125;,</span><br><span class="line">                content: <span class="keyword">if</span> !content.<span class="title function_ invoke__">is_empty</span>() &#123;</span><br><span class="line">                    content</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    todo.content.<span class="title function_ invoke__">to_owned</span>()</span><br><span class="line">                &#125;,</span><br><span class="line">                completed: <span class="keyword">if</span> body.completed.<span class="title function_ invoke__">is_some</span>() &#123;</span><br><span class="line">                    body.completed</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    todo.completed</span><br><span class="line">                &#125;,</span><br><span class="line">                createdAt: todo.createdAt,</span><br><span class="line">                updatedAt: <span class="title function_ invoke__">Some</span>(datetime),</span><br><span class="line">            &#125;;</span><br><span class="line">            *todo = payload;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">let</span> <span class="variable">json_response</span> = SingleTodoResponse &#123;</span><br><span class="line">                status: <span class="string">&quot;success&quot;</span>.<span class="title function_ invoke__">to_string</span>(),</span><br><span class="line">                data: TodoData &#123; todo: todo.<span class="title function_ invoke__">clone</span>() &#125;,</span><br><span class="line">            &#125;;</span><br><span class="line">            <span class="keyword">return</span> <span class="title function_ invoke__">Ok</span>(<span class="title function_ invoke__">Json</span>(json_response));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">error_response</span> = GenericResponse &#123;</span><br><span class="line">        status: <span class="string">&quot;fail&quot;</span>.<span class="title function_ invoke__">to_string</span>(),</span><br><span class="line">        message: <span class="built_in">format!</span>(<span class="string">&quot;Todo with ID: &#123;&#125; not found&quot;</span>, id),</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="title function_ invoke__">Err</span>(<span class="title function_ invoke__">Custom</span>(Status::NotFound, <span class="title function_ invoke__">Json</span>(error_response)))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[delete(<span class="string">&quot;/todos/&lt;id&gt;&quot;</span>)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">async</span> <span class="keyword">fn</span> <span class="title function_">delete_todo_handler</span>(</span><br><span class="line">    id: <span class="type">String</span>,</span><br><span class="line">    data: &amp;State&lt;AppState&gt;,</span><br><span class="line">) <span class="punctuation">-&gt;</span> <span class="type">Result</span>&lt;Status, Custom&lt;Json&lt;GenericResponse&gt;&gt;&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">vec</span> = data.todo_db.<span class="title function_ invoke__">lock</span>().<span class="title function_ invoke__">unwrap</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> <span class="variable">todo</span> <span class="keyword">in</span> vec.<span class="title function_ invoke__">iter_mut</span>() &#123;</span><br><span class="line">        <span class="keyword">if</span> todo.id == <span class="title function_ invoke__">Some</span>(id.<span class="title function_ invoke__">clone</span>()) &#123;</span><br><span class="line">            vec.<span class="title function_ invoke__">retain</span>(|todo| todo.id != <span class="title function_ invoke__">Some</span>(id.<span class="title function_ invoke__">to_owned</span>()));</span><br><span class="line">            <span class="keyword">return</span> <span class="title function_ invoke__">Ok</span>(Status::NoContent);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">error_response</span> = GenericResponse &#123;</span><br><span class="line">        status: <span class="string">&quot;fail&quot;</span>.<span class="title function_ invoke__">to_string</span>(),</span><br><span class="line">        message: <span class="built_in">format!</span>(<span class="string">&quot;Todo with ID: &#123;&#125; not found&quot;</span>, id),</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="title function_ invoke__">Err</span>(<span class="title function_ invoke__">Custom</span>(Status::NotFound, <span class="title function_ invoke__">Json</span>(error_response)))</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>You can now start the  application with the following command</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cargo run</span><br></pre></td></tr></table></figure>
+
+<p>And test the API accessing the following url: <a target="_blank" rel="noopener" href="http://localhost:8000/api/todos?page=1&amp;limit=10">http://localhost:8000/api/todos?page=1&amp;limit=10</a></p>
+<p>You can also use the following <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/wpcodevo/simple-api-rocket/master/Todo.postman_collection.json">json file</a> to test with Postman</p>
+<p>Make sure to check the original article which has more detailed information on the this setup</p>
+<p>Now we just need some React FrontEnd Application to interact with this service.</p>
+<h3 id="Create-FrontEnd-Application"><a href="#Create-FrontEnd-Application" class="headerlink" title="Create FrontEnd Application"></a>Create FrontEnd Application</h3><p>Now similar to my previous <a href="https://rramos.github.io/2024/02/04/strapi/">post</a> related with Strapi lets create a frontend application with react.</p>
+<p>On a different folder run the following command (Require <a href="bun.sh">bun.sh</a> )</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">bunx create-react-app todo-frontend</span><br></pre></td></tr></table></figure>
+
+<p>Next create the following two files for the environment variables:</p>
+<ul>
+<li><code>.env.development</code></li>
+</ul>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">REACT_APP_BACKEND=http://localhost:1337/</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>.env.production</code></li>
+</ul>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">REACT_APP_BACKEND=/</span><br></pre></td></tr></table></figure>
+
+<p>You can run the frontend application with the following command</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">bun run start</span><br></pre></td></tr></table></figure>
+
+<p>I’m not an expert in Frontend development and I did manage to get the <strong>create</strong> operation working, but the listing however didn’t populate although I could see on the console the data was refreshed and as the article is already long, I decided to stop here.</p>
+<p>If you manage to get the react component working let me know so that I can update the article.</p>
+<h3 id="Cargo-Watch"><a href="#Cargo-Watch" class="headerlink" title="Cargo Watch"></a>Cargo Watch</h3><p>In Rust we have a library called <code>cargo-watch</code> which watches the source code for changes<br>and hot-reloads the server when required files change. Lets install it</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cargo install cargo-watch</span><br></pre></td></tr></table></figure>
+
+<p>With that out of the way, run this command to start the Rocket HTTP server and restart the server when any file in the src directory changes.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cargo watch -q -c -w src/ -x run</span><br></pre></td></tr></table></figure>
+
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Rust is gaining quite a lot popularity, implementing APIs with Rocket seems fast. This mix of React and Rust in the near future should be mixture that you would will see more.</p>
+<p>The performance os Rust allied to the flexibility from the frontend component is something that I need to explore more.</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://rocket.rs/">https://rocket.rs/</a></li>
+<li><a target="_blank" rel="noopener" href="https://rocket.rs/v0.5/guide/getting-started/">https://rocket.rs/v0.5/guide/getting-started/</a></li>
+<li><a target="_blank" rel="noopener" href="https://codevoweb.com/build-a-simple-api-with-rust-and-rocket/">https://codevoweb.com/build-a-simple-api-with-rust-and-rocket/</a></li>
+<li><a target="_blank" rel="noopener" href="https://doc.rust-lang.org/std/sync/struct.Arc.html">https://doc.rust-lang.org/std/sync/struct.Arc.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://doc.rust-lang.org/std/sync/struct.Mutex.html">https://doc.rust-lang.org/std/sync/struct.Mutex.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.freecodecamp.org/news/how-to-consume-rest-apis-in-react/">https://www.freecodecamp.org/news/how-to-consume-rest-apis-in-react/</a></li>
+</ul>
+
+  </div>
+  
+    
+      <a id="older" class="blog-nav" href="/2024/05/22/sqlglot/">OLDER&nbsp;&gt;</a>
+      
+        
+          <a id="newer" class="blog-nav" href="/2024/05/24/dataform/">&lt;&nbsp;NEWER</a>
+          
+            
+</div>
+          <div class="footer">
+  
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/rramos">Copyright © Rui Ramos 2024</a>
+        
+    </div>
+  
+</div>
+
+        </div> <!-- main -->
+          <div class="back-to-top hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+          
+  <div class="search-icon" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-box">
+        <div class="search-title">
+          <!-- <span class="search-icon-input">
+            <a href="javascript: void(0)">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </span> -->
+          
+            <input type="text" class="search-input" id="search-input" placeholder="Search ...">
+          
+          <span class="search-close-icon" id="search-close-icon">
+            <a href="javascript: void(0)">
+              <i class="iconfont icon-close"></i>
+            </a>
+          </span>
+        </div>
+        <div class="search-result" id="search-result"></div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    // inputArea.onclick = function() {
+    //   getSearchFile()
+    //   this.onclick = null
+    // }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        inputArea.focus()
+        getSearchFile()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'><span></ul>";
+      // $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'><h2>" + orig_data_title + "</h2></a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<h3 class=\"search-result-abstract\">" + match_content + "...</h3>"
+                }
+                str += "<hr></li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/leedom92/hexo-theme-leedom#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+          
+  
+  <div class="consent-icon" id="consent-icon">
+    <a class="button is-success" onclick="return klaro.show();">
+      <i class="iconfont icon-consent"></i>
+    </a>
+  </div>
+  
+
+
+          
+          
+  <!-- hexo plugin: hexo-webpushr-notification -->
+
+  <script type="text/plain" data-type="text/javascript" async data-name="webpushr">
+    let manager = klaro.getManager();
+    if (manager.getConsent('webpushr')){
+      (
+        function (w, d, s, id) {
+          if (typeof (w.webpushr) !== 'undefined') return;
+          w.webpushr = w.webpushr || function () {
+            (w.webpushr.q = w.webpushr.q || []).push(arguments)
+          }; var js, fjs = d.getElementsByTagName(s)[0]; js = d.createElement(s); js.id = id; js.async = 1; js.data-src = "https://cdn.webpushr.com/app.min.js";
+          fjs.parentNode.appendChild(js);
+        }( window, document, 'script', 'webpushr-jssdk' )
+      );
+      webpushr('setup', { 'key': 'BGON3evm0aCcG-ZpkVez8Q8GLrn4527R6YkL4nsU861337AfhJoOvnVU7eJ6ixjspxhic7ecVXvnhGgJz0cfDrE' });
+    }
+  </script>
+  <!-- end webpushr tracking code -->
+  
+
+      </div> <!-- app -->
+    <script>(function (w, d, s, id) {
+        if (typeof (w.webpushr) !== 'undefined') return;
+        w.webpushr = w.webpushr || function () { (w.webpushr.q = w.webpushr.q || []).push(arguments) };
+        var js, fjs = d.getElementsByTagName(s)[0];
+        js = d.createElement(s);
+        js.id = id;
+        js.async = 1;
+        js.src = "https://cdn.webpushr.com/app.min.js";
+        fjs.parentNode.appendChild(js);
+        }(window, document, 'script', 'webpushr-jssdk'));
+
+        webpushr('setup', {
+        'key': 'BGON3evm0aCcG-ZpkVez8Q8GLrn4527R6YkL4nsU861337AfhJoOvnVU7eJ6ixjspxhic7ecVXvnhGgJz0cfDrE',
+        'sw': undefined
+        });
+        </script></body>
+
+</html>

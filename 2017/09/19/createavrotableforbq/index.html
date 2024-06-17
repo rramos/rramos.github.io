@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="Rui Ramos" />
+  <meta name="description" content="A simple Blog related with Infrastructure Architecture and Data" />
+  
+  
+
+  <link rel="canonical" href="http://rramos.github.io/2017/09/19/createavrotableforbq/"/>
+
+  <title>
+    
+      Create Avro Tables for Google BigQuery 
+      
+      
+    
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto:400,400italic,600|Roboto+Mono" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+
+
+  
+
+  
+    
+<link rel="stylesheet" href="/css/post.css">
+
+  
+
+  <!-- Include klaro css for consent banner -->
+  
+     
+<link rel="stylesheet" href="/css/klaro.css">
+
+  
+
+  <!-- jquery3.3.1 -->
+  
+<script src="/js/jquery.min.js"></script>
+
+
+  <!-- fancybox -->
+  
+<script src="/js/jquery.fancybox.min,js.js"></script>
+
+
+  <!-- fancybox -->
+  
+<script src="/js/fancybox.js"></script>
+
+
+  <!-- Googlecrux ID -->
+
+    <!-- Google site verification -->
+    <meta name="google-site-verification" content='Em0OaYgLD4MC3tIHbwqDxAklIn7JzrtipNZd7z1kqFI'' />
+    
+  
+    <!-- Google Tag Manager -->
+    <script data-type="text/javascript" type="text/plain" data-name="google-tag-manager">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-MXRC4DK');</script>
+      <!-- End Google Tag Manager -->
+    
+
+  
+      
+  
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
+</head>
+
+    <body>
+      <!-- Klaro Consent Management -->
+      
+          
+<script src="/js/klaro-config.js"></script>
+
+          
+<script src="/js/klaro-no-css.js"></script>
+
+      
+
+      
+     <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MXRC4DK"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+    
+
+
+      
+
+<!-- Start -Microsoft Clarity -->
+<script type="text/plain" data-type="text/javascript" async data-name="microsoft-clarity">
+  let manager = klaro.getManager();
+  if (manager.getConsent('microsoft-clarity')){
+
+    if (!window.location.host.includes('localhost')) {
+      (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;
+        t.data-src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "ms0b2q35b6");
+    }
+  }
+</script>
+<!-- End - Microsoft Clarity -->
+    
+
+      <div id="app">
+        <div class="header">
+  <a href="/">rramos.github.io</a>
+</div>
+
+
+        <p class="links">
+  
+    <a title="archives" target="" href="/archives/">
+      <i class="iconfont icon-bookmark"></i>
+    </a>
+  
+    <a title="github" target="_blank" href="https://github.com/rramos">
+      <i class="iconfont icon-github"></i>
+    </a>
+  
+    <a title="email" target="" href="mailto:rui.ms.ramos@gmail.com">
+      <i class="iconfont icon-envelope"></i>
+    </a>
+  
+    <a title="twitter" target="" href="https://x.com/RuiMSRamos">
+      <i class="iconfont icon-twitter"></i>
+    </a>
+  
+    <a title="about" target="" href="/about">
+      <i class="iconfont icon-qq"></i>
+    </a>
+  
+    <a title="discord" target="" href="https://discord.gg/YfCmqpG53p">
+      <i class="iconfont icon-wechat"></i>
+    </a>
+  
+    <a title="rss" target="_blank" href="/atom.xml">
+      <i class="iconfont icon-rss"></i>
+    </a>
+  
+</p>
+
+        <div class="main">
+          <!-- Article details page, showing the specific content of the article, URL format: https://yoursite/article title/-->
+<!-- At the same time, it is the hosting page of "tag", "friend", "categories", and "about" page. The specific display depends on page.type -->
+ 
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<div class="post">
+  <h3 class="date">
+    19 Sep, 2017
+  </h3>
+  <h1>
+    Create Avro Tables for Google BigQuery
+  </h1>
+  <div class="content markdown-body">
+    <p>This article describes one way to create tables in BigQuery From HDFS parquet Data.</p>
+<h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><p>For this article assumes the following requisites are meet:</p>
+<ul>
+<li>You have a Google Cloud Platform account</li>
+<li>You have created a Google Cloud Storage bucket</li>
+<li>You have HDFS configured</li>
+<li>You have Parquet data that you could materialize in Hive</li>
+<li>Must have <a target="_blank" rel="noopener" href="https://cloud.google.com/sdk/docs/">bq</a> util install</li>
+</ul>
+<h2 id="Definitions"><a href="#Definitions" class="headerlink" title="Definitions"></a>Definitions</h2><ul>
+<li><strong>Hive Parquet Table:</strong> parquet_table</li>
+<li><strong>HDFS Parquet Location:</strong> <code>/user/hive/warehouse/test.db/parquet_table</code></li>
+<li><strong>Hive Avro Table Name:</strong> avro_table</li>
+<li><strong>HDFS Avro Location:</strong> <code>/user/hive/warehouse/test.db/avro_table</code></li>
+</ul>
+<h2 id="Process"><a href="#Process" class="headerlink" title="Process"></a>Process</h2><ol>
+<li>Create a avro table from parquet data</li>
+<li>Copy avro files to GCS</li>
+<li>Create Bigquery Table from avro in gs bucket</li>
+</ol>
+<h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><h3 id="Create-the-Avro-Table"><a href="#Create-the-Avro-Table" class="headerlink" title="Create the Avro Table"></a>Create the Avro Table</h3><p>Let’s start by creating the new table based on the existing parquet data</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SET</span> hive.exec.compress.output<span class="operator">=</span><span class="literal">true</span>;</span><br><span class="line"><span class="keyword">SET</span> avro.output.codec<span class="operator">=</span>snappy;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> avro_table STORED <span class="keyword">AS</span> AVRO</span><br><span class="line">  <span class="keyword">AS</span> (<span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> parquet_table);</span><br></pre></td></tr></table></figure>
+
+<p>One could specify in the <code>SELECT</code> statement the columns we would like that could be obtain using <code>parquet-tools</code> command  ex:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">parquet-tools meta &lt;parquet_file&gt;</span><br></pre></td></tr></table></figure>
+
+<p>You would still need to get the parquet file to obtain that.</p>
+<h3 id="Why-Avro-File-and-that-format"><a href="#Why-Avro-File-and-that-format" class="headerlink" title="Why Avro File and that format"></a>Why Avro File and that format</h3><p>You could update data to BigQuery by streaming or from Google Cloud Storage as a batch process. A bulk import from HDFS seems logical to use a batch process so why avro ?<br>According to the latest info on the google BigQuery Site it’s possible to:</p>
+<ul>
+<li>Load from Google Cloud Storage, including CSV, JSON (newline-delimited), and Avro files, as well as Google Cloud Datastore backups.</li>
+<li>Load directly from a readable data source.</li>
+<li>Insert individual records using streaming inserts.</li>
+</ul>
+<blockquote>
+<p>Compressed Avro files are not supported, but compressed data blocks are. BigQuery supports the DEFLATE and Snappy codecs.</p>
+</blockquote>
+<p>Also there is the following Avro mapping that could be useful</p>
+<table>
+<thead>
+<tr>
+<th>Avro data type</th>
+<th>BigQuery data type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>null</td>
+<td>- ignored -</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>BOOLEAN</td>
+</tr>
+<tr>
+<td>int</td>
+<td>INTEGER</td>
+</tr>
+<tr>
+<td>long</td>
+<td>INTEGER</td>
+</tr>
+<tr>
+<td>float</td>
+<td>FLOAT</td>
+</tr>
+<tr>
+<td>double</td>
+<td>FLOAT</td>
+</tr>
+<tr>
+<td>bytes</td>
+<td>BYTES</td>
+</tr>
+<tr>
+<td>string</td>
+<td>STRING</td>
+</tr>
+<tr>
+<td>record</td>
+<td>RECORD</td>
+</tr>
+<tr>
+<td>enum</td>
+<td>STRING</td>
+</tr>
+<tr>
+<td>array</td>
+<td>- repeated fields -</td>
+</tr>
+<tr>
+<td>map</td>
+<td>RECORD</td>
+</tr>
+<tr>
+<td>union</td>
+<td>RECORD</td>
+</tr>
+<tr>
+<td>fixed</td>
+<td>BYTES</td>
+</tr>
+</tbody></table>
+<p>Check the full spec on GCP <a target="_blank" rel="noopener" href="https://cloud.google.com/bigquery/data-formats#avro_format">Page</a></p>
+<p>The other advantage of using avro is that BigQuery infers the schema so you don’t have to describe the columns of you table.</p>
+<h3 id="Copy-Avro-file-from-HDFS-to-GCS"><a href="#Copy-Avro-file-from-HDFS-to-GCS" class="headerlink" title="Copy Avro file from HDFS to GCS"></a>Copy Avro file from HDFS to GCS</h3><p>The best approach for this is to add the GCS connector to your HDFS config</p>
+<p>Follow the instructions in the following <a target="_blank" rel="noopener" href="https://github.com/GoogleCloudPlatform/bigdata-interop/tree/master/gcs">link</a> or download the jar for Hadoop 2.x <a target="_blank" rel="noopener" href="https://storage.googleapis.com/hadoop-lib/gcs/gcs-connector-latest-hadoop2.jar">here</a></p>
+<ol>
+<li>Add that jar on a valid location for you cluster <code>HADOOP_CLASSPATH</code></li>
+<li>Generate a <code>service account</code> in the GCP console and get JSON key (<a target="_blank" rel="noopener" href="https://cloud.google.com/storage/docs/authentication#service_accounts">follow this instructions</a>)</li>
+<li>Copy that JSON file to a location in your cluster</li>
+<li>Add the following properties to your cluster <code>core-site.xml</code></li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>fs.gs.project.id<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>your-project-name<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">description</span>&gt;</span></span><br><span class="line">    Required. Google Cloud Project ID with access to configured GCS buckets.</span><br><span class="line">  <span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>google.cloud.auth.service.account.json.keyfile<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>/path/to/your/JSON-keyfile<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">description</span>&gt;</span></span><br><span class="line">  The JSON key file of the service account used for GCS</span><br><span class="line">  access when google.cloud.auth.service.account.enable is true.</span><br><span class="line"><span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>fs.gs.working.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>/<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">description</span>&gt;</span></span><br><span class="line">    The directory relative gs: uris resolve in inside of the default bucket.</span><br><span class="line">  <span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Extended options are available in <a target="_blank" rel="noopener" href="https://github.com/GoogleCloudPlatform/bigdata-interop/blob/master/gcs/conf/gcs-core-default.xml">gcs-core-default</a> example</p>
+<ol>
+<li>Create a new bucket on GCP and make sure you can access to with via <code>hdfs</code> command.</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hdfs dfs -<span class="built_in">ls</span> gs://my-bucket-name/</span><br></pre></td></tr></table></figure>
+
+<p>If that works, you can now execute a distcp to sync the avro files directly to GCS.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hdfs <span class="built_in">mkdir</span> gs://my-bucket-name/my_table</span><br><span class="line">hdfs distcp /user/hive/warehouse/test.db/avro_table/* gs://my-bucket-name/my_table/</span><br></pre></td></tr></table></figure>
+
+<h3 id="Load-GCS-avro-data-to-a-BigQuery-table"><a href="#Load-GCS-avro-data-to-a-BigQuery-table" class="headerlink" title="Load GCS avro data to a BigQuery table"></a>Load GCS avro data to a BigQuery table</h3><p>Execute</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">bq load ds.table gs://my-bucket-name/my_table/* --autodetect</span><br></pre></td></tr></table></figure>
+
+<p>And that’s it you now have a table with data in BigQuery.</p>
+<p>It is recommended to have this process managed by some type of orchestrator. There are several solutions for this. The next article i’ll be writing about one of those <a target="_blank" rel="noopener" href="https://airflow.incubator.apache.org/">Airflow</a></p>
+<p>Cheers,<br>RR</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.cloudera.com/documentation/enterprise/5-4-x/topics/cdh_ig_hive.html">https://www.cloudera.com/documentation/enterprise/5-4-x/topics/cdh_ig_hive.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/apache/parquet-mr/tree/master/parquet-tools">https://github.com/apache/parquet-mr/tree/master/parquet-tools</a></li>
+<li><a target="_blank" rel="noopener" href="https://cloud.google.com/bigquery/loading-data">https://cloud.google.com/bigquery/loading-data</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/GoogleCloudPlatform/bigdata-interop/blob/master/gcs/INSTALL.md">https://github.com/GoogleCloudPlatform/bigdata-interop/blob/master/gcs/INSTALL.md</a></li>
+<li><a target="_blank" rel="noopener" href="https://cloud.google.com/bigquery/docs/loading-data-cloud-storage">https://cloud.google.com/bigquery/docs/loading-data-cloud-storage</a></li>
+</ul>
+
+  </div>
+  
+    
+      <a id="older" class="blog-nav" href="/2017/09/19/quickzeppelin/">OLDER&nbsp;&gt;</a>
+      
+        
+          <a id="newer" class="blog-nav" href="/2017/09/23/sublimeinstall/">&lt;&nbsp;NEWER</a>
+          
+            
+</div>
+          <div class="footer">
+  
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/rramos">Copyright © Rui Ramos 2024</a>
+        
+    </div>
+  
+</div>
+
+        </div> <!-- main -->
+          <div class="back-to-top hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+          
+  <div class="search-icon" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-box">
+        <div class="search-title">
+          <!-- <span class="search-icon-input">
+            <a href="javascript: void(0)">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </span> -->
+          
+            <input type="text" class="search-input" id="search-input" placeholder="Search ...">
+          
+          <span class="search-close-icon" id="search-close-icon">
+            <a href="javascript: void(0)">
+              <i class="iconfont icon-close"></i>
+            </a>
+          </span>
+        </div>
+        <div class="search-result" id="search-result"></div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    // inputArea.onclick = function() {
+    //   getSearchFile()
+    //   this.onclick = null
+    // }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        inputArea.focus()
+        getSearchFile()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'><span></ul>";
+      // $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'><h2>" + orig_data_title + "</h2></a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<h3 class=\"search-result-abstract\">" + match_content + "...</h3>"
+                }
+                str += "<hr></li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/leedom92/hexo-theme-leedom#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+          
+  
+  <div class="consent-icon" id="consent-icon">
+    <a class="button is-success" onclick="return klaro.show();">
+      <i class="iconfont icon-consent"></i>
+    </a>
+  </div>
+  
+
+
+          
+          
+  <!-- hexo plugin: hexo-webpushr-notification -->
+
+  <script type="text/plain" data-type="text/javascript" async data-name="webpushr">
+    let manager = klaro.getManager();
+    if (manager.getConsent('webpushr')){
+      (
+        function (w, d, s, id) {
+          if (typeof (w.webpushr) !== 'undefined') return;
+          w.webpushr = w.webpushr || function () {
+            (w.webpushr.q = w.webpushr.q || []).push(arguments)
+          }; var js, fjs = d.getElementsByTagName(s)[0]; js = d.createElement(s); js.id = id; js.async = 1; js.data-src = "https://cdn.webpushr.com/app.min.js";
+          fjs.parentNode.appendChild(js);
+        }( window, document, 'script', 'webpushr-jssdk' )
+      );
+      webpushr('setup', { 'key': 'BGON3evm0aCcG-ZpkVez8Q8GLrn4527R6YkL4nsU861337AfhJoOvnVU7eJ6ixjspxhic7ecVXvnhGgJz0cfDrE' });
+    }
+  </script>
+  <!-- end webpushr tracking code -->
+  
+
+      </div> <!-- app -->
+    <script>(function (w, d, s, id) {
+        if (typeof (w.webpushr) !== 'undefined') return;
+        w.webpushr = w.webpushr || function () { (w.webpushr.q = w.webpushr.q || []).push(arguments) };
+        var js, fjs = d.getElementsByTagName(s)[0];
+        js = d.createElement(s);
+        js.id = id;
+        js.async = 1;
+        js.src = "https://cdn.webpushr.com/app.min.js";
+        fjs.parentNode.appendChild(js);
+        }(window, document, 'script', 'webpushr-jssdk'));
+
+        webpushr('setup', {
+        'key': 'BGON3evm0aCcG-ZpkVez8Q8GLrn4527R6YkL4nsU861337AfhJoOvnVU7eJ6ixjspxhic7ecVXvnhGgJz0cfDrE',
+        'sw': undefined
+        });
+        </script></body>
+
+</html>

@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="Rui Ramos" />
+  <meta name="description" content="A simple Blog related with Infrastructure Architecture and Data" />
+  
+  
+
+  <link rel="canonical" href="http://rramos.github.io/2024/06/10/minio/"/>
+
+  <title>
+    
+      minIO 
+      
+      
+    
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto:400,400italic,600|Roboto+Mono" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+
+
+  
+
+  
+    
+<link rel="stylesheet" href="/css/post.css">
+
+  
+
+  <!-- Include klaro css for consent banner -->
+  
+     
+<link rel="stylesheet" href="/css/klaro.css">
+
+  
+
+  <!-- jquery3.3.1 -->
+  
+<script src="/js/jquery.min.js"></script>
+
+
+  <!-- fancybox -->
+  
+<script src="/js/jquery.fancybox.min,js.js"></script>
+
+
+  <!-- fancybox -->
+  
+<script src="/js/fancybox.js"></script>
+
+
+  <!-- Googlecrux ID -->
+
+    <!-- Google site verification -->
+    <meta name="google-site-verification" content='Em0OaYgLD4MC3tIHbwqDxAklIn7JzrtipNZd7z1kqFI'' />
+    
+  
+    <!-- Google Tag Manager -->
+    <script data-type="text/javascript" type="text/plain" data-name="google-tag-manager">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-MXRC4DK');</script>
+      <!-- End Google Tag Manager -->
+    
+
+  
+      
+  
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
+</head>
+
+    <body>
+      <!-- Klaro Consent Management -->
+      
+          
+<script src="/js/klaro-config.js"></script>
+
+          
+<script src="/js/klaro-no-css.js"></script>
+
+      
+
+      
+     <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MXRC4DK"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+    
+
+
+      
+
+<!-- Start -Microsoft Clarity -->
+<script type="text/plain" data-type="text/javascript" async data-name="microsoft-clarity">
+  let manager = klaro.getManager();
+  if (manager.getConsent('microsoft-clarity')){
+
+    if (!window.location.host.includes('localhost')) {
+      (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;
+        t.data-src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "ms0b2q35b6");
+    }
+  }
+</script>
+<!-- End - Microsoft Clarity -->
+    
+
+      <div id="app">
+        <div class="header">
+  <a href="/">rramos.github.io</a>
+</div>
+
+
+        <p class="links">
+  
+    <a title="archives" target="" href="/archives/">
+      <i class="iconfont icon-bookmark"></i>
+    </a>
+  
+    <a title="github" target="_blank" href="https://github.com/rramos">
+      <i class="iconfont icon-github"></i>
+    </a>
+  
+    <a title="email" target="" href="mailto:rui.ms.ramos@gmail.com">
+      <i class="iconfont icon-envelope"></i>
+    </a>
+  
+    <a title="twitter" target="" href="https://x.com/RuiMSRamos">
+      <i class="iconfont icon-twitter"></i>
+    </a>
+  
+    <a title="about" target="" href="/about">
+      <i class="iconfont icon-qq"></i>
+    </a>
+  
+    <a title="discord" target="" href="https://discord.gg/YfCmqpG53p">
+      <i class="iconfont icon-wechat"></i>
+    </a>
+  
+    <a title="rss" target="_blank" href="/atom.xml">
+      <i class="iconfont icon-rss"></i>
+    </a>
+  
+</p>
+
+        <div class="main">
+          <!-- Article details page, showing the specific content of the article, URL format: https://yoursite/article title/-->
+<!-- At the same time, it is the hosting page of "tag", "friend", "categories", and "about" page. The specific display depends on page.type -->
+ 
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<div class="post">
+  <h3 class="date">
+    10 Jun, 2024
+  </h3>
+  <h1>
+    minIO
+  </h1>
+  <div class="content markdown-body">
+    <p>MinIO is an object storage solution that provides an Amazon Web Services S3-compatible API and supports all core S3 features. MinIO is built to deploy anywhere - public or private cloud, baremetal infrastructure, orchestrated environments, and edge infrastructure.</p>
+<h2 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h2><h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><p>Installed the Arch package with pacman but check the <a target="_blank" rel="noopener" href="https://min.io/docs/minio/linux/index.html">documentation</a> for other methods based on your system.</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo pacman -S minio</span><br></pre></td></tr></table></figure>
+
+<h2 id="Launch-the-MinIO-Server"><a href="#Launch-the-MinIO-Server" class="headerlink" title="Launch the MinIO Server"></a>Launch the MinIO Server</h2><p>Run the following command from the system terminal or shell to start a local MinIO instance using the <code>./data</code> folder to store the data.</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> data</span><br><span class="line">minio server ./data</span><br></pre></td></tr></table></figure>
+
+<p>You should be granted with information on the endpoints for the API, WebUI and CLI.</p>
+<h2 id="Testing-locally"><a href="#Testing-locally" class="headerlink" title="Testing locally"></a>Testing locally</h2><h3 id="Tofu"><a href="#Tofu" class="headerlink" title="Tofu"></a>Tofu</h3><p>The following repo provides one example where you can setup as code the required containers using the minio terraform provider.</p>
+<p>Clone the following repo which will create a sample bucket and a dummy text_file</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> git@github.com:rramos/tofu-minio.git</span><br><span class="line"><span class="built_in">cd</span> tofu-minio</span><br><span class="line">tofu init</span><br><span class="line">tofu plan</span><br><span class="line">tofu apply</span><br></pre></td></tr></table></figure>
+
+<p>After applying that plan you will have a bucket called <code>state-terraform-s3</code> with a object <code>text.txt</code>.</p>
+<p>Let’s use other options now.</p>
+<h2 id="Console"><a href="#Console" class="headerlink" title="Console"></a>Console</h2><p>The MinIO Console is a rich graphical user interface that provides similar functionality to the <code>mc</code> or <code>mcli</code> command line tool.<br>You can access it view browser</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://127.0.0.1:43675/login">http://127.0.0.1:43675/login</a></li>
+</ul>
+<p><strong>NOTE:</strong> The port used by MinIO depends on the configuration specified when you started the service. To determine the port, check the output of the server startup command</p>
+<h2 id="CLI"><a href="#CLI" class="headerlink" title="CLI"></a>CLI</h2><p>The MinIO Client <code>mc</code> or <code>mcli</code> command line tool provides a modern alternative to UNIX commands like ls, cat, cp, mirror, and diff with support for both filesystems and Amazon S3-compatible cloud storage services.</p>
+<p>You should setup alias for your services (Obtain the service key and secret from the console)</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">mcli <span class="built_in">alias</span> <span class="built_in">set</span> myio http://192.168.1.178:9000 ACCESS_KEY SECRET_KEY</span><br></pre></td></tr></table></figure>
+
+<p>After that we can check if our service is operational with </p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">mcli admin info myio</span><br></pre></td></tr></table></figure>
+
+<p>You should have a similar output</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">$ mcli admin info myio</span><br><span class="line">●  192.168.1.178:9000</span><br><span class="line">   Uptime: 10 minutes </span><br><span class="line">   Version: 2024-06-06T09:36:42Z</span><br><span class="line">   Network: 1/1 OK </span><br><span class="line">   Drives: 1/1 OK </span><br><span class="line">   Pool: 1</span><br><span class="line"></span><br><span class="line">┌──────┬────────────────────────┬─────────────────────┬──────────────┐</span><br><span class="line">│ Pool │ Drives Usage           │ Erasure stripe size │ Erasure sets │</span><br><span class="line">│ 1st  │ 85.9% (total: 953 GiB) │ 1                   │ 1            │</span><br><span class="line">└──────┴────────────────────────┴─────────────────────┴──────────────┘</span><br><span class="line"></span><br><span class="line">27 B Used, 1 Bucket, 1 Object, 1 Version</span><br><span class="line">1 drive online, 0 drives offline, EC:0</span><br></pre></td></tr></table></figure>
+
+<p>We can now use the cli to execute tradicional operations</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">mcli <span class="built_in">cp</span> file.txt myio/state-terraform-s3/file.txt</span><br></pre></td></tr></table></figure>
+
+<p>The full list of commands is available on the following URL</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://min.io/docs/minio/linux/reference/minio-mc.html">https://min.io/docs/minio/linux/reference/minio-mc.html</a></li>
+</ul>
+<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><p>In this example we will be copying data though the API using the minio module, let’s start by installing the required pip package.</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">pip install minio</span><br></pre></td></tr></table></figure>
+
+<p>Next generate a key&#x2F;secret in the console and update the following python code <code>minio_cp.py</code></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> minio <span class="keyword">import</span> Minio</span><br><span class="line"><span class="keyword">from</span> minio.error <span class="keyword">import</span> S3Error</span><br><span class="line"></span><br><span class="line"><span class="comment"># MinIO server credentials</span></span><br><span class="line">MINIO_URL = <span class="string">&quot;127.0.0.1:9000&quot;</span>  <span class="comment"># or your MinIO server URL</span></span><br><span class="line">ACCESS_KEY = <span class="string">&quot;ACCESS_KEY&quot;</span></span><br><span class="line">SECRET_KEY = <span class="string">&quot;SECRET_KEY&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Initialize the MinIO client</span></span><br><span class="line">minio_client = Minio(</span><br><span class="line">    MINIO_URL,</span><br><span class="line">    access_key=ACCESS_KEY,</span><br><span class="line">    secret_key=SECRET_KEY,</span><br><span class="line">    secure=<span class="literal">False</span>  <span class="comment"># Set to False if you are not using HTTPS</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># File to upload</span></span><br><span class="line">file_path = <span class="string">&quot;./file2.txt&quot;</span></span><br><span class="line">bucket_name = <span class="string">&quot;state-terraform-s3&quot;</span></span><br><span class="line">object_name = <span class="string">&quot;file2.txt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Ensure the bucket exists</span></span><br><span class="line">found = minio_client.bucket_exists(bucket_name)</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> found:</span><br><span class="line">    minio_client.make_bucket(bucket_name)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Bucket &#x27;<span class="subst">&#123;bucket_name&#125;</span>&#x27; already exists&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Upload the file</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    minio_client.fput_object(</span><br><span class="line">        bucket_name, object_name, file_path</span><br><span class="line">    )</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;&#x27;<span class="subst">&#123;file_path&#125;</span>&#x27; is successfully uploaded as &#x27;<span class="subst">&#123;object_name&#125;</span>&#x27; to bucket &#x27;<span class="subst">&#123;bucket_name&#125;</span>&#x27;.&quot;</span>)</span><br><span class="line"><span class="keyword">except</span> S3Error <span class="keyword">as</span> err:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Error occurred: <span class="subst">&#123;err&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>You can test by generating a new <code>file2.txt</code> and executing the code.</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;This is file2.txt &gt; file2.txt&quot;</span></span><br><span class="line">python minio_cp.py</span><br></pre></td></tr></table></figure>
+
+<p><strong>TODO</strong>: This example is merely explanatory and doesn’t use secure connection. It is not advisable to run it in production.</p>
+<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><p>one example with DuckDB creating a table pointing for that storage where <code>sample_data.csv</code> file exists</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> SECRET secret1 (</span><br><span class="line">    TYPE S3,</span><br><span class="line">    KEY_ID <span class="string">&#x27;ACCESS_KEY&#x27;</span>,</span><br><span class="line">    SECRET <span class="string">&#x27;SECRET_KEY&#x27;</span>,</span><br><span class="line">    REGION <span class="string">&#x27;us-east-1&#x27;</span>,</span><br><span class="line">    ENDPOINT <span class="string">&#x27;localhost:9000&#x27;</span>,</span><br><span class="line">    URL_STYLE <span class="string">&#x27;path&#x27;</span>, </span><br><span class="line">    USE_SSL <span class="literal">false</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> <span class="string">&#x27;s3://state-terraform-s3/sample_data.csv&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>NOTE:</strong> Replace the ACCESS_KEY and SECRET from the ones provided in the console.</p>
+<h2 id="Replication"><a href="#Replication" class="headerlink" title="Replication"></a>Replication</h2><p>MinIO supports server-side and client-side replication of objects between source and destination buckets.</p>
+<h3 id="Server-Side-Bucket-Replication"><a href="#Server-Side-Bucket-Replication" class="headerlink" title="Server-Side Bucket Replication"></a>Server-Side Bucket Replication</h3><p>Configure per-bucket rules for automatically synchronizing objects between MinIO deployments. The deployment where you configure the bucket replication rule acts as the “source” while the configured remote deployment acts as the “target”</p>
+<h3 id="Client-side-Bucket-Replication"><a href="#Client-side-Bucket-Replication" class="headerlink" title="Client-side Bucket Replication"></a>Client-side Bucket Replication</h3><p>Use the command process to synchronize objects between buckets within the same S3-compatible cluster or between two independent S3-compatible clusters</p>
+<h3 id="Replication-of-Delete-Operations"><a href="#Replication-of-Delete-Operations" class="headerlink" title="Replication of Delete Operations"></a>Replication of Delete Operations</h3><p>MinIO supports replicating delete operations, where MinIO synchronizes deleting specific object versions and new delete markers. Delete operation replication uses the same replication process as all other replication operations.</p>
+<h3 id="Synchronous-vs-Asynchronous-Replication"><a href="#Synchronous-vs-Asynchronous-Replication" class="headerlink" title="Synchronous vs Asynchronous Replication"></a>Synchronous vs Asynchronous Replication</h3><p>MinIO supports specifying either asynchronous (default) or synchronous replication for a given remote target.</p>
+<h2 id="Replication-Process"><a href="#Replication-Process" class="headerlink" title="Replication Process"></a>Replication Process</h2><p>MinIO uses a replication queuing system with multiple concurrent replication workers operating on that queue. MinIO continuously works to replicate and remove objects from the queue while scanning for new unreplicated objects to add to the queue.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>MinIO grew to become the most broadly deployed object store on the planet by focusing on what mattered the most to developers, architects and applications. The service can be configured in several ways depending on the scalability, replication and level of service that you want for your solution design. Also brings the advantage of developers being able to deploy it locally and later extend for a more robust solution or even pay for that service if you don’t want to deal with this type of operation.</p>
+<p>The integration with several solutions and support for several APIs show strong potential for being a Big Player on the Lakehouse Architecture. Recommend the reading of the article <a target="_blank" rel="noopener" href="https://blog.min.io/duckdb-and-minio-for-a-modern-data-stack/">DuckDB and MinIO for a Modern Data Stack</a> if you like to know more.</p>
+<p>MinIO offers a variety of replication options, making it an excellent choice for multi-cloud solutions. These replication capabilities ensure high availability, data durability, and efficient disaster recovery across different cloud environments.</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://min.io/">https://min.io/</a></li>
+<li><a target="_blank" rel="noopener" href="https://min.io/docs/minio/container/index.html">https://min.io/docs/minio/container/index.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/minio/minio">https://github.com/minio/minio</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.min.io/duckdb-and-minio-for-a-modern-data-stack/">https://blog.min.io/duckdb-and-minio-for-a-modern-data-stack/</a></li>
+<li><a target="_blank" rel="noopener" href="https://registry.terraform.io/providers/aminueza/minio/latest/docs">https://registry.terraform.io/providers/aminueza/minio/latest/docs</a></li>
+</ul>
+
+  </div>
+  
+    
+      <a id="older" class="blog-nav" href="/2024/06/09/huggingduckdb/">OLDER&nbsp;&gt;</a>
+      
+        
+          <a id="newer" class="blog-nav" href="/2024/06/10/teachingtogether/">&lt;&nbsp;NEWER</a>
+          
+            
+</div>
+          <div class="footer">
+  
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/rramos">Copyright © Rui Ramos 2024</a>
+        
+    </div>
+  
+</div>
+
+        </div> <!-- main -->
+          <div class="back-to-top hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+          
+  <div class="search-icon" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-box">
+        <div class="search-title">
+          <!-- <span class="search-icon-input">
+            <a href="javascript: void(0)">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </span> -->
+          
+            <input type="text" class="search-input" id="search-input" placeholder="Search ...">
+          
+          <span class="search-close-icon" id="search-close-icon">
+            <a href="javascript: void(0)">
+              <i class="iconfont icon-close"></i>
+            </a>
+          </span>
+        </div>
+        <div class="search-result" id="search-result"></div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    // inputArea.onclick = function() {
+    //   getSearchFile()
+    //   this.onclick = null
+    // }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        inputArea.focus()
+        getSearchFile()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'><span></ul>";
+      // $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'><h2>" + orig_data_title + "</h2></a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<h3 class=\"search-result-abstract\">" + match_content + "...</h3>"
+                }
+                str += "<hr></li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/leedom92/hexo-theme-leedom#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+          
+  
+  <div class="consent-icon" id="consent-icon">
+    <a class="button is-success" onclick="return klaro.show();">
+      <i class="iconfont icon-consent"></i>
+    </a>
+  </div>
+  
+
+
+          
+          
+  <!-- hexo plugin: hexo-webpushr-notification -->
+
+  <script type="text/plain" data-type="text/javascript" async data-name="webpushr">
+    let manager = klaro.getManager();
+    if (manager.getConsent('webpushr')){
+      (
+        function (w, d, s, id) {
+          if (typeof (w.webpushr) !== 'undefined') return;
+          w.webpushr = w.webpushr || function () {
+            (w.webpushr.q = w.webpushr.q || []).push(arguments)
+          }; var js, fjs = d.getElementsByTagName(s)[0]; js = d.createElement(s); js.id = id; js.async = 1; js.data-src = "https://cdn.webpushr.com/app.min.js";
+          fjs.parentNode.appendChild(js);
+        }( window, document, 'script', 'webpushr-jssdk' )
+      );
+      webpushr('setup', { 'key': 'BGON3evm0aCcG-ZpkVez8Q8GLrn4527R6YkL4nsU861337AfhJoOvnVU7eJ6ixjspxhic7ecVXvnhGgJz0cfDrE' });
+    }
+  </script>
+  <!-- end webpushr tracking code -->
+  
+
+      </div> <!-- app -->
+    <script>(function (w, d, s, id) {
+        if (typeof (w.webpushr) !== 'undefined') return;
+        w.webpushr = w.webpushr || function () { (w.webpushr.q = w.webpushr.q || []).push(arguments) };
+        var js, fjs = d.getElementsByTagName(s)[0];
+        js = d.createElement(s);
+        js.id = id;
+        js.async = 1;
+        js.src = "https://cdn.webpushr.com/app.min.js";
+        fjs.parentNode.appendChild(js);
+        }(window, document, 'script', 'webpushr-jssdk'));
+
+        webpushr('setup', {
+        'key': 'BGON3evm0aCcG-ZpkVez8Q8GLrn4527R6YkL4nsU861337AfhJoOvnVU7eJ6ixjspxhic7ecVXvnhGgJz0cfDrE',
+        'sw': undefined
+        });
+        </script></body>
+
+</html>

@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="Rui Ramos" />
+  <meta name="description" content="A simple Blog related with Infrastructure Architecture and Data" />
+  
+  
+
+  <link rel="canonical" href="http://rramos.github.io/2024/06/07/aisoftenggoogle/"/>
+
+  <title>
+    
+      AI in Software Engineering 
+      
+      
+    
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto:400,400italic,600|Roboto+Mono" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+
+
+  
+
+  
+    
+<link rel="stylesheet" href="/css/post.css">
+
+  
+
+  <!-- Include klaro css for consent banner -->
+  
+     
+<link rel="stylesheet" href="/css/klaro.css">
+
+  
+
+  <!-- jquery3.3.1 -->
+  
+<script src="/js/jquery.min.js"></script>
+
+
+  <!-- fancybox -->
+  
+<script src="/js/jquery.fancybox.min,js.js"></script>
+
+
+  <!-- fancybox -->
+  
+<script src="/js/fancybox.js"></script>
+
+
+  <!-- Googlecrux ID -->
+
+    <!-- Google site verification -->
+    <meta name="google-site-verification" content='Em0OaYgLD4MC3tIHbwqDxAklIn7JzrtipNZd7z1kqFI'' />
+    
+  
+    <!-- Google Tag Manager -->
+    <script data-type="text/javascript" type="text/plain" data-name="google-tag-manager">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-MXRC4DK');</script>
+      <!-- End Google Tag Manager -->
+    
+
+  
+      
+  
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
+</head>
+
+    <body>
+      <!-- Klaro Consent Management -->
+      
+          
+<script src="/js/klaro-config.js"></script>
+
+          
+<script src="/js/klaro-no-css.js"></script>
+
+      
+
+      
+     <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MXRC4DK"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+    
+
+
+      
+
+<!-- Start -Microsoft Clarity -->
+<script type="text/plain" data-type="text/javascript" async data-name="microsoft-clarity">
+  let manager = klaro.getManager();
+  if (manager.getConsent('microsoft-clarity')){
+
+    if (!window.location.host.includes('localhost')) {
+      (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;
+        t.data-src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "ms0b2q35b6");
+    }
+  }
+</script>
+<!-- End - Microsoft Clarity -->
+    
+
+      <div id="app">
+        <div class="header">
+  <a href="/">rramos.github.io</a>
+</div>
+
+
+        <p class="links">
+  
+    <a title="archives" target="" href="/archives/">
+      <i class="iconfont icon-bookmark"></i>
+    </a>
+  
+    <a title="github" target="_blank" href="https://github.com/rramos">
+      <i class="iconfont icon-github"></i>
+    </a>
+  
+    <a title="email" target="" href="mailto:rui.ms.ramos@gmail.com">
+      <i class="iconfont icon-envelope"></i>
+    </a>
+  
+    <a title="twitter" target="" href="https://x.com/RuiMSRamos">
+      <i class="iconfont icon-twitter"></i>
+    </a>
+  
+    <a title="about" target="" href="/about">
+      <i class="iconfont icon-qq"></i>
+    </a>
+  
+    <a title="discord" target="" href="https://discord.gg/YfCmqpG53p">
+      <i class="iconfont icon-wechat"></i>
+    </a>
+  
+    <a title="rss" target="_blank" href="/atom.xml">
+      <i class="iconfont icon-rss"></i>
+    </a>
+  
+</p>
+
+        <div class="main">
+          <!-- Article details page, showing the specific content of the article, URL format: https://yoursite/article title/-->
+<!-- At the same time, it is the hosting page of "tag", "friend", "categories", and "about" page. The specific display depends on page.type -->
+ 
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<div class="post">
+  <h3 class="date">
+    07 Jun, 2024
+  </h3>
+  <h1>
+    AI in Software Engineering
+  </h1>
+  <div class="content markdown-body">
+    <p>Humans are one of the most expensive parts of software creation. While companies can always add more equipment, adding more people comes with additional recruitment, training, and communication overhead. At Google, we have more than 30,000 developers, so if we can make even small improvements to individual developers’ productivity, we can attain large overall benefits for our products and their users.</p>
+<h2 id="Metrics-Gathering"><a href="#Metrics-Gathering" class="headerlink" title="Metrics Gathering"></a>Metrics Gathering</h2><p>In this <a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9159122">study</a> Google with the approval of its employees gathered usage metrics of the several events associated with software development which they than can aggregate in sessions.</p>
+<p>Once events are organized into sessions, those sessions can be used to derive other metrics about developers’ behaviors.</p>
+<ol>
+<li><p><strong>Coding time</strong>: representing the time spent writing or maintaining code.</p>
+</li>
+<li><p><strong>Reviewing time</strong>: representing the time spent reviewing code.</p>
+</li>
+<li><p><strong>Shepherding time</strong>: representing the time spent addressing code review feedback.</p>
+</li>
+<li><p><strong>Investigation time</strong>: representing the time spent reading documentation.</p>
+</li>
+<li><p><strong>Development time</strong>: representing the time spent performing a development activity, of any type.</p>
+</li>
+<li><p><strong>Email time</strong>: the time spent interacting with email.</p>
+</li>
+<li><p><strong>Meeting time</strong>: the time spent in meetings.</p>
+</li>
+</ol>
+<p>The tool allowed the team to investigate and obtain interesting findings:</p>
+<ol>
+<li>They found that they could predict negative interpersonal interactions during code review by using the 90th percentile of both reviewing and shepherding time.</li>
+<li>They found that a new version control system got their changes reviewed more quickly because the new tooling made it easier to create many small changes.</li>
+</ol>
+<p>Please check the full <a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9159122">article</a> as it has very insightfull information.</p>
+<h2 id="Code-Review"><a href="#Code-Review" class="headerlink" title="Code Review"></a>Code Review</h2><p>The main goal of code review is to <strong>improve the readability and maintainability of the code base</strong>, and this is supported fundamentally by the <strong>review process</strong>. However, having a well-defined code review process is only one part of the code review story. Tooling that supports that process also plays an important part in its success.</p>
+<h3 id="Code-Review-Principals"><a href="#Code-Review-Principals" class="headerlink" title="Code Review Principals"></a>Code Review Principals</h3><p>This are the principals that Google follow for Code Reviews you can read the full article <a target="_blank" rel="noopener" href="https://abseil.io/resources/swe-book/html/ch19.html">here</a></p>
+<h4 id="Simplicity"><a href="#Simplicity" class="headerlink" title="Simplicity"></a>Simplicity</h4><p><em>Critique’s user interface (UI) is based around making it easy to do code review without a lot of unnecessary choices, and with a smooth interface. The UI loads fast, navigation is easy and hotkey supported, and there are clear visual markers for the overall state of whether a change has been reviewed.</em></p>
+<h4 id="Foundation-of-trust"><a href="#Foundation-of-trust" class="headerlink" title="Foundation of trust"></a>Foundation of trust</h4><p><em>Code review is not for slowing others down; instead, it is for empowering others. Trusting colleagues as much as possible makes it work.  This might mean, for example, trusting authors to make changes and not requiring an additional review phase to double check that minor comments are actually addressed. Trust also plays out by making changes openly accessible (for viewing and reviewing) across Google.</em></p>
+<h4 id="Generic-communication"><a href="#Generic-communication" class="headerlink" title="Generic communication"></a>Generic communication</h4><p><em>Communication problems are rarely solved through tooling. Critique prioritizes generic ways for users to comment on the code changes, instead of complicated protocols. Critique encourages users to spell out what they want in their comments or even suggests some edits instead of making the data model and process more complex. Communication can go wrong even with the best code review tool because the users are humans.</em></p>
+<h4 id="Workflow-integration"><a href="#Workflow-integration" class="headerlink" title="Workflow integration"></a>Workflow integration</h4><p><em>Critique has a number of integration points with other core software development tools. Developers can easily navigate to view the code under review in our code search and browsing tool, edit code in our web-based code editing tool, or view test results associated with a code change.</em></p>
+<p>The <a target="_blank" rel="noopener" href="https://abseil.io/resources/swe-book/html/ch19.html">article</a> also has one example flow for the code review process with very detailed information of the actions conducted.</p>
+<p>The article concludes with the implicit trade-offs when using a code review tool.</p>
+<p>Now if you associate the previous work where you get those metrics and using this <strong>Code Review</strong> flow as one of the example activities, there is great value here on having a tool agentv leveraging LLMs to support developers.</p>
+<p>This takes me to the next article</p>
+<h2 id="DIDACT"><a href="#DIDACT" class="headerlink" title="DIDACT"></a>DIDACT</h2><p>Today we describe DIDACT (​​Dynamic Integrated Developer ACTivity), which is a methodology for training large machine learning (ML) models for software development. The novelty of DIDACT is that it uses the process of software development as the source of training data for the model, rather than just the polished end state of that process, the finished code.</p>
+<p>The following <a target="_blank" rel="noopener" href="https://research.google/blog/large-sequence-models-for-software-development-activities/">article</a> provides more insigthfull information</p>
+<p>DIDACT turns Google’s software development process into training demonstrations for ML developer assistants, and uses those demonstrations to train models that construct code in a step-by-step fashion, interactively with tools and code reviewers. These innovations are already powering tools enjoyed by Google developers every day. The DIDACT approach complements the great strides taken by large language models at Google and elsewhere, towards technologies that ease toil, improve productivity, and enhance the quality of work of software engineers.</p>
+<h2 id="Progress-so-far"><a href="#Progress-so-far" class="headerlink" title="Progress so far"></a>Progress so far</h2><p>Google has been making amazing advancements in this field as shown in previous articles, which lead to the latest <a target="_blank" rel="noopener" href="https://research.google/blog/ai-in-software-engineering-at-google-progress-and-the-path-ahead/">one</a> focusing on Progress and path ahead and there are some numbers here which I think are worth checking.</p>
+<p>It is normal practise that developers use code-completion functionalities in IDEs, so increasing that functionality with AI assisted completion like Copilot or other options would be a natural move. But Google went further and incorporated AI like we seen previously with DIDACT for activities like: code review, code search, bug management and other outer loop surfaces and they captured those metrics.</p>
+<ul>
+<li>They seen continued fast growth of code completion similar to other enterprise contexts, with an <strong>acceptance rate by software engineers of 37%</strong> assisting in the completion of <strong>50% of code characters</strong>.</li>
+</ul>
+<p>In other words, the same amount of characters in the code are now completed with AI-based assistance as are manually typed by developers. While developers still need to spend time reviewing suggestions, they have more time to focus on code design.</p>
+<ul>
+<li><p>Our next significant deployments were resolving code review comments (<strong>&gt;8% of which are now addressed with AI-based assistance</strong>) and automatically adapting pasted code to the surrounding context (now responsible for ~2% of code in the IDE)</p>
+</li>
+<li><p>Further deployments include <strong>instructing the IDE to perform code edits with natural language</strong> and <strong>predicting fixes</strong> to build failures.</p>
+</li>
+</ul>
+<p>Google is continue to invest in this field and incorporate latest <a target="_blank" rel="noopener" href="https://blog.google/technology/ai/google-gemini-ai/">Gemini</a> models which means this process would be even better.</p>
+<h2 id="Industry-Trends"><a href="#Industry-Trends" class="headerlink" title="Industry Trends"></a>Industry Trends</h2><p>Google highlights two trends they see in the industry:</p>
+<ol>
+<li><p><strong>Human-computer interaction has moved towards natural language</strong> as a common modality, and we are seeing a shift towards using language as the interface to software engineering tasks as well as the gateway to informational needs for software developers, all integrated in IDEs.</p>
+</li>
+<li><p><strong>ML-based automation of larger-scale tasks</strong> - from diagnosis of an issue to landing a fix — has begun to show initial evidence of feasibility. These possibilities are driven by innovations in agents and tool use, which permit the building of systems that use one or more LLMs as a component to accomplish a larger task.</p>
+</li>
+</ol>
+<p>To expand on the above successes toward these next generation capabilities, the community of practitioners and researchers working in this topic would benefit from common benchmarks to help move the field towards practical engineering tasks. So far, benchmarks have been focused mostly around code generation.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>As this article started <em>Humans are one of the most expensive parts of software creation</em> so it is only natural that companies look for options to lower that barrier and have more profit.<br>There are several activities associated with software development which can be empowered with the usage of tools, we see that happening for years now (eg. IDE auto-completion). If your software development cycle can be broken down to leverage this type of AI tools like DIDACT, I would suggest preparing the road for it.<br>The other important outcome I take from this several articles from Google is the that <em>with AI-based suggestions, the code author increasingly becomes a reviewer</em>. It is important to find a balance between the cost of review and added value for the business as ML Products are expensive, not only the training but also the service part.</p>
+<p>I would definitely like to work out on implementing something like this as my own personal agent to complement my skills integrated in my IDE and becoming more of an orchestrator of agents than a specialist on a specific field.</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://research.google/blog/large-sequence-models-for-software-development-activities">https://research.google/blog/large-sequence-models-for-software-development-activities</a></li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2205.06537">https://arxiv.org/abs/2205.06537</a></li>
+<li><a target="_blank" rel="noopener" href="https://research.google/blog/ai-in-software-engineering-at-google-progress-and-the-path-ahead">https://research.google/blog/ai-in-software-engineering-at-google-progress-and-the-path-ahead</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.google/technology/ai/google-gemini-ai/">https://blog.google/technology/ai/google-gemini-ai/</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.linkedin.com/pulse/navigating-career-paths-generalist-vs-specialist-t-shaped-masriah-ngmsf">https://www.linkedin.com/pulse/navigating-career-paths-generalist-vs-specialist-t-shaped-masriah-ngmsf</a></li>
+</ul>
+
+  </div>
+  
+    
+      <a id="older" class="blog-nav" href="/2024/06/07/git-cliff/">OLDER&nbsp;&gt;</a>
+      
+        
+          <a id="newer" class="blog-nav" href="/2024/06/08/datafusion/">&lt;&nbsp;NEWER</a>
+          
+            
+</div>
+          <div class="footer">
+  
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/rramos">Copyright © Rui Ramos 2024</a>
+        
+    </div>
+  
+</div>
+
+        </div> <!-- main -->
+          <div class="back-to-top hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+          
+  <div class="search-icon" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-box">
+        <div class="search-title">
+          <!-- <span class="search-icon-input">
+            <a href="javascript: void(0)">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </span> -->
+          
+            <input type="text" class="search-input" id="search-input" placeholder="Search ...">
+          
+          <span class="search-close-icon" id="search-close-icon">
+            <a href="javascript: void(0)">
+              <i class="iconfont icon-close"></i>
+            </a>
+          </span>
+        </div>
+        <div class="search-result" id="search-result"></div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    // inputArea.onclick = function() {
+    //   getSearchFile()
+    //   this.onclick = null
+    // }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        inputArea.focus()
+        getSearchFile()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'><span></ul>";
+      // $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'><h2>" + orig_data_title + "</h2></a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<h3 class=\"search-result-abstract\">" + match_content + "...</h3>"
+                }
+                str += "<hr></li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/leedom92/hexo-theme-leedom#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+          
+  
+  <div class="consent-icon" id="consent-icon">
+    <a class="button is-success" onclick="return klaro.show();">
+      <i class="iconfont icon-consent"></i>
+    </a>
+  </div>
+  
+
+
+          
+          
+  <!-- hexo plugin: hexo-webpushr-notification -->
+
+  <script type="text/plain" data-type="text/javascript" async data-name="webpushr">
+    let manager = klaro.getManager();
+    if (manager.getConsent('webpushr')){
+      (
+        function (w, d, s, id) {
+          if (typeof (w.webpushr) !== 'undefined') return;
+          w.webpushr = w.webpushr || function () {
+            (w.webpushr.q = w.webpushr.q || []).push(arguments)
+          }; var js, fjs = d.getElementsByTagName(s)[0]; js = d.createElement(s); js.id = id; js.async = 1; js.data-src = "https://cdn.webpushr.com/app.min.js";
+          fjs.parentNode.appendChild(js);
+        }( window, document, 'script', 'webpushr-jssdk' )
+      );
+      webpushr('setup', { 'key': 'BGON3evm0aCcG-ZpkVez8Q8GLrn4527R6YkL4nsU861337AfhJoOvnVU7eJ6ixjspxhic7ecVXvnhGgJz0cfDrE' });
+    }
+  </script>
+  <!-- end webpushr tracking code -->
+  
+
+      </div> <!-- app -->
+    <script>(function (w, d, s, id) {
+        if (typeof (w.webpushr) !== 'undefined') return;
+        w.webpushr = w.webpushr || function () { (w.webpushr.q = w.webpushr.q || []).push(arguments) };
+        var js, fjs = d.getElementsByTagName(s)[0];
+        js = d.createElement(s);
+        js.id = id;
+        js.async = 1;
+        js.src = "https://cdn.webpushr.com/app.min.js";
+        fjs.parentNode.appendChild(js);
+        }(window, document, 'script', 'webpushr-jssdk'));
+
+        webpushr('setup', {
+        'key': 'BGON3evm0aCcG-ZpkVez8Q8GLrn4527R6YkL4nsU861337AfhJoOvnVU7eJ6ixjspxhic7ecVXvnhGgJz0cfDrE',
+        'sw': undefined
+        });
+        </script></body>
+
+</html>

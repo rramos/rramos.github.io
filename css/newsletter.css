@@ -1,0 +1,37 @@
+.news {
+    border-radius: 4px;
+    border-radius: var(--border-radius, 4px);
+    position: fixed;
+    position: var(--notice-position, fixed);
+    right: 50px;
+    right: var(--notice-right, 40px);
+    left: auto;
+    left: var(--notice-left, auto);
+    bottom: 50px;
+    bottom: var(--notice-bottom, 50px);
+    top: auto;
+    max-width: 80px;
+    max-width: var(--notice-max-width, 500px);
+    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2), 5px 5px 10px 0 rgba(0, 0, 0, 0.19);
+
+    label {
+        color: white;
+        padding: 0 10px 0 0;
+    }
+
+    input[type="email"] {
+        padding: 8px;
+        border-radius: 4px;
+        border: none;
+        outline: none;
+    }
+
+    input[type="submit"] {
+        background: white;
+        border: none;
+        font-size: 1em;
+        padding: 8px;
+        border-radius: 4px;
+        margin-left: 10px;
+    }
+}

@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="Rui Ramos" />
+  <meta name="description" content="A simple Blog related with Infrastructure Architecture and Data" />
+  
+  
+
+  <link rel="canonical" href="http://rramos.github.io/2023/07/25/chatgpt-prompts/"/>
+
+  <title>
+    
+      Chat-GPT Data Science Prompts 
+      
+      
+    
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto:400,400italic,600|Roboto+Mono" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+
+
+  
+
+  
+    
+<link rel="stylesheet" href="/css/post.css">
+
+  
+
+  <!-- Include klaro css for consent banner -->
+  
+     
+<link rel="stylesheet" href="/css/klaro.css">
+
+  
+
+  <!-- jquery3.3.1 -->
+  
+<script src="/js/jquery.min.js"></script>
+
+
+  <!-- fancybox -->
+  
+<script src="/js/jquery.fancybox.min,js.js"></script>
+
+
+  <!-- fancybox -->
+  
+<script src="/js/fancybox.js"></script>
+
+
+  <!-- Googlecrux ID -->
+
+    <!-- Google site verification -->
+    <meta name="google-site-verification" content='Em0OaYgLD4MC3tIHbwqDxAklIn7JzrtipNZd7z1kqFI'' />
+    
+  
+    <!-- Google Tag Manager -->
+    <script data-type="text/javascript" type="text/plain" data-name="google-tag-manager">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-MXRC4DK');</script>
+      <!-- End Google Tag Manager -->
+    
+
+  
+      
+  
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
+</head>
+
+    <body>
+      <!-- Klaro Consent Management -->
+      
+          
+<script src="/js/klaro-config.js"></script>
+
+          
+<script src="/js/klaro-no-css.js"></script>
+
+      
+
+      
+     <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MXRC4DK"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+    
+
+
+      
+
+<!-- Start -Microsoft Clarity -->
+<script type="text/plain" data-type="text/javascript" async data-name="microsoft-clarity">
+  let manager = klaro.getManager();
+  if (manager.getConsent('microsoft-clarity')){
+
+    if (!window.location.host.includes('localhost')) {
+      (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;
+        t.data-src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "ms0b2q35b6");
+    }
+  }
+</script>
+<!-- End - Microsoft Clarity -->
+    
+
+      <div id="app">
+        <div class="header">
+  <a href="/">rramos.github.io</a>
+</div>
+
+
+        <p class="links">
+  
+    <a title="archives" target="" href="/archives/">
+      <i class="iconfont icon-bookmark"></i>
+    </a>
+  
+    <a title="github" target="_blank" href="https://github.com/rramos">
+      <i class="iconfont icon-github"></i>
+    </a>
+  
+    <a title="email" target="" href="mailto:rui.ms.ramos@gmail.com">
+      <i class="iconfont icon-envelope"></i>
+    </a>
+  
+    <a title="twitter" target="" href="https://x.com/RuiMSRamos">
+      <i class="iconfont icon-twitter"></i>
+    </a>
+  
+    <a title="about" target="" href="/about">
+      <i class="iconfont icon-qq"></i>
+    </a>
+  
+    <a title="discord" target="" href="https://discord.gg/YfCmqpG53p">
+      <i class="iconfont icon-wechat"></i>
+    </a>
+  
+    <a title="rss" target="_blank" href="/atom.xml">
+      <i class="iconfont icon-rss"></i>
+    </a>
+  
+</p>
+
+        <div class="main">
+          <!-- Article details page, showing the specific content of the article, URL format: https://yoursite/article title/-->
+<!-- At the same time, it is the hosting page of "tag", "friend", "categories", and "about" page. The specific display depends on page.type -->
+ 
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<div class="post">
+  <h3 class="date">
+    25 Jul, 2023
+  </h3>
+  <h1>
+    Chat-GPT Data Science Prompts
+  </h1>
+  <div class="content markdown-body">
+    <p>This article is a resume of Travis Tang Medium article reference on the Reference section. According to Travis Chat GPT performs well in explaining things and providing boilerplate code, however falters when comes to debugging or creating complex snippets.</p>
+<p>I totally agree with Travis mention</p>
+<blockquote>
+<p>Will ChatGPT replace data scientists? No, I don’t think so. At least not yet. However someone using ChatGPT might.</p>
+<p>I hope these prompts are helpful for you! It certainly helped me.</p>
+</blockquote>
+<p>Check him in <a target="_blank" rel="noopener" href="https://medium.com/@travis-tang">https://medium.com/@travis-tang</a></p>
+<h2 id="Write-Python"><a href="#Write-Python" class="headerlink" title="Write Python"></a>Write Python</h2><h3 id="Train-Classification-Model"><a href="#Train-Classification-Model" class="headerlink" title="Train Classification Model"></a>Train Classification Model</h3><blockquote>
+<p>Prompt: I want you to act as a data scientist and code for me. I have a dataset of [describe dataset]. Please build a machine learning model that predict [target variable].</p>
+</blockquote>
+<h3 id="Automatic-Machine-Learning"><a href="#Automatic-Machine-Learning" class="headerlink" title="Automatic Machine Learning"></a>Automatic Machine Learning</h3><blockquote>
+<p>Prompt: I want you to act as an automatic machine learning (AutoML) bot using TPOT for me. I am working on a model that predicts […]. Please write python code to find the best classification model with the highest AUC score on the test set.</p>
+</blockquote>
+<h3 id="Tune-Hyperparameter"><a href="#Tune-Hyperparameter" class="headerlink" title="Tune Hyperparameter"></a>Tune Hyperparameter</h3><blockquote>
+<p>Prompt: I want you to act as a data scientist and code for me. I have trained a [model name]. Please write the code to tune the hyper parameters.</p>
+</blockquote>
+<h3 id="Explore-Data"><a href="#Explore-Data" class="headerlink" title="Explore Data"></a>Explore Data</h3><blockquote>
+<p>Prompt: I want you to act as a data scientist and code for me. I have a dataset of [describe dataset]. Please write code for data visualisation and exploration.</p>
+</blockquote>
+<h3 id="Generate-Data"><a href="#Generate-Data" class="headerlink" title="Generate Data"></a>Generate Data</h3><blockquote>
+<p>Prompt: I want you to act as a fake data generator. I need a dataset that has x rows and y columns: [insert column names]</p>
+</blockquote>
+<h3 id="Get-Feature-Importance"><a href="#Get-Feature-Importance" class="headerlink" title="Get Feature Importance"></a>Get Feature Importance</h3><blockquote>
+<p>Prompt: I want you to act as a data scientist and explain the model’s results. I have trained a decision tree model and I would like to find the most important features. Please write the code.</p>
+</blockquote>
+<h3 id="Visualize-Data-with-Matplotlib"><a href="#Visualize-Data-with-Matplotlib" class="headerlink" title="Visualize Data with Matplotlib"></a>Visualize Data with Matplotlib</h3><blockquote>
+<p>Prompt: I want you to act as a coder in python. I have a dataset [name] with columns [name]. [Describe graph requirements]</p>
+</blockquote>
+<h3 id="Visualize-Image-Grid-Matplotlib"><a href="#Visualize-Image-Grid-Matplotlib" class="headerlink" title="Visualize Image Grid Matplotlib"></a>Visualize Image Grid Matplotlib</h3><blockquote>
+<p>Prompt: I want you to act as a coder. I have a folder of images. [Describe how files are organised in directory] [Describe how you want images to be printed]</p>
+</blockquote>
+<h3 id="Explain-Model-with-Lime"><a href="#Explain-Model-with-Lime" class="headerlink" title="Explain Model with Lime"></a>Explain Model with Lime</h3><blockquote>
+<p>Prompt: I want you to act as a data scientist and explain the model’s results. I have trained a [library name] model and I would like to explain the output using LIME. Please write the code.</p>
+</blockquote>
+<h3 id="Explain-Model-with-Shap"><a href="#Explain-Model-with-Shap" class="headerlink" title="Explain Model with Shap"></a>Explain Model with Shap</h3><blockquote>
+<p>Prompt: I want you to act as a data scientist and explain the model’s results. I have trained a scikit-learn XGBoost model and I would like to explain the output using a series of plots with Shap. Please write the code.</p>
+</blockquote>
+<h3 id="Write-Multithreaded-Functions"><a href="#Write-Multithreaded-Functions" class="headerlink" title="Write Multithreaded Functions"></a>Write Multithreaded Functions</h3><blockquote>
+<p>Prompt: I want you to act as a coder. Can you help me parallelize this code across threads in python?</p>
+</blockquote>
+<h3 id="Compare-Function-Speeds"><a href="#Compare-Function-Speeds" class="headerlink" title="Compare Function Speeds"></a>Compare Function Speeds</h3><blockquote>
+<p>Prompt: I want you to act as a software developer. I would like to compare the efficiency of two algorithms that performs the same thing in python. Please write code that helps me run an experiment that can be repeated for 5 times. Please output the runtime and other summary statistics of the experiment. [Insert functions]</p>
+</blockquote>
+<h3 id="Create-NumPy-Array"><a href="#Create-NumPy-Array" class="headerlink" title="Create NumPy Array"></a>Create NumPy Array</h3><blockquote>
+<p>Prompt: I want you to act as a data scientist. I need to create a numpy array. This numpy array should have the shape of (x,y,z). Please initialize the numpy array with random values.</p>
+</blockquote>
+<h2 id="Test-Code"><a href="#Test-Code" class="headerlink" title="Test Code"></a>Test Code</h2><h3 id="Write-Unit-Test"><a href="#Write-Unit-Test" class="headerlink" title="Write Unit Test"></a>Write Unit Test</h3><blockquote>
+<p>Prompt: I want you to act as a software developer. Please write unit tests for the function [Insert function]. The test cases are: [Insert test cases]</p>
+</blockquote>
+<h3 id="Validate-Column"><a href="#Validate-Column" class="headerlink" title="Validate Column"></a>Validate Column</h3><blockquote>
+<p>Prompt: I want you to act as a data scientist. Please write code to test if that my pandas Dataframe [insert requirements here]</p>
+</blockquote>
+<h2 id="Explain-Code"><a href="#Explain-Code" class="headerlink" title="Explain Code"></a>Explain Code</h2><h3 id="Explain-Python"><a href="#Explain-Python" class="headerlink" title="Explain Python"></a>Explain Python</h3><blockquote>
+<p>Prompt: I want you to act as a code explainer. What is this code doing? [Insert code]</p>
+</blockquote>
+<h3 id="Explain-SQL"><a href="#Explain-SQL" class="headerlink" title="Explain SQL"></a>Explain SQL</h3><blockquote>
+<p>Prompt: I want you to act as a data science instructor. Can you please explain to me what this SQL code is doing? [Insert SQL code]</p>
+</blockquote>
+<h3 id="Explain-Google-Sheets-Formula"><a href="#Explain-Google-Sheets-Formula" class="headerlink" title="Explain Google Sheets Formula"></a>Explain Google Sheets Formula</h3><blockquote>
+<p>Prompt: I want you to act as a Google Sheets formula explainer. Explain the following Google Sheets command. [Insert formula]</p>
+</blockquote>
+<h2 id="Optimize-Code"><a href="#Optimize-Code" class="headerlink" title="Optimize Code"></a>Optimize Code</h2><blockquote>
+<p>Prompt: I want you to act as a software developer. Please help me improve the time complexity of the code below. [Insert code]</p>
+</blockquote>
+<h2 id="Improve-Code-Speed"><a href="#Improve-Code-Speed" class="headerlink" title="Improve Code Speed"></a>Improve Code Speed</h2><blockquote>
+<p>Prompt: I want you to act as a code optimizer. Can you point out what’s wrong with the following Pandas code and optimize it? [Insert code here]</p>
+</blockquote>
+<h3 id="Optimize-Pandas"><a href="#Optimize-Pandas" class="headerlink" title="Optimize Pandas"></a>Optimize Pandas</h3><blockquote>
+<p>Prompt: I want you to act as a code optimizer. Can you point out what’s wrong with the following Pandas code and optimize it? [Insert code here]</p>
+</blockquote>
+<h3 id="Optimize-Pandas-Again"><a href="#Optimize-Pandas-Again" class="headerlink" title="Optimize Pandas Again"></a>Optimize Pandas Again</h3><blockquote>
+<p>Prompt: I want you to act as a code optimizer. Can you point out what’s wrong with the following Pandas code and optimize it? [Insert code here]</p>
+</blockquote>
+<h3 id="Optimize-Python"><a href="#Optimize-Python" class="headerlink" title="Optimize Python"></a>Optimize Python</h3><blockquote>
+<p>Prompt: I want you to act as a code optimizer. The code is poorly written. How do I correct it? [Insert code here]</p>
+</blockquote>
+<h2 id="Optimize-SQL"><a href="#Optimize-SQL" class="headerlink" title="Optimize SQL"></a>Optimize SQL</h2><blockquote>
+<p>Prompt: I want you to act as an SQL code optimizer. The following code is slow. Can you help me speed it up? [Insert SQL]</p>
+</blockquote>
+<h2 id="Format-code"><a href="#Format-code" class="headerlink" title="Format code"></a>Format code</h2><h3 id="Simplify-Python"><a href="#Simplify-Python" class="headerlink" title="Simplify Python"></a>Simplify Python</h3><blockquote>
+<p>Prompt: I want you to act as a code simplifier. Can you simplify the following code?</p>
+</blockquote>
+<h3 id="Write-Documentation"><a href="#Write-Documentation" class="headerlink" title="Write Documentation"></a>Write Documentation</h3><blockquote>
+<p>Prompt: I want you to act as a software developer. Please provide documentation for func1 below. [Insert function]</p>
+</blockquote>
+<h3 id="Improve-Readability"><a href="#Improve-Readability" class="headerlink" title="Improve Readability"></a>Improve Readability</h3><blockquote>
+<p>Prompt: I want you to act as a code analyzer. Can you improve the following code for readability and maintainability? [Insert code]</p>
+</blockquote>
+<h3 id="Format-SQL"><a href="#Format-SQL" class="headerlink" title="Format SQL"></a>Format SQL</h3><blockquote>
+<p>Prompt: I want you to act as a SQL formatter. Please format the following SQL code. Please convert all reserved keywords to uppercase [Insert requirements]. [Insert Code]</p>
+</blockquote>
+<h2 id="Translate-Code"><a href="#Translate-Code" class="headerlink" title="Translate Code"></a>Translate Code</h2><h3 id="Translate-Between-DBMS"><a href="#Translate-Between-DBMS" class="headerlink" title="Translate Between DBMS"></a>Translate Between DBMS</h3><blockquote>
+<p>Prompt: I want you to act as a coder and write SQL code for MySQL. What is the equivalent of PostgreSQL’s DATE_TRUNC for MySQL?</p>
+</blockquote>
+<h3 id="Translate-Python-to-R"><a href="#Translate-Python-to-R" class="headerlink" title="Translate Python to R"></a>Translate Python to R</h3><blockquote>
+<p>Prompt: I want you to act as a code translator. Can you please convert the following code from python to R? [Insert code]</p>
+</blockquote>
+<h3 id="Translate-R-to-Python"><a href="#Translate-R-to-Python" class="headerlink" title="Translate R to Python"></a>Translate R to Python</h3><blockquote>
+<p>Prompt: I want you to act as a code translator. Can you please convert the following code from R to python? [Insert code]</p>
+</blockquote>
+<h2 id="Explain-concepts"><a href="#Explain-concepts" class="headerlink" title="Explain concepts"></a>Explain concepts</h2><h3 id="Explain-to-Five-Year-Old"><a href="#Explain-to-Five-Year-Old" class="headerlink" title="Explain to Five-Year-Old"></a>Explain to Five-Year-Old</h3><blockquote>
+<p>Prompt: I want you to act as a data science instructor. Explain [concept] to a five-year-old.</p>
+</blockquote>
+<h3 id="Explain-to-Undergraduate"><a href="#Explain-to-Undergraduate" class="headerlink" title="Explain to Undergraduate"></a>Explain to Undergraduate</h3><blockquote>
+<p>Prompt: I want you to act as a data science instructor. Explain [concept] to an undergraduate.</p>
+</blockquote>
+<h3 id="Explain-to-Professor"><a href="#Explain-to-Professor" class="headerlink" title="Explain to Professor"></a>Explain to Professor</h3><blockquote>
+<p>Prompt: I want you to act as a data science instructor. Explain [concept] to a professor.</p>
+</blockquote>
+<h3 id="Explain-to-Business-Stakeholder"><a href="#Explain-to-Business-Stakeholder" class="headerlink" title="Explain to Business Stakeholder"></a>Explain to Business Stakeholder</h3><blockquote>
+<p>Prompt: I want you to act as a data science instructor. Explain [concept] to a business stakeholder.</p>
+</blockquote>
+<h3 id="Explain-Like-Stackoverflow"><a href="#Explain-Like-Stackoverflow" class="headerlink" title="Explain Like Stackoverflow"></a>Explain Like Stackoverflow</h3><blockquote>
+<p>Prompt: I want you to act as an answerer on StackOverflow. You can provide code snippets, sample tables and outputs to support your answer. [Insert technical question]</p>
+</blockquote>
+<h2 id="Suggest-ideas"><a href="#Suggest-ideas" class="headerlink" title="Suggest ideas"></a>Suggest ideas</h2><h3 id="Suggest-Edge-Cases"><a href="#Suggest-Edge-Cases" class="headerlink" title="Suggest Edge Cases"></a>Suggest Edge Cases</h3><blockquote>
+<p>Prompt: I want you to act as a software developer. Please help me catch edge cases for this function [insert function]</p>
+</blockquote>
+<h3 id="Suggest-Dataset"><a href="#Suggest-Dataset" class="headerlink" title="Suggest Dataset"></a>Suggest Dataset</h3><blockquote>
+<p>Prompt: I want you to act as a data science career coach. I want to build a predictive model for […]. At the same time, I would like to showcase my knowledge in […]. Can you please suggest the five most relevant datasets for my use case?</p>
+</blockquote>
+<h3 id="Suggest-Portfolio-Ideas"><a href="#Suggest-Portfolio-Ideas" class="headerlink" title="Suggest Portfolio Ideas"></a>Suggest Portfolio Ideas</h3><blockquote>
+<p>Prompt: I want you to act as a data science coach. My background is in […] and I would like to [career goal]. I need to build a portfolio of data science projects that will help me land a role in […] as a […]. Can you suggest five specific portfolio projects that will showcase my expertise in […] and are of relevance to [company]?</p>
+</blockquote>
+<h3 id="Suggest-Resources"><a href="#Suggest-Resources" class="headerlink" title="Suggest Resources"></a>Suggest Resources</h3><blockquote>
+<p>Prompt: I want you to act as a data science coach. I would like to learn about [topic]. Please suggest 3 best specific resources. You can include [specify resource type]</p>
+</blockquote>
+<h3 id="Suggest-Time-Complexity"><a href="#Suggest-Time-Complexity" class="headerlink" title="Suggest Time Complexity"></a>Suggest Time Complexity</h3><blockquote>
+<p>Prompt: I want you to act as a software developer. Please compare the time complexity of the two algorithms below. [Insert two functions]</p>
+</blockquote>
+<h3 id="Suggest-Feature-Engineering"><a href="#Suggest-Feature-Engineering" class="headerlink" title="Suggest Feature Engineering"></a>Suggest Feature Engineering</h3><blockquote>
+<p>Prompt: I want you to act as a data scientist and perform feature engineering. I am working on a model that predicts [insert feature name]. There are columns: [Describe columns]. Can you suggest features that we can engineer for this machine learning problem?</p>
+</blockquote>
+<h3 id="Suggest-A-B-Testing-Steps"><a href="#Suggest-A-B-Testing-Steps" class="headerlink" title="Suggest A&#x2F;B Testing Steps"></a>Suggest A&#x2F;B Testing Steps</h3><blockquote>
+<p>Prompt: I want you to act as a statistician. [Describe context] Please design an A&#x2F;B test for this purpose. Please include the concrete steps on which statistical test I should run.</p>
+</blockquote>
+<h3 id="Career-Coaching"><a href="#Career-Coaching" class="headerlink" title="Career Coaching"></a>Career Coaching</h3><blockquote>
+<p>Prompt: I want you to act as a career advisor. I am looking for a role as a [role name]. My background is […]. How do I land the role and with what resources exactly in 6 months?</p>
+</blockquote>
+<h2 id="Troubleshoot-problem"><a href="#Troubleshoot-problem" class="headerlink" title="Troubleshoot problem"></a>Troubleshoot problem</h2><h3 id="Correct-ChatGPT-Code"><a href="#Correct-ChatGPT-Code" class="headerlink" title="Correct ChatGPT Code"></a>Correct ChatGPT Code</h3><blockquote>
+<p>Prompt: Your above code is wrong. [Point out what is wrong]. Can you try again?</p>
+</blockquote>
+<h3 id="Correct-Python-Code"><a href="#Correct-Python-Code" class="headerlink" title="Correct Python Code"></a>Correct Python Code</h3><blockquote>
+<p>Prompt: I want you to act as a software developer. This code is supposed to [expected function]. Please help me debug this python code that cannot be run. [Insert function]</p>
+</blockquote>
+<h3 id="Correct-SQL-Code"><a href="#Correct-SQL-Code" class="headerlink" title="Correct SQL Code"></a>Correct SQL Code</h3><blockquote>
+<p>Prompt: I want you to act as a SQL code corrector. This code does not run in [your DBMS, e.g. PostgreSQL]. Can you correct it for me? [SQL code here]</p>
+</blockquote>
+<h3 id="Troubleshoot-PowerBI-Model"><a href="#Troubleshoot-PowerBI-Model" class="headerlink" title="Troubleshoot PowerBI Model"></a>Troubleshoot PowerBI Model</h3><blockquote>
+<p>Prompt: I want you to act as a PowerBl modeler. Here is the details of my current project. [Insert details]. Do you see any problems with the table?</p>
+</blockquote>
+<h2 id="Write-SQL"><a href="#Write-SQL" class="headerlink" title="Write SQL"></a>Write SQL</h2><h3 id="Create-Running-Average"><a href="#Create-Running-Average" class="headerlink" title="Create Running Average"></a>Create Running Average</h3><blockquote>
+<p>Prompt: I want you to act as a data scientist and write SQL code for me. I have a table with two columns [Insert column names]. I would like to calculate a running average for [which value]. What is the SQL code that works for PostgreSQL 14?</p>
+</blockquote>
+<h3 id="Solve-Leetcode-Question"><a href="#Solve-Leetcode-Question" class="headerlink" title="Solve Leetcode Question"></a>Solve Leetcode Question</h3><blockquote>
+<p>Prompt: Assume you are given the tables… with the columns… Output the following…Prompt: Assume you are given the tables… with the columns… Output the following…</p>
+</blockquote>
+<h2 id="Write-other-Code"><a href="#Write-other-Code" class="headerlink" title="Write other Code"></a>Write other Code</h2><h3 id="Write-Google-Sheets-Formula"><a href="#Write-Google-Sheets-Formula" class="headerlink" title="Write Google Sheets Formula"></a>Write Google Sheets Formula</h3><blockquote>
+<p>Prompt: I want you to act as a bot that generates Google Sheets formula. Please generate a formula that [describe requirements]</p>
+</blockquote>
+<h3 id="Write-R"><a href="#Write-R" class="headerlink" title="Write R"></a>Write R</h3><blockquote>
+<p>Prompt: I want you to act as a data scientist using R. Can you write an R script that [Insert requirement here]</p>
+</blockquote>
+<h3 id="Write-Shell"><a href="#Write-Shell" class="headerlink" title="Write Shell"></a>Write Shell</h3><blockquote>
+<p>Prompt: I want you to act as a Linux terminal expert. Please write the code to [describe requirements]</p>
+</blockquote>
+<h3 id="Write-VBA"><a href="#Write-VBA" class="headerlink" title="Write VBA"></a>Write VBA</h3><blockquote>
+<p>Prompt: I want you to act as an Excel VBA developer. Can you write a VBA that [Insert function here]?</p>
+</blockquote>
+<h2 id="Miscellaneous"><a href="#Miscellaneous" class="headerlink" title="Miscellaneous"></a>Miscellaneous</h2><h3 id="Format-Tables"><a href="#Format-Tables" class="headerlink" title="Format Tables"></a>Format Tables</h3><blockquote>
+<p>Prompt: I want you to act as a document formatter. Please format the following into a nice table for me to place in Google Docs? [insert text table here]</p>
+</blockquote>
+<h2 id="Summarize-Book"><a href="#Summarize-Book" class="headerlink" title="Summarize Book"></a>Summarize Book</h2><blockquote>
+<p>Prompt: I want you to act as a technical book summarizer. Can you please summarize the book [name] with 5 main points?</p>
+</blockquote>
+<h3 id="Summarize-Paper"><a href="#Summarize-Paper" class="headerlink" title="Summarize Paper"></a>Summarize Paper</h3><blockquote>
+<p>Prompt: I want you to act as an academic. Please summarise the paper […] in simple terms in one paragraph.</p>
+</blockquote>
+<h3 id="Provide-Emotional-Support"><a href="#Provide-Emotional-Support" class="headerlink" title="Provide Emotional Support"></a>Provide Emotional Support</h3><blockquote>
+<p>Prompt: I want you to provide emotional support to me. [Explain problem here.]</p>
+</blockquote>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://medium.datadriveninvestor.com/60-chatgpt-prompts-for-data-science-tried-tested-and-rated-4994c7e6adb2">https://medium.datadriveninvestor.com/60-chatgpt-prompts-for-data-science-tried-tested-and-rated-4994c7e6adb2</a></li>
+</ul>
+
+  </div>
+  
+    
+      <a id="older" class="blog-nav" href="/2023/07/25/EfectiveDelegation/">OLDER&nbsp;&gt;</a>
+      
+        
+          <a id="newer" class="blog-nav" href="/2023/07/25/softwareprincipals/">&lt;&nbsp;NEWER</a>
+          
+            
+</div>
+          <div class="footer">
+  
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/rramos">Copyright © Rui Ramos 2024</a>
+        
+    </div>
+  
+</div>
+
+        </div> <!-- main -->
+          <div class="back-to-top hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+          
+  <div class="search-icon" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-box">
+        <div class="search-title">
+          <!-- <span class="search-icon-input">
+            <a href="javascript: void(0)">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </span> -->
+          
+            <input type="text" class="search-input" id="search-input" placeholder="Search ...">
+          
+          <span class="search-close-icon" id="search-close-icon">
+            <a href="javascript: void(0)">
+              <i class="iconfont icon-close"></i>
+            </a>
+          </span>
+        </div>
+        <div class="search-result" id="search-result"></div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    // inputArea.onclick = function() {
+    //   getSearchFile()
+    //   this.onclick = null
+    // }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        inputArea.focus()
+        getSearchFile()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'><span></ul>";
+      // $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'><h2>" + orig_data_title + "</h2></a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<h3 class=\"search-result-abstract\">" + match_content + "...</h3>"
+                }
+                str += "<hr></li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/leedom92/hexo-theme-leedom#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+          
+  
+  <div class="consent-icon" id="consent-icon">
+    <a class="button is-success" onclick="return klaro.show();">
+      <i class="iconfont icon-consent"></i>
+    </a>
+  </div>
+  
+
+
+          
+          
+  <!-- hexo plugin: hexo-webpushr-notification -->
+
+  <script type="text/plain" data-type="text/javascript" async data-name="webpushr">
+    let manager = klaro.getManager();
+    if (manager.getConsent('webpushr')){
+      (
+        function (w, d, s, id) {
+          if (typeof (w.webpushr) !== 'undefined') return;
+          w.webpushr = w.webpushr || function () {
+            (w.webpushr.q = w.webpushr.q || []).push(arguments)
+          }; var js, fjs = d.getElementsByTagName(s)[0]; js = d.createElement(s); js.id = id; js.async = 1; js.data-src = "https://cdn.webpushr.com/app.min.js";
+          fjs.parentNode.appendChild(js);
+        }( window, document, 'script', 'webpushr-jssdk' )
+      );
+      webpushr('setup', { 'key': 'BGON3evm0aCcG-ZpkVez8Q8GLrn4527R6YkL4nsU861337AfhJoOvnVU7eJ6ixjspxhic7ecVXvnhGgJz0cfDrE' });
+    }
+  </script>
+  <!-- end webpushr tracking code -->
+  
+
+      </div> <!-- app -->
+    <script>(function (w, d, s, id) {
+        if (typeof (w.webpushr) !== 'undefined') return;
+        w.webpushr = w.webpushr || function () { (w.webpushr.q = w.webpushr.q || []).push(arguments) };
+        var js, fjs = d.getElementsByTagName(s)[0];
+        js = d.createElement(s);
+        js.id = id;
+        js.async = 1;
+        js.src = "https://cdn.webpushr.com/app.min.js";
+        fjs.parentNode.appendChild(js);
+        }(window, document, 'script', 'webpushr-jssdk'));
+
+        webpushr('setup', {
+        'key': 'BGON3evm0aCcG-ZpkVez8Q8GLrn4527R6YkL4nsU861337AfhJoOvnVU7eJ6ixjspxhic7ecVXvnhGgJz0cfDrE',
+        'sw': undefined
+        });
+        </script></body>
+
+</html>

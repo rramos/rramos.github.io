@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="Rui Ramos" />
+  <meta name="description" content="A simple Blog related with Infrastructure Architecture and Data" />
+  
+  
+
+  <link rel="canonical" href="http://rramos.github.io/2024/06/01/dataplex/"/>
+
+  <title>
+    
+      Dataplex 
+      
+      
+    
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto:400,400italic,600|Roboto+Mono" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+
+
+  
+
+  
+    
+<link rel="stylesheet" href="/css/post.css">
+
+  
+
+  <!-- Include klaro css for consent banner -->
+  
+     
+<link rel="stylesheet" href="/css/klaro.css">
+
+  
+
+  <!-- jquery3.3.1 -->
+  
+<script src="/js/jquery.min.js"></script>
+
+
+  <!-- fancybox -->
+  
+<script src="/js/jquery.fancybox.min,js.js"></script>
+
+
+  <!-- fancybox -->
+  
+<script src="/js/fancybox.js"></script>
+
+
+  <!-- Googlecrux ID -->
+
+    <!-- Google site verification -->
+    <meta name="google-site-verification" content='Em0OaYgLD4MC3tIHbwqDxAklIn7JzrtipNZd7z1kqFI'' />
+    
+  
+    <!-- Google Tag Manager -->
+    <script data-type="text/javascript" type="text/plain" data-name="google-tag-manager">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-MXRC4DK');</script>
+      <!-- End Google Tag Manager -->
+    
+
+  
+      
+  
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
+</head>
+
+    <body>
+      <!-- Klaro Consent Management -->
+      
+          
+<script src="/js/klaro-config.js"></script>
+
+          
+<script src="/js/klaro-no-css.js"></script>
+
+      
+
+      
+     <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MXRC4DK"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+    
+
+
+      
+
+<!-- Start -Microsoft Clarity -->
+<script type="text/plain" data-type="text/javascript" async data-name="microsoft-clarity">
+  let manager = klaro.getManager();
+  if (manager.getConsent('microsoft-clarity')){
+
+    if (!window.location.host.includes('localhost')) {
+      (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;
+        t.data-src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "ms0b2q35b6");
+    }
+  }
+</script>
+<!-- End - Microsoft Clarity -->
+    
+
+      <div id="app">
+        <div class="header">
+  <a href="/">rramos.github.io</a>
+</div>
+
+
+        <p class="links">
+  
+    <a title="archives" target="" href="/archives/">
+      <i class="iconfont icon-bookmark"></i>
+    </a>
+  
+    <a title="github" target="_blank" href="https://github.com/rramos">
+      <i class="iconfont icon-github"></i>
+    </a>
+  
+    <a title="email" target="" href="mailto:rui.ms.ramos@gmail.com">
+      <i class="iconfont icon-envelope"></i>
+    </a>
+  
+    <a title="twitter" target="" href="https://x.com/RuiMSRamos">
+      <i class="iconfont icon-twitter"></i>
+    </a>
+  
+    <a title="about" target="" href="/about">
+      <i class="iconfont icon-qq"></i>
+    </a>
+  
+    <a title="discord" target="" href="https://discord.gg/YfCmqpG53p">
+      <i class="iconfont icon-wechat"></i>
+    </a>
+  
+    <a title="rss" target="_blank" href="/atom.xml">
+      <i class="iconfont icon-rss"></i>
+    </a>
+  
+</p>
+
+        <div class="main">
+          <!-- Article details page, showing the specific content of the article, URL format: https://yoursite/article title/-->
+<!-- At the same time, it is the hosting page of "tag", "friend", "categories", and "about" page. The specific display depends on page.type -->
+ 
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<div class="post">
+  <h3 class="date">
+    01 Jun, 2024
+  </h3>
+  <h1>
+    Dataplex
+  </h1>
+  <div class="content markdown-body">
+    <p>Dataplex is a data fabric that unifies distributed data and automates data management and governance for that data.</p>
+<p>Dataplex lets you do the following:</p>
+<ul>
+<li>Build a domain-specific data mesh across data that’s stored in multiple Google Cloud projects, without any data movement.</li>
+<li>Consistently govern and monitor data with a single set of permissions.</li>
+<li>Discover and curate metadata across various silos using catalog capabilities.</li>
+<li>Securely query metadata by using BigQuery and open source tools, such as SparkSQL, Presto, and HiveQL.</li>
+<li>Run data quality and data lifecycle management tasks, including serverless Spark tasks.</li>
+<li>Explore data using fully managed, serverless Spark environments with simple access to notebooks and SparkSQL queries.</li>
+</ul>
+<h2 id="Terminology"><a href="#Terminology" class="headerlink" title="Terminology"></a>Terminology</h2><p>Dataplex abstracts away the underlying data storage systems, by using the following constructs:</p>
+<h3 id="Lake"><a href="#Lake" class="headerlink" title="Lake"></a>Lake</h3><p>A logical construct representing a data domain or business unit. For example, to organize data based on group usage, you can set up a lake for each department (for example, Retail, Sales, Finance).</p>
+<h3 id="Zone"><a href="#Zone" class="headerlink" title="Zone"></a>Zone</h3><p>A subdomain within a lake, which is useful to categorize data. Zones are of two types: <strong>raw</strong> and <strong>curated</strong>.</p>
+<ul>
+<li><p><strong>Raw zone:</strong> Contains data that is in its raw format and not subject to strict type-checking.</p>
+</li>
+<li><p><strong>Curated zone:</strong> Contains data that is cleaned, formatted, and ready for analytics. The data is columnar, Hive-partitioned, and stored in Parquet, Avro, Orc files, or BigQuery tables. Data undergoes type-checking- for example, to prohibit the use of CSV files because they don’t perform as well for SQL access.</p>
+</li>
+</ul>
+<h3 id="Asset"><a href="#Asset" class="headerlink" title="Asset"></a>Asset</h3><p>Maps to data stored in either Cloud Storage or BigQuery. You can map data stored in separate Google Cloud projects as assets into a single zone.</p>
+<h3 id="Entity"><a href="#Entity" class="headerlink" title="Entity"></a>Entity</h3><p>Represents metadata for structured and semi-structured data (table) and unstructured data (fileset).</p>
+<h3 id="Automatic-cataloging-of-assets"><a href="#Automatic-cataloging-of-assets" class="headerlink" title="Automatic cataloging of assets"></a>Automatic cataloging of assets</h3><p>For a given project, Data Catalog automatically catalogs the following Google Cloud assets:</p>
+<ul>
+<li>Analytics Hub linked datasets</li>
+<li>BigQuery datasets, tables, models, routines, and connections</li>
+<li>Bigtable instances, clusters, and tables (including column family details)</li>
+<li>Dataplex lakes, zones, tables, and filesets</li>
+<li>Dataproc Metastore services, databases, and tables</li>
+<li>Pub&#x2F;Sub topics</li>
+<li>Spanner instances, databases, tables, and views</li>
+<li>Vertex AI models, datasets, and Vertex AI Feature Store resources</li>
+</ul>
+<h3 id="Catalog-non-Google-Cloud-assets"><a href="#Catalog-non-Google-Cloud-assets" class="headerlink" title="Catalog non-Google Cloud assets"></a>Catalog non-Google Cloud assets</h3><p>To catalog metadata from non-Google Cloud systems in your organization, you can use the following:</p>
+<ul>
+<li>Community-contributed connectors to multiple popular on-premises data sources</li>
+<li>Manually build on the Data Catalog APIs for custom entries</li>
+</ul>
+<h3 id="Data-quality-is-now-GA"><a href="#Data-quality-is-now-GA" class="headerlink" title="Data quality is now GA"></a>Data quality is now GA</h3><p>Dataplex automatic data quality lets you define and measure the quality of your data. You can automate the scanning of data, validate data against defined rules, and log alerts if your data doesn’t meet quality requirements.</p>
+<h4 id="Pre-defined-rules"><a href="#Pre-defined-rules" class="headerlink" title="Pre-defined rules"></a>Pre-defined rules</h4><ul>
+<li><p><strong>Row-level:</strong>  For row-level category rules, the expectation is applied against each data row. Each row independently passes or fails the condition. For example, <code>column_A_value &lt; 1</code>.</p>
+</li>
+<li><p><strong>Aggregate:</strong> For aggregate rules, the expectation is applied against a single value aggregated across the entire data. For example, <code>Avg(someCol) &gt;= 10</code>.</p>
+</li>
+</ul>
+<h3 id="Dimensions"><a href="#Dimensions" class="headerlink" title="Dimensions"></a>Dimensions</h3><p>You can aggregate the results on the following Dimensions:</p>
+<ul>
+<li>Freshness</li>
+<li>Volume</li>
+<li>Completeness</li>
+<li>Validity</li>
+<li>Consistency</li>
+<li>Accuracy</li>
+<li>Uniqueness</li>
+</ul>
+<h2 id="Ingest-data"><a href="#Ingest-data" class="headerlink" title="Ingest data"></a>Ingest data</h2><p>Dataplex provides templates (powered by Dataflow) to perform common data processing tasks like data ingestion, processing, and managing data lifecycle.</p>
+<h3 id="Dataplex-data-profiling-is-now-GA"><a href="#Dataplex-data-profiling-is-now-GA" class="headerlink" title="Dataplex data profiling is now GA"></a>Dataplex data profiling is now GA</h3><p>Dataplex data profiling lets you identify common statistical characteristics of the columns in your BigQuery tables. This information helps you to understand and analyze your data more effectively.</p>
+<h4 id="Scope"><a href="#Scope" class="headerlink" title="Scope"></a>Scope</h4><p>As part of the specification of a data profiling scan, you can specify the scope of a job as one of the following options:</p>
+<ul>
+<li><p><strong>Full table:</strong> The entire table is scanned in the data profiling scan. Sampling, row filters, and column filters are applied on the entire table before calculating the profiling statistics.</p>
+</li>
+<li><p><strong>Incremental:</strong> Incremental data that you specify is scanned in the data profile scan. Specify a Date or Timestamp column in the table to be used as an increment. Typically, this is the column on which the table is partitioned. Sampling, row filters, and column filters are applied on the incremental data before calculating the profiling statistics.</p>
+</li>
+</ul>
+<h4 id="Export-scan-results-to-BigQuery-table"><a href="#Export-scan-results-to-BigQuery-table" class="headerlink" title="Export scan results to BigQuery table"></a>Export scan results to BigQuery table</h4><p>You can export the data profiling scan results to a BigQuery table for further analysis. To customize reporting, you can connect the BigQuery table data to a Looker dashboard. You can build an aggregated report by using the same results table across multiple scans.</p>
+<h2 id="Build-a-Data-Mesh"><a href="#Build-a-Data-Mesh" class="headerlink" title="Build a Data Mesh"></a>Build a Data Mesh</h2><p>You can use Dataplex to build a data mesh architecture. This guide shows you how to use Dataplex features, such as a lake, zones, and assets, to build a data mesh.</p>
+<p>A data mesh is an organizational and technical approach that decentralizes data ownership among domain data owners. These owners provide the data as a product in a standard way and facilitate communication among different parts of the organization to distribute datasets across different locations.</p>
+<p>For that you will need to:</p>
+<ul>
+<li>Create a Dataplex lake that will act as the domain for your data mesh</li>
+<li>Add zones to your lake that will represent individual teams within each domain and provide managed data contracts.</li>
+<li>Attach assets that map to data stored in Cloud Storage</li>
+</ul>
+<p>Highly recommended to deep dive on the following <a target="_blank" rel="noopener" href="https://services.google.com/fh/files/misc/build-a-modern-distributed-datamesh-with-google-cloud-whitepaper.pdf">document</a>. </p>
+<h2 id="Best-Practices"><a href="#Best-Practices" class="headerlink" title="Best Practices"></a>Best Practices</h2><p>When you select the project in which to host your lake, consider the following factors:</p>
+<ul>
+<li>The project must belong to the same VPC Service Controls perimeter as the data destined to be within the lake.</li>
+<li>The lake service account requires administrator permissions on the Cloud Storage buckets or BigQuery datasets. Dataplex creates external tables in BigQuery for tables discovered in Cloud Storage. Dataplex also makes available BigQuery table metadata, and tables discovered in the Cloud Storage bucket, in a Dataproc Metastore. The Dataproc Metastore is located within the data lake project.</li>
+</ul>
+<h2 id="Pricing"><a href="#Pricing" class="headerlink" title="Pricing"></a>Pricing</h2><p>There are several SKUs that you need to consider when using this service. For instance you may need a Dataproc Metastore instance.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Any service providing governance, profiling, and quality reporting for data is inherently valuable. The fact that this service is seamlessly integrated within the cloud provider’s offering is a significant plus. While costs may be uncertain and require further investigation, this solution can be particularly beneficial for organizations without dedicated resources to manage these activities. In such cases, exploring this option is definitely worth considering.</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://cloud.google.com/data-catalog/docs/concepts/overview">https://cloud.google.com/data-catalog/docs/concepts/overview</a></li>
+<li><a target="_blank" rel="noopener" href="https://cloud.google.com/data-catalog/docs/integrate-data-sources#integrate_on-premises_data_sources">https://cloud.google.com/data-catalog/docs/integrate-data-sources#integrate_on-premises_data_sources</a></li>
+<li><a target="_blank" rel="noopener" href="https://cloud.google.com/dataplex/docs/quickstart-guide">https://cloud.google.com/dataplex/docs/quickstart-guide</a></li>
+<li><a target="_blank" rel="noopener" href="https://cloud.google.com/dataplex/pricing">https://cloud.google.com/dataplex/pricing</a></li>
+<li><a target="_blank" rel="noopener" href="https://cloud.google.com/architecture/data-mesh">https://cloud.google.com/architecture/data-mesh</a></li>
+<li><a target="_blank" rel="noopener" href="https://services.google.com/fh/files/misc/build-a-modern-distributed-datamesh-with-google-cloud-whitepaper.pdf">https://services.google.com/fh/files/misc/build-a-modern-distributed-datamesh-with-google-cloud-whitepaper.pdf</a></li>
+<li><a target="_blank" rel="noopener" href="https://cloud.google.com/architecture/design-self-service-data-platform-data-mesh">https://cloud.google.com/architecture/design-self-service-data-platform-data-mesh</a></li>
+</ul>
+
+  </div>
+  
+    
+      <a id="older" class="blog-nav" href="/2024/05/31/ollama/">OLDER&nbsp;&gt;</a>
+      
+        
+          <a id="newer" class="blog-nav" href="/2024/06/01/markdownlint/">&lt;&nbsp;NEWER</a>
+          
+            
+</div>
+          <div class="footer">
+  
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/rramos">Copyright © Rui Ramos 2024</a>
+        
+    </div>
+  
+</div>
+
+        </div> <!-- main -->
+          <div class="back-to-top hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+          
+  <div class="search-icon" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-box">
+        <div class="search-title">
+          <!-- <span class="search-icon-input">
+            <a href="javascript: void(0)">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </span> -->
+          
+            <input type="text" class="search-input" id="search-input" placeholder="Search ...">
+          
+          <span class="search-close-icon" id="search-close-icon">
+            <a href="javascript: void(0)">
+              <i class="iconfont icon-close"></i>
+            </a>
+          </span>
+        </div>
+        <div class="search-result" id="search-result"></div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    // inputArea.onclick = function() {
+    //   getSearchFile()
+    //   this.onclick = null
+    // }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        inputArea.focus()
+        getSearchFile()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'><span></ul>";
+      // $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'><h2>" + orig_data_title + "</h2></a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<h3 class=\"search-result-abstract\">" + match_content + "...</h3>"
+                }
+                str += "<hr></li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/leedom92/hexo-theme-leedom#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+          
+  
+  <div class="consent-icon" id="consent-icon">
+    <a class="button is-success" onclick="return klaro.show();">
+      <i class="iconfont icon-consent"></i>
+    </a>
+  </div>
+  
+
+
+          
+          
+  <!-- hexo plugin: hexo-webpushr-notification -->
+
+  <script type="text/plain" data-type="text/javascript" async data-name="webpushr">
+    let manager = klaro.getManager();
+    if (manager.getConsent('webpushr')){
+      (
+        function (w, d, s, id) {
+          if (typeof (w.webpushr) !== 'undefined') return;
+          w.webpushr = w.webpushr || function () {
+            (w.webpushr.q = w.webpushr.q || []).push(arguments)
+          }; var js, fjs = d.getElementsByTagName(s)[0]; js = d.createElement(s); js.id = id; js.async = 1; js.data-src = "https://cdn.webpushr.com/app.min.js";
+          fjs.parentNode.appendChild(js);
+        }( window, document, 'script', 'webpushr-jssdk' )
+      );
+      webpushr('setup', { 'key': 'BGON3evm0aCcG-ZpkVez8Q8GLrn4527R6YkL4nsU861337AfhJoOvnVU7eJ6ixjspxhic7ecVXvnhGgJz0cfDrE' });
+    }
+  </script>
+  <!-- end webpushr tracking code -->
+  
+
+      </div> <!-- app -->
+    <script>(function (w, d, s, id) {
+        if (typeof (w.webpushr) !== 'undefined') return;
+        w.webpushr = w.webpushr || function () { (w.webpushr.q = w.webpushr.q || []).push(arguments) };
+        var js, fjs = d.getElementsByTagName(s)[0];
+        js = d.createElement(s);
+        js.id = id;
+        js.async = 1;
+        js.src = "https://cdn.webpushr.com/app.min.js";
+        fjs.parentNode.appendChild(js);
+        }(window, document, 'script', 'webpushr-jssdk'));
+
+        webpushr('setup', {
+        'key': 'BGON3evm0aCcG-ZpkVez8Q8GLrn4527R6YkL4nsU861337AfhJoOvnVU7eJ6ixjspxhic7ecVXvnhGgJz0cfDrE',
+        'sw': undefined
+        });
+        </script></body>
+
+</html>

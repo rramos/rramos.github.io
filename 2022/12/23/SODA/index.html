@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="Rui Ramos" />
+  <meta name="description" content="A simple Blog related with Infrastructure Architecture and Data" />
+  
+  
+
+  <link rel="canonical" href="http://rramos.github.io/2022/12/23/soda/"/>
+
+  <title>
+    
+      SODA 
+      
+      
+    
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto:400,400italic,600|Roboto+Mono" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+
+
+  
+
+  
+    
+<link rel="stylesheet" href="/css/post.css">
+
+  
+
+  <!-- Include klaro css for consent banner -->
+  
+     
+<link rel="stylesheet" href="/css/klaro.css">
+
+  
+
+  <!-- jquery3.3.1 -->
+  
+<script src="/js/jquery.min.js"></script>
+
+
+  <!-- fancybox -->
+  
+<script src="/js/jquery.fancybox.min,js.js"></script>
+
+
+  <!-- fancybox -->
+  
+<script src="/js/fancybox.js"></script>
+
+
+  <!-- Googlecrux ID -->
+
+    <!-- Google site verification -->
+    <meta name="google-site-verification" content='Em0OaYgLD4MC3tIHbwqDxAklIn7JzrtipNZd7z1kqFI'' />
+    
+  
+    <!-- Google Tag Manager -->
+    <script data-type="text/javascript" type="text/plain" data-name="google-tag-manager">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-MXRC4DK');</script>
+      <!-- End Google Tag Manager -->
+    
+
+  
+      
+  
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
+</head>
+
+    <body>
+      <!-- Klaro Consent Management -->
+      
+          
+<script src="/js/klaro-config.js"></script>
+
+          
+<script src="/js/klaro-no-css.js"></script>
+
+      
+
+      
+     <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MXRC4DK"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+    
+
+
+      
+
+<!-- Start -Microsoft Clarity -->
+<script type="text/plain" data-type="text/javascript" async data-name="microsoft-clarity">
+  let manager = klaro.getManager();
+  if (manager.getConsent('microsoft-clarity')){
+
+    if (!window.location.host.includes('localhost')) {
+      (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;
+        t.data-src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "ms0b2q35b6");
+    }
+  }
+</script>
+<!-- End - Microsoft Clarity -->
+    
+
+      <div id="app">
+        <div class="header">
+  <a href="/">rramos.github.io</a>
+</div>
+
+
+        <p class="links">
+  
+    <a title="archives" target="" href="/archives/">
+      <i class="iconfont icon-bookmark"></i>
+    </a>
+  
+    <a title="github" target="_blank" href="https://github.com/rramos">
+      <i class="iconfont icon-github"></i>
+    </a>
+  
+    <a title="email" target="" href="mailto:rui.ms.ramos@gmail.com">
+      <i class="iconfont icon-envelope"></i>
+    </a>
+  
+    <a title="twitter" target="" href="https://x.com/RuiMSRamos">
+      <i class="iconfont icon-twitter"></i>
+    </a>
+  
+    <a title="about" target="" href="/about">
+      <i class="iconfont icon-qq"></i>
+    </a>
+  
+    <a title="discord" target="" href="https://discord.gg/YfCmqpG53p">
+      <i class="iconfont icon-wechat"></i>
+    </a>
+  
+    <a title="rss" target="_blank" href="/atom.xml">
+      <i class="iconfont icon-rss"></i>
+    </a>
+  
+</p>
+
+        <div class="main">
+          <!-- Article details page, showing the specific content of the article, URL format: https://yoursite/article title/-->
+<!-- At the same time, it is the hosting page of "tag", "friend", "categories", and "about" page. The specific display depends on page.type -->
+ 
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<div class="post">
+  <h3 class="date">
+    23 Dec, 2022
+  </h3>
+  <h1>
+    SODA
+  </h1>
+  <div class="content markdown-body">
+    <p>Bernard Denys kindly share with me the availability of their product for the Open Source Community in <a target="_blank" rel="noopener" href="https://github.com/sodadata/soda-sql#readme">Github</a>. <a target="_blank" rel="noopener" href="https://www.soda.io/">SODA</a> provide a Data Monitoring Platform. In this article i will take some time to explore a quick setup on how to use it and final comments around it.</p>
+<h2 id="What-does-Soda-SQL-do"><a href="#What-does-Soda-SQL-do" class="headerlink" title="What does Soda SQL do"></a>What does Soda SQL do</h2><p>Soda SQL allows you to</p>
+<p>Stop your pipeline when bad data is detected<br>Extract metrics and column profiles through super efficient SQL<br>Full control over metrics and queries through declarative config files</p>
+<h2 id="5m-tutorial"><a href="#5m-tutorial" class="headerlink" title="5m tutorial"></a>5m tutorial</h2><p>There is a <a target="_blank" rel="noopener" href="https://docs.soda.io/soda-sql/getting-started/5_min_tutorial.html">5m tutorial</a> available on their official page let’s have a go…</p>
+<h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><p>I’m using Linux and i’m lazy so i’ve just installed the required pip</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip3 install soda-sql</span><br></pre></td></tr></table></figure>
+
+<p>Let’s check if it is working</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ soda </span><br><span class="line">Usage: soda [OPTIONS] COMMAND [ARGS]...</span><br><span class="line"></span><br><span class="line">  Soda CLI version 2.0.0b15</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">  --<span class="built_in">help</span>  Show this message and <span class="built_in">exit</span>.</span><br><span class="line"></span><br><span class="line">Commands:</span><br><span class="line">  analyze  Analyzes tables <span class="keyword">in</span> the warehouse and creates scan YAML files...</span><br><span class="line">  create   Creates a new warehouse.yml file and prepares credentials <span class="keyword">in</span></span><br><span class="line">           your...</span><br><span class="line"></span><br><span class="line">  init     Renamed to `soda analyze`</span><br><span class="line">  scan     Computes all measurements and runs all tests on one table.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>Great now let’s create some a dummy warehouse and do some tests:</p>
+<h2 id="Create-dummy-Datawarehouse"><a href="#Create-dummy-Datawarehouse" class="headerlink" title="Create dummy Datawarehouse"></a>Create dummy Datawarehouse</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run --name soda_sql_tutorial_db --<span class="built_in">rm</span> -d \</span><br><span class="line">    -p 5432:5432 \</span><br><span class="line">    -v soda_sql_tutorial_postgres:/var/lib/postgresql/data:rw \</span><br><span class="line">    -e POSTGRES_USER=sodasql \</span><br><span class="line">    -e POSTGRES_DB=sodasql \</span><br><span class="line">    -e POSTGRES_HOST_AUTH_METHOD=trust \</span><br><span class="line">    postgres:9.6.17-alpine</span><br></pre></td></tr></table></figure>
+
+<p>And load it with data with the following command</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> soda_sql_tutorial_db \</span><br><span class="line">  sh -c <span class="string">&quot;wget -qO - https://raw.githubusercontent.com/sodadata/soda-sql/main/tests/demo/demodata.sql | psql -U sodasql -d sodasql&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>According to the tutorial one can remove the created container and volume with the following command :</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker stop soda_sql_tutorial_db</span><br><span class="line">docker volume <span class="built_in">rm</span> soda_sql_tutorial_postgres</span><br></pre></td></tr></table></figure>
+
+<h2 id="Create-warehouse-directory"><a href="#Create-warehouse-directory" class="headerlink" title="Create warehouse directory"></a>Create warehouse directory</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> soda_sql_tutorial</span><br><span class="line"><span class="built_in">cd</span> soda_sql_tutorial/</span><br><span class="line">soda create -d sodasql -u sodasql -w soda_sql_tutorial postgres</span><br></pre></td></tr></table></figure>
+
+<p>This created the <code>warehouse.yml</code> with connection settings which are stored on your homedir <code>~/.soda/env_vars.yml</code></p>
+<h2 id="Analyse-table-scan-YAML-files"><a href="#Analyse-table-scan-YAML-files" class="headerlink" title="Analyse table scan YAML files"></a>Analyse table scan YAML files</h2><p>The following command will analyze the exiting tables and fill the <code>./tables/</code> directory with large data warehouse it can be inputted manually.</p>
+<p>Well, i only have 5m so let’s give it a go.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">soda analyze</span><br></pre></td></tr></table></figure>
+
+<p>Hum! interesting, queries the information schema and generates a file which i will assume per table with several metrics for validation.</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">table_name:</span> <span class="string">demodata</span></span><br><span class="line"><span class="attr">metrics:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">row_count</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">missing_count</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">missing_percentage</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">values_count</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">values_percentage</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">valid_count</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">valid_percentage</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">invalid_count</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">invalid_percentage</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">min_length</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">max_length</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">avg_length</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">min</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">max</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">avg</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">sum</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">variance</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">stddev</span></span><br><span class="line"><span class="attr">tests:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">row_count</span> <span class="string">&gt;</span> <span class="number">0</span></span><br><span class="line"><span class="attr">columns:</span></span><br><span class="line">  <span class="attr">id:</span></span><br><span class="line">    <span class="attr">valid_format:</span> <span class="string">uuid</span></span><br><span class="line">    <span class="attr">tests:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">invalid_percentage</span> <span class="string">==</span> <span class="number">0</span></span><br><span class="line">  <span class="attr">feepct:</span></span><br><span class="line">    <span class="attr">valid_format:</span> <span class="string">number_percentage</span></span><br><span class="line">    <span class="attr">tests:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">invalid_percentage</span> <span class="string">==</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Run-a-scan"><a href="#Run-a-scan" class="headerlink" title="Run a scan"></a>Run a scan</h2><p>Each scan requires a warehouse YAML and a scan YAML as input. The scan command will collect the configured metrics and run the defined tests against them.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">soda scan warehouse.yml tables/demodata.yml</span><br></pre></td></tr></table></figure>
+
+<p>And that’s it for the tutorial</p>
+<p>One can then integrate this with a orchestration tool such as <a target="_blank" rel="noopener" href="https://docs.soda.io/soda-sql/documentation/orchestrate_scans.html">Airflow</a></p>
+<p>It is recommend to <code>PythonVirtualenvOperator</code> to prevent any dependency conflicts.</p>
+<p>Example dag:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> airflow <span class="keyword">import</span> DAG</span><br><span class="line"><span class="keyword">from</span> airflow.models.variable <span class="keyword">import</span> Variable</span><br><span class="line"><span class="keyword">from</span> airflow.operators.python <span class="keyword">import</span> PythonVirtualenvOperator</span><br><span class="line"><span class="keyword">from</span> airflow.operators.dummy <span class="keyword">import</span> DummyOperator</span><br><span class="line"><span class="keyword">from</span> airflow.utils.dates <span class="keyword">import</span> days_ago</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> timedelta</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Make sure that this variable is set in your Airflow</span></span><br><span class="line">warehouse_yml = Variable.get(<span class="string">&#x27;soda_sql_warehouse_yml_path&#x27;</span>)</span><br><span class="line">scan_yml = Variable.get(<span class="string">&#x27;soda_sql_scan_yml_path&#x27;</span>)</span><br><span class="line"></span><br><span class="line">default_args = &#123;</span><br><span class="line">    <span class="string">&#x27;owner&#x27;</span>: <span class="string">&#x27;soda_sql&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;retries&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="string">&#x27;retry_delay&#x27;</span>: timedelta(minutes=<span class="number">5</span>),</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">run_soda_scan</span>(<span class="params">warehouse_yml_file, scan_yml_file</span>):</span><br><span class="line">    <span class="keyword">from</span> sodasql.scan.scan_builder <span class="keyword">import</span> ScanBuilder</span><br><span class="line">    scan_builder = ScanBuilder()</span><br><span class="line">    <span class="comment"># Optionally you can directly build the Warehouse dict from Airflow secrets/variables</span></span><br><span class="line">    <span class="comment"># and set scan_builder.warehouse_dict with values.</span></span><br><span class="line">    scan_builder.warehouse_yml_file = warehouse_yml_file</span><br><span class="line">    scan_builder.scan_yml_file = scan_yml_file</span><br><span class="line">    scan = scan_builder.build()</span><br><span class="line">    scan_result = scan.execute()</span><br><span class="line">    <span class="keyword">if</span> scan_result.has_failures():</span><br><span class="line">        failures = scan_result.failures_count()</span><br><span class="line">        <span class="keyword">raise</span> ValueError(<span class="string">f&quot;Soda Scan found <span class="subst">&#123;failures&#125;</span> errors in your data!&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">dag = DAG(</span><br><span class="line">    <span class="string">&#x27;soda_sql_python_venv_op&#x27;</span>,</span><br><span class="line">    default_args=default_args,</span><br><span class="line">    description=<span class="string">&#x27;A simple Soda SQL scan DAG&#x27;</span>,</span><br><span class="line">    schedule_interval=timedelta(days=<span class="number">1</span>),</span><br><span class="line">    start_date=days_ago(<span class="number">1</span>),</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">ingest_data_op = DummyOperator(</span><br><span class="line">    task_id=<span class="string">&#x27;ingest_data&#x27;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">soda_sql_scan_op = PythonVirtualenvOperator(</span><br><span class="line">    task_id=<span class="string">&#x27;soda_sql_scan_demodata&#x27;</span>,</span><br><span class="line">    python_callable=run_soda_scan,</span><br><span class="line">    requirements=[<span class="string">&quot;soda-sql==2.0.0b10&quot;</span>],</span><br><span class="line">    system_site_packages=<span class="literal">False</span>,</span><br><span class="line">    op_kwargs=&#123;<span class="string">&#x27;warehouse_yml_file&#x27;</span>: warehouse_yml,</span><br><span class="line">               <span class="string">&#x27;scan_yml_file&#x27;</span>: scan_yml&#125;,</span><br><span class="line">    dag=dag</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">publish_data_op = DummyOperator(</span><br><span class="line">    task_id=<span class="string">&#x27;publish_data&#x27;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">ingest_data_op &gt;&gt; soda_sql_scan_op &gt;&gt; publish_data_op</span><br></pre></td></tr></table></figure>
+
+<p>There is also some work being done to support a SodaScanOperator for Airflow.</p>
+<h2 id="Warehouse-types"><a href="#Warehouse-types" class="headerlink" title="Warehouse types"></a>Warehouse types</h2><p>At the moment SODA is supporting the following techs:</p>
+<ul>
+<li>Snowflake</li>
+<li>AWS Athena</li>
+<li>GCP BigQuery</li>
+<li>PostgreSQL</li>
+<li>Redshift</li>
+<li>Spark SQL -&gt; (Coming Soon)</li>
+</ul>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>This quick tutorial make’s it easy to test the tool. But i would like to extended the tests on a larger solution to check how it behaves. Also i would like to see the SparkSQL as a warehouse option as most of my teams work are centered on that technology.</p>
+<p>Topics to do extended testing with:</p>
+<ul>
+<li>Schema evolution impact on the quality test setup</li>
+<li>Not using a Warehouse solution but a Datalake</li>
+<li>Providing schemas from a Datalake and using a processing engine on top of it (ex: spark.schemas and Parquet files)</li>
+<li>Testing with Delta tables</li>
+<li>Define levels of data-quality analysis</li>
+<li>Understanding better how the scans works</li>
+</ul>
+<p>The tool seems to have good potential and seems very simple which would speed the adoption. Also by sharing this to the open source community seems to be as a good choice to increase user quorum and still offer enterprise services solution.</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/sodadata/soda-sql#readme">https://github.com/sodadata/soda-sql#readme</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.soda.io/soda-sql/getting-started/5_min_tutorial.html">https://docs.soda.io/soda-sql/getting-started/5_min_tutorial.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.soda.io/soda-sql/documentation/orchestrate_scans.html">https://docs.soda.io/soda-sql/documentation/orchestrate_scans.html</a></li>
+</ul>
+
+  </div>
+  
+    
+      <a id="older" class="blog-nav" href="/2022/12/23/fish/">OLDER&nbsp;&gt;</a>
+      
+        
+          <a id="newer" class="blog-nav" href="/2022/12/23/OpenAPIArch/">&lt;&nbsp;NEWER</a>
+          
+            
+</div>
+          <div class="footer">
+  
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/rramos">Copyright © Rui Ramos 2024</a>
+        
+    </div>
+  
+</div>
+
+        </div> <!-- main -->
+          <div class="back-to-top hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+          
+  <div class="search-icon" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-box">
+        <div class="search-title">
+          <!-- <span class="search-icon-input">
+            <a href="javascript: void(0)">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </span> -->
+          
+            <input type="text" class="search-input" id="search-input" placeholder="Search ...">
+          
+          <span class="search-close-icon" id="search-close-icon">
+            <a href="javascript: void(0)">
+              <i class="iconfont icon-close"></i>
+            </a>
+          </span>
+        </div>
+        <div class="search-result" id="search-result"></div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    // inputArea.onclick = function() {
+    //   getSearchFile()
+    //   this.onclick = null
+    // }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        inputArea.focus()
+        getSearchFile()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'><span></ul>";
+      // $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'><h2>" + orig_data_title + "</h2></a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<h3 class=\"search-result-abstract\">" + match_content + "...</h3>"
+                }
+                str += "<hr></li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/leedom92/hexo-theme-leedom#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+          
+  
+  <div class="consent-icon" id="consent-icon">
+    <a class="button is-success" onclick="return klaro.show();">
+      <i class="iconfont icon-consent"></i>
+    </a>
+  </div>
+  
+
+
+          
+          
+  <!-- hexo plugin: hexo-webpushr-notification -->
+
+  <script type="text/plain" data-type="text/javascript" async data-name="webpushr">
+    let manager = klaro.getManager();
+    if (manager.getConsent('webpushr')){
+      (
+        function (w, d, s, id) {
+          if (typeof (w.webpushr) !== 'undefined') return;
+          w.webpushr = w.webpushr || function () {
+            (w.webpushr.q = w.webpushr.q || []).push(arguments)
+          }; var js, fjs = d.getElementsByTagName(s)[0]; js = d.createElement(s); js.id = id; js.async = 1; js.data-src = "https://cdn.webpushr.com/app.min.js";
+          fjs.parentNode.appendChild(js);
+        }( window, document, 'script', 'webpushr-jssdk' )
+      );
+      webpushr('setup', { 'key': 'BGON3evm0aCcG-ZpkVez8Q8GLrn4527R6YkL4nsU861337AfhJoOvnVU7eJ6ixjspxhic7ecVXvnhGgJz0cfDrE' });
+    }
+  </script>
+  <!-- end webpushr tracking code -->
+  
+
+      </div> <!-- app -->
+    <script>(function (w, d, s, id) {
+        if (typeof (w.webpushr) !== 'undefined') return;
+        w.webpushr = w.webpushr || function () { (w.webpushr.q = w.webpushr.q || []).push(arguments) };
+        var js, fjs = d.getElementsByTagName(s)[0];
+        js = d.createElement(s);
+        js.id = id;
+        js.async = 1;
+        js.src = "https://cdn.webpushr.com/app.min.js";
+        fjs.parentNode.appendChild(js);
+        }(window, document, 'script', 'webpushr-jssdk'));
+
+        webpushr('setup', {
+        'key': 'BGON3evm0aCcG-ZpkVez8Q8GLrn4527R6YkL4nsU861337AfhJoOvnVU7eJ6ixjspxhic7ecVXvnhGgJz0cfDrE',
+        'sw': undefined
+        });
+        </script></body>
+
+</html>

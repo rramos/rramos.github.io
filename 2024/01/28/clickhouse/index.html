@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="Rui Ramos" />
+  <meta name="description" content="A simple Blog related with Infrastructure Architecture and Data" />
+  
+  
+
+  <link rel="canonical" href="http://rramos.github.io/2024/01/28/clickhouse/"/>
+
+  <title>
+    
+      ClickHouse 
+      
+      
+    
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto:400,400italic,600|Roboto+Mono" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+
+
+  
+
+  
+    
+<link rel="stylesheet" href="/css/post.css">
+
+  
+
+  <!-- Include klaro css for consent banner -->
+  
+     
+<link rel="stylesheet" href="/css/klaro.css">
+
+  
+
+  <!-- jquery3.3.1 -->
+  
+<script src="/js/jquery.min.js"></script>
+
+
+  <!-- fancybox -->
+  
+<script src="/js/jquery.fancybox.min,js.js"></script>
+
+
+  <!-- fancybox -->
+  
+<script src="/js/fancybox.js"></script>
+
+
+  <!-- Googlecrux ID -->
+
+    <!-- Google site verification -->
+    <meta name="google-site-verification" content='Em0OaYgLD4MC3tIHbwqDxAklIn7JzrtipNZd7z1kqFI'' />
+    
+  
+    <!-- Google Tag Manager -->
+    <script data-type="text/javascript" type="text/plain" data-name="google-tag-manager">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-MXRC4DK');</script>
+      <!-- End Google Tag Manager -->
+    
+
+  
+      
+  
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
+</head>
+
+    <body>
+      <!-- Klaro Consent Management -->
+      
+          
+<script src="/js/klaro-config.js"></script>
+
+          
+<script src="/js/klaro-no-css.js"></script>
+
+      
+
+      
+     <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MXRC4DK"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+    
+
+
+      
+
+<!-- Start -Microsoft Clarity -->
+<script type="text/plain" data-type="text/javascript" async data-name="microsoft-clarity">
+  let manager = klaro.getManager();
+  if (manager.getConsent('microsoft-clarity')){
+
+    if (!window.location.host.includes('localhost')) {
+      (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;
+        t.data-src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "ms0b2q35b6");
+    }
+  }
+</script>
+<!-- End - Microsoft Clarity -->
+    
+
+      <div id="app">
+        <div class="header">
+  <a href="/">rramos.github.io</a>
+</div>
+
+
+        <p class="links">
+  
+    <a title="archives" target="" href="/archives/">
+      <i class="iconfont icon-bookmark"></i>
+    </a>
+  
+    <a title="github" target="_blank" href="https://github.com/rramos">
+      <i class="iconfont icon-github"></i>
+    </a>
+  
+    <a title="email" target="" href="mailto:rui.ms.ramos@gmail.com">
+      <i class="iconfont icon-envelope"></i>
+    </a>
+  
+    <a title="twitter" target="" href="https://x.com/RuiMSRamos">
+      <i class="iconfont icon-twitter"></i>
+    </a>
+  
+    <a title="about" target="" href="/about">
+      <i class="iconfont icon-qq"></i>
+    </a>
+  
+    <a title="discord" target="" href="https://discord.gg/YfCmqpG53p">
+      <i class="iconfont icon-wechat"></i>
+    </a>
+  
+    <a title="rss" target="_blank" href="/atom.xml">
+      <i class="iconfont icon-rss"></i>
+    </a>
+  
+</p>
+
+        <div class="main">
+          <!-- Article details page, showing the specific content of the article, URL format: https://yoursite/article title/-->
+<!-- At the same time, it is the hosting page of "tag", "friend", "categories", and "about" page. The specific display depends on page.type -->
+ 
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<div class="post">
+  <h3 class="date">
+    28 Jan, 2024
+  </h3>
+  <h1>
+    ClickHouse
+  </h1>
+  <div class="content markdown-body">
+    <p>ClickHouse is a true column-oriented DBMS. Data is stored by columns, and during the execution of arrays (vectors or chunks of columns). Whenever possible, operations are dispatched on arrays, rather than on individual values. It is called “vectorized query execution” and it helps lower the cost of actual data processing.</p>
+<h2 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h2><p>ClickHouse was initially built as a prototype to do just a single task well: to filter and aggregate data as fast as possible. That’s what needs to be done to build a typical analytical report, and that’s what a typical GROUP BY query does. The ClickHouse team has made several high-level decisions that, when combined, made achieving this task possible:</p>
+<p><strong>Column-oriented storage</strong>: Source data often contain hundreds or even thousands of columns, while a report can use just a few of them. The system needs to avoid reading unnecessary columns to avoid expensive disk read operations.</p>
+<p><strong>Indexes</strong>: Memory resident ClickHouse data structures allow the reading of only the necessary columns, and only the necessary row ranges of those columns.</p>
+<p><strong>Data compression</strong>: Storing different values of the same column together often leads to better compression ratios (compared to row-oriented systems) because in real data a column often has the same, or not so many different, values for neighboring rows. In addition to general-purpose compression, ClickHouse supports specialized codecs that can make data even more compact.</p>
+<p><strong>Vectorized query execution</strong>: ClickHouse not only stores data in columns but also processes data in columns. This leads to better CPU cache utilization and allows for SIMD CPU instructions usage.</p>
+<p><strong>Scalability</strong>: ClickHouse can leverage all available CPU cores and disks to execute even a single query. Not only on a single server but all CPU cores and disks of a cluster as well.</p>
+<h3 id="Attention-to-Low-Level-Details"><a href="#Attention-to-Low-Level-Details" class="headerlink" title="Attention to Low-Level Details"></a>Attention to Low-Level Details</h3><p>But many other database management systems use similar techniques. What really makes ClickHouse stand out is attention to low-level details. Most programming languages provide implementations for most common algorithms and data structures, but they tend to be too generic to be effective.</p>
+<h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><p>In order to install run the following script</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl https://clickhouse.com/ | sh</span><br></pre></td></tr></table></figure>
+
+<p>One can start the server with the following command</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./clickhouse server</span><br></pre></td></tr></table></figure>
+
+<p>With a different terminal lets start a client with</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./clickhouse client</span><br></pre></td></tr></table></figure>
+
+<h2 id="Tests"><a href="#Tests" class="headerlink" title="Tests"></a>Tests</h2><p>Lets start by creating a table from sample data</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> my_first_table</span><br><span class="line">(</span><br><span class="line">    user_id UInt32,</span><br><span class="line">    message String,</span><br><span class="line">    <span class="type">timestamp</span> DateTime,</span><br><span class="line">    metric Float32</span><br><span class="line">)</span><br><span class="line">ENGINE <span class="operator">=</span> MergeTree</span><br><span class="line"><span class="keyword">PRIMARY</span> KEY (user_id, <span class="type">timestamp</span>)</span><br></pre></td></tr></table></figure>
+
+<p>The statement uses traditional SQL DDL, with one extend information regarding the execution engine. The MergeTree option provides improved performance for managed tables but there are also options to integrate with external systems such as BigQuery, S3, Kafka, PostgreSQL, …</p>
+<h3 id="Insert-some-data"><a href="#Insert-some-data" class="headerlink" title="Insert some data"></a>Insert some data</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> my_first_table (user_id, message, <span class="type">timestamp</span>, metric) <span class="keyword">VALUES</span></span><br><span class="line">    (<span class="number">101</span>, <span class="string">&#x27;Hello, ClickHouse!&#x27;</span>,                                 now(),       <span class="number">-1.0</span>    ),</span><br><span class="line">    (<span class="number">102</span>, <span class="string">&#x27;Insert a lot of rows per batch&#x27;</span>,                     yesterday(), <span class="number">1.41421</span> ),</span><br><span class="line">    (<span class="number">102</span>, <span class="string">&#x27;Sort your data based on your commonly-used queries&#x27;</span>, today(),     <span class="number">2.718</span>   ),</span><br><span class="line">    (<span class="number">101</span>, <span class="string">&#x27;Granules are the smallest chunks of data read&#x27;</span>,      now() <span class="operator">+</span> <span class="number">5</span>,   <span class="number">3.14159</span> )</span><br></pre></td></tr></table></figure>
+
+<h3 id="Query"><a href="#Query" class="headerlink" title="Query"></a>Query</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> my_first_table</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="type">timestamp</span></span><br></pre></td></tr></table></figure>
+
+<p>Now lets create a table from external data in S3 and a materialized table using the <strong>MergeTree</strong> engine from it.</p>
+<h3 id="Create-data-from-S3-sources"><a href="#Create-data-from-S3-sources" class="headerlink" title="Create data from S3 sources"></a>Create data from S3 sources</h3><p>First create our managed table</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> trips</span><br><span class="line">(</span><br><span class="line">    `trip_id` UInt32,</span><br><span class="line">    `vendor_id` Enum8(<span class="string">&#x27;1&#x27;</span> <span class="operator">=</span> <span class="number">1</span>, <span class="string">&#x27;2&#x27;</span> <span class="operator">=</span> <span class="number">2</span>, <span class="string">&#x27;3&#x27;</span> <span class="operator">=</span> <span class="number">3</span>, <span class="string">&#x27;4&#x27;</span> <span class="operator">=</span> <span class="number">4</span>, <span class="string">&#x27;CMT&#x27;</span> <span class="operator">=</span> <span class="number">5</span>, <span class="string">&#x27;VTS&#x27;</span> <span class="operator">=</span> <span class="number">6</span>, <span class="string">&#x27;DDS&#x27;</span> <span class="operator">=</span> <span class="number">7</span>, <span class="string">&#x27;B02512&#x27;</span> <span class="operator">=</span> <span class="number">10</span>, <span class="string">&#x27;B02598&#x27;</span> <span class="operator">=</span> <span class="number">11</span>, <span class="string">&#x27;B02617&#x27;</span> <span class="operator">=</span> <span class="number">12</span>, <span class="string">&#x27;B02682&#x27;</span> <span class="operator">=</span> <span class="number">13</span>, <span class="string">&#x27;B02764&#x27;</span> <span class="operator">=</span> <span class="number">14</span>, <span class="string">&#x27;&#x27;</span> <span class="operator">=</span> <span class="number">15</span>),</span><br><span class="line">    `pickup_date` <span class="type">Date</span>,</span><br><span class="line">    `pickup_datetime` DateTime,</span><br><span class="line">    `dropoff_date` <span class="type">Date</span>,</span><br><span class="line">    `dropoff_datetime` DateTime,</span><br><span class="line">    `store_and_fwd_flag` UInt8,</span><br><span class="line">    `rate_code_id` UInt8,</span><br><span class="line">    `pickup_longitude` Float64,</span><br><span class="line">    `pickup_latitude` Float64,</span><br><span class="line">    `dropoff_longitude` Float64,</span><br><span class="line">    `dropoff_latitude` Float64,</span><br><span class="line">    `passenger_count` UInt8,</span><br><span class="line">    `trip_distance` Float64,</span><br><span class="line">    `fare_amount` Float32,</span><br><span class="line">    `extra` Float32,</span><br><span class="line">    `mta_tax` Float32,</span><br><span class="line">    `tip_amount` Float32,</span><br><span class="line">    `tolls_amount` Float32,</span><br><span class="line">    `ehail_fee` Float32,</span><br><span class="line">    `improvement_surcharge` Float32,</span><br><span class="line">    `total_amount` Float32,</span><br><span class="line">    `payment_type` Enum8(<span class="string">&#x27;UNK&#x27;</span> <span class="operator">=</span> <span class="number">0</span>, <span class="string">&#x27;CSH&#x27;</span> <span class="operator">=</span> <span class="number">1</span>, <span class="string">&#x27;CRE&#x27;</span> <span class="operator">=</span> <span class="number">2</span>, <span class="string">&#x27;NOC&#x27;</span> <span class="operator">=</span> <span class="number">3</span>, <span class="string">&#x27;DIS&#x27;</span> <span class="operator">=</span> <span class="number">4</span>),</span><br><span class="line">    `trip_type` UInt8,</span><br><span class="line">    `pickup` FixedString(<span class="number">25</span>),</span><br><span class="line">    `dropoff` FixedString(<span class="number">25</span>),</span><br><span class="line">    `cab_type` Enum8(<span class="string">&#x27;yellow&#x27;</span> <span class="operator">=</span> <span class="number">1</span>, <span class="string">&#x27;green&#x27;</span> <span class="operator">=</span> <span class="number">2</span>, <span class="string">&#x27;uber&#x27;</span> <span class="operator">=</span> <span class="number">3</span>),</span><br><span class="line">    `pickup_nyct2010_gid` Int8,</span><br><span class="line">    `pickup_ctlabel` Float32,</span><br><span class="line">    `pickup_borocode` Int8,</span><br><span class="line">    `pickup_ct2010` String,</span><br><span class="line">    `pickup_boroct2010` String,</span><br><span class="line">    `pickup_cdeligibil` String,</span><br><span class="line">    `pickup_ntacode` FixedString(<span class="number">4</span>),</span><br><span class="line">    `pickup_ntaname` String,</span><br><span class="line">    `pickup_puma` UInt16,</span><br><span class="line">    `dropoff_nyct2010_gid` UInt8,</span><br><span class="line">    `dropoff_ctlabel` Float32,</span><br><span class="line">    `dropoff_borocode` UInt8,</span><br><span class="line">    `dropoff_ct2010` String,</span><br><span class="line">    `dropoff_boroct2010` String,</span><br><span class="line">    `dropoff_cdeligibil` String,</span><br><span class="line">    `dropoff_ntacode` FixedString(<span class="number">4</span>),</span><br><span class="line">    `dropoff_ntaname` String,</span><br><span class="line">    `dropoff_puma` UInt16</span><br><span class="line">)</span><br><span class="line">ENGINE <span class="operator">=</span> MergeTree</span><br><span class="line"><span class="keyword">PARTITION</span> <span class="keyword">BY</span> toYYYYMM(pickup_date)</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> pickup_datetime</span><br><span class="line">SETTINGS index_granularity <span class="operator">=</span> <span class="number">8192</span></span><br></pre></td></tr></table></figure>
+
+<p>Now let’s create our raw table. Take into account the ENGINE being used.</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> trips_raw</span><br><span class="line">(</span><br><span class="line">   `trip_id`               UInt32,</span><br><span class="line">   `vendor_id`             Enum8(<span class="string">&#x27;1&#x27;</span> <span class="operator">=</span> <span class="number">1</span>, <span class="string">&#x27;2&#x27;</span> <span class="operator">=</span> <span class="number">2</span>, <span class="string">&#x27;3&#x27;</span> <span class="operator">=</span> <span class="number">3</span>, <span class="string">&#x27;4&#x27;</span> <span class="operator">=</span> <span class="number">4</span>, <span class="string">&#x27;CMT&#x27;</span> <span class="operator">=</span> <span class="number">5</span>, <span class="string">&#x27;VTS&#x27;</span> <span class="operator">=</span> <span class="number">6</span>, <span class="string">&#x27;DDS&#x27;</span> <span class="operator">=</span> <span class="number">7</span>, <span class="string">&#x27;B02512&#x27;</span> <span class="operator">=</span> <span class="number">10</span>, <span class="string">&#x27;B02598&#x27;</span> <span class="operator">=</span> <span class="number">11</span>, <span class="string">&#x27;B02617&#x27;</span> <span class="operator">=</span> <span class="number">12</span>, <span class="string">&#x27;B02682&#x27;</span> <span class="operator">=</span> <span class="number">13</span>, <span class="string">&#x27;B02764&#x27;</span> <span class="operator">=</span> <span class="number">14</span>, <span class="string">&#x27;&#x27;</span> <span class="operator">=</span> <span class="number">15</span>),</span><br><span class="line">   `pickup_date`           <span class="type">Date</span>,</span><br><span class="line">   `pickup_datetime`       DateTime,</span><br><span class="line">   `dropoff_date`          <span class="type">Date</span>,</span><br><span class="line">   `dropoff_datetime`      DateTime,</span><br><span class="line">   `store_and_fwd_flag`    UInt8,</span><br><span class="line">   `rate_code_id`          UInt8,</span><br><span class="line">   `pickup_longitude`      Float64,</span><br><span class="line">   `pickup_latitude`       Float64,</span><br><span class="line">   `dropoff_longitude`     Float64,</span><br><span class="line">   `dropoff_latitude`      Float64,</span><br><span class="line">   `passenger_count`       UInt8,</span><br><span class="line">   `trip_distance`         Float64,</span><br><span class="line">   `fare_amount`           Float32,</span><br><span class="line">   `extra`                 Float32,</span><br><span class="line">   `mta_tax`               Float32,</span><br><span class="line">   `tip_amount`            Float32,</span><br><span class="line">   `tolls_amount`          Float32,</span><br><span class="line">   `ehail_fee`             Float32,</span><br><span class="line">   `improvement_surcharge` Float32,</span><br><span class="line">   `total_amount`          Float32,</span><br><span class="line">   `payment_type_`         Enum8(<span class="string">&#x27;UNK&#x27;</span> <span class="operator">=</span> <span class="number">0</span>, <span class="string">&#x27;CSH&#x27;</span> <span class="operator">=</span> <span class="number">1</span>, <span class="string">&#x27;CRE&#x27;</span> <span class="operator">=</span> <span class="number">2</span>, <span class="string">&#x27;NOC&#x27;</span> <span class="operator">=</span> <span class="number">3</span>, <span class="string">&#x27;DIS&#x27;</span> <span class="operator">=</span> <span class="number">4</span>),</span><br><span class="line">   `trip_type`             UInt8,</span><br><span class="line">   `pickup`                FixedString(<span class="number">25</span>),</span><br><span class="line">   `dropoff`               FixedString(<span class="number">25</span>),</span><br><span class="line">   `cab_type`              Enum8(<span class="string">&#x27;yellow&#x27;</span> <span class="operator">=</span> <span class="number">1</span>, <span class="string">&#x27;green&#x27;</span> <span class="operator">=</span> <span class="number">2</span>, <span class="string">&#x27;uber&#x27;</span> <span class="operator">=</span> <span class="number">3</span>),</span><br><span class="line">   `pickup_nyct2010_gid`   Int8,</span><br><span class="line">   `pickup_ctlabel`        Float32,</span><br><span class="line">   `pickup_borocode`       Int8,</span><br><span class="line">   `pickup_ct2010`         String,</span><br><span class="line">   `pickup_boroct2010`     FixedString(<span class="number">7</span>),</span><br><span class="line">   `pickup_cdeligibil`     String,</span><br><span class="line">   `pickup_ntacode`        FixedString(<span class="number">4</span>),</span><br><span class="line">   `pickup_ntaname`        String,</span><br><span class="line">   `pickup_puma`           UInt16,</span><br><span class="line">   `dropoff_nyct2010_gid`  UInt8,</span><br><span class="line">   `dropoff_ctlabel`       Float32,</span><br><span class="line">   `dropoff_borocode`      UInt8,</span><br><span class="line">   `dropoff_ct2010`        String,</span><br><span class="line">   `dropoff_boroct2010`    FixedString(<span class="number">7</span>),</span><br><span class="line">   `dropoff_cdeligibil`    String,</span><br><span class="line">   `dropoff_ntacode`       FixedString(<span class="number">4</span>),</span><br><span class="line">   `dropoff_ntaname`       String,</span><br><span class="line">   `dropoff_puma`          UInt16</span><br><span class="line">) ENGINE <span class="operator">=</span> S3(<span class="string">&#x27;https://datasets-documentation.s3.eu-west-3.amazonaws.com/nyc-taxi/trips_&#123;0..9&#125;.gz&#x27;</span>, <span class="string">&#x27;TabSeparatedWithNames&#x27;</span>, <span class="string">&#x27;gzip&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>Let’s select from our raw table</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span>(pickup_ntaname)</span><br><span class="line"><span class="keyword">FROM</span> trips_raw</span><br><span class="line">LIMIT <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+
+<p>The S3 table engine supports parallel reads. Writes are only supported if the table definition does not contain glob patterns</p>
+<p>You will need to configure access credentials on the <strong>config.xml</strong> if you are using private data or you need to write data. You can also define individual configuration filed on the conf.d directory like the following example.</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">clickhouse</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">s3</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">endpoint-name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">endpoint</span>&gt;</span>https://dalem-files.s3.amazonaws.com/test/<span class="tag">&lt;/<span class="name">endpoint</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">access_key_id</span>&gt;</span>key<span class="tag">&lt;/<span class="name">access_key_id</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">secret_access_key</span>&gt;</span>secret<span class="tag">&lt;/<span class="name">secret_access_key</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- &lt;use_environment_credentials&gt;false&lt;/use_environment_credentials&gt; --&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- &lt;header&gt;Authorization: Bearer SOME-TOKEN&lt;/header&gt; --&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">endpoint-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">s3</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">clickhouse</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>But we are not going to do this and just load the public data locally.</p>
+<p>Let’s just load data from our raw table for the materialized one.</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> trips <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> trips_raw</span><br></pre></td></tr></table></figure>
+
+<p>This will take some time and you can check the progress bar on the console</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">0 rows in set. Elapsed: 109.103 sec. Processed 10.00 million rows, 815.59 MB (91.66 thousand rows/s., 7.48 MB/s.)</span><br><span class="line">Peak memory usage: 1.21 GiB.</span><br></pre></td></tr></table></figure>
+
+<p>Lets validate we have the data</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">buldozer :) <span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(<span class="number">1</span>) <span class="keyword">FROM</span> trips</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(<span class="number">1</span>)</span><br><span class="line"><span class="keyword">FROM</span> trips</span><br><span class="line"></span><br><span class="line">Query id: <span class="number">8956</span>eff9<span class="operator">-</span>d76e<span class="number">-4</span>a1e<span class="operator">-</span>a766<span class="number">-9</span>bcc5dd1f6cd</span><br><span class="line"></span><br><span class="line">┌──<span class="built_in">count</span>()─┐</span><br><span class="line">│ <span class="number">10000840</span> │</span><br><span class="line">└──────────┘</span><br><span class="line"></span><br><span class="line"><span class="number">1</span> <span class="type">row</span> <span class="keyword">in</span> set. Elapsed: <span class="number">0.002</span> sec. </span><br></pre></td></tr></table></figure>
+
+<p>Let’s execute a DISTINCT query to force a heavier execution plan.</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span>(<span class="operator">*</span>) <span class="keyword">FROM</span> trips</span><br></pre></td></tr></table></figure>
+
+<p>This execution was done in a single server with a AMD processor</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">10000840 rows in set. Elapsed: 18.121 sec. Processed 10.00 million rows, 3.07 GB (551.89 thousand rows/s., 169.19 MB/s.)</span><br><span class="line">Peak memory usage: 631.59 MiB.</span><br></pre></td></tr></table></figure>
+
+<p>Still it scanned 10M registers in 18s, not bad :D</p>
+<h2 id="Clickhouse-Local"><a href="#Clickhouse-Local" class="headerlink" title="Clickhouse Local"></a>Clickhouse Local</h2><p><a target="_blank" rel="noopener" href="https://clickhouse.com/docs/en/operations/utilities/clickhouse-local">Clickhouse local</a> is very useful if you want to query data directly on top of files without having to install a server.</p>
+<p>This option is also very interesting to incorporate in a deployment pipeline</p>
+<h3 id="Query-CSV"><a href="#Query-CSV" class="headerlink" title="Query CSV"></a>Query CSV</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./clickhouse <span class="built_in">local</span> -q <span class="string">&quot;SELECT * FROM &#x27;review_?.csv&#x27;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Query-Parquet"><a href="#Query-Parquet" class="headerlink" title="Query Parquet"></a>Query Parquet</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./clickhouse <span class="built_in">local</span> -q <span class="string">&quot;</span></span><br><span class="line"><span class="string">SELECT count()</span></span><br><span class="line"><span class="string">FROM s3(&#x27;https://datasets-documentation.s3.eu-west-3.amazonaws.com/house_parquet/house_0.parquet&#x27;)&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Integrations"><a href="#Integrations" class="headerlink" title="Integrations"></a>Integrations</h2><p>Clickhouse as many <a target="_blank" rel="noopener" href="https://clickhouse.com/docs/en/integrations">integrations</a> available:</p>
+<ul>
+<li><strong>Core integrations</strong>: built or maintained by ClickHouse, they are supported by ClickHouse and live in the ClickHouse GitHub organization</li>
+<li><strong>Partner integrations</strong>: built or maintained, and supported by, third-party software vendors</li>
+<li><strong>Community integrations</strong>: built or maintained and supported by community members. No direct support is available besides the public GitHub repositories and community Slack channels</li>
+</ul>
+<p>Also the available documentation seems well prepared.</p>
+<h2 id="Production"><a href="#Production" class="headerlink" title="Production"></a>Production</h2><p>This article only touches the surface on the available options to setup Clickhouse one should read the <a target="_blank" rel="noopener" href="https://clickhouse.com/docs/en/architecture/horizontal-scaling">Scale Out</a> section to understand best to deploy in Production</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>In this article we followed the quick-start guide in order to setup a Clickhouse server loaded data from S3 a public dataset with 10M records and performed a select distinct query on that table.</p>
+<p>Clickhouse presents as a very interesting OLTP solution. If you are considering a solution for Analytical Reporting this is something to have on your radar.</p>
+<p>I also liked the fact you can start small having you service full deployment and maintained by you, but still having the capability to scaling horizontally or moving to Cloud Offering which would granting the support characteristics that most of the times are missing in open-source source software.</p>
+<p>The fact there is a huge list of <a target="_blank" rel="noopener" href="https://clickhouse.com/docs/en/about-us/adopters">Adopters</a> and a Company providing support and defining a roadmap for the product also brings reassurance to use this Product.</p>
+<p>The documentation provide several integrations patterns that are worth checking.</p>
+<p>This is definitely one that I will keep an eye on.</p>
+<p>Well done Clickhouse ;)</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://clickhouse.com/">https://clickhouse.com/</a></li>
+<li><a target="_blank" rel="noopener" href="https://clickhouse.com/docs/en/tutorial">https://clickhouse.com/docs/en/tutorial</a></li>
+<li><a target="_blank" rel="noopener" href="https://clickhouse.com/docs/en/about-us/cloud">https://clickhouse.com/docs/en/about-us/cloud</a></li>
+<li><a target="_blank" rel="noopener" href="https://clickhouse.com/docs/en/about-us/adopters">https://clickhouse.com/docs/en/about-us/adopters</a></li>
+<li><a target="_blank" rel="noopener" href="https://clickhouse.com/docs/en/operations/utilities">https://clickhouse.com/docs/en/operations/utilities</a></li>
+</ul>
+
+  </div>
+  
+    
+      <a id="older" class="blog-nav" href="/2024/01/26/githubactions/">OLDER&nbsp;&gt;</a>
+      
+        
+          <a id="newer" class="blog-nav" href="/2024/01/29/dbt-clickhouse/">&lt;&nbsp;NEWER</a>
+          
+            
+</div>
+          <div class="footer">
+  
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/rramos">Copyright © Rui Ramos 2024</a>
+        
+    </div>
+  
+</div>
+
+        </div> <!-- main -->
+          <div class="back-to-top hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+          
+  <div class="search-icon" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-box">
+        <div class="search-title">
+          <!-- <span class="search-icon-input">
+            <a href="javascript: void(0)">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </span> -->
+          
+            <input type="text" class="search-input" id="search-input" placeholder="Search ...">
+          
+          <span class="search-close-icon" id="search-close-icon">
+            <a href="javascript: void(0)">
+              <i class="iconfont icon-close"></i>
+            </a>
+          </span>
+        </div>
+        <div class="search-result" id="search-result"></div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    // inputArea.onclick = function() {
+    //   getSearchFile()
+    //   this.onclick = null
+    // }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        inputArea.focus()
+        getSearchFile()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'><span></ul>";
+      // $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'><h2>" + orig_data_title + "</h2></a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<h3 class=\"search-result-abstract\">" + match_content + "...</h3>"
+                }
+                str += "<hr></li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/leedom92/hexo-theme-leedom#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+          
+  
+  <div class="consent-icon" id="consent-icon">
+    <a class="button is-success" onclick="return klaro.show();">
+      <i class="iconfont icon-consent"></i>
+    </a>
+  </div>
+  
+
+
+          
+          
+  <!-- hexo plugin: hexo-webpushr-notification -->
+
+  <script type="text/plain" data-type="text/javascript" async data-name="webpushr">
+    let manager = klaro.getManager();
+    if (manager.getConsent('webpushr')){
+      (
+        function (w, d, s, id) {
+          if (typeof (w.webpushr) !== 'undefined') return;
+          w.webpushr = w.webpushr || function () {
+            (w.webpushr.q = w.webpushr.q || []).push(arguments)
+          }; var js, fjs = d.getElementsByTagName(s)[0]; js = d.createElement(s); js.id = id; js.async = 1; js.data-src = "https://cdn.webpushr.com/app.min.js";
+          fjs.parentNode.appendChild(js);
+        }( window, document, 'script', 'webpushr-jssdk' )
+      );
+      webpushr('setup', { 'key': 'BGON3evm0aCcG-ZpkVez8Q8GLrn4527R6YkL4nsU861337AfhJoOvnVU7eJ6ixjspxhic7ecVXvnhGgJz0cfDrE' });
+    }
+  </script>
+  <!-- end webpushr tracking code -->
+  
+
+      </div> <!-- app -->
+    <script>(function (w, d, s, id) {
+        if (typeof (w.webpushr) !== 'undefined') return;
+        w.webpushr = w.webpushr || function () { (w.webpushr.q = w.webpushr.q || []).push(arguments) };
+        var js, fjs = d.getElementsByTagName(s)[0];
+        js = d.createElement(s);
+        js.id = id;
+        js.async = 1;
+        js.src = "https://cdn.webpushr.com/app.min.js";
+        fjs.parentNode.appendChild(js);
+        }(window, document, 'script', 'webpushr-jssdk'));
+
+        webpushr('setup', {
+        'key': 'BGON3evm0aCcG-ZpkVez8Q8GLrn4527R6YkL4nsU861337AfhJoOvnVU7eJ6ixjspxhic7ecVXvnhGgJz0cfDrE',
+        'sw': undefined
+        });
+        </script></body>
+
+</html>

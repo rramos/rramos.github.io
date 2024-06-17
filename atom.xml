@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>rramos.github.io</title>
+  <icon>http://rramos.github.io/icon.png</icon>
+  <subtitle>Tech Notes for Infrastructure and Data</subtitle>
+  <link href="http://rramos.github.io/atom.xml" rel="self"/>
+  
+  <link href="http://rramos.github.io/"/>
+  <updated>2024-06-17T07:15:27.441Z</updated>
+  <id>http://rramos.github.io/</id>
+  
+  <author>
+    <name>Rui Ramos</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Drawio Animations</title>
+    <link href="http://rramos.github.io/2024/06/16/drawioflow/"/>
+    <id>http://rramos.github.io/2024/06/16/drawioflow/</id>
+    <published>2024-06-16T20:00:00.000Z</published>
+    <updated>2024-06-17T07:15:27.441Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Intro&quot;&gt;&lt;a href=&quot;#Intro&quot; class=&quot;headerlink&quot; title=&quot;Intro&quot;&gt;&lt;/a&gt;Intro&lt;/h2&gt;&lt;p&gt;In this article I will go through on how you can create a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Utils" scheme="http://rramos.github.io/tags/Utils/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Timeline</title>
+    <link href="http://rramos.github.io/2024/06/15/timelinefromgsheet/"/>
+    <id>http://rramos.github.io/2024/06/15/timelinefromgsheet/</id>
+    <published>2024-06-15T19:00:00.000Z</published>
+    <updated>2024-06-17T07:15:27.469Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Intro&quot;&gt;&lt;a href=&quot;#Intro&quot; class=&quot;headerlink&quot; title=&quot;Intro&quot;&gt;&lt;/a&gt;Intro&lt;/h2&gt;&lt;p&gt;In this article I will go through a method that would</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Utils" scheme="http://rramos.github.io/tags/Utils/"/>
+    
+    <category term="Frontend" scheme="http://rramos.github.io/tags/Frontend/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python requirements.txt</title>
+    <link href="http://rramos.github.io/2024/06/13/pythonrequirements/"/>
+    <id>http://rramos.github.io/2024/06/13/pythonrequirements/</id>
+    <published>2024-06-13T13:00:00.000Z</published>
+    <updated>2024-06-17T07:15:27.465Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Intro&quot;&gt;&lt;a href=&quot;#Intro&quot; class=&quot;headerlink&quot; title=&quot;Intro&quot;&gt;&lt;/a&gt;Intro&lt;/h2&gt;&lt;p&gt;In this article we will go through the best way to</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Utils" scheme="http://rramos.github.io/tags/Utils/"/>
+    
+    <category term="Python" scheme="http://rramos.github.io/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Serper</title>
+    <link href="http://rramos.github.io/2024/06/13/serper/"/>
+    <id>http://rramos.github.io/2024/06/13/serper/</id>
+    <published>2024-06-13T10:00:00.000Z</published>
+    <updated>2024-06-17T07:15:27.469Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Intro&quot;&gt;&lt;a href=&quot;#Intro&quot; class=&quot;headerlink&quot; title=&quot;Intro&quot;&gt;&lt;/a&gt;Intro&lt;/h2&gt;&lt;p&gt;serper is an API service that provides you fast results</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Utils" scheme="http://rramos.github.io/tags/Utils/"/>
+    
+    <category term="Langchain" scheme="http://rramos.github.io/tags/Langchain/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Feedback</title>
+    <link href="http://rramos.github.io/2024/06/13/feedback/"/>
+    <id>http://rramos.github.io/2024/06/13/feedback/</id>
+    <published>2024-06-13T07:00:00.000Z</published>
+    <updated>2024-06-17T07:15:27.449Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Intro&quot;&gt;&lt;a href=&quot;#Intro&quot; class=&quot;headerlink&quot; title=&quot;Intro&quot;&gt;&lt;/a&gt;Intro&lt;/h2&gt;&lt;p&gt;This article will focus on the importance of Feedback and</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Leadership" scheme="http://rramos.github.io/tags/Leadership/"/>
+    
+    <category term="Frameworks" scheme="http://rramos.github.io/tags/Frameworks/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Cara</title>
+    <link href="http://rramos.github.io/2024/06/12/cara/"/>
+    <id>http://rramos.github.io/2024/06/12/cara/</id>
+    <published>2024-06-12T22:20:00.000Z</published>
+    <updated>2024-06-17T07:15:27.433Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;About&quot;&gt;&lt;a href=&quot;#About&quot; class=&quot;headerlink&quot; title=&quot;About&quot;&gt;&lt;/a&gt;About&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://cara.app/&quot;&gt;Cara&lt;/a&gt; is a social media</summary>
+        
+      
+    
+    
+    
+    
+    <category term="AI" scheme="http://rramos.github.io/tags/AI/"/>
+    
+    <category term="Generative AI" scheme="http://rramos.github.io/tags/Generative-AI/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Web Vitals</title>
+    <link href="http://rramos.github.io/2024/06/12/vitalsga4/"/>
+    <id>http://rramos.github.io/2024/06/12/vitalsga4/</id>
+    <published>2024-06-12T13:20:00.000Z</published>
+    <updated>2024-06-17T07:15:27.473Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Intro&quot;&gt;&lt;a href=&quot;#Intro&quot; class=&quot;headerlink&quot; title=&quot;Intro&quot;&gt;&lt;/a&gt;Intro&lt;/h2&gt;&lt;p&gt;Web Vitals is an initiative by Google to provide unified</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Metrics" scheme="http://rramos.github.io/tags/Metrics/"/>
+    
+    <category term="Web Performance" scheme="http://rramos.github.io/tags/Web-Performance/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Motherduck GA</title>
+    <link href="http://rramos.github.io/2024/06/12/motherduck/"/>
+    <id>http://rramos.github.io/2024/06/12/motherduck/</id>
+    <published>2024-06-12T08:00:00.000Z</published>
+    <updated>2024-06-17T07:15:27.457Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Intro&quot;&gt;&lt;a href=&quot;#Intro&quot; class=&quot;headerlink&quot; title=&quot;Intro&quot;&gt;&lt;/a&gt;Intro&lt;/h2&gt;&lt;p&gt;MotherDuck is a collaborative data warehouse that extends</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Data Engineering" scheme="http://rramos.github.io/tags/Data-Engineering/"/>
+    
+    <category term="DuckDB" scheme="http://rramos.github.io/tags/DuckDB/"/>
+    
+    <category term="PaaS" scheme="http://rramos.github.io/tags/PaaS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Multi-Modal LLMs</title>
+    <link href="http://rramos.github.io/2024/06/11/multimodals/"/>
+    <id>http://rramos.github.io/2024/06/11/multimodals/</id>
+    <published>2024-06-11T17:00:00.000Z</published>
+    <updated>2024-06-17T07:15:27.457Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Intro&quot;&gt;&lt;a href=&quot;#Intro&quot; class=&quot;headerlink&quot; title=&quot;Intro&quot;&gt;&lt;/a&gt;Intro&lt;/h2&gt;&lt;p&gt;In the context of Large Language Models (LLMs),</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Machine Learning" scheme="http://rramos.github.io/tags/Machine-Learning/"/>
+    
+    <category term="LLMs" scheme="http://rramos.github.io/tags/LLMs/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>date.nager</title>
+    <link href="http://rramos.github.io/2024/06/11/datenager/"/>
+    <id>http://rramos.github.io/2024/06/11/datenager/</id>
+    <published>2024-06-11T11:00:00.000Z</published>
+    <updated>2024-06-17T07:15:27.437Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Intro&quot;&gt;&lt;a href=&quot;#Intro&quot; class=&quot;headerlink&quot; title=&quot;Intro&quot;&gt;&lt;/a&gt;Intro&lt;/h2&gt;&lt;p&gt;Nager.Date is an open source project with the goal of</summary>
+        
+      
+    
+    
+    
+    
+    <category term="OpenAPI" scheme="http://rramos.github.io/tags/OpenAPI/"/>
+    
+    <category term="Utils" scheme="http://rramos.github.io/tags/Utils/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Feedback Etiquette</title>
+    <link href="http://rramos.github.io/2024/06/11/feedbacketiquette/"/>
+    <id>http://rramos.github.io/2024/06/11/feedbacketiquette/</id>
+    <published>2024-06-11T07:45:00.000Z</published>
+    <updated>2024-06-17T07:15:27.449Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Intro&quot;&gt;&lt;a href=&quot;#Intro&quot; class=&quot;headerlink&quot; title=&quot;Intro&quot;&gt;&lt;/a&gt;Intro&lt;/h2&gt;&lt;p&gt;This &lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Leadership" scheme="http://rramos.github.io/tags/Leadership/"/>
+    
+    <category term="Feedback" scheme="http://rramos.github.io/tags/Feedback/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SQL RETURNING</title>
+    <link href="http://rramos.github.io/2024/06/10/returning/"/>
+    <id>http://rramos.github.io/2024/06/10/returning/</id>
+    <published>2024-06-10T21:10:00.000Z</published>
+    <updated>2024-06-17T07:15:27.465Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Intro&quot;&gt;&lt;a href=&quot;#Intro&quot; class=&quot;headerlink&quot; title=&quot;Intro&quot;&gt;&lt;/a&gt;Intro&lt;/h2&gt;&lt;p&gt;The RETURNING clause is not a statement itself, but a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Utils" scheme="http://rramos.github.io/tags/Utils/"/>
+    
+    <category term="SQL" scheme="http://rramos.github.io/tags/SQL/"/>
+    
+    <category term="SQLite" scheme="http://rramos.github.io/tags/SQLite/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Teaching Tech Together</title>
+    <link href="http://rramos.github.io/2024/06/10/teachingtogether/"/>
+    <id>http://rramos.github.io/2024/06/10/teachingtogether/</id>
+    <published>2024-06-10T07:00:00.000Z</published>
+    <updated>2024-06-17T07:15:27.469Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Intro&quot;&gt;&lt;a href=&quot;#Intro&quot; class=&quot;headerlink&quot; title=&quot;Intro&quot;&gt;&lt;/a&gt;Intro&lt;/h2&gt;&lt;p&gt;This article is mainly to share this amazing Book for</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Books" scheme="http://rramos.github.io/tags/Books/"/>
+    
+    <category term="Learning" scheme="http://rramos.github.io/tags/Learning/"/>
+    
+    <category term="Teaching" scheme="http://rramos.github.io/tags/Teaching/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>minIO</title>
+    <link href="http://rramos.github.io/2024/06/10/minIO/"/>
+    <id>http://rramos.github.io/2024/06/10/minIO/</id>
+    <published>2024-06-10T01:00:00.000Z</published>
+    <updated>2024-06-17T07:15:27.457Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Intro&quot;&gt;&lt;a href=&quot;#Intro&quot; class=&quot;headerlink&quot; title=&quot;Intro&quot;&gt;&lt;/a&gt;Intro&lt;/h2&gt;&lt;p&gt;MinIO is an object storage solution that provides an</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Utils" scheme="http://rramos.github.io/tags/Utils/"/>
+    
+    <category term="Infrastructure" scheme="http://rramos.github.io/tags/Infrastructure/"/>
+    
+    <category term="PaaS" scheme="http://rramos.github.io/tags/PaaS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>DuckDB Hf:// Prefix</title>
+    <link href="http://rramos.github.io/2024/06/09/huggingduckdb/"/>
+    <id>http://rramos.github.io/2024/06/09/huggingduckdb/</id>
+    <published>2024-06-09T14:00:00.000Z</published>
+    <updated>2024-06-17T07:15:27.453Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Intro&quot;&gt;&lt;a href=&quot;#Intro&quot; class=&quot;headerlink&quot; title=&quot;Intro&quot;&gt;&lt;/a&gt;Intro&lt;/h2&gt;&lt;p&gt;DuckDB and Hugging Face co-authored an announcement about</summary>
+        
+      
+    
+    
+    
+    
+    <category term="DuckDB" scheme="http://rramos.github.io/tags/DuckDB/"/>
+    
+    <category term="AI" scheme="http://rramos.github.io/tags/AI/"/>
+    
+    <category term="Machine Learning" scheme="http://rramos.github.io/tags/Machine-Learning/"/>
+    
+    <category term="Hugging Face" scheme="http://rramos.github.io/tags/Hugging-Face/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Killercoda</title>
+    <link href="http://rramos.github.io/2024/06/08/killercoda/"/>
+    <id>http://rramos.github.io/2024/06/08/killercoda/</id>
+    <published>2024-06-08T21:00:00.000Z</published>
+    <updated>2024-06-17T07:15:27.453Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;What-is-Killercoda&quot;&gt;&lt;a href=&quot;#What-is-Killercoda&quot; class=&quot;headerlink&quot; title=&quot;What is Killercoda&quot;&gt;&lt;/a&gt;What is</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Learning" scheme="http://rramos.github.io/tags/Learning/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>OpenLineage</title>
+    <link href="http://rramos.github.io/2024/06/08/openlineage/"/>
+    <id>http://rramos.github.io/2024/06/08/openlineage/</id>
+    <published>2024-06-08T20:00:00.000Z</published>
+    <updated>2024-06-17T07:15:27.461Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Intro&quot;&gt;&lt;a href=&quot;#Intro&quot; class=&quot;headerlink&quot; title=&quot;Intro&quot;&gt;&lt;/a&gt;Intro&lt;/h2&gt;&lt;p&gt;In this article I will go through OpenLineage</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Data Engineering" scheme="http://rramos.github.io/tags/Data-Engineering/"/>
+    
+    <category term="Data Lineage" scheme="http://rramos.github.io/tags/Data-Lineage/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>BigQuery Timetravel</title>
+    <link href="http://rramos.github.io/2024/06/08/bqtimetravel/"/>
+    <id>http://rramos.github.io/2024/06/08/bqtimetravel/</id>
+    <published>2024-06-08T19:50:00.000Z</published>
+    <updated>2024-06-17T07:15:27.429Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Intro&quot;&gt;&lt;a href=&quot;#Intro&quot; class=&quot;headerlink&quot; title=&quot;Intro&quot;&gt;&lt;/a&gt;Intro&lt;/h2&gt;&lt;p&gt;In this article, we will go through the process of using</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Utils" scheme="http://rramos.github.io/tags/Utils/"/>
+    
+    <category term="BigQuery" scheme="http://rramos.github.io/tags/BigQuery/"/>
+    
+    <category term="Data Engineering" scheme="http://rramos.github.io/tags/Data-Engineering/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Datafusion</title>
+    <link href="http://rramos.github.io/2024/06/08/datafusion/"/>
+    <id>http://rramos.github.io/2024/06/08/datafusion/</id>
+    <published>2024-06-08T13:00:00.000Z</published>
+    <updated>2024-06-17T07:15:27.437Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Intro&quot;&gt;&lt;a href=&quot;#Intro&quot; class=&quot;headerlink&quot; title=&quot;Intro&quot;&gt;&lt;/a&gt;Intro&lt;/h2&gt;&lt;p&gt;DataFusion is a very fast, extensible query engine for</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Rust" scheme="http://rramos.github.io/tags/Rust/"/>
+    
+    <category term="Utils" scheme="http://rramos.github.io/tags/Utils/"/>
+    
+    <category term="Data Engineering" scheme="http://rramos.github.io/tags/Data-Engineering/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>AI in Software Engineering</title>
+    <link href="http://rramos.github.io/2024/06/07/aisoftenggoogle/"/>
+    <id>http://rramos.github.io/2024/06/07/aisoftenggoogle/</id>
+    <published>2024-06-07T16:00:00.000Z</published>
+    <updated>2024-06-17T07:15:27.429Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Intro&quot;&gt;&lt;a href=&quot;#Intro&quot; class=&quot;headerlink&quot; title=&quot;Intro&quot;&gt;&lt;/a&gt;Intro&lt;/h2&gt;&lt;p&gt;Humans are one of the most expensive parts of software</summary>
+        
+      
+    
+    
+    
+    
+    <category term="AI" scheme="http://rramos.github.io/tags/AI/"/>
+    
+    <category term="Leadership" scheme="http://rramos.github.io/tags/Leadership/"/>
+    
+    <category term="Software Development" scheme="http://rramos.github.io/tags/Software-Development/"/>
+    
+  </entry>
+  
+</feed>

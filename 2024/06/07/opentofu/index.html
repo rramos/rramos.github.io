@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="Rui Ramos" />
+  <meta name="description" content="A simple Blog related with Infrastructure Architecture and Data" />
+  
+  
+
+  <link rel="canonical" href="http://rramos.github.io/2024/06/07/opentofu/"/>
+
+  <title>
+    
+      OpenTofu 
+      
+      
+    
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto:400,400italic,600|Roboto+Mono" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+
+
+  
+
+  
+    
+<link rel="stylesheet" href="/css/post.css">
+
+  
+
+  <!-- Include klaro css for consent banner -->
+  
+     
+<link rel="stylesheet" href="/css/klaro.css">
+
+  
+
+  <!-- jquery3.3.1 -->
+  
+<script src="/js/jquery.min.js"></script>
+
+
+  <!-- fancybox -->
+  
+<script src="/js/jquery.fancybox.min,js.js"></script>
+
+
+  <!-- fancybox -->
+  
+<script src="/js/fancybox.js"></script>
+
+
+  <!-- Googlecrux ID -->
+
+    <!-- Google site verification -->
+    <meta name="google-site-verification" content='Em0OaYgLD4MC3tIHbwqDxAklIn7JzrtipNZd7z1kqFI'' />
+    
+  
+    <!-- Google Tag Manager -->
+    <script data-type="text/javascript" type="text/plain" data-name="google-tag-manager">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-MXRC4DK');</script>
+      <!-- End Google Tag Manager -->
+    
+
+  
+      
+  
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
+</head>
+
+    <body>
+      <!-- Klaro Consent Management -->
+      
+          
+<script src="/js/klaro-config.js"></script>
+
+          
+<script src="/js/klaro-no-css.js"></script>
+
+      
+
+      
+     <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MXRC4DK"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+    
+
+
+      
+
+<!-- Start -Microsoft Clarity -->
+<script type="text/plain" data-type="text/javascript" async data-name="microsoft-clarity">
+  let manager = klaro.getManager();
+  if (manager.getConsent('microsoft-clarity')){
+
+    if (!window.location.host.includes('localhost')) {
+      (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;
+        t.data-src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "ms0b2q35b6");
+    }
+  }
+</script>
+<!-- End - Microsoft Clarity -->
+    
+
+      <div id="app">
+        <div class="header">
+  <a href="/">rramos.github.io</a>
+</div>
+
+
+        <p class="links">
+  
+    <a title="archives" target="" href="/archives/">
+      <i class="iconfont icon-bookmark"></i>
+    </a>
+  
+    <a title="github" target="_blank" href="https://github.com/rramos">
+      <i class="iconfont icon-github"></i>
+    </a>
+  
+    <a title="email" target="" href="mailto:rui.ms.ramos@gmail.com">
+      <i class="iconfont icon-envelope"></i>
+    </a>
+  
+    <a title="twitter" target="" href="https://x.com/RuiMSRamos">
+      <i class="iconfont icon-twitter"></i>
+    </a>
+  
+    <a title="about" target="" href="/about">
+      <i class="iconfont icon-qq"></i>
+    </a>
+  
+    <a title="discord" target="" href="https://discord.gg/YfCmqpG53p">
+      <i class="iconfont icon-wechat"></i>
+    </a>
+  
+    <a title="rss" target="_blank" href="/atom.xml">
+      <i class="iconfont icon-rss"></i>
+    </a>
+  
+</p>
+
+        <div class="main">
+          <!-- Article details page, showing the specific content of the article, URL format: https://yoursite/article title/-->
+<!-- At the same time, it is the hosting page of "tag", "friend", "categories", and "about" page. The specific display depends on page.type -->
+ 
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<div class="post">
+  <h3 class="date">
+    07 Jun, 2024
+  </h3>
+  <h1>
+    OpenTofu
+  </h1>
+  <div class="content markdown-body">
+    <p>OpenTofu is a Terraform fork, created as an initiative of Gruntwork, Spacelift, Harness, Env0, Scalr, and others, in response to HashiCorp’s switch from an open-source license to the BUSL.</p>
+<h2 id="Manifesto"><a href="#Manifesto" class="headerlink" title="Manifesto"></a>Manifesto</h2><blockquote>
+<p>Terraform was open-sourced in 2014 under the Mozilla Public License (v2.0) (the “MPL”). Over the next ~9 years, it built up a community that included thousands of users, contributors, customers, certified practitioners, vendors, and an ecosystem of open-source modules, plugins, libraries, and extensions.<br>Then, on August 10th, 2023, with little or no advance notice or chance for much, if not all, of the community to have any input, HashiCorp switched the license for Terraform from the MPL to the Business Source License (v1.1) (the “BUSL”), a non-open source license. In our opinion, this change threatens the entire community and ecosystem that’s built up around Terraform over the last 9 years.</p>
+</blockquote>
+<p>Full Manifesto <a target="_blank" rel="noopener" href="https://opentofu.org/manifesto/">here</a></p>
+<h2 id="What-are-the-differences-between-OpenTofu-and-Terraform"><a href="#What-are-the-differences-between-OpenTofu-and-Terraform" class="headerlink" title="What are the differences between OpenTofu and Terraform"></a>What are the differences between OpenTofu and Terraform</h2><p>On the technical level, OpenTofu 1.6.x is very similar feature-wise to Terraform 1.6.x. In the future, the projects feature sets will diverge.</p>
+<p>The other main difference is that OpenTofu is open-source, and it’s goal is to be driven in a collaborative way with no single company being able to dictate the roadmap.</p>
+<h2 id="How-does-OpenTofu-work"><a href="#How-does-OpenTofu-work" class="headerlink" title="How does OpenTofu work?"></a>How does OpenTofu work?</h2><p>OpenTofu creates and manages resources on cloud platforms and other services through their application programming interfaces (APIs). Providers enable OpenTofu to work with virtually any platform or service with an accessible API.</p>
+<h2 id="Why-OpenToFu"><a href="#Why-OpenToFu" class="headerlink" title="Why OpenToFu"></a>Why OpenToFu</h2><h3 id="Track-your-infrastructure"><a href="#Track-your-infrastructure" class="headerlink" title="Track your infrastructure"></a>Track your infrastructure</h3><p>​<br>OpenTofu generates a plan and prompts you for your approval before modifying your infrastructure. It also keeps track of your real infrastructure in a state file, which acts as a source of truth for your environment. OpenTofu uses the state file to determine the changes to make to your infrastructure so that it will match your configuration.</p>
+<h3 id="Automate-changes​"><a href="#Automate-changes​" class="headerlink" title="Automate changes​"></a>Automate changes​</h3><p>OpenTofu configuration files are declarative, meaning that they describe the end state of your infrastructure. You do not need to write step-by-step instructions to create resources because OpenTofu handles the underlying logic. OpenTofu builds a resource graph to determine resource dependencies and creates or modifies non-dependent resources in parallel. This allows OpenTofu to provision resources efficiently.</p>
+<h3 id="Standardize-configurations"><a href="#Standardize-configurations" class="headerlink" title="Standardize configurations"></a>Standardize configurations</h3><p>​<br>OpenTofu supports reusable configuration components called modules that define configurable collections of infrastructure, saving time and encouraging best practices. You can use publicly available modules from the OpenTofu Registry, or write your own.</p>
+<h3 id="Collaborate"><a href="#Collaborate" class="headerlink" title="Collaborate"></a>Collaborate</h3><p>​<br>Since your configuration is written in a file, you can commit it to a Version Control System (VCS) and use a cloud backend to efficiently manage OpenTofu workflows across teams. A cloud backend runs OpenTofu in a consistent, reliable environment and provides secure access to shared state and secret data, role-based access controls, a private registry for sharing both modules and providers, and more.</p>
+<h2 id="Getting-Started"><a href="#Getting-Started" class="headerlink" title="Getting Started"></a>Getting Started</h2><h3 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h3><p>Depending on your system there are several <a target="_blank" rel="noopener" href="https://opentofu.org/docs/intro/install/">options available</a>. I’m following the official documentation for Ubuntu.</p>
+<p>Install required software</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get install -y apt-transport-https ca-certificates curl gnupg</span><br></pre></td></tr></table></figure>
+
+<p>Install required repository keys</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo install -m 0755 -d /etc/apt/keyrings</span><br><span class="line">curl -fsSL https://get.opentofu.org/opentofu.gpg | sudo <span class="built_in">tee</span> /etc/apt/keyrings/opentofu.gpg &gt;/dev/null</span><br><span class="line">curl -fsSL https://packages.opentofu.org/opentofu/tofu/gpgkey | sudo gpg --no-tty --batch --dearmor -o /etc/apt/keyrings/opentofu-repo.gpg &gt;/dev/null</span><br><span class="line">sudo <span class="built_in">chmod</span> a+r /etc/apt/keyrings/opentofu.gpg /etc/apt/keyrings/opentofu-repo.gpg</span><br></pre></td></tr></table></figure>
+
+<p>Create the source repositories list to install</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span>   <span class="string">&quot;deb [signed-by=/etc/apt/keyrings/opentofu.gpg,/etc/apt/keyrings/opentofu-repo.gpg] https://packages.opentofu.org/opentofu/tofu/any/ any main</span></span><br><span class="line"><span class="string">deb-src [signed-by=/etc/apt/keyrings/opentofu.gpg,/etc/apt/keyrings/opentofu-repo.gpg] https://packages.opentofu.org/opentofu/tofu/any/ any main&quot;</span> |   sudo <span class="built_in">tee</span> /etc/apt/sources.list.d/opentofu.list &gt; /dev/null</span><br><span class="line">sudo <span class="built_in">chmod</span> a+r /etc/apt/sources.list.d/opentofu.list</span><br></pre></td></tr></table></figure>
+
+<p>Install tofu</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install -y tofu</span><br></pre></td></tr></table></figure>
+
+<h2 id="Working-with-OpenTofu"><a href="#Working-with-OpenTofu" class="headerlink" title="Working with OpenTofu"></a>Working with OpenTofu</h2><p>The core OpenTofu workflow has three steps:</p>
+<ol>
+<li><strong>Write</strong> - Author infrastructure as code.</li>
+<li><strong>Plan</strong> - Preview changes before applying.</li>
+<li><strong>Apply</strong> - Provision reproducible infrastructure.</li>
+</ol>
+<h3 id="Write"><a href="#Write" class="headerlink" title="Write"></a>Write</h3><p>You write OpenTofu configuration just like you write code:</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line"># Create repository</span><br><span class="line">$ git init my-infra &amp;&amp; cd my-infra</span><br><span class="line"></span><br><span class="line">Initialized empty Git repository in /.../my-infra/.git/</span><br><span class="line"></span><br><span class="line"># Write initial config</span><br><span class="line">$ vim main.tf</span><br><span class="line"></span><br><span class="line"># Initialize OpenTofu</span><br><span class="line">$ tofu init</span><br><span class="line"></span><br><span class="line">Initializing provider plugins...</span><br><span class="line"># ...</span><br><span class="line">OpenTofu has been successfully initialized!</span><br></pre></td></tr></table></figure>
+
+<h3 id="Plan​"><a href="#Plan​" class="headerlink" title="Plan​"></a>Plan​</h3><p>When the feedback loop of the Write step has yielded a change that looks good, it’s time to commit your work and review the final plan</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">git add main.tf</span><br><span class="line">git commit -m &#x27;Managing infrastructure as code!&#x27;</span><br><span class="line"></span><br><span class="line">[main (root-commit) f735520] Managing infrastructure as code!</span><br><span class="line"> 1 file changed, 1 insertion(+)</span><br><span class="line"></span><br><span class="line">tofu apply</span><br><span class="line"></span><br><span class="line">An execution plan has been generated and is shown below.</span><br><span class="line"># ...</span><br></pre></td></tr></table></figure>
+
+<h3 id="Apply"><a href="#Apply" class="headerlink" title="Apply"></a>Apply</h3><p>​<br>After one last check, you are ready to tell OpenTofu to provision real infrastructure.</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">Do you want to perform these actions?</span><br><span class="line"></span><br><span class="line">  OpenTofu will perform the actions described above.</span><br><span class="line">  Only &#x27;yes&#x27; will be accepted to approve.</span><br><span class="line">  Enter a value: yes</span><br><span class="line"></span><br><span class="line"># ...</span><br><span class="line"></span><br><span class="line">Apply complete! Resources: 1 added, 0 changed, 0 destroyed.</span><br></pre></td></tr></table></figure>
+
+<p>At this point, it’s common to push your version control repository to a remote location for safekeeping.</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git remote add origin https://github.com/*user*/*repo*.git</span><br><span class="line">git push origin main</span><br></pre></td></tr></table></figure>
+
+<h2 id="OpenTofu-Language"><a href="#OpenTofu-Language" class="headerlink" title="OpenTofu Language"></a>OpenTofu Language</h2><p>The main OpenTofu Language includes the language syntax, the top-level structures such as <code>resource</code>, <code>module</code>, and <code>provider</code> blocks, the “meta-arguments” in those blocks, and the documented semantics and behaviors for the operators and built-in functions available for use in expressions.</p>
+<ul>
+<li>Reference: <a target="_blank" rel="noopener" href="https://opentofu.org/docs/language">https://opentofu.org/docs/language</a></li>
+</ul>
+<h2 id="Ansible-vs-OpenTofu"><a href="#Ansible-vs-OpenTofu" class="headerlink" title="Ansible vs OpenTofu"></a>Ansible vs OpenTofu</h2><p>Let’s distinguish Ansible and Terraform&#x2F;OpenTofu.</p>
+<p>Ansible, known for its agentless architecture and simplicity, focuses on configuration management and application deployment. It excels at:</p>
+<ul>
+<li>Automating repetitive tasks</li>
+<li>Orchestrating complex workflows</li>
+<li>Ensuring consistency across multiple servers</li>
+</ul>
+<p>Terraform&#x2F;OpenToFu, on the other hand, specializes in infrastructure provisioning. It enables you to define and manage your infrastructure as code, abstracting away the complexities of interacting with and provisioning resources like servers and storage on various cloud providers.</p>
+<p>It excels at:</p>
+<ul>
+<li>Effectively managing states</li>
+<li>Deploying on multiple environments</li>
+<li>Supporting different platforms</li>
+</ul>
+<h2 id="Docker-Example"><a href="#Docker-Example" class="headerlink" title="Docker Example"></a>Docker Example</h2><p>Lets start by testing locally. In this example we will use tofu to manage the installation of docker images locally. The following <a target="_blank" rel="noopener" href="https://github.com/rramos/docker-tofu">repo</a> provides a docker image and the tofu script.</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> git@github.com:rramos/docker-tofu.git</span><br></pre></td></tr></table></figure>
+
+<p>The main.tf include the provider <code>kreuzwerker/docker</code> which allow us to manage docker images. We then define a data source with the name of the docker image in the example repo and a resource which holds the docker configuration. The final step is to wait 10s to wait for the docker to be ready.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Specifying Docker provider</span><br><span class="line"></span><br><span class="line">terraform &#123;</span><br><span class="line">  required_providers &#123;</span><br><span class="line"></span><br><span class="line">    docker = &#123;</span><br><span class="line">      source  = &quot;kreuzwerker/docker&quot;</span><br><span class="line">      version = &quot;3.0.2&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># Define the Docker container data source</span><br><span class="line">data &quot;docker_image&quot; &quot;local_image&quot; &#123;</span><br><span class="line">  name = &quot;pure_image&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># Define the Docker container resource</span><br><span class="line">resource &quot;docker_container&quot; &quot;pure_app&quot; &#123;</span><br><span class="line">  name  = &quot;pure_app&quot;</span><br><span class="line">  image = data.docker_image.local_image.name</span><br><span class="line"></span><br><span class="line">  # Expose port 5000 for Flask app</span><br><span class="line">  ports &#123;</span><br><span class="line">    internal = 5000</span><br><span class="line">    external = 5000</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># Terraform provisioner to wait for container to be ready</span><br><span class="line">resource &quot;null_resource&quot; &quot;wait_for_container&quot; &#123;</span><br><span class="line"></span><br><span class="line">  depends_on = [docker_container.pure_app]</span><br><span class="line">  # Local-exec provisioner to wait for container to be ready</span><br><span class="line"></span><br><span class="line">  provisioner &quot;local-exec&quot; &#123;</span><br><span class="line">    command = &quot;sleep 10&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>This block tells Terraform to use the docker provider from the source “kreuzwerker&#x2F;docker” with version 3.0.2. This provider allows Terraform to interact with Docker to manage container deployments.</p>
+<p>Now let’s initialize tofu on the <code>tofu</code> directory:</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">tofu init</span><br></pre></td></tr></table></figure>
+
+<p>Now, let’s plan with <code>tofu plan</code></p>
+<p>You should get something similar</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">data.docker_image.local_image: Reading...</span><br><span class="line">data.docker_image.local_image: Read complete after 0s [id=sha256:757a1f63e31b42fa0b1773630194013b0bcad26e9ea8b63d89557228488cd175]</span><br><span class="line"></span><br><span class="line">OpenTofu used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:</span><br><span class="line">  + create</span><br><span class="line"></span><br><span class="line">OpenTofu will perform the following actions:</span><br><span class="line"></span><br><span class="line">  # docker_container.pure_app will be created</span><br><span class="line">  + resource &quot;docker_container&quot; &quot;pure_app&quot; &#123;</span><br><span class="line">      + attach                                      = false</span><br><span class="line">      + bridge                                      = (known after apply)</span><br><span class="line">      + command                                     = (known after apply)</span><br><span class="line">      + container_logs                              = (known after apply)</span><br><span class="line">      + container_read_refresh_timeout_milliseconds = 15000</span><br><span class="line">      + entrypoint                                  = (known after apply)</span><br><span class="line">      + env                                         = (known after apply)</span><br><span class="line">      + exit_code                                   = (known after apply)</span><br><span class="line">      + hostname                                    = (known after apply)</span><br><span class="line">      + id                                          = (known after apply)</span><br><span class="line">      + image                                       = &quot;pure_image&quot;</span><br><span class="line">      + init                                        = (known after apply)</span><br><span class="line">      + ipc_mode                                    = (known after apply)</span><br><span class="line">      + log_driver                                  = (known after apply)</span><br><span class="line">      + logs                                        = false</span><br><span class="line">      + must_run                                    = true</span><br><span class="line">      + name                                        = &quot;pure_app&quot;</span><br><span class="line">      + network_data                                = (known after apply)</span><br><span class="line">      + read_only                                   = false</span><br><span class="line">      + remove_volumes                              = true</span><br><span class="line">      + restart                                     = &quot;no&quot;</span><br><span class="line">      + rm                                          = false</span><br><span class="line">      + runtime                                     = (known after apply)</span><br><span class="line">      + security_opts                               = (known after apply)</span><br><span class="line">      + shm_size                                    = (known after apply)</span><br><span class="line">      + start                                       = true</span><br><span class="line">      + stdin_open                                  = false</span><br><span class="line">      + stop_signal                                 = (known after apply)</span><br><span class="line">      + stop_timeout                                = (known after apply)</span><br><span class="line">      + tty                                         = false</span><br><span class="line">      + wait                                        = false</span><br><span class="line">      + wait_timeout                                = 60</span><br><span class="line"></span><br><span class="line">      + ports &#123;</span><br><span class="line">          + external = 5000</span><br><span class="line">          + internal = 5000</span><br><span class="line">          + ip       = &quot;0.0.0.0&quot;</span><br><span class="line">          + protocol = &quot;tcp&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  # null_resource.wait_for_container will be created</span><br><span class="line">  + resource &quot;null_resource&quot; &quot;wait_for_container&quot; &#123;</span><br><span class="line">      + id = (known after apply)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">Plan: 2 to add, 0 to change, 0 to destroy.</span><br></pre></td></tr></table></figure>
+
+<p>You can now execute <code>tofu apply</code> and confirm.</p>
+<p>You should have access to <a target="_blank" rel="noopener" href="http://localhost:5000/">http://localhost:5000</a> and your pure_app running</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">CONTAINER ID   IMAGE        COMMAND           CREATED          STATUS          PORTS                    NAMES</span><br><span class="line">241d930e1b0a   pure_image   &quot;python app.py&quot;   44 seconds ago   Up 43 seconds   0.0.0.0:5000-&gt;5000/tcp   pure_app</span><br></pre></td></tr></table></figure>
+
+<p>This is a simple example just to validate the previous terraform syntax with opentofu but you can extend this functionality to manage your infrastrcture as code.</p>
+<p>My recommendation is to start <strong>day1</strong> with this approach as it is more difficult to adapt later.</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://opentofu.org/manifesto/">https://opentofu.org/manifesto/</a></li>
+<li><a target="_blank" rel="noopener" href="https://opentofu.org/blog/the-opentofu-fork-is-now-available/">https://opentofu.org/blog/the-opentofu-fork-is-now-available/</a></li>
+<li><a target="_blank" rel="noopener" href="https://opentofu.org/docs/intro/migration/">https://opentofu.org/docs/intro/migration/</a></li>
+<li><a target="_blank" rel="noopener" href="https://opentofu.org/docs/intro/">https://opentofu.org/docs/intro/</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.purestorage.com/purely-educational/how-to-deploy-a-docker-image-with-terraform/">https://blog.purestorage.com/purely-educational/how-to-deploy-a-docker-image-with-terraform/</a></li>
+</ul>
+
+  </div>
+  
+    
+      <a id="older" class="blog-nav" href="/2024/06/06/tldr/">OLDER&nbsp;&gt;</a>
+      
+        
+          <a id="newer" class="blog-nav" href="/2024/06/07/git-cliff/">&lt;&nbsp;NEWER</a>
+          
+            
+</div>
+          <div class="footer">
+  
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/rramos">Copyright © Rui Ramos 2024</a>
+        
+    </div>
+  
+</div>
+
+        </div> <!-- main -->
+          <div class="back-to-top hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+          
+  <div class="search-icon" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-box">
+        <div class="search-title">
+          <!-- <span class="search-icon-input">
+            <a href="javascript: void(0)">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </span> -->
+          
+            <input type="text" class="search-input" id="search-input" placeholder="Search ...">
+          
+          <span class="search-close-icon" id="search-close-icon">
+            <a href="javascript: void(0)">
+              <i class="iconfont icon-close"></i>
+            </a>
+          </span>
+        </div>
+        <div class="search-result" id="search-result"></div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    // inputArea.onclick = function() {
+    //   getSearchFile()
+    //   this.onclick = null
+    // }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        inputArea.focus()
+        getSearchFile()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'><span></ul>";
+      // $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'><h2>" + orig_data_title + "</h2></a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<h3 class=\"search-result-abstract\">" + match_content + "...</h3>"
+                }
+                str += "<hr></li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/leedom92/hexo-theme-leedom#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+          
+  
+  <div class="consent-icon" id="consent-icon">
+    <a class="button is-success" onclick="return klaro.show();">
+      <i class="iconfont icon-consent"></i>
+    </a>
+  </div>
+  
+
+
+          
+          
+  <!-- hexo plugin: hexo-webpushr-notification -->
+
+  <script type="text/plain" data-type="text/javascript" async data-name="webpushr">
+    let manager = klaro.getManager();
+    if (manager.getConsent('webpushr')){
+      (
+        function (w, d, s, id) {
+          if (typeof (w.webpushr) !== 'undefined') return;
+          w.webpushr = w.webpushr || function () {
+            (w.webpushr.q = w.webpushr.q || []).push(arguments)
+          }; var js, fjs = d.getElementsByTagName(s)[0]; js = d.createElement(s); js.id = id; js.async = 1; js.data-src = "https://cdn.webpushr.com/app.min.js";
+          fjs.parentNode.appendChild(js);
+        }( window, document, 'script', 'webpushr-jssdk' )
+      );
+      webpushr('setup', { 'key': 'BGON3evm0aCcG-ZpkVez8Q8GLrn4527R6YkL4nsU861337AfhJoOvnVU7eJ6ixjspxhic7ecVXvnhGgJz0cfDrE' });
+    }
+  </script>
+  <!-- end webpushr tracking code -->
+  
+
+      </div> <!-- app -->
+    <script>(function (w, d, s, id) {
+        if (typeof (w.webpushr) !== 'undefined') return;
+        w.webpushr = w.webpushr || function () { (w.webpushr.q = w.webpushr.q || []).push(arguments) };
+        var js, fjs = d.getElementsByTagName(s)[0];
+        js = d.createElement(s);
+        js.id = id;
+        js.async = 1;
+        js.src = "https://cdn.webpushr.com/app.min.js";
+        fjs.parentNode.appendChild(js);
+        }(window, document, 'script', 'webpushr-jssdk'));
+
+        webpushr('setup', {
+        'key': 'BGON3evm0aCcG-ZpkVez8Q8GLrn4527R6YkL4nsU861337AfhJoOvnVU7eJ6ixjspxhic7ecVXvnhGgJz0cfDrE',
+        'sw': undefined
+        });
+        </script></body>
+
+</html>
