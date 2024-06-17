@@ -458,6 +458,9 @@
   <!-- hexo plugin: hexo-webpushr-notification -->
 
   <script type="text/plain" data-type="text/javascript" async data-name="webpushr">
+    let manager = klaro.getManager();
+    if (manager.getConsent('webpushr')){
+      (
         function (w, d, s, id) {
           if (typeof (w.webpushr) !== 'undefined') return;
           w.webpushr = w.webpushr || function () {
@@ -467,6 +470,7 @@
         }( window, document, 'script', 'webpushr-jssdk' )
       );
       webpushr('setup', { 'key': 'BGON3evm0aCcG-ZpkVez8Q8GLrn4527R6YkL4nsU861337AfhJoOvnVU7eJ6ixjspxhic7ecVXvnhGgJz0cfDrE' });
+    }
   </script>
   <!-- end webpushr tracking code -->
   
