@@ -321,9 +321,9 @@
             
             <tag> Utils </tag>
             
-            <tag> Infrastructure </tag>
-            
             <tag> PaaS </tag>
+            
+            <tag> Infrastructure </tag>
             
         </tags>
       
@@ -344,9 +344,9 @@
       
         <tags>
             
-            <tag> DuckDB </tag>
-            
             <tag> AI </tag>
+            
+            <tag> DuckDB </tag>
             
             <tag> Machine Learning </tag>
             
@@ -415,11 +415,11 @@
       
         <tags>
             
-            <tag> Utils </tag>
+            <tag> Data Engineering </tag>
             
             <tag> BigQuery </tag>
             
-            <tag> Data Engineering </tag>
+            <tag> Utils </tag>
             
         </tags>
       
@@ -440,11 +440,11 @@
       
         <tags>
             
+            <tag> Data Engineering </tag>
+            
             <tag> Rust </tag>
             
             <tag> Utils </tag>
-            
-            <tag> Data Engineering </tag>
             
         </tags>
       
@@ -465,9 +465,9 @@
       
         <tags>
             
-            <tag> AI </tag>
-            
             <tag> Leadership </tag>
+            
+            <tag> AI </tag>
             
             <tag> Software Development </tag>
             
@@ -565,9 +565,9 @@
             
             <tag> Data Engineering </tag>
             
-            <tag> Tools </tag>
-            
             <tag> Data Lineage </tag>
+            
+            <tag> Tools </tag>
             
         </tags>
       
@@ -611,11 +611,11 @@
             
             <tag> GitHub </tag>
             
-            <tag> Data Ingestion </tag>
-            
             <tag> Kafka </tag>
             
             <tag> Clickhouse </tag>
+            
+            <tag> Data Ingestion </tag>
             
         </tags>
       
@@ -753,9 +753,9 @@
       
         <tags>
             
-            <tag> SQL </tag>
-            
             <tag> Software Development </tag>
+            
+            <tag> SQL </tag>
             
         </tags>
       
@@ -918,13 +918,13 @@
             
             <tag> Rust </tag>
             
-            <tag> Frontend </tag>
-            
             <tag> Frameworks </tag>
             
-            <tag> React </tag>
+            <tag> Frontend </tag>
             
             <tag> Backend </tag>
+            
+            <tag> React </tag>
             
         </tags>
       
@@ -945,9 +945,9 @@
       
         <tags>
             
-            <tag> SQL </tag>
-            
             <tag> Data Engineering </tag>
+            
+            <tag> SQL </tag>
             
         </tags>
       
@@ -1125,9 +1125,9 @@
       
         <tags>
             
-            <tag> Mail </tag>
-            
             <tag> WebHosting </tag>
+            
+            <tag> Mail </tag>
             
         </tags>
       
@@ -1171,9 +1171,9 @@
             
             <tag> Frontend </tag>
             
-            <tag> React </tag>
-            
             <tag> Backend </tag>
+            
+            <tag> React </tag>
             
         </tags>
       
@@ -1309,9 +1309,9 @@
       
         <tags>
             
-            <tag> Scala </tag>
-            
             <tag> Software Development </tag>
+            
+            <tag> Scala </tag>
             
         </tags>
       
@@ -1501,9 +1501,9 @@
       
         <tags>
             
-            <tag> Hiring </tag>
-            
             <tag> Leadership </tag>
+            
+            <tag> Hiring </tag>
             
         </tags>
       
@@ -1551,13 +1551,13 @@
             
             <tag> Linux </tag>
             
+            <tag> Package Management </tag>
+            
             <tag> Arch </tag>
             
             <tag> Rust </tag>
             
             <tag> AUR </tag>
-            
-            <tag> Package Management </tag>
             
         </tags>
       
@@ -1678,9 +1678,9 @@
             
             <tag> Management </tag>
             
-            <tag> Delegation </tag>
-            
             <tag> Leadership </tag>
+            
+            <tag> Delegation </tag>
             
         </tags>
       
@@ -2020,9 +2020,9 @@
       
         <tags>
             
-            <tag> Development </tag>
-            
             <tag> Leadership </tag>
+            
+            <tag> Development </tag>
             
             <tag> Scrum </tag>
             
@@ -2291,9 +2291,9 @@
             
             <tag> Cloudera </tag>
             
-            <tag> Data Ingestion </tag>
-            
             <tag> Hadoop </tag>
+            
+            <tag> Data Ingestion </tag>
             
         </tags>
       
@@ -2455,9 +2455,9 @@
             
             <tag> HDFS </tag>
             
-            <tag> Hive </tag>
-            
             <tag> BigQuery </tag>
+            
+            <tag> Hive </tag>
             
             <tag> Avro </tag>
             
