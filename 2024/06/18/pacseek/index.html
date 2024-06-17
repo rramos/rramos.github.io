@@ -7,15 +7,15 @@
   <meta name="author" content="Rui Ramos" />
   <meta name="description" content="A simple Blog related with Infrastructure Architecture and Data" />
   
-    <meta name="robots" content="noindex" />
-  
   
 
-  <link rel="canonical" href="http://rramos.github.io/page/11/"/>
+  <link rel="canonical" href="http://rramos.github.io/2024/06/18/pacseek/"/>
 
   <title>
     
-      rramos.github.io
+      Pacseek 
+      
+      
     
   </title>
 
@@ -35,10 +35,10 @@
 
 
   
-    
-<link rel="stylesheet" href="/css/index.css">
 
   
+    
+<link rel="stylesheet" href="/css/post.css">
 
   
 
@@ -164,91 +164,60 @@
 </p>
 
         <div class="main">
-          <div>
-  <ul>
-    <!-- Traverse rendering articles -->
+          <!-- Article details page, showing the specific content of the article, URL format: https://yoursite/article title/-->
+<!-- At the same time, it is the hosting page of "tag", "friend", "categories", and "about" page. The specific display depends on page.type -->
+ 
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<div class="post">
+  <h3 class="date">
+    18 Jun, 2024
+  </h3>
+  <h1>
+    Pacseek
+  </h1>
+  <div class="content markdown-body">
+    <p>This article is about pacseek a terminal user interface for searching and installing Arch Linux packages</p>
+<h2 id="Context"><a href="#Context" class="headerlink" title="Context"></a>Context</h2><p>One of the things that that bugs me a bit is the fact that when I’ m trying to install some package in Arch with <code>pacman</code> command and is not present on the repository which makes search for a <a target="_blank" rel="noopener" href="https://aur.archlinux.org/packages">aur</a> package. If you like to know more about aur packages check the following article.</p>
+<p>It would be interesting to have a way to search those packages directly from the terminal and and just let your package manager deal with it.</p>
+<p>This application requires aya which is a AUR helper written and go.</p>
+<p>Make sure to pay Mario Oenning a beer for this work.</p>
+<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo pacman -S pacseek yay</span><br></pre></td></tr></table></figure>
+
+<p>When you start the command the first time it will create a <code>~/.config/pacseek/config.json</code> configuration file which you can edit manually or use the settings screen</p>
+<h2 id="Using"><a href="#Using" class="headerlink" title="Using"></a>Using</h2><p>Let’s say we would like to install a telegram application and understand which options we may find.</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">pacseek telegram</span><br></pre></td></tr></table></figure>
+
+<p>We would end-up with a similar interface to choose</p>
+<img src="/2024/06/18/pacseek/pacseek.png" class title="[packseek screenshoot]">
+
+<p>If the package does not exist on the default <a target="_blank" rel="noopener" href="https://aur.chaotic.cx/">chaotic-aur repo</a> it downloads from one exiting aur reference including dependencies and starts the build process.</p>
+<p>I’m surely going to start using this from now on.</p>
+<p>I would like to find some tool that would give statistics utilization of commands and recommendations for auto-cleaning. That could be a nice side-project there isn’t something like this already.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>In this article we went through <strong>pacseek</strong> a terminal user interface that would speed your process to install packages in Arch that may not be available on chaotic-aur repo and you need to download the dependencies and build it, without the need to search for them on the browser. It also shows you the dependencies and takes care of downloading the missing ones.</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/moson-mo/pacseek">https://github.com/moson-mo/pacseek</a></li>
+<li><a target="_blank" rel="noopener" href="https://aur.archlinux.org/packages">https://aur.archlinux.org/packages</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/moson-mo/pacseek/wiki">https://github.com/moson-mo/pacseek/wiki</a></li>
+<li><a target="_blank" rel="noopener" href="https://aur.chaotic.cx/">https://aur.chaotic.cx</a></li>
+</ul>
+
+  </div>
+  
     
-    <li>
-      <h3>Feb 04, 2024</h3>
-      <h2>
-        <a href="/2024/02/04/strapi/">
-          
+      <a id="older" class="blog-nav" href="/2024/06/16/drawioflow/">OLDER&nbsp;&gt;</a>
+      
+        
             
-              <span>Strapi and React TODO Application</span>
-            
-          
-        </a>
-      </h2>
-    </li>
-    
-    <li>
-      <h3>Jan 29, 2024</h3>
-      <h2>
-        <a href="/2024/01/29/dbt-clickhouse/">
-          
-            
-              <span>Dbt-Clickhouse</span>
-            
-          
-        </a>
-      </h2>
-    </li>
-    
-    <li>
-      <h3>Jan 28, 2024</h3>
-      <h2>
-        <a href="/2024/01/28/clickhouse/">
-          
-            
-              <span>ClickHouse</span>
-            
-          
-        </a>
-      </h2>
-    </li>
-    
-    <li>
-      <h3>Jan 26, 2024</h3>
-      <h2>
-        <a href="/2024/01/26/githubactions/">
-          
-            
-              <span>GitHub Actions</span>
-            
-          
-        </a>
-      </h2>
-    </li>
-    
-    <li>
-      <h3>Jan 25, 2024</h3>
-      <h2>
-        <a href="/2024/01/25/fabric/">
-          
-            
-              <span>Microsoft Fabric</span>
-            
-          
-        </a>
-      </h2>
-    </li>
-    
-  </ul>
-  <nav class="post-navigation">
-    
-      <a id="prev" class="index-nav" href="/page/10/">&lt;&nbsp;NEWER</a>
-    
-    
-      <a id="next" class="index-nav" href="/page/12/">OLDER&nbsp;&gt;</a>
-    
-</nav>
 </div>
-
-
-
-
-
-
           <div class="footer">
   
     <div class="footer-more">
