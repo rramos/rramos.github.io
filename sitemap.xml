@@ -29,33 +29,6 @@
   </url>
   
   <url>
-    <loc>http://rramos.github.io/2024/05/26/normalization/</loc>
-    
-    <lastmod>2024-06-18</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2024/05/31/ollama/</loc>
-    
-    <lastmod>2024-06-18</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2024/06/08/openlineage/</loc>
-    
-    <lastmod>2024-06-18</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://rramos.github.io/2024/06/07/opentofu/</loc>
     
     <lastmod>2024-06-18</lastmod>
@@ -236,15 +209,6 @@
   </url>
   
   <url>
-    <loc>http://rramos.github.io/2024/06/13/serper/</loc>
-    
-    <lastmod>2024-06-18</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://rramos.github.io/2023/07/25/softwareprincipals/</loc>
     
     <lastmod>2024-06-18</lastmod>
@@ -254,7 +218,7 @@
   </url>
   
   <url>
-    <loc>http://rramos.github.io/2024/06/02/sqlfluff/</loc>
+    <loc>http://rramos.github.io/2024/06/13/serper/</loc>
     
     <lastmod>2024-06-18</lastmod>
     
@@ -264,6 +228,15 @@
   
   <url>
     <loc>http://rramos.github.io/2024/05/22/sqlglot/</loc>
+    
+    <lastmod>2024-06-18</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/06/02/sqlfluff/</loc>
     
     <lastmod>2024-06-18</lastmod>
     
@@ -426,6 +399,33 @@
   
   <url>
     <loc>http://rramos.github.io/2017/09/29/nifiparcel/</loc>
+    
+    <lastmod>2024-06-18</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/05/26/normalization/</loc>
+    
+    <lastmod>2024-06-18</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/05/31/ollama/</loc>
+    
+    <lastmod>2024-06-18</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/06/08/openlineage/</loc>
     
     <lastmod>2024-06-18</lastmod>
     

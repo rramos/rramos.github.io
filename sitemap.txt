@@ -1,9 +1,6 @@
 http://rramos.github.io/2024/06/12/vitalsga4/
 http://rramos.github.io/about/index.html
 http://rramos.github.io/disclaimer/index.html
-http://rramos.github.io/2024/05/26/normalization/
-http://rramos.github.io/2024/05/31/ollama/
-http://rramos.github.io/2024/06/08/openlineage/
 http://rramos.github.io/2024/06/07/opentofu/
 http://rramos.github.io/2024/01/04/p3scontroller/
 http://rramos.github.io/2023/01/27/pacman/
@@ -24,10 +21,10 @@ http://rramos.github.io/2024/05/24/rocket/
 http://rramos.github.io/2024/01/02/scalavariance/
 http://rramos.github.io/2024/05/21/scylladb/
 http://rramos.github.io/2024/02/18/sendmail/
-http://rramos.github.io/2024/06/13/serper/
 http://rramos.github.io/2023/07/25/softwareprincipals/
-http://rramos.github.io/2024/06/02/sqlfluff/
+http://rramos.github.io/2024/06/13/serper/
 http://rramos.github.io/2024/05/22/sqlglot/
+http://rramos.github.io/2024/06/02/sqlfluff/
 http://rramos.github.io/2017/09/13/ssh-config/
 http://rramos.github.io/2022/12/23/stories/
 http://rramos.github.io/2024/02/04/strapi/
@@ -46,6 +43,9 @@ http://rramos.github.io/2022/08/30/nato_alphabet/
 http://rramos.github.io/2024/05/21/newtheme/
 http://rramos.github.io/2023/12/26/ngrok/
 http://rramos.github.io/2017/09/29/nifiparcel/
+http://rramos.github.io/2024/05/26/normalization/
+http://rramos.github.io/2024/05/31/ollama/
+http://rramos.github.io/2024/06/08/openlineage/
 http://rramos.github.io/2023/12/26/duckdb/
 http://rramos.github.io/2024/06/02/embeddings/
 http://rramos.github.io/2023/12/26/evidence/
