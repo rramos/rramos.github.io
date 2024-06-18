@@ -85,8 +85,8 @@ http://rramos.github.io/2024/01/28/clickhouse/
 http://rramos.github.io/2017/09/19/createavrotableforbq/
 http://rramos.github.io/2024/04/02/databoost/
 http://rramos.github.io/2024/05/24/dataform/
-http://rramos.github.io/2024/06/01/dataplex/
 http://rramos.github.io/2024/06/08/datafusion/
+http://rramos.github.io/2024/06/01/dataplex/
 http://rramos.github.io/2024/06/11/datenager/
 http://rramos.github.io/2024/01/29/dbt-clickhouse/
 http://rramos.github.io/2023/12/21/dbt/
