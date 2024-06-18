@@ -185,7 +185,7 @@
     ClickHouse
   </h1>
   <div class="content markdown-body">
-    <p>ClickHouse is a true column-oriented DBMS. Data is stored by columns, and during the execution of arrays (vectors or chunks of columns). Whenever possible, operations are dispatched on arrays, rather than on individual values. It is called “vectorized query execution” and it helps lower the cost of actual data processing.</p>
+    
 <h2 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h2><p>ClickHouse was initially built as a prototype to do just a single task well: to filter and aggregate data as fast as possible. That’s what needs to be done to build a typical analytical report, and that’s what a typical GROUP BY query does. The ClickHouse team has made several high-level decisions that, when combined, made achieving this task possible:</p>
 <p><strong>Column-oriented storage</strong>: Source data often contain hundreds or even thousands of columns, while a report can use just a few of them. The system needs to avoid reading unnecessary columns to avoid expensive disk read operations.</p>
 <p><strong>Indexes</strong>: Memory resident ClickHouse data structures allow the reading of only the necessary columns, and only the necessary row ranges of those columns.</p>

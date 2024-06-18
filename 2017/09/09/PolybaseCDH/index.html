@@ -185,7 +185,7 @@
     Polybase Configuration With Cloudera 5
   </h1>
   <div class="content markdown-body">
-    <p>In this article i’ll try to describe the required configuration steps to setup Polybase in SQLServer 2016 for <a target="_blank" rel="noopener" href="https://www.cloudera.com/">Cloudera</a> CDH5.</p>
+    
 <p>Before starting the the configuration steps, let’s just try to understand why this is being done.</p>
 <h2 id="Sqoop"><a href="#Sqoop" class="headerlink" title="Sqoop"></a>Sqoop</h2><p>Sqoop is one of the most used tools to transfer data from the Relational World to BigData infrastructures. It relies on JDBC connectors to transfer data between SQLServer and HDFS.</p>
 <h2 id="Performance"><a href="#Performance" class="headerlink" title="Performance"></a>Performance</h2><p>The transfer process to SQLServer via sqoop is taking quite a lot, so the objective of this PoC is to verify if PolyBase alternative for dumping data in&#x2F;out the cluster and understand if there is a improvement on existing processes.</p>
