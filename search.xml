@@ -49,9 +49,9 @@
             
             <tag> Package Management </tag>
             
-            <tag> Arch </tag>
-            
             <tag> Utils </tag>
+            
+            <tag> Arch </tag>
             
         </tags>
       
@@ -498,9 +498,9 @@
             
             <tag> Data Engineering </tag>
             
-            <tag> Rust </tag>
-            
             <tag> Utils </tag>
+            
+            <tag> Rust </tag>
             
         </tags>
       
