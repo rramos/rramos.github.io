@@ -6,7 +6,7 @@
   <link href="http://rramos.github.io/atom.xml" rel="self"/>
   
   <link href="http://rramos.github.io/"/>
-  <updated>2024-06-17T23:38:52.617Z</updated>
+  <updated>2024-06-18T10:13:59.112Z</updated>
   <id>http://rramos.github.io/</id>
   
   <author>
@@ -17,11 +17,42 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Looker Best Practices</title>
+    <link href="http://rramos.github.io/2024/06/18/lookerbestpractises/"/>
+    <id>http://rramos.github.io/2024/06/18/lookerbestpractises/</id>
+    <published>2024-06-18T11:00:00.000Z</published>
+    <updated>2024-06-18T10:13:59.112Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Intro&quot;&gt;&lt;a href=&quot;#Intro&quot; class=&quot;headerlink&quot; title=&quot;Intro&quot;&gt;&lt;/a&gt;Intro&lt;/h2&gt;&lt;p&gt;This article gathers recommended best practices for</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Utils" scheme="http://rramos.github.io/tags/Utils/"/>
+    
+    <category term="Reporting" scheme="http://rramos.github.io/tags/Reporting/"/>
+    
+    <category term="Data" scheme="http://rramos.github.io/tags/Data/"/>
+    
+    <category term="Engineering" scheme="http://rramos.github.io/tags/Engineering/"/>
+    
+    <category term="Looker" scheme="http://rramos.github.io/tags/Looker/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Pacseek</title>
     <link href="http://rramos.github.io/2024/06/18/pacseek/"/>
     <id>http://rramos.github.io/2024/06/18/pacseek/</id>
     <published>2024-06-18T02:00:00.000Z</published>
-    <updated>2024-06-17T23:38:52.617Z</updated>
+    <updated>2024-06-18T10:13:59.116Z</updated>
     
     
       
@@ -50,7 +81,7 @@
     <link href="http://rramos.github.io/2024/06/16/drawioflow/"/>
     <id>http://rramos.github.io/2024/06/16/drawioflow/</id>
     <published>2024-06-16T21:00:00.000Z</published>
-    <updated>2024-06-17T23:38:52.605Z</updated>
+    <updated>2024-06-18T10:13:59.104Z</updated>
     
     
       
@@ -73,7 +104,7 @@
     <link href="http://rramos.github.io/2024/06/15/timelinefromgsheet/"/>
     <id>http://rramos.github.io/2024/06/15/timelinefromgsheet/</id>
     <published>2024-06-15T20:00:00.000Z</published>
-    <updated>2024-06-17T23:38:52.617Z</updated>
+    <updated>2024-06-18T10:13:59.120Z</updated>
     
     
       
@@ -98,7 +129,7 @@
     <link href="http://rramos.github.io/2024/06/13/pythonrequirements/"/>
     <id>http://rramos.github.io/2024/06/13/pythonrequirements/</id>
     <published>2024-06-13T14:00:00.000Z</published>
-    <updated>2024-06-17T23:38:52.617Z</updated>
+    <updated>2024-06-18T10:13:59.116Z</updated>
     
     
       
@@ -123,7 +154,7 @@
     <link href="http://rramos.github.io/2024/06/13/serper/"/>
     <id>http://rramos.github.io/2024/06/13/serper/</id>
     <published>2024-06-13T11:00:00.000Z</published>
-    <updated>2024-06-17T23:38:52.617Z</updated>
+    <updated>2024-06-18T10:13:59.120Z</updated>
     
     
       
@@ -148,7 +179,7 @@
     <link href="http://rramos.github.io/2024/06/13/feedback/"/>
     <id>http://rramos.github.io/2024/06/13/feedback/</id>
     <published>2024-06-13T08:00:00.000Z</published>
-    <updated>2024-06-17T23:38:52.609Z</updated>
+    <updated>2024-06-18T10:13:59.108Z</updated>
     
     
       
@@ -173,7 +204,7 @@
     <link href="http://rramos.github.io/2024/06/12/cara/"/>
     <id>http://rramos.github.io/2024/06/12/cara/</id>
     <published>2024-06-12T23:20:00.000Z</published>
-    <updated>2024-06-17T23:38:52.605Z</updated>
+    <updated>2024-06-18T10:13:59.104Z</updated>
     
     
       
@@ -198,7 +229,7 @@
     <link href="http://rramos.github.io/2024/06/12/vitalsga4/"/>
     <id>http://rramos.github.io/2024/06/12/vitalsga4/</id>
     <published>2024-06-12T14:20:00.000Z</published>
-    <updated>2024-06-17T23:38:52.621Z</updated>
+    <updated>2024-06-18T10:13:59.120Z</updated>
     
     
       
@@ -223,7 +254,7 @@
     <link href="http://rramos.github.io/2024/06/12/motherduck/"/>
     <id>http://rramos.github.io/2024/06/12/motherduck/</id>
     <published>2024-06-12T09:00:00.000Z</published>
-    <updated>2024-06-17T23:38:52.613Z</updated>
+    <updated>2024-06-18T10:13:59.112Z</updated>
     
     
       
@@ -250,7 +281,7 @@
     <link href="http://rramos.github.io/2024/06/11/multimodals/"/>
     <id>http://rramos.github.io/2024/06/11/multimodals/</id>
     <published>2024-06-11T18:00:00.000Z</published>
-    <updated>2024-06-17T23:38:52.613Z</updated>
+    <updated>2024-06-18T10:13:59.112Z</updated>
     
     
       
@@ -275,7 +306,7 @@
     <link href="http://rramos.github.io/2024/06/11/datenager/"/>
     <id>http://rramos.github.io/2024/06/11/datenager/</id>
     <published>2024-06-11T12:00:00.000Z</published>
-    <updated>2024-06-17T23:38:52.605Z</updated>
+    <updated>2024-06-18T10:13:59.104Z</updated>
     
     
       
@@ -300,7 +331,7 @@
     <link href="http://rramos.github.io/2024/06/11/feedbacketiquette/"/>
     <id>http://rramos.github.io/2024/06/11/feedbacketiquette/</id>
     <published>2024-06-11T08:45:00.000Z</published>
-    <updated>2024-06-17T23:38:52.609Z</updated>
+    <updated>2024-06-18T10:13:59.108Z</updated>
     
     
       
@@ -325,7 +356,7 @@
     <link href="http://rramos.github.io/2024/06/10/returning/"/>
     <id>http://rramos.github.io/2024/06/10/returning/</id>
     <published>2024-06-10T22:10:00.000Z</published>
-    <updated>2024-06-17T23:38:52.617Z</updated>
+    <updated>2024-06-18T10:13:59.120Z</updated>
     
     
       
@@ -352,7 +383,7 @@
     <link href="http://rramos.github.io/2024/06/10/teachingtogether/"/>
     <id>http://rramos.github.io/2024/06/10/teachingtogether/</id>
     <published>2024-06-10T08:00:00.000Z</published>
-    <updated>2024-06-17T23:38:52.617Z</updated>
+    <updated>2024-06-18T10:13:59.120Z</updated>
     
     
       
@@ -379,7 +410,7 @@
     <link href="http://rramos.github.io/2024/06/10/minIO/"/>
     <id>http://rramos.github.io/2024/06/10/minIO/</id>
     <published>2024-06-10T02:00:00.000Z</published>
-    <updated>2024-06-17T23:38:52.609Z</updated>
+    <updated>2024-06-18T10:13:59.112Z</updated>
     
     
       
@@ -406,7 +437,7 @@
     <link href="http://rramos.github.io/2024/06/09/huggingduckdb/"/>
     <id>http://rramos.github.io/2024/06/09/huggingduckdb/</id>
     <published>2024-06-09T15:00:00.000Z</published>
-    <updated>2024-06-17T23:38:52.609Z</updated>
+    <updated>2024-06-18T10:13:59.112Z</updated>
     
     
       
@@ -435,7 +466,7 @@
     <link href="http://rramos.github.io/2024/06/08/killercoda/"/>
     <id>http://rramos.github.io/2024/06/08/killercoda/</id>
     <published>2024-06-08T22:00:00.000Z</published>
-    <updated>2024-06-17T23:38:52.609Z</updated>
+    <updated>2024-06-18T10:13:59.112Z</updated>
     
     
       
@@ -458,7 +489,7 @@
     <link href="http://rramos.github.io/2024/06/08/openlineage/"/>
     <id>http://rramos.github.io/2024/06/08/openlineage/</id>
     <published>2024-06-08T21:00:00.000Z</published>
-    <updated>2024-06-17T23:38:52.613Z</updated>
+    <updated>2024-06-18T10:13:59.116Z</updated>
     
     
       
@@ -483,7 +514,7 @@
     <link href="http://rramos.github.io/2024/06/08/bqtimetravel/"/>
     <id>http://rramos.github.io/2024/06/08/bqtimetravel/</id>
     <published>2024-06-08T20:50:00.000Z</published>
-    <updated>2024-06-17T23:38:52.605Z</updated>
+    <updated>2024-06-18T10:13:59.104Z</updated>
     
     
       
@@ -500,33 +531,6 @@
     <category term="Data Engineering" scheme="http://rramos.github.io/tags/Data-Engineering/"/>
     
     <category term="BigQuery" scheme="http://rramos.github.io/tags/BigQuery/"/>
-    
-    <category term="Utils" scheme="http://rramos.github.io/tags/Utils/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Datafusion</title>
-    <link href="http://rramos.github.io/2024/06/08/datafusion/"/>
-    <id>http://rramos.github.io/2024/06/08/datafusion/</id>
-    <published>2024-06-08T14:00:00.000Z</published>
-    <updated>2024-06-17T23:38:52.605Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;Intro&quot;&gt;&lt;a href=&quot;#Intro&quot; class=&quot;headerlink&quot; title=&quot;Intro&quot;&gt;&lt;/a&gt;Intro&lt;/h2&gt;&lt;p&gt;DataFusion is a very fast, extensible query engine for</summary>
-        
-      
-    
-    
-    
-    
-    <category term="Data Engineering" scheme="http://rramos.github.io/tags/Data-Engineering/"/>
-    
-    <category term="Rust" scheme="http://rramos.github.io/tags/Rust/"/>
     
     <category term="Utils" scheme="http://rramos.github.io/tags/Utils/"/>
     
