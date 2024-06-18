@@ -2,6 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://rramos.github.io/2017/09/07/unpivot/</loc>
+    
+    <lastmod>2024-06-18</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2017/09/26/vagrant-qemu/</loc>
+    
+    <lastmod>2024-06-18</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2017/10/02/vdi2qemu/</loc>
+    
+    <lastmod>2024-06-18</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://rramos.github.io/2024/06/12/vitalsga4/</loc>
     
     <lastmod>2024-06-18</lastmod>
@@ -21,6 +48,33 @@
   
   <url>
     <loc>http://rramos.github.io/disclaimer/index.html</loc>
+    
+    <lastmod>2024-06-18</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/05/26/normalization/</loc>
+    
+    <lastmod>2024-06-18</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/05/31/ollama/</loc>
+    
+    <lastmod>2024-06-18</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/06/08/openlineage/</loc>
     
     <lastmod>2024-06-18</lastmod>
     
@@ -209,15 +263,6 @@
   </url>
   
   <url>
-    <loc>http://rramos.github.io/2023/07/25/softwareprincipals/</loc>
-    
-    <lastmod>2024-06-18</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://rramos.github.io/2024/06/13/serper/</loc>
     
     <lastmod>2024-06-18</lastmod>
@@ -227,7 +272,7 @@
   </url>
   
   <url>
-    <loc>http://rramos.github.io/2024/05/22/sqlglot/</loc>
+    <loc>http://rramos.github.io/2023/07/25/softwareprincipals/</loc>
     
     <lastmod>2024-06-18</lastmod>
     
@@ -237,6 +282,15 @@
   
   <url>
     <loc>http://rramos.github.io/2024/06/02/sqlfluff/</loc>
+    
+    <lastmod>2024-06-18</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/05/22/sqlglot/</loc>
     
     <lastmod>2024-06-18</lastmod>
     
@@ -317,33 +371,6 @@
   </url>
   
   <url>
-    <loc>http://rramos.github.io/2017/09/07/unpivot/</loc>
-    
-    <lastmod>2024-06-18</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2017/09/26/vagrant-qemu/</loc>
-    
-    <lastmod>2024-06-18</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2017/10/02/vdi2qemu/</loc>
-    
-    <lastmod>2024-06-18</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://rramos.github.io/2017/09/07/mkv/</loc>
     
     <lastmod>2024-06-18</lastmod>
@@ -399,33 +426,6 @@
   
   <url>
     <loc>http://rramos.github.io/2017/09/29/nifiparcel/</loc>
-    
-    <lastmod>2024-06-18</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2024/05/26/normalization/</loc>
-    
-    <lastmod>2024-06-18</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2024/05/31/ollama/</loc>
-    
-    <lastmod>2024-06-18</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2024/06/08/openlineage/</loc>
     
     <lastmod>2024-06-18</lastmod>
     
@@ -516,6 +516,15 @@
   
   <url>
     <loc>http://rramos.github.io/2024/01/26/githubactions/</loc>
+    
+    <lastmod>2024-06-18</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/06/18/hexo-twitter/</loc>
     
     <lastmod>2024-06-18</lastmod>
     
@@ -1715,6 +1724,13 @@
   
   <url>
     <loc>http://rramos.github.io/tags/Bash/</loc>
+    <lastmod>2024-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/tags/Twitter/</loc>
     <lastmod>2024-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

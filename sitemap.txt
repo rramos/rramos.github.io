@@ -1,6 +1,12 @@
+http://rramos.github.io/2017/09/07/unpivot/
+http://rramos.github.io/2017/09/26/vagrant-qemu/
+http://rramos.github.io/2017/10/02/vdi2qemu/
 http://rramos.github.io/2024/06/12/vitalsga4/
 http://rramos.github.io/about/index.html
 http://rramos.github.io/disclaimer/index.html
+http://rramos.github.io/2024/05/26/normalization/
+http://rramos.github.io/2024/05/31/ollama/
+http://rramos.github.io/2024/06/08/openlineage/
 http://rramos.github.io/2024/06/07/opentofu/
 http://rramos.github.io/2024/01/04/p3scontroller/
 http://rramos.github.io/2023/01/27/pacman/
@@ -21,10 +27,10 @@ http://rramos.github.io/2024/05/24/rocket/
 http://rramos.github.io/2024/01/02/scalavariance/
 http://rramos.github.io/2024/05/21/scylladb/
 http://rramos.github.io/2024/02/18/sendmail/
-http://rramos.github.io/2023/07/25/softwareprincipals/
 http://rramos.github.io/2024/06/13/serper/
-http://rramos.github.io/2024/05/22/sqlglot/
+http://rramos.github.io/2023/07/25/softwareprincipals/
 http://rramos.github.io/2024/06/02/sqlfluff/
+http://rramos.github.io/2024/05/22/sqlglot/
 http://rramos.github.io/2017/09/13/ssh-config/
 http://rramos.github.io/2022/12/23/stories/
 http://rramos.github.io/2024/02/04/strapi/
@@ -33,9 +39,6 @@ http://rramos.github.io/2024/06/10/teachingtogether/
 http://rramos.github.io/2024/06/15/timelinefromgsheet/
 http://rramos.github.io/2024/06/05/tinyBird/
 http://rramos.github.io/2024/06/06/tldr/
-http://rramos.github.io/2017/09/07/unpivot/
-http://rramos.github.io/2017/09/26/vagrant-qemu/
-http://rramos.github.io/2017/10/02/vdi2qemu/
 http://rramos.github.io/2017/09/07/mkv/
 http://rramos.github.io/2024/06/12/motherduck/
 http://rramos.github.io/2024/06/11/multimodals/
@@ -43,9 +46,6 @@ http://rramos.github.io/2022/08/30/nato_alphabet/
 http://rramos.github.io/2024/05/21/newtheme/
 http://rramos.github.io/2023/12/26/ngrok/
 http://rramos.github.io/2017/09/29/nifiparcel/
-http://rramos.github.io/2024/05/26/normalization/
-http://rramos.github.io/2024/05/31/ollama/
-http://rramos.github.io/2024/06/08/openlineage/
 http://rramos.github.io/2023/12/26/duckdb/
 http://rramos.github.io/2024/06/02/embeddings/
 http://rramos.github.io/2023/12/26/evidence/
@@ -56,6 +56,7 @@ http://rramos.github.io/2022/12/23/fish/
 http://rramos.github.io/2016/09/18/git-cheat-sheet/
 http://rramos.github.io/2024/06/07/git-cliff/
 http://rramos.github.io/2024/01/26/githubactions/
+http://rramos.github.io/2024/06/18/hexo-twitter/
 http://rramos.github.io/2017/09/27/hive-udfs/
 http://rramos.github.io/2016/10/19/hiveGC-md/
 http://rramos.github.io/2024/06/09/huggingduckdb/
@@ -209,6 +210,7 @@ http://rramos.github.io/tags/Microsoft-Fabric/
 http://rramos.github.io/tags/Frameworks/
 http://rramos.github.io/tags/Feedback/
 http://rramos.github.io/tags/Bash/
+http://rramos.github.io/tags/Twitter/
 http://rramos.github.io/tags/UDFS/
 http://rramos.github.io/tags/Big-Data/
 http://rramos.github.io/tags/Java/
