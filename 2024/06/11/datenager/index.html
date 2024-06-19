@@ -179,13 +179,14 @@
 </script>
 <div class="post">
   <h3 class="date">
-    11 Jun, 2024
-  </h3>
+    11 Jun, 2024 - About 2 minutes <span class="iconfont">&#xe968;</span>
+  </h3> 
   <h1>
     date.nager
   </h1>
   <div class="content markdown-body">
     
+<h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>Nager.Date is an open source project with the goal of making holidays easy to query.</p>
 <h2 id="About"><a href="#About" class="headerlink" title="About"></a>About</h2><p>Discover the convenience of easily accessing holidays from over 100 countries with Nager.Date. Our popular project utilizes the power of .NET and offers a user-friendly public <a target="_blank" rel="noopener" href="https://date.nager.at/Api">REST API</a> for seamless integration into your application.</p>
 <h2 id="Testing"><a href="#Testing" class="headerlink" title="Testing"></a>Testing</h2><p>Use the following sample python code to obtain the national holiday in Portugal in 2024 <code>get_national_holidays.py</code>.</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">response = requests.get(<span class="string">&#x27;https://date.nager.at/api/v3/publicholidays/2024/PT&#x27;</span>)</span><br><span class="line">public_holidays = json.loads(response.content)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> public_holiday <span class="keyword">in</span> public_holidays:</span><br><span class="line">  <span class="built_in">print</span>(public_holiday[<span class="string">&#x27;date&#x27;</span>],<span class="string">&quot; - &quot;</span>,public_holiday[<span class="string">&#x27;name&#x27;</span>])</span><br></pre></td></tr></table></figure>

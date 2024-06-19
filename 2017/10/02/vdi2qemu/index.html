@@ -179,13 +179,14 @@
 </script>
 <div class="post">
   <h3 class="date">
-    02 Oct, 2017
-  </h3>
+    02 Oct, 2017 - About 1 minute <span class="iconfont">&#xe968;</span>
+  </h3> 
   <h1>
     Convert VirtualBox Images to KVM
   </h1>
   <div class="content markdown-body">
     
+<h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>In this article i will explain a quick way to convert <a target="_blank" rel="noopener" href="https://www.virtualbox.org/">VirtualBox</a> images (vdi) into qcow2 and load them in <a target="_blank" rel="noopener" href="https://www.linux-kvm.org/">KVM</a>.</p>
 <h2 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h2><p>This is something i normally do, because i get better performance running Linux VM’s on KVM and saves me some space with qcow2 volume format.</p>
 <h2 id="qcow2-Features"><a href="#qcow2-Features" class="headerlink" title="qcow2 Features"></a>qcow2 Features</h2><p>One of the main characteristics of qcow disk images is that files with this format can grow as data is added. This allows for smaller file sizes than raw disk images, which allocate the whole image space to a file, even if parts of it are empty</p>
 <h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><ul>

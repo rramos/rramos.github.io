@@ -179,13 +179,14 @@
 </script>
 <div class="post">
   <h3 class="date">
-    19 Oct, 2016
-  </h3>
+    19 Oct, 2016 - About 42 seconds <span class="iconfont">&#xe968;</span>
+  </h3> 
   <h1>
     Hive Queries Crash When Inserting GC Exception
   </h1>
   <div class="content markdown-body">
     
+<h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>When running some queries with hive sometimes we get a very nice java exception of overhead limit</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Exception <span class="keyword">in</span> thread <span class="string">&quot;main&quot;</span> java.lang.OutOfMemoryError: GC overhead <span class="built_in">limit</span> exceeded</span><br></pre></td></tr></table></figure>
 
 <p>I didn’t know but it turns out you can supply directly on the jdbc connection of beeline the parameters to increase this values.</p>

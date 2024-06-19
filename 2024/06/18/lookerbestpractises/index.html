@@ -179,13 +179,14 @@
 </script>
 <div class="post">
   <h3 class="date">
-    18 Jun, 2024
-  </h3>
+    18 Jun, 2024 - About 7 minutes <span class="iconfont">&#xe968;</span>
+  </h3> 
   <h1>
     Looker Best Practices
   </h1>
   <div class="content markdown-body">
     
+<h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>This article gathers recommended best practices for Looker service</p>
 <h2 id="Best-Practices"><a href="#Best-Practices" class="headerlink" title="Best Practices"></a>Best Practices</h2><p>Use your best judgment when implementing any of the recommendations shared on this page. This information is a consolidation from the official Google pages on the reference links</p>
 <h3 id="Do’s"><a href="#Do’s" class="headerlink" title="Do’s"></a>Do’s</h3><h4 id="Do-Define-the-relationship-parameter-for-all-joins"><a href="#Do-Define-the-relationship-parameter-for-all-joins" class="headerlink" title="Do: Define the relationship parameter for all joins"></a>Do: Define the relationship parameter for all joins</h4><p>This will ensures that metrics aggregate properly within Looker. By default, Looker will use a <code>many_to_one</code> join relationship for any joins in which a relationship is not defined.</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">explore: view_name &#123;</span><br><span class="line">  join: view_name_2 &#123;</span><br><span class="line">    relationship: one_to_one</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>

@@ -179,13 +179,14 @@
 </script>
 <div class="post">
   <h3 class="date">
-    19 Feb, 2024
-  </h3>
+    19 Feb, 2024 - About 2 minutes <span class="iconfont">&#xe968;</span>
+  </h3> 
   <h1>
     Parquet Compression
   </h1>
   <div class="content markdown-body">
     
+<h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>Was reading this <a target="_blank" rel="noopener" href="https://mastodon.social/@severo/111957633001467414">article</a> where Philippe Rivière and Éric Mauvière optimized a <strong>200GB</strong> Parquet data and prepare it to <strong>549kB</strong>.</p>
 <p>Now this work touch some very relevant points regarding Data Engineering procedures and best practises, I would suggest going on the article as it explains in detail what they applied in each stage and how.</p>
 <h2 id="Use-Case"><a href="#Use-Case" class="headerlink" title="Use Case"></a>Use Case</h2><blockquote>
 <p>This new fascinating dataset just dropped on Hugging Face. French public domain newspapers 🤗 references about 3 million newspapers and periodicals with their full text OCR’ed and some meta-data. The data is stored in 320 large parquet files. The data loader for this Observable framework project uses DuckDB to read these files (altogether about 200GB) and combines a minimal subset of their metadata — title and year of publication, most importantly without the text contents —, into a single highly optimized parquet file.</p>

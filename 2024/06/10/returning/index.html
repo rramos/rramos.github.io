@@ -179,13 +179,14 @@
 </script>
 <div class="post">
   <h3 class="date">
-    10 Jun, 2024
-  </h3>
+    10 Jun, 2024 - About 59 seconds <span class="iconfont">&#xe968;</span>
+  </h3> 
   <h1>
     SQL RETURNING
   </h1>
   <div class="content markdown-body">
     
+<h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>The RETURNING clause is not a statement itself, but a clause that can optionally appear near the end of top-level DELETE, INSERT, and UPDATE statements. The effect of the RETURNING clause is to cause the statement to return one result row for each database row that is deleted, inserted, or updated.</p>
 <h2 id="Usecase"><a href="#Usecase" class="headerlink" title="Usecase"></a>Usecase</h2><p>The RETURNING clause is designed to provide the application with the values of columns that are filled in automatically by SQLite.</p>
 <h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> t0(</span><br><span class="line">  a <span class="type">INTEGER</span> <span class="keyword">PRIMARY</span> KEY,</span><br><span class="line">  b <span class="type">DATE</span> <span class="keyword">DEFAULT</span> <span class="built_in">CURRENT_TIMESTAMP</span>,</span><br><span class="line">  c <span class="type">INTEGER</span></span><br><span class="line">);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> t0(c) <span class="keyword">VALUES</span>(random()) RETURNING <span class="operator">*</span>;</span><br></pre></td></tr></table></figure>
 
