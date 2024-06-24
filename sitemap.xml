@@ -2,6 +2,51 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://rramos.github.io/about/index.html</loc>
+    
+    <lastmod>2024-06-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/disclaimer/index.html</loc>
+    
+    <lastmod>2024-06-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/02/19/parquet_compression/</loc>
+    
+    <lastmod>2024-06-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/02/29/pico/</loc>
+    
+    <lastmod>2024-06-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2017/09/23/portainer/</loc>
+    
+    <lastmod>2024-06-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://rramos.github.io/2016/09/23/portotechhub-com/</loc>
     
     <lastmod>2024-06-24</lastmod>
@@ -263,24 +308,6 @@
   </url>
   
   <url>
-    <loc>http://rramos.github.io/about/index.html</loc>
-    
-    <lastmod>2024-06-24</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/disclaimer/index.html</loc>
-    
-    <lastmod>2024-06-24</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://rramos.github.io/2024/06/11/multimodals/</loc>
     
     <lastmod>2024-06-24</lastmod>
@@ -389,7 +416,7 @@
   </url>
   
   <url>
-    <loc>http://rramos.github.io/2024/02/19/parquet_compression/</loc>
+    <loc>http://rramos.github.io/2023/12/26/duckdb/</loc>
     
     <lastmod>2024-06-24</lastmod>
     
@@ -398,16 +425,7 @@
   </url>
   
   <url>
-    <loc>http://rramos.github.io/2024/02/29/pico/</loc>
-    
-    <lastmod>2024-06-24</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2017/09/23/portainer/</loc>
+    <loc>http://rramos.github.io/2024/06/02/embeddings/</loc>
     
     <lastmod>2024-06-24</lastmod>
     
@@ -587,6 +605,15 @@
   </url>
   
   <url>
+    <loc>http://rramos.github.io/2024/06/04/macshortcuts/</loc>
+    
+    <lastmod>2024-06-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://rramos.github.io/2024/06/01/markdownlint/</loc>
     
     <lastmod>2024-06-24</lastmod>
@@ -614,15 +641,6 @@
   </url>
   
   <url>
-    <loc>http://rramos.github.io/2024/06/04/macshortcuts/</loc>
-    
-    <lastmod>2024-06-24</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://rramos.github.io/2023/08/26/minikube/</loc>
     
     <lastmod>2024-06-24</lastmod>
@@ -642,6 +660,87 @@
   
   <url>
     <loc>http://rramos.github.io/2024/06/12/motherduck/</loc>
+    
+    <lastmod>2024-06-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/01/28/clickhouse/</loc>
+    
+    <lastmod>2024-06-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2017/09/19/createavrotableforbq/</loc>
+    
+    <lastmod>2024-06-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/04/02/databoost/</loc>
+    
+    <lastmod>2024-06-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/05/24/dataform/</loc>
+    
+    <lastmod>2024-06-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/06/08/datafusion/</loc>
+    
+    <lastmod>2024-06-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/06/01/dataplex/</loc>
+    
+    <lastmod>2024-06-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/06/11/datenager/</loc>
+    
+    <lastmod>2024-06-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/01/29/dbt-clickhouse/</loc>
+    
+    <lastmod>2024-06-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2023/12/21/dbt/</loc>
     
     <lastmod>2024-06-24</lastmod>
     
@@ -678,24 +777,6 @@
   
   <url>
     <loc>http://rramos.github.io/2017/10/13/drelephat/</loc>
-    
-    <lastmod>2024-06-24</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2023/12/26/duckdb/</loc>
-    
-    <lastmod>2024-06-24</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2024/06/02/embeddings/</loc>
     
     <lastmod>2024-06-24</lastmod>
     
@@ -776,7 +857,7 @@
   </url>
   
   <url>
-    <loc>http://rramos.github.io/2022/12/23/KeyboardLayout/</loc>
+    <loc>http://rramos.github.io/2022/12/23/Github%20ssh%20keys/</loc>
     
     <lastmod>2024-06-24</lastmod>
     
@@ -785,7 +866,7 @@
   </url>
   
   <url>
-    <loc>http://rramos.github.io/2022/12/23/Github%20ssh%20keys/</loc>
+    <loc>http://rramos.github.io/2022/12/23/KeyboardLayout/</loc>
     
     <lastmod>2024-06-24</lastmod>
     
@@ -973,87 +1054,6 @@
     <priority>0.6</priority>
   </url>
   
-  <url>
-    <loc>http://rramos.github.io/2024/01/28/clickhouse/</loc>
-    
-    <lastmod>2024-06-24</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2017/09/19/createavrotableforbq/</loc>
-    
-    <lastmod>2024-06-24</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2024/04/02/databoost/</loc>
-    
-    <lastmod>2024-06-24</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2024/05/24/dataform/</loc>
-    
-    <lastmod>2024-06-24</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2024/06/08/datafusion/</loc>
-    
-    <lastmod>2024-06-24</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2024/06/01/dataplex/</loc>
-    
-    <lastmod>2024-06-24</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2024/06/11/datenager/</loc>
-    
-    <lastmod>2024-06-24</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2024/01/29/dbt-clickhouse/</loc>
-    
-    <lastmod>2024-06-24</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2023/12/21/dbt/</loc>
-    
-    <lastmod>2024-06-24</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
 
   <url>
     <loc>http://rramos.github.io/</loc>
@@ -1176,6 +1176,13 @@
   </url>
   
   <url>
+    <loc>http://rramos.github.io/tags/SSH/</loc>
+    <lastmod>2024-06-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://rramos.github.io/tags/Linux/</loc>
     <lastmod>2024-06-24</lastmod>
     <changefreq>weekly</changefreq>
@@ -1184,13 +1191,6 @@
   
   <url>
     <loc>http://rramos.github.io/tags/Keyboards/</loc>
-    <lastmod>2024-06-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/tags/SSH/</loc>
     <lastmod>2024-06-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1799,6 +1799,13 @@
   </url>
   
   <url>
+    <loc>http://rramos.github.io/tags/Mac/</loc>
+    <lastmod>2024-06-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://rramos.github.io/tags/Data-Lineage/</loc>
     <lastmod>2024-06-24</lastmod>
     <changefreq>weekly</changefreq>
@@ -1821,13 +1828,6 @@
   
   <url>
     <loc>http://rramos.github.io/tags/Infrastructure/</loc>
-    <lastmod>2024-06-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/tags/Mac/</loc>
     <lastmod>2024-06-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
