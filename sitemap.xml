@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://rramos.github.io/2024/06/12/vitalsga4/</loc>
+    
+    <lastmod>2024-06-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://rramos.github.io/about/index.html</loc>
     
     <lastmod>2024-06-24</lastmod>
@@ -236,6 +245,15 @@
   </url>
   
   <url>
+    <loc>http://rramos.github.io/2024/06/24/superset/</loc>
+    
+    <lastmod>2024-06-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://rramos.github.io/2024/06/10/teachingtogether/</loc>
     
     <lastmod>2024-06-24</lastmod>
@@ -291,15 +309,6 @@
   
   <url>
     <loc>http://rramos.github.io/2017/10/02/vdi2qemu/</loc>
-    
-    <lastmod>2024-06-24</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2024/06/12/vitalsga4/</loc>
     
     <lastmod>2024-06-24</lastmod>
     
@@ -668,33 +677,6 @@
   </url>
   
   <url>
-    <loc>http://rramos.github.io/2024/01/28/clickhouse/</loc>
-    
-    <lastmod>2024-06-24</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2017/09/19/createavrotableforbq/</loc>
-    
-    <lastmod>2024-06-24</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2024/04/02/databoost/</loc>
-    
-    <lastmod>2024-06-24</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://rramos.github.io/2024/05/24/dataform/</loc>
     
     <lastmod>2024-06-24</lastmod>
@@ -1047,6 +1029,33 @@
   
   <url>
     <loc>http://rramos.github.io/2024/06/03/clasp/</loc>
+    
+    <lastmod>2024-06-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/01/28/clickhouse/</loc>
+    
+    <lastmod>2024-06-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2017/09/19/createavrotableforbq/</loc>
+    
+    <lastmod>2024-06-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/04/02/databoost/</loc>
     
     <lastmod>2024-06-24</lastmod>
     
@@ -2003,6 +2012,13 @@
   
   <url>
     <loc>http://rramos.github.io/tags/Scrum/</loc>
+    <lastmod>2024-06-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/tags/Dashboards/</loc>
     <lastmod>2024-06-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

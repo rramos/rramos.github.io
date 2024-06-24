@@ -1,3 +1,4 @@
+http://rramos.github.io/2024/06/12/vitalsga4/
 http://rramos.github.io/about/index.html
 http://rramos.github.io/disclaimer/index.html
 http://rramos.github.io/2024/02/19/parquet_compression/
@@ -24,6 +25,7 @@ http://rramos.github.io/2017/09/13/ssh-config/
 http://rramos.github.io/2022/12/23/stories/
 http://rramos.github.io/2024/02/04/strapi/
 http://rramos.github.io/2017/09/23/sublimeinstall/
+http://rramos.github.io/2024/06/24/superset/
 http://rramos.github.io/2024/06/10/teachingtogether/
 http://rramos.github.io/2024/06/15/timelinefromgsheet/
 http://rramos.github.io/2024/06/05/tinyBird/
@@ -31,7 +33,6 @@ http://rramos.github.io/2024/06/06/tldr/
 http://rramos.github.io/2017/09/07/unpivot/
 http://rramos.github.io/2017/09/26/vagrant-qemu/
 http://rramos.github.io/2017/10/02/vdi2qemu/
-http://rramos.github.io/2024/06/12/vitalsga4/
 http://rramos.github.io/2024/06/11/multimodals/
 http://rramos.github.io/2022/08/30/nato_alphabet/
 http://rramos.github.io/2024/05/21/newtheme/
@@ -72,9 +73,6 @@ http://rramos.github.io/2024/06/10/minIO/
 http://rramos.github.io/2023/08/26/minikube/
 http://rramos.github.io/2017/09/07/mkv/
 http://rramos.github.io/2024/06/12/motherduck/
-http://rramos.github.io/2024/01/28/clickhouse/
-http://rramos.github.io/2017/09/19/createavrotableforbq/
-http://rramos.github.io/2024/04/02/databoost/
 http://rramos.github.io/2024/05/24/dataform/
 http://rramos.github.io/2024/06/08/datafusion/
 http://rramos.github.io/2024/06/01/dataplex/
@@ -115,6 +113,9 @@ http://rramos.github.io/2024/06/12/cara/
 http://rramos.github.io/2023/07/25/chatgpt-prompts/
 http://rramos.github.io/2024/05/28/citation/
 http://rramos.github.io/2024/06/03/clasp/
+http://rramos.github.io/2024/01/28/clickhouse/
+http://rramos.github.io/2017/09/19/createavrotableforbq/
+http://rramos.github.io/2024/04/02/databoost/
 http://rramos.github.io/
 http://rramos.github.io/tags/API/
 http://rramos.github.io/tags/Contracts/
@@ -251,6 +252,7 @@ http://rramos.github.io/tags/WebHosting/
 http://rramos.github.io/tags/Mail/
 http://rramos.github.io/tags/Langchain/
 http://rramos.github.io/tags/Scrum/
+http://rramos.github.io/tags/Dashboards/
 http://rramos.github.io/tags/Teaching/
 http://rramos.github.io/tags/Optimization/
 http://rramos.github.io/tags/Big-Data/
