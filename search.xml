@@ -5,6 +5,37 @@
     
     <entry>
       
+        <title>Harlenquin</title>
+      
+      <link href="/2024/07/04/harlenquin/"/>
+      <url>/2024/07/04/harlenquin/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Excerpt"><a href="#Excerpt" class="headerlink" title="Excerpt"></a>Excerpt</h2><p>In this article we are going through the tool harlequin a SQL IDE that runs on the terminal</p><h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>Harlequin is a SQL IDE for DuckDB, SQLite, and other databases that runs in your Terminal</p><h2 id="How"><a href="#How" class="headerlink" title="How"></a>How</h2><p>Harlequin is written in Python, using the Textual framework.</p><p>Harlequin is free and open-source software, licensed to you under the MIT License. You can find the source on GitHub.</p><h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><p>After installing Python 3.8 or above, install Harlequin using pip or pipx with:</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">pipx install harlequin</span><br></pre></td></tr></table></figure><p>You may want to install Harlequin with one or more extras, which provide additional features like additional database support or remote file viewing. That would look like this:</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">pipx install harlequin[postgres,s3]</span><br></pre></td></tr></table></figure><p>Check the official documentation to assess the available extensions: <a href="https://harlequin.sh/docs/duckdb/extensions">https://harlequin.sh/docs/duckdb/extensions</a></p><h2 id="Loading-some-examples"><a href="#Loading-some-examples" class="headerlink" title="Loading some examples"></a>Loading some examples</h2><p>Let’s clone the examples provided by superset as an example</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> git@github.com:apache-superset/examples-data.git</span><br></pre></td></tr></table></figure><p>Loading data</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">harlequin <span class="string">&quot;local.duckdb&quot;</span></span><br></pre></td></tr></table></figure><p>Using with MotherDuck</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">harlequin <span class="string">&quot;local.duckdb&quot;</span> <span class="string">&quot;md:&quot;</span></span><br></pre></td></tr></table></figure><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- Sample query. For more, see docs over at</span></span><br><span class="line"><span class="comment">-- https://motherduck.com/docs/sample-data-queries/hacker-news</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> airports <span class="keyword">as</span> <span class="keyword">from</span> READ_CSV_AUTO(<span class="string">&#x27;./airports.csv.gz&#x27;</span>);</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> bartlines <span class="keyword">as</span> <span class="keyword">from</span> READ_JSON_AUTO(<span class="string">&#x27;./bart-lines.json.gz&#x27;</span>);</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> birt_france_data_for_country_map <span class="keyword">as</span> <span class="keyword">from</span> READ_CSV_AUTO(<span class="string">&#x27;./birth_france_data_for_country_map.csv&#x27;</span>);</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> birt_names2 <span class="keyword">as</span> <span class="keyword">from</span> READ_JSON_AUTO(<span class="string">&#x27;./birth_names2.json.gz&#x27;</span>);</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> birth_names <span class="keyword">as</span> <span class="keyword">from</span> READ_JSON_AUTO(<span class="string">&#x27;./birth_names.json.gz&#x27;</span>);</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> countries <span class="keyword">as</span> <span class="keyword">from</span> READ_JSON_AUTO(<span class="string">&#x27;./countries.json.gz&#x27;</span>);</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> energy <span class="keyword">as</span> <span class="keyword">from</span> READ_JSON_AUTO(<span class="string">&#x27;./energy.json.gz&#x27;</span>);</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> flight_data <span class="keyword">as</span> <span class="keyword">from</span> READ_CSV_AUTO(<span class="string">&#x27;./flight_data.csv.gz&#x27;</span>);</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> multiformat_time_series <span class="keyword">as</span> <span class="keyword">from</span> READ_JSON_AUTO(<span class="string">&#x27;./multiformat_time_series.json.gz&#x27;</span>);</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> paris_iris <span class="keyword">as</span> <span class="keyword">from</span> READ_JSON_AUTO(<span class="string">&#x27;./paris_iris.json.gz&#x27;</span>);</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> random_time_series <span class="keyword">as</span> <span class="keyword">from</span> READ_JSON_AUTO(<span class="string">&#x27;./random_time_series.json.gz&#x27;</span>);</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> san_francisco <span class="keyword">as</span> <span class="keyword">from</span> READ_CSV_AUTO(<span class="string">&#x27;./san_francisco.csv.gz&#x27;</span>);</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> sf_population <span class="keyword">as</span> <span class="keyword">from</span> READ_JSON_AUTO(<span class="string">&#x27;./sf_population.json.gz&#x27;</span>);</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> unicode_utf8_unixnl_test <span class="keyword">as</span> <span class="keyword">from</span> READ_CSV_AUTO(<span class="string">&#x27;./unicode_utf8_unixnl_test.csv&#x27;</span>);</span><br></pre></td></tr></table></figure><h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Harlequin is a terminal tool created by Ted Conbeer in 2023, designed to facilitate efficient SQL execution across multiple engines. Written in Python, this tool allows users to load files and explore data rapidly. Key features include auto-complete functionality, quick listing of both local and S3 files, and the ability to create tables and perform SQL-based exploration directly from the terminal.</p><h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul><li><a href="https://github.com/tconbeer/harlequin">https://github.com/tconbeer/harlequin</a></li><li><a href="https://harlequin.sh/docs/getting-started">https://harlequin.sh/docs/getting-started</a></li></ul>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Utils </tag>
+            
+            <tag> SQL </tag>
+            
+            <tag> DuckDB </tag>
+            
+            <tag> Data </tag>
+            
+            <tag> Engineering </tag>
+            
+            <tag> SQLite </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      
         <title>Dog</title>
       
       <link href="/2024/07/02/dog/"/>
@@ -93,11 +124,11 @@
             
             <tag> Utils </tag>
             
-            <tag> Reporting </tag>
-            
             <tag> Data </tag>
             
             <tag> Engineering </tag>
+            
+            <tag> Reporting </tag>
             
             <tag> Looker </tag>
             

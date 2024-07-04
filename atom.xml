@@ -6,7 +6,7 @@
   <link href="http://rramos.github.io/atom.xml" rel="self"/>
   
   <link href="http://rramos.github.io/"/>
-  <updated>2024-07-02T14:16:52.318Z</updated>
+  <updated>2024-07-04T16:46:04.551Z</updated>
   <id>http://rramos.github.io/</id>
   
   <author>
@@ -17,11 +17,44 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Harlenquin</title>
+    <link href="http://rramos.github.io/2024/07/04/harlenquin/"/>
+    <id>http://rramos.github.io/2024/07/04/harlenquin/</id>
+    <published>2024-07-04T17:00:00.000Z</published>
+    <updated>2024-07-04T16:46:04.551Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Excerpt&quot;&gt;&lt;a href=&quot;#Excerpt&quot; class=&quot;headerlink&quot; title=&quot;Excerpt&quot;&gt;&lt;/a&gt;Excerpt&lt;/h2&gt;&lt;p&gt;In this article we are going through the tool</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Utils" scheme="http://rramos.github.io/tags/Utils/"/>
+    
+    <category term="SQL" scheme="http://rramos.github.io/tags/SQL/"/>
+    
+    <category term="DuckDB" scheme="http://rramos.github.io/tags/DuckDB/"/>
+    
+    <category term="Data" scheme="http://rramos.github.io/tags/Data/"/>
+    
+    <category term="Engineering" scheme="http://rramos.github.io/tags/Engineering/"/>
+    
+    <category term="SQLite" scheme="http://rramos.github.io/tags/SQLite/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Dog</title>
     <link href="http://rramos.github.io/2024/07/02/dog/"/>
     <id>http://rramos.github.io/2024/07/02/dog/</id>
     <published>2024-07-02T15:00:00.000Z</published>
-    <updated>2024-07-02T14:16:52.318Z</updated>
+    <updated>2024-07-04T16:46:04.547Z</updated>
     
     
       
@@ -47,7 +80,7 @@
     <link href="http://rramos.github.io/2024/06/24/superset/"/>
     <id>http://rramos.github.io/2024/06/24/superset/</id>
     <published>2024-06-24T19:00:00.000Z</published>
-    <updated>2024-07-02T14:16:52.334Z</updated>
+    <updated>2024-07-04T16:46:04.559Z</updated>
     
     
       
@@ -78,7 +111,7 @@
     <link href="http://rramos.github.io/2024/06/18/hexo-twitter/"/>
     <id>http://rramos.github.io/2024/06/18/hexo-twitter/</id>
     <published>2024-06-18T23:00:00.000Z</published>
-    <updated>2024-07-02T14:16:52.326Z</updated>
+    <updated>2024-07-04T16:46:04.551Z</updated>
     
     
       
@@ -103,7 +136,7 @@
     <link href="http://rramos.github.io/2024/06/18/lookerbestpractises/"/>
     <id>http://rramos.github.io/2024/06/18/lookerbestpractises/</id>
     <published>2024-06-18T11:00:00.000Z</published>
-    <updated>2024-07-02T14:16:52.326Z</updated>
+    <updated>2024-07-04T16:46:04.551Z</updated>
     
     
       
@@ -119,11 +152,11 @@
     
     <category term="Utils" scheme="http://rramos.github.io/tags/Utils/"/>
     
-    <category term="Reporting" scheme="http://rramos.github.io/tags/Reporting/"/>
-    
     <category term="Data" scheme="http://rramos.github.io/tags/Data/"/>
     
     <category term="Engineering" scheme="http://rramos.github.io/tags/Engineering/"/>
+    
+    <category term="Reporting" scheme="http://rramos.github.io/tags/Reporting/"/>
     
     <category term="Looker" scheme="http://rramos.github.io/tags/Looker/"/>
     
@@ -134,7 +167,7 @@
     <link href="http://rramos.github.io/2024/06/18/pacseek/"/>
     <id>http://rramos.github.io/2024/06/18/pacseek/</id>
     <published>2024-06-18T02:00:00.000Z</published>
-    <updated>2024-07-02T14:16:52.330Z</updated>
+    <updated>2024-07-04T16:46:04.559Z</updated>
     
     
       
@@ -163,7 +196,7 @@
     <link href="http://rramos.github.io/2024/06/16/drawioflow/"/>
     <id>http://rramos.github.io/2024/06/16/drawioflow/</id>
     <published>2024-06-16T21:00:00.000Z</published>
-    <updated>2024-07-02T14:16:52.318Z</updated>
+    <updated>2024-07-04T16:46:04.547Z</updated>
     
     
       
@@ -186,7 +219,7 @@
     <link href="http://rramos.github.io/2024/06/15/timelinefromgsheet/"/>
     <id>http://rramos.github.io/2024/06/15/timelinefromgsheet/</id>
     <published>2024-06-15T20:00:00.000Z</published>
-    <updated>2024-07-02T14:16:52.334Z</updated>
+    <updated>2024-07-04T16:46:04.559Z</updated>
     
     
       
@@ -211,7 +244,7 @@
     <link href="http://rramos.github.io/2024/06/13/pythonrequirements/"/>
     <id>http://rramos.github.io/2024/06/13/pythonrequirements/</id>
     <published>2024-06-13T14:00:00.000Z</published>
-    <updated>2024-07-02T14:16:52.334Z</updated>
+    <updated>2024-07-04T16:46:04.559Z</updated>
     
     
       
@@ -236,7 +269,7 @@
     <link href="http://rramos.github.io/2024/06/13/serper/"/>
     <id>http://rramos.github.io/2024/06/13/serper/</id>
     <published>2024-06-13T11:00:00.000Z</published>
-    <updated>2024-07-02T14:16:52.334Z</updated>
+    <updated>2024-07-04T16:46:04.559Z</updated>
     
     
       
@@ -261,7 +294,7 @@
     <link href="http://rramos.github.io/2024/06/13/feedback/"/>
     <id>http://rramos.github.io/2024/06/13/feedback/</id>
     <published>2024-06-13T08:00:00.000Z</published>
-    <updated>2024-07-02T14:16:52.326Z</updated>
+    <updated>2024-07-04T16:46:04.551Z</updated>
     
     
       
@@ -286,7 +319,7 @@
     <link href="http://rramos.github.io/2024/06/12/cara/"/>
     <id>http://rramos.github.io/2024/06/12/cara/</id>
     <published>2024-06-12T23:20:00.000Z</published>
-    <updated>2024-07-02T14:16:52.318Z</updated>
+    <updated>2024-07-04T16:46:04.547Z</updated>
     
     
       
@@ -311,7 +344,7 @@
     <link href="http://rramos.github.io/2024/06/12/vitalsga4/"/>
     <id>http://rramos.github.io/2024/06/12/vitalsga4/</id>
     <published>2024-06-12T14:20:00.000Z</published>
-    <updated>2024-07-02T14:16:52.334Z</updated>
+    <updated>2024-07-04T16:46:04.563Z</updated>
     
     
       
@@ -336,7 +369,7 @@
     <link href="http://rramos.github.io/2024/06/12/motherduck/"/>
     <id>http://rramos.github.io/2024/06/12/motherduck/</id>
     <published>2024-06-12T09:00:00.000Z</published>
-    <updated>2024-07-02T14:16:52.326Z</updated>
+    <updated>2024-07-04T16:46:04.555Z</updated>
     
     
       
@@ -363,7 +396,7 @@
     <link href="http://rramos.github.io/2024/06/11/multimodals/"/>
     <id>http://rramos.github.io/2024/06/11/multimodals/</id>
     <published>2024-06-11T18:00:00.000Z</published>
-    <updated>2024-07-02T14:16:52.330Z</updated>
+    <updated>2024-07-04T16:46:04.555Z</updated>
     
     
       
@@ -389,7 +422,7 @@
     <link href="http://rramos.github.io/2024/06/11/datenager/"/>
     <id>http://rramos.github.io/2024/06/11/datenager/</id>
     <published>2024-06-11T12:00:00.000Z</published>
-    <updated>2024-07-02T14:16:52.318Z</updated>
+    <updated>2024-07-04T16:46:04.547Z</updated>
     
     
       
@@ -414,7 +447,7 @@
     <link href="http://rramos.github.io/2024/06/11/feedbacketiquette/"/>
     <id>http://rramos.github.io/2024/06/11/feedbacketiquette/</id>
     <published>2024-06-11T08:45:00.000Z</published>
-    <updated>2024-07-02T14:16:52.326Z</updated>
+    <updated>2024-07-04T16:46:04.551Z</updated>
     
     
       
@@ -439,7 +472,7 @@
     <link href="http://rramos.github.io/2024/06/10/returning/"/>
     <id>http://rramos.github.io/2024/06/10/returning/</id>
     <published>2024-06-10T22:10:00.000Z</published>
-    <updated>2024-07-02T14:16:52.334Z</updated>
+    <updated>2024-07-04T16:46:04.559Z</updated>
     
     
       
@@ -466,7 +499,7 @@
     <link href="http://rramos.github.io/2024/06/10/teachingtogether/"/>
     <id>http://rramos.github.io/2024/06/10/teachingtogether/</id>
     <published>2024-06-10T08:00:00.000Z</published>
-    <updated>2024-07-02T14:16:52.334Z</updated>
+    <updated>2024-07-04T16:46:04.559Z</updated>
     
     
       
@@ -493,7 +526,7 @@
     <link href="http://rramos.github.io/2024/06/10/minIO/"/>
     <id>http://rramos.github.io/2024/06/10/minIO/</id>
     <published>2024-06-10T02:00:00.000Z</published>
-    <updated>2024-07-02T14:16:52.326Z</updated>
+    <updated>2024-07-04T16:46:04.551Z</updated>
     
     
       
@@ -512,35 +545,6 @@
     <category term="Infrastructure" scheme="http://rramos.github.io/tags/Infrastructure/"/>
     
     <category term="PaaS" scheme="http://rramos.github.io/tags/PaaS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>DuckDB Hf:// Prefix</title>
-    <link href="http://rramos.github.io/2024/06/09/huggingduckdb/"/>
-    <id>http://rramos.github.io/2024/06/09/huggingduckdb/</id>
-    <published>2024-06-09T15:00:00.000Z</published>
-    <updated>2024-07-02T14:16:52.326Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;Excerpt&quot;&gt;&lt;a href=&quot;#Excerpt&quot; class=&quot;headerlink&quot; title=&quot;Excerpt&quot;&gt;&lt;/a&gt;Excerpt&lt;/h2&gt;&lt;p&gt;Article about Duckdb support for Hugging Face</summary>
-        
-      
-    
-    
-    
-    
-    <category term="AI" scheme="http://rramos.github.io/tags/AI/"/>
-    
-    <category term="DuckDB" scheme="http://rramos.github.io/tags/DuckDB/"/>
-    
-    <category term="Machine Learning" scheme="http://rramos.github.io/tags/Machine-Learning/"/>
-    
-    <category term="Hugging Face" scheme="http://rramos.github.io/tags/Hugging-Face/"/>
     
   </entry>
   
