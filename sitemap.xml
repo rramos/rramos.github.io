@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://rramos.github.io/disclaimer/index.html</loc>
+    <loc>http://rramos.github.io/2024/06/12/vitalsga4/</loc>
     
     <lastmod>2024-07-06</lastmod>
     
@@ -11,7 +11,16 @@
   </url>
   
   <url>
-    <loc>http://rramos.github.io/2024/02/19/parquet_compression/</loc>
+    <loc>http://rramos.github.io/about/index.html</loc>
+    
+    <lastmod>2024-07-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/disclaimer/index.html</loc>
     
     <lastmod>2024-07-06</lastmod>
     
@@ -299,69 +308,6 @@
   </url>
   
   <url>
-    <loc>http://rramos.github.io/2024/06/12/vitalsga4/</loc>
-    
-    <lastmod>2024-07-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/about/index.html</loc>
-    
-    <lastmod>2024-07-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2024/06/11/multimodals/</loc>
-    
-    <lastmod>2024-07-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2022/08/30/nato_alphabet/</loc>
-    
-    <lastmod>2024-07-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2024/05/21/newtheme/</loc>
-    
-    <lastmod>2024-07-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2023/12/26/ngrok/</loc>
-    
-    <lastmod>2024-07-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2017/09/29/nifiparcel/</loc>
-    
-    <lastmod>2024-07-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://rramos.github.io/2024/05/26/normalization/</loc>
     
     <lastmod>2024-07-06</lastmod>
@@ -417,6 +363,78 @@
   
   <url>
     <loc>http://rramos.github.io/2024/06/18/pacseek/</loc>
+    
+    <lastmod>2024-07-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/02/19/parquet_compression/</loc>
+    
+    <lastmod>2024-07-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2017/09/07/mkv/</loc>
+    
+    <lastmod>2024-07-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/06/12/motherduck/</loc>
+    
+    <lastmod>2024-07-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/06/11/multimodals/</loc>
+    
+    <lastmod>2024-07-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2022/08/30/nato_alphabet/</loc>
+    
+    <lastmod>2024-07-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/05/21/newtheme/</loc>
+    
+    <lastmod>2024-07-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2023/12/26/ngrok/</loc>
+    
+    <lastmod>2024-07-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2017/09/29/nifiparcel/</loc>
     
     <lastmod>2024-07-06</lastmod>
     
@@ -668,16 +686,7 @@
   </url>
   
   <url>
-    <loc>http://rramos.github.io/2017/09/07/mkv/</loc>
-    
-    <lastmod>2024-07-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2024/06/12/motherduck/</loc>
+    <loc>http://rramos.github.io/2024/06/16/drawioflow/</loc>
     
     <lastmod>2024-07-06</lastmod>
     
@@ -687,60 +696,6 @@
   
   <url>
     <loc>http://rramos.github.io/2017/10/13/drelephat/</loc>
-    
-    <lastmod>2024-07-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2022/12/23/CryptoArt/</loc>
-    
-    <lastmod>2024-07-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2023/07/25/EfectiveDelegation/</loc>
-    
-    <lastmod>2024-07-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2017/09/07/GA-CustomDimension/</loc>
-    
-    <lastmod>2024-07-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2022/12/23/GA4/</loc>
-    
-    <lastmod>2024-07-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2022/12/23/GTM/</loc>
-    
-    <lastmod>2024-07-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2021/02/21/Git-Untrack-previous-commited-files/</loc>
     
     <lastmod>2024-07-06</lastmod>
     
@@ -875,7 +830,7 @@
   </url>
   
   <url>
-    <loc>http://rramos.github.io/2022/12/23/artifactory/</loc>
+    <loc>http://rramos.github.io/2023/12/27/aspire/</loc>
     
     <lastmod>2024-07-06</lastmod>
     
@@ -884,7 +839,7 @@
   </url>
   
   <url>
-    <loc>http://rramos.github.io/2023/12/27/aspire/</loc>
+    <loc>http://rramos.github.io/2022/12/23/artifactory/</loc>
     
     <lastmod>2024-07-06</lastmod>
     
@@ -956,7 +911,7 @@
   </url>
   
   <url>
-    <loc>http://rramos.github.io/2024/04/02/databoost/</loc>
+    <loc>http://rramos.github.io/2017/09/19/createavrotableforbq/</loc>
     
     <lastmod>2024-07-06</lastmod>
     
@@ -965,7 +920,7 @@
   </url>
   
   <url>
-    <loc>http://rramos.github.io/2017/09/19/createavrotableforbq/</loc>
+    <loc>http://rramos.github.io/2024/04/02/databoost/</loc>
     
     <lastmod>2024-07-06</lastmod>
     
@@ -1055,15 +1010,6 @@
   </url>
   
   <url>
-    <loc>http://rramos.github.io/2024/06/16/drawioflow/</loc>
-    
-    <lastmod>2024-07-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://rramos.github.io/2022/12/23/API%20Lifecycles/</loc>
     
     <lastmod>2024-07-06</lastmod>
@@ -1074,6 +1020,60 @@
   
   <url>
     <loc>http://rramos.github.io/2016/09/17/Created-rramos-github-io/</loc>
+    
+    <lastmod>2024-07-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2022/12/23/CryptoArt/</loc>
+    
+    <lastmod>2024-07-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2023/07/25/EfectiveDelegation/</loc>
+    
+    <lastmod>2024-07-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2017/09/07/GA-CustomDimension/</loc>
+    
+    <lastmod>2024-07-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2022/12/23/GA4/</loc>
+    
+    <lastmod>2024-07-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2022/12/23/GTM/</loc>
+    
+    <lastmod>2024-07-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2021/02/21/Git-Untrack-previous-commited-files/</loc>
     
     <lastmod>2024-07-06</lastmod>
     
@@ -1546,13 +1546,6 @@
   </url>
   
   <url>
-    <loc>http://rramos.github.io/tags/Community/</loc>
-    <lastmod>2024-07-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://rramos.github.io/tags/Hive/</loc>
     <lastmod>2024-07-06</lastmod>
     <changefreq>weekly</changefreq>
@@ -1575,6 +1568,13 @@
   
   <url>
     <loc>http://rramos.github.io/tags/GCS/</loc>
+    <lastmod>2024-07-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/tags/Community/</loc>
     <lastmod>2024-07-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
