@@ -82,7 +82,7 @@
   
       
   
-<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
 </head>
 
     <body>
@@ -229,7 +229,7 @@
 <p>Ok, now let’s configure our MTA</p>
 <h2 id="Configure-Sendmail"><a href="#Configure-Sendmail" class="headerlink" title="Configure Sendmail"></a>Configure Sendmail</h2><p>For this setup you will need access to your hosting service and capable of installing software.</p>
 <p>The following instructions are for a Ubuntu base distribution.</p>
-<h3 id="Install-packages"><a href="#Install-packages" class="headerlink" title="Install packages"></a>Install packages</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install sendmail</span><br></pre></td></tr></table></figure>
+<h3 id="Install-packages"><a href="#Install-packages" class="headerlink" title="Install packages"></a>Install packages</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt-get install sendmail</span><br></pre></td></tr></table></figure>
 
 <h2 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h2><p>In this setup we will configure to relay via SMTP all email using auth provided by the service</p>
 <p>Start by editing the following file <code>/etc/mail/sendmail.mc</code> and add the following content at the end</p>
@@ -238,7 +238,7 @@
 <p>We need to setup authentication, remember the previous API key that you created you will need to include the information associaded to API_KEY and API_SECRET on the following file <code>/etc/mail/authinfo/smtp-auth</code></p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">AuthInfo: <span class="string">&quot;U:root&quot;</span> <span class="string">&quot;I:API_KEY&quot;</span> <span class="string">&quot;P:API_SECRET&quot;</span></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo <span class="built_in">mkdir</span> /etc/mail/authinfo</span><br><span class="line">sudo nano /etc/mail/authinfo/smtp-auth</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">mkdir</span> /etc/mail/authinfo</span><br><span class="line"><span class="built_in">sudo</span> nano /etc/mail/authinfo/smtp-auth</span><br></pre></td></tr></table></figure>
 
 <p>Example:</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">AuthInfo: <span class="string">&quot;U:root&quot;</span> <span class="string">&quot;I:1233450786523741256e&quot;</span> <span class="string">&quot;P:ety555qtfgdghsd88wrfer&quot;</span></span><br></pre></td></tr></table></figure>

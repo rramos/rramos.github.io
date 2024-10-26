@@ -82,7 +82,7 @@
   
       
   
-<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
 </head>
 
     <body>
@@ -191,10 +191,10 @@
 <p>Pacman is a package manager for the arch Linux and arch-based Linux distributions. If you have used Debian-based OS like ubuntu, then the  Pacman is similar to the apt command of Debian-based operating systems. Pacman contains the compressed files as a package format and maintains a text-based package database. Pacman keeps the system up to date by synchronizing package lists with the master server. Pacman can install the packages from the official repositories or your own build packages.</p>
 </blockquote>
 <h2 id="Installing-Packages-using-the-Pacman"><a href="#Installing-Packages-using-the-Pacman" class="headerlink" title="Installing Packages using the Pacman"></a>Installing Packages using the Pacman</h2><p>When we install any new operating system on our machine, the first task we do is to install the software packages on the system. Now, to install the packages on Arch Linux, use the command Pacman with -S option and mention the package name. The -S option tells the Pacman to synchronize and to continue. Here is one example</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo pacman -S cmatrix</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -S cmatrix</span><br></pre></td></tr></table></figure>
 
 <p>We can mention the many package names after the -S option, separated by space.</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo pacman -S package1 package2 package3</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -S package1 package2 package3</span><br></pre></td></tr></table></figure>
 
 <p>Then Pacman will show the download and install size of the package and ask for to proceed, then simply press the Y key. Pacman categorizes the installed packages into two categories.</p>
 <ul>
@@ -202,39 +202,39 @@
 <li><strong>Dependencies</strong>: The package is installed because it is required by another package.</li>
 </ul>
 <h2 id="Removing-packages-using-the-Pacman"><a href="#Removing-packages-using-the-Pacman" class="headerlink" title="Removing packages using the Pacman"></a>Removing packages using the Pacman</h2><p>When we don’t need the package anymore, then we should remove the package from the system. To remove the package with all its dependencies which are not required by other packages, use the following command:</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo pacman -Rs &lt;package_name&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -Rs &lt;package_name&gt;</span><br></pre></td></tr></table></figure>
 
 <p>To remove the package without removing its dependency use the following command:</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo pacman -R &lt;package_name&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -R &lt;package_name&gt;</span><br></pre></td></tr></table></figure>
 
 <p>To remove the dependencies which are not required anymore, use the following command:</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">pacman -Qdtq |  pacman -Rs -</span><br></pre></td></tr></table></figure>
 
 <h2 id="Upgrading-packages"><a href="#Upgrading-packages" class="headerlink" title="Upgrading packages"></a>Upgrading packages</h2><p>In arch Linux, we can upgrade the full system by only one command using the Pacman. Use the following command to update the system:</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo pacman -Suy</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -Suy</span><br></pre></td></tr></table></figure>
 
 <p>Let’s understand the meaning, S tell the pacman to synchronize the local database with the main database. u tells the pacman to upgrade the packages and y update the local catch on the system. Basically, this command synchronizes the local pacman database with the main repository database and then updates the system.</p>
 <h2 id="Searching-for-a-Package"><a href="#Searching-for-a-Package" class="headerlink" title="Searching for a Package"></a>Searching for a Package</h2><p>Now let’s see how we can search the package into the database of pacman. To search query in the name and description  of the package in the database use the following command:</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo pacman -Ss   &lt;query1&gt;  &lt;query2&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -Ss   &lt;query1&gt;  &lt;query2&gt;</span><br></pre></td></tr></table></figure>
 
 <p>To search into already installed packages on the system, use the following command:</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo pacman -Qs query1&gt;  &lt;query2&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -Qs query1&gt;  &lt;query2&gt;</span><br></pre></td></tr></table></figure>
 
 <p>To search the query into the local database use the following command:</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo pacman -F query1&gt;  &lt;query2&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -F query1&gt;  &lt;query2&gt;</span><br></pre></td></tr></table></figure>
 
 <h2 id="Cleaning-the-Package-Cache"><a href="#Cleaning-the-Package-Cache" class="headerlink" title="Cleaning the Package Cache"></a>Cleaning the Package Cache</h2><p>When pacman downloads the packages it stores the packages into the <code>/var/cache/pacman/pkg/</code> and while uninstalling the package pacman does not delete these files. Pacman uses these files to downgrade the package or install the package. But it can take a lot of space to store these packages. So to delete the stored packages, use the following command:</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo pacman -Sc</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -Sc</span><br></pre></td></tr></table></figure>
 
 <p>To remove all stored packages and cache, use the following command:</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudp pacman -Scc</span><br></pre></td></tr></table></figure>
 
 <h2 id="Installing-local-packages"><a href="#Installing-local-packages" class="headerlink" title="Installing local packages"></a>Installing local packages</h2><p>By using pacman we can install packages other than the main repository of Arch Linux. Use the following command to install the packages</p>
 <p>For local:</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo pacman -U path_to_file.pkg.tar.xz</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -U path_to_file.pkg.tar.xz</span><br></pre></td></tr></table></figure>
 
 <p>For remote package:</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo pacman -U http://www.example.com/repo/example.pkg.tar.xz</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -U http://www.example.com/repo/example.pkg.tar.xz</span><br></pre></td></tr></table></figure>
 
 <h2 id="Troubleshooting"><a href="#Troubleshooting" class="headerlink" title="Troubleshooting"></a>Troubleshooting</h2><p>Sometimes installing the packages with pacman we face some errors. Following are the mainly occurred errors with pacman:</p>
 <h3 id="Conflicting-file-error"><a href="#Conflicting-file-error" class="headerlink" title="Conflicting file error"></a>Conflicting file error</h3><p>This error occurs due to some conflict packages present in the repository. To solve this error we can manually rename the file or force the overwrite function. We can use the following command to overwrite the function:</p>

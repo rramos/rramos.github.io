@@ -82,7 +82,7 @@
   
       
   
-<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
 </head>
 
     <body>
@@ -189,7 +189,7 @@
 <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p><strong>minikube</strong> is local Kubernetes, focusing on making it easy to learn and develop for Kubernetes.</p>
 <p>Lets start by installing the minikube package.</p>
 <p><strong>NOTE:</strong> This example is targeting a Arch distribution, if you use a different linux flavor check the <a target="_blank" rel="noopener" href="https://minikube.sigs.k8s.io/docs/start/">Official Docs</a> for other install options</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo pacman -S minikube</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -S minikube</span><br></pre></td></tr></table></figure>
 
 <p>The following command will setup a docker environment with a kubernetes environment that you can use for development&#x2F;testing purposes</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">minikube start</span><br></pre></td></tr></table></figure>
@@ -201,7 +201,7 @@
 <figure class="highlight console"><table><tr><td class="code"><pre><span class="line">NAMESPACE     NAME                               READY   STATUS    RESTARTS      AGE</span><br><span class="line">kube-system   coredns-787d4945fb-zv72d           1/1     Running   0             10m</span><br><span class="line">kube-system   etcd-minikube                      1/1     Running   0             10m</span><br><span class="line">kube-system   kube-apiserver-minikube            1/1     Running   0             10m</span><br><span class="line">kube-system   kube-controller-manager-minikube   1/1     Running   0             10m</span><br><span class="line">kube-system   kube-proxy-7p9qw                   1/1     Running   0             10m</span><br><span class="line">kube-system   kube-scheduler-minikube            1/1     Running   0             10m</span><br><span class="line">kube-system   storage-provisioner                1/1     Running   1 (10m ago)   10m</span><br></pre></td></tr></table></figure>
 
 <p>I will install kubectl package however to allow interaction with other clusters if required.</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo pacman -S kubectl</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -S kubectl</span><br></pre></td></tr></table></figure>
 
 <p>We should get the same output by executing</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">kubectl get po -A</span><br></pre></td></tr></table></figure>

@@ -82,7 +82,7 @@
   
       
   
-<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
 </head>
 
     <body>
@@ -179,7 +179,7 @@
 </script>
 <div class="post">
   <h3 class="date">
-    02 Oct, 2017 - About 1 minute <span class="iconfont">&#xe968;</span>
+    02 Oct, 2017 - About 2 minutes <span class="iconfont">&#xe968;</span>
   </h3> 
   <h1>
     Convert VirtualBox Images to KVM
@@ -192,12 +192,12 @@
 <h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><ul>
 <li>You should have KVM configured correctly</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install qemu-kvm</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt-get install qemu-kvm</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>Install qemu-utils</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install qemu-utils</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt-get install qemu-utils</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>Let’s get an example image.</li>
@@ -217,7 +217,7 @@
 <ul>
 <li>Now lets Upload this image to our KVM pool and create a new VM from it:</li>
 </ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo virsh vol-create-as default ubuntu-17.10 100G --format qcow2</span><br><span class="line">sudo virsh vol-upload --pool default ubuntu-17.10 Ubuntu_17.10.qcow2</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> virsh vol-create-as default ubuntu-17.10 100G --format qcow2</span><br><span class="line"><span class="built_in">sudo</span> virsh vol-upload --pool default ubuntu-17.10 Ubuntu_17.10.qcow2</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li><p>Start <a target="_blank" rel="noopener" href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Virtualization_Host_Configuration_and_Guest_Installation_Guide/chap-Virtualization_Host_Configuration_and_Guest_Installation_Guide-Guest_Installation_Virt_Manager-Creating_guests_with_virt_manager.html">virt-manager</a> and select <strong>Import existing Disk Image</strong></p>

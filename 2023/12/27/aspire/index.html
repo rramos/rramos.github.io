@@ -82,7 +82,7 @@
   
       
   
-<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
 </head>
 
     <body>
@@ -189,7 +189,7 @@
 <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>In this article I will go through the setup process to setup a .NET 8.0 Aspire application in Linux from MS Official Guide</p>
 <h2 id="About"><a href="#About" class="headerlink" title="About"></a>About</h2><p>Cloud-native apps often require connections to various services such as databases, storage and caching solutions, messaging providers, or other web services. .NET Aspire is designed to streamline connections and configurations between these types of services.</p>
 <h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><p>In order to use .NET Aspire one needs to have .NET 8.0. As I’m using Ubuntu for this article I’ve followed this steps to prepare the environment</p>
-<h2 id="Install-NET-SDK-and-Runtime"><a href="#Install-NET-SDK-and-Runtime" class="headerlink" title="Install .NET SDK and Runtime"></a>Install .NET SDK and Runtime</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get update &amp;&amp;   sudo apt-get install -y dotnet-sdk-8.0</span><br><span class="line">sudo apt-get update &amp;&amp;   sudo apt-get install -y aspnetcore-runtime-8.0</span><br></pre></td></tr></table></figure>
+<h2 id="Install-NET-SDK-and-Runtime"><a href="#Install-NET-SDK-and-Runtime" class="headerlink" title="Install .NET SDK and Runtime"></a>Install .NET SDK and Runtime</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt-get update &amp;&amp;   <span class="built_in">sudo</span> apt-get install -y dotnet-sdk-8.0</span><br><span class="line"><span class="built_in">sudo</span> apt-get update &amp;&amp;   <span class="built_in">sudo</span> apt-get install -y aspnetcore-runtime-8.0</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p><strong>NOTE:</strong> For some reason in Ubuntu 22.04 there seems exit conflicts between donet-sdk-8 and dotnet-sdk-6, as such I had to remove the older versions. Take that into account if you have other projects to maintain with those versions as you may need more work</p>
@@ -206,7 +206,7 @@
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">8.0.100 [/usr/share/dotnet/sdk]</span><br></pre></td></tr></table></figure>
 
 <p>Check the templates to make sure we have the aspire</p>
-<h2 id="Update-Workloads"><a href="#Update-Workloads" class="headerlink" title="Update Workloads"></a>Update Workloads</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo dotnet workload update</span><br><span class="line">sudo dotnet workload install aspire</span><br></pre></td></tr></table></figure>
+<h2 id="Update-Workloads"><a href="#Update-Workloads" class="headerlink" title="Update Workloads"></a>Update Workloads</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> dotnet workload update</span><br><span class="line"><span class="built_in">sudo</span> dotnet workload install aspire</span><br></pre></td></tr></table></figure>
 
 <h2 id="Check-existing-Templates"><a href="#Check-existing-Templates" class="headerlink" title="Check existing Templates"></a>Check existing Templates</h2><p>Run the following to make sure you have the required templates</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">dotnet new --list | grep aspire</span><br></pre></td></tr></table></figure>

@@ -82,7 +82,7 @@
   
       
   
-<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
 </head>
 
     <body>
@@ -193,20 +193,20 @@
 <li>Install btrfs</li>
 <li>Make sure you have a volume formatted as btrfs (not part of the article)</li>
 </ul>
-<h2 id="Clean-all-dockers-and-images"><a href="#Clean-all-dockers-and-images" class="headerlink" title="Clean all dockers and images"></a>Clean all dockers and images</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Delete all containers</span></span><br><span class="line">sudo docker <span class="built_in">rm</span> $(sudo docker ps -a -q)</span><br><span class="line"><span class="comment"># Delete all images</span></span><br><span class="line">sudo docker rmi $(sudo docker images -q)</span><br></pre></td></tr></table></figure>
+<h2 id="Clean-all-dockers-and-images"><a href="#Clean-all-dockers-and-images" class="headerlink" title="Clean all dockers and images"></a>Clean all dockers and images</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Delete all containers</span></span><br><span class="line"><span class="built_in">sudo</span> docker <span class="built_in">rm</span> $(<span class="built_in">sudo</span> docker ps -a -q)</span><br><span class="line"><span class="comment"># Delete all images</span></span><br><span class="line"><span class="built_in">sudo</span> docker rmi $(<span class="built_in">sudo</span> docker images -q)</span><br></pre></td></tr></table></figure>
 
 <h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><p>Make sure you have btrfs on your system</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo <span class="built_in">cat</span> /proc/filesystems | grep btrfs</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">cat</span> /proc/filesystems | grep btrfs</span><br></pre></td></tr></table></figure>
 
 <ol>
 <li>Stop docker</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo service docker stop</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> service docker stop</span><br></pre></td></tr></table></figure>
 
 <ol>
 <li>Create a backup of you docker settings</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo <span class="built_in">mv</span> /var/lib/docker/ /var/lib/docker.bak</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">mv</span> /var/lib/docker/ /var/lib/docker.bak</span><br></pre></td></tr></table></figure>
 
 <ol>
 <li>create a subvolume from an existing btrfs FS</li>
@@ -232,15 +232,15 @@
 <ol>
 <li>Start docker service</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo service docker start</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> service docker start</span><br></pre></td></tr></table></figure>
 
 <ol>
 <li>Check if docker is running with docker support</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo docker info|grep  <span class="string">&quot;Storage Driver&quot;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> docker info|grep  <span class="string">&quot;Storage Driver&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>You could check the volumes being created with the command</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo btrfs subvolume list /var/liv/docker |grep dockers</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> btrfs subvolume list /var/liv/docker |grep dockers</span><br></pre></td></tr></table></figure>
 
 <h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://docs.docker.com/engine/userguide/storagedriver/btrfs-driver/">https://docs.docker.com/engine/userguide/storagedriver/btrfs-driver/</a></li>

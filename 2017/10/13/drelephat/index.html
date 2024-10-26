@@ -82,7 +82,7 @@
   
       
   
-<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
 </head>
 
     <body>
@@ -193,7 +193,7 @@
 <h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><ul>
 <li>Install mysql-server and create a BD for dr-elephant</li>
 </ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get install mysql-server </span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt-get install mysql-server </span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>MySQl preparation</li>
@@ -203,12 +203,12 @@
 <ul>
 <li>Install zip command</li>
 </ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get install zip</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt-get install zip</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>Install sbt</li>
 </ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb https://dl.bintray.com/sbt/debian /&quot;</span> | sudo <span class="built_in">tee</span> -a /etc/apt/sources.list.d/sbt.list</span><br><span class="line">sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2EE0EA64E40A89B84B2DF73499E82A75642AC823</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install sbt</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb https://dl.bintray.com/sbt/debian /&quot;</span> | <span class="built_in">sudo</span> <span class="built_in">tee</span> -a /etc/apt/sources.list.d/sbt.list</span><br><span class="line"><span class="built_in">sudo</span> apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2EE0EA64E40A89B84B2DF73499E82A75642AC823</span><br><span class="line"><span class="built_in">sudo</span> apt-get update</span><br><span class="line"><span class="built_in">sudo</span> apt-get install sbt</span><br></pre></td></tr></table></figure>
 
 <h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><ul>
 <li>Clone the repo</li>

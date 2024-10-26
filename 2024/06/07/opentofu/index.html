@@ -82,7 +82,7 @@
   
       
   
-<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
 </head>
 
     <body>
@@ -200,16 +200,16 @@
 <h3 id="Collaborate"><a href="#Collaborate" class="headerlink" title="Collaborate"></a>Collaborate</h3><p>​<br>Since your configuration is written in a file, you can commit it to a Version Control System (VCS) and use a cloud backend to efficiently manage OpenTofu workflows across teams. A cloud backend runs OpenTofu in a consistent, reliable environment and provides secure access to shared state and secret data, role-based access controls, a private registry for sharing both modules and providers, and more.</p>
 <h2 id="Getting-Started"><a href="#Getting-Started" class="headerlink" title="Getting Started"></a>Getting Started</h2><h3 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h3><p>Depending on your system there are several <a target="_blank" rel="noopener" href="https://opentofu.org/docs/intro/install/">options available</a>. I’m following the official documentation for Ubuntu.</p>
 <p>Install required software</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get install -y apt-transport-https ca-certificates curl gnupg</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt-get install -y apt-transport-https ca-certificates curl gnupg</span><br></pre></td></tr></table></figure>
 
 <p>Install required repository keys</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo install -m 0755 -d /etc/apt/keyrings</span><br><span class="line">curl -fsSL https://get.opentofu.org/opentofu.gpg | sudo <span class="built_in">tee</span> /etc/apt/keyrings/opentofu.gpg &gt;/dev/null</span><br><span class="line">curl -fsSL https://packages.opentofu.org/opentofu/tofu/gpgkey | sudo gpg --no-tty --batch --dearmor -o /etc/apt/keyrings/opentofu-repo.gpg &gt;/dev/null</span><br><span class="line">sudo <span class="built_in">chmod</span> a+r /etc/apt/keyrings/opentofu.gpg /etc/apt/keyrings/opentofu-repo.gpg</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> install -m 0755 -d /etc/apt/keyrings</span><br><span class="line">curl -fsSL https://get.opentofu.org/opentofu.gpg | <span class="built_in">sudo</span> <span class="built_in">tee</span> /etc/apt/keyrings/opentofu.gpg &gt;/dev/null</span><br><span class="line">curl -fsSL https://packages.opentofu.org/opentofu/tofu/gpgkey | <span class="built_in">sudo</span> gpg --no-tty --batch --dearmor -o /etc/apt/keyrings/opentofu-repo.gpg &gt;/dev/null</span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> a+r /etc/apt/keyrings/opentofu.gpg /etc/apt/keyrings/opentofu-repo.gpg</span><br></pre></td></tr></table></figure>
 
 <p>Create the source repositories list to install</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span>   <span class="string">&quot;deb [signed-by=/etc/apt/keyrings/opentofu.gpg,/etc/apt/keyrings/opentofu-repo.gpg] https://packages.opentofu.org/opentofu/tofu/any/ any main</span></span><br><span class="line"><span class="string">deb-src [signed-by=/etc/apt/keyrings/opentofu.gpg,/etc/apt/keyrings/opentofu-repo.gpg] https://packages.opentofu.org/opentofu/tofu/any/ any main&quot;</span> |   sudo <span class="built_in">tee</span> /etc/apt/sources.list.d/opentofu.list &gt; /dev/null</span><br><span class="line">sudo <span class="built_in">chmod</span> a+r /etc/apt/sources.list.d/opentofu.list</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span>   <span class="string">&quot;deb [signed-by=/etc/apt/keyrings/opentofu.gpg,/etc/apt/keyrings/opentofu-repo.gpg] https://packages.opentofu.org/opentofu/tofu/any/ any main</span></span><br><span class="line"><span class="string">deb-src [signed-by=/etc/apt/keyrings/opentofu.gpg,/etc/apt/keyrings/opentofu-repo.gpg] https://packages.opentofu.org/opentofu/tofu/any/ any main&quot;</span> |   <span class="built_in">sudo</span> <span class="built_in">tee</span> /etc/apt/sources.list.d/opentofu.list &gt; /dev/null</span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> a+r /etc/apt/sources.list.d/opentofu.list</span><br></pre></td></tr></table></figure>
 
 <p>Install tofu</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install -y tofu</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt-get update</span><br><span class="line"><span class="built_in">sudo</span> apt-get install -y tofu</span><br></pre></td></tr></table></figure>
 
 <h2 id="Working-with-OpenTofu"><a href="#Working-with-OpenTofu" class="headerlink" title="Working with OpenTofu"></a>Working with OpenTofu</h2><p>The core OpenTofu workflow has three steps:</p>
 <ol>

@@ -82,7 +82,7 @@
   
       
   
-<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
 </head>
 
     <body>
@@ -191,22 +191,22 @@
 <h2 id="Procedure"><a href="#Procedure" class="headerlink" title="Procedure"></a>Procedure</h2><ul>
 <li>Import the public repository GPG keys</li>
 </ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">curl https://packages.microsoft.com/keys/microsoft.asc | <span class="built_in">sudo</span> apt-key add -</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>Register the Microsoft Ubuntu repository</li>
 </ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | sudo <span class="built_in">tee</span> /etc/apt/sources.list.d/microsoft.list</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | <span class="built_in">sudo</span> <span class="built_in">tee</span> /etc/apt/sources.list.d/microsoft.list</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>Update the list of products</li>
 </ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt-get update</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>Install PowerShell</li>
 </ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get install -y powershell</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt-get install -y powershell</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>Start PowerShell</li>
@@ -219,7 +219,7 @@
 <p>Check module location</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">(gmo -l Azure*).path</span><br></pre></td></tr></table></figure>
 
-<h2 id="Uninstall"><a href="#Uninstall" class="headerlink" title="Uninstall"></a>Uninstall</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get remove powershell</span><br></pre></td></tr></table></figure>
+<h2 id="Uninstall"><a href="#Uninstall" class="headerlink" title="Uninstall"></a>Uninstall</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt-get remove powershell</span><br></pre></td></tr></table></figure>
 
 <h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>After some hours i’ve given up making this thing work on Linux. The time it takes doesn’t payoff, and even if i could make it work, i would still need to make Vagrant work with it for some VM’s provisioning in a private cloud. It would take me less time to do it by hand :)</p>
 <p>From a standard testing perspective it’s nice to have this thing on Linux, because you could centralize the management, but at the moment of this article it doesn’t seem to payoff the time one would need to setup this.</p>

@@ -82,7 +82,7 @@
   
       
   
-<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="rramos.github.io" type="application/atom+xml">
 </head>
 
     <body>
@@ -188,7 +188,7 @@
     
 <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>It as been a while since i’ve engaged with C#. In this article I’ll describe a step-by-step on how to setup your Arch Linux to implement a .netcore application implementation of OpenAPI.</p>
 <h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><p>Let’s start by making sure we have the SDK and runtime packages available on the system.</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -S dotnet-runtime dotnet-sdk</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -S dotnet-runtime dotnet-sdk</span><br></pre></td></tr></table></figure>
 
 <p>We can validate the existing environments with the command</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dotnet --list-sdks</span><br></pre></td></tr></table></figure>
@@ -220,7 +220,7 @@
 
 <p>At this stage if you try to build it works  but fails on the execution with the following error:</p>
 <p>That is because Arch linux ships ASPNet in a different package. To Solve one should install the extra package using pacman.</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -Sy aspnet-runtime</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -Sy aspnet-runtime</span><br></pre></td></tr></table></figure>
 
 <p>After the installation if we check the exiting runtimes</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dotnet --list-runtimes</span><br></pre></td></tr></table></figure>
