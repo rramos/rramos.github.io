@@ -6,7 +6,7 @@
   <link href="http://rramos.github.io/atom.xml" rel="self"/>
   
   <link href="http://rramos.github.io/"/>
-  <updated>2024-11-10T08:11:41.740Z</updated>
+  <updated>2024-11-10T17:36:17.454Z</updated>
   <id>http://rramos.github.io/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>The 12 Factor App</title>
+    <link href="http://rramos.github.io/2024/11/10/12factorapp/"/>
+    <id>http://rramos.github.io/2024/11/10/12factorapp/</id>
+    <published>2024-11-10T08:45:00.000Z</published>
+    <updated>2024-11-10T17:36:17.454Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Excerpt&quot;&gt;&lt;a href=&quot;#Excerpt&quot; class=&quot;headerlink&quot; title=&quot;Excerpt&quot;&gt;&lt;/a&gt;Excerpt&lt;/h2&gt;&lt;p&gt; The twelve-factor app is a methodology for</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Arquitecture" scheme="http://rramos.github.io/tags/Arquitecture/"/>
+    
+    <category term="Guidelines" scheme="http://rramos.github.io/tags/Guidelines/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Bun</title>
     <link href="http://rramos.github.io/2024/10/15/bun/"/>
     <id>http://rramos.github.io/2024/10/15/bun/</id>
     <published>2024-10-15T16:00:00.000Z</published>
-    <updated>2024-11-10T08:11:41.740Z</updated>
+    <updated>2024-11-10T17:36:17.458Z</updated>
     
     
       
@@ -46,7 +71,7 @@
     <link href="http://rramos.github.io/2024/10/11/smothmq/"/>
     <id>http://rramos.github.io/2024/10/11/smothmq/</id>
     <published>2024-10-11T10:10:00.000Z</published>
-    <updated>2024-11-10T08:11:41.756Z</updated>
+    <updated>2024-11-10T17:36:17.474Z</updated>
     
     
       
@@ -73,7 +98,7 @@
     <link href="http://rramos.github.io/2024/08/23/camps/"/>
     <id>http://rramos.github.io/2024/08/23/camps/</id>
     <published>2024-08-23T22:00:00.000Z</published>
-    <updated>2024-11-10T08:11:41.740Z</updated>
+    <updated>2024-11-10T17:36:17.458Z</updated>
     
     
       
@@ -96,7 +121,7 @@
     <link href="http://rramos.github.io/2024/07/04/harlequin/"/>
     <id>http://rramos.github.io/2024/07/04/harlequin/</id>
     <published>2024-07-04T17:00:00.000Z</published>
-    <updated>2024-11-10T08:11:41.744Z</updated>
+    <updated>2024-11-10T17:36:17.466Z</updated>
     
     
       
@@ -129,7 +154,7 @@
     <link href="http://rramos.github.io/2024/07/02/dog/"/>
     <id>http://rramos.github.io/2024/07/02/dog/</id>
     <published>2024-07-02T15:00:00.000Z</published>
-    <updated>2024-11-10T08:11:41.740Z</updated>
+    <updated>2024-11-10T17:36:17.458Z</updated>
     
     
       
@@ -155,7 +180,7 @@
     <link href="http://rramos.github.io/2024/06/24/superset/"/>
     <id>http://rramos.github.io/2024/06/24/superset/</id>
     <published>2024-06-24T19:00:00.000Z</published>
-    <updated>2024-11-10T08:11:41.756Z</updated>
+    <updated>2024-11-10T17:36:17.474Z</updated>
     
     
       
@@ -186,7 +211,7 @@
     <link href="http://rramos.github.io/2024/06/18/hexo-twitter/"/>
     <id>http://rramos.github.io/2024/06/18/hexo-twitter/</id>
     <published>2024-06-18T23:00:00.000Z</published>
-    <updated>2024-11-10T08:11:41.744Z</updated>
+    <updated>2024-11-10T17:36:17.466Z</updated>
     
     
       
@@ -211,7 +236,7 @@
     <link href="http://rramos.github.io/2024/06/18/lookerbestpractises/"/>
     <id>http://rramos.github.io/2024/06/18/lookerbestpractises/</id>
     <published>2024-06-18T11:00:00.000Z</published>
-    <updated>2024-11-10T08:11:41.748Z</updated>
+    <updated>2024-11-10T17:36:17.466Z</updated>
     
     
       
@@ -242,7 +267,7 @@
     <link href="http://rramos.github.io/2024/06/18/pacseek/"/>
     <id>http://rramos.github.io/2024/06/18/pacseek/</id>
     <published>2024-06-18T02:00:00.000Z</published>
-    <updated>2024-11-10T08:11:41.752Z</updated>
+    <updated>2024-11-10T17:36:17.470Z</updated>
     
     
       
@@ -271,7 +296,7 @@
     <link href="http://rramos.github.io/2024/06/16/drawioflow/"/>
     <id>http://rramos.github.io/2024/06/16/drawioflow/</id>
     <published>2024-06-16T21:00:00.000Z</published>
-    <updated>2024-11-10T08:11:41.740Z</updated>
+    <updated>2024-11-10T17:36:17.458Z</updated>
     
     
       
@@ -294,7 +319,7 @@
     <link href="http://rramos.github.io/2024/06/15/timelinefromgsheet/"/>
     <id>http://rramos.github.io/2024/06/15/timelinefromgsheet/</id>
     <published>2024-06-15T20:00:00.000Z</published>
-    <updated>2024-11-10T08:11:41.756Z</updated>
+    <updated>2024-11-10T17:36:17.474Z</updated>
     
     
       
@@ -319,7 +344,7 @@
     <link href="http://rramos.github.io/2024/06/13/pythonrequirements/"/>
     <id>http://rramos.github.io/2024/06/13/pythonrequirements/</id>
     <published>2024-06-13T14:00:00.000Z</published>
-    <updated>2024-11-10T08:11:41.752Z</updated>
+    <updated>2024-11-10T17:36:17.474Z</updated>
     
     
       
@@ -344,7 +369,7 @@
     <link href="http://rramos.github.io/2024/06/13/serper/"/>
     <id>http://rramos.github.io/2024/06/13/serper/</id>
     <published>2024-06-13T11:00:00.000Z</published>
-    <updated>2024-11-10T08:11:41.756Z</updated>
+    <updated>2024-11-10T17:36:17.474Z</updated>
     
     
       
@@ -369,7 +394,7 @@
     <link href="http://rramos.github.io/2024/06/13/feedback/"/>
     <id>http://rramos.github.io/2024/06/13/feedback/</id>
     <published>2024-06-13T08:00:00.000Z</published>
-    <updated>2024-11-10T08:11:41.744Z</updated>
+    <updated>2024-11-10T17:36:17.462Z</updated>
     
     
       
@@ -394,7 +419,7 @@
     <link href="http://rramos.github.io/2024/06/12/cara/"/>
     <id>http://rramos.github.io/2024/06/12/cara/</id>
     <published>2024-06-12T23:20:00.000Z</published>
-    <updated>2024-11-10T08:11:41.740Z</updated>
+    <updated>2024-11-10T17:36:17.458Z</updated>
     
     
       
@@ -419,7 +444,7 @@
     <link href="http://rramos.github.io/2024/06/12/vitalsga4/"/>
     <id>http://rramos.github.io/2024/06/12/vitalsga4/</id>
     <published>2024-06-12T14:20:00.000Z</published>
-    <updated>2024-11-10T08:11:41.756Z</updated>
+    <updated>2024-11-10T17:36:17.474Z</updated>
     
     
       
@@ -444,7 +469,7 @@
     <link href="http://rramos.github.io/2024/06/12/motherduck/"/>
     <id>http://rramos.github.io/2024/06/12/motherduck/</id>
     <published>2024-06-12T09:00:00.000Z</published>
-    <updated>2024-11-10T08:11:41.748Z</updated>
+    <updated>2024-11-10T17:36:17.466Z</updated>
     
     
       
@@ -471,7 +496,7 @@
     <link href="http://rramos.github.io/2024/06/11/multimodals/"/>
     <id>http://rramos.github.io/2024/06/11/multimodals/</id>
     <published>2024-06-11T18:00:00.000Z</published>
-    <updated>2024-11-10T08:11:41.748Z</updated>
+    <updated>2024-11-10T17:36:17.470Z</updated>
     
     
       
@@ -497,7 +522,7 @@
     <link href="http://rramos.github.io/2024/06/11/datenager/"/>
     <id>http://rramos.github.io/2024/06/11/datenager/</id>
     <published>2024-06-11T12:00:00.000Z</published>
-    <updated>2024-11-10T08:11:41.740Z</updated>
+    <updated>2024-11-10T17:36:17.458Z</updated>
     
     
       
@@ -514,31 +539,6 @@
     <category term="OpenAPI" scheme="http://rramos.github.io/tags/OpenAPI/"/>
     
     <category term="Utils" scheme="http://rramos.github.io/tags/Utils/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Feedback Etiquette</title>
-    <link href="http://rramos.github.io/2024/06/11/feedbacketiquette/"/>
-    <id>http://rramos.github.io/2024/06/11/feedbacketiquette/</id>
-    <published>2024-06-11T08:45:00.000Z</published>
-    <updated>2024-11-10T08:11:41.744Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;Excerpt&quot;&gt;&lt;a href=&quot;#Excerpt&quot; class=&quot;headerlink&quot; title=&quot;Excerpt&quot;&gt;&lt;/a&gt;Excerpt&lt;/h2&gt;&lt;p&gt;In this article I gather the key principals for</summary>
-        
-      
-    
-    
-    
-    
-    <category term="Leadership" scheme="http://rramos.github.io/tags/Leadership/"/>
-    
-    <category term="Feedback" scheme="http://rramos.github.io/tags/Feedback/"/>
     
   </entry>
   
