@@ -1,1 +1,1 @@
-http://rramos.github.io/2017/09/13/ssh-config/
+http://rramos.github.io/2017/10/09/rddstransformations/

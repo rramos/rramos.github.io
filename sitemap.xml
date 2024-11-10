@@ -2,6 +2,123 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://rramos.github.io/2017/10/09/rddstransformations/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/02/14/redpanda/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/06/10/returning/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/06/05/righttowarnai/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/05/24/rocket/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/01/02/scalavariance/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/05/21/scylladb/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/02/18/sendmail/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/06/13/serper/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/10/11/smothmq/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2023/07/25/softwareprincipals/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/06/02/sqlfluff/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/05/22/sqlglot/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://rramos.github.io/2017/09/13/ssh-config/</loc>
     
     <lastmod>2024-11-10</lastmod>
@@ -272,294 +389,6 @@
   </url>
   
   <url>
-    <loc>http://rramos.github.io/2017/10/09/rddstransformations/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2024/02/14/redpanda/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2024/06/10/returning/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2024/06/05/righttowarnai/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2024/05/24/rocket/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2024/01/02/scalavariance/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2024/05/21/scylladb/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2024/02/18/sendmail/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2024/06/13/serper/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2024/10/11/smothmq/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2023/07/25/softwareprincipals/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2024/06/02/sqlfluff/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2024/05/22/sqlglot/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2017/09/07/mkv/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2024/06/12/motherduck/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2024/06/11/multimodals/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2022/08/30/nato_alphabet/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2024/05/21/newtheme/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2023/12/26/ngrok/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2017/09/29/nifiparcel/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2023/12/26/duckdb/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2024/06/02/embeddings/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2023/12/26/evidence/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2024/01/25/fabric/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2024/06/13/feedback/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2024/06/11/feedbacketiquette/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2022/12/23/fish/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2016/09/18/git-cheat-sheet/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2024/06/07/git-cliff/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2024/01/26/githubactions/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2024/07/04/harlequin/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2024/06/18/hexo-twitter/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://rramos.github.io/2016/10/19/hiveGC-md/</loc>
     
     <lastmod>2024-11-10</lastmod>
@@ -695,6 +524,294 @@
   </url>
   
   <url>
+    <loc>http://rramos.github.io/2017/09/07/mkv/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/06/12/motherduck/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/06/11/multimodals/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2022/08/30/nato_alphabet/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/05/21/newtheme/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2023/12/26/ngrok/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2017/09/29/nifiparcel/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2017/10/13/drelephat/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2023/12/26/duckdb/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/06/02/embeddings/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2023/12/26/evidence/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/01/25/fabric/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/06/13/feedback/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/06/11/feedbacketiquette/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2022/12/23/fish/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2016/09/18/git-cheat-sheet/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/06/07/git-cliff/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/01/26/githubactions/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/07/04/harlequin/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/06/18/hexo-twitter/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2022/12/23/GA4/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2022/12/23/GTM/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2021/02/21/Git-Untrack-previous-commited-files/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2022/12/23/Github%20ssh%20keys/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2022/12/23/KeyboardLayout/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/05/20/ManagerPlaybook/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2022/12/23/NamingVariables/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2022/12/23/OpenAPIArch/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2017/09/09/PolybaseCDH/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2022/12/23/SODA/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2022/12/23/Software%20Engineering%20Laws/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2016/11/03/SparkSummit2016/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://rramos.github.io/2023/12/25/TheOnething/</loc>
     
     <lastmod>2024-11-10</lastmod>
@@ -768,6 +885,15 @@
   
   <url>
     <loc>http://rramos.github.io/2024/06/08/bqtimetravel/</loc>
+    
+    <lastmod>2024-11-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/2024/10/15/bun/</loc>
     
     <lastmod>2024-11-10</lastmod>
     
@@ -938,15 +1064,6 @@
   </url>
   
   <url>
-    <loc>http://rramos.github.io/2017/10/13/drelephat/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://rramos.github.io/2022/12/23/API%20Lifecycles/</loc>
     
     <lastmod>2024-11-10</lastmod>
@@ -984,114 +1101,6 @@
   
   <url>
     <loc>http://rramos.github.io/2017/09/07/GA-CustomDimension/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2022/12/23/GA4/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2022/12/23/GTM/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2021/02/21/Git-Untrack-previous-commited-files/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2022/12/23/Github%20ssh%20keys/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2022/12/23/KeyboardLayout/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2024/05/20/ManagerPlaybook/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2022/12/23/NamingVariables/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2022/12/23/OpenAPIArch/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2017/09/09/PolybaseCDH/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2022/12/23/SODA/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2022/12/23/Software%20Engineering%20Laws/</loc>
-    
-    <lastmod>2024-11-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/2016/11/03/SparkSummit2016/</loc>
     
     <lastmod>2024-11-10</lastmod>
     
@@ -1495,6 +1504,20 @@
   
   <url>
     <loc>http://rramos.github.io/tags/Utils/</loc>
+    <lastmod>2024-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/tags/Frontend/</loc>
+    <lastmod>2024-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://rramos.github.io/tags/Runtime/</loc>
     <lastmod>2024-11-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1922,13 +1945,6 @@
   
   <url>
     <loc>http://rramos.github.io/tags/Database/</loc>
-    <lastmod>2024-11-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://rramos.github.io/tags/Frontend/</loc>
     <lastmod>2024-11-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

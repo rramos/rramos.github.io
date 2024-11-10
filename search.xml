@@ -5,6 +5,29 @@
     
     <entry>
       
+        <title>Bun</title>
+      
+      <link href="/2024/10/15/bun/"/>
+      <url>/2024/10/15/bun/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Excerpt"><a href="#Excerpt" class="headerlink" title="Excerpt"></a>Excerpt</h2><p>Bun is an all-in-one JavaScript runtime &amp; toolkit designed for speed, complete with a bundler, test runner, and Node.js-compatible package manager</p><h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>Bun is an all-in-one toolkit for JavaScript and TypeScript apps. It ships as a single executable called bun.</p><p>At its core is the Bun runtime, a fast JavaScript runtime designed as a drop-in replacement for Node.js. It’s written in Zig and powered by JavaScriptCore under the hood, dramatically reducing startup times and memory usage</p><h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">curl -fsSL https://bun.sh/install | bash</span><br></pre></td></tr></table></figure><h2 id="Using"><a href="#Using" class="headerlink" title="Using"></a>Using</h2><p>The bun command-line tool also implements a test runner, script runner, and Node.js-compatible package manager, all significantly faster than existing tools and usable in existing Node.js projects with little to no changes necessary.</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">bun run start                 <span class="comment"># run the `start` script</span></span><br><span class="line">bun install &lt;pkg&gt;             <span class="comment"># install a package</span></span><br><span class="line">bun build ./index.tsx         <span class="comment"># bundle a project for browsers</span></span><br><span class="line">bun <span class="built_in">test</span>                      <span class="comment"># run tests</span></span><br><span class="line">bunx cowsay <span class="string">&#x27;Hello, world!&#x27;</span>   <span class="comment"># execute a package</span></span><br></pre></td></tr></table></figure><h2 id="bun-CLI-usage"><a href="#bun-CLI-usage" class="headerlink" title="bun CLI usage"></a>bun CLI usage</h2><p>The bun CLI contains a Node.js-compatible package manager designed to be a dramatically faster replacement for <code>npm</code>, <code>yarn</code>, and <code>pnpm</code>. It’s a standalone tool that will work in pre-existing Node.js projects.</p><p>Run a JavaScript file or a <code>package.json</code> script:</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">bun run path/to/file|script_name</span><br></pre></td></tr></table></figure><p>Run unit tests:</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">bun <span class="built_in">test</span></span><br></pre></td></tr></table></figure><p>Download and install all the packages listed as dependencies in <code>package.json</code>:</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">bun install</span><br></pre></td></tr></table></figure><p>Add a dependency to <code>package.json</code>:</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">bun add module_name</span><br></pre></td></tr></table></figure><p>Remove a dependency from <code>package.json</code>:</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">bun remove module_name</span><br></pre></td></tr></table></figure><p>Create a new Bun project in the current directory:</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">bun init</span><br></pre></td></tr></table></figure><p>Start a REPL (interactive shell):</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">bun repl</span><br></pre></td></tr></table></figure><p>Upgrade Bun to the latest version:</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">bun upgrade</span><br></pre></td></tr></table></figure><h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul><li><a href="https://bun.sh/">https://bun.sh</a></li><li><a href="https://bun.sh/docs">https://bun.sh/docs</a></li><li><a href="https://bun.sh/guides">https://bun.sh/guides</a></li><li><a href="https://bun.sh/guides/ecosystem/vite">https://bun.sh/guides/ecosystem/vite</a></li></ul>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Frontend </tag>
+            
+            <tag> Runtime </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      
         <title>Smothmq</title>
       
       <link href="/2024/10/11/smothmq/"/>
@@ -118,11 +141,11 @@
             
             <tag> Analytics </tag>
             
+            <tag> Frontend </tag>
+            
             <tag> Data </tag>
             
             <tag> Engineering </tag>
-            
-            <tag> Frontend </tag>
             
             <tag> Dashboards </tag>
             
@@ -1030,11 +1053,11 @@
       
         <tags>
             
+            <tag> Frontend </tag>
+            
             <tag> Machine Learning </tag>
             
             <tag> LLMs </tag>
-            
-            <tag> Frontend </tag>
             
         </tags>
       
@@ -1126,9 +1149,9 @@
             
             <tag> Rust </tag>
             
-            <tag> Frameworks </tag>
-            
             <tag> Frontend </tag>
+            
+            <tag> Frameworks </tag>
             
             <tag> Backend </tag>
             
