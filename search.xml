@@ -5,6 +5,29 @@
     
     <entry>
       
+        <title>Create a Patch With Git</title>
+      
+      <link href="/2024/12/01/patch/"/>
+      <url>/2024/12/01/patch/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Excerpt"><a href="#Excerpt" class="headerlink" title="Excerpt"></a>Excerpt</h2><p>Quick way to create a patch with git from two different branches</p><h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>In order to get a patch from the diff between <code>master</code> and <code>foo</code> branches one could use the following:</p><h3 id="Generate-the-Patch"><a href="#Generate-the-Patch" class="headerlink" title="Generate the Patch"></a>Generate the Patch</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git diff --no-color --binary master foo &gt; /tmp/patch</span><br></pre></td></tr></table></figure><h3 id="Apply-changes"><a href="#Apply-changes" class="headerlink" title="Apply changes"></a>Apply changes</h3><p>To later apply the patch:</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git apply /tmp/patch</span><br></pre></td></tr></table></figure><h3 id="Changes-within-the-same-branch"><a href="#Changes-within-the-same-branch" class="headerlink" title="Changes within the same branch"></a>Changes within the same branch</h3><p>If you don’t have dedicated branches with the changes and all are on the same branch you can just execute</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git diff --no-color --binary &gt; /tmp/patch</span><br></pre></td></tr></table></figure><blockquote><p><strong>NOTE:</strong> <code>--no-color</code> ensures the diff is valid to apply if you have automatic coloring on, <code>--binary</code> ensures binary files are handled correctly as well.</p></blockquote><h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul><li><a href="https://www.karltarvas.com/git-get-a-patch-between-two-branches">https://www.karltarvas.com/git-get-a-patch-between-two-branches</a></li><li><a href="https://git-scm.com/docs/diff-generate-patch">https://git-scm.com/docs/diff-generate-patch</a></li></ul>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Development </tag>
+            
+            <tag> git </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      
         <title>The 12 Factor App</title>
       
       <link href="/2024/11/10/12factorapp/"/>
