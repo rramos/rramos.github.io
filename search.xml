@@ -5,6 +5,29 @@
     
     <entry>
       
+        <title>Btrfs Freeze</title>
+      
+      <link href="/2024/12/03/btrfs_freeze/"/>
+      <url>/2024/12/03/btrfs_freeze/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Excerpt"><a href="#Excerpt" class="headerlink" title="Excerpt"></a>Excerpt</h2><p>Quick tip if your BTRFS system seems to freeze from time to time</p><h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>In this article I will explain 2 configurations that you might consider if using BTRFS and start noticing some freezing on the system.</p><h3 id="Beahvior"><a href="#Beahvior" class="headerlink" title="Beahvior"></a>Beahvior</h3><p>From time to time I started noticing that the system was getting freeze (1-2s) on everything. Mouse, window manager, sound, graphics and was not getting any outputs that justify this behavior for my Arch Linux system.</p><p>After googling a bit and getting to some Reddit posts, I managed to find some people that have the same issue, and it seems this behavior was all connected to BTRFS.</p><p>This two options seemed to work for me, as I also have SSDs</p><h3 id="Disable-quotas-in-BTRFS"><a href="#Disable-quotas-in-BTRFS" class="headerlink" title="Disable quotas in BTRFS"></a>Disable quotas in BTRFS</h3><p>It seems quotas are still buggy. As I don’t use them I run the following to disable them.</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> btrfs quota <span class="built_in">disable</span> /foo</span><br></pre></td></tr></table></figure><p><strong>NOTE:</strong> execute for all your mount points</p><h3 id="Run-fstrim"><a href="#Run-fstrim" class="headerlink" title="Run fstrim"></a>Run fstrim</h3><p>fstrim is used on a mounted filesystem to discard (or “trim”) blocks which are not in use by the filesystem. This is useful for solid-state drives (SSDs) and thinly-provisioned storage.</p><p>Running the following command will trim all mounted filesystems mentioned in <code>/etc/fstab</code> on devices that support the discard operation.</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> fstrim -Av</span><br></pre></td></tr></table></figure><blockquote><p><strong>NOTE:</strong> Running fstrim frequently, or even using mount -o discard, might<br>       negatively affect the lifetime of poor-quality SSD devices. For<br>       most desktop and server systems a sufficient trimming frequency<br>       is once a week.</p></blockquote><p>That’s it now reboot the computer and you should notice some differences.</p><h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul><li><a href="https://man7.org/linux/man-pages/man8/fstrim.8.html">https://man7.org/linux/man-pages/man8/fstrim.8.html</a></li><li><a href="https://www.suse.com/support/kb/doc/?id=000020696">https://www.suse.com/support/kb/doc/?id=000020696</a></li></ul>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> Filesystems </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      
         <title>Create a Patch With Git</title>
       
       <link href="/2024/12/01/patch/"/>
