@@ -201,7 +201,7 @@
 
 <p><strong>NOTE:</strong> You must have the latest duckdb version</p>
 <h2 id="Creating-a-local-table"><a href="#Creating-a-local-table" class="headerlink" title="Creating a local table"></a>Creating a local table</h2><p>To avoid accessing the remote endpoint for every query, you can save the data in a DuckDB table by running a CREATE TABLE … AS command. For example:</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> data <span class="keyword">AS</span></span><br><span class="line">    <span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line">    <span class="keyword">FROM</span> <span class="string">&#x27;hf://datasets/datasets-examples/doc-formats-csv-1/data.csv&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE TABLE</span> data <span class="keyword">AS</span></span><br><span class="line">    <span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line">    <span class="keyword">FROM</span> <span class="string">&#x27;hf://datasets/datasets-examples/doc-formats-csv-1/data.csv&#x27;</span>;</span><br></pre></td></tr></table></figure>
 
 <p>Then, simply query the data table as follows:</p>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> data;</span><br></pre></td></tr></table></figure>
