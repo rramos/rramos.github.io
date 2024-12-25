@@ -7,15 +7,15 @@
   <meta name="author" content="Rui Ramos" />
   <meta name="description" content="A simple Blog related with Infrastructure Architecture and Data" />
   
-    <meta name="robots" content="noindex" />
-  
   
 
-  <link rel="canonical" href="http://rramos.github.io/page/13/"/>
+  <link rel="canonical" href="http://rramos.github.io/2024/12/25/mako/"/>
 
   <title>
     
-      rramos.github.io
+      Mako 
+      
+      
     
   </title>
 
@@ -35,10 +35,10 @@
 
 
   
-    
-<link rel="stylesheet" href="/css/index.css">
 
   
+    
+<link rel="stylesheet" href="/css/post.css">
 
   
 
@@ -164,91 +164,57 @@
 </p>
 
         <div class="main">
-          <div>
-  <ul>
-    <!-- Traverse rendering articles -->
+          <!-- Article details page, showing the specific content of the article, URL format: https://yoursite/article title/-->
+<!-- At the same time, it is the hosting page of "tag", "friend", "categories", and "about" page. The specific display depends on page.type -->
+ 
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<div class="post">
+  <h3 class="date">
+    25 Dec, 2024 - About 54 seconds <span class="iconfont">&#xe968;</span>
+  </h3> 
+  <h1>
+    Mako
+  </h1>
+  <div class="content markdown-body">
     
-    <li>
-      <h3>Feb 14, 2024</h3>
-      <h2>
-        <a href="/2024/02/14/redpanda/">
-          
-            
-              <span>Redpanda</span>
-            
-          
-        </a>
-      </h2>
-    </li>
+<h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><ul>
+<li><p>Extremely fast, Mako is built in Rust, which is known for its performance and safety. Mako takes advantage of data-parallelism and caching features to provide fast and efficient bundling.</p>
+</li>
+<li><p>Production-grade, Mako is already in production use in hundreds of projects at Ant Group. And we have tested it in thousands of projects and it has proven to be reliable and stable.</p>
+</li>
+<li><p>Easy to use, Mako is designed to be easy to use out of the box. Start with zero configuration and customize it as needed. Mako is also compatible with existing frameworks like Umi.</p>
+</li>
+</ul>
+<h2 id="Getting-Started"><a href="#Getting-Started" class="headerlink" title="Getting Started"></a>Getting Started</h2><p>Install via npm bundled with react</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">npm create mako</span><br></pre></td></tr></table></figure>
+
+<p>Install and run</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> mako-project</span><br><span class="line">npm install</span><br><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
+
+<p>Open <code>http://localhost:3000</code></p>
+<h2 id="Disclaimer"><a href="#Disclaimer" class="headerlink" title="Disclaimer"></a>Disclaimer</h2><p>I’m not an expert on frontend stacks, so I can’t definitively recommend this bundler. However, the benchmark results are quite impressive. That said, you might face challenges with the documentation, as much of the development is primarily supported by Chinese developers, making</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/umijs/mako">https://github.com/umijs/mako</a></li>
+<li><a target="_blank" rel="noopener" href="https://makojs.dev/docs/">https://makojs.dev/docs/</a></li>
+</ul>
+
+  </div>
+  
     
-    <li>
-      <h3>Feb 04, 2024</h3>
-      <h2>
-        <a href="/2024/02/04/strapi/">
-          
+      <a id="older" class="blog-nav" href="/2024/12/03/btrfs_freeze/">OLDER&nbsp;&gt;</a>
+      
+        
             
-              <span>Strapi and React TODO Application</span>
-            
-          
-        </a>
-      </h2>
-    </li>
-    
-    <li>
-      <h3>Jan 29, 2024</h3>
-      <h2>
-        <a href="/2024/01/29/dbt-clickhouse/">
-          
-            
-              <span>Dbt-Clickhouse</span>
-            
-          
-        </a>
-      </h2>
-    </li>
-    
-    <li>
-      <h3>Jan 28, 2024</h3>
-      <h2>
-        <a href="/2024/01/28/clickhouse/">
-          
-            
-              <span>ClickHouse</span>
-            
-          
-        </a>
-      </h2>
-    </li>
-    
-    <li>
-      <h3>Jan 26, 2024</h3>
-      <h2>
-        <a href="/2024/01/26/githubactions/">
-          
-            
-              <span>GitHub Actions</span>
-            
-          
-        </a>
-      </h2>
-    </li>
-    
-  </ul>
-  <nav class="post-navigation">
-    
-      <a id="prev" class="index-nav" href="/page/12/">&lt;&nbsp;NEWER</a>
-    
-    
-      <a id="next" class="index-nav" href="/page/14/">OLDER&nbsp;&gt;</a>
-    
-</nav>
 </div>
-
-
-
-
-
-
           <div class="footer">
   
     <div class="footer-more">
