@@ -6,7 +6,7 @@
   <link href="http://rramos.github.io/atom.xml" rel="self"/>
   
   <link href="http://rramos.github.io/"/>
-  <updated>2024-12-25T15:54:07.089Z</updated>
+  <updated>2024-12-26T15:31:03.788Z</updated>
   <id>http://rramos.github.io/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Meltano</title>
+    <link href="http://rramos.github.io/2024/12/26/meltano/"/>
+    <id>http://rramos.github.io/2024/12/26/meltano/</id>
+    <published>2024-12-26T15:00:00.000Z</published>
+    <updated>2024-12-26T15:31:03.788Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Excerpt&quot;&gt;&lt;a href=&quot;#Excerpt&quot; class=&quot;headerlink&quot; title=&quot;Excerpt&quot;&gt;&lt;/a&gt;Excerpt&lt;/h2&gt;&lt;p&gt;Meltano is a declarative data integration</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Data Engineering" scheme="http://rramos.github.io/tags/Data-Engineering/"/>
+    
+    <category term="ETL" scheme="http://rramos.github.io/tags/ETL/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Mako</title>
     <link href="http://rramos.github.io/2024/12/25/mako/"/>
     <id>http://rramos.github.io/2024/12/25/mako/</id>
     <published>2024-12-25T15:50:00.000Z</published>
-    <updated>2024-12-25T15:54:07.089Z</updated>
+    <updated>2024-12-26T15:31:03.788Z</updated>
     
     
       
@@ -46,7 +71,7 @@
     <link href="http://rramos.github.io/2024/12/03/btrfs_freeze/"/>
     <id>http://rramos.github.io/2024/12/03/btrfs_freeze/</id>
     <published>2024-12-03T19:00:00.000Z</published>
-    <updated>2024-12-25T15:54:07.084Z</updated>
+    <updated>2024-12-26T15:31:03.782Z</updated>
     
     
       
@@ -71,7 +96,7 @@
     <link href="http://rramos.github.io/2024/12/01/patch/"/>
     <id>http://rramos.github.io/2024/12/01/patch/</id>
     <published>2024-12-01T12:30:00.000Z</published>
-    <updated>2024-12-25T15:54:07.095Z</updated>
+    <updated>2024-12-26T15:31:03.794Z</updated>
     
     
       
@@ -96,7 +121,7 @@
     <link href="http://rramos.github.io/2024/11/10/12factorapp/"/>
     <id>http://rramos.github.io/2024/11/10/12factorapp/</id>
     <published>2024-11-10T08:45:00.000Z</published>
-    <updated>2024-12-25T15:54:07.081Z</updated>
+    <updated>2024-12-26T15:31:03.779Z</updated>
     
     
       
@@ -121,7 +146,7 @@
     <link href="http://rramos.github.io/2024/10/15/bun/"/>
     <id>http://rramos.github.io/2024/10/15/bun/</id>
     <published>2024-10-15T16:00:00.000Z</published>
-    <updated>2024-12-25T15:54:07.084Z</updated>
+    <updated>2024-12-26T15:31:03.782Z</updated>
     
     
       
@@ -146,7 +171,7 @@
     <link href="http://rramos.github.io/2024/10/11/smothmq/"/>
     <id>http://rramos.github.io/2024/10/11/smothmq/</id>
     <published>2024-10-11T10:10:00.000Z</published>
-    <updated>2024-12-25T15:54:07.097Z</updated>
+    <updated>2024-12-26T15:31:03.795Z</updated>
     
     
       
@@ -173,7 +198,7 @@
     <link href="http://rramos.github.io/2024/08/23/camps/"/>
     <id>http://rramos.github.io/2024/08/23/camps/</id>
     <published>2024-08-23T22:00:00.000Z</published>
-    <updated>2024-12-25T15:54:07.084Z</updated>
+    <updated>2024-12-26T15:31:03.782Z</updated>
     
     
       
@@ -196,7 +221,7 @@
     <link href="http://rramos.github.io/2024/07/04/harlequin/"/>
     <id>http://rramos.github.io/2024/07/04/harlequin/</id>
     <published>2024-07-04T17:00:00.000Z</published>
-    <updated>2024-12-25T15:54:07.089Z</updated>
+    <updated>2024-12-26T15:31:03.787Z</updated>
     
     
       
@@ -229,7 +254,7 @@
     <link href="http://rramos.github.io/2024/07/02/dog/"/>
     <id>http://rramos.github.io/2024/07/02/dog/</id>
     <published>2024-07-02T15:00:00.000Z</published>
-    <updated>2024-12-25T15:54:07.085Z</updated>
+    <updated>2024-12-26T15:31:03.783Z</updated>
     
     
       
@@ -255,7 +280,7 @@
     <link href="http://rramos.github.io/2024/06/24/superset/"/>
     <id>http://rramos.github.io/2024/06/24/superset/</id>
     <published>2024-06-24T19:00:00.000Z</published>
-    <updated>2024-12-25T15:54:07.097Z</updated>
+    <updated>2024-12-26T15:31:03.796Z</updated>
     
     
       
@@ -286,7 +311,7 @@
     <link href="http://rramos.github.io/2024/06/18/hexo-twitter/"/>
     <id>http://rramos.github.io/2024/06/18/hexo-twitter/</id>
     <published>2024-06-18T23:00:00.000Z</published>
-    <updated>2024-12-25T15:54:07.089Z</updated>
+    <updated>2024-12-26T15:31:03.787Z</updated>
     
     
       
@@ -311,7 +336,7 @@
     <link href="http://rramos.github.io/2024/06/18/lookerbestpractises/"/>
     <id>http://rramos.github.io/2024/06/18/lookerbestpractises/</id>
     <published>2024-06-18T11:00:00.000Z</published>
-    <updated>2024-12-25T15:54:07.089Z</updated>
+    <updated>2024-12-26T15:31:03.787Z</updated>
     
     
       
@@ -342,7 +367,7 @@
     <link href="http://rramos.github.io/2024/06/18/pacseek/"/>
     <id>http://rramos.github.io/2024/06/18/pacseek/</id>
     <published>2024-06-18T02:00:00.000Z</published>
-    <updated>2024-12-25T15:54:07.095Z</updated>
+    <updated>2024-12-26T15:31:03.793Z</updated>
     
     
       
@@ -371,7 +396,7 @@
     <link href="http://rramos.github.io/2024/06/16/drawioflow/"/>
     <id>http://rramos.github.io/2024/06/16/drawioflow/</id>
     <published>2024-06-16T21:00:00.000Z</published>
-    <updated>2024-12-25T15:54:07.085Z</updated>
+    <updated>2024-12-26T15:31:03.783Z</updated>
     
     
       
@@ -394,7 +419,7 @@
     <link href="http://rramos.github.io/2024/06/15/timelinefromgsheet/"/>
     <id>http://rramos.github.io/2024/06/15/timelinefromgsheet/</id>
     <published>2024-06-15T20:00:00.000Z</published>
-    <updated>2024-12-25T15:54:07.098Z</updated>
+    <updated>2024-12-26T15:31:03.796Z</updated>
     
     
       
@@ -419,7 +444,7 @@
     <link href="http://rramos.github.io/2024/06/13/pythonrequirements/"/>
     <id>http://rramos.github.io/2024/06/13/pythonrequirements/</id>
     <published>2024-06-13T14:00:00.000Z</published>
-    <updated>2024-12-25T15:54:07.096Z</updated>
+    <updated>2024-12-26T15:31:03.794Z</updated>
     
     
       
@@ -444,7 +469,7 @@
     <link href="http://rramos.github.io/2024/06/13/serper/"/>
     <id>http://rramos.github.io/2024/06/13/serper/</id>
     <published>2024-06-13T11:00:00.000Z</published>
-    <updated>2024-12-25T15:54:07.097Z</updated>
+    <updated>2024-12-26T15:31:03.795Z</updated>
     
     
       
@@ -469,7 +494,7 @@
     <link href="http://rramos.github.io/2024/06/13/feedback/"/>
     <id>http://rramos.github.io/2024/06/13/feedback/</id>
     <published>2024-06-13T08:00:00.000Z</published>
-    <updated>2024-12-25T15:54:07.088Z</updated>
+    <updated>2024-12-26T15:31:03.786Z</updated>
     
     
       
@@ -494,7 +519,7 @@
     <link href="http://rramos.github.io/2024/06/12/cara/"/>
     <id>http://rramos.github.io/2024/06/12/cara/</id>
     <published>2024-06-12T23:20:00.000Z</published>
-    <updated>2024-12-25T15:54:07.084Z</updated>
+    <updated>2024-12-26T15:31:03.782Z</updated>
     
     
       
@@ -511,31 +536,6 @@
     <category term="AI" scheme="http://rramos.github.io/tags/AI/"/>
     
     <category term="Generative AI" scheme="http://rramos.github.io/tags/Generative-AI/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Web Vitals</title>
-    <link href="http://rramos.github.io/2024/06/12/vitalsga4/"/>
-    <id>http://rramos.github.io/2024/06/12/vitalsga4/</id>
-    <published>2024-06-12T14:20:00.000Z</published>
-    <updated>2024-12-25T15:54:07.099Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;Excerpt&quot;&gt;&lt;a href=&quot;#Excerpt&quot; class=&quot;headerlink&quot; title=&quot;Excerpt&quot;&gt;&lt;/a&gt;Excerpt&lt;/h2&gt;&lt;p&gt;In this article I will go through Google Web</summary>
-        
-      
-    
-    
-    
-    
-    <category term="Metrics" scheme="http://rramos.github.io/tags/Metrics/"/>
-    
-    <category term="Web Performance" scheme="http://rramos.github.io/tags/Web-Performance/"/>
     
   </entry>
   
