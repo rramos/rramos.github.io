@@ -35,3 +35,10 @@ hugo server --buildDrafts
 
 Just commit the changes and github actions will deploy the content
 
+# Blowfish tool
+
+In order to change blowfish configuration run
+
+```bash
+npx blowfish-tools
+```
