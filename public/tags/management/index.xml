@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Management on rramos.github.io</title>
+    <link>http://localhost:1313/tags/management/</link>
+    <description>Recent content in Management on rramos.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2025 Rui Ramos</copyright>
+    <lastBuildDate>Tue, 14 Jan 2025 10:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/management/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Sandwich Approach</title>
+      <link>http://localhost:1313/drafts/sandwichapproach/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/sandwichapproach/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>biceps</title>
+      <link>http://localhost:1313/drafts/biceps/</link>
+      <pubDate>Mon, 01 Jul 2024 12:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/biceps/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Manager Playbook</title>
+      <link>http://localhost:1313/2024/05/manager-playbook/</link>
+      <pubDate>Mon, 20 May 2024 13:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2024/05/manager-playbook/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Effective Delegation</title>
+      <link>http://localhost:1313/2023/07/effective-delegation/</link>
+      <pubDate>Tue, 25 Jul 2023 10:10:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2023/07/effective-delegation/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Agile Principals</title>
+      <link>http://localhost:1313/2022/12/agile-principals/</link>
+      <pubDate>Fri, 23 Dec 2022 21:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2022/12/agile-principals/</guid>
+      <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>

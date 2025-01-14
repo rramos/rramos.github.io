@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>KSQL on rramos.github.io</title>
+    <link>http://localhost:1313/tags/ksql/</link>
+    <description>Recent content in KSQL on rramos.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2025 Rui Ramos</copyright>
+    <lastBuildDate>Sun, 24 Sep 2017 15:54:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/ksql/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Streaming SQL for Kafka (KSQL)</title>
+      <link>http://localhost:1313/2017/09/streaming-sql-for-kafka-ksql/</link>
+      <pubDate>Sun, 24 Sep 2017 15:54:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2017/09/streaming-sql-for-kafka-ksql/</guid>
+      <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>

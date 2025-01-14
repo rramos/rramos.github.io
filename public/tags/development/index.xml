@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Development on rramos.github.io</title>
+    <link>http://localhost:1313/tags/development/</link>
+    <description>Recent content in Development on rramos.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2025 Rui Ramos</copyright>
+    <lastBuildDate>Tue, 14 Jan 2025 10:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/development/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>trunk.io</title>
+      <link>http://localhost:1313/drafts/trunk.io/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/trunk.io/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>mako</title>
+      <link>http://localhost:1313/2024/12/mako/</link>
+      <pubDate>Wed, 25 Dec 2024 15:50:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2024/12/mako/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Create a patch with git</title>
+      <link>http://localhost:1313/2024/12/create-a-patch-with-git/</link>
+      <pubDate>Sun, 01 Dec 2024 12:30:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2024/12/create-a-patch-with-git/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>smothmq</title>
+      <link>http://localhost:1313/2024/10/smothmq/</link>
+      <pubDate>Fri, 11 Oct 2024 10:10:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2024/10/smothmq/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>act</title>
+      <link>http://localhost:1313/2024/05/act/</link>
+      <pubDate>Mon, 20 May 2024 22:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2024/05/act/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Local Kubernetes for Testing/Developing</title>
+      <link>http://localhost:1313/2023/08/local-kubernetes-for-testing/developing/</link>
+      <pubDate>Sat, 26 Aug 2023 21:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2023/08/local-kubernetes-for-testing/developing/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Software Engineering Principals</title>
+      <link>http://localhost:1313/2023/07/software-engineering-principals/</link>
+      <pubDate>Tue, 25 Jul 2023 16:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2023/07/software-engineering-principals/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Software Engineering Laws</title>
+      <link>http://localhost:1313/2022/12/software-engineering-laws/</link>
+      <pubDate>Fri, 23 Dec 2022 22:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2022/12/software-engineering-laws/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Guideline on Naming Variables</title>
+      <link>http://localhost:1313/2022/12/guideline-on-naming-variables/</link>
+      <pubDate>Fri, 23 Dec 2022 18:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2022/12/guideline-on-naming-variables/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Scrum User Stories</title>
+      <link>http://localhost:1313/2022/12/scrum-user-stories/</link>
+      <pubDate>Fri, 23 Dec 2022 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2022/12/scrum-user-stories/</guid>
+      <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>

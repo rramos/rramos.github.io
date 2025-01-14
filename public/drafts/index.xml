@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Drafts on rramos.github.io</title>
+    <link>http://localhost:1313/drafts/</link>
+    <description>Recent content in Drafts on rramos.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2025 Rui Ramos</copyright>
+    <lastBuildDate>Tue, 14 Jan 2025 10:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/drafts/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>aiagent</title>
+      <link>http://localhost:1313/drafts/aiagent/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/aiagent/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Airflow PoC</title>
+      <link>http://localhost:1313/drafts/airflowpoc/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/airflowpoc/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>algolia</title>
+      <link>http://localhost:1313/drafts/algolia/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/algolia/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>buildpacks</title>
+      <link>http://localhost:1313/drafts/buildpacks/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/buildpacks/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>celery</title>
+      <link>http://localhost:1313/drafts/celery/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/celery/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Charts with Node Express and DBT</title>
+      <link>http://localhost:1313/drafts/chartsapi/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/chartsapi/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>citus</title>
+      <link>http://localhost:1313/drafts/citus/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/citus/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>consentbanner</title>
+      <link>http://localhost:1313/drafts/consentbanner/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/consentbanner/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>couchdb</title>
+      <link>http://localhost:1313/drafts/couchdb/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/couchdb/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>dagster</title>
+      <link>http://localhost:1313/drafts/dagster/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/dagster/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>datawars</title>
+      <link>http://localhost:1313/drafts/datawars/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/datawars/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>dbt-tests</title>
+      <link>http://localhost:1313/drafts/dbt-tests/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/dbt-tests/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>decapcms</title>
+      <link>http://localhost:1313/drafts/decapcms/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/decapcms/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>diesel</title>
+      <link>http://localhost:1313/drafts/diesel/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/diesel/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>duckdbprojecteng</title>
+      <link>http://localhost:1313/drafts/duckdbprojecteng/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/duckdbprojecteng/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>duckdbshellfs</title>
+      <link>http://localhost:1313/drafts/duckdbshellfs/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/duckdbshellfs/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>edgedb</title>
+      <link>http://localhost:1313/drafts/edgedb3/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/edgedb3/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>electron</title>
+      <link>http://localhost:1313/drafts/electron/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/electron/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>example</title>
+      <link>http://localhost:1313/drafts/example/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/example/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>ga4consent</title>
+      <link>http://localhost:1313/drafts/ga4consent/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/ga4consent/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>graphbase</title>
+      <link>http://localhost:1313/drafts/graphbase/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/graphbase/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>hatchet</title>
+      <link>http://localhost:1313/drafts/hatchet/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/hatchet/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>ingestr</title>
+      <link>http://localhost:1313/drafts/ingestr/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/ingestr/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>kind</title>
+      <link>http://localhost:1313/drafts/kind/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/kind/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>koyeb</title>
+      <link>http://localhost:1313/drafts/koyeb/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/koyeb/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>langchain</title>
+      <link>http://localhost:1313/drafts/langchain/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/langchain/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>leadingmilleniums</title>
+      <link>http://localhost:1313/drafts/leadingmilleniums/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/leadingmilleniums/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>lightdash</title>
+      <link>http://localhost:1313/drafts/lightdash/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/lightdash/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>llmlingua</title>
+      <link>http://localhost:1313/drafts/llmlingua/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/llmlingua/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Metabase</title>
+      <link>http://localhost:1313/drafts/metabase/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/metabase/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>OpenUI</title>
+      <link>http://localhost:1313/drafts/openui/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/openui/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>parsingjson</title>
+      <link>http://localhost:1313/drafts/parsingjson/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/parsingjson/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>picollm</title>
+      <link>http://localhost:1313/drafts/picollm/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/picollm/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>play.ht</title>
+      <link>http://localhost:1313/drafts/playht/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/playht/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>qStudio - qDuckDB</title>
+      <link>http://localhost:1313/drafts/qstudio/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/qstudio/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>questdb</title>
+      <link>http://localhost:1313/drafts/questdb/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/questdb/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>quic</title>
+      <link>http://localhost:1313/drafts/quic/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/quic/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Quick Firing a Spark Environment in Docker</title>
+      <link>http://localhost:1313/drafts/quicksparkdocker/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/quicksparkdocker/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>rust-rs</title>
+      <link>http://localhost:1313/drafts/rust-rs/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/rust-rs/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Sandwich Approach</title>
+      <link>http://localhost:1313/drafts/sandwichapproach/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/sandwichapproach/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>scrappingAgent</title>
+      <link>http://localhost:1313/drafts/scrappingagent/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/scrappingagent/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>simpleen</title>
+      <link>http://localhost:1313/drafts/simpleen/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/simpleen/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Springboot Quickstart</title>
+      <link>http://localhost:1313/drafts/springboot/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/springboot/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>trunk.io</title>
+      <link>http://localhost:1313/drafts/trunk.io/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/trunk.io/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>vaadin</title>
+      <link>http://localhost:1313/drafts/vaadin/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/vaadin/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>WrenAI</title>
+      <link>http://localhost:1313/drafts/wrenai/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/wrenai/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>biceps</title>
+      <link>http://localhost:1313/drafts/biceps/</link>
+      <pubDate>Mon, 01 Jul 2024 12:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/biceps/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Alluxio PoC</title>
+      <link>http://localhost:1313/drafts/alluxio/</link>
+      <pubDate>Thu, 07 Sep 2017 23:53:28 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/alluxio/</guid>
+      <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>

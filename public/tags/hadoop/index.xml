@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hadoop on rramos.github.io</title>
+    <link>http://localhost:1313/tags/hadoop/</link>
+    <description>Recent content in Hadoop on rramos.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2025 Rui Ramos</copyright>
+    <lastBuildDate>Fri, 13 Oct 2017 02:09:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/hadoop/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Dr. Elephant Overview</title>
+      <link>http://localhost:1313/2017/10/dr.-elephant-overview/</link>
+      <pubDate>Fri, 13 Oct 2017 02:09:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2017/10/dr.-elephant-overview/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Nifi Parcel for CDH</title>
+      <link>http://localhost:1313/2017/09/nifi-parcel-for-cdh/</link>
+      <pubDate>Fri, 29 Sep 2017 02:01:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2017/09/nifi-parcel-for-cdh/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Hive UDFS functions</title>
+      <link>http://localhost:1313/2017/09/hive-udfs-functions/</link>
+      <pubDate>Wed, 27 Sep 2017 21:16:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2017/09/hive-udfs-functions/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Spark Summit 2016</title>
+      <link>http://localhost:1313/2016/11/spark-summit-2016/</link>
+      <pubDate>Thu, 03 Nov 2016 22:09:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2016/11/spark-summit-2016/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>hive Queries crash when inserting GC Exception</title>
+      <link>http://localhost:1313/2016/10/hive-queries-crash-when-inserting-gc-exception/</link>
+      <pubDate>Wed, 19 Oct 2016 00:05:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2016/10/hive-queries-crash-when-inserting-gc-exception/</guid>
+      <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>

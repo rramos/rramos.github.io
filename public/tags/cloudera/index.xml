@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cloudera on rramos.github.io</title>
+    <link>http://localhost:1313/tags/cloudera/</link>
+    <description>Recent content in Cloudera on rramos.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2025 Rui Ramos</copyright>
+    <lastBuildDate>Fri, 29 Sep 2017 02:01:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/cloudera/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Nifi Parcel for CDH</title>
+      <link>http://localhost:1313/2017/09/nifi-parcel-for-cdh/</link>
+      <pubDate>Fri, 29 Sep 2017 02:01:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2017/09/nifi-parcel-for-cdh/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Hive UDFS functions</title>
+      <link>http://localhost:1313/2017/09/hive-udfs-functions/</link>
+      <pubDate>Wed, 27 Sep 2017 21:16:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2017/09/hive-udfs-functions/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Polybase Configuration with Cloudera 5</title>
+      <link>http://localhost:1313/2017/09/polybase-configuration-with-cloudera-5/</link>
+      <pubDate>Sat, 09 Sep 2017 01:06:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2017/09/polybase-configuration-with-cloudera-5/</guid>
+      <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>

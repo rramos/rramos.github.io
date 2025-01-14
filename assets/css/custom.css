@@ -1,0 +1,13 @@
+
+.decoration-primary-500 {
+  text-transform: uppercase;
+}
+
+h2.text-neutral-800 {
+  text-transform: capitalize;
+  font-weight: normal;
+}
+
+h1.text-neutral-900 {
+    text-transform: uppercase;   
+}

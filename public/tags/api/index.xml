@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>API on rramos.github.io</title>
+    <link>http://localhost:1313/tags/api/</link>
+    <description>Recent content in API on rramos.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2025 Rui Ramos</copyright>
+    <lastBuildDate>Tue, 29 Aug 2023 21:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/api/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>API Architectures</title>
+      <link>http://localhost:1313/2023/08/api-architectures/</link>
+      <pubDate>Tue, 29 Aug 2023 21:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2023/08/api-architectures/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>API Lifecycles</title>
+      <link>http://localhost:1313/2022/12/api-lifecycles/</link>
+      <pubDate>Fri, 23 Dec 2022 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2022/12/api-lifecycles/</guid>
+      <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>

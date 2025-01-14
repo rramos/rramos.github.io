@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Infrastructure on rramos.github.io</title>
+    <link>http://localhost:1313/tags/infrastructure/</link>
+    <description>Recent content in Infrastructure on rramos.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2025 Rui Ramos</copyright>
+    <lastBuildDate>Tue, 02 Jul 2024 15:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/infrastructure/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>dog</title>
+      <link>http://localhost:1313/2024/07/dog/</link>
+      <pubDate>Tue, 02 Jul 2024 15:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2024/07/dog/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>minIO</title>
+      <link>http://localhost:1313/2024/06/minio/</link>
+      <pubDate>Mon, 10 Jun 2024 02:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2024/06/minio/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>ngrok</title>
+      <link>http://localhost:1313/2023/12/ngrok/</link>
+      <pubDate>Tue, 26 Dec 2023 20:20:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2023/12/ngrok/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Alluxio PoC</title>
+      <link>http://localhost:1313/drafts/alluxio/</link>
+      <pubDate>Thu, 07 Sep 2017 23:53:28 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/alluxio/</guid>
+      <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>

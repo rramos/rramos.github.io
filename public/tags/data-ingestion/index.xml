@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Data Ingestion on rramos.github.io</title>
+    <link>http://localhost:1313/tags/data-ingestion/</link>
+    <description>Recent content in Data Ingestion on rramos.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2025 Rui Ramos</copyright>
+    <lastBuildDate>Wed, 05 Jun 2024 09:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/data-ingestion/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>tinyBird</title>
+      <link>http://localhost:1313/2024/06/tinybird/</link>
+      <pubDate>Wed, 05 Jun 2024 09:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2024/06/tinybird/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Nifi Parcel for CDH</title>
+      <link>http://localhost:1313/2017/09/nifi-parcel-for-cdh/</link>
+      <pubDate>Fri, 29 Sep 2017 02:01:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2017/09/nifi-parcel-for-cdh/</guid>
+      <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>

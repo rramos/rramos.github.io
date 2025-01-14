@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hexo on rramos.github.io</title>
+    <link>http://localhost:1313/tags/hexo/</link>
+    <description>Recent content in Hexo on rramos.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2025 Rui Ramos</copyright>
+    <lastBuildDate>Tue, 18 Jun 2024 23:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/hexo/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>hexo-twitter</title>
+      <link>http://localhost:1313/2024/06/hexo-twitter/</link>
+      <pubDate>Tue, 18 Jun 2024 23:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2024/06/hexo-twitter/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>New Theme</title>
+      <link>http://localhost:1313/2024/05/new-theme/</link>
+      <pubDate>Tue, 21 May 2024 14:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2024/05/new-theme/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>GitHub Actions</title>
+      <link>http://localhost:1313/2024/01/github-actions/</link>
+      <pubDate>Fri, 26 Jan 2024 18:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2024/01/github-actions/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Created rramos.github.io</title>
+      <link>http://localhost:1313/2016/09/created-rramos.github.io/</link>
+      <pubDate>Sat, 17 Sep 2016 23:57:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2016/09/created-rramos.github.io/</guid>
+      <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>

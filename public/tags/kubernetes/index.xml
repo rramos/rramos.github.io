@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kubernetes on rramos.github.io</title>
+    <link>http://localhost:1313/tags/kubernetes/</link>
+    <description>Recent content in Kubernetes on rramos.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2025 Rui Ramos</copyright>
+    <lastBuildDate>Tue, 14 Jan 2025 10:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>kind</title>
+      <link>http://localhost:1313/drafts/kind/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/kind/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Local Kubernetes for Testing/Developing</title>
+      <link>http://localhost:1313/2023/08/local-kubernetes-for-testing/developing/</link>
+      <pubDate>Sat, 26 Aug 2023 21:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2023/08/local-kubernetes-for-testing/developing/</guid>
+      <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>

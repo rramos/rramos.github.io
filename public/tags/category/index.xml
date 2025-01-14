@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Category on rramos.github.io</title>
+    <link>http://localhost:1313/tags/category/</link>
+    <description>Recent content in Category on rramos.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2025 Rui Ramos</copyright>
+    <lastBuildDate>Tue, 14 Jan 2025 10:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/category/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>buildpacks</title>
+      <link>http://localhost:1313/drafts/buildpacks/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/buildpacks/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>celery</title>
+      <link>http://localhost:1313/drafts/celery/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/celery/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>couchdb</title>
+      <link>http://localhost:1313/drafts/couchdb/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/couchdb/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>dagster</title>
+      <link>http://localhost:1313/drafts/dagster/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/dagster/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>decapcms</title>
+      <link>http://localhost:1313/drafts/decapcms/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/decapcms/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>duckdbprojecteng</title>
+      <link>http://localhost:1313/drafts/duckdbprojecteng/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/duckdbprojecteng/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>koyeb</title>
+      <link>http://localhost:1313/drafts/koyeb/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/koyeb/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>lightdash</title>
+      <link>http://localhost:1313/drafts/lightdash/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/lightdash/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>play.ht</title>
+      <link>http://localhost:1313/drafts/playht/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/playht/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>simpleen</title>
+      <link>http://localhost:1313/drafts/simpleen/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/simpleen/</guid>
+      <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>

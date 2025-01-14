@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SQL on rramos.github.io</title>
+    <link>http://localhost:1313/tags/sql/</link>
+    <description>Recent content in SQL on rramos.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2025 Rui Ramos</copyright>
+    <lastBuildDate>Tue, 14 Jan 2025 10:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/sql/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>citus</title>
+      <link>http://localhost:1313/drafts/citus/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/citus/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>qStudio - qDuckDB</title>
+      <link>http://localhost:1313/drafts/qstudio/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/qstudio/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>questdb</title>
+      <link>http://localhost:1313/drafts/questdb/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/questdb/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>WrenAI</title>
+      <link>http://localhost:1313/drafts/wrenai/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/wrenai/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>harlequin</title>
+      <link>http://localhost:1313/2024/07/harlequin/</link>
+      <pubDate>Thu, 04 Jul 2024 17:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2024/07/harlequin/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>SQL RETURNING</title>
+      <link>http://localhost:1313/2024/06/sql-returning/</link>
+      <pubDate>Mon, 10 Jun 2024 22:10:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2024/06/sql-returning/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>SQLfluff</title>
+      <link>http://localhost:1313/2024/06/sqlfluff/</link>
+      <pubDate>Sun, 02 Jun 2024 02:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2024/06/sqlfluff/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>SQLGlot</title>
+      <link>http://localhost:1313/2024/05/sqlglot/</link>
+      <pubDate>Wed, 22 May 2024 14:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2024/05/sqlglot/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>ClickHouse</title>
+      <link>http://localhost:1313/2024/01/clickhouse/</link>
+      <pubDate>Sun, 28 Jan 2024 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2024/01/clickhouse/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Streaming SQL for Kafka (KSQL)</title>
+      <link>http://localhost:1313/2017/09/streaming-sql-for-kafka-ksql/</link>
+      <pubDate>Sun, 24 Sep 2017 15:54:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2017/09/streaming-sql-for-kafka-ksql/</guid>
+      <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ChatGPT on rramos.github.io</title>
+    <link>http://localhost:1313/tags/chatgpt/</link>
+    <description>Recent content in ChatGPT on rramos.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2025 Rui Ramos</copyright>
+    <lastBuildDate>Tue, 25 Jul 2023 11:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/chatgpt/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Chat-GPT Data Science Prompts</title>
+      <link>http://localhost:1313/2023/07/chat-gpt-data-science-prompts/</link>
+      <pubDate>Tue, 25 Jul 2023 11:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2023/07/chat-gpt-data-science-prompts/</guid>
+      <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>

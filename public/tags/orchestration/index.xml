@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Orchestration on rramos.github.io</title>
+    <link>http://localhost:1313/tags/orchestration/</link>
+    <description>Recent content in Orchestration on rramos.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2025 Rui Ramos</copyright>
+    <lastBuildDate>Tue, 14 Jan 2025 10:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/orchestration/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Airflow PoC</title>
+      <link>http://localhost:1313/drafts/airflowpoc/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/airflowpoc/</guid>
+      <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>

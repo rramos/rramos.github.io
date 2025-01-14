@@ -1,0 +1,24 @@
+languageCode = "en"
+languageName = "English"
+weight = 1
+title = "rramos.github.io"
+
+[params]
+displayName = "EN"
+isoCode = "en"
+rtl = false
+dateFormat = "2 January 2006"
+description = "A techie’s diary with Big Data, DevOps, and infrastructure tips—minus the secrets"
+
+[params.author]
+name = "Rui Ramos"
+image = "author.jpeg"
+headline = "Tech enthusiast obsessed with distributed systems, data, and open-source magic"
+bio = "Versatile Engineering Manager with a robust IT background, excelling in crafting innovative solutions from High-Performance Computing to Cloud-based architectures and Data-centric services."
+links = [
+  { email = "mailto:rui.ms.ramos@gmail.com" },  
+  { twitter = "https://x.com/RuiMSRamos" },
+  { github = "https://github.com/rramos" },
+  { keybase = "https://keybase.io/ruimsramos" },
+  { linkedin = "https://linkedin.com/in/ruimsramos" }
+]

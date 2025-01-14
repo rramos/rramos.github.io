@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mac on rramos.github.io</title>
+    <link>http://localhost:1313/tags/mac/</link>
+    <description>Recent content in Mac on rramos.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2025 Rui Ramos</copyright>
+    <lastBuildDate>Thu, 06 Jun 2024 11:50:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/mac/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>tldr</title>
+      <link>http://localhost:1313/2024/06/tldr/</link>
+      <pubDate>Thu, 06 Jun 2024 11:50:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2024/06/tldr/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Mac Shortcuts</title>
+      <link>http://localhost:1313/2024/06/mac-shortcuts/</link>
+      <pubDate>Tue, 04 Jun 2024 18:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2024/06/mac-shortcuts/</guid>
+      <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>

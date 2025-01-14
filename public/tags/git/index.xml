@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Git on rramos.github.io</title>
+    <link>http://localhost:1313/tags/git/</link>
+    <description>Recent content in Git on rramos.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2025 Rui Ramos</copyright>
+    <lastBuildDate>Sun, 01 Dec 2024 12:30:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Create a patch with git</title>
+      <link>http://localhost:1313/2024/12/create-a-patch-with-git/</link>
+      <pubDate>Sun, 01 Dec 2024 12:30:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2024/12/create-a-patch-with-git/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>git-cliff</title>
+      <link>http://localhost:1313/2024/06/git-cliff/</link>
+      <pubDate>Fri, 07 Jun 2024 11:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2024/06/git-cliff/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Github ssh keys</title>
+      <link>http://localhost:1313/2022/12/github-ssh-keys/</link>
+      <pubDate>Fri, 23 Dec 2022 14:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2022/12/github-ssh-keys/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Git Untrack previous committed files</title>
+      <link>http://localhost:1313/2021/02/git-untrack-previous-committed-files/</link>
+      <pubDate>Sun, 21 Feb 2021 11:07:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2021/02/git-untrack-previous-committed-files/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Dockers</title>
+      <link>http://localhost:1313/2017/10/dockers/</link>
+      <pubDate>Wed, 18 Oct 2017 01:26:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2017/10/dockers/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Git cheat sheet</title>
+      <link>http://localhost:1313/2016/09/git-cheat-sheet/</link>
+      <pubDate>Sun, 18 Sep 2016 13:31:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2016/09/git-cheat-sheet/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Created rramos.github.io</title>
+      <link>http://localhost:1313/2016/09/created-rramos.github.io/</link>
+      <pubDate>Sat, 17 Sep 2016 23:57:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2016/09/created-rramos.github.io/</guid>
+      <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Learning on rramos.github.io</title>
+    <link>http://localhost:1313/tags/learning/</link>
+    <description>Recent content in Learning on rramos.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2025 Rui Ramos</copyright>
+    <lastBuildDate>Tue, 14 Jan 2025 10:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/learning/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Charts with Node Express and DBT</title>
+      <link>http://localhost:1313/drafts/chartsapi/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/chartsapi/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Teaching Tech Together</title>
+      <link>http://localhost:1313/2024/06/teaching-tech-together/</link>
+      <pubDate>Mon, 10 Jun 2024 08:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2024/06/teaching-tech-together/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>killercoda</title>
+      <link>http://localhost:1313/2024/06/killercoda/</link>
+      <pubDate>Sat, 08 Jun 2024 22:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2024/06/killercoda/</guid>
+      <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CI/CD on rramos.github.io</title>
+    <link>http://localhost:1313/tags/ci/cd/</link>
+    <description>Recent content in CI/CD on rramos.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2025 Rui Ramos</copyright>
+    <lastBuildDate>Tue, 14 Jan 2025 10:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/ci/cd/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>kind</title>
+      <link>http://localhost:1313/drafts/kind/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/kind/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>git-cliff</title>
+      <link>http://localhost:1313/2024/06/git-cliff/</link>
+      <pubDate>Fri, 07 Jun 2024 11:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2024/06/git-cliff/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>OpenTofu</title>
+      <link>http://localhost:1313/2024/06/opentofu/</link>
+      <pubDate>Fri, 07 Jun 2024 10:30:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2024/06/opentofu/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>markdownlint</title>
+      <link>http://localhost:1313/2024/06/markdownlint/</link>
+      <pubDate>Sat, 01 Jun 2024 18:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2024/06/markdownlint/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>act</title>
+      <link>http://localhost:1313/2024/05/act/</link>
+      <pubDate>Mon, 20 May 2024 22:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2024/05/act/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>GitHub Actions</title>
+      <link>http://localhost:1313/2024/01/github-actions/</link>
+      <pubDate>Fri, 26 Jan 2024 18:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2024/01/github-actions/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Artifactory Setup</title>
+      <link>http://localhost:1313/2022/12/artifactory-setup/</link>
+      <pubDate>Fri, 23 Dec 2022 22:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2022/12/artifactory-setup/</guid>
+      <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>

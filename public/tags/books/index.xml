@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Books on rramos.github.io</title>
+    <link>http://localhost:1313/tags/books/</link>
+    <description>Recent content in Books on rramos.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2025 Rui Ramos</copyright>
+    <lastBuildDate>Mon, 10 Jun 2024 08:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/books/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Teaching Tech Together</title>
+      <link>http://localhost:1313/2024/06/teaching-tech-together/</link>
+      <pubDate>Mon, 10 Jun 2024 08:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2024/06/teaching-tech-together/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>The One Thing</title>
+      <link>http://localhost:1313/2023/12/the-one-thing/</link>
+      <pubDate>Mon, 25 Dec 2023 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2023/12/the-one-thing/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>How to bypass Kobo wizard in Linux</title>
+      <link>http://localhost:1313/2023/08/how-to-bypass-kobo-wizard-in-linux/</link>
+      <pubDate>Mon, 21 Aug 2023 22:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2023/08/how-to-bypass-kobo-wizard-in-linux/</guid>
+      <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>

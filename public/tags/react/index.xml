@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>React on rramos.github.io</title>
+    <link>http://localhost:1313/tags/react/</link>
+    <description>Recent content in React on rramos.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2025 Rui Ramos</copyright>
+    <lastBuildDate>Tue, 14 Jan 2025 10:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/react/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Charts with Node Express and DBT</title>
+      <link>http://localhost:1313/drafts/chartsapi/</link>
+      <pubDate>Tue, 14 Jan 2025 10:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/drafts/chartsapi/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Rocket.rs</title>
+      <link>http://localhost:1313/2024/05/rocket.rs/</link>
+      <pubDate>Fri, 24 May 2024 13:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2024/05/rocket.rs/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Strapi and React TODO Application</title>
+      <link>http://localhost:1313/2024/02/strapi-and-react-todo-application/</link>
+      <pubDate>Sun, 04 Feb 2024 15:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2024/02/strapi-and-react-todo-application/</guid>
+      <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>

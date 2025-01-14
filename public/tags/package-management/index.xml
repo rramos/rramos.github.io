@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Package Management on rramos.github.io</title>
+    <link>http://localhost:1313/tags/package-management/</link>
+    <description>Recent content in Package Management on rramos.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2025 Rui Ramos</copyright>
+    <lastBuildDate>Tue, 18 Jun 2024 02:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/package-management/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>pacseek</title>
+      <link>http://localhost:1313/2024/06/pacseek/</link>
+      <pubDate>Tue, 18 Jun 2024 02:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2024/06/pacseek/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>AUR Packages</title>
+      <link>http://localhost:1313/2023/08/aur-packages/</link>
+      <pubDate>Sun, 27 Aug 2023 23:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2023/08/aur-packages/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Artifactory Setup</title>
+      <link>http://localhost:1313/2022/12/artifactory-setup/</link>
+      <pubDate>Fri, 23 Dec 2022 22:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2022/12/artifactory-setup/</guid>
+      <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>
