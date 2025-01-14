@@ -1,10 +1,12 @@
 ---
 date: '2025-01-13T18:16:25Z'
-draft: true
+draft: false
 title: 'Migrating Hexo to Hugo'
 tags:
   - WebHosting
   - Utils
+  - Hugo
+  - Hexo
 ---
 
 This article describes the process to convert the blog from hexo to hugo motivations and conclusions
@@ -174,18 +176,29 @@ In the actual GitHub Pages for Hexo I have two repos, one for the site itself an
 
 The following [page](https://gohugo.io/hosting-and-deployment/hosting-on-github/) provides detailed information on how to setup the repo for Github Pages (Hugo is way better documented than Hexo by the way ). 
 
-
 > **NOTE:** This next step would be destructive, as it will reset the existing repo for a clean state and use the existing local repo.
 
-## Performance Metrics ##
+The good news is that I just need to keep a single repo and GitHubpages will deal with the rest.
 
-Generation times
+**Steps**
+
+1. Deleted the github repo rramos.github.io
+2. Re-create the same repo
+3. Push the git content from Hugo to this new repo
+4. Went into Settings and activate Github Pages
+5. Included the [workflow](https://raw.githubusercontent.com/rramos/rramos.github.io/refs/heads/master/.github/workflows/hugo.yml) for Hugo
+
+The existing Github Action pipeline for hexo takes arround `36s` to build and deploy the changes.  
+
+## Build Performance Metrics ##
+
+Generation time reference with Hexo
 
 ```
 INFO  234 files generated in 283 ms
 ```
 
-Hugo generation
+Generation time with Hugo
 
 ```sh
 hugo v0.140.2+extended linux/amd64 BuildDate=unknown
@@ -203,13 +216,35 @@ hugo v0.140.2+extended linux/amd64 BuildDate=unknown
 Total in 235 ms
 ```
 
-Now checking performance via Google Search Console
-
-
-The existing github actions pipeline for hexo takes arround `39s` to build and deploy the changes 
-
-There is also a warning to use Github Apps instead for fine grained control
-
 ## Page Performance ##
 
-Using PageSpeed Insights
+Using Google PageSpeed Insights, to check changes
+
+### Before ###
+
+![before_snap](/images/rramos_before.png)
+
+### After ###
+
+![after_snap](/images/rramos_after.png)
+
+## Analytics ##
+
+Google Analytics is also working out of the box, just applying the configuration
+
+
+## Conclusion ##
+
+In this article I've went through the process of converting a Blog from Hexo to Hugo. Although Hexo provides simplicity and lots of plugins with was becoming hard to manage updates and I was looking for a fresher look.
+
+Also this would be an opportunity to delve into Go.
+
+Regarging performance there are amazing gains, specially on the build factor and the site looks more responsive as the insights also confirm.
+
+In geral I'm happy with the transition, but let's check next months how this works out.
+
+## Next Steps
+
+Next steps will include some way to improve my writing pipeline. Why Hexo I consolidate all in **Code** with a Hexo plugin. I could try FrontMatter for Hugo but not sure yet if that would be the best approach.
+
+I also will need to reconfigure Trunk and pre-commit on the repo to validate posts on grammar errors before commiting changes.
