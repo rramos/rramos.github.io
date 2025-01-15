@@ -6,7 +6,7 @@ This repo contains the source data for the GitHub pages of rramos.github.io
 # Install
 
 ```bash
-git clone --recursive -j8 git@github.com:rramos/rramos.github.io.src.git
+git clone --recursive -j8 git@github.com:rramos/rramos.github.io.git
 ```
 
 # Requirements
