@@ -3,6 +3,10 @@
 
 This repo contains the source data for the GitHub pages of rramos.github.io
 
+# Build Status
+
+![Github Build Status](https://github.com/rramos/rramos.github.io/actions/workflows/hugo.yml/badge.svg)
+
 # Install
 
 ```bash
