@@ -1,20 +1,19 @@
 ---
 title: couchdb
-date: '2025-01-14T10:00:00+00:00'
+date: "2025-01-14T10:00:00+00:00"
 lang: en
 draft: true
 tags:
-    - category
+  - category
 ---
 
 TBD
 
-## Intro ##
+## Intro
 
 TBD
 
-## References ##
+## References
 
-* <https://couchdb.apache.org/fauxton-visual-guide/index.html#getting-started>
-* <https://docs.couchdb.org/en/stable/intro/index.html>
- 
+- <https://couchdb.apache.org/fauxton-visual-guide/index.html#getting-started>
+- <https://docs.couchdb.org/en/stable/intro/index.html>

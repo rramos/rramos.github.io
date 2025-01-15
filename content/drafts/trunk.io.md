@@ -1,6 +1,6 @@
 ---
 title: trunk.io
-date: '2025-01-14T10:00:00+00:00'
+date: "2025-01-14T10:00:00+00:00"
 lang: en
 draft: true
 tags:
@@ -23,7 +23,6 @@ TBD
 ### VScode
 
 ### CI/CD
-
 
 ## References
 
