@@ -71,5 +71,5 @@ googleAnalytics = "G-6VMKQTVJC2"
 
 [permalinks]
   [permalinks.page]
-    posts = '/:year/:month/:slug/' 
+    posts = '/:year/:month/:day/:slug/'
 
