@@ -2,7 +2,7 @@
 # To learn more about the format of this file, see https://docs.trunk.io/reference/trunk-yaml
 version: 0.1
 cli:
-  version: 1.22.2
+  version: 1.22.9
 # Trunk provides extensibility via plugins. (https://docs.trunk.io/plugins)
 plugins:
   sources:
@@ -17,9 +17,10 @@ runtimes:
 # This is the section where you manage your linters. (https://docs.trunk.io/check/configuration)
 lint:
   enabled:
+    - codespell@2.4.0
     - pre-commit-hooks@5.0.0
-    - actionlint@1.7.6
-    - checkov@3.2.353
+    - actionlint@1.7.7
+    - checkov@3.2.354
     - git-diff-check
     - markdownlint@0.43.0
     - osv-scanner@1.9.2
