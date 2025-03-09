@@ -7,11 +7,11 @@ tags:
     - category
 ---
 
-TBD
+> Lightdash instantly turns your dbt project into a full stack BI platform. A powerful developer workflow lets analysts define key metrics, and enable self-serve for everyone else
 
 ## Intro ##
 
-TBD
+Lightdash the open-source Looker alternative
 
 ## References ##
 
