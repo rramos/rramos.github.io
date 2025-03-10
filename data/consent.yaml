@@ -3,3 +3,7 @@ items:
     description: This code gives us insight into the number of people that visit our website, where they are from and what they are clicking on. We follow the guidelines of the Dutch Government, which describe how to use Google Analytics without requiring explicit consent.
     is_functional: true
     script_file: ga.js
+  - title: Microsoft Clarity
+    description: Microsoft Clarity is a cutting-edge behavioral analytics tool that helps us understand user interaction with our website.
+    is_functional: false
+    script_file: clarity.js
