@@ -1,14 +1,14 @@
 ---
 title: llmlingua
-date: '2025-01-14T10:00:00+00:00'
+date: '2025-03-19T10:00:00+00:00'
 lang: en
-draft: true
+draft: false
 tags:
-  - LLM
-  - Data
+  - LLMs
+  - Data Engineering
 ---
 
-TBD
+llmlingua a model to compact prompts
 
 ## Intro ##
 
@@ -43,19 +43,48 @@ pip install llmlingua
 
 ## Setup ##
 
-TBD
+This example use ollama with deepseek-r1 and llmlingua
+
+```sh
+python -m venv venv
+source venv/bin/activate
+pip install ollama llmlingua
+```
 
 ## Test ##
 
-The following demo can be use to test the compression rate for a given prompt and the obtained result.
+The following example can be use to test the compression rate for a given prompt and the obtained result.
+
+```python
+import ollama
+from llmlingua import PromptCompressor
+
+# Define the model and original prompt
+model = "deepseek-r1"  # You can change this to other models like "llama2"
+original_prompt = "Can you please tell me what the capital of France is? I need this information for my geography project."
+
+
+llm_lingua = PromptCompressor()
+compressed_prompt = llm_lingua.compress_prompt(prompt, instruction="", question="", target_token=200)
+
+
+print(f"Compressed Prompt: {compressed_prompt}")
+
+# Generate response using Ollama
+response = ollama.chat(model=model, messages=[{"role": "user", "content": compressed_prompt}])
+
+# Print the response
+print("AI Response:", response["message"]["content"])
+```
+
+You can test directly using the following **Demo**
 
 * <https://huggingface.co/spaces/microsoft/llmlingua-2>
 
-TBD
-
 ## Conclusion ##
 
-TBD
+With the usage of commercial products that charge for per token, a compressor like this would make sense. Still important to assess each use-case to understand if it makes sense for the volume of tokes you are considering. Also I have this in my drafts for some time now, and with the speed of inovation on the AI field there could be a better way or model to do this today.
+
 
 ## References ##
 
