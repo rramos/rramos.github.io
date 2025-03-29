@@ -57,6 +57,9 @@ There is also other [tiers](https://auth0.com/pricing) with different level of s
 
 Ok, lets try to create a VUE application and configure Auth0 with it following the [tutorial](https://auth0.com/docs/quickstart/spa/vuejs/interactive)
 
+You can use the following repo reference for this article <https://github.com/rramos/vue-greeter/releases/tag/auth0>
+
+
 ### Requirements ###
 
 1. You should have created a Auth0 account
