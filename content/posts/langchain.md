@@ -61,7 +61,6 @@ You should get something similar
 
 > Ahoy matey! Arr, ye be askin' why the sky be blue, eh? Well, let me tell ye, it be because of a thing called rayleigh scattering, see. When sunlight enters the atmosphere, it encounters tiny molecules o' gases like nitrogen and oxygen. These molecules scatter the light in all directions, but they scatter shorter wavelengths (like blue) more than longer wavelengths (like red). So, the blue light be what ye see in the sky! It be a treasure trove of knowledge, that science be! Now, if ye'll excuse me, I have to go find me some booty... er, I mean, attend to me grog...
 
-
 - In this example we defined the `prompt`. Check the following [page](https://www.promptingguide.ai/introduction/examples) for some prompt examples
 - We define the model to use, in this case `llama2`
 - We chain with our question and print the response
@@ -169,7 +168,7 @@ I also registered a LLaMA2 model in the **Settings** section, assigning input co
 
 The following [document](https://langfuse.com/docs/query-traces) describes how to obtain information regarding the traces
 
-# Conclusion
+## Conclusion
 
 In this article, we walked through the process of setting up Langfuse locally using Docker for tracing capabilities, and built an LLM application with LangChain. We defined a prompt to make the model respond like a pirate, all while running everything locally with Ollama. If you enjoyed this, I highly recommend checking out the official Langfuse documentation—there are several interesting articles, including one on [intent classification](https://langfuse.com/docs/analytics/example-intent-classification) and I also recommend the [LLM Security](https://langfuse.com/docs/security/overview) section
 
