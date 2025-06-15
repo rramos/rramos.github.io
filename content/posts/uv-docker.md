@@ -2,7 +2,6 @@
 title: Dockerized Flask with uv
 date: "2025-06-15T16:00:00+00:00"
 lang: en
-draft: true
 tags:
   - Docker
   - Bootstrap
