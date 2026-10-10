@@ -2,7 +2,7 @@
 title: ventoy
 date: "2026-10-07T22:00:00+00:00"
 lang: en
-draft: true
+draft: false
 tags:
   - linux
   - tools
