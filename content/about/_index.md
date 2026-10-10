@@ -17,7 +17,7 @@ breakLines=false
 waitUntilVisible=true
 loop=false
 >}}
-Tech enthusiast obsessed with distributed systems, data, and open-source magic
+Tech enthusiast passionate about distributed systems, data, and open-source impact
 {{< /typeit >}}
 
 Versatile Engineering Manager with a robust IT background, excelling in crafting innovative solutions from High-Performance Computing to Cloud-based architectures and Data-centric services.
@@ -59,6 +59,6 @@ As a seasoned HPC & Grid Computing Specialist, I bring a wealth of expertise in 
 
 {{< /timeline >}}
 
-{{< button href="<https://www.linkedin.com/in/ruimsramos>" target="_blank" >}}
+{{< button href="https://www.linkedin.com/in/ruimsramos" target="_blank" >}}
 {{< icon "linkedin" >}}<small>LinkedIn</small>
 {{< /button >}}

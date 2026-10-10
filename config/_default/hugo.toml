@@ -4,7 +4,8 @@
 
 defaultContentLanguage = "en"
 baseURL = "https://rramos.github.io/"
-languageCode = "en"
+locale = "en"
+label = "English"
 
 # pluralizeListTitles = "true" # hugo function useful for non-english languages, find out more in  https://gohugo.io/getting-started/configuration/#pluralizelisttitles
 theme = "blowfish"

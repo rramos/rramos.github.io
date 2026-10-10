@@ -1,5 +1,5 @@
-languageCode = "en"
-languageName = "English"
+locale = "en"
+label = "English"
 weight = 1
 title = "rramos.github.io"
 
@@ -13,7 +13,7 @@ description = "A techie’s diary with Big Data, DevOps, and infrastructure tips
 [params.author]
 name = "Rui Ramos"
 image = "author.jpeg"
-headline = "Tech enthusiast obsessed with distributed systems, data, and open-source magic"
+headline = "Tech enthusiast passionate about distributed systems, data, and open-source impact"
 bio = "Versatile Engineering Manager with a robust IT background, excelling in crafting innovative solutions from High-Performance Computing to Cloud-based architectures and Data-centric services."
 links = [
   { email = "mailto:rui.ms.ramos@gmail.com" },  
