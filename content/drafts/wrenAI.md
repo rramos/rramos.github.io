@@ -93,7 +93,7 @@ harlequin md:_share/duckdb_in_action_ch3_4/d0c08584-1d33-491c-8db7-cf9c6910eceb
 > **NOTE**: I like using [harlequin](https://rramos.github.io/2024/07/04/harlequin/) to check the datasources but one can use duckdb directly
 
 
-## Instalation
+## Installation
 
 Select an LLM provider: 
     OpenAI
